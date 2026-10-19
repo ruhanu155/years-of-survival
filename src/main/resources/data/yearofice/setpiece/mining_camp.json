@@ -1,0 +1,75 @@
+{
+  "id": "yearofice:mining_camp",
+  "name": "Kessler and Doane's mining camp",
+  "kind": "setpiece",
+  "ring": [
+    1
+  ],
+  "count": {
+    "min": 1,
+    "max": 2
+  },
+  "priority": 60,
+  "spacing_m": 600,
+  "abandoned_year": 1912,
+  "areas": [
+    "role:mining_creek",
+    "core"
+  ],
+  "fit": {
+    "sites": [
+      "creek_reach"
+    ],
+    "max_slope_deg": 15,
+    "min_main_river_dist_m": 150
+  },
+  "prefer": {
+    "low_slope_weight": 1.0,
+    "near_water_weight": 1.0
+  },
+  "rotation": "face_water",
+  "variants": [
+    {
+      "template": "mining_camp/placer_camp",
+      "pick_weight": 2,
+      "footprint_m": [
+        24,
+        20
+      ],
+      "height_m": 6
+    },
+    {
+      "template": "mining_camp/prospect_adit",
+      "pick_weight": 1,
+      "footprint_m": [
+        10,
+        16
+      ],
+      "height_m": 8
+    },
+    {
+      "template": "mining_camp/bucket_dredge",
+      "pick_weight": 1,
+      "footprint_m": [
+        20,
+        28
+      ],
+      "height_m": 14
+    }
+  ],
+  "landmark": {
+    "test_km": 2,
+    "height_m": 14,
+    "silhouette": "yearofice:silhouette/dredge",
+    "variants": [
+      "bucket_dredge"
+    ]
+  },
+  "loot": [
+    "yearofice:setpiece/mining_camp"
+  ],
+  "notes": [
+    "yearofice:kessler_doane_ledger"
+  ],
+  "story": "The claim of Kessler and Doane, 1906-1912; the weekly ounces fall from 14 to under 1. Doane gone to town for the winter. I'll hold the claim."
+}

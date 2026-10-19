@@ -1,7 +1,8 @@
 package com.yearofice.worldgen;
 
 /**
- * {@code data/yearofice/worldgen_params/valley.json}: every number stages 1–3 use for the home valley.
+ * {@code data/yearofice/worldgen_params/valley.json}: every number stages 1–3 use for the home valley, plus the
+ * M1 blocks for stages 4–5 in {@link HydroParams}.
  * Frozen into the world at creation, so a {@code /reload} never moves land.
  */
 public record WorldgenParams(
@@ -17,7 +18,8 @@ public record WorldgenParams(
         Hardness hardness,
         ErosionParams erosion,
         SeedRanges seed,
-        Checks checks) {
+        Checks checks,
+        HydroParams hydro) {
 
     public static final String RESOURCE = "data/yearofice/worldgen_params/valley.json";
 
@@ -72,7 +74,12 @@ public record WorldgenParams(
 
     public WorldgenParams withErosion(ErosionParams e) {
         return new WorldgenParams(generatorVersion, grid, elevation, baseNoise, ridgedNoise, detailNoise, domainWarp,
-                wallRiseDistanceM, riverPath, hardness, e, seed, checks);
+                wallRiseDistanceM, riverPath, hardness, e, seed, checks, hydro);
+    }
+
+    public WorldgenParams withHydro(HydroParams h) {
+        return new WorldgenParams(generatorVersion, grid, elevation, baseNoise, ridgedNoise, detailNoise, domainWarp,
+                wallRiseDistanceM, riverPath, hardness, erosion, seed, checks, h);
     }
 
     public static WorldgenParams load() { return from(GenJson.resource(RESOURCE)); }
@@ -131,7 +138,7 @@ public record WorldgenParams(
 
         WorldgenParams p = new WorldgenParams(j.integer("generator_version"), grid, elev,
                 layer(j, "base_noise"), layer(j, "ridged_noise"), layer(j, "detail_noise"), warp, rise,
-                river, hard, ero, seed, checks);
+                river, hard, ero, seed, checks, HydroParams.from(j));
         j.done();
         return p;
     }

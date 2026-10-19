@@ -52,10 +52,19 @@ public enum Archetype {
             int minimumFalls,
             Basin basin,
             Canyon canyon,
-            Oxbows oxbows) {
+            Oxbows oxbows,
+            Meander meander,
+            String floorSoil) {
+
+        /**
+         * Stage 4's channel inside the trough (M1): a sine-generated meander whose heading swings by up to
+         * {@code omega} radians over a wavelength of so many channel widths, pulled back toward the valley path so
+         * it stays within {@code max_offset_fraction} of the floor's half width.
+         */
+        public record Meander(Range omegaRad, Range wavelengthWidths, double restoreRad, double maxOffsetFraction) {}
 
         /** Lake valley: an elliptical basin north of the river. */
-        public record Basin(Range lengthM, Range widthM, Range depthM, double riverGapM) {}
+        public record Basin(Range lengthM, Range widthM, Range depthM, double riverGapM, double minLakeAreaM2) {}
 
         /** Canyon: a narrow, walled reach with rock steps on the river. */
         public record Canyon(Range reachM, double maxReachFraction, Range floorWidthM, Range wallHeightM,
@@ -70,7 +79,8 @@ public enum Archetype {
             Basin basin = null;
             if (j.has("basin")) {
                 GenJson b = j.obj("basin");
-                basin = new Basin(b.range("length_m"), b.range("width_m"), b.range("depth_m"), b.num("river_gap_m"));
+                basin = new Basin(b.range("length_m"), b.range("width_m"), b.range("depth_m"), b.num("river_gap_m"),
+                        b.num("min_lake_area_m2", 0));
                 b.done();
             }
             Canyon canyon = null;
@@ -88,11 +98,15 @@ public enum Archetype {
                         o.integer("max_retries"));
                 o.done();
             }
+            GenJson m = j.obj("meander");
+            Meander meander = new Meander(m.range("omega_rad"), m.range("wavelength_widths"), m.num("restore_rad"),
+                    m.num("max_offset_fraction"));
+            m.done();
             Params p = new Params(a, j.range("floor_width_m"), j.range("floor_gradient_pct"),
                     j.range("river_swing_m"), j.range("trough_depth_m"), j.num("trough_flat_fraction"),
                     j.num("floor_noise_m"), j.num("mountain_fraction"), j.num("floor_sediment_multiplier"),
                     j.range("channels"), j.has("gravel_belt_m") ? j.range("gravel_belt_m") : null,
-                    j.integer("minimum_falls"), basin, canyon, oxbows);
+                    j.integer("minimum_falls"), basin, canyon, oxbows, meander, j.str("floor_soil"));
             j.done();
             return p;
         }

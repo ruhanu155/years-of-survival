@@ -14,6 +14,14 @@
     "length_m": { "min": 600, "max": 1200 },
     "width_m": { "min": 250, "max": 500 },
     "depth_m": { "min": 8, "max": 25 },
-    "river_gap_m": 30
+    "river_gap_m": 30,
+    "min_lake_area_m2": 220000
+  },
+  "floor_soil": "silt",
+  "meander": {
+    "omega_rad": { "min": 1.0, "max": 1.4 },
+    "wavelength_widths": { "min": 11, "max": 14 },
+    "restore_rad": 0.6,
+    "max_offset_fraction": 0.8
   }
 }

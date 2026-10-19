@@ -15,5 +15,12 @@
     "depth_m": { "min": 2, "max": 3 },
     "swing_retry_factor": 1.2,
     "max_retries": 3
+  },
+  "floor_soil": "silt",
+  "meander": {
+    "omega_rad": { "min": 1.85, "max": 2.15 },
+    "wavelength_widths": { "min": 10, "max": 12 },
+    "restore_rad": 0.45,
+    "max_offset_fraction": 0.85
   }
 }

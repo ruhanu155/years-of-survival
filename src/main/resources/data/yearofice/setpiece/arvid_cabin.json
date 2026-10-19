@@ -1,0 +1,67 @@
+{
+  "id": "yearofice:arvid_cabin",
+  "name": "Arvid Lund's trapper cabin",
+  "kind": "setpiece",
+  "ring": [
+    1
+  ],
+  "count": {
+    "min": 1,
+    "max": 2
+  },
+  "priority": 70,
+  "spacing_m": 500,
+  "abandoned_year": 1971,
+  "areas": [
+    "core"
+  ],
+  "fit": {
+    "sites": [
+      "creek_bench"
+    ],
+    "max_slope_deg": 12,
+    "min_main_river_dist_m": 200
+  },
+  "prefer": {
+    "low_slope_weight": 1.0,
+    "near_water_weight": 0.5
+  },
+  "rotation": "face_water",
+  "variants": [
+    {
+      "template": "arvid_cabin/sod_roof",
+      "pick_weight": 2,
+      "footprint_m": [
+        10,
+        10
+      ],
+      "height_m": 6
+    },
+    {
+      "template": "arvid_cabin/dugout",
+      "pick_weight": 1,
+      "footprint_m": [
+        8,
+        8
+      ],
+      "height_m": 4
+    },
+    {
+      "template": "arvid_cabin/line_cabin",
+      "pick_weight": 1,
+      "footprint_m": [
+        6,
+        6
+      ],
+      "height_m": 4
+    }
+  ],
+  "loot": [
+    "yearofice:setpiece/arvid_cabin"
+  ],
+  "notes": [
+    "yearofice:arvid_last_note",
+    "yearofice:trapline_board"
+  ],
+  "story": "Arvid Lund trapped this country from 1938 to 1971; the lynx notches on the door frame rise and fall on the hare cycle."
+}

@@ -1,0 +1,70 @@
+{
+  "id": "yearofice:hot_spring",
+  "name": "Hot spring",
+  "kind": "setpiece",
+  "ring": [
+    1
+  ],
+  "count": {
+    "min": 1,
+    "max": 1
+  },
+  "priority": 40,
+  "spacing_m": 800,
+  "abandoned_year": 1931,
+  "areas": [
+    "outside_core"
+  ],
+  "fit": {
+    "sites": [
+      "slope_break"
+    ],
+    "max_slope_deg": 12
+  },
+  "prefer": {
+    "near_water_weight": 1.0,
+    "low_slope_weight": 0.5
+  },
+  "rotation": "face_downhill",
+  "variants": [
+    {
+      "template": "hot_spring/roadhouse_pool",
+      "pick_weight": 2,
+      "footprint_m": [
+        20,
+        16
+      ],
+      "height_m": 7
+    },
+    {
+      "template": "hot_spring/bog_pools",
+      "pick_weight": 1,
+      "footprint_m": [
+        18,
+        18
+      ],
+      "height_m": 2
+    },
+    {
+      "template": "hot_spring/cliff_pool",
+      "pick_weight": 1,
+      "footprint_m": [
+        12,
+        12
+      ],
+      "height_m": 3
+    }
+  ],
+  "landmark": {
+    "test_km": 0,
+    "height_m": 0,
+    "silhouette": "yearofice:silhouette/steam_plume"
+  },
+  "loot": [
+    "yearofice:setpiece/hot_spring"
+  ],
+  "notes": [
+    "yearofice:roadhouse_guest_book"
+  ],
+  "story": "The roadhouse fed the winter sled trail from 1908 to 1931; Doane signs the guest book three winters running."
+}
