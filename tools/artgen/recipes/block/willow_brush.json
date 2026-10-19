@@ -7,7 +7,7 @@
    "layers": [
     {
      "type": "noise",
-     "ramp": "leaf_silver",
+     "ramp": "leaf_green",
      "scale": 4,
      "octaves": 3,
      "steps": [
@@ -17,13 +17,13 @@
     },
     {
      "type": "speckle",
-     "ramp": "leaf_green",
+     "ramp": "leaf_silver",
      "step": 2,
-     "density": 0.15
+     "density": 0.22
     },
     {
      "type": "cutout",
-     "density": 0.35,
+     "density": 0.4,
      "scale": 4,
      "octaves": 2
     }

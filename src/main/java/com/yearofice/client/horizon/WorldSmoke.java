@@ -107,6 +107,12 @@ public final class WorldSmoke {
             if (!SHOTS.isEmpty()) command(mc, SHOTS.get(0)[1]);
             return;
         }
+        if (shot >= 0 && mc.player != null && !mc.player.getAbilities().flying) {
+            // Creative flight, so the camera stays where it was put (landing turns it off).
+            mc.player.getAbilities().flying = true;
+            mc.player.onUpdateAbilities();
+        }
+        if (shot >= 0 && ticks == 61 + SETTLE - 40) command(mc, SHOTS.get(shot)[1]); // again, after any drift
         if (shot < 0 || ticks < 61 + SETTLE) return;
         String[] s = SHOTS.get(shot);
         Screenshot.grab(mc.gameDirectory, s[0] + ".png", mc.getMainRenderTarget(), msg -> YearOfIce.LOG.info("Smoke screenshot: {}", msg.getString()));
@@ -135,23 +141,24 @@ public final class WorldSmoke {
         add("m2_spawn", sp[0] + 0.5, sp[1], sp[2] + 0.5, yaw[sp[3] / 90], 5);
         // Back from the door, looking at the cabin across the pad.
         double back = (yaw[sp[3] / 90] + 180) % 360;
-        double bx = -Math.sin(Math.toRadians(yaw[sp[3] / 90])) * 12, bz = Math.cos(Math.toRadians(yaw[sp[3] / 90])) * 12;
-        add("m2_outpost", sp[0] + 0.5 + bx, sp[1] + 6, sp[2] + 0.5 + bz, back, 25);
+        double bx = -Math.sin(Math.toRadians(yaw[sp[3] / 90])) * 10, bz = Math.cos(Math.toRadians(yaw[sp[3] / 90])) * 10;
+        add("m2_outpost", sp[0] + 0.5 + bx, sp[1] + 20, sp[2] + 0.5 + bz, back, 55);
         int[] c = w.nearestWater(sp[0], sp[2], 400, WaterStage.CREEK);
         if (c != null) {
             ValleyWorld.Columns col = w.columns(c[0] + 10, c[1] + 10, 1, 1);
-            add("m2_creek", c[0] + 10.5, col.top(0) + 4, c[1] + 10.5, 135, 25);
+            add("m2_creek", c[0] + 10.5, col.top(0) + 16, c[1] + 10.5, 135, 45);
         }
         if (w.sliceSpot != null) {
             int x = (int) Math.floor(w.sliceSpot.x()), z = (int) Math.floor(w.sliceSpot.z());
             ValleyWorld.Columns col = w.columns(x - 8, z - 8, 1, 1);
             add("m2_fishing_spot", x - 7.5, Math.max(col.top(0), w.columns(x, z, 1, 1).top(0)) + 5, z - 7.5, -45, 30);
         }
+        add("m2_valley", sp[0] + 0.5 - 40, sp[1] + 45, sp[2] + 0.5 + 60, 210, 22);
         int[] hp = w.highPoint(sp[0], sp[2], 450);
         ValleyWorld.Columns col = w.columns(hp[0], hp[1], 1, 1);
         double dx = sp[0] - hp[0], dz = sp[2] - hp[1];
         double look = Math.toDegrees(Math.atan2(-dx, dz));
-        add("m2_ridge", hp[0] + 0.5, col.top(0) + 3, hp[1] + 0.5, look, 15);
+        add("m2_ridge", hp[0] + 0.5, col.top(0) + 12, hp[1] + 0.5, look, 20);
     }
 
     private static void add(String name, double x, double y, double z, double yaw, double pitch) {
@@ -161,9 +168,6 @@ public final class WorldSmoke {
     private static void command(Minecraft mc, String c) {
         if (mc.player == null) return;
         mc.player.connection.sendCommand(c);
-        // Creative flight, so the camera stays where it was put.
-        mc.player.getAbilities().flying = true;
-        mc.player.onUpdateAbilities();
     }
 
     private static void press(Screen s, String key) {

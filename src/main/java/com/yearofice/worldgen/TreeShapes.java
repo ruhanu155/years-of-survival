@@ -47,13 +47,13 @@ public final class TreeShapes {
     static void whiteSpruce(TreePlan.Tree t, Sink out) {
         int h = t.height();
         for (int y = 0; y < h; y++) out.put(0, y, 0, Part.LOG);
-        int y0 = Math.max(1, h / 6);
-        double maxR = 1.6 + h / 9.0;
+        int y0 = Math.max(1, h / 5);
+        double maxR = 1.0 + h / 12.0;
         for (int y = y0; y <= h; y++) {
             double f = (double) (y - y0) / Math.max(1, h - y0);
-            double r = maxR * (1 - f) + 0.6;
+            double r = maxR * (1 - f) + 0.5;
             // Whorls: every other layer reaches a little further.
-            if (((y - y0) & 1) == 0) r += 0.45;
+            if (((y - y0) & 1) == 0) r += 0.35;
             int ri = (int) Math.ceil(r);
             for (int dz = -ri; dz <= ri; dz++) for (int dx = -ri; dx <= ri; dx++) {
                 if (dx == 0 && dz == 0 && y < h) continue;
