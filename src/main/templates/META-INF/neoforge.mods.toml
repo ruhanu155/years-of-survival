@@ -9,6 +9,10 @@ displayName="${mod_name}"
 authors="${mod_authors}"
 description='''${mod_description}'''
 
+# One access transformer file (client.horizon.ExperimentalWarning reads ConfirmScreen.callback).
+[[accessTransformers]]
+file="META-INF/accesstransformer.cfg"
+
 # One mixin config (Minecraft engine › Inventory and packs: the one Inventory mixin for locked pack rows).
 [[mixins]]
 config="${mod_id}.mixins.json"

@@ -201,6 +201,82 @@ public final class M2WorldGameTests {
         });
     }
 
+    // ------------------------------------------------------------------ trees
+
+    /**
+     * {@code worldgen/trees_grounded}, on real blocks: 8 × 8 chunks at the slice's start and 8 × 8 at the highest
+     * ridge within 450 blocks (the client smoke's ridge shot) generate to FULL, then every tree block (log, leaves,
+     * stem, brush, stump) in the inner 6 × 6 of each, whose writers all ran, belongs to a 26-connected group that
+     * holds a wood block standing on non-tree ground: nothing hangs in the air. Fallen logs lie on the ground and are
+     * checked for a solid block under them. JUnit checks the same placement rules on 512 × 512 blocks of 5 seeds.
+     */
+    @GameTest(template = "gametest/empty3", batch = "m2", timeoutTicks = 2400)
+    public static void worldgen_trees_grounded(GameTestHelper h) {
+        ServerLevel l = slice(h);
+        ValleyWorld w = world(l);
+        int[] s = w.spawn();
+        int[] hp = w.highPoint(s[0], s[2], 450);
+        int groups = 0, blocks = 0;
+        for (int[] at : new int[][] {{s[0] + 40, s[2] + 40}, {hp[0], hp[1]}}) {
+            int cx0 = (at[0] >> 4) - 4, cz0 = (at[1] >> 4) - 4;
+            for (int cz = cz0; cz < cz0 + 8; cz++) for (int cx = cx0; cx < cx0 + 8; cx++) l.getChunk(cx, cz);
+            int x0 = cx0 * 16, z0 = cz0 * 16, n = 128;
+            ValleyWorld.Columns col = w.columns(x0, z0, n, n);
+            java.util.Set<BlockPos> tree = new java.util.HashSet<>();
+            BlockPos.MutableBlockPos mp = new BlockPos.MutableBlockPos();
+            for (int i = 0; i < n * n; i++) {
+                int x = x0 + i % n, z = z0 + i / n;
+                for (int y = col.ground[i] - 2; y <= col.top(i) + 32; y++) {
+                    BlockState st = l.getBlockState(mp.set(x, y, z));
+                    Block b = st.getBlock();
+                    if (b instanceof com.yearofice.worldgen.block.FallenLogBlock) {
+                        h.assertTrue(l.getBlockState(mp.set(x, y - 1, z)).isSolid(), "fallen log in the air at " + x + " " + y + " " + z);
+                    } else if (treeBlock(b)) {
+                        tree.add(new BlockPos(x, y, z));
+                    }
+                }
+            }
+            java.util.Set<BlockPos> seen = new java.util.HashSet<>();
+            for (BlockPos p0 : tree) {
+                if (seen.contains(p0)) continue;
+                List<BlockPos> group = new ArrayList<>();
+                java.util.ArrayDeque<BlockPos> q = new java.util.ArrayDeque<>();
+                q.add(p0);
+                seen.add(p0);
+                boolean edge = false, grounded = false;
+                while (!q.isEmpty()) {
+                    BlockPos p = q.poll();
+                    group.add(p);
+                    if (p.getX() - x0 < 16 || p.getZ() - z0 < 16 || p.getX() - x0 >= n - 16 || p.getZ() - z0 >= n - 16) edge = true;
+                    Block b = l.getBlockState(p).getBlock();
+                    if (b instanceof com.yearofice.worldgen.block.YoiLogBlock || b instanceof com.yearofice.worldgen.block.ShrubStemBlock
+                            || b instanceof com.yearofice.worldgen.block.StumpBlock) {
+                        BlockState below = l.getBlockState(p.below());
+                        if (below.isSolid() && !treeBlock(below.getBlock())) grounded = true;
+                    }
+                    for (int dz = -1; dz <= 1; dz++) for (int dy = -1; dy <= 1; dy++) for (int dx = -1; dx <= 1; dx++) {
+                        BlockPos o = p.offset(dx, dy, dz);
+                        if (tree.contains(o) && seen.add(o)) q.add(o);
+                    }
+                }
+                if (edge) continue; // may hang from a trunk outside the scanned area
+                groups++;
+                blocks += group.size();
+                h.assertTrue(grounded, group.size() + " tree blocks hang in the air near " + group.get(0).toShortString()
+                        + " (" + l.getBlockState(group.get(0)).getBlock() + "), no wood standing on the ground");
+            }
+        }
+        h.assertTrue(groups > 50, "only " + groups + " tree groups in the scanned areas");
+        YearOfIce.LOG.info("trees_grounded: {} tree groups, {} blocks, all standing", groups, blocks);
+        h.succeed();
+    }
+
+    static boolean treeBlock(Block b) {
+        return b instanceof com.yearofice.worldgen.block.YoiLogBlock || b instanceof com.yearofice.worldgen.block.YoiLeavesBlock
+                || b instanceof com.yearofice.worldgen.block.ShrubStemBlock || b instanceof com.yearofice.worldgen.block.BrushBlock
+                || b instanceof com.yearofice.worldgen.block.StumpBlock;
+    }
+
     static boolean nearFlow(ValleyWorld.Columns c, BlockPos p) {
         for (int dz = -8; dz <= 8; dz++) for (int dx = -8; dx <= 8; dx++) {
             int x = p.getX() + dx, z = p.getZ() + dz;
