@@ -3,6 +3,7 @@ package com.yearofice.hunt.fishing;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.yearofice.core.YearOfIce;
+import com.yearofice.food.YoiFoodItem;
 import com.yearofice.sim.fishing.HookBait;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.component.DataComponentType;
@@ -32,9 +33,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
  *   <li>{@code yearofice:bobber}: the cast bobber entity that replaces vanilla's fishing hook.</li>
  * </ul>
  *
- * <p>{@code yearofice:weight_g} is studio-owned shared state (master inventory, M2); fishing is its first writer in
- * code, so it is registered here until {@code item.component.YoiComponents} lands and takes it over under the same
- * id, as fire did with {@code yearofice:moisture}.
+ * <p>{@code yearofice:weight_g} is studio-owned shared state, registered once in {@code item.component.YoiComponents}
+ * (RECONCILE 168); fishing writes it on the landed fish, with the fish's raw {@code yearofice:fresh}. The grayling is a
+ * {@link YoiFoodItem}: roasted whole on a spit and eaten at its own weight.
  */
 public final class FishingRegistry {
     private FishingRegistry() {}
@@ -60,15 +61,11 @@ public final class FishingRegistry {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<HookBait>> TACKLE =
             COMPONENTS.registerComponentType("tackle", b -> b.persistent(BAIT_CODEC).networkSynchronized(BAIT_STREAM));
 
-    /** Grams one item weighs (a landed fish's live weight). */
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> WEIGHT_G =
-            COMPONENTS.registerComponentType("weight_g", b -> b.persistent(Codec.intRange(0, 1_000_000)).networkSynchronized(ByteBufCodecs.VAR_INT));
-
     /** Line condition 0–100 % is the rod's durability (Tackle › Lines: plant fiber −3% a fight, −9% in the red). */
     public static final DeferredItem<RodItem> ROD = ITEMS.registerItem("rod", RodItem::new, new Item.Properties().durability(RodItem.LINE_MAX));
     public static final DeferredItem<Item> WORM = ITEMS.registerItem("worm", Item::new, new Item.Properties().stacksTo(64));
     /** A whole fish is a single item (Items › Food values: "Single, weight_g"). */
-    public static final DeferredItem<Item> ARCTIC_GRAYLING = ITEMS.registerItem("arctic_grayling", Item::new, new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> ARCTIC_GRAYLING = ITEMS.register("arctic_grayling", () -> new YoiFoodItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredHolder<EntityType<?>, EntityType<BobberEntity>> BOBBER = ENTITIES.register("bobber",
             () -> EntityType.Builder.<BobberEntity>of(BobberEntity::new, MobCategory.MISC)

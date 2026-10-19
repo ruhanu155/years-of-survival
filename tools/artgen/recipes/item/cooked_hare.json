@@ -97,5 +97,11 @@
    "ramp": "bone",
    "step": 3
   }
- ]
+ ],
+ "variants": {
+  "burnt": {
+   "meat_cooked": "fur_black",
+   "fat_cream": "bark_spruce"
+  }
+ }
 }

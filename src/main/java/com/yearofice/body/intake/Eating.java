@@ -57,6 +57,8 @@ public final class Eating {
     public static void onFinish(LivingEntityUseItemEvent.Finish e) {
         if (!(e.getEntity() instanceof ServerPlayer p)) return;
         ItemStack eaten = e.getItem();
+        // Only vanilla foods: ours (food.YoiFoodItem) have no minecraft:food and book their own bite through food.Meals.
+        if (!eaten.has(DataComponents.FOOD)) return;
         FoodMap.Row row = FoodMap.row(eaten);
         if (row == null) return;
         BodyService.get().eat(p, eaten, row.weightG());

@@ -1,5 +1,6 @@
 package com.yearofice.ecosystem.carcass;
 
+import com.yearofice.item.component.YoiComponents;
 import com.yearofice.api.body.BodyService;
 import com.yearofice.core.YearOfIce;
 import com.yearofice.ecosystem.EcoConfig;
@@ -91,7 +92,7 @@ public final class Butchering {
             if (meat.contains(id)) {
                 Item item = s.getItem();
                 Fresh f = Freshness.dressed(r.fresh(), item, dNow);
-                s.set(EcosystemRegistry.FRESH.get(), f);
+                s.set(YoiComponents.FRESH.get(), f);
             }
         }
         return out;

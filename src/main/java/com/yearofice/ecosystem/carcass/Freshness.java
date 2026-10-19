@@ -4,11 +4,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.JsonOps;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.yearofice.api.decay.DecayService;
 import com.yearofice.core.YearOfIce;
-import com.yearofice.ecosystem.EcoConfig;
-import com.yearofice.ecosystem.clock.SliceClock;
-import com.yearofice.sim.decay.ColdCurve;
+import com.yearofice.item.component.YoiComponents;
 import com.yearofice.sim.decay.FoodState;
 import com.yearofice.sim.decay.Fresh;
 import com.yearofice.sim.food.FoodValues;
@@ -24,8 +22,8 @@ import net.neoforged.neoforge.registries.datamaps.DataMapType;
 
 /**
  * {@code yearofice:fresh} for carcasses and their meat, on the slice's one decay clock (Minecraft development ›
- * Layer 5). Until the Decay and freshness layer lands there is one clock, handle 0, {@code air:slice}: decay-hours
- * are game hours times f_T at {@code [ecosystem] slice_air_c} (5 °C, f_T = 1). Food values come from the
+ * Layer 5), read through {@link DecayService}: one clock, handle 0, {@code air:slice}, whose decay-hours are game
+ * hours times f_T at {@code [decay] stand_in_air_c} (5 °C, f_T = 1) until EnvService lands. Food values come from the
  * {@code yearofice:food} data map ({@code data_maps/item/food.json}), read by its id so the ecosystem needs no
  * other package's classes.
  *
@@ -43,21 +41,13 @@ public final class Freshness {
     static final FoodValues LEAN_MEAT = new FoodValues("lean_meat", 115, 27, 0.8, 0, FoodValues.LIVING_ROT,
             Map.of(FoodState.RAW, 6.0, FoodState.COOKED, 9.0));
 
-    public static final Codec<Fresh> CODEC = RecordCodecBuilder.create(i -> i.group(
-            Codec.STRING.xmap(s -> FoodState.valueOf(s.toUpperCase(Locale.ROOT)), FoodState::key).fieldOf("state").forGetter(Fresh::state),
-            Codec.INT.fieldOf("clock").forGetter(Fresh::clock),
-            Codec.DOUBLE.fieldOf("due_dh").forGetter(Fresh::dueDh),
-            Codec.DOUBLE.fieldOf("life_dh").forGetter(Fresh::lifeDh),
-            Codec.INT.optionalFieldOf("traits", 0).forGetter(Fresh::traits),
-            Codec.BOOL.optionalFieldOf("known", true).forGetter(Fresh::known)
-    ).apply(i, Fresh::new));
+    /** The component's codec, owned by {@code item.component.YoiComponents} (one definition, RECONCILE 169). */
+    public static final Codec<Fresh> CODEC = YoiComponents.FRESH_CODEC;
 
     /** Decay-hours on the slice clock at a game minute. */
-    public static double dAt(double minute) {
-        return minute / 60.0 * ColdCurve.STANDARD.rate(EcoConfig.tuning().sliceAirC());
-    }
+    public static double dAt(double minute) { return DecayService.get().dAt(minute); }
 
-    public static double dNow(Level level) { return dAt(SliceClock.minuteD(level)); }
+    public static double dNow(Level level) { return DecayService.get().dNow(level); }
 
     /** A whole small carcass, stamped at its death minute. */
     public static Fresh wholeCarcass(Item meat, double deathMinute) {

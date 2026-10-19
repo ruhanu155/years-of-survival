@@ -15,20 +15,19 @@ package com.yearofice.sim.ecosystem;
  * @param activeRadiusM          bodies appear within this distance of a player (Active tier, 150 m)
  * @param demoteRadiusM          and leave beyond this (180 m; the 30 m hysteresis stops flicker)
  * @param activeCap              at most this many of our animals are bodies in one level (40)
- * @param sliceAirC              the air temperature decay reads until the Environment field lands
  * @param workMinPerS            the Work time-lapse rate (5 game minutes a real second)
  * @param minWorkEnergy          hold-to-work stops below this many energy bolts (2)
  */
 public record EcoTuning(double hareDensityPerKm2, double ptarmiganGroupsPerKm2, double mooseDensityPerKm2,
-                        double activeRadiusM, double demoteRadiusM, int activeCap, double sliceAirC,
+                        double activeRadiusM, double demoteRadiusM, int activeCap,
                         double workMinPerS, double minWorkEnergy) {
 
     public static EcoTuning standard() { return Preset.STANDARD.tuning; }
 
     public enum Preset {
-        GENTLE(new EcoTuning(55, 12, 1.5, 128, 160, 40, 5, 5, 1)),
-        STANDARD(new EcoTuning(40, 8, 1.0, 128, 160, 40, 5, 5, 2)),
-        BRUTAL(new EcoTuning(28, 5, 0.6, 128, 160, 40, 5, 5, 2));
+        GENTLE(new EcoTuning(55, 12, 1.5, 128, 160, 40, 5, 1)),
+        STANDARD(new EcoTuning(40, 8, 1.0, 128, 160, 40, 5, 2)),
+        BRUTAL(new EcoTuning(28, 5, 0.6, 128, 160, 40, 5, 2));
 
         public final EcoTuning tuning;
 

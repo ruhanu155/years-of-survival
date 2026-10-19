@@ -11,7 +11,9 @@ Recipe kinds:
   found_icon  a found CC0/CC-BY sprite under art-src/found/, recoloured colour by colour onto ramp steps
               (`map`), edited (`edits`), re-outlined; provenance goes to credits.json
   block, plant  the prototype renderers (tiling faces, plant phase sprites)
-Every random draw seeds from SHA-256 of the recipe id and the layer, so output is byte-identical."""
+A recipe with "model": false writes no item model (another generator writes it, as tools/artgen/cooking.py does
+for the foods whose look changes with cooking). Every random draw seeds from SHA-256 of the recipe id and the layer,
+so output is byte-identical."""
 import json, os, sys, math, hashlib, glob
 import numpy as np
 from PIL import Image, ImageDraw
@@ -273,7 +275,7 @@ def build(kinds=("item",), only=None):
                 if r.get("min_area"):
                     pass
                 report.append((k, ok, nc, ramps, probs))
-            if r.get("folder", "item") == "item":
+            if r.get("folder", "item") == "item" and r.get("model", True):
                 mp = os.path.join(ASSETS, "models", "item", name + ".json")
                 os.makedirs(os.path.dirname(mp), exist_ok=True)
                 json.dump(item_model(name, r.get("model_parent", "minecraft:item/generated")), open(mp, "w"), indent=1)
