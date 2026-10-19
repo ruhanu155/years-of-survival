@@ -5,8 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Runs the creation stages built so far (1 Seed, 2 Landform, 3 Erosion) for the home valley, checks each
- * stage, and rerolls with attempt k + 1 on a failed check, up to {@code max_attempts} (20).
+ * Runs the creation stages built so far (1 Seed, 2 Landform, 3 Erosion, 4 Water and rock, 5 Places) for the
+ * home valley, checks each stage, and rerolls with attempt k + 1 on a failed check, up to {@code max_attempts}
+ * (20). Stages 4–5 run only once stages 1–3 pass, so a failed landform never pays for them.
  *
  * <p>Pure Java with no Minecraft imports, no clock and no shared state: the same level seed and generator
  * version give the same layers on every JVM. Callers time it; the pipeline never reads the clock.
@@ -14,14 +15,22 @@ import java.util.List;
 public final class Pipeline {
     private final WorldgenParams params;
     private final Archetype.Params[] archetypes;
+    private final List<SetPieceDef> setPieces;
 
     public Pipeline(WorldgenParams params, Archetype.Params[] archetypes) {
+        this(params, archetypes, SetPieceDef.loadAll());
+    }
+
+    public Pipeline(WorldgenParams params, Archetype.Params[] archetypes, List<SetPieceDef> setPieces) {
         this.params = params;
         this.archetypes = archetypes;
+        this.setPieces = setPieces;
     }
 
     /** A pipeline on the data shipped in the jar. */
     public static Pipeline standard() { return new Pipeline(WorldgenParams.load(), Archetype.loadAll()); }
+
+    public List<SetPieceDef> setPieces() { return setPieces; }
 
     public WorldgenParams params() { return params; }
 
@@ -33,7 +42,8 @@ public final class Pipeline {
 
     /** One attempt's layers and verdict. {@code failures} is empty when every check passed. */
     public record Result(SeedStage.SeedParams seed, Landform.Layers landform, Erosion.Layers erosion, Stats stats,
-                         List<String> failures, List<String> earlierFailures) {
+                         WaterStage.Layers water, PlacesStage.Layers places, List<String> failures,
+                         List<String> earlierFailures) {
         public boolean passed() { return failures.isEmpty(); }
 
         public int attempt() { return seed.attempt(); }
@@ -42,6 +52,26 @@ public final class Pipeline {
         public int heightHash() { return erosion.heightHash(); }
 
         public int landformHash() { return landform.hash(); }
+
+        /** Stage 4's fingerprint (0 when stages 1–3 failed and it never ran). */
+        public int waterHash() { return water == null ? 0 : water.hash(); }
+
+        public int placesHash() { return places == null ? 0 : places.hash(); }
+
+        /** The full M1 layer hash: stages 2–5 together. */
+        public int m1Hash() {
+            return StageHashes.combine(landformHash(), heightHash(), erosion.sedimentHash(), waterHash(), placesHash());
+        }
+
+        /** Ground after stage 4's carve. */
+        public float[] ground() { return water.ground(erosion.height()); }
+
+        /** Every fishing spot: stage 4's and stage 5's beaver ponds. */
+        public List<WaterStage.Spot> spots() {
+            List<WaterStage.Spot> all = new ArrayList<>(water.spots());
+            all.addAll(places.pondSpots());
+            return all;
+        }
     }
 
     /** Stage 1 alone, for the archetype-share test and the debug command. Under 1 ms. */
@@ -71,7 +101,17 @@ public final class Pipeline {
         if (st.hardFaces() > 0 && st.hardFacesKept() < params.checks().hardFaceKeepFraction()) {
             fails.add("erosion: hard faces kept " + st.hardFacesKept());
         }
-        return new Result(seed, land, ero, st, List.copyOf(fails), List.of());
+        WaterStage.Layers water = null;
+        PlacesStage.Layers places = null;
+        if (fails.isEmpty()) {
+            Archetype.Params arch = archetypes[seed.archetype().ordinal()];
+            water = WaterStage.run(seed, land, ero, params, arch);
+            fails.addAll(water.check(arch, params.hydro()));
+            places = PlacesStage.run(seed, land, ero, water, params, setPieces);
+            fails.addAll(places.check(setPieces, water, water.ground(ero.height()), new CoreGrid(params, seed.mirror()),
+                    params.hydro()));
+        }
+        return new Result(seed, land, ero, st, water, places, List.copyOf(fails), List.of());
     }
 
     /** Attempts 0, 1, ... until one passes or {@code max_attempts} run out (then the last is returned). */
@@ -86,7 +126,8 @@ public final class Pipeline {
             if (r.passed()) break;
             for (String f : r.failures()) earlier.add("attempt " + k + ": " + f);
         }
-        return new Result(r.seed(), r.landform(), r.erosion(), r.stats(), r.failures(), List.copyOf(earlier));
+        return new Result(r.seed(), r.landform(), r.erosion(), r.stats(), r.water(), r.places(), r.failures(),
+                List.copyOf(earlier));
     }
 
     /** Eroded height under each in-core river path point: the valley floor profile. */
@@ -149,6 +190,17 @@ public final class Pipeline {
         double a = Math.abs(c - h[idx - 1]), b = Math.abs(c - h[idx + 1]);
         double d = Math.abs(c - h[idx - n]), e = Math.abs(c - h[idx + n]);
         return Math.max(Math.max(a, b), Math.max(d, e));
+    }
+
+    /** Combines stage hashes into one fingerprint. */
+    static final class StageHashes {
+        private StageHashes() {}
+
+        static int combine(int... hs) {
+            StringBuilder b = new StringBuilder();
+            for (int h : hs) b.append(Integer.toUnsignedString(h)).append(':');
+            return com.yearofice.core.hash.StageHash.of(b.toString());
+        }
     }
 
     static int countNaN(float[] a) {

@@ -1,0 +1,51 @@
+{
+  "id": "yearofice:outpost",
+  "name": "Station Nine outpost",
+  "kind": "setpiece",
+  "ring": [
+    1
+  ],
+  "count": {
+    "min": 1,
+    "max": 1
+  },
+  "priority": 75,
+  "spacing_m": 400,
+  "abandoned_year": 1984,
+  "areas": [
+    "core"
+  ],
+  "fit": {
+    "sites": [
+      "riverbank"
+    ],
+    "max_slope_deg": 5,
+    "min_main_river_dist_m": 14,
+    "max_main_river_dist_m": 90,
+    "above_river_m": 0.8
+  },
+  "prefer": {
+    "near_main_river_weight": 1.0,
+    "low_slope_weight": 1.0,
+    "above_river_weight": 1.5,
+    "view_of": "yearofice:fire_lookout",
+    "view_weight": 1.5
+  },
+  "rotation": "face_landmark",
+  "variants": [
+    {
+      "template": "outpost/day_one",
+      "pick_weight": 1,
+      "footprint_m": [
+        12,
+        12
+      ],
+      "height_m": 6
+    }
+  ],
+  "loot": [
+    "yearofice:setpiece/outpost"
+  ],
+  "notes": [],
+  "story": "Provisional start site: a flat bank above the main river, door toward the lookout. Stage 7's start-site score and its 12 checks (M3) replace this pick."
+}

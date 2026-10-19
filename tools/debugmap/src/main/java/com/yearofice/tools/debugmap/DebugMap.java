@@ -4,6 +4,7 @@ import com.yearofice.worldgen.Landform;
 import com.yearofice.worldgen.Pipeline;
 import com.yearofice.worldgen.RiverPath;
 import com.yearofice.worldgen.SeedStage;
+import com.yearofice.worldgen.debug.MapRender;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -19,10 +20,12 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 
 /**
- * Desktop renderer of the worldgen layers (M0). For each seed it runs stages 1–3 (with rerolls), then writes
- * PNGs: {@code overview} (eroded height, hillshade, tint, 50 m contours, river path), {@code landform}
+ * Desktop renderer of the worldgen layers. For each seed it runs stages 1–5 (with rerolls), then writes
+ * PNGs: M0's {@code overview} (eroded height, hillshade, tint, 50 m contours, river path), {@code landform}
  * (stage 2 before erosion), {@code hardness}, {@code sediment}, {@code erosion_change}, {@code coarse} (the
- * 8 km world at 32 m) and, for several seeds, a contact sheet.
+ * 8 km world at 32 m); M1's {@code m1} (everything), {@code water}, {@code current}, {@code spots},
+ * {@code rock}, {@code places} and {@code world}; and, for several seeds, contact sheets ({@code sheet.png} for
+ * M0, {@code sheet-m1.png} and {@code sheet-world.png} for M1).
  *
  * <p>Args: {@code seed=N}, {@code seeds=a..b} or {@code seeds=a,b,c}, {@code attempt=K} (first attempt),
  * {@code rerolls=R} (render R successive attempts per seed, ignoring checks), {@code out=dir}.
@@ -56,6 +59,8 @@ public final class DebugMap {
         Pipeline pipe = Pipeline.standard();
         List<BufferedImage> sheet = new ArrayList<>();
         List<String> sheetLabels = new ArrayList<>();
+        List<BufferedImage> sheetM1 = new ArrayList<>();
+        List<BufferedImage> sheetWorld = new ArrayList<>();
         for (long seed : seeds) {
             List<Pipeline.Result> results = new ArrayList<>();
             if (rerolls > 0) {
@@ -63,7 +68,7 @@ public final class DebugMap {
             } else {
                 long t0 = System.nanoTime();
                 results.add(pipe.run(seed, attempt));
-                System.out.printf("seed %d: stages 1-3 in %.2f s%n", seed, (System.nanoTime() - t0) / 1e9);
+                System.out.printf("seed %d: stages 1-5 in %.2f s%n", seed, (System.nanoTime() - t0) / 1e9);
             }
             for (Pipeline.Result r : results) {
                 File dir = new File(out, "seed-" + seed + (rerolls > 0 || r.attempt() > 0 ? "-a" + r.attempt() : ""));
@@ -77,12 +82,29 @@ public final class DebugMap {
                 write(coarse(pipe, r), new File(dir, "coarse.png"));
                 sheet.add(overview);
                 sheetLabels.add(label(r));
+                if (r.water() != null && r.places() != null) {
+                    for (String layer : MapRender.LAYERS) {
+                        BufferedImage img = MapRender.layer(layer, r);
+                        write(img, new File(dir, layer + ".png"));
+                        if (layer.equals("m1")) sheetM1.add(img);
+                        if (layer.equals("world")) sheetWorld.add(img);
+                    }
+                    System.out.println("  M1: " + MapRender.summary(r));
+                    System.out.printf("  M1 hashes: water %08x, places %08x, m1 %08x%n", r.waterHash(), r.placesHash(), r.m1Hash());
+                    for (String note : r.water().notes()) System.out.println("  note: " + note);
+                    for (String note : r.places().notes()) System.out.println("  note: " + note);
+                }
                 System.out.println(dir.getPath() + "/overview.png  " + label(r) + "  " + statsLine(r));
                 for (String f : r.earlierFailures()) System.out.println("  rerolled: " + f);
                 for (String f : r.failures()) System.out.println("  FAILED: " + f);
             }
         }
         if (sheet.size() > 1) write(contactSheet(sheet, sheetLabels), new File(out, "sheet.png"));
+        if (sheetM1.size() > 1) {
+            write(MapRender.sheet(sheetM1, 4, 1024), new File(out, "sheet-m1.png"));
+            write(MapRender.sheet(sheetWorld, 4, 768), new File(out, "sheet-world.png"));
+            System.out.println(new File(out, "sheet-m1.png").getPath() + "  (M1 contact sheet)");
+        }
     }
 
     static String label(Pipeline.Result r) {

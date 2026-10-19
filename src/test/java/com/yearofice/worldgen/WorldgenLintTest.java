@@ -29,7 +29,8 @@ import org.junit.jupiter.api.Test;
  *   <li>{@code HashMap}/{@code HashSet} and parallel streams in the pure stages, so no result can depend on
  *       iteration or scheduling order;</li>
  *   <li>Minecraft, Mojang or NeoForge imports in the pure stages. Adapters may import them: anything under
- *       {@code worldgen/debug/}, and the chunk generator and biome source when they land.</li>
+ *       {@code worldgen/debug/} or {@code worldgen/structure/}, and the chunk generator and biome source when
+ *       they land.</li>
  * </ul>
  */
 class WorldgenLintTest {
@@ -106,7 +107,7 @@ class WorldgenLintTest {
     }
 
     static boolean isAdapter(String path) {
-        if (path.contains("/worldgen/debug/")) return true;
+        if (path.contains("/worldgen/debug/") || path.contains("/worldgen/structure/")) return true;
         for (String f : ADAPTER_FILES) if (path.endsWith("/" + f)) return true;
         return false;
     }
