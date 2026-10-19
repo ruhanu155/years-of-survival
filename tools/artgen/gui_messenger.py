@@ -21,6 +21,7 @@ ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, HERE)
 import palette_lib as P  # noqa: E402
 
+VERSION = "gui_messenger 1.0"
 TEX = os.path.join(ROOT, "src", "main", "resources", "assets", "yearofice", "textures")
 OUT = P.hexrgb(P.OUTLINE) + (255,)
 

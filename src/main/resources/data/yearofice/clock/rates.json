@@ -1,0 +1,12 @@
+{
+  "note": "Layer 1 rates in whole game deciseconds per server tick. Only the World rate scales with the day length L: world = world_at_l24 x 24 / L (RECONCILE 117, 145).",
+  "ds_per_tick": {
+    "close": 3,
+    "travel": 6,
+    "world_at_l24": 30,
+    "work": 150,
+    "until_done": 600,
+    "sleep": 1800
+  },
+  "allowed_lengths_min": [24, 30, 36, 40, 45, 48, 60, 72]
+}

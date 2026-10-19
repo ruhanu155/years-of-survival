@@ -22,7 +22,6 @@ public final class EcoConfig {
         NOTES.put("activeRadiusM", "Wild bodies appear within this many metres of a player (Active tier).");
         NOTES.put("demoteRadiusM", "Wild bodies leave beyond this many metres from every player.");
         NOTES.put("activeCap", "Most wild bodies in one level at once.");
-        NOTES.put("sliceAirC", "Until the Environment field lands: the air temperature (C) that carcasses and meat decay at.");
         NOTES.put("workMinPerS", "The Work time-lapse: game minutes a real second while a hold-to-work ring fills.");
         NOTES.put("minWorkEnergy", "Hold-to-work (dressing, setting a snare) needs at least this many energy bolts.");
     }

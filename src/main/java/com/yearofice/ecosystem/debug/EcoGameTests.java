@@ -1,5 +1,6 @@
 package com.yearofice.ecosystem.debug;
 
+import com.yearofice.item.component.YoiComponents;
 import com.mojang.authlib.GameProfile;
 import com.yearofice.core.YearOfIce;
 import com.yearofice.ecosystem.EcoConfig;
@@ -223,7 +224,7 @@ public final class EcoGameTests {
                 CarcassRecord r = WholeGameItem.record(whole);
                 h.assertTrue(r != null && r.species().equals(SnowshoeHareEntity.ID), "whole_game record " + r);
                 h.assertTrue(r.weightG() >= 1300 && r.weightG() <= 1600, "weight " + r.weightG() + " g");
-                Fresh f = whole.get(EcosystemRegistry.FRESH.get());
+                Fresh f = whole.get(YoiComponents.FRESH.get());
                 h.assertTrue(f != null && f.state() == FoodState.RAW, "fresh " + f);
                 // Unopened: k 0.6 on lean meat's 6 days raw at 5 °C.
                 h.assertTrue(Math.abs(f.lifeDh() - 6 * 24 / 0.7 * 0.6) < 1e-6, "life " + f.lifeDh());
@@ -380,7 +381,7 @@ public final class EcoGameTests {
             for (ItemStack s : p.getInventory().items) {
                 if (s.is(EcosystemRegistry.SNOWSHOE_HARE_MEAT.get())) {
                     meat += s.getCount();
-                    Fresh f = s.get(EcosystemRegistry.FRESH.get());
+                    Fresh f = s.get(YoiComponents.FRESH.get());
                     fresh &= f != null && f.state() == FoodState.RAW && Math.abs(f.lifeDh() - 6 * 24 / 0.7) < 1e-6;
                 }
                 if (s.is(EcosystemRegistry.HARE_PELT.get())) pelt += s.getCount();

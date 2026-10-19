@@ -7,12 +7,12 @@
     "Items: the doc's count says 226, its list names 225"
   ],
   "counts": {
-    "total": 1335,
-    "by_type": {"mob": 154, "entity": 21, "block_with_entity": 78, "block": 133, "plant_block": 107, "multiblock": 3, "item": 379, "sound_event": 132, "particle_type": 43, "attachment": 28, "data_component": 27, "payload": 19, "gui_layer": 16, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 8, "loot_function": 8, "loot_condition": 3, "recipe_type": 5, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 67, "biome": 11, "worldgen_hook": 9, "poi_type": 14},
-    "by_milestone": {"m0": 15, "m1": 15, "m2": 141, "m2_5": 54, "m3": 91, "m4": 43, "m5": 361, "m6": 294, "m7": 141, "m8": 125, "m9": 52, "none": 3},
-    "by_owner": {"body": 223, "building": 185, "ecosystem": 255, "food": 233, "look": 206, "story": 60, "studio": 57, "worldgen": 116},
-    "by_milestone_source": {"doc": 529, "rule": 806},
-    "by_status": {"planned": 1332, "retired": 3}
+    "total": 1337,
+    "by_type": {"mob": 154, "entity": 21, "block_with_entity": 79, "block": 133, "plant_block": 107, "multiblock": 3, "item": 379, "sound_event": 132, "particle_type": 43, "attachment": 28, "data_component": 28, "payload": 19, "gui_layer": 16, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 8, "loot_function": 8, "loot_condition": 3, "recipe_type": 5, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 67, "biome": 11, "worldgen_hook": 9, "poi_type": 14},
+    "by_milestone": {"m0": 15, "m1": 15, "m2": 141, "m2_5": 56, "m3": 91, "m4": 43, "m5": 361, "m6": 294, "m7": 141, "m8": 125, "m9": 52, "none": 3},
+    "by_owner": {"body": 223, "building": 185, "ecosystem": 255, "food": 235, "look": 206, "story": 60, "studio": 57, "worldgen": 116},
+    "by_milestone_source": {"doc": 531, "rule": 806},
+    "by_status": {"planned": 1334, "retired": 3}
   },
   "entries": [
     {"id": "yearofice:alaska_blackfish", "type": "mob", "milestone": "m5", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
@@ -250,6 +250,7 @@
     {"id": "yearofice:smokehouse", "type": "block_with_entity", "milestone": "m8", "owner": "food", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:smudge_fish_rack", "type": "block_with_entity", "milestone": "m5", "owner": "food", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:snare", "type": "block_with_entity", "milestone": "m2_5", "owner": "food", "milestone_source": "doc", "status": "planned"},
+    {"id": "yearofice:spit", "type": "block_with_entity", "milestone": "m2_5", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:station_clock", "type": "block_with_entity", "milestone": "m7", "owner": "story", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:steam_box", "type": "block_with_entity", "milestone": "m8", "owner": "building", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:stone_mortar", "type": "block_with_entity", "milestone": "m5", "owner": "food", "milestone_source": "rule", "status": "planned"},
@@ -1097,6 +1098,7 @@
     {"id": "yearofice:call_practice", "type": "data_component", "milestone": "m6", "owner": "studio", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:carcass", "type": "data_component", "milestone": "m2_5", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:dish_id", "type": "data_component", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},
+    {"id": "yearofice:doneness", "type": "data_component", "milestone": "m2_5", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:dye", "type": "data_component", "milestone": "m8", "owner": "studio", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:edge", "type": "data_component", "milestone": "m3", "owner": "studio", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:egg", "type": "data_component", "milestone": "m5", "owner": "studio", "milestone_source": "rule", "status": "planned"},
