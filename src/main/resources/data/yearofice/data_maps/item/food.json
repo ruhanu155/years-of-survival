@@ -1,0 +1,535 @@
+{
+  "replace": false,
+  "values": {
+    "yearofice:moose_meat": {
+      "kcal_per_100g": 115,
+      "protein_g_per_100g": 25,
+      "fat_g_per_100g": 1.7,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 6,
+        "cooked": 9,
+        "smoked": 30,
+        "dried": 60
+      }
+    },
+    "yearofice:caribou_meat": {
+      "kcal_per_100g": 115,
+      "protein_g_per_100g": 25,
+      "fat_g_per_100g": 1.7,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 6,
+        "cooked": 9,
+        "smoked": 30,
+        "dried": 60
+      }
+    },
+    "yearofice:beaver_meat": {
+      "kcal_per_100g": 115,
+      "protein_g_per_100g": 25,
+      "fat_g_per_100g": 1.7,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 6,
+        "cooked": 9,
+        "smoked": 30,
+        "dried": 60
+      }
+    },
+    "yearofice:black_bear_meat": {
+      "kcal_per_100g": 115,
+      "protein_g_per_100g": 17.5,
+      "fat_g_per_100g": 5.0,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 6,
+        "cooked": 9,
+        "smoked": 30,
+        "dried": 60
+      }
+    },
+    "yearofice:grizzly_meat": {
+      "kcal_per_100g": 115,
+      "protein_g_per_100g": 17.5,
+      "fat_g_per_100g": 5.0,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 6,
+        "cooked": 9,
+        "smoked": 30,
+        "dried": 60
+      }
+    },
+    "yearofice:heart": {
+      "kcal_per_100g": 130,
+      "protein_g_per_100g": 26,
+      "fat_g_per_100g": 2.9,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      }
+    },
+    "yearofice:liver": {
+      "kcal_per_100g": 130,
+      "protein_g_per_100g": 24,
+      "fat_g_per_100g": 2.8,
+      "vit_c_mg_per_100g": 4.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 1.8,
+        "cooked": 9
+      }
+    },
+    "yearofice:kidney": {
+      "kcal_per_100g": 100,
+      "protein_g_per_100g": 17,
+      "fat_g_per_100g": 3.4,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 2.4,
+        "cooked": 9
+      }
+    },
+    "yearofice:tongue": {
+      "kcal_per_100g": 130,
+      "protein_g_per_100g": 18,
+      "fat_g_per_100g": 6.4,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 4.8,
+        "cooked": 9
+      }
+    },
+    "yearofice:giblets": {
+      "kcal_per_100g": 130,
+      "protein_g_per_100g": 22,
+      "fat_g_per_100g": 4.7,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 1.8,
+        "cooked": 9
+      }
+    },
+    "yearofice:brain": {
+      "kcal_per_100g": 140,
+      "protein_g_per_100g": 11,
+      "fat_g_per_100g": 10,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 1.8,
+        "cooked": 9
+      }
+    },
+    "yearofice:blood": {
+      "kcal_per_100g": 80,
+      "protein_g_per_100g": 18,
+      "fat_g_per_100g": 0.9,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 1.2
+      }
+    },
+    "yearofice:animal_fat": {
+      "kcal_per_100g": 700,
+      "protein_g_per_100g": 0,
+      "fat_g_per_100g": 77.8,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 12
+      }
+    },
+    "yearofice:lard": {
+      "kcal_per_100g": 900,
+      "protein_g_per_100g": 0,
+      "fat_g_per_100g": 100,
+      "vit_c_mg_per_100g": 0,
+      "curve": "lard",
+      "spoil_days_at_5c": {
+        "cooked": 180
+      }
+    },
+    "yearofice:cracklings": {
+      "kcal_per_100g": 550,
+      "protein_g_per_100g": 36,
+      "fat_g_per_100g": 45,
+      "vit_c_mg_per_100g": 0,
+      "curve": "lard",
+      "spoil_days_at_5c": {
+        "cooked": 30
+      }
+    },
+    "yearofice:marrow_bone": {
+      "kcal_per_100g": 30,
+      "protein_g_per_100g": 0,
+      "fat_g_per_100g": 3.3,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 9
+      }
+    },
+    "yearofice:bone_broth": {
+      "kcal_per_100g": 40,
+      "protein_g_per_100g": 1,
+      "fat_g_per_100g": 4.0,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "cooked": 9
+      }
+    },
+    "yearofice:dried_meat": {
+      "kcal_per_100g": 288,
+      "protein_g_per_100g": 62.5,
+      "fat_g_per_100g": 4.25,
+      "vit_c_mg_per_100g": 0,
+      "curve": "dried",
+      "spoil_days_at_5c": {
+        "dried": 60,
+        "smoked": 30
+      }
+    },
+    "yearofice:meat_powder": {
+      "kcal_per_100g": 288,
+      "protein_g_per_100g": 62.5,
+      "fat_g_per_100g": 4.25,
+      "vit_c_mg_per_100g": 0,
+      "curve": "dried",
+      "spoil_days_at_5c": {
+        "dried": 60
+      }
+    },
+    "yearofice:pemmican": {
+      "kcal_per_100g": 560,
+      "protein_g_per_100g": 30.8,
+      "fat_g_per_100g": 46.7,
+      "vit_c_mg_per_100g": 1.0,
+      "curve": "pemmican",
+      "spoil_days_at_5c": {
+        "dried": 365
+      }
+    },
+    "yearofice:arctic_grayling": {
+      "kcal_per_100g": 80.0,
+      "protein_g_per_100g": 18.0,
+      "fat_g_per_100g": 0.889,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      }
+    },
+    "yearofice:northern_pike": {
+      "kcal_per_100g": 150.0,
+      "protein_g_per_100g": 33.75,
+      "fat_g_per_100g": 1.667,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      }
+    },
+    "yearofice:burbot": {
+      "kcal_per_100g": 160.0,
+      "protein_g_per_100g": 36.0,
+      "fat_g_per_100g": 1.778,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      }
+    },
+    "yearofice:longnose_sucker": {
+      "kcal_per_100g": 100.0,
+      "protein_g_per_100g": 22.5,
+      "fat_g_per_100g": 1.111,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      }
+    },
+    "yearofice:chum_salmon": {
+      "kcal_per_100g": 170.0,
+      "protein_g_per_100g": 25.5,
+      "fat_g_per_100g": 7.556,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      }
+    },
+    "yearofice:coho_salmon": {
+      "kcal_per_100g": 200.0,
+      "protein_g_per_100g": 30.0,
+      "fat_g_per_100g": 8.889,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      }
+    },
+    "yearofice:sockeye_salmon": {
+      "kcal_per_100g": 210.0,
+      "protein_g_per_100g": 31.5,
+      "fat_g_per_100g": 9.333,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      }
+    },
+    "yearofice:humpback_whitefish": {
+      "kcal_per_100g": 150.0,
+      "protein_g_per_100g": 22.5,
+      "fat_g_per_100g": 6.667,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      }
+    },
+    "yearofice:least_cisco": {
+      "kcal_per_100g": 180.0,
+      "protein_g_per_100g": 27.0,
+      "fat_g_per_100g": 8.0,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      }
+    },
+    "yearofice:lake_trout": {
+      "kcal_per_100g": 160.0,
+      "protein_g_per_100g": 24.0,
+      "fat_g_per_100g": 7.111,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      }
+    },
+    "yearofice:sheefish": {
+      "kcal_per_100g": 160.0,
+      "protein_g_per_100g": 24.0,
+      "fat_g_per_100g": 7.111,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      }
+    },
+    "yearofice:arctic_lamprey": {
+      "kcal_per_100g": 330,
+      "protein_g_per_100g": 33,
+      "fat_g_per_100g": 22,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      }
+    },
+    "yearofice:dried_fish": {
+      "kcal_per_100g": 350,
+      "protein_g_per_100g": 62,
+      "fat_g_per_100g": 11.3,
+      "vit_c_mg_per_100g": 0,
+      "curve": "dried",
+      "spoil_days_at_5c": {
+        "dried": 60,
+        "smoked": 30
+      }
+    },
+    "yearofice:sour_fish": {
+      "kcal_per_100g": 70,
+      "protein_g_per_100g": 12,
+      "fat_g_per_100g": 2.4,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "sour_fish",
+      "spoil_days_at_5c": {
+        "raw": 20
+      }
+    },
+    "yearofice:mussel_meat": {
+      "kcal_per_100g": 80,
+      "protein_g_per_100g": 12,
+      "fat_g_per_100g": 2.2,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 1.8,
+        "cooked": 9
+      }
+    },
+    "yearofice:wild_egg": {
+      "kcal_per_100g": 140,
+      "protein_g_per_100g": 13,
+      "fat_g_per_100g": 9.8,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 18,
+        "cooked": 9
+      }
+    },
+    "yearofice:hen_egg": {
+      "kcal_per_100g": 140,
+      "protein_g_per_100g": 13,
+      "fat_g_per_100g": 9.8,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 18,
+        "cooked": 9
+      }
+    },
+    "yearofice:goat_milk": {
+      "kcal_per_100g": 69,
+      "protein_g_per_100g": 3.6,
+      "fat_g_per_100g": 4.1,
+      "vit_c_mg_per_100g": 1.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3
+      }
+    },
+    "yearofice:pilot_bread": {
+      "kcal_per_100g": 400,
+      "protein_g_per_100g": 10,
+      "fat_g_per_100g": 8.9,
+      "vit_c_mg_per_100g": 0,
+      "curve": "dry_goods",
+      "spoil_days_at_5c": {}
+    },
+    "yearofice:canned_peaches": {
+      "kcal_per_100g": 89,
+      "protein_g_per_100g": 0.5,
+      "fat_g_per_100g": 0.1,
+      "vit_c_mg_per_100g": 1.0,
+      "curve": "sealed",
+      "spoil_days_at_5c": {
+        "raw": 3
+      }
+    },
+    "yearofice:rose_hips": {
+      "kcal_per_100g": 160,
+      "protein_g_per_100g": 1.6,
+      "fat_g_per_100g": 0.3,
+      "vit_c_mg_per_100g": 20,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 9,
+        "dried": 180
+      }
+    },
+    "yearofice:spruce_tips": {
+      "kcal_per_100g": 30,
+      "protein_g_per_100g": 1,
+      "fat_g_per_100g": 0.3,
+      "vit_c_mg_per_100g": 10,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3
+      }
+    },
+    "yearofice:potato": {
+      "kcal_per_100g": 77,
+      "protein_g_per_100g": 2,
+      "fat_g_per_100g": 0.1,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 150,
+        "cooked": 9
+      }
+    },
+    "yearofice:barley": {
+      "kcal_per_100g": 350,
+      "protein_g_per_100g": 12.5,
+      "fat_g_per_100g": 2.0,
+      "vit_c_mg_per_100g": 0,
+      "curve": "dry_goods",
+      "spoil_days_at_5c": {}
+    },
+    "yearofice:barley_flour": {
+      "kcal_per_100g": 345,
+      "protein_g_per_100g": 11,
+      "fat_g_per_100g": 2.0,
+      "vit_c_mg_per_100g": 0,
+      "curve": "dry_goods",
+      "spoil_days_at_5c": {}
+    },
+    "yearofice:cabbage": {
+      "kcal_per_100g": 25,
+      "protein_g_per_100g": 1.3,
+      "fat_g_per_100g": 0.1,
+      "vit_c_mg_per_100g": 6.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 60
+      }
+    },
+    "yearofice:sauerkraut": {
+      "kcal_per_100g": 20,
+      "protein_g_per_100g": 1,
+      "fat_g_per_100g": 0.1,
+      "vit_c_mg_per_100g": 6.0,
+      "curve": "sauerkraut",
+      "spoil_days_at_5c": {}
+    },
+    "yearofice:birch_sap": {
+      "kcal_per_100g": 4,
+      "protein_g_per_100g": 0,
+      "fat_g_per_100g": 0,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3
+      }
+    },
+    "yearofice:birch_syrup": {
+      "kcal_per_100g": 210,
+      "protein_g_per_100g": 0,
+      "fat_g_per_100g": 0,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 365
+      }
+    },
+    "yearofice:bumblebee_honey": {
+      "kcal_per_100g": 300,
+      "protein_g_per_100g": 0.3,
+      "fat_g_per_100g": 0,
+      "vit_c_mg_per_100g": 0,
+      "curve": "never",
+      "spoil_days_at_5c": {}
+    }
+  }
+}
