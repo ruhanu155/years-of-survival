@@ -17,6 +17,6 @@ public enum FishingPreset {
 
     private static FishingTuning make(double stockX, int assist) {
         return new FishingTuning(0.84, 1.5, 2, 5, 30, 5, stockX, 1.0, 2, 30, 15, 1.5, 10, 5, 0.25, 60, 10, 0.5,
-                1.0, 2.5, 1.0, 3, 25, 10, 0.1, 60, assist, 2, 6, 8, 0.0);
+                1.0, 2.5, 1.0, 3, 25, 10, 60, assist, 2, 6, 0.0);
     }
 }

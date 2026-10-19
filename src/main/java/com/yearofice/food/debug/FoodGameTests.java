@@ -3,6 +3,7 @@ package com.yearofice.food.debug;
 import com.mojang.authlib.GameProfile;
 import com.yearofice.api.body.BodyService;
 import com.yearofice.api.decay.DecayService;
+import com.yearofice.api.env.EnvService;
 import com.yearofice.body.intake.FoodMap;
 import com.yearofice.core.YearOfIce;
 import com.yearofice.ecosystem.EcosystemRegistry;
@@ -29,6 +30,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.gametest.framework.AfterBatch;
+import net.minecraft.gametest.framework.BeforeBatch;
 import net.minecraft.gametest.framework.GameTestGenerator;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.gametest.framework.TestFunction;
@@ -45,11 +48,14 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 
 /**
- * Batch m2_5, cooking and freshness on a real server (Ready for development › M2.5 test 4 and the slice brief's
- * cooking tests). Each test builds its own ring on stone inside {@code gametest/empty3}, pins the ring's weather,
- * pauses its spit and steps ring and spit together one game minute at a time (the closed-form catch-up), so neither
- * the real tick nor another test's clock moves reach it. Players are unattached server players, never in the level's
- * player list. Freshness is checked from the stack's own due point, never by moving the shared day time.
+ * Batch {@code m2_5_food_5c}, cooking and freshness on a real server (Ready for development › M2.5 test 4 and the
+ * slice brief's cooking tests). The tests say "at 5 °C", and freshness now runs on the valley's air from the
+ * Environment field, so the batch pins the valley air at 5 °C on the overworld before it starts and clears the pin
+ * after; no other batch runs meanwhile, so the pin never reaches another test. Each test builds its own ring on stone
+ * inside {@code gametest/empty3}, pins the ring's weather, pauses its spit and steps ring and spit together one game
+ * minute at a time (the closed-form catch-up), so neither the clock's minutes nor another test's clock moves reach
+ * it. Players are unattached server players, never in the level's player list. Freshness is checked from the stack's
+ * own due point, never by moving the shared day time.
  */
 @GameTestHolder(YearOfIce.MOD_ID)
 public final class FoodGameTests {
@@ -65,12 +71,25 @@ public final class FoodGameTests {
         out.add(test("yearofice:food/burnt_when_left", FoodGameTests::burntWhenLeft));
         out.add(test("yearofice:food/fish_cooked_then_eaten", FoodGameTests::fishCookedThenEaten));
         out.add(test("yearofice:food/decayed_eating", FoodGameTests::decayedEating));
+        out.add(new TestFunction("m2_5", "yearofice:decay/air_follows_env", TEMPLATE, 100, 0, true, FoodGameTests::airFollowsEnv));
         return out;
     }
 
+    static final String BATCH = "m2_5_food_5c";
+    static final double AIR_C = 5.0;
+
     static TestFunction test(String name, Consumer<GameTestHelper> body) {
-        return new TestFunction("m2_5", name, TEMPLATE, 100, 0, true, body);
+        return new TestFunction(BATCH, name, TEMPLATE, 100, 0, true, body);
     }
+
+    /** The cooking tests' "at 5 °C": the valley air pinned for this batch only. */
+    @BeforeBatch(batch = BATCH)
+    public static void pinAir(ServerLevel level) {
+        EnvService.get().setOverride(level.getServer().overworld(), new EnvService.WeatherOverride(AIR_C, Double.NaN, null, Double.NaN));
+    }
+
+    @AfterBatch(batch = BATCH)
+    public static void clearAir(ServerLevel level) { EnvService.get().setOverride(level.getServer().overworld(), null); }
 
     // ---- fixtures ------------------------------------------------------------------------------------------
 
@@ -154,7 +173,7 @@ public final class FoodGameTests {
         Fresh f = fresh(out);
         h.assertTrue(f.state() == FoodState.COOKED, "state " + f.state());
         double days = DecayService.get().daysUntil(h.getLevel(), out, 0.7);
-        h.assertTrue(DecayService.get().airC(h.getLevel()) == 5.0, "GameTests run at the 5 C stand-in");
+        h.assertTrue(DecayService.get().airC(h.getLevel()) == AIR_C, "the batch runs the decay clock at 5 C, was " + DecayService.get().airC(h.getLevel()));
         h.assertTrue(Math.abs(days - 9.0) <= 0.45, "cooked hare keeps " + days + " days at 5 C, want 9 +-5%");
         double d = DecayService.get().dNow(h.getLevel());
         h.assertTrue(f.stage(d + 0.95 * 9 * 24) == 1, "Aging at 95% of 9 days");
@@ -223,6 +242,29 @@ public final class FoodGameTests {
         double kcal = BodyService.get().readout(p).balance24h() - before;
         h.assertTrue(cooked.isEmpty(), "the fish should be eaten");
         h.assertTrue(Math.abs(kcal - 320) < 1, "a 400 g grayling books " + kcal + " kcal, want 320");
+        h.succeed();
+    }
+
+    /**
+     * Layer 5, A decay clock: on the unpinned valley, each game hour of the slice clock adds the curve's rate at that
+     * hour's valley-floor air from {@code EnvService}, for the 48 hours either side of now, and D(now) lies on it.
+     */
+    static void airFollowsEnv(GameTestHelper h) {
+        ServerLevel level = h.getLevel();
+        h.assertTrue(EnvService.get().override(level.getServer().overworld()) == null, "this batch runs the drawn weather");
+        DecayService decay = DecayService.get();
+        long now = com.yearofice.api.clock.ClockService.get().nowMinute();
+        long hour0 = Math.max(0, Math.floorDiv(now, 60) - 48) * 60;
+        for (long m = hour0; m < hour0 + 96 * 60; m += 60) {
+            double air = EnvService.get().valleyAt(level.getServer().overworld(), m).airC();
+            double want = com.yearofice.decay.DecayCurves.meat().rate(air);
+            double got = decay.dAt(m + 60) - decay.dAt(m);
+            h.assertTrue(Math.abs(got - want) < 1e-9, "hour at minute " + m + " (" + air + " C) added " + got + ", want " + want);
+            double half = decay.dAt(m + 30) - decay.dAt(m);
+            h.assertTrue(Math.abs(half - want / 2) < 1e-9, "linear inside the hour at minute " + m);
+        }
+        double d = decay.dNow(level), m = com.yearofice.api.clock.ClockService.get().nowDs() / 600.0;
+        h.assertTrue(Math.abs(d - decay.dAt(m)) < 1e-9, "D(now) " + d + " is the clock at minute " + m);
         h.succeed();
     }
 

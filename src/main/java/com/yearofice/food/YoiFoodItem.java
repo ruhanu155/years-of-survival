@@ -1,6 +1,8 @@
 package com.yearofice.food;
 
-import net.minecraft.network.chat.Component;
+import com.yearofice.api.hud.HudBus;
+import com.yearofice.api.hud.HudLine;
+import com.yearofice.api.hud.HudLineType;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -23,7 +25,7 @@ public class YoiFoodItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if (!Meals.edible(level, stack)) {
-            if (!level.isClientSide) player.displayClientMessage(Component.translatable("food.yearofice.too_far_gone"), true);
+            if (player instanceof ServerPlayer sp) HudBus.get().post(sp, HudLine.of(HudLineType.PICKUP, "too_far_gone", "food"));
             return InteractionResultHolder.fail(stack);
         }
         player.startUsingItem(hand);

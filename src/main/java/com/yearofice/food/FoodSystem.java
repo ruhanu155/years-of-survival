@@ -23,6 +23,8 @@ public final class FoodSystem {
         NeoForge.EVENT_BUS.addListener(CookingData::onAddReloadListeners);
         NeoForge.EVENT_BUS.addListener(SpitPlacing::onRightClickBlock);
         NeoForge.EVENT_BUS.addListener(FreshnessPass::onPlayerTick);
+        com.yearofice.food.cooking.SpitClock.init();
+        com.yearofice.food.traps.TrapClock.init();
         NeoForge.EVENT_BUS.addListener(FoodCommands::register);
     }
 }

@@ -68,6 +68,12 @@ public interface EnvService {
     /** The valley floor's hour now: the drawn state, air, wind and precipitation before place rules. */
     WeatherModel.Hour valley(ServerLevel level);
 
+    /**
+     * The valley floor's hour at absolute game minute {@code minute}, with this level's override, from the year
+     * table (no blocks): closed forms that walk the past or the future read it (Decay's {@code air:} clock).
+     */
+    WeatherModel.Hour valleyAt(ServerLevel level, long minute);
+
     /** The drawn day {@code absDay}. */
     WeatherModel.Day day(ServerLevel level, long absDay);
 

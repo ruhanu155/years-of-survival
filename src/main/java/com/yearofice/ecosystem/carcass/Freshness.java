@@ -22,8 +22,9 @@ import net.neoforged.neoforge.registries.datamaps.DataMapType;
 
 /**
  * {@code yearofice:fresh} for carcasses and their meat, on the slice's one decay clock (Minecraft development ›
- * Layer 5), read through {@link DecayService}: one clock, handle 0, {@code air:slice}, whose decay-hours are game
- * hours times f_T at {@code [decay] stand_in_air_c} (5 °C, f_T = 1) until EnvService lands. Food values come from the
+ * Layer 5), read through {@link DecayService}: one clock, handle 0, {@code air:slice}, whose decay-hours sum f_T of
+ * the valley's hourly air from {@code EnvService} (so a carcass stamped at a past dawn and its meat read now agree).
+ * Food values come from the
  * {@code yearofice:food} data map ({@code data_maps/item/food.json}), read by its id so the ecosystem needs no
  * other package's classes.
  *

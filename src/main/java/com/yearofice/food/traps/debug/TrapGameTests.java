@@ -5,7 +5,7 @@ import com.yearofice.food.traps.SnareBlockEntity;
 import com.yearofice.food.traps.TrapConfig;
 import com.yearofice.food.traps.TrapRegistry;
 import com.yearofice.sim.ecosystem.Density;
-import com.yearofice.sim.ecosystem.SliceCalendar;
+import com.yearofice.api.clock.ClockService;
 import com.yearofice.sim.ecosystem.Snare;
 import com.yearofice.sim.ecosystem.TrapTuning;
 import java.util.ArrayList;
@@ -58,7 +58,8 @@ public final class TrapGameTests {
     /**
      * Ready for development M2.5 test 2, {@code food/slice_snare_hare}: a snare on a hare run catches 2–5 hares
      * over 10 game days, rolled at dawn and dusk only. Checked each morning; 32 ten-day runs (set 20 days apart,
-     * so each draws its own rolls) must average 2–5, and every catch must come from a dawn or dusk roll.
+     * so each draws its own rolls) must average 2–5, and every catch must come from a roll at the clock's dawn or
+     * dusk of its day ({@code ClockService.dawnMinute} and {@code duskMinute}, the minutes the clock's events carry).
      */
     static void sliceSnareHare(GameTestHelper h) {
         SnareBlockEntity be = snare(h);
@@ -74,8 +75,11 @@ public final class TrapGameTests {
                 be.settle(true);
                 Snare.Catch c = be.state().visible(check);
                 if (c != null) {
-                    int mod = SliceCalendar.minuteOfDay(SliceCalendar.rollMinute(c.roll(), t.dawnMin(), t.duskMin()));
-                    h.assertTrue(mod == t.dawnMin() || mod == t.duskMin(), "a catch rolled at minute " + mod);
+                    long rollDay = Math.floorDiv(c.roll(), 2);
+                    long at = be.env().rolls().minute(c.roll());
+                    ClockService clock = ClockService.get();
+                    h.assertTrue(at == clock.dawnMinute(rollDay) || at == clock.duskMinute(rollDay), "a catch rolled at minute " + at
+                            + ", not day " + rollDay + "'s dawn " + clock.dawnMinute(rollDay) + " or dusk " + clock.duskMinute(rollDay));
                     h.assertTrue(be.collect() != null, "the check took nothing");
                     total++;
                 } else {
@@ -90,9 +94,10 @@ public final class TrapGameTests {
 
     /**
      * Blueprint › Traps: "a trapline left alone for 3 days returns exactly the same catches as one watched the whole
-     * time" (here 10 days). Live: the block entity's own tick settles the snare as its clock runs an hour a tick for
-     * 10 game days. Catch-up: the same snare reset to the same start, then loaded once at the end, settles every
-     * missed dawn and dusk in one call. The two states must be equal.
+     * time" (here 10 days). Live: the snare's own clock runs an hour a tick for 10 game days, and at each dawn and
+     * dusk minute it crosses the snare settles as the clock's {@code Dawn} and {@code Dusk} events settle it, while
+     * its tick watches for the catch. Catch-up: the same snare reset to the same start, then loaded once at the end,
+     * settles every missed dawn and dusk in one call. The two states must be equal.
      */
     static void catchUpEqualsLive(GameTestHelper h) {
         SnareBlockEntity be = snare(h);
@@ -103,8 +108,14 @@ public final class TrapGameTests {
         long[] clock = {start};
         h.onEachTick(() -> {
             if (clock[0] < end) {
-                clock[0] = Math.min(end, clock[0] + 60);
-                be.setClock(clock[0]);
+                long next = Math.min(end, clock[0] + 60);
+                Snare.Rolls rolls = be.env().rolls();
+                for (long k = rolls.atOrBefore(clock[0]) + 1; rolls.minute(k) <= next; k++) {
+                    be.setClock(rolls.minute(k));
+                    be.settle(true);
+                }
+                clock[0] = next;
+                be.setClock(next);
                 return;
             }
             Snare.State live = be.state();
@@ -113,7 +124,7 @@ public final class TrapGameTests {
             be.onLoad();
             Snare.State once = be.state();
             h.assertTrue(live.equals(once), "live " + live + " but catch-up " + once);
-            h.assertTrue(live.lastRoll() == SliceCalendar.rollAtOrBefore(end, TrapConfig.tuning().dawnMin(), TrapConfig.tuning().duskMin()), "rolls not settled");
+            h.assertTrue(live.lastRoll() == be.env().rolls().atOrBefore(end), "rolls not settled");
             h.assertTrue(live.catches() >= 1, "the run should catch something to compare");
             h.succeed();
         });

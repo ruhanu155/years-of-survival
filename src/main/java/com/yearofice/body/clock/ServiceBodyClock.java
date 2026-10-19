@@ -6,7 +6,7 @@ import net.minecraft.server.MinecraftServer;
 /**
  * The one-class adapter {@link BodyClock} was written for: the body reads Layer 1 through {@link ClockService}.
  * Game minute 0 is 00:00 of May 1, year 1, in both. (Landed with the clock in M2 lane B, because the clock now
- * drives vanilla's day time from the true sun and {@link VanillaDayClock}'s linear reading no longer holds.)
+ * drives vanilla's day time from the true sun, so the old linear reading of vanilla's day time no longer held.)
  */
 public final class ServiceBodyClock implements BodyClock {
 

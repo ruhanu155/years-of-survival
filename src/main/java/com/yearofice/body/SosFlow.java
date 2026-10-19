@@ -1,12 +1,15 @@
 package com.yearofice.body;
 
+import com.yearofice.api.hud.HudArg;
+import com.yearofice.api.hud.HudBus;
+import com.yearofice.api.hud.HudLine;
+import com.yearofice.api.hud.HudLineType;
 import com.yearofice.body.clock.BodyClock;
 import com.yearofice.core.YearOfIce;
 import com.yearofice.sim.body.BodyModel;
 import com.yearofice.sim.body.BodyState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -15,7 +18,9 @@ import net.minecraft.world.level.levelgen.Heightmap;
 
 /**
  * Collapse and the Endless SOS, as a stub (Minecraft development › Collapse, SOS and the flight). This slice runs
- * the state machine straight through in one call: it logs the flight, tells the player "SOS sent 14:22, day 143",
+ * the state machine straight through in one call: it logs the flight, tells the player "SOS sent 14:22, day 143"
+ * (a priority-3 {@code warn} line on the HUD bus, so it shows through the close clock and goes to the journal when
+ * the messenger is not live),
  * sets the return body (BMI 19, Condition 80, warmth, water and energy full) and teleports the player to the
  * return point, the world spawn until the outpost bar exists.
  *
@@ -48,12 +53,12 @@ public final class SosFlow {
                 p.getGameProfile().getName(), cause.id, when, day, String.format("%.1f", s.bmi()),
                 String.format("%.1f", s.warmth));
         s.sos = 1;
-        p.sendSystemMessage(Component.translatable("messenger.yearofice.warn.sos_sent", when, day,
-                Component.translatable("messenger.yearofice.cause." + cause.id)));
+        HudBus.get().post(p, HudLine.of(HudLineType.WARN, "sos_sent", "body", HudArg.text(when), HudArg.of(day),
+                HudArg.key("messenger.yearofice.cause." + cause.id)));
 
         if (p.serverLevel().getLevelData().isHardcore()) {
             p.setGameMode(GameType.SPECTATOR);
-            p.sendSystemMessage(Component.translatable("messenger.yearofice.warn.run_ended"));
+            HudBus.get().post(p, HudLine.of(HudLineType.WARN, "run_ended", "body"));
             s.sos = 2;
             return;
         }

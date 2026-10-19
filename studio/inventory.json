@@ -7,12 +7,12 @@
     "Items: the doc's count says 226, its list names 225"
   ],
   "counts": {
-    "total": 1392,
-    "by_type": {"mob": 154, "entity": 21, "block_with_entity": 79, "block": 151, "plant_block": 107, "multiblock": 3, "item": 379, "sound_event": 132, "particle_type": 43, "attachment": 29, "data_component": 28, "payload": 23, "gui_layer": 17, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 10, "loot_function": 8, "loot_condition": 3, "recipe_type": 5, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 71, "biome": 29, "worldgen_hook": 16, "poi_type": 14},
-    "by_milestone": {"m0": 13, "m1": 15, "m2": 195, "m2_5": 59, "m3": 91, "m4": 43, "m5": 361, "m6": 294, "m7": 141, "m8": 125, "m9": 52, "none": 3},
-    "by_owner": {"body": 223, "building": 185, "ecosystem": 255, "food": 235, "look": 207, "story": 62, "studio": 64, "worldgen": 161},
-    "by_milestone_source": {"doc": 586, "rule": 806},
-    "by_status": {"planned": 1291, "registered": 98, "retired": 3}
+    "total": 1393,
+    "by_type": {"mob": 154, "entity": 21, "block_with_entity": 79, "block": 151, "plant_block": 107, "multiblock": 3, "item": 379, "sound_event": 132, "particle_type": 43, "attachment": 29, "data_component": 28, "payload": 24, "gui_layer": 17, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 10, "loot_function": 8, "loot_condition": 3, "recipe_type": 5, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 71, "biome": 29, "worldgen_hook": 16, "poi_type": 14},
+    "by_milestone": {"m0": 13, "m1": 15, "m2": 196, "m2_5": 59, "m3": 91, "m4": 43, "m5": 361, "m6": 294, "m7": 141, "m8": 125, "m9": 52, "none": 3},
+    "by_owner": {"body": 223, "building": 185, "ecosystem": 255, "food": 235, "look": 207, "story": 62, "studio": 65, "worldgen": 161},
+    "by_milestone_source": {"doc": 587, "rule": 806},
+    "by_status": {"planned": 1291, "registered": 99, "retired": 3}
   },
   "entries": [
     {"id": "yearofice:alaska_blackfish", "type": "mob", "milestone": "m5", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
@@ -1148,6 +1148,7 @@
     {"id": "yearofice:clock_sync", "type": "payload", "milestone": "m2", "owner": "studio", "milestone_source": "doc", "status": "registered"},
     {"id": "yearofice:current_chunk", "type": "payload", "milestone": "m2", "owner": "studio", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:data_sync", "type": "payload", "milestone": "m0", "owner": "studio", "milestone_source": "doc", "status": "planned"},
+    {"id": "yearofice:decay_heads", "type": "payload", "milestone": "m2", "owner": "studio", "milestone_source": "doc", "status": "registered"},
     {"id": "yearofice:distant_sound", "type": "payload", "milestone": "m6", "owner": "studio", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:env_sync", "type": "payload", "milestone": "m2", "owner": "studio", "milestone_source": "rule", "status": "registered"},
     {"id": "yearofice:fire_roster", "type": "payload", "milestone": "m3", "owner": "studio", "milestone_source": "rule", "status": "planned"},

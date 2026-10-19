@@ -46,6 +46,8 @@ public final class FishingGameTests {
     static final String TEMPLATE = YearOfIce.MOD_ID + ":gametest/empty3";
     static final BlockPos WATER = new BlockPos(1, 1, 0);
     static final int RUNS = 200, WINDOW_MIN = 30;
+    /** {@code hunt/slice_rod_bite}'s water: the spawning tributary at the slice's May creek mouth (RECONCILE 174), °C. */
+    static final double SPAWNING_TRIBUTARY_C = 8.0;
 
     @GameTestGenerator
     public static Collection<TestFunction> fishingTests() {
@@ -150,9 +152,9 @@ public final class FishingGameTests {
      * Test 3: worms at the spot give a first bite within 30 game minutes in 90% of 200 runs. Each run is a fresh
      * world seed casting a fresh worm at the slice spot on a clear May morning (day 1–3, starting 07:01–10:29, so the
      * half hour stays in m_time's ordinary day band), read through the adapter at the real pool, then rolled minute
-     * by minute as the bobber rolls them. The water input stays the fishing department's {@code waterTempC} (8 °C):
-     * the live roll now reads the Environment field's creek water, which on May 1–3 is below 4 °C (bites ×0.7) and
-     * gives about 177 of 200; the ruling on that is the Director's (M2 lane B report).
+     * by minute as the bobber rolls them. The water input is fixed at 8 °C, the spawning tributary the test is defined
+     * at (RECONCILE 174; it was the retired {@code [fishing] water_temp_c}): the live roll reads the Environment
+     * field's creek water, which on May 1–3 is below 4 °C (bites ×0.7) and gives about 88% in live play.
      */
     static void sliceRodBite(GameTestHelper h) {
         pool(h, 2);
@@ -176,7 +178,7 @@ public final class FishingGameTests {
                 double k = SliceSpots.capacity(FishSeason.dayOfYear(day), t);
                 SliceBite.Inputs in = new SliceBite.Inputs(base.species(), base.season(), base.spotType(), base.atSpot(), base.spotQ(),
                         base.spotDepthM(), base.spotRadiusM(), k, k, HookBait.fitted("worm", t.wormBites(), t.wormMinutes()),
-                        FishSeason.dayOfYear(day), band, BiteModel.Weather.CLEAR, t.waterTempC(), t.turbidity(), false);
+                        FishSeason.dayOfYear(day), band, BiteModel.Weather.CLEAR, SPAWNING_TRIBUTARY_C, t.turbidity(), false);
                 int first = SliceBite.firstBite(in, seed, key, minute, WINDOW_MIN);
                 if (first >= 0) hits++;
             }

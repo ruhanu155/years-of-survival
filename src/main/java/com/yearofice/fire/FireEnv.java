@@ -12,7 +12,7 @@ import net.minecraft.server.level.ServerLevel;
 
 /**
  * The weather at a fire, from {@code EnvService} (M2): precipitation, heaviness and wind, plus sky access for
- * cover. The {@code [fire]} wind placeholders are no longer read. {@code /yoi fire weather}
+ * cover; the {@code [fire]} wind placeholders are retired. {@code /yoi fire weather}
  * sets a per-level override for testing; a ring can carry its own override (GameTests).
  */
 public final class FireEnv {

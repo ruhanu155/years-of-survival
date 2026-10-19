@@ -11,15 +11,15 @@ import org.jetbrains.annotations.Nullable;
  * development › Layer 5, API). The decay package implements it and installs itself at mod construction; callers use
  * {@link #get()}.
  *
- * <p>The M2.5 slice has one clock, handle {@link #CLOCK_AIR_SLICE} ({@code air:slice}): decay-hours are game hours
- * times f_T at a stand-in air temperature ({@code [decay] stand_in_air_c}, 5 °C) until ClockService and EnvService
- * land, when {@code clockAt} starts returning real keys and stacks are rehomed. Works on both sides: the client
- * computes the same D(now) from the same day time for tooltips.
+ * <p>The slice has one clock, handle {@link #CLOCK_AIR_SLICE} ({@code air:slice}): each game hour adds f_T of the
+ * valley floor's air that hour from {@code EnvService} (one hour at 5 °C is 1.0), summed from May 1 of year 1. In M5
+ * {@code clockAt} starts returning real keys and stacks are rehomed. Works on both sides: the client computes D(now)
+ * from the synced {@code decay_heads} head for tooltips.
  */
 public interface DecayService {
     int CLOCK_AIR_SLICE = 0;
 
-    /** Decay-hours on the slice clock at a game minute (minutes from day 0's midnight). */
+    /** Decay-hours on the slice clock at a game minute (minutes from day 0's midnight), past or future. */
     double dAt(double gameMinute);
 
     /** Decay-hours on the slice clock now. */
@@ -49,7 +49,7 @@ public interface DecayService {
     /** Ages a stack by {@code days} game days at its clock's temperature ({@code /yoi decay advance}). */
     void age(Level level, ItemStack stack, double days);
 
-    /** The stand-in temperature the slice clock reads, °C. */
+    /** The air the slice clock reads now (the valley floor's, this hour), °C. */
     double airC(Level level);
 
     static DecayService get() {

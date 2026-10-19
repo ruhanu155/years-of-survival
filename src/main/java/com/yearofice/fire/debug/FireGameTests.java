@@ -13,7 +13,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
+import com.yearofice.api.clock.ClockService;
+import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.SectionPos;
+import net.minecraft.server.level.ThreadedLevelLightEngine;
 import net.minecraft.gametest.framework.GameTestGenerator;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.gametest.framework.GameTestSequence;
@@ -31,8 +35,8 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
  * Batch m2_5, fire: a fire made from parts on a real server. Names follow the Blueprint's GameTest ids
  * ({@code yearofice:fire/...}), so the tests are generated rather than one method each. Every test builds its ring on
  * a stone block inside {@code gametest/empty3} and pins the ring's weather, so world weather never leaks in.
- * Long spans run through {@link FireRingBlockEntity#stepMinutes}, the closed-form catch-up; the slice test runs on the
- * real tick at the 24-minute day (20 ticks a game minute).
+ * Long spans run through {@link FireRingBlockEntity#stepMinutes}, the closed-form catch-up; the slice test burns on
+ * the clock's own minutes in a batch of its own ({@code m2_5_fire_clock}) and counts them on the clock.
  */
 @GameTestHolder(YearOfIce.MOD_ID)
 public final class FireGameTests {
@@ -44,7 +48,7 @@ public final class FireGameTests {
     @GameTestGenerator
     public static Collection<TestFunction> fireTests() {
         List<TestFunction> out = new ArrayList<>();
-        out.add(test("yearofice:fire/slice_fire_from_parts", 1800, FireGameTests::sliceFireFromParts));
+        out.add(new TestFunction(CLOCK_BATCH, "yearofice:fire/slice_fire_from_parts", TEMPLATE, 1800, 0, true, FireGameTests::sliceFireFromParts));
         out.add(test("yearofice:fire/in_order_lights", 200, FireGameTests::inOrderLights));
         out.add(test("yearofice:fire/out_of_order_does_not_light", 200, FireGameTests::outOfOrderDoesNotLight));
         out.add(test("yearofice:fire/rain_puts_out_low", 200, FireGameTests::rainPutsOutLow));
@@ -52,6 +56,12 @@ public final class FireGameTests {
         out.add(test("yearofice:fire/light_by_state", 400, FireGameTests::lightByState));
         return out;
     }
+
+    /**
+     * The one fire test that burns on the live clock runs alone, so no other test's rate request (a fishing fight's
+     * Close, butchering's Work) moves the game minutes it counts.
+     */
+    static final String CLOCK_BATCH = "m2_5_fire_clock";
 
     static TestFunction test(String name, int maxTicks, Consumer<GameTestHelper> body) {
         return new TestFunction("m2_5", name, TEMPLATE, maxTicks, 0, true, body);
@@ -87,7 +97,7 @@ public final class FireGameTests {
 
     /**
      * Ready for development › M2.5 test 1: bark, kindling and 2 armloads reach a fire in under 10 game minutes and
-     * coals in 60 ±10, on the block entity's own tick.
+     * coals in 60 ±10, on the game clock's own minutes ({@code ClockEvent.Minute}), counted by the clock.
      */
     static void sliceFireFromParts(GameTestHelper h) {
         FireRingBlockEntity be = ring(h);
@@ -95,10 +105,10 @@ public final class FireGameTests {
         h.assertTrue(Math.abs(be.fire().armloads() - 2.0) < 1e-9, "armloads " + be.fire().armloads());
         lightWithMatch(h, be);
         h.assertTrue(be.fire().state() == FireState.TINDER, "tinder flame, was " + be.fire().state());
-        long start = h.getTick();
+        long start = ClockService.get().nowMinute();
         long[] fireAt = {-1};
         h.onEachTick(() -> {
-            long minutes = (h.getTick() - start) / 20;
+            long minutes = ClockService.get().nowMinute() - start;
             FireState s = be.fire().state();
             if (s == FireState.FIRE && fireAt[0] < 0) fireAt[0] = minutes;
             if (s == FireState.OUT) h.fail("the fire went out at minute " + minutes);
@@ -194,7 +204,12 @@ public final class FireGameTests {
         h.succeed();
     }
 
-    /** Minecraft engine › Fire › Light: the block's light follows the state, and the level's light engine agrees. */
+    /**
+     * Minecraft engine › Fire › Light: the block's light follows the state, and the level's light engine agrees. The
+     * ring is held (paused) so no clock minute or ember second moves it off the forced state, and each state's light
+     * is read once the light engine has applied that chunk's pending updates (a light-update condition waited for in
+     * game ticks), then must equal the state's light exactly.
+     */
     static void lightByState(GameTestHelper h) {
         // Stone on every side, so light from anything outside the cell (the test framework's markers, other tests)
         // cannot reach the ring: the measured block light is the ring's own.
@@ -203,12 +218,16 @@ public final class FireGameTests {
                 for (int z = 0; z < 3; z++)
                     if (x != 1 || y != 1 || z != 1) h.setBlock(new BlockPos(x, y, z), Blocks.STONE);
         FireRingBlockEntity be = ring(h);
+        be.pause(true);
         BlockPos abs = h.absolutePos(RING);
+        ThreadedLevelLightEngine light = h.getLevel().getChunkSource().getLightEngine();
+        int cx = SectionPos.blockToSectionCoord(abs.getX()), cz = SectionPos.blockToSectionCoord(abs.getZ());
         GameTestSequence seq = h.startSequence();
         int[][] expect = {
                 {FireBurn.SMALL.ordinal(), 9}, {FireBurn.LOW.ordinal(), 9}, {FireBurn.STEADY.ordinal(), 12},
                 {FireBurn.HOT.ordinal(), 15}, {FireBurn.COALS.ordinal(), 6}, {FireBurn.BANKED.ordinal(), 0},
                 {FireBurn.TINDER.ordinal(), 3}, {FireBurn.EMBER.ordinal(), 0}, {FireBurn.OUT.ordinal(), 0}};
+        CompletableFuture<?>[] pending = new CompletableFuture<?>[1];
         for (int[] e : expect) {
             FireBurn b = FireBurn.values()[e[0]];
             int level = e[1];
@@ -216,10 +235,13 @@ public final class FireGameTests {
                 be.forceState(b.state, b.setting);
                 h.assertTrue(burn(h) == b, "block state " + burn(h) + " for " + b);
                 h.assertTrue(h.getBlockState(RING).getLightEmission(h.getLevel(), abs) == level, b + " emits " + level);
-            }).thenWaitUntil(() -> {
-                int got = h.getLevel().getBrightness(LightLayer.BLOCK, abs);
-                h.assertTrue(got == level, b + ": light " + got + ", want " + level);
-            });
+                pending[0] = light.waitForPendingTasks(cx, cz);
+            }).thenWaitUntil(() -> h.assertTrue(pending[0].isDone(), b + ": the light update is still pending"))
+                    .thenExecute(() -> {
+                        h.assertTrue(burn(h) == b, "the held ring left " + b + " for " + burn(h));
+                        int got = h.getLevel().getBrightness(LightLayer.BLOCK, abs);
+                        h.assertTrue(got == level, b + ": light " + got + ", want " + level);
+                    });
         }
         seq.thenSucceed();
     }

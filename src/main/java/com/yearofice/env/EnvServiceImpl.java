@@ -150,6 +150,8 @@ public final class EnvServiceImpl implements EnvService {
 
     @Override public WeatherModel.Hour valley(ServerLevel level) { return hourAt(level, now()); }
 
+    @Override public WeatherModel.Hour valleyAt(ServerLevel level, long minute) { return hourAt(level, minute); }
+
     @Override public WeatherModel.Day day(ServerLevel level, long absDay) { return model(level).day(absDay); }
 
     @Override

@@ -3,6 +3,9 @@ package com.yearofice.food;
 import com.yearofice.api.body.BodyReadout;
 import com.yearofice.api.body.BodyService;
 import com.yearofice.api.decay.DecayService;
+import com.yearofice.api.hud.HudBus;
+import com.yearofice.api.hud.HudLine;
+import com.yearofice.api.hud.HudLineType;
 import com.yearofice.body.intake.FoodMap;
 import com.yearofice.core.YearOfIce;
 import com.yearofice.food.cooking.CookingData;
@@ -14,7 +17,6 @@ import com.yearofice.sim.decay.Thresholds;
 import com.yearofice.sim.food.Doneness;
 import com.yearofice.sim.food.EatingLadder;
 import com.yearofice.sim.food.Meal;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -77,7 +79,7 @@ public final class Meals {
         Meal.Outcome o = Meal.bite(family(stack), state, ring, stage, body.condition(), body.bmi(), u);
         double grams = grams(stack);
         if (o.refused()) {
-            p.displayClientMessage(Component.translatable("food.yearofice.too_far_gone"), true);
+            HudBus.get().post(p, HudLine.of(HudLineType.PICKUP, "too_far_gone", "food"));
             return new Bite(false, o, grams, 0, stage);
         }
         double booked = grams * o.kcalShare();
@@ -89,8 +91,8 @@ public final class Meals {
                     DecayLadder.FOOD.names().get(stage), Math.round(o.gutIllness() * 100), o.gutIll() ? "ill" : "well",
                     Math.round(o.nauseaNow()), Math.round(o.parasites() * 1000) / 10.0, o.spirits());
         }
-        if (stage >= EatingLadder.TURNING) p.displayClientMessage(Component.translatable("food.yearofice.tasted_off"), false);
-        else if (ring == Doneness.Ring.BURNT) p.displayClientMessage(Component.translatable("food.yearofice.burnt"), false);
+        if (stage >= EatingLadder.TURNING) HudBus.get().post(p, HudLine.of(HudLineType.BODY, "tasted_off", "food"));
+        else if (ring == Doneness.Ring.BURNT) HudBus.get().post(p, HudLine.of(HudLineType.BODY, "burnt", "food"));
         if (!p.getAbilities().instabuild) stack.shrink(1);
         return new Bite(true, o, grams, booked, stage);
     }

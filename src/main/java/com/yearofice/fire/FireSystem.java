@@ -11,8 +11,8 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 
 /**
- * Wires the fire package: registries, the fuel data map, payloads, {@code /yoi fire}, the heat lookup and config
- * reloads. Called once from the mod constructor.
+ * Wires the fire package: registries, the fuel data map, payloads, {@code /yoi fire}, the heat lookup, the rings'
+ * game-minute clock and config reloads. Called once from the mod constructor.
  */
 public final class FireSystem {
     private FireSystem() {}
@@ -31,6 +31,7 @@ public final class FireSystem {
             BowDrillService.clear();
         });
         FireHeatLookup.INSTANCE.set(FireIndex.INSTANCE);
+        FireClock.init();
     }
 
     /** Until the studio adds a Year of Ice tab, the fire kit sits in the vanilla tabs. */

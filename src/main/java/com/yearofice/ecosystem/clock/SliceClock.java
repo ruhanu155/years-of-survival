@@ -9,7 +9,7 @@ import net.minecraft.world.level.Level;
 /**
  * The ecosystem's reading of the game clock, through Layer 1's {@link ClockService} (M2 lane B: the clock now
  * drives vanilla's day time from the true sun, so reading the day time linearly no longer gives game minutes).
- * Game minutes count from midnight of day 0 ({@link com.yearofice.sim.ecosystem.SliceCalendar}), as the clock's do.
+ * Game minutes count from midnight of day 0 ({@link com.yearofice.sim.time.Calendar}), as the clock's do.
  *
  * <p>{@link #lapse} asks the Work rate for one player's hold-to-work job (Minecraft development › Layer 1); the
  * clock runs the world at the slowest player's rate, so in single player the world follows the request and in

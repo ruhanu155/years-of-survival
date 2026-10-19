@@ -13,7 +13,7 @@ import com.yearofice.sim.ecosystem.Awareness;
 import com.yearofice.sim.ecosystem.Gaits;
 import com.yearofice.sim.ecosystem.Posture;
 import com.yearofice.sim.ecosystem.PreyRules;
-import com.yearofice.sim.ecosystem.SliceCalendar;
+import com.yearofice.sim.time.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.core.BlockPos;
@@ -174,7 +174,7 @@ public abstract class YoiAnimal extends PathfinderMob implements GeoEntity {
         if (!level().isClientSide && (tickCount % 100 == 1 || !placed)) {
             placed = true;
             if (home == null) home = blockPosition();
-            updateLooks(SliceCalendar.dayOfYear(SliceClock.minute(level())));
+            updateLooks(Calendar.dayOfYearOfMinute(SliceClock.minute(level())));
         }
     }
 

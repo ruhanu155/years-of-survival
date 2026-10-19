@@ -14,7 +14,8 @@ import net.neoforged.neoforge.common.ModConfigSpec;
  * The {@code [fishing]} section of {@code yearofice-common.toml}. One key per {@link FishingTuning} field (its name
  * in snake_case), defaulting to the Standard value. As with {@code [fire]}, the realism preset sets every slider's
  * default: while a key still holds the Standard number, Gentle and Brutal worlds read their preset's number; a moved
- * slider wins.
+ * slider wins. The retired keys {@code close_clock_rate} and {@code water_temp_c} are dropped from an older file by
+ * NeoForge on load.
  */
 public final class FishingConfig {
     private FishingConfig() {}
@@ -45,12 +46,10 @@ public final class FishingConfig {
         NOTES.put("lineWearPct", "Line condition % one fight costs (x3 if the arc reached red).");
         NOTES.put("snapWearPct", "Line condition % a snap costs (the line is re-tied from the winder).");
         NOTES.put("lineWetMin", "Game minutes in use before the line is wet (rain wets it at once).");
-        NOTES.put("closeClockRate", "Unused since M2: a fight asks the clock for the Close rate (clock/rates.json).");
         NOTES.put("inputTimeoutTicks", "The server steps idle input for a client this many ticks late.");
         NOTES.put("assist", "1 turns on the fishing assist: safe band shaded, side pressure set, fish tire 30% faster.");
         NOTES.put("wormDigMax", "Worms one broken riparian soil block may give (0 to this).");
         NOTES.put("wormDigRange", "Soil within this many blocks of water is riparian.");
-        NOTES.put("waterTempC", "Unused since M2: water temperature comes from the Environment field (C).");
         NOTES.put("turbidity", "Turbidity until the environment field lands (0 clear to 1 muddy).");
     }
 

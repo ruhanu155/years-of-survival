@@ -16,7 +16,7 @@ import com.yearofice.ecosystem.species.SnowshoeHareEntity;
 import com.yearofice.ecosystem.species.SpeciesBook;
 import com.yearofice.ecosystem.species.SpeciesDef;
 import com.yearofice.sim.ecosystem.Density;
-import com.yearofice.sim.ecosystem.SliceCalendar;
+import com.yearofice.sim.time.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -99,7 +99,7 @@ public final class EcoCommands {
         double n = Density.coveringPoint(EcoConfig.tuning().hareDensityPerKm2(), hare.homeRangeM(), share, mult);
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("Day %d (%s), hare cycle year %d, x%.2f | hares %.0f/km2 at K, ptarmigan groups %.0f/km2, moose %.1f/km2%n",
-                SliceCalendar.day(minute), SliceCalendar.date(SliceCalendar.dayOfYear(minute)), SlotSpawner.cycleYear(level, minute) + 1, mult,
+                Calendar.absDayOfMinute(minute), Calendar.shortDate(Calendar.dayOfYearOfMinute(minute)), SlotSpawner.cycleYear(level, minute) + 1, mult,
                 EcoConfig.tuning().hareDensityPerKm2(), EcoConfig.tuning().ptarmiganGroupsPerKm2(), EcoConfig.tuning().mooseDensityPerKm2()));
         sb.append(String.format("Hare habitat within 32 m: %.0f%% | hares whose range covers here: %.2f%n", share * 100, n));
         for (Map.Entry<String, int[]> e : SlotSpawner.census(level, at, 128).entrySet()) {

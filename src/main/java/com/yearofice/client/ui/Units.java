@@ -50,6 +50,7 @@ public final class Units {
                 yield id == null ? Component.literal(a.text()) : Component.translatable("entity." + id.getNamespace() + "." + id.getPath());
             }
             case TEXT -> a.text();
+            case KEY -> Component.translatable(a.text());
         };
     }
 }

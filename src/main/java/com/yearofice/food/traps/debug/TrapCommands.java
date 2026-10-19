@@ -8,7 +8,7 @@ import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import com.yearofice.ecosystem.clock.SliceClock;
 import com.yearofice.food.traps.SnareBlockEntity;
 import com.yearofice.food.traps.TrapConfig;
-import com.yearofice.sim.ecosystem.SliceCalendar;
+import com.yearofice.sim.time.Calendar;
 import com.yearofice.sim.ecosystem.Snare;
 import com.yearofice.sim.ecosystem.TrapTuning;
 import net.minecraft.commands.CommandSourceStack;
@@ -72,18 +72,18 @@ public final class TrapCommands {
     static int roll(CommandContext<CommandSourceStack> c) throws CommandSyntaxException {
         SnareBlockEntity be = nearest(c);
         ServerLevel level = c.getSource().getLevel();
-        TrapTuning t = TrapConfig.tuning();
+        Snare.Rolls rolls = be.env().rolls();
         long now = be.now();
-        long next = SliceCalendar.rollAtOrBefore(now, t.dawnMin(), t.duskMin()) + 1;
-        long at = SliceCalendar.rollMinute(next, t.dawnMin(), t.duskMin());
+        long next = rolls.atOrBefore(now) + 1;
+        long at = rolls.minute(next);
         double p = Snare.pNow(be.state(), be.env(), now);
         long minutes = (long) Math.ceil(at - SliceClock.minuteD(level)) + 1;
         com.yearofice.api.clock.ClockService.get().advance(Math.max(0, minutes));
         int before = be.state().catches();
         be.settle(true);
         boolean caught = be.state().catches() > before;
-        String line = String.format("%s roll on day %d: P %.3f, %s.", SliceCalendar.isDawn(next) ? "Dawn" : "Dusk",
-                SliceCalendar.day(at), p, caught ? "a hare, caught at " + clock(be.state().held().minute()) : "nothing");
+        String line = String.format("%s roll on day %d: P %.3f, %s.", Snare.Rolls.isDawn(next) ? "Dawn" : "Dusk",
+                Calendar.absDayOfMinute(at), p, caught ? "a hare, caught at " + clock(be.state().held().minute()) : "nothing");
         c.getSource().sendSuccess(() -> Component.literal(line), true);
         return caught ? 1 : 0;
     }
@@ -93,18 +93,19 @@ public final class TrapCommands {
         Snare.State s = be.state();
         Snare.SetQuality q = be.quality();
         long now = be.now();
-        long next = SliceCalendar.rollAtOrBefore(now, t.dawnMin(), t.duskMin()) + 1;
+        Snare.Rolls rolls = be.env().rolls();
+        long next = rolls.atOrBefore(now) + 1;
         String held = s.held() == null ? "none" : "hare caught " + clock(s.held().minute()) + (s.visible(now) == null ? " (not yet)" : "");
         return String.format("Snare: %s | trail %s, cover %s, funnel %s, bait %s: x%.2f | hare habitat %.0f%% | hares in range %.2f | P per roll %.3f%n"
                         + "Last roll %d, next %s %s | catches %d of %d | held: %s",
                 s.status(), q.onTrail(), q.besideCover(), q.funnel(), q.baited(), q.multiplier(t), be.habitatShare() * 100,
                 Snare.effectiveHares(s, be.env(), next), Snare.pNow(s, be.env(), now), s.lastRoll(),
-                SliceCalendar.isDawn(next) ? "dawn" : "dusk", clock(SliceCalendar.rollMinute(next, t.dawnMin(), t.duskMin())),
+                Snare.Rolls.isDawn(next) ? "dawn" : "dusk", clock(rolls.minute(next)),
                 s.catches(), t.wireCatches(), held);
     }
 
     static String clock(long minute) {
-        int m = SliceCalendar.minuteOfDay(minute);
-        return String.format("day %d %02d:%02d", SliceCalendar.day(minute), m / 60, m % 60);
+        int m = Calendar.minuteOfDayOfMinute(minute);
+        return String.format("day %d %02d:%02d", Calendar.absDayOfMinute(minute), m / 60, m % 60);
     }
 }

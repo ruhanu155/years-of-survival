@@ -40,6 +40,12 @@ public final class Calendar {
 
     public static long absDayOfMinute(long minute) { return Math.floorDiv(minute, MINUTES_PER_DAY); }
 
+    /** Minute of the day 0–1,439 of an absolute minute. */
+    public static int minuteOfDayOfMinute(long minute) { return (int) Math.floorMod(minute, (long) MINUTES_PER_DAY); }
+
+    /** Day of the year 0–364 (May 1 = 0) of an absolute minute. */
+    public static int dayOfYearOfMinute(long minute) { return dayOfYearOfDay(absDayOfMinute(minute)); }
+
     /** Year, 1-based. */
     public static int year(long ds) { return (int) Math.floorDiv(ds, DS_PER_YEAR) + 1; }
 
@@ -78,6 +84,17 @@ public final class Calendar {
     }
 
     public static String monthName(int month) { return NAMES[month - 1]; }
+
+    /** "Oct 21" for a day of the year. */
+    public static String shortDate(int dayOfYear) {
+        int doy = Math.floorMod(dayOfYear, DAYS_PER_YEAR);
+        return monthName(month(doy)).substring(0, 3) + " " + dayOfMonth(doy);
+    }
+
+    /** True when {@code doy} lies in the window from {@code fromDoy} to {@code toDoy}, inclusive, wrapping at May 1. */
+    public static boolean within(int doy, int fromDoy, int toDoy) {
+        return fromDoy <= toDoy ? doy >= fromDoy && doy <= toDoy : doy >= fromDoy || doy <= toDoy;
+    }
 
     /** "May 1, year 1, 06:30". */
     public static String format(long ds) {

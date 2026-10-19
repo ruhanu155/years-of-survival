@@ -12,24 +12,32 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * The slice's Decay and freshness layer (Minecraft development › Layer 5): one clock, {@code air:slice}, at the
- * stand-in air temperature; stacks settle on read, nothing ticks. Lives come from the {@code yearofice:food} row's
+ * The slice's Decay and freshness layer (Minecraft development › Layer 5): one clock, {@code air:slice}, on the
+ * valley's air from the Environment field ({@link DecayAir}); stacks settle on read, nothing ticks. On the client
+ * D comes from the synced head. Lives come from the {@code yearofice:food} row's
  * {@code spoil_days_at_5c} by state (Items › Food values), turned into the reference life by
  * {@link FoodValues#refLifeDh}; the living-rot curve is {@code decay/meat.json}.
  */
 public final class DecayServiceImpl implements DecayService {
 
-    /** f_T at the stand-in air temperature. */
-    static double rate(Level level) { return DecayCurves.meat().rate(DecayConfig.airC()); }
+    /** The slice clock's rate now, decay-hours per game hour. */
+    static double rate(Level level) {
+        return level.isClientSide ? DecayAir.clientRate() : DecayAir.rateAt(level, DecayClock.minuteD(level));
+    }
 
     @Override
-    public double dAt(double gameMinute) { return gameMinute / 60.0 * DecayCurves.meat().rate(DecayConfig.airC()); }
+    public double dAt(double gameMinute) { return DecayAir.dAt(null, gameMinute); }
 
     @Override
-    public double dNow(Level level) { return dAt(DecayClock.minuteD(level)); }
+    public double dNow(Level level) {
+        double m = DecayClock.minuteD(level);
+        return level.isClientSide ? DecayAir.clientD(m) : DecayAir.dAt(level, m);
+    }
 
     @Override
-    public double airC(Level level) { return DecayConfig.airC(); }
+    public double airC(Level level) {
+        return level.isClientSide ? DecayAir.clientAirC() : DecayAir.airAt(level, DecayClock.minuteD(level));
+    }
 
     private static @Nullable FoodValues values(ItemStack stack) { return FoodMap.values(stack); }
 

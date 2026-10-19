@@ -149,14 +149,30 @@ public final class EcoGameTests {
 
     static double flat(Vec3 a, Vec3 b) { return Math.hypot(a.x - b.x, a.z - b.z); }
 
+    /** The hare's runway, around the test's {@code (1, PAD_Y, 1)}: west of it the approach, east the flight. */
+    static final int RUN_WEST = 10, RUN_EAST = 26, RUN_SIDE = 12;
+
+    static void runway(GameTestHelper h, boolean on) {
+        var b = on ? net.minecraft.world.level.block.Blocks.STONE : net.minecraft.world.level.block.Blocks.AIR;
+        for (int dx = -RUN_WEST; dx <= RUN_EAST; dx++) {
+            for (int dz = -RUN_SIDE; dz <= RUN_SIDE; dz++) h.setBlock(new BlockPos(1 + dx, PAD_Y, 1 + dz), b);
+        }
+    }
+
     /**
      * Land animals in depth › Snowshoe hare: a hare freezes at awareness 30 and bolts zigzag inside its flush
      * distance. A player walking straight at it at 3 m/s from 25 m sees it freeze first, then flush at 5 m × 1.5
      * (head-on) = 7.5 m (±1.5 m for awareness reaching 70 a step early and the 5-tick motion sample), and it runs at
-     * least 15 m before it stops.
+     * least 15 m before it stops, within 6 s of bolting.
+     *
+     * <p>The whole run stays on a stone runway at {@code PAD_Y}, above every test's box: a hare that dropped into the
+     * grid could land in a neighbouring test's box, and the framework discards every entity in a test's box when that
+     * test passes (which flaked this test under load). The test owns its hare, its threat and its forced chunks, and
+     * lets go of all three on every way out.
      */
     static void hareFlees(GameTestHelper h) {
-        SnowshoeHareEntity hare = h.spawn(EcosystemRegistry.SNOWSHOE_HARE.get(), pad(h, 1, PAD_Y));
+        runway(h, true);
+        SnowshoeHareEntity hare = h.spawn(EcosystemRegistry.SNOWSHOE_HARE.get(), new BlockPos(1, PAD_Y + 1, 1));
         hare.setScentEnabled(false);
         Vec3 start = hare.position();
         double eyeY = start.y;
@@ -164,35 +180,49 @@ public final class EcoGameTests {
         ServerPlayer p = player(h);
         ThreatSources.addForTest(p, hare);
         p.moveTo(start.x - 25, start.y, start.z, -90, 0);
-        boolean[] froze = {false};
+        boolean[] froze = {false}, done = {false};
         double[] fledAt = {-1};
         Vec3[] fleeStart = {null};
         long[] fleeTick = {-1};
+        Runnable release = () -> {
+            if (done[0]) return;
+            done[0] = true;
+            ThreatSources.removeForTest(p);
+            hare.discard();
+            force(h, start, 3, false);
+            runway(h, false);
+        };
         h.onEachTick(() -> {
-            AnimalState s = hare.state();
-            if (s == AnimalState.FREEZE && fledAt[0] < 0) froze[0] = true;
-            if (s == AnimalState.FLEE && fledAt[0] < 0) {
-                fledAt[0] = flat(p.position(), hare.position());
-                fleeStart[0] = hare.position();
-                fleeTick[0] = h.getTick();
-            }
-            if (fledAt[0] < 0) {
-                Vec3 to = hare.position().subtract(p.position());
-                Vec3 step = new Vec3(to.x, 0, to.z).normalize().scale(0.15);
-                p.moveTo(p.getX() + step.x, eyeY, p.getZ() + step.z, p.getYRot(), 0);
-                if (h.getTick() > 300) h.fail("the hare never fled; state " + s + ", awareness " + hare.awareness().max());
-                return;
-            }
-            double ran = flat(fleeStart[0], hare.position());
-            if (hare.fleeCoveredM() >= 15 || ran >= 15) {
-                h.assertTrue(froze[0], "the hare should freeze before it bolts");
-                h.assertTrue(fledAt[0] >= 6.0 && fledAt[0] <= 9.0, "bolted with the player at " + fledAt[0] + " m; flush distance 7.5 m");
-                ThreatSources.removeForTest(p);
-                force(h, start, 3, false);
-                unpad(h, 1, PAD_Y);
-                h.succeed();
-            } else if (h.getTick() - fleeTick[0] > 120) {
-                h.fail("fled only " + hare.fleeCoveredM() + " m in 6 s");
+            if (done[0]) return;
+            try {
+                AnimalState s = hare.state();
+                h.assertTrue(hare.isAlive(), "the hare is gone (" + hare.getRemovalReason() + ") at " + hare.blockPosition());
+                if (s == AnimalState.FREEZE && fledAt[0] < 0) froze[0] = true;
+                if (s == AnimalState.FLEE && fledAt[0] < 0) {
+                    fledAt[0] = flat(p.position(), hare.position());
+                    fleeStart[0] = hare.position();
+                    fleeTick[0] = h.getTick();
+                }
+                if (fledAt[0] < 0) {
+                    Vec3 to = hare.position().subtract(p.position());
+                    Vec3 step = new Vec3(to.x, 0, to.z).normalize().scale(0.15);
+                    p.moveTo(p.getX() + step.x, eyeY, p.getZ() + step.z, p.getYRot(), 0);
+                    if (h.getTick() > 300) h.fail("the hare never fled; state " + s + ", awareness " + hare.awareness().max());
+                    return;
+                }
+                double ran = flat(fleeStart[0], hare.position());
+                if (hare.fleeCoveredM() >= 15 || ran >= 15) {
+                    h.assertTrue(froze[0], "the hare should freeze before it bolts");
+                    h.assertTrue(fledAt[0] >= 6.0 && fledAt[0] <= 9.0, "bolted with the player at " + fledAt[0] + " m; flush distance 7.5 m");
+                    h.assertTrue(hare.getY() >= start.y - 0.5, "the hare left the runway at y " + hare.getY());
+                    release.run();
+                    h.succeed();
+                } else if (h.getTick() - fleeTick[0] > 120) {
+                    h.fail("fled only " + hare.fleeCoveredM() + " m in 6 s (" + hare.fleeDebug() + ", y " + (hare.getY() - start.y) + ")");
+                }
+            } catch (RuntimeException e) {
+                release.run();
+                throw e;
             }
         });
     }
