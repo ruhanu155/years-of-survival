@@ -908,7 +908,10 @@ def build(sid, write=True):
             img.save(tp, optimize=False)
         side = {"species": sid, "grade": p.get("grade", "G1"), "generator": VERSION, "base": p.get("base"),
                 "geo": f"geo/entity/{p['geo_id']}.geo.json", "textures": sorted(p["textures"])}
-        json.dump(side, open(gp.replace(".geo.json", ".prov.json"), "w"), indent=1)
+        prov_dir = os.path.join(os.path.dirname(__file__), "..", "..", "art-src", "provenance", "models")
+        os.makedirs(prov_dir, exist_ok=True)
+        # Provenance lives outside assets/: GeckoLib reads every file under geo/ as a model.
+        json.dump(side, open(os.path.join(prov_dir, f"{p['geo_id']}.prov.json"), "w"), indent=1)
     return p, m, geo, anims, textures
 
 
