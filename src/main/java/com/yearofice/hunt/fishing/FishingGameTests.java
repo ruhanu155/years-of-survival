@@ -372,7 +372,7 @@ public final class FishingGameTests {
         h.setBlock(new BlockPos(2, 2, 2), Blocks.DIRT);
         int n = WormDigging.wormsAt(level, dirt, Blocks.DIRT.defaultBlockState(), t);
         int month = FishSeason.month(FishSeason.dayOfYear(FishingClock.day(FishingClock.minute(level.getServer()))));
-        int max = level.isRaining() ? 2 * t.wormDigMax() : t.wormDigMax();
+        int max = com.yearofice.api.env.EnvService.get().precip(level, dirt).liquid() ? 2 * t.wormDigMax() : t.wormDigMax();
         if (month >= 10 || month <= 4) h.assertTrue(n == 0, "frozen ground: " + n);
         else h.assertTrue(n >= 0 && n <= max, "worms " + n);
         h.assertTrue(WormDigging.wormsAt(level, dirt, Blocks.STONE.defaultBlockState(), t) == 0, "stone has no worms");
