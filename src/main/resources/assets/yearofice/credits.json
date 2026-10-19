@@ -746,7 +746,6 @@
    "asset_id": "model_beaver",
    "files": [
     "assets/yearofice/geo/entity/beaver.geo.json",
-    "assets/yearofice/geo/entity/beaver.prov.json",
     "assets/yearofice/animations/entity/beaver.animation.json",
     "assets/yearofice/textures/entity/beaver/adult_all.png"
    ],
@@ -760,7 +759,6 @@
    "asset_id": "model_black_bear",
    "files": [
     "assets/yearofice/geo/entity/black_bear.geo.json",
-    "assets/yearofice/geo/entity/black_bear.prov.json",
     "assets/yearofice/animations/entity/black_bear.animation.json",
     "assets/yearofice/textures/entity/black_bear/adult_black.png",
     "assets/yearofice/textures/entity/black_bear/adult_cinnamon.png"
@@ -775,7 +773,6 @@
    "asset_id": "model_black_bear_cub",
    "files": [
     "assets/yearofice/geo/entity/black_bear_cub.geo.json",
-    "assets/yearofice/geo/entity/black_bear_cub.prov.json",
     "assets/yearofice/animations/entity/black_bear_cub.animation.json",
     "assets/yearofice/textures/entity/black_bear/cub_black.png"
    ],
@@ -789,7 +786,6 @@
    "asset_id": "model_grizzly",
    "files": [
     "assets/yearofice/geo/entity/grizzly.geo.json",
-    "assets/yearofice/geo/entity/grizzly.prov.json",
     "assets/yearofice/animations/entity/grizzly.animation.json",
     "assets/yearofice/textures/entity/grizzly/adult_summer.png"
    ],
@@ -803,7 +799,6 @@
    "asset_id": "model_grizzly_cub",
    "files": [
     "assets/yearofice/geo/entity/grizzly_cub.geo.json",
-    "assets/yearofice/geo/entity/grizzly_cub.prov.json",
     "assets/yearofice/animations/entity/grizzly_cub.animation.json",
     "assets/yearofice/textures/entity/grizzly/cub_summer.png"
    ],
@@ -817,7 +812,6 @@
    "asset_id": "model_moose",
    "files": [
     "assets/yearofice/geo/entity/moose.geo.json",
-    "assets/yearofice/geo/entity/moose.prov.json",
     "assets/yearofice/animations/entity/moose.animation.json",
     "assets/yearofice/textures/entity/moose/bull_summer.png",
     "assets/yearofice/textures/entity/moose/cow_summer.png"
@@ -841,7 +835,6 @@
    "asset_id": "model_moose_calf",
    "files": [
     "assets/yearofice/geo/entity/moose_calf.geo.json",
-    "assets/yearofice/geo/entity/moose_calf.prov.json",
     "assets/yearofice/animations/entity/moose_calf.animation.json",
     "assets/yearofice/textures/entity/moose/calf_summer.png"
    ],
@@ -855,7 +848,6 @@
    "asset_id": "model_mule_deer",
    "files": [
     "assets/yearofice/geo/entity/mule_deer.geo.json",
-    "assets/yearofice/geo/entity/mule_deer.prov.json",
     "assets/yearofice/animations/entity/mule_deer.animation.json",
     "assets/yearofice/textures/entity/mule_deer/buck_summer.png",
     "assets/yearofice/textures/entity/mule_deer/buck_winter.png",
@@ -884,7 +876,6 @@
    "asset_id": "model_mule_deer_fawn",
    "files": [
     "assets/yearofice/geo/entity/mule_deer_fawn.geo.json",
-    "assets/yearofice/geo/entity/mule_deer_fawn.prov.json",
     "assets/yearofice/animations/entity/mule_deer_fawn.animation.json",
     "assets/yearofice/textures/entity/mule_deer/fawn_summer.png"
    ],
@@ -898,7 +889,6 @@
    "asset_id": "model_red_fox",
    "files": [
     "assets/yearofice/geo/entity/red_fox.geo.json",
-    "assets/yearofice/geo/entity/red_fox.prov.json",
     "assets/yearofice/animations/entity/red_fox.animation.json",
     "assets/yearofice/textures/entity/red_fox/adult_red.png",
     "assets/yearofice/textures/entity/red_fox/adult_cross.png",
@@ -923,7 +913,6 @@
    "asset_id": "model_red_squirrel",
    "files": [
     "assets/yearofice/geo/entity/red_squirrel.geo.json",
-    "assets/yearofice/geo/entity/red_squirrel.prov.json",
     "assets/yearofice/animations/entity/red_squirrel.animation.json",
     "assets/yearofice/textures/entity/red_squirrel/adult_all.png"
    ],
@@ -937,7 +926,6 @@
    "asset_id": "model_sitka_black_tailed_deer",
    "files": [
     "assets/yearofice/geo/entity/sitka_black_tailed_deer.geo.json",
-    "assets/yearofice/geo/entity/sitka_black_tailed_deer.prov.json",
     "assets/yearofice/animations/entity/sitka_black_tailed_deer.animation.json",
     "assets/yearofice/textures/entity/sitka_black_tailed_deer/buck_summer.png",
     "assets/yearofice/textures/entity/sitka_black_tailed_deer/buck_winter.png",
@@ -966,7 +954,6 @@
    "asset_id": "model_sitka_black_tailed_deer_fawn",
    "files": [
     "assets/yearofice/geo/entity/sitka_black_tailed_deer_fawn.geo.json",
-    "assets/yearofice/geo/entity/sitka_black_tailed_deer_fawn.prov.json",
     "assets/yearofice/animations/entity/sitka_black_tailed_deer_fawn.animation.json",
     "assets/yearofice/textures/entity/sitka_black_tailed_deer/fawn_summer.png"
    ],
@@ -980,7 +967,6 @@
    "asset_id": "model_snowshoe_hare",
    "files": [
     "assets/yearofice/geo/entity/snowshoe_hare.geo.json",
-    "assets/yearofice/geo/entity/snowshoe_hare.prov.json",
     "assets/yearofice/animations/entity/snowshoe_hare.animation.json",
     "assets/yearofice/textures/entity/snowshoe_hare/adult_summer.png",
     "assets/yearofice/textures/entity/snowshoe_hare/adult_winter.png",
@@ -996,7 +982,6 @@
    "asset_id": "model_spruce_grouse",
    "files": [
     "assets/yearofice/geo/entity/rig_grouse.geo.json",
-    "assets/yearofice/geo/entity/rig_grouse.prov.json",
     "assets/yearofice/animations/entity/rig_grouse.animation.json",
     "assets/yearofice/animations/entity/willow_ptarmigan.animation.json",
     "assets/yearofice/animations/entity/spruce_grouse.animation.json",
@@ -1026,7 +1011,6 @@
    "asset_id": "model_wolf",
    "files": [
     "assets/yearofice/geo/entity/wolf.geo.json",
-    "assets/yearofice/geo/entity/wolf.prov.json",
     "assets/yearofice/animations/entity/wolf.animation.json",
     "assets/yearofice/textures/entity/wolf/adult_gray.png",
     "assets/yearofice/textures/entity/wolf/adult_black.png"

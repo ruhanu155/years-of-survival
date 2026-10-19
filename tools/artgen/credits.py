@@ -64,7 +64,7 @@ def build():
         aid = p.get("anim_id", p["geo_id"])
         files = []
         geo = f"assets/yearofice/geo/entity/{p['geo_id']}.geo.json"
-        for f in (geo, geo.replace(".geo.json", ".prov.json"), f"assets/yearofice/animations/entity/{aid}.animation.json"):
+        for f in (geo, f"assets/yearofice/animations/entity/{aid}.animation.json"):
             if f not in seen:
                 files.append(f)
                 seen.add(f)
