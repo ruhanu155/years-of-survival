@@ -94,6 +94,13 @@ public interface EnvService {
      */
     void fixFirstDay(ServerLevel level, WeatherModel.FixedDay day);
 
+    /**
+     * A counter that changes whenever already-drawn weather history changes (today: {@link #fixFirstDay}), so
+     * caches built from past hours (the decay clock's summed year) know to re-sum. Pins don't count: they are
+     * read live by every caller.
+     */
+    default long historyVersion() { return 0; }
+
     static EnvService get() {
         EnvService s = Holder.service;
         if (s == null) throw new IllegalStateException("EnvService not installed yet");

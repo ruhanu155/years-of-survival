@@ -42,6 +42,8 @@ public final class DecayAir {
 
     private static volatile @Nullable AirClock clock;
     private static volatile long clockSeed;
+    /** The Environment's history version the cached year was summed at; a change (the fixed first day) re-sums it. */
+    private static volatile long clockHistory = -1;
     private static double sentD = Double.NaN, sentMinute, sentRate = Double.NaN;
 
     static void init() {
@@ -75,11 +77,13 @@ public final class DecayAir {
 
     private static AirClock clock(ServerLevel level) {
         AirClock c = clock;
-        if (c != null && clockSeed == level.getSeed()) return c;
+        long history = EnvService.get().historyVersion();
+        if (c != null && clockSeed == level.getSeed() && clockHistory == history) return c;
         synchronized (DecayAir.class) {
-            if (clock == null || clockSeed != level.getSeed()) {
+            if (clock == null || clockSeed != level.getSeed() || clockHistory != history) {
                 clock = new AirClock(h -> EnvService.get().valleyAt(level, h * 60).airC(), DecayAir::rate);
                 clockSeed = level.getSeed();
+                clockHistory = history;
             }
             return clock;
         }

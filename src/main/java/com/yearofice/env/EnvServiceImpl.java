@@ -178,7 +178,12 @@ public final class EnvServiceImpl implements EnvService {
         if (day == null) firstDays.remove(level.getSeed());
         else firstDays.put(level.getSeed(), day);
         model(level).fixFirstDay(day);
+        historyVersion++;
     }
+
+    private volatile long historyVersion;
+
+    @Override public long historyVersion() { return historyVersion; }
 
     @Override
     public boolean heavy(ServerLevel level) { return model(level).heavy(valley(level)); }
