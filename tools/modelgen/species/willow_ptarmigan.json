@@ -1,0 +1,235 @@
+{
+ "id": "willow_ptarmigan",
+ "geo_id": "rig_grouse",
+ "anim_id": "rig_grouse",
+ "anim_copies": [
+  "willow_ptarmigan",
+  "spruce_grouse"
+ ],
+ "texture_dir": "willow_ptarmigan",
+ "template": "bird",
+ "rig": "grouse",
+ "tier": "small",
+ "hitbox": [
+  0.4,
+  0.4
+ ],
+ "grade": "G1",
+ "base": null,
+ "notes": "Generated shared grouse rig (DV3: birds share geo/entity/rig_<rig>.geo.json, species differ by texture and scale). Plump body and breast, small head, short beak, fan tail, folded wings, short feathered legs.",
+ "body": {
+  "len": 6,
+  "w": 4,
+  "h": 4,
+  "extra": [
+   {
+    "w": 3,
+    "h": 3,
+    "len": 2,
+    "dy": 0.5,
+    "dz": -1
+   }
+  ]
+ },
+ "legs": {
+  "h": 1,
+  "x": 1,
+  "z": 0.5,
+  "w": 1,
+  "d": 1,
+  "foot": {
+   "w": 1,
+   "h": 1,
+   "len": 2,
+   "back": 1
+  }
+ },
+ "neck": {
+  "z": 1,
+  "w": 2,
+  "h": 2,
+  "d": 2,
+  "sink": 1
+ },
+ "head": {
+  "w": 2,
+  "h": 2,
+  "len": 2.5,
+  "back": 1,
+  "pixels": [
+   {
+    "faces": "lr",
+    "z": 0.45,
+    "y": 0.8,
+    "ramp": "fur_black",
+    "step": 0
+   },
+   {
+    "faces": "lr",
+    "z": 0.45,
+    "y": 0.0,
+    "ramp": "comb_red",
+    "step": 2
+   }
+  ]
+ },
+ "beak": {
+  "w": 1,
+  "h": 1,
+  "len": 1,
+  "y": 0.5
+ },
+ "tail": {
+  "w": 3,
+  "h": 1,
+  "len": 3,
+  "angle": 10,
+  "inset": 1,
+  "drop": 1.5
+ },
+ "wings": {
+  "h": 2,
+  "len": 3,
+  "tip_h": 1,
+  "tip_len": 2,
+  "z": 1.5,
+  "top": 1,
+  "inset": 0.5
+ },
+ "paint": {
+  "wing_*_tip": {
+   "ramp": "fur_white",
+   "step": 3,
+   "noise": 0
+  },
+  "wing_*": {
+   "ramp": "feather_ptarmigan_summer",
+   "step": 2,
+   "noise": 0.1,
+   "regions": [
+    {
+     "faces": "all",
+     "y": [
+      0.5,
+      1
+     ],
+     "ramp": "fur_white",
+     "step": 3
+    },
+    {
+     "faces": "bottom",
+     "ramp": "fur_white",
+     "step": 3
+    }
+   ]
+  },
+  "leg_*": {
+   "ramp": "fur_white",
+   "step": 3,
+   "noise": 0
+  },
+  "beak": {
+   "ramp": "fur_black",
+   "step": 1,
+   "noise": 0
+  },
+  "tail": {
+   "ramp": "fur_black",
+   "step": 1,
+   "noise": 0,
+   "regions": [
+    {
+     "faces": "top",
+     "z": [
+      0,
+      0.4
+     ],
+     "ramp": "feather_ptarmigan_summer",
+     "step": 2
+    }
+   ]
+  },
+  "breast": {
+   "ramp": "feather_ptarmigan_summer",
+   "step": 3,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": [
+      "bottom",
+      "front"
+     ],
+     "y": [
+      0.5,
+      1
+     ],
+     "ramp": "fur_white",
+     "step": 3
+    }
+   ]
+  },
+  "head": {
+   "ramp": "feather_ptarmigan_summer",
+   "step": 2,
+   "noise": 0.2
+  },
+  "neck": {
+   "ramp": "feather_ptarmigan_summer",
+   "step": 2
+  },
+  "*": {
+   "ramp": "feather_ptarmigan_summer",
+   "step": 2,
+   "noise": 0.15,
+   "regions": [
+    {
+     "faces": "all",
+     "speckle": 0.35,
+     "dstep": -2
+    },
+    {
+     "faces": "bottom",
+     "ramp": "fur_white",
+     "step": 3
+    },
+    {
+     "faces": "sides",
+     "y": [
+      0.75,
+      1
+     ],
+     "ramp": "fur_white",
+     "step": 3
+    }
+   ]
+  }
+ },
+ "gait": {
+  "walk_s": 0.5,
+  "flap_hz": 9
+ },
+ "death_drop": 1,
+ "textures": {
+  "adult_summer": {
+   "remap": {
+    "comb_red": "feather_ptarmigan_summer"
+   }
+  },
+  "adult_winter": {
+   "remap": {
+    "feather_ptarmigan_summer": "fur_white"
+   }
+  },
+  "adult_moult": {
+   "remap": {
+    "comb_red": "feather_ptarmigan_summer"
+   },
+   "mottle": {
+    "remap": {
+     "feather_ptarmigan_summer": "fur_white"
+    },
+    "share": 0.5
+   }
+  }
+ }
+}

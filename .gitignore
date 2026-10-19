@@ -8,3 +8,7 @@ out/
 .vscode/
 .DS_Store
 logs/
+
+# Python tool caches
+__pycache__/
+*.pyc

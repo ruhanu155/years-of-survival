@@ -1,0 +1,178 @@
+{
+ "inherit": "black_bear",
+ "geo_id": "black_bear_cub",
+ "anim_id": "black_bear_cub",
+ "tier": "medium",
+ "hitbox": [
+  0.6,
+  0.7
+ ],
+ "notes": "First-summer cub on the black bear rig: big head and ears, short legs.",
+ "torso": [
+  {
+   "bone": "chest",
+   "z": [
+    -5.5,
+    -1
+   ],
+   "y": [
+    3.5,
+    7.5
+   ],
+   "w": 5
+  },
+  {
+   "bone": "body",
+   "z": [
+    -1.5,
+    2.5
+   ],
+   "y": [
+    3.5,
+    7.5
+   ],
+   "w": 4
+  },
+  {
+   "bone": "hips",
+   "z": [
+    2,
+    5.5
+   ],
+   "y": [
+    3.5,
+    7.5
+   ],
+   "w": 5
+  }
+ ],
+ "neck": {
+  "z0": -5,
+  "y0": 6,
+  "len": 1.5,
+  "w": 4,
+  "h": 3.5,
+  "angle": -5
+ },
+ "head": {
+  "pitch": 5,
+  "skull": {
+   "len": 3.5,
+   "w": 4,
+   "h": 4,
+   "back": 1,
+   "dy": 0
+  },
+  "muzzle": {
+   "len": 2,
+   "w": 2,
+   "h": 2,
+   "dy": -1.5
+  },
+  "nose": {
+   "w": 2,
+   "h": 1,
+   "len": 1,
+   "dy": 0,
+   "paint": {
+    "ramp": "fur_black",
+    "step": 0,
+    "noise": 0
+   }
+  },
+  "jaw": {
+   "w": 2,
+   "h": 1,
+   "len": 2,
+   "dz": 0.5
+  },
+  "ears": {
+   "w": 2,
+   "h": 2,
+   "d": 1,
+   "x": 1.5,
+   "z": 2,
+   "dy": -0.5,
+   "out": 10
+  },
+  "eye": {
+   "z": 0.2,
+   "y": 0.45,
+   "ramp": "fur_tan",
+   "step": 1
+  }
+ },
+ "legs": {
+  "front": {
+   "z": -3.5,
+   "x": 1.5,
+   "top": 5,
+   "upper": {
+    "len": 2.5,
+    "w": 2,
+    "d": 2,
+    "above": 1
+   },
+   "lower": {
+    "w": 2,
+    "d": 2
+   },
+   "foot": {
+    "h": 1,
+    "w": 2,
+    "len": 2.5,
+    "fwd": 1.5
+   }
+  },
+  "hind": {
+   "z": 3.5,
+   "x": 1.5,
+   "top": 5,
+   "upper": {
+    "len": 2.5,
+    "w": 2,
+    "d": 2.5,
+    "above": 1
+   },
+   "lower": {
+    "w": 2,
+    "d": 2
+   },
+   "foot": {
+    "h": 1,
+    "w": 2,
+    "len": 2.5,
+    "fwd": 1.5
+   }
+  }
+ },
+ "tail": {
+  "z0": 5,
+  "y0": 6.5,
+  "angle": 30,
+  "segments": [
+   {
+    "len": 1,
+    "w": 1,
+    "h": 1
+   }
+  ]
+ },
+ "gait": {
+  "walk_s": 0.9,
+  "walk_amp": 24,
+  "knee": 30,
+  "run": "gallop",
+  "run_s": 0.4,
+  "run_amp": 38,
+  "bob": 0.25,
+  "neck_swing": 5,
+  "graze_deg": 30,
+  "alert_deg": 25
+ },
+ "death_drop": 1,
+ "textures": {
+  "cub_black": {},
+  "_replace": true
+ }
+}

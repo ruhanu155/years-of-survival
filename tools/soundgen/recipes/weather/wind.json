@@ -1,0 +1,2 @@
+{ "id": "yearofice:weather.wind_open", "kind": "wind", "variants": 1, "length_s": 22, "lufs": -23, "loop": true,
+  "low_hz": 250, "high_hz": 900, "q": 0.9, "floor": 0.25, "rumble": 0.6, "highpass_hz": 30 }

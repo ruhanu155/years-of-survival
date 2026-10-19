@@ -1,0 +1,2 @@
+{ "id": "yearofice:step.snow_soft", "kind": "footstep", "variants": 2, "length_s": 0.35, "lufs": -20,
+  "body_hz": 450, "body_q": 0.8, "decay_s": 0.06, "grain_hz": 2500, "grain_density": 0.004, "grain_gain": 0.3, "highpass_hz": 60 }

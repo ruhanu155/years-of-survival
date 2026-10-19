@@ -1,0 +1,495 @@
+{
+ "id": "mule_deer",
+ "geo_id": "mule_deer",
+ "texture_dir": "mule_deer",
+ "template": "quadruped",
+ "rig": "cervid",
+ "tier": "large",
+ "hitbox": [
+  0.8,
+  1.35
+ ],
+ "grade": "G1",
+ "base": "quaternius_deer",
+ "base_measure": {
+  "head_top_over_back_height": 1.33,
+  "torso_len_over_back_height": 0.91,
+  "used_for": "neck carriage and head height; torso from the deer sheet (1.6 m nose to tail)"
+ },
+ "notes": "Deer sheet T21. Big ears held sideways, cream rump patch, thin white rope tail with a black tip, bifurcated 4x4 antlers with brow tines (bones brow, g2-g5). Doe = same model, antler bones hidden.",
+ "torso": [
+  {
+   "bone": "chest",
+   "z": [
+    -8,
+    -2
+   ],
+   "y": [
+    10,
+    16
+   ],
+   "w": 6
+  },
+  {
+   "bone": "body",
+   "z": [
+    -2.5,
+    3.5
+   ],
+   "y": [
+    10.5,
+    15.5
+   ],
+   "w": 5
+  },
+  {
+   "bone": "hips",
+   "z": [
+    3,
+    8
+   ],
+   "y": [
+    10.5,
+    16
+   ],
+   "w": 6
+  },
+  {
+   "bone": "hips",
+   "z": [
+    7.5,
+    9
+   ],
+   "y": [
+    11,
+    15.5
+   ],
+   "w": 5
+  }
+ ],
+ "neck": {
+  "z0": -7,
+  "y0": 14,
+  "len": 4.5,
+  "w": 3,
+  "h": 3.5,
+  "angle": 45
+ },
+ "head": {
+  "pitch": 35,
+  "skull": {
+   "len": 3.5,
+   "w": 3,
+   "h": 3,
+   "back": 1,
+   "dy": 0.5
+  },
+  "muzzle": {
+   "len": 2.5,
+   "w": 2,
+   "h": 2,
+   "dy": -1
+  },
+  "nose": {
+   "w": 2,
+   "h": 1,
+   "len": 1,
+   "dy": 0,
+   "paint": {
+    "ramp": "deer_dark",
+    "step": 1,
+    "noise": 0
+   }
+  },
+  "jaw": {
+   "w": 1,
+   "h": 1,
+   "len": 2,
+   "dz": 0.5
+  },
+  "ears": {
+   "w": 2,
+   "h": 4,
+   "d": 1,
+   "x": 1.25,
+   "z": 2.5,
+   "dy": -0.5,
+   "out": 62
+  },
+  "eye": {
+   "z": 0.3,
+   "y": 0.4,
+   "ramp": "deer_dark",
+   "step": 0
+  },
+  "antlers": {
+   "z": 2,
+   "rise": 15,
+   "tilt_back": -28,
+   "beam": 0.5,
+   "fork": [
+    {
+     "bone": "beam",
+     "x": 0,
+     "y": 0,
+     "h": 3,
+     "z": -0.5,
+     "d": 1
+    },
+    {
+     "bone": "beam",
+     "x": 0,
+     "y": 3,
+     "h": 1,
+     "z": -2.5,
+     "d": 3,
+     "w": 2
+    },
+    {
+     "bone": "brow",
+     "x": 0,
+     "y": 1,
+     "h": 1,
+     "z": -1.5,
+     "d": 1
+    },
+    {
+     "bone": "g2",
+     "x": 1,
+     "y": 4,
+     "h": 3,
+     "z": -2.5,
+     "d": 1
+    },
+    {
+     "bone": "g3",
+     "x": 2,
+     "y": 4,
+     "h": 2,
+     "z": -1.5,
+     "d": 1
+    },
+    {
+     "bone": "g4",
+     "x": 1,
+     "y": 4,
+     "h": 3,
+     "z": 0,
+     "d": 1
+    },
+    {
+     "bone": "g5",
+     "x": 2,
+     "y": 6,
+     "h": 2,
+     "z": 0.5,
+     "d": 1
+    }
+   ]
+  }
+ },
+ "legs": {
+  "front": {
+   "z": -5,
+   "x": 1.5,
+   "top": 11,
+   "upper": {
+    "len": 5,
+    "w": 2,
+    "d": 2.5,
+    "above": 2
+   },
+   "lower": {
+    "w": 1,
+    "d": 2
+   },
+   "foot": {
+    "h": 1,
+    "w": 1,
+    "len": 2,
+    "fwd": 1
+   }
+  },
+  "hind": {
+   "z": 6,
+   "x": 1.5,
+   "top": 11.5,
+   "upper": {
+    "len": 5,
+    "w": 2,
+    "d": 3,
+    "above": 2.5
+   },
+   "lower": {
+    "w": 1,
+    "d": 2,
+    "dz": 1
+   },
+   "foot": {
+    "h": 1,
+    "w": 1,
+    "len": 2,
+    "fwd": 1
+   }
+  }
+ },
+ "tail": {
+  "z0": 9,
+  "y0": 15,
+  "angle": 75,
+  "segments": [
+   {
+    "len": 2,
+    "w": 1,
+    "h": 1,
+    "paint": {
+     "ramp": "deer_cream",
+     "step": 3,
+     "noise": 0
+    }
+   },
+   {
+    "len": 1.5,
+    "w": 1,
+    "h": 1,
+    "paint": {
+     "ramp": "deer_dark",
+     "step": 0,
+     "noise": 0
+    }
+   }
+  ]
+ },
+ "paint": {
+  "antler_*": {
+   "ramp": "deer_cream",
+   "step": 1,
+   "noise": 0.2
+  },
+  "leg_*_foot": {
+   "ramp": "deer_dark",
+   "step": 1,
+   "noise": 0
+  },
+  "leg_*": {
+   "ramp": "fur_mule_summer",
+   "step": 2,
+   "regions": [
+    {
+     "faces": "back",
+     "ramp": "deer_cream",
+     "step": 2
+    }
+   ]
+  },
+  "ear_*": {
+   "ramp": "fur_mule_summer",
+   "step": 1,
+   "noise": 0,
+   "regions": [
+    {
+     "faces": "front",
+     "ramp": "deer_cream",
+     "step": 2
+    },
+    {
+     "faces": "all",
+     "y": [
+      0,
+      0.2
+     ],
+     "ramp": "deer_dark",
+     "step": 2
+    }
+   ]
+  },
+  "muzzle": {
+   "ramp": "fur_mule_summer",
+   "step": 2,
+   "regions": [
+    {
+     "faces": [
+      "bottom",
+      "front"
+     ],
+     "ramp": "deer_cream",
+     "step": 3
+    },
+    {
+     "faces": "lr",
+     "y": [
+      0.5,
+      1
+     ],
+     "ramp": "deer_cream",
+     "step": 3
+    }
+   ]
+  },
+  "jaw": {
+   "ramp": "deer_cream",
+   "step": 3
+  },
+  "head": {
+   "ramp": "fur_mule_summer",
+   "step": 2,
+   "noise": 0.1
+  },
+  "neck": {
+   "ramp": "fur_mule_summer",
+   "step": 2,
+   "regions": [
+    {
+     "faces": "front",
+     "y": [
+      0,
+      0.4
+     ],
+     "ramp": "deer_cream",
+     "step": 3
+    }
+   ]
+  },
+  "hips": {
+   "ramp": "fur_mule_summer",
+   "step": 2,
+   "noise": 0.15,
+   "regions": [
+    {
+     "faces": "back",
+     "ramp": "deer_cream",
+     "step": 3
+    },
+    {
+     "faces": "lr",
+     "z": [
+      0.7,
+      1
+     ],
+     "y": [
+      0,
+      0.75
+     ],
+     "ramp": "deer_cream",
+     "step": 3
+    },
+    {
+     "faces": "bottom",
+     "ramp": "deer_cream",
+     "step": 2
+    }
+   ]
+  },
+  "*": {
+   "ramp": "fur_mule_summer",
+   "step": 2,
+   "noise": 0.15,
+   "regions": [
+    {
+     "faces": "top",
+     "dstep": -1
+    },
+    {
+     "faces": "bottom",
+     "ramp": "deer_cream",
+     "step": 2
+    }
+   ]
+  }
+ },
+ "overlay_paint": {
+  "ramp": "fur_mule_summer",
+  "step": 1,
+  "noise": 0.2
+ },
+ "gait": {
+  "walk_s": 1.2,
+  "walk_amp": 24,
+  "knee": 40,
+  "run": "gallop",
+  "run_s": 0.45,
+  "run_amp": 42,
+  "bob": 0.3,
+  "neck_swing": 5,
+  "graze_deg": 55,
+  "alert_deg": 25,
+  "run_pitch": 5,
+  "flag_deg": 20
+ },
+ "textures": {
+  "buck_summer": {},
+  "buck_winter": {
+   "remap": {
+    "fur_mule_summer": "fur_mule_winter"
+   },
+   "extra_regions": {
+    "head": [
+     {
+      "faces": [
+       "top",
+       "front"
+      ],
+      "ramp": "deer_dark",
+      "step": 3
+     },
+     {
+      "faces": "lr",
+      "y": [
+       0,
+       0.35
+      ],
+      "z": [
+       0,
+       0.7
+      ],
+      "ramp": "deer_dark",
+      "step": 3
+     }
+    ]
+   }
+  },
+  "buck_moult": {
+   "mottle": {
+    "remap": {
+     "fur_mule_summer": "fur_mule_winter"
+    },
+    "share": 0.5
+   },
+   "remap": {
+    "deer_dark": "fur_mule_winter"
+   }
+  },
+  "doe_summer": {
+   "hide": [
+    "antler"
+   ]
+  },
+  "doe_winter": {
+   "remap": {
+    "fur_mule_summer": "fur_mule_winter"
+   },
+   "hide": [
+    "antler"
+   ]
+  },
+  "doe_moult": {
+   "mottle": {
+    "remap": {
+     "fur_mule_summer": "fur_mule_winter"
+    },
+    "share": 0.5
+   },
+   "hide": [
+    "antler"
+   ],
+   "remap": {
+    "deer_dark": "fur_mule_winter"
+   }
+  },
+  "antler_velvet": {
+   "only_bones": [
+    "antler*"
+   ]
+  }
+ }
+}

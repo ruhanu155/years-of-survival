@@ -1,0 +1,3 @@
+{ "id": "yearofice:step.snow_squeak", "kind": "footstep", "variants": 2, "length_s": 0.4, "lufs": -18,
+  "body_hz": 800, "body_q": 1.2, "decay_s": 0.04, "grain_hz": 4000, "grain_density": 0.02, "grain_gain": 0.6,
+  "squeak_hz": 1150, "squeak_s": 0.09, "squeak_gain": 0.35, "highpass_hz": 100 }

@@ -1,0 +1,260 @@
+{
+ "id": "black_bear",
+ "geo_id": "black_bear",
+ "texture_dir": "black_bear",
+ "template": "quadruped",
+ "rig": "ursid",
+ "tier": "large",
+ "hitbox": [
+  1.0,
+  1.1
+ ],
+ "grade": "G1",
+ "base": null,
+ "notes": "Generated. Against the grizzly: no hump (rump as high as the shoulder), straight Roman-nosed profile, taller pointed ears, tan muzzle, short dark claws.",
+ "torso": [
+  {
+   "bone": "chest",
+   "z": [
+    -11,
+    -3
+   ],
+   "y": [
+    6,
+    13.5
+   ],
+   "w": 9
+  },
+  {
+   "bone": "body",
+   "z": [
+    -4,
+    4
+   ],
+   "y": [
+    6.5,
+    13.5
+   ],
+   "w": 8
+  },
+  {
+   "bone": "body",
+   "z": [
+    -3,
+    5
+   ],
+   "y": [
+    5.5,
+    7
+   ],
+   "w": 7
+  },
+  {
+   "bone": "hips",
+   "z": [
+    3,
+    10
+   ],
+   "y": [
+    6.5,
+    14.5
+   ],
+   "w": 9
+  },
+  {
+   "bone": "hips",
+   "z": [
+    9,
+    11.5
+   ],
+   "y": [
+    7.5,
+    13.5
+   ],
+   "w": 7
+  }
+ ],
+ "neck": {
+  "z0": -10,
+  "y0": 11,
+  "len": 2.5,
+  "w": 7,
+  "h": 6,
+  "angle": -5
+ },
+ "head": {
+  "pitch": 6,
+  "skull": {
+   "len": 5,
+   "w": 6,
+   "h": 5.5,
+   "back": 1,
+   "dy": -0.5
+  },
+  "muzzle": {
+   "len": 4,
+   "w": 4,
+   "h": 3,
+   "dy": -1.5
+  },
+  "nose": {
+   "w": 2,
+   "h": 1.5,
+   "len": 1,
+   "dy": 0.5,
+   "paint": {
+    "ramp": "fur_black",
+    "step": 0,
+    "noise": 0
+   }
+  },
+  "jaw": {
+   "w": 3,
+   "h": 1,
+   "len": 3.5,
+   "dz": 0.5
+  },
+  "ears": {
+   "w": 2,
+   "h": 3,
+   "d": 1,
+   "x": 2.5,
+   "z": 3,
+   "dy": -0.5,
+   "out": 8
+  },
+  "eye": {
+   "z": 0.15,
+   "y": 0.45,
+   "ramp": "fur_tan",
+   "step": 1
+  }
+ },
+ "legs": {
+  "front": {
+   "z": -7,
+   "x": 2.5,
+   "top": 9,
+   "upper": {
+    "len": 4.5,
+    "w": 3,
+    "d": 3.5,
+    "above": 2
+   },
+   "lower": {
+    "w": 3,
+    "d": 3
+   },
+   "foot": {
+    "h": 1,
+    "w": 3,
+    "len": 4,
+    "fwd": 2.25
+   }
+  },
+  "hind": {
+   "z": 7,
+   "x": 2.5,
+   "top": 9.5,
+   "upper": {
+    "len": 4.5,
+    "w": 3,
+    "d": 4.5,
+    "above": 2
+   },
+   "lower": {
+    "w": 3,
+    "d": 3
+   },
+   "foot": {
+    "h": 1,
+    "w": 3,
+    "len": 4.5,
+    "fwd": 2.5
+   }
+  }
+ },
+ "tail": {
+  "z0": 11,
+  "y0": 12,
+  "angle": 35,
+  "segments": [
+   {
+    "len": 1.5,
+    "w": 1.5,
+    "h": 1.5
+   }
+  ]
+ },
+ "paint": {
+  "ear_*": {
+   "ramp": "fur_black",
+   "step": 2
+  },
+  "muzzle": {
+   "ramp": "fur_tan",
+   "step": 2,
+   "noise": 0.12,
+   "regions": [
+    {
+     "faces": "bottom",
+     "dstep": -1
+    }
+   ]
+  },
+  "jaw": {
+   "ramp": "fur_tan",
+   "step": 1
+  },
+  "leg_*": {
+   "ramp": "fur_black",
+   "step": 1,
+   "noise": 0.15
+  },
+  "*": {
+   "ramp": "fur_black",
+   "step": 2,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": "all",
+     "y": [
+      0,
+      0.3
+     ],
+     "speckle": 0.25,
+     "dstep": 1
+    },
+    {
+     "faces": "sides",
+     "y": [
+      0.75,
+      1
+     ],
+     "dstep": -1
+    }
+   ]
+  }
+ },
+ "gait": {
+  "walk_s": 1.3,
+  "walk_amp": 22,
+  "knee": 30,
+  "run": "gallop",
+  "run_s": 0.55,
+  "run_amp": 36,
+  "bob": 0.35,
+  "neck_swing": 4,
+  "graze_deg": 30,
+  "alert_deg": 22,
+  "run_pitch": 4
+ },
+ "textures": {
+  "adult_black": {},
+  "adult_cinnamon": {
+   "remap": {
+    "fur_black": "fur_cinnamon"
+   }
+  }
+ }
+}

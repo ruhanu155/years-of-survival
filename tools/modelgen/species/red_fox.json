@@ -1,0 +1,367 @@
+{
+ "id": "red_fox",
+ "geo_id": "red_fox",
+ "texture_dir": "red_fox",
+ "template": "quadruped",
+ "rig": "canid",
+ "tier": "medium",
+ "hitbox": [
+  0.5,
+  0.55
+ ],
+ "grade": "G1",
+ "base": "quaternius_fox",
+ "base_measure": {
+  "tail_over_back_height": 0.86,
+  "head_top_over_back_height": 1.15,
+  "used_for": "tail length, ear size and head carriage"
+ },
+ "notes": "Small, slim; big dark-backed ears, white chin and chest, black stockings, long bushy level tail with a white tip.",
+ "torso": [
+  {
+   "bone": "chest",
+   "z": [
+    -5,
+    -1
+   ],
+   "y": [
+    3.5,
+    7
+   ],
+   "w": 3
+  },
+  {
+   "bone": "body",
+   "z": [
+    -1,
+    2.5
+   ],
+   "y": [
+    4,
+    6.5
+   ],
+   "w": 3
+  },
+  {
+   "bone": "hips",
+   "z": [
+    2.5,
+    5
+   ],
+   "y": [
+    4,
+    6.5
+   ],
+   "w": 3
+  }
+ ],
+ "neck": {
+  "z0": -4.5,
+  "y0": 6.25,
+  "len": 1.5,
+  "w": 2,
+  "h": 2.5,
+  "angle": 30
+ },
+ "head": {
+  "pitch": 8,
+  "skull": {
+   "len": 3,
+   "w": 3,
+   "h": 2.5,
+   "back": 1,
+   "dy": 0.5
+  },
+  "muzzle": {
+   "len": 2,
+   "w": 1,
+   "h": 1,
+   "dy": -1.5
+  },
+  "jaw": {
+   "w": 1,
+   "h": 1,
+   "len": 2,
+   "dz": 0
+  },
+  "ears": {
+   "w": 1,
+   "h": 2,
+   "d": 1,
+   "x": 1,
+   "z": 1.5,
+   "dy": -0.5,
+   "out": 8
+  },
+  "eye": {
+   "z": 0.2,
+   "y": 0.35,
+   "ramp": "fur_black",
+   "step": 0
+  }
+ },
+ "legs": {
+  "front": {
+   "z": -3.5,
+   "x": 1,
+   "top": 4.5,
+   "upper": {
+    "len": 2.5,
+    "w": 1,
+    "d": 1,
+    "above": 1
+   },
+   "lower": {
+    "w": 1,
+    "d": 1
+   },
+   "foot": {
+    "h": 1,
+    "w": 1,
+    "len": 1.5,
+    "fwd": 1
+   }
+  },
+  "hind": {
+   "z": 3.5,
+   "x": 1,
+   "top": 5,
+   "upper": {
+    "len": 2.5,
+    "w": 1,
+    "d": 2,
+    "above": 1
+   },
+   "lower": {
+    "w": 1,
+    "d": 1,
+    "dz": 0.5
+   },
+   "foot": {
+    "h": 1,
+    "w": 1,
+    "len": 1.5,
+    "fwd": 1
+   }
+  }
+ },
+ "tail": {
+  "z0": 5,
+  "y0": 5.5,
+  "angle": 15,
+  "segments": [
+   {
+    "len": 3,
+    "w": 2,
+    "h": 2
+   },
+   {
+    "len": 3,
+    "w": 3,
+    "h": 2.5,
+    "bend": 5,
+    "paint": {
+     "ramp": "fur_fox",
+     "step": 2,
+     "regions": [
+      {
+       "faces": "all",
+       "z": [
+        0.65,
+        1
+       ],
+       "ramp": "fur_white",
+       "step": 3
+      },
+      {
+       "faces": "back",
+       "ramp": "fur_white",
+       "step": 3
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "paint": {
+  "leg_*_upper": {
+   "ramp": "fur_fox",
+   "step": 1,
+   "regions": [
+    {
+     "faces": "sides",
+     "y": [
+      0.6,
+      1
+     ],
+     "ramp": "fur_black",
+     "step": 1
+    }
+   ]
+  },
+  "leg_*": {
+   "ramp": "fur_black",
+   "step": 1,
+   "noise": 0
+  },
+  "ear_*": {
+   "ramp": "fur_fox",
+   "step": 2,
+   "noise": 0,
+   "regions": [
+    {
+     "faces": [
+      "back",
+      "top"
+     ],
+     "ramp": "fur_black",
+     "step": 1
+    },
+    {
+     "faces": "lr",
+     "y": [
+      0,
+      0.5
+     ],
+     "ramp": "fur_black",
+     "step": 1
+    }
+   ]
+  },
+  "muzzle": {
+   "ramp": "fur_fox",
+   "step": 2,
+   "regions": [
+    {
+     "faces": [
+      "bottom",
+      "front"
+     ],
+     "ramp": "fur_white",
+     "step": 3
+    },
+    {
+     "faces": "lr",
+     "y": [
+      0.5,
+      1
+     ],
+     "ramp": "fur_white",
+     "step": 3
+    }
+   ]
+  },
+  "jaw": {
+   "ramp": "fur_white",
+   "step": 3
+  },
+  "head": {
+   "ramp": "fur_fox",
+   "step": 2,
+   "regions": [
+    {
+     "faces": "sides",
+     "y": [
+      0.65,
+      1
+     ],
+     "z": [
+      0,
+      0.6
+     ],
+     "ramp": "fur_white",
+     "step": 3
+    }
+   ]
+  },
+  "neck": {
+   "ramp": "fur_fox",
+   "step": 2,
+   "regions": [
+    {
+     "faces": [
+      "front",
+      "bottom"
+     ],
+     "ramp": "fur_white",
+     "step": 3
+    },
+    {
+     "faces": "lr",
+     "y": [
+      0.5,
+      1
+     ],
+     "ramp": "fur_white",
+     "step": 3
+    }
+   ]
+  },
+  "chest": {
+   "ramp": "fur_fox",
+   "step": 2,
+   "regions": [
+    {
+     "faces": [
+      "front",
+      "bottom"
+     ],
+     "ramp": "fur_white",
+     "step": 3
+    },
+    {
+     "faces": "lr",
+     "y": [
+      0.65,
+      1
+     ],
+     "ramp": "fur_white",
+     "step": 2
+    }
+   ]
+  },
+  "*": {
+   "ramp": "fur_fox",
+   "step": 2,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": "top",
+     "dstep": -1
+    },
+    {
+     "faces": "bottom",
+     "ramp": "fur_white",
+     "step": 2
+    }
+   ]
+  }
+ },
+ "gait": {
+  "walk_s": 0.7,
+  "walk_amp": 26,
+  "knee": 35,
+  "run": "gallop",
+  "run_s": 0.32,
+  "run_amp": 45,
+  "bob": 0.2,
+  "neck_swing": 5,
+  "graze_deg": 50,
+  "alert_deg": 20,
+  "run_pitch": 5
+ },
+ "textures": {
+  "adult_red": {},
+  "adult_cross": {
+   "remap": {
+    "fur_fox": "fur_cinnamon"
+   }
+  },
+  "adult_silver": {
+   "remap": {
+    "fur_fox": "fur_black",
+    "fur_black": "fur_wolf"
+   }
+  }
+ }
+}
