@@ -48,7 +48,8 @@ public final class Eating {
         if (!(e.getEntity() instanceof ServerPlayer p)) return;
         if (FoodMap.row(e.getItem()) == null) return;
         if (BodyAttachments.of(p).stomachKg >= BodyConfig.tuning().stomachKg()) {
-            p.displayClientMessage(Component.translatable("messenger.yearofice.warn.stomach_full"), true);
+            com.yearofice.api.hud.HudBus.get().post(p, com.yearofice.api.hud.HudLine.of(
+                    com.yearofice.api.hud.HudLineType.WARN, "stomach_full", "body"));
             e.setCanceled(true);
         }
     }

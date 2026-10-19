@@ -30,9 +30,9 @@ public final class VitalsStripLayer implements LayeredDraw.Layer {
     @Override
     public void render(GuiGraphics g, DeltaTracker delta) {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.options.hideGui || mc.player == null) return;
-        BodySyncPayload p = ClientBody.get();
-        if (p == null || p.battery() <= 0) return;
+        if (mc.options.hideGui || mc.player == null || StackLayers.batteryDark()) return;
+        BodySyncPayload p = HudDebug.on() ? com.yearofice.client.ui.messenger.MessengerSmoke.sample() : ClientBody.get();
+        if (p == null) return;
         int x = g.guiWidth() - EDGE - SIZE;
         int y = EDGE;
         boolean numbers = false; // "Numbers on the strip" option, off by default (Accessibility, later)

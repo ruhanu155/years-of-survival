@@ -115,7 +115,7 @@ public final class FishingService {
     }
 
     static void say(@Nullable Player p, String line) {
-        if (p != null && line != null) p.displayClientMessage(Component.literal(line), true);
+        if (p instanceof ServerPlayer sp && line != null) com.yearofice.api.hud.HudBus.get().offerPrompt(sp, "fishing", line, 2);
     }
 
     // ---- cast ---------------------------------------------------------------------------------------------------
