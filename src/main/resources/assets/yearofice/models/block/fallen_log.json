@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "yearofice:block/fallen_log_top",
+    "side": "yearofice:block/fallen_log_side"
+  }
+}

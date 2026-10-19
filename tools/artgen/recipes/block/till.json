@@ -1,0 +1,34 @@
+{
+ "id": "yearofice:till",
+ "kind": "block",
+ "class": "ground",
+ "faces": {
+  "all": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "soil",
+     "scale": 4,
+     "octaves": 2,
+     "steps": [
+      2,
+      4
+     ]
+    },
+    {
+     "type": "speckle",
+     "ramp": "gravel",
+     "step": 2,
+     "density": 0.18
+    },
+    {
+     "type": "speckle",
+     "ramp": "gravel",
+     "step": 3,
+     "density": 0.08
+    }
+   ]
+  }
+ },
+ "folder": "block"
+}

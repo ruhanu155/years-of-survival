@@ -1,0 +1,22 @@
+{
+ "id": "yearofice:snow_cover",
+ "kind": "block",
+ "class": "snow",
+ "faces": {
+  "all": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "snow",
+     "scale": 4,
+     "octaves": 3,
+     "steps": [
+      2,
+      4
+     ]
+    }
+   ]
+  }
+ },
+ "folder": "block"
+}

@@ -26,7 +26,8 @@ public record HydroParams(Coarse coarse, Water water, FallsParams falls, Spots s
                         double cutBankMaxRadiusWidths, double cutBankMinBankM, double mainNormalM, double mainFloodM,
                         double creekNormalM, double creekFloodM, Range springsPerCreek, double springMinCreekM,
                         double cutoffMinSeparationWidths, double cutoffMaxGapWidths, double oxbowPlugM,
-                        double braidMaxGradientPct, Range braidNodeSpacingM, double edgePinM, double stampWidthM) {
+                        double braidMaxGradientPct, Range braidNodeSpacingM, double edgePinM, double stampWidthM,
+                        double lakeMaxDepthM) {
 
         /** W = max(0.8, 0.0015 · √A). */
         public double width(double catchmentM2) { return Math.max(widthMinM, widthPerSqrtM2 * Math.sqrt(catchmentM2)); }
@@ -91,7 +92,8 @@ public record HydroParams(Coarse coarse, Water water, FallsParams falls, Spots s
                 fl.num("main_normal_m"), fl.num("main_flood_m"), fl.num("creek_normal_m"), fl.num("creek_flood_m"),
                 w.range("springs_per_creek"), w.num("spring_min_creek_m"), w.num("cutoff_min_separation_widths"),
                 w.num("cutoff_max_gap_widths"), w.num("oxbow_plug_m"), w.num("braid_max_gradient_pct"),
-                w.range("braid_node_spacing_m"), w.num("edge_pin_m"), w.num("stamp_width_m"));
+                w.range("braid_node_spacing_m"), w.num("edge_pin_m"), w.num("stamp_width_m"),
+                w.num("lake_max_depth_m"));
         fl.done();
         w.done();
 

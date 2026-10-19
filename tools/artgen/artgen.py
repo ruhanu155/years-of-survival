@@ -179,6 +179,7 @@ def render_block(r):
     n = r.get("size", 16)
     idx = np.zeros((n, n), int)
     ramp_map = np.full((n, n), r["layers"][0]["ramp"], object)
+    holes = np.zeros((n, n), bool)
     for li, L in enumerate(r["layers"]):
         rng = np.random.default_rng(seed_of(r["id"], li))
         t = L["type"]
@@ -215,11 +216,16 @@ def render_block(r):
             m = rng.random((n, n)) < L["density"]
             idx[m] = L["step"]
             ramp_map[m] = L["ramp"]
+        elif t == "cutout":
+            # Leaves and brush: tileable gaps (alpha 0), the rest opaque, per the cutout rule.
+            f = value_noise(n, L.get("scale", 4), L.get("octaves", 2), rng)
+            f = (f - f.min()) / max(1e-6, np.ptp(f))
+            holes |= f < L["density"]
     img = Image.new("RGBA", (n, n))
     px = img.load()
     for y in range(n):
         for x in range(n):
-            px[x, y] = rgba(ramp_map[y, x], idx[y, x])
+            px[x, y] = (0, 0, 0, 0) if holes[y, x] else rgba(ramp_map[y, x], idx[y, x])
     return img
 
 

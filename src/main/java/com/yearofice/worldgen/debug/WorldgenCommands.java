@@ -334,9 +334,8 @@ public final class WorldgenCommands {
         }
         BlockPos at = BlockPos.containing(ctx.getSource().getPosition()).offset(1, 0, 1);
         PlacedMask mask = PlacedMask.get(level);
-        int before = mask.count();
         Vec3i size = SetPieceTemplates.place(level, t.get(), at, net.minecraft.world.level.block.Rotation.NONE);
-        int marked = mask.count() - before;
+        int marked = mask.count(at, at.offset(size).offset(-1, -1, -1));
         String msg = "Placed " + SetPieceTemplates.id(v.template()) + " at " + at.toShortString() + " (" + size.getX() + "x"
                 + size.getY() + "x" + size.getZ() + "), " + marked + " blocks in the placed mask";
         ctx.getSource().sendSuccess(() -> Component.literal(msg), true);

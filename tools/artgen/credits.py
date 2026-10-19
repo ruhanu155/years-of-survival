@@ -96,6 +96,20 @@ def build():
     entries.append({"asset_id": "model_fire_ring", "files": fire_ring.outputs(), "source_type": "generated",
                     "recipe": "tools/artgen/fire_ring.py", "licence": "project", "generator_version": fire_ring.VERSION,
                     "release_blocker": False})
+    # block textures from recipes/block, one entry per block
+    for fn in sorted(glob.glob(os.path.join(HERE, "recipes", "block", "*.json"))):
+        r = json.load(open(fn))
+        name = r["id"].split(":")[1]
+        files = [f"assets/yearofice/textures/block/{name}_{face}.png" for face in r["faces"]]
+        files = [f for f in files if os.path.isfile(os.path.join(ROOT, "src", "main", "resources", f))]
+        if files:
+            entries.append({"asset_id": f"tex_block_{name}", "files": files, "source_type": "generated", "recipe": os.path.relpath(fn, ROOT),
+                            "licence": "project", "generator_version": "artgen 0.4.0", "release_blocker": False})
+    # world block models and blockstates (M2)
+    import world_blocks  # noqa: E402
+    entries.append({"asset_id": "model_world_blocks", "files": world_blocks.outputs(), "source_type": "generated",
+                    "recipe": "tools/artgen/world_blocks.py", "licence": "project", "generator_version": world_blocks.VERSION,
+                    "release_blocker": False})
     # synthesized sounds: one entry per soundgen recipe whose files are shipped
     for fn in sorted(glob.glob(os.path.join(ROOT, "tools", "soundgen", "recipes", "**", "*.json"), recursive=True)):
         r = json.load(open(fn))

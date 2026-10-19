@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "yearofice:block/black_spruce_log"
+    },
+    "axis=z": {
+      "model": "yearofice:block/black_spruce_log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "yearofice:block/black_spruce_log",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

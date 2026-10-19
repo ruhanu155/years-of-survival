@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "layers=1": {
+      "model": "yearofice:block/snow_cover_1"
+    },
+    "layers=2": {
+      "model": "yearofice:block/snow_cover_2"
+    },
+    "layers=3": {
+      "model": "yearofice:block/snow_cover_3"
+    },
+    "layers=4": {
+      "model": "yearofice:block/snow_cover_4"
+    },
+    "layers=5": {
+      "model": "yearofice:block/snow_cover_5"
+    },
+    "layers=6": {
+      "model": "yearofice:block/snow_cover_6"
+    },
+    "layers=7": {
+      "model": "yearofice:block/snow_cover_7"
+    },
+    "layers=8": {
+      "model": "yearofice:block/snow_cover_8"
+    }
+  }
+}

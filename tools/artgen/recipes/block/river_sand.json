@@ -1,0 +1,28 @@
+{
+ "id": "yearofice:river_sand",
+ "kind": "block",
+ "class": "ground",
+ "faces": {
+  "all": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "fat_cream",
+     "scale": 5,
+     "octaves": 3,
+     "steps": [
+      1,
+      3
+     ]
+    },
+    {
+     "type": "speckle",
+     "ramp": "gravel",
+     "step": 2,
+     "density": 0.06
+    }
+   ]
+  }
+ },
+ "folder": "block"
+}

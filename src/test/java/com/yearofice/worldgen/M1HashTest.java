@@ -70,7 +70,7 @@ class M1HashTest {
                 w.dropOffMinDepthM(), w.cutBankMaxRadiusWidths(), w.cutBankMinBankM(), w.mainNormalM(), w.mainFloodM(),
                 w.creekNormalM(), w.creekFloodM(), w.springsPerCreek(), w.springMinCreekM(), w.cutoffMinSeparationWidths(),
                 w.cutoffMaxGapWidths(), w.oxbowPlugM(), w.braidMaxGradientPct(), w.braidNodeSpacingM(), w.edgePinM(),
-                w.stampWidthM());
+                w.stampWidthM(), w.lakeMaxDepthM());
         HydroParams changed = new HydroParams(h.coarse(), wider, h.falls(), h.spots(), h.rock(), h.places(), h.landmarks());
         Pipeline other = new Pipeline(p.withHydro(changed), Archetype.loadAll(), Fixture.PIPE.setPieces());
         Pipeline.Result r = other.attempt(seed, base.attempt());

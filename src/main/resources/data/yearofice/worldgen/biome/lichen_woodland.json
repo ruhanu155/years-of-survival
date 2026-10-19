@@ -1,0 +1,31 @@
+{
+  "has_precipitation": false,
+  "temperature": 0.8,
+  "downfall": 0.4,
+  "effects": {
+    "sky_color": 9483474,
+    "fog_color": 13424350,
+    "water_color": 4088948,
+    "water_fog_color": 1979456,
+    "grass_color": 7043644,
+    "foliage_color": 5201714
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "yearofice:layer_trees"
+    ],
+    []
+  ]
+}
