@@ -1,0 +1,250 @@
+{
+ "id": "snowshoe_hare",
+ "geo_id": "snowshoe_hare",
+ "texture_dir": "snowshoe_hare",
+ "template": "quadruped",
+ "rig": "small_rodent",
+ "tier": "small",
+ "hitbox": [
+  0.4,
+  0.5
+ ],
+ "grade": "G1",
+ "base": null,
+ "notes": "Generated. Hunched sitting body, high haunch, long upright ears with dark tips, huge flat hind feet (the snowshoes), white puff tail. Summer brown with white feet; winter white; mottled moult by seeded mask.",
+ "torso": [
+  {
+   "bone": "body",
+   "z": [
+    -3.5,
+    1
+   ],
+   "y": [
+    1.5,
+    4.5
+   ],
+   "w": 3
+  },
+  {
+   "bone": "hips",
+   "z": [
+    0.5,
+    4
+   ],
+   "y": [
+    1,
+    5
+   ],
+   "w": 4
+  }
+ ],
+ "head": {
+  "pivot": [
+   0,
+   4,
+   -3.5
+  ],
+  "pitch": 10,
+  "skull": {
+   "len": 2.5,
+   "w": 2,
+   "h": 2,
+   "back": 1,
+   "dy": 0.5
+  },
+  "muzzle": {
+   "len": 1,
+   "w": 1,
+   "h": 1,
+   "dy": -1
+  },
+  "ears": {
+   "w": 1,
+   "h": 3,
+   "d": 1,
+   "x": 0.5,
+   "z": 1.5,
+   "dy": -0.5,
+   "out": 8,
+   "lay": -18
+  },
+  "eye": {
+   "z": 0.3,
+   "y": 0.35,
+   "ramp": "fur_black",
+   "step": 0
+  }
+ },
+ "legs": {
+  "front": {
+   "z": -2.5,
+   "x": 1,
+   "top": 2.5,
+   "upper": {
+    "len": 2.5,
+    "w": 1,
+    "d": 1
+   },
+   "lower": {
+    "w": 1,
+    "d": 1
+   },
+   "foot": {
+    "h": 1,
+    "w": 1,
+    "len": 1,
+    "fwd": 0.5
+   }
+  },
+  "hind": {
+   "z": 2.5,
+   "x": 1.5,
+   "top": 2.5,
+   "upper": {
+    "len": 1.5,
+    "w": 1,
+    "d": 3,
+    "above": 1.5
+   },
+   "lower": {
+    "w": 1,
+    "d": 1
+   },
+   "foot": {
+    "h": 1,
+    "w": 2,
+    "len": 5,
+    "fwd": 3.5
+   }
+  }
+ },
+ "tail": {
+  "z0": 4,
+  "y0": 3.5,
+  "angle": -20,
+  "segments": [
+   {
+    "len": 1,
+    "w": 1,
+    "h": 1,
+    "paint": {
+     "ramp": "fur_white",
+     "step": 3,
+     "noise": 0
+    }
+   }
+  ]
+ },
+ "paint": {
+  "leg_*_foot": {
+   "ramp": "fur_white",
+   "step": 3,
+   "noise": 0
+  },
+  "leg_*": {
+   "ramp": "fur_hare_summer",
+   "step": 2,
+   "regions": [
+    {
+     "faces": "sides",
+     "y": [
+      0.6,
+      1
+     ],
+     "ramp": "fur_white",
+     "step": 3
+    }
+   ]
+  },
+  "ear_*": {
+   "ramp": "fur_hare_summer",
+   "step": 2,
+   "noise": 0,
+   "regions": [
+    {
+     "faces": "all",
+     "y": [
+      0,
+      0.2
+     ],
+     "ramp": "fur_black",
+     "step": 1
+    },
+    {
+     "faces": "top",
+     "ramp": "fur_black",
+     "step": 1
+    }
+   ]
+  },
+  "muzzle": {
+   "ramp": "fur_hare_summer",
+   "step": 3,
+   "regions": [
+    {
+     "faces": [
+      "bottom",
+      "front"
+     ],
+     "ramp": "fur_white",
+     "step": 3
+    }
+   ]
+  },
+  "head": {
+   "ramp": "fur_hare_summer",
+   "step": 2
+  },
+  "*": {
+   "ramp": "fur_hare_summer",
+   "step": 2,
+   "noise": 0.25,
+   "regions": [
+    {
+     "faces": "bottom",
+     "ramp": "fur_white",
+     "step": 2
+    },
+    {
+     "faces": "sides",
+     "y": [
+      0.8,
+      1
+     ],
+     "ramp": "fur_white",
+     "step": 2
+    }
+   ]
+  }
+ },
+ "gait": {
+  "walk_s": 0.6,
+  "walk_amp": 25,
+  "knee": 40,
+  "run": "bound",
+  "run_s": 0.35,
+  "run_amp": 50,
+  "bob": 0.6,
+  "neck_swing": 6,
+  "graze_deg": 25,
+  "alert_deg": 15,
+  "flag_deg": 30
+ },
+ "death_drop": 1,
+ "textures": {
+  "adult_summer": {},
+  "adult_winter": {
+   "remap": {
+    "fur_hare_summer": "fur_white"
+   }
+  },
+  "adult_mottled": {
+   "mottle": {
+    "remap": {
+     "fur_hare_summer": "fur_white"
+    },
+    "share": 0.5
+   }
+  }
+ }
+}

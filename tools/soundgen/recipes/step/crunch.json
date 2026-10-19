@@ -1,0 +1,2 @@
+{ "id": "yearofice:step.snow_crunch", "kind": "footstep", "variants": 2, "length_s": 0.35, "lufs": -19,
+  "body_hz": 700, "body_q": 1.0, "decay_s": 0.05, "grain_hz": 3500, "grain_density": 0.03, "grain_gain": 0.9, "highpass_hz": 80 }

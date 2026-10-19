@@ -1,0 +1,92 @@
+{
+ "id": "yearofice:cooking_pot",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "line",
+   "points": [
+    [
+     3,
+     7
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     6,
+     2
+    ],
+    [
+     10,
+     2
+    ],
+    [
+     12,
+     3
+    ],
+    [
+     13,
+     7
+    ]
+   ],
+   "width": 1,
+   "ramp": "iron",
+   "step": 1
+  },
+  {
+   "kind": "poly",
+   "points": [
+    [
+     3,
+     7
+    ],
+    [
+     13,
+     7
+    ],
+    [
+     13,
+     13
+    ],
+    [
+     12,
+     14
+    ],
+    [
+     4,
+     14
+    ],
+    [
+     3,
+     13
+    ]
+   ],
+   "ramp": "steel",
+   "step": 2
+  },
+  {
+   "kind": "rect",
+   "box": [
+    2,
+    6,
+    14,
+    7
+   ],
+   "ramp": "steel",
+   "step": 3
+  },
+  {
+   "kind": "rect",
+   "box": [
+    4,
+    13,
+    12,
+    14
+   ],
+   "ramp": "iron",
+   "step": 0,
+   "flat": true
+  }
+ ]
+}

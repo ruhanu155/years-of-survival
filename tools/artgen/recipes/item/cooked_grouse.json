@@ -1,0 +1,25 @@
+{
+ "id": "yearofice:cooked_grouse",
+ "kind": "found_icon",
+ "found": "ninja_adventure",
+ "source": "art-src/found/ninja_adventure/Items/Food/Meat.png",
+ "map": {
+  "#141b1b": "outline",
+  "#e66a3a": [
+   "meat_cooked",
+   1
+  ],
+  "#f38c4c": [
+   "meat_cooked",
+   2
+  ],
+  "#ffad5d": [
+   "meat_cooked",
+   3
+  ],
+  "#f2eaf1": [
+   "bone",
+   4
+  ]
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "id": "yearofice:tinder_bundle",
+ "kind": "found_icon",
+ "found": "ninja_adventure",
+ "source": "art-src/found/ninja_adventure/Items/Resource/Grass.png",
+ "notes": "Dry grass and shredded bark balled into a bundle.",
+ "map": {
+  "#141b1b": "outline",
+  "#56864c": [
+   "sphagnum",
+   1
+  ],
+  "#74a334": [
+   "sphagnum",
+   3
+  ]
+ }
+}

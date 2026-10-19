@@ -1,0 +1,15 @@
+{
+ "asset_id": "isaiah658_pixel_pack",
+ "source_type": "game_asset_collection",
+ "title": "isaiah658's Pixel Pack #1 (Objects/Food)",
+ "author": "isaiah658",
+ "licence": "CC0-1.0",
+ "licence_file": "art-src/licences/isaiah658_pixel_pack.txt",
+ "pack_page": "https://opengameart.org/content/isaiah658s-pixel-pack-1",
+ "download": "https://opengameart.org/sites/default/files/isaiah658%27s-Pixel-Pack-%231_0.zip",
+ "retrieved": "2026-10-19",
+ "files": {
+  "Food/cherries.png": "3ea04697a228f4fa601fff354a82235b3342f109ba6e8be04a775a25a11fbd04",
+  "Food/red-orange-cherries.png": "c64dca87e8993dc1f9a582ad7e2c8d24b7bbdeb1aab364b3c2cbacd2c791109b"
+ }
+}

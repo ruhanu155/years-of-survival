@@ -1,0 +1,57 @@
+{
+ "id": "yearofice:cranberries",
+ "kind": "found_icon",
+ "found": "isaiah658_pixel_pack",
+ "source": "art-src/found/isaiah658_pixel_pack/Food/cherries.png",
+ "map": {
+  "#703c0b": [
+   "stem_red",
+   0
+  ],
+  "#97531e": [
+   "stem_red",
+   2
+  ],
+  "#a01d23": [
+   "berry_cran",
+   2
+  ],
+  "#bd3537": [
+   "berry_cran",
+   3
+  ],
+  "#bc5152": [
+   "berry_cran",
+   3
+  ],
+  "#ba8788": [
+   "berry_cran",
+   4
+  ]
+ },
+ "edits": [
+  {
+   "kind": "ellipse",
+   "box": [
+    6,
+    6,
+    9,
+    9
+   ],
+   "ramp": "berry_cran",
+   "step": 1
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     7,
+     7
+    ]
+   ],
+   "ramp": "berry_cran",
+   "step": 4
+  }
+ ],
+ "notes": "A sprig of berries; the found cherry sprite recoloured, with a third berry added."
+}

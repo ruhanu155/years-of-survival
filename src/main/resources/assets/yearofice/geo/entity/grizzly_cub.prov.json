@@ -1,0 +1,10 @@
+{
+ "species": "grizzly_cub",
+ "grade": "G1",
+ "generator": "modelgen 0.4.0",
+ "base": null,
+ "geo": "geo/entity/grizzly_cub.geo.json",
+ "textures": [
+  "cub_summer"
+ ]
+}

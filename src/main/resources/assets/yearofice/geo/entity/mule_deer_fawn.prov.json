@@ -1,0 +1,10 @@
+{
+ "species": "mule_deer_fawn",
+ "grade": "G1",
+ "generator": "modelgen 0.4.0",
+ "base": null,
+ "geo": "geo/entity/mule_deer_fawn.geo.json",
+ "textures": [
+  "fawn_summer"
+ ]
+}

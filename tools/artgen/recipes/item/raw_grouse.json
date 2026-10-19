@@ -1,0 +1,34 @@
+{
+ "id": "yearofice:raw_grouse",
+ "kind": "found_icon",
+ "found": "ninja_adventure",
+ "source": "art-src/found/ninja_adventure/Items/Food/Meat.png",
+ "map": {
+  "#141b1b": "outline",
+  "#e66a3a": [
+   "meat_raw",
+   1
+  ],
+  "#f38c4c": [
+   "meat_raw",
+   2
+  ],
+  "#ffad5d": [
+   "meat_raw",
+   3
+  ],
+  "#f2eaf1": [
+   "bone",
+   4
+  ]
+ },
+ "variants": {
+  "aging": {
+   "meat_raw": "meat_aging"
+  },
+  "spoiled": {
+   "meat_raw": "meat_spoiled"
+  }
+ },
+ "notes": "A dressed grouse leg and breast."
+}

@@ -1,0 +1,91 @@
+{
+ "id": "yearofice:cast_iron_kettle",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "line",
+   "points": [
+    [
+     4,
+     6
+    ],
+    [
+     5,
+     2
+    ],
+    [
+     7,
+     1
+    ],
+    [
+     9,
+     1
+    ],
+    [
+     11,
+     2
+    ],
+    [
+     12,
+     6
+    ]
+   ],
+   "width": 1,
+   "ramp": "iron",
+   "step": 1
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     12,
+     10
+    ],
+    [
+     15,
+     6
+    ]
+   ],
+   "width": 2,
+   "ramp": "iron",
+   "step": 2
+  },
+  {
+   "kind": "ellipse",
+   "box": [
+    2,
+    5,
+    13,
+    14
+   ],
+   "ramp": "iron",
+   "step": 2
+  },
+  {
+   "kind": "rect",
+   "box": [
+    5,
+    4,
+    10,
+    5
+   ],
+   "ramp": "iron",
+   "step": 3
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     7,
+     3
+    ],
+    [
+     8,
+     3
+    ]
+   ],
+   "ramp": "iron",
+   "step": 1
+  }
+ ]
+}

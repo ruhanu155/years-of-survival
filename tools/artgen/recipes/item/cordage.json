@@ -1,0 +1,83 @@
+{
+ "id": "yearofice:cordage",
+ "kind": "icon",
+ "notes": "A coil of twisted plant-fibre cordage.",
+ "shapes": [
+  {
+   "kind": "ring",
+   "box": [
+    2,
+    3,
+    13,
+    13
+   ],
+   "width": 2,
+   "ramp": "hide_raw",
+   "step": 2
+  },
+  {
+   "kind": "ring",
+   "box": [
+    4,
+    5,
+    11,
+    11
+   ],
+   "width": 1,
+   "ramp": "hide_raw",
+   "step": 3
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     11,
+     11
+    ],
+    [
+     14,
+     15
+    ]
+   ],
+   "width": 1,
+   "ramp": "hide_raw",
+   "step": 2
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     3,
+     6
+    ],
+    [
+     5,
+     3
+    ],
+    [
+     9,
+     3
+    ],
+    [
+     12,
+     6
+    ],
+    [
+     12,
+     10
+    ],
+    [
+     9,
+     12
+    ],
+    [
+     4,
+     11
+    ]
+   ],
+   "ramp": "hide_raw",
+   "step": 1,
+   "flat": true
+  }
+ ]
+}

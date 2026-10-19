@@ -1,0 +1,16 @@
+{
+  "id": "yearofice:soapberry_bush",
+  "kind": "plant",
+  "form": { "type": "berry_bush", "stems": 5, "spread_deg": 110, "height_px": 12, "droop_deg": 12,
+            "stem_ramp": "stem_red", "leaf_two_tone": "leaf_silver", "fruit_glint": true },
+  "phases": {
+    "dormant":   { "leaves": 0 },
+    "bud":       { "leaves": 6,  "leaf_ramp": "moss_green" },
+    "leaf":      { "leaves": 22, "leaf_ramp": "leaf_green" },
+    "flower":    { "leaves": 22, "leaf_ramp": "leaf_green", "fruits": 5, "fruit_ramp": "flower_yellow" },
+    "fruit":     { "leaves": 20, "leaf_ramp": "leaf_green", "fruits": 14, "fruit_ramp": "berry_red" },
+    "seed":      { "leaves": 18, "leaf_ramp": "leaf_green", "fruits": 4, "fruit_ramp": "berry_red" },
+    "senescent": { "leaves": 12, "leaf_ramp": "leaf_fall" },
+    "buried":    { "leaves": 0, "snow_cap": true }
+  }
+}

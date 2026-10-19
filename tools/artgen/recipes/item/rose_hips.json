@@ -1,0 +1,49 @@
+{
+ "id": "yearofice:rose_hips",
+ "kind": "found_icon",
+ "found": "isaiah658_pixel_pack",
+ "source": "art-src/found/isaiah658_pixel_pack/Food/red-orange-cherries.png",
+ "map": {
+  "#703c0b": [
+   "stem_red",
+   0
+  ],
+  "#97531e": [
+   "stem_red",
+   2
+  ],
+  "#ff472b": [
+   "hip_orange",
+   2
+  ],
+  "#ff5f47": [
+   "hip_orange",
+   3
+  ],
+  "#ff735e": [
+   "hip_orange",
+   3
+  ],
+  "#ff907f": [
+   "hip_orange",
+   4
+  ]
+ },
+ "edits": [
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     4,
+     13
+    ],
+    [
+     10,
+     13
+    ]
+   ],
+   "ramp": "stem_red",
+   "step": 0
+  }
+ ]
+}

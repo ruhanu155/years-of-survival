@@ -1,0 +1,10 @@
+Ultimate Animated Animal Pack by Quaternius (https://quaternius.com/packs/ultimateanimatedanimals.html)
+
+The pack page states "License: CC0" and links the deed below. The pack's own readme reads:
+
+  LowPoly Models by @Quaternius
+  License: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+  https://creativecommons.org/publicdomain/zero/1.0/
+
+Retrieved 2026-10-19 from the GitHub mirror trebeljahr/quaternius-showcase at commit
+722c39e964360beff2728a8ee4d103e2d11d457c, whose LICENSES.md lists animals_pack as CC0-1.0 by Quaternius.

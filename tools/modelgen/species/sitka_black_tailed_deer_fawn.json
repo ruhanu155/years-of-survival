@@ -1,0 +1,81 @@
+{
+ "inherit": "sitka_black_tailed_deer",
+ "scale": 0.62,
+ "geo_id": "sitka_black_tailed_deer_fawn",
+ "anim_id": "sitka_black_tailed_deer_fawn",
+ "tier": "medium",
+ "hitbox": [
+  0.45,
+  0.8
+ ],
+ "base": null,
+ "notes": "Sitka fawn: scaled 0.62 from the adult, no antlers, spotted.",
+ "head": {
+  "antlers": null
+ },
+ "paint": {
+  "*": {
+   "ramp": "fur_sitka_fawn",
+   "step": 2,
+   "noise": 0.12,
+   "regions": [
+    {
+     "faces": [
+      "top",
+      "lr"
+     ],
+     "y": [
+      0,
+      0.55
+     ],
+     "speckle": 0.2,
+     "ramp": "deer_cream",
+     "step": 4
+    },
+    {
+     "faces": "bottom",
+     "ramp": "deer_cream",
+     "step": 2
+    }
+   ]
+  },
+  "hips": {
+   "ramp": "fur_sitka_fawn",
+   "step": 2,
+   "noise": 0.12,
+   "regions": [
+    {
+     "faces": [
+      "top",
+      "lr"
+     ],
+     "y": [
+      0,
+      0.55
+     ],
+     "speckle": 0.2,
+     "ramp": "deer_cream",
+     "step": 4
+    },
+    {
+     "faces": "back",
+     "ramp": "deer_cream",
+     "step": 2
+    }
+   ]
+  }
+ },
+ "gait": {
+  "walk_s": 0.8,
+  "run_s": 0.35
+ },
+ "death_drop": 1,
+ "textures": {
+  "_replace": true,
+  "fawn_summer": {
+   "remap": {
+    "fur_mule_summer": "fur_sitka_fawn"
+   }
+  }
+ }
+}

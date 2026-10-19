@@ -1,0 +1,29 @@
+{
+ "id": "yearofice:cooked_moose_meat",
+ "kind": "found_icon",
+ "found": "ninja_adventure",
+ "source": "art-src/found/ninja_adventure/Items/Food/Beaf.png",
+ "map": {
+  "#141b1b": "outline",
+  "#3b3643": [
+   "meat_cooked",
+   0
+  ],
+  "#8f3e56": [
+   "meat_cooked",
+   1
+  ],
+  "#e46d3a": [
+   "meat_cooked",
+   3
+  ],
+  "#ffad5d": [
+   "meat_cooked",
+   4
+  ],
+  "#ffffff": [
+   "fat_cream",
+   3
+  ]
+ }
+}

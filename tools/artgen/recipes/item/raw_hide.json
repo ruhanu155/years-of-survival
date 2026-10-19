@@ -1,0 +1,91 @@
+{
+ "id": "yearofice:raw_hide",
+ "kind": "icon",
+ "notes": "A fleshed raw hide with its leg outline.",
+ "shapes": [
+  {
+   "kind": "poly",
+   "points": [
+    [
+     4,
+     1
+    ],
+    [
+     7,
+     3
+    ],
+    [
+     9,
+     3
+    ],
+    [
+     12,
+     1
+    ],
+    [
+     13,
+     5
+    ],
+    [
+     11,
+     7
+    ],
+    [
+     12,
+     11
+    ],
+    [
+     14,
+     14
+    ],
+    [
+     10,
+     13
+    ],
+    [
+     8,
+     15
+    ],
+    [
+     6,
+     13
+    ],
+    [
+     2,
+     14
+    ],
+    [
+     4,
+     11
+    ],
+    [
+     5,
+     7
+    ],
+    [
+     3,
+     5
+    ]
+   ],
+   "ramp": "hide_raw",
+   "step": 2,
+   "noise": 0.2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     8,
+     4
+    ],
+    [
+     8,
+     13
+    ]
+   ],
+   "width": 1,
+   "ramp": "hide_raw",
+   "step": 1
+  }
+ ]
+}

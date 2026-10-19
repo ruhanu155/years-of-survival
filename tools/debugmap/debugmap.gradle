@@ -1,0 +1,27 @@
+// tools/debugmap: a desktop PNG renderer of the worldgen layers (M0). Pure Java on the main classes;
+// it never loads a Minecraft class. Usage:
+//   ./gradlew debugmap --args="seed=3141592"
+//   ./gradlew debugmap --args="seeds=1..8"
+//   ./gradlew debugmap --args="seed=42 attempt=3 rerolls=4"
+// PNGs land in build/debugmap/.
+sourceSets {
+    debugmap {
+        java { srcDir 'tools/debugmap/src/main/java' }
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+}
+
+tasks.register('debugmap', JavaExec) {
+    group = 'yearofice'
+    description = 'Renders worldgen debug maps to build/debugmap (args: seed=, seeds=a..b, attempt=, rerolls=, out=)'
+    classpath = sourceSets.debugmap.runtimeClasspath
+    mainClass = 'com.yearofice.tools.debugmap.DebugMap'
+    workingDir = projectDir
+    maxHeapSize = '2g'
+    systemProperty 'java.awt.headless', 'true'
+    javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
+}
+
+// Keep the tool compiling with every build.
+tasks.named('check') { dependsOn 'debugmapClasses' }

@@ -1,0 +1,255 @@
+{
+ "id": "beaver",
+ "geo_id": "beaver",
+ "texture_dir": "beaver",
+ "template": "quadruped",
+ "rig": "large_rodent",
+ "tier": "medium",
+ "hitbox": [
+  0.6,
+  0.5
+ ],
+ "grade": "G1",
+ "base": null,
+ "notes": "Generated. Bulky low pear-shaped body, blunt head with orange incisors, small ears, short legs, big dark webbed hind feet and the flat scaly paddle tail.",
+ "torso": [
+  {
+   "bone": "body",
+   "z": [
+    -6,
+    -1
+   ],
+   "y": [
+    2,
+    6.5
+   ],
+   "w": 6
+  },
+  {
+   "bone": "body",
+   "z": [
+    -1.5,
+    4
+   ],
+   "y": [
+    1.5,
+    7.5
+   ],
+   "w": 7
+  },
+  {
+   "bone": "hips",
+   "z": [
+    4,
+    7
+   ],
+   "y": [
+    2,
+    6.5
+   ],
+   "w": 6
+  }
+ ],
+ "head": {
+  "pivot": [
+   0,
+   4.5,
+   -6
+  ],
+  "pitch": 5,
+  "skull": {
+   "len": 4,
+   "w": 5,
+   "h": 4,
+   "back": 1,
+   "dy": 0
+  },
+  "muzzle": {
+   "len": 1.5,
+   "w": 4,
+   "h": 2.5,
+   "dy": -1.5,
+   "extra": [
+    {
+     "w": 2,
+     "h": 1,
+     "len": 1,
+     "dy": -1,
+     "dz": 0,
+     "paint": {
+      "ramp": "hip_orange",
+      "step": 2,
+      "noise": 0
+     }
+    }
+   ]
+  },
+  "nose": {
+   "w": 2,
+   "h": 1,
+   "len": 1,
+   "dy": 0,
+   "paint": {
+    "ramp": "fur_black",
+    "step": 1,
+    "noise": 0
+   }
+  },
+  "jaw": {
+   "w": 3,
+   "h": 1,
+   "len": 2,
+   "dz": 0.5
+  },
+  "ears": {
+   "w": 1,
+   "h": 1,
+   "d": 1,
+   "x": 2,
+   "z": 2.5,
+   "dy": -0.5,
+   "out": 10
+  },
+  "eye": {
+   "z": 0.25,
+   "y": 0.35,
+   "ramp": "fur_black",
+   "step": 0
+  }
+ },
+ "legs": {
+  "front": {
+   "z": -3.5,
+   "x": 2.5,
+   "top": 3,
+   "upper": {
+    "len": 1.5,
+    "w": 2,
+    "d": 2,
+    "above": 1
+   },
+   "lower": {
+    "w": 1,
+    "d": 1
+   },
+   "foot": {
+    "h": 1,
+    "w": 2,
+    "len": 2,
+    "fwd": 1.25
+   }
+  },
+  "hind": {
+   "z": 4.5,
+   "x": 2.5,
+   "top": 3.5,
+   "upper": {
+    "len": 2,
+    "w": 2,
+    "d": 3,
+    "above": 1.5
+   },
+   "lower": {
+    "w": 1,
+    "d": 1
+   },
+   "foot": {
+    "h": 1,
+    "w": 3,
+    "len": 4,
+    "fwd": 2.5
+   }
+  }
+ },
+ "tail": {
+  "z0": 6.5,
+  "y0": 2.5,
+  "angle": 8,
+  "segments": [
+   {
+    "len": 6,
+    "w": 4,
+    "h": 1,
+    "paint": {
+     "ramp": "fur_black",
+     "step": 2,
+     "noise": 0,
+     "regions": [
+      {
+       "faces": [
+        "top",
+        "bottom"
+       ],
+       "speckle": 0.4,
+       "dstep": 1
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "paint": {
+  "leg_*_foot": {
+   "ramp": "fur_black",
+   "step": 1,
+   "noise": 0
+  },
+  "leg_*": {
+   "ramp": "fur_beaver",
+   "step": 1
+  },
+  "ear_*": {
+   "ramp": "fur_beaver",
+   "step": 1
+  },
+  "muzzle": {
+   "ramp": "fur_beaver",
+   "step": 2,
+   "regions": [
+    {
+     "faces": "front",
+     "dstep": -1
+    }
+   ]
+  },
+  "head": {
+   "ramp": "fur_beaver",
+   "step": 2
+  },
+  "*": {
+   "ramp": "fur_beaver",
+   "step": 2,
+   "noise": 0.22,
+   "regions": [
+    {
+     "faces": "top",
+     "dstep": 1
+    },
+    {
+     "faces": "sides",
+     "y": [
+      0.75,
+      1
+     ],
+     "dstep": -1
+    }
+   ]
+  }
+ },
+ "gait": {
+  "walk_s": 0.8,
+  "walk_amp": 25,
+  "knee": 30,
+  "run": "bound",
+  "run_s": 0.45,
+  "run_amp": 35,
+  "bob": 0.3,
+  "neck_swing": 4,
+  "graze_deg": 25,
+  "alert_deg": 20
+ },
+ "death_drop": 1,
+ "textures": {
+  "adult_all": {}
+ }
+}

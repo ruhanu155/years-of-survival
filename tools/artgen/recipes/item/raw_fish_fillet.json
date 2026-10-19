@@ -1,0 +1,99 @@
+{
+ "id": "yearofice:raw_fish_fillet",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "poly",
+   "points": [
+    [
+     2,
+     11
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     12,
+     4
+    ],
+    [
+     14,
+     6
+    ],
+    [
+     11,
+     10
+    ],
+    [
+     5,
+     13
+    ]
+   ],
+   "ramp": "fish_flesh",
+   "step": 2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     5,
+     13
+    ],
+    [
+     11,
+     10
+    ],
+    [
+     14,
+     6
+    ]
+   ],
+   "width": 1,
+   "ramp": "smoked",
+   "step": 1
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     5,
+     10
+    ],
+    [
+     7,
+     7
+    ]
+   ],
+   "width": 1,
+   "ramp": "fish_flesh",
+   "step": 4,
+   "flat": true
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     8,
+     10
+    ],
+    [
+     10,
+     6
+    ]
+   ],
+   "width": 1,
+   "ramp": "fish_flesh",
+   "step": 4,
+   "flat": true
+  }
+ ],
+ "variants": {
+  "aging": {
+   "fish_flesh": "meat_aging"
+  },
+  "spoiled": {
+   "fish_flesh": "meat_spoiled"
+  }
+ }
+}

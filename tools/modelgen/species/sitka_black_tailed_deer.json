@@ -1,0 +1,214 @@
+{
+ "inherit": "mule_deer",
+ "scale": 0.85,
+ "id": "sitka_black_tailed_deer",
+ "geo_id": "sitka_black_tailed_deer",
+ "texture_dir": "sitka_black_tailed_deer",
+ "hitbox": [
+  0.7,
+  1.15
+ ],
+ "base": "quaternius_deer",
+ "notes": "Deer sheet T21: compact, darker, smaller ears, broad tail black-brown on top and white below (raised as a flag), dark 3x3 antlers.",
+ "head": {
+  "ears": {
+   "w": 2,
+   "h": 2.5,
+   "d": 1,
+   "x": 1.25,
+   "z": 2.5,
+   "dy": -0.5,
+   "out": 38
+  },
+  "antlers": {
+   "z": 2,
+   "rise": 12,
+   "tilt_back": -28,
+   "beam": 0.5,
+   "fork": [
+    {
+     "bone": "beam",
+     "x": 0,
+     "y": 0,
+     "h": 2,
+     "z": -0.5,
+     "d": 1
+    },
+    {
+     "bone": "beam",
+     "x": 0,
+     "y": 2,
+     "h": 1,
+     "z": -2,
+     "d": 2,
+     "w": 1
+    },
+    {
+     "bone": "brow",
+     "x": 0,
+     "y": 1,
+     "h": 1,
+     "z": -1.5,
+     "d": 1
+    },
+    {
+     "bone": "g2",
+     "x": 1,
+     "y": 3,
+     "h": 2,
+     "z": -2,
+     "d": 1
+    },
+    {
+     "bone": "g3",
+     "x": 1,
+     "y": 3,
+     "h": 3,
+     "z": -0.5,
+     "d": 1
+    }
+   ]
+  }
+ },
+ "tail": {
+  "z0": 9,
+  "y0": 15,
+  "angle": 70,
+  "segments": [
+   {
+    "len": 2,
+    "w": 2,
+    "h": 1,
+    "paint": {
+     "ramp": "deer_dark",
+     "step": 1,
+     "noise": 0,
+     "regions": [
+      {
+       "faces": [
+        "bottom",
+        "front"
+       ],
+       "ramp": "deer_cream",
+       "step": 3
+      }
+     ]
+    }
+   },
+   {
+    "len": 1.5,
+    "w": 2,
+    "h": 1,
+    "paint": {
+     "ramp": "deer_dark",
+     "step": 1,
+     "noise": 0,
+     "regions": [
+      {
+       "faces": [
+        "bottom",
+        "front"
+       ],
+       "ramp": "deer_cream",
+       "step": 3
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "paint": {
+  "antler_*": {
+   "ramp": "deer_dark",
+   "step": 3,
+   "noise": 0.2
+  },
+  "hips": {
+   "ramp": "fur_mule_summer",
+   "step": 2,
+   "noise": 0.15,
+   "regions": [
+    {
+     "faces": "back",
+     "ramp": "deer_cream",
+     "step": 2
+    },
+    {
+     "faces": "bottom",
+     "ramp": "deer_cream",
+     "step": 2
+    }
+   ]
+  }
+ },
+ "overlay_paint": {
+  "ramp": "fur_sitka_summer",
+  "step": 1,
+  "noise": 0.2
+ },
+ "gait": {
+  "walk_s": 1.05,
+  "run_s": 0.4
+ },
+ "textures": {
+  "_replace": true,
+  "buck_summer": {
+   "remap": {
+    "fur_mule_summer": "fur_sitka_summer"
+   }
+  },
+  "buck_winter": {
+   "remap": {
+    "fur_mule_summer": "fur_sitka_winter"
+   }
+  },
+  "buck_moult": {
+   "remap": {
+    "fur_mule_summer": "fur_sitka_summer",
+    "deer_dark": "fur_sitka_winter"
+   },
+   "mottle": {
+    "remap": {
+     "fur_sitka_summer": "fur_sitka_winter"
+    },
+    "share": 0.5
+   }
+  },
+  "doe_summer": {
+   "remap": {
+    "fur_mule_summer": "fur_sitka_summer"
+   },
+   "hide": [
+    "antler"
+   ]
+  },
+  "doe_winter": {
+   "remap": {
+    "fur_mule_summer": "fur_sitka_winter"
+   },
+   "hide": [
+    "antler"
+   ]
+  },
+  "doe_moult": {
+   "remap": {
+    "fur_mule_summer": "fur_sitka_summer",
+    "deer_dark": "fur_sitka_winter"
+   },
+   "mottle": {
+    "remap": {
+     "fur_sitka_summer": "fur_sitka_winter"
+    },
+    "share": 0.5
+   },
+   "hide": [
+    "antler"
+   ]
+  },
+  "antler_velvet": {
+   "only_bones": [
+    "antler*"
+   ]
+  }
+ }
+}

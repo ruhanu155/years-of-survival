@@ -1,0 +1,61 @@
+{
+ "title": "Bears: grizzly and black bear, adult and cub - columns: side, front, 3/4 and black silhouette at the 8 m size (1080p, 70 deg FOV), then close 3/4 and an animation pose",
+ "out": "docs/art/previews/bears.png",
+ "rows": [
+  {
+   "label": "grizzly  adult_summer   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/grizzly.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/grizzly/adult_summer.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/grizzly.animation.json",
+    "animation.grizzly.walk",
+    0.375
+   ]
+  },
+  {
+   "label": "grizzly_cub  cub_summer   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/grizzly_cub.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/grizzly/cub_summer.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/grizzly_cub.animation.json",
+    "animation.grizzly_cub.walk",
+    0.225
+   ]
+  },
+  {
+   "label": "black_bear  adult_black   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/black_bear.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/black_bear/adult_black.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/black_bear.animation.json",
+    "animation.black_bear.walk",
+    0.325
+   ]
+  },
+  {
+   "label": "black_bear  adult_cinnamon   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/black_bear.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/black_bear/adult_cinnamon.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/black_bear.animation.json",
+    "animation.black_bear.stand",
+    0.99
+   ]
+  },
+  {
+   "label": "black_bear_cub  cub_black   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/black_bear_cub.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/black_bear/cub_black.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/black_bear_cub.animation.json",
+    "animation.black_bear_cub.walk",
+    0.225
+   ]
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "yearofice:lake_valley",
+  "floor_width_m": { "min": 300, "max": 500 },
+  "floor_gradient_pct": { "min": 0.1, "max": 0.2 },
+  "river_swing_m": { "min": 60, "max": 120 },
+  "trough_depth_m": { "min": 20, "max": 60 },
+  "trough_flat_fraction": 0.25,
+  "floor_noise_m": 2.0,
+  "mountain_fraction": 0.333,
+  "floor_sediment_multiplier": 1.0,
+  "channels": { "min": 1, "max": 1 },
+  "minimum_falls": 2,
+  "basin": {
+    "length_m": { "min": 600, "max": 1200 },
+    "width_m": { "min": 250, "max": 500 },
+    "depth_m": { "min": 8, "max": 25 },
+    "river_gap_m": 30
+  }
+}
