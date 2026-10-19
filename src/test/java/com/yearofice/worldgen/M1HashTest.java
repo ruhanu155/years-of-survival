@@ -9,29 +9,30 @@ import org.junit.jupiter.api.Test;
  * M1: the full M1 layer hash matches across JVMs (the blueprint's "across browsers"), read as golden hashes
  * recorded on Linux x64 (OpenJDK 21) that Windows and macOS CI must reproduce unchanged; the same seed twice in
  * one JVM gives the same layers; and stage 4–5 parameters never reach stages 1–3. A change to these values is a
- * generator version bump, never a quiet edit.
+ * generator version bump, never a quiet edit. Regenerated once for M2 (RECONCILE 167): the lake valley's noisy
+ * shoreline and the 30 m lake depth cap moved the water hashes; stages 1–3 (the M0 hashes) did not move.
  */
 class M1HashTest {
     /** levelSeed, water (stage 4), places (stage 5), full M1 hash (stages 2–5). */
     static final long[][] GOLDEN = {
-        {0L, 0xf9982e45L, 0x63225c7cL, 0x2ba6beaeL},
-        {1L, 0x4e9e033aL, 0xa5a1dc70L, 0xd29025cbL},
-        {2L, 0x9e05501fL, 0xd6353093L, 0x015bafb9L},
-        {3L, 0x8c8bcc5fL, 0xc7d4d5daL, 0xf7abd81aL},
-        {4L, 0x0050dd3dL, 0x2a0ad2d2L, 0x12a85df1L},
-        {5L, 0x42d5d977L, 0xc3a0d827L, 0xf6c5cd69L},
-        {6L, 0x11957d59L, 0x59397c2bL, 0x0e89ed53L},
-        {7L, 0x7d8dab5dL, 0x84805e5aL, 0xb9c9c9a7L},
+        {0L, 0x7e59eb92L, 0x63225c7cL, 0x31154b8cL},
+        {1L, 0xd65bb844L, 0xa5a1dc70L, 0xa27ed51dL},
+        {2L, 0x089baf1cL, 0xd6353093L, 0x978c9c79L},
+        {3L, 0xd07dae5dL, 0xc7d4d5daL, 0x750c5105L},
+        {4L, 0xf0cb05a8L, 0x2a0ad2d2L, 0x0b429260L},
+        {5L, 0xacc92088L, 0xc3a0d827L, 0x114f9cb3L},
+        {6L, 0x148654f4L, 0x59397c2bL, 0x8f00e363L},
+        {7L, 0x0adf4209L, 0x84805e5aL, 0x9e7a801fL},
         {8L, 0x043a08b3L, 0x389d880eL, 0x6451efddL},
-        {9L, 0x7522f623L, 0xa70a7a05L, 0xf634b82fL},
-        {10L, 0x9592d42fL, 0x4c2847b0L, 0x665f73a4L},
+        {9L, 0x975564ceL, 0xd7286512L, 0x7a7a0592L},
+        {10L, 0xd6e8dfa1L, 0x4c2847b0L, 0x58b3f34fL},
         {11L, 0x4a28f3cdL, 0x3d0f6926L, 0x0f10c8c8L},
-        {12L, 0x4d6ca3f3L, 0xa39b1919L, 0x833829ccL},
-        {13L, 0xc98ae03eL, 0x491ef3aeL, 0xbf8ab1c7L},
-        {14L, 0x351635ceL, 0x47924d99L, 0x7b1c9e99L},
-        {15L, 0x2a85a781L, 0x17697778L, 0xcaa0af58L},
-        {42L, 0x1f75cca6L, 0xfeff1458L, 0xde249b75L},
-        {3141592L, 0x71d37a3cL, 0xf8528e7bL, 0xa5d3fb8dL},
+        {12L, 0x21de7dc0L, 0xa39b1919L, 0x5cf812d6L},
+        {13L, 0xbcf193d6L, 0x491ef3aeL, 0x16be4c43L},
+        {14L, 0x0bee29f7L, 0x47924d99L, 0xb47baca7L},
+        {15L, 0x7f6f5342L, 0x17697778L, 0x186df428L},
+        {42L, 0x308660dcL, 0x081dd688L, 0xed93ef67L},
+        {3141592L, 0x88d7b428L, 0xf8528e7bL, 0xed863944L},
     };
 
     @Test

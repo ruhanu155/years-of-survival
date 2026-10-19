@@ -38,7 +38,7 @@ public final class WorldgenGameTests {
     static final long SEED = 3141592L;
     static final int LANDFORM_HASH = 0x95b627d5;
     /** Stage 4 and 5 hashes of seed 3141592, as {@code M1HashTest} records them in JUnit. */
-    static final int WATER_HASH = 0x71d37a3c;
+    static final int WATER_HASH = 0x88d7b428; // M2: RECONCILE 167 lake polish (was 0x71d37a3c)
     static final int PLACES_HASH = 0xf8528e7b;
 
     @GameTest(template = "gametest/empty3", batch = "m0")
