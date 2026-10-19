@@ -20,6 +20,19 @@ public final class StageHash {
 
     public static int of(String s) { return of(s.getBytes(StandardCharsets.UTF_8)); }
 
+    /** FNV-1a over each float's IEEE-754 bits, little-endian: the layer fingerprint for float32 layers. */
+    public static int of(float[] data) {
+        int h = OFFSET;
+        for (float f : data) {
+            int bits = Float.floatToIntBits(f);
+            for (int k = 0; k < 32; k += 8) {
+                h ^= (bits >>> k) & 0xFF;
+                h *= PRIME;
+            }
+        }
+        return h;
+    }
+
     /** Seed for a named stage of a world: FNV-1a over "seed:stage". */
     public static int stageSeed(long worldSeed, String stage) { return of(worldSeed + ":" + stage); }
 }
