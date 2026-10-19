@@ -1,0 +1,54 @@
+{
+ "id": "yearofice:tundra_turf",
+ "kind": "block",
+ "class": "surface",
+ "faces": {
+  "top": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "moss_green",
+     "scale": 6,
+     "octaves": 3,
+     "steps": [
+      1,
+      3
+     ]
+    },
+    {
+     "type": "speckle",
+     "ramp": "stem_red",
+     "step": 2,
+     "density": 0.12
+    },
+    {
+     "type": "speckle",
+     "ramp": "lichen_pale",
+     "step": 2,
+     "density": 0.08
+    }
+   ]
+  },
+  "side": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "soil",
+     "scale": 4,
+     "octaves": 3,
+     "steps": [
+      1,
+      3
+     ]
+    },
+    {
+     "type": "speckle",
+     "ramp": "moss_green",
+     "step": 1,
+     "density": 0.18
+    }
+   ]
+  }
+ },
+ "folder": "block"
+}

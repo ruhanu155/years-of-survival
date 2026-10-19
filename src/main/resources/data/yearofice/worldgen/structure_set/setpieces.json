@@ -1,0 +1,40 @@
+{
+  "structures": [
+    {
+      "structure": "yearofice:setpiece/arvid_cabin",
+      "weight": 1
+    },
+    {
+      "structure": "yearofice:setpiece/beaver_valley",
+      "weight": 1
+    },
+    {
+      "structure": "yearofice:setpiece/fire_lookout",
+      "weight": 1
+    },
+    {
+      "structure": "yearofice:setpiece/hot_spring",
+      "weight": 1
+    },
+    {
+      "structure": "yearofice:setpiece/ice_cave",
+      "weight": 1
+    },
+    {
+      "structure": "yearofice:setpiece/mining_camp",
+      "weight": 1
+    },
+    {
+      "structure": "yearofice:setpiece/outpost",
+      "weight": 1
+    },
+    {
+      "structure": "yearofice:setpiece/plane_wreck",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "yearofice:places_layer",
+    "salt": 0
+  }
+}

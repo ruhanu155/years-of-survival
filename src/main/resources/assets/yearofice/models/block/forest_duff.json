@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "yearofice:block/forest_duff_top",
+    "side": "yearofice:block/forest_duff_side",
+    "bottom": "yearofice:block/silt_all"
+  }
+}

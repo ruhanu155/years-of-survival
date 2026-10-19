@@ -1,0 +1,28 @@
+{
+ "id": "yearofice:rust_stain",
+ "kind": "block",
+ "class": "ground",
+ "faces": {
+  "all": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "rust",
+     "scale": 4,
+     "octaves": 3,
+     "steps": [
+      1,
+      3
+     ]
+    },
+    {
+     "type": "speckle",
+     "ramp": "gravel",
+     "step": 2,
+     "density": 0.15
+    }
+   ]
+  }
+ },
+ "folder": "block"
+}

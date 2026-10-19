@@ -16,7 +16,8 @@ import org.jetbrains.annotations.Nullable;
  *
  * <ul>
  *   <li>Gather: the nearest birch trunk (its bark is the tinder that burns wet), else the nearest tree.</li>
- *   <li>Fire spot: the ring once set, else the start site.</li>
+ *   <li>Fire spot: the ring once set, else the outpost's fire spot, 6 m out of the door (Blueprint › Start site,
+ *       The outpost layout: "Firepit, 6 m from the door").</li>
  *   <li>Fire: the player's ring.</li>
  *   <li>Food: the nearest open water at the surface, the creek where the rod and the game trails are.</li>
  * </ul>
@@ -33,10 +34,25 @@ final class BeaconTargets {
                 BlockPos birch = nearestTrunk(p, radius, true);
                 yield birch != null ? birch : nearestTrunk(p, radius, false);
             }
-            case FIRE_SPOT -> r.ring != null ? r.ring : r.startSite;
+            case FIRE_SPOT -> r.ring != null ? r.ring : fireSpot(p, r);
             case FIRE -> r.ring;
             case FOOD -> nearestOpenWater(p, radius);
         };
+    }
+
+    /** Metres from the door to the fire spot. */
+    static final int FIRE_SPOT_M = 6;
+
+    /** The start site's fire spot: {@link #FIRE_SPOT_M} blocks out of the door along the spawn's facing, on the ground. */
+    static @Nullable BlockPos fireSpot(ServerPlayer p, OnboardingRecord r) {
+        if (r.startSite == null) return null;
+        ServerLevel level = p.serverLevel();
+        double yaw = Math.toRadians(level.getSharedSpawnAngle());
+        int x = r.startSite.getX() + (int) Math.round(-Math.sin(yaw) * FIRE_SPOT_M);
+        int z = r.startSite.getZ() + (int) Math.round(Math.cos(yaw) * FIRE_SPOT_M);
+        BlockPos.MutableBlockPos m = new BlockPos.MutableBlockPos(x, r.startSite.getY(), z);
+        if (!level.isLoaded(m)) return r.startSite;
+        return new BlockPos(x, level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, x, z), z);
     }
 
     /** The ground under the nearest trunk of a birch (or any log), or null. */

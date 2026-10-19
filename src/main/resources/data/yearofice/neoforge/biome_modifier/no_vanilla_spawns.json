@@ -1,0 +1,7 @@
+{
+  "type": "neoforge:remove_spawns",
+  "biomes": "#yearofice:valley_biomes",
+  "entity_types": {
+    "type": "neoforge:any"
+  }
+}

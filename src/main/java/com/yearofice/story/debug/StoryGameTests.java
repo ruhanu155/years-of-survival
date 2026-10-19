@@ -4,6 +4,8 @@ import com.mojang.authlib.GameProfile;
 import com.yearofice.api.body.BodyService;
 import com.yearofice.api.clock.ClockService;
 import com.yearofice.api.decay.DecayService;
+import com.yearofice.api.hud.HudBus;
+import com.yearofice.api.hud.HudLineType;
 import com.yearofice.body.BodyTicker;
 import com.yearofice.body.env.VanillaEnvSampler;
 import com.yearofice.core.YearOfIce;
@@ -16,7 +18,12 @@ import com.yearofice.sim.fire.FireState;
 import com.yearofice.sim.fire.FireWeather;
 import com.yearofice.sim.story.FirstNight;
 import com.yearofice.sim.story.FirstNightStep;
+import com.yearofice.story.DayOne;
 import com.yearofice.story.Onboarding;
+import com.yearofice.api.env.EnvService;
+import com.yearofice.sim.time.Calendar;
+import com.yearofice.sim.weather.DayState;
+import com.yearofice.sim.weather.WeatherModel;
 import com.yearofice.story.OnboardingRecord;
 import com.yearofice.story.StoryAttachments;
 import io.netty.channel.embedded.EmbeddedChannel;
@@ -79,6 +86,7 @@ public final class StoryGameTests {
         out.add(test("yearofice:story/returning_player_skipped", StoryGameTests::returningPlayerSkipped));
         out.add(test("yearofice:story/dusk_warns_once", StoryGameTests::duskWarnsOnce));
         out.add(test("yearofice:story/onboarding_saves", StoryGameTests::onboardingSaves));
+        out.add(test("yearofice:story/fresh_world_wakes_at_noon", StoryGameTests::freshWorldWakesAtNoon));
         return out;
     }
 
@@ -98,6 +106,10 @@ public final class StoryGameTests {
         Vec3 at = h.absoluteVec(Vec3.atBottomCenterOf(BED));
         p.moveTo(at.x, at.y, at.z, 180, 0);
         return p;
+    }
+
+    static boolean journalHas(ServerPlayer p, String key) {
+        return HudBus.get().journal(p).stream().anyMatch(l -> l.key().equals(key) && l.type().channel == HudLineType.Channel.MESSENGER);
     }
 
     static Item item(String id) { return BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, id)); }
@@ -175,6 +187,8 @@ public final class StoryGameTests {
             Onboarding.onJoin(p, b.story);
             FirstNight n = StoryAttachments.of(p).night();
             h.assertTrue(n.active() && b.step() == FirstNightStep.TINDER, "the first join starts the night: " + n.status());
+            // No messenger on the bot: the bus keeps the device's lines in the journal (Layer 8).
+            h.assertTrue(journalHas(p, "messenger.yearofice.alert.first_night_wake"), "the wake line went through the HUD bus");
 
             // 1. Gather: tinder, kindling, wood and the crate's matches.
             b.pass(40, Activity.WALK);
@@ -306,13 +320,42 @@ public final class StoryGameTests {
             long dusk = sunsetDay1() - 30;
             Onboarding.check(p, dusk);
             h.assertTrue(r.warn().fired(Onboarding.DUSK_NO_FIRE), "warned 30 min before sunset with no fire");
+            h.assertTrue(journalHas(p, "messenger.yearofice.warn.dusk_no_fire"), "the warning went through the HUD bus as a warn line");
+            long warns = HudBus.get().journal(p).stream().filter(l -> l.key().equals("messenger.yearofice.warn.dusk_no_fire")).count();
             h.assertTrue(r.warn().entries().get(Onboarding.DUSK_NO_FIRE).falseSince() < 0, "the condition is true");
             Onboarding.check(p, dusk + 60);
             h.assertTrue(r.warn().entries().size() == 1 && r.warn().fired(Onboarding.DUSK_NO_FIRE), "still one warning, still fired");
+            long after = HudBus.get().journal(p).stream().filter(l -> l.key().equals("messenger.yearofice.warn.dusk_no_fire")).count();
+            h.assertTrue(warns == 1 && after == 1, "one warn line, not two: " + warns + " then " + after);
             h.succeed();
         } finally {
             Onboarding.forget(p);
         }
+    }
+
+    /**
+     * Blueprint › Start site › Day 1 rules on the GameTest server's own fresh world: at start the clock read
+     * 12:00 on May 1, and May 1's weather is the fixed day. The reading is the one {@link DayOne} took right after
+     * setting it, because parallel tests move the shared clock afterwards.
+     */
+    static void freshWorldWakesAtNoon(GameTestHelper h) {
+        DayOne.Start s = DayOne.last();
+        DayOne.Data d = DayOne.data(h.getLevel().getServer());
+        h.assertTrue(s != null && d.decided(), "the day-1 decision was taken at start: " + s);
+        if (!s.fresh()) {
+            // A GameTest world kept from an earlier local run: the decision stands and the clock was left alone.
+            // CI always starts fresh, so the full check runs there.
+            YearOfIce.LOG.info("[story] fresh_world_wakes_at_noon: reused world, day 1 {}", d.dayOne() ? "kept" : "not applied");
+            h.succeed();
+            return;
+        }
+        h.assertTrue(s.dayOne() && d.dayOne(), "a fresh world with the guided night gets day 1: " + s);
+        h.assertTrue(s.clockDsAfter() == DayOne.WAKE_DS, "clock after start " + Calendar.format(s.clockDsAfter()));
+        h.assertTrue(Calendar.format(s.clockDsAfter()).equals("May 1, year 1, 12:00"), Calendar.format(s.clockDsAfter()));
+        WeatherModel.Day day = EnvService.get().day(h.getLevel(), 0);
+        h.assertTrue(day.state() == DayState.CLOUDY && Math.abs(day.meanC() - 2) < 1e-9 && day.precipMm() == 0
+                && Math.abs(day.windMs() - 2) < 1e-9, "May 1 is cloudy, mean 2 °C, dry, 2 m/s: " + day);
+        h.succeed();
     }
 
     /** The attachment saves with the player and loads back field for field. */

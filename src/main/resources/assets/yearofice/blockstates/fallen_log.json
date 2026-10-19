@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "yearofice:block/fallen_log"
+    },
+    "axis=z": {
+      "model": "yearofice:block/fallen_log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "yearofice:block/fallen_log",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

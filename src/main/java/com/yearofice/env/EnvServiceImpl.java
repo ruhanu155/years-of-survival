@@ -35,12 +35,15 @@ import net.minecraft.world.level.levelgen.Heightmap;
 public final class EnvServiceImpl implements EnvService {
     private final Map<Long, WeatherModel> models = new ConcurrentHashMap<>();
     private final Map<ResourceKey<Level>, WeatherOverride> overrides = new ConcurrentHashMap<>();
+    /** Fixed first days by world seed, kept across a climate reload. */
+    private final Map<Long, WeatherModel.FixedDay> firstDays = new ConcurrentHashMap<>();
 
     WeatherModel model(ServerLevel level) {
         Climate c = EnvResources.current;
         WeatherModel m = models.get(level.getSeed());
         if (m == null || m.climate() != c) {
             m = new WeatherModel(c, level.getSeed());
+            m.fixFirstDay(firstDays.get(level.getSeed()));
             models.put(level.getSeed(), m);
         }
         return m;
@@ -49,6 +52,7 @@ public final class EnvServiceImpl implements EnvService {
     void clear() {
         models.clear();
         overrides.clear();
+        firstDays.clear();
     }
 
     private static long now() { return ClockService.installed() ? ClockService.get().nowMinute() : 0; }
@@ -166,6 +170,13 @@ public final class EnvServiceImpl implements EnvService {
     }
 
     @Override public WeatherOverride override(ServerLevel level) { return overrides.get(level.dimension()); }
+
+    @Override
+    public void fixFirstDay(ServerLevel level, WeatherModel.FixedDay day) {
+        if (day == null) firstDays.remove(level.getSeed());
+        else firstDays.put(level.getSeed(), day);
+        model(level).fixFirstDay(day);
+    }
 
     @Override
     public boolean heavy(ServerLevel level) { return model(level).heavy(valley(level)); }

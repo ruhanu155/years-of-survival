@@ -1,0 +1,35 @@
+{
+ "id": "yearofice:coal_seam",
+ "kind": "block",
+ "class": "rock",
+ "faces": {
+  "all": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "rock_schist",
+     "scale": 3,
+     "octaves": 2,
+     "steps": [
+      1,
+      3
+     ],
+     "stretch": "vertical"
+    },
+    {
+     "type": "speckle",
+     "ramp": "iron",
+     "step": 0,
+     "density": 0.3
+    },
+    {
+     "type": "speckle",
+     "ramp": "iron",
+     "step": 1,
+     "density": 0.12
+    }
+   ]
+  }
+ },
+ "folder": "block"
+}

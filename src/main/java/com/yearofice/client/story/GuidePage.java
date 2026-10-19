@@ -34,11 +34,13 @@ public final class GuidePage {
         l.text(tr("step", now.number(), FirstNightStep.COUNT), Pal.INK);
         l.right(tr("sunset", Fmt.hhmm(p.sunsetMinute())), Pal.INK);
         l.row();
-        Component line = now == FirstNightStep.SLEEP
-                ? Component.translatable("messenger.yearofice.prompt.first_night_" + now.id, p.nearFireM())
-                : Component.translatable("messenger.yearofice.prompt.first_night_" + now.id);
+        Component line = Component.translatable("messenger.yearofice.prompt.first_night_" + now.id);
         for (String row : wrap(line.getString(), l.w)) {
             l.text(row, Pal.INK);
+            l.row();
+        }
+        if (now == FirstNightStep.SLEEP) {
+            l.text(tr("near_fire", p.nearFireM()), Pal.DIM);
             l.row();
         }
         l.gap(2);

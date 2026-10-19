@@ -1,0 +1,34 @@
+{
+ "id": "yearofice:iron_outcrop",
+ "kind": "block",
+ "class": "rock",
+ "faces": {
+  "all": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "rock_schist",
+     "scale": 3,
+     "octaves": 3,
+     "steps": [
+      1,
+      3
+     ]
+    },
+    {
+     "type": "speckle",
+     "ramp": "rust",
+     "step": 2,
+     "density": 0.18
+    },
+    {
+     "type": "speckle",
+     "ramp": "iron",
+     "step": 2,
+     "density": 0.08
+    }
+   ]
+  }
+ },
+ "folder": "block"
+}

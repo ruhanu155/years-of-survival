@@ -3,6 +3,8 @@ package com.yearofice.story;
 import com.yearofice.api.body.BodyReadout;
 import com.yearofice.api.body.BodyService;
 import com.yearofice.api.fire.FireHeatLookup;
+import com.yearofice.api.clock.ClockService;
+import com.yearofice.api.env.EnvService;
 import com.yearofice.api.event.ClockEvent;
 import com.yearofice.api.fire.FireStateEvent;
 import com.yearofice.api.hud.HudArg;
@@ -58,7 +60,8 @@ import org.jetbrains.annotations.Nullable;
  *
  * <p>Start: the first join of a world, when {@code [onboarding] enabled} is on and the player has never played in
  * it. A player who has played before (play time over 0 with no record) is a returning player and never gets it.
- * Until lane A's outpost lands, the start site is the world spawn.
+ * The start site is where the first join stands: in a valley world, the outpost door ({@code world.WorldHooks} sets
+ * the level spawn there, facing out of the door).
  */
 @EventBusSubscriber(modid = YearOfIce.MOD_ID)
 public final class Onboarding {
@@ -144,7 +147,7 @@ public final class Onboarding {
         String date = com.yearofice.sim.time.Calendar.monthName(com.yearofice.sim.time.Calendar.month(doy)) + " "
                 + com.yearofice.sim.time.Calendar.dayOfMonth(doy);
         alert(p, "wake", HudArg.of(StoryDay.day(minute)), HudArg.text(date), HudArg.text(StoryDay.hhmm(minute)));
-        alert(p, "dark", HudArg.text(StoryDay.hhmm(StoryClock.sunsetOf(minute))));
+        alert(p, "air", HudArg.fixed(Math.round(airNow(p)), "c"), HudArg.fixed(Math.round(tonightLow(p)), "c"));
         offerStep(p, FirstNightStep.TINDER, t);
         sync(p, r, l, minute);
     }
@@ -407,10 +410,23 @@ public final class Onboarding {
      * dedicated server cannot translate). Its key is the full lang key, which {@link #clearStep} withdraws.
      */
     static void offerStep(ServerPlayer p, FirstNightStep s, OnboardingTuning t) {
-        HudLine line = s == FirstNightStep.SLEEP
-                ? HudLine.of(HudLineType.PROMPT, stepId(s), SOURCE, HudArg.of(Math.round(t.nearFireRadiusM())))
-                : HudLine.of(HudLineType.PROMPT, stepId(s), SOURCE);
-        HudBus.get().post(p, line);
+        HudBus.get().post(p, HudLine.of(HudLineType.PROMPT, stepId(s), SOURCE));
+    }
+
+    /** Air at the player now, from {@code EnvService}. */
+    static double airNow(ServerPlayer p) {
+        return EnvService.installed() ? EnvService.get().airC(p.serverLevel(), p.blockPosition()) : 0;
+    }
+
+    /** Tonight's low at the player: the coldest hour of the next 18 game hours, from {@code EnvService}. */
+    static double tonightLow(ServerPlayer p) {
+        if (!EnvService.installed() || !ClockService.installed()) return 0;
+        long now = ClockService.get().nowDs();
+        double low = Double.MAX_VALUE;
+        for (EnvService.HourAir h : EnvService.get().hourlySeries(p.serverLevel(), p.blockPosition(), now, now + 18 * 60 * 600L)) {
+            low = Math.min(low, h.airC());
+        }
+        return low == Double.MAX_VALUE ? airNow(p) : low;
     }
 
     /** Withdraws a closed step's prompt from the prompt row ({@code HudBus.clearPrompt}). */

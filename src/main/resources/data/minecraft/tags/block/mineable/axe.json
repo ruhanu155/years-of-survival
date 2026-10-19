@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "yearofice:white_spruce_log",
+    "yearofice:black_spruce_log",
+    "yearofice:birch_log",
+    "yearofice:fallen_log",
+    "yearofice:stump",
+    "yearofice:shrub_stem"
+  ]
+}

@@ -2,7 +2,8 @@ package com.yearofice.worldgen;
 
 /**
  * {@code data/yearofice/worldgen_params/valley.json}: every number stages 1–3 use for the home valley, plus the
- * M1 blocks for stages 4–5 in {@link HydroParams}.
+ * M1 blocks for stages 4–5 in {@link HydroParams}, and the M2 blocks: stage 6's {@code cover} list and the chunk
+ * builder's {@code terrain} block.
  * Frozen into the world at creation, so a {@code /reload} never moves land.
  */
 public record WorldgenParams(
@@ -19,7 +20,9 @@ public record WorldgenParams(
         ErosionParams erosion,
         SeedRanges seed,
         Checks checks,
-        HydroParams hydro) {
+        HydroParams hydro,
+        Cover.Params cover,
+        TerrainParams terrain) {
 
     public static final String RESOURCE = "data/yearofice/worldgen_params/valley.json";
 
@@ -74,12 +77,12 @@ public record WorldgenParams(
 
     public WorldgenParams withErosion(ErosionParams e) {
         return new WorldgenParams(generatorVersion, grid, elevation, baseNoise, ridgedNoise, detailNoise, domainWarp,
-                wallRiseDistanceM, riverPath, hardness, e, seed, checks, hydro);
+                wallRiseDistanceM, riverPath, hardness, e, seed, checks, hydro, cover, terrain);
     }
 
     public WorldgenParams withHydro(HydroParams h) {
         return new WorldgenParams(generatorVersion, grid, elevation, baseNoise, ridgedNoise, detailNoise, domainWarp,
-                wallRiseDistanceM, riverPath, hardness, erosion, seed, checks, h);
+                wallRiseDistanceM, riverPath, hardness, erosion, seed, checks, h, cover, terrain);
     }
 
     public static WorldgenParams load() { return from(GenJson.resource(RESOURCE)); }
@@ -138,7 +141,8 @@ public record WorldgenParams(
 
         WorldgenParams p = new WorldgenParams(j.integer("generator_version"), grid, elev,
                 layer(j, "base_noise"), layer(j, "ridged_noise"), layer(j, "detail_noise"), warp, rise,
-                river, hard, ero, seed, checks, HydroParams.from(j));
+                river, hard, ero, seed, checks, HydroParams.from(j), Cover.Params.from(j.obj("cover")),
+                TerrainParams.from(j.obj("terrain")));
         j.done();
         return p;
     }

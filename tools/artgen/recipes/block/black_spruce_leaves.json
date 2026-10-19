@@ -1,0 +1,28 @@
+{
+ "id": "yearofice:black_spruce_leaves",
+ "kind": "block",
+ "class": "leaves",
+ "faces": {
+  "all": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "needle_green",
+     "scale": 4,
+     "octaves": 3,
+     "steps": [
+      0,
+      3
+     ]
+    },
+    {
+     "type": "cutout",
+     "density": 0.25,
+     "scale": 4,
+     "octaves": 2
+    }
+   ]
+  }
+ },
+ "folder": "block"
+}

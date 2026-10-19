@@ -1,0 +1,8 @@
+{
+  "type": "yearofice:setpiece",
+  "setpiece": "yearofice:ice_cave",
+  "biomes": "#yearofice:valley_biomes",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "none"
+}

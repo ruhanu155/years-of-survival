@@ -41,8 +41,24 @@ public final class WeatherModel {
                        double cloudPct, double humidityPct, double visibilityM, double pressureHpa, DayState state,
                        double snowDepthCm) {}
 
+    /**
+     * A fixed first day, May 1 of year 1 (Blueprint › Start site › Day 1 rules: "Day 1 weather is fixed at cloudy,
+     * 7 °C high, −3 °C low, wind 2 m/s, no precipitation; the chain starts from it"). The hours run from the low to
+     * the high along the climate's hourly curve, the wind holds all day, and day 2 draws from its state and its
+     * anomaly. The rolls are drawn as on any day, so every later day keeps its place in the stream.
+     */
+    public record FixedDay(DayState state, double highC, double lowC, double windMs) {
+        public FixedDay {
+            if (highC < lowC) throw new IllegalArgumentException("high below low");
+            if (windMs < 0) throw new IllegalArgumentException("negative wind");
+        }
+
+        public static final FixedDay BLUEPRINT_DAY_1 = new FixedDay(DayState.CLOUDY, 7, -3, 2);
+    }
+
     private final Climate c;
     private final long seed;
+    private FixedDay firstDay;
     private final double[][] stationary = new double[4][];
     private final double[] offsetMean = new double[4 * 2];
     private final double[] windMid = new double[4];
@@ -94,6 +110,17 @@ public final class WeatherModel {
     }
 
     public Climate climate() { return c; }
+
+    /** Fixes May 1 of year 1 (null draws it as usual); the drawn years are redrawn from it. */
+    public synchronized void fixFirstDay(FixedDay f) {
+        if (java.util.Objects.equals(firstDay, f)) return;
+        firstDay = f;
+        years.clear();
+    }
+
+    public synchronized FixedDay firstDay() { return firstDay; }
+
+    private boolean fixed(long absDay) { return firstDay != null && absDay == 0; }
 
     public long seed() { return seed; }
 
@@ -194,6 +221,18 @@ public final class WeatherModel {
             double kickMean = season == Climate.WINTER
                     ? c.winterSevereKickC() * stationary[Climate.WINTER][DayState.SEVERE.ordinal()] / (1 - c.anomalyKeep()) : 0;
             double mean = normal + a + offset - kickMean;
+            if (first && firstDay != null) {
+                // The fixed day: its state and mean, and the anomaly that mean implies, so day 2 continues from it.
+                state = firstDay.state();
+                offset = (winterCol ? c.offsetWinterC() : c.offsetSummerC())[state.ordinal()]
+                        - offsetMean[season * 2 + (winterCol ? 1 : 0)];
+                mean = (firstDay.highC() + firstDay.lowC()) / 2;
+                a = mean - normal - offset + kickMean;
+                out[doy] = new Day(base + doy, state, a, normal, mean, (firstDay.highC() - firstDay.lowC()) / 2,
+                        firstDay.windMs(), uDir * 360, 0, 0, 0);
+                prev = state;
+                continue;
+            }
             int month = Calendar.month(doy);
             double[] range = c.windRangeMs()[state.ordinal()];
             double curveMean = c.windCurveMonth()[month - 1] ? windCurveMean : 1.0;
@@ -228,6 +267,16 @@ public final class WeatherModel {
     /** Hourly air on the valley floor at whole hour {@code hour} of {@code absDay}, soft-bounded. */
     public double hourAirC(long absDay, int hour) {
         Day d = day(absDay);
+        if (fixed(absDay)) {
+            double[] k = c.hourlyCurve();
+            double lo = k[0], hi = k[0];
+            for (double v : k) {
+                lo = Math.min(lo, v);
+                hi = Math.max(hi, v);
+            }
+            double share = hi > lo ? (k[hour] - lo) / (hi - lo) : 0.5;
+            return firstDay.lowC() + (firstDay.highC() - firstDay.lowC()) * share;
+        }
         int doy = Calendar.dayOfYearOfDay(absDay);
         double t = d.meanC() + d.swingC() * c.skyFactor()[d.state().ordinal()] * c.hourlyCurve()[hour];
         int month = Calendar.month(doy);
@@ -257,7 +306,7 @@ public final class WeatherModel {
         int month = Calendar.month(doy);
         int s = d.state().ordinal();
         double air = airC(minute);
-        double wind = d.windMs() * (c.windCurveMonth()[month - 1] ? c.windCurve()[h] : 1.0);
+        double wind = d.windMs() * (!fixed(absDay) && c.windCurveMonth()[month - 1] ? c.windCurve()[h] : 1.0);
         double gust = wind * c.gustFactor()[s];
         double mmH = 0;
         Precip type = Precip.NONE;

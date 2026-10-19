@@ -1,0 +1,11 @@
+{
+  "values": [
+    "yearofice:silt",
+    "yearofice:loess",
+    "yearofice:river_sand",
+    "yearofice:gravel",
+    "yearofice:clay_bank",
+    "yearofice:peat",
+    "yearofice:till"
+  ]
+}
