@@ -1,69 +1,52 @@
 package com.yearofice.hunt.fishing;
 
+import com.yearofice.api.clock.ClockService;
 import com.yearofice.sim.fishing.BiteModel;
-import com.yearofice.sim.fishing.CloseClock;
 import com.yearofice.sim.fishing.SliceBite;
+import com.yearofice.sim.time.Calendar;
+import com.yearofice.sim.time.Rate;
+import com.yearofice.sim.time.Sun;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 
 /**
- * Time as fishing reads it until Layer 1's {@code clock.ClockService} lands, and the fight's close clock.
+ * Time as fishing reads it, through Layer 1's {@link ClockService} (M2 lane B moved it off the vanilla day time).
  *
- * <p><b>Game minutes.</b> The same stand-in the body uses: the overworld's day time, 24,000 ticks a day, tick 0 at
- * 06:00, game minute 0 at 00:00 of day 1 (May 1). Bites roll once per game minute.
+ * <p><b>Game minutes.</b> Minute 0 is 00:00 on May 1 of year 1; bites roll once per game minute.
  *
- * <p><b>Sun.</b> The vanilla sky's sun: up at 06:00, down at 18:00, below −6° 24 minutes either side (the sun moves
- * 15° an hour). {@code sim.time.Sun} at 64°N replaces this when the Time and sky layer lands.
+ * <p><b>Sun.</b> The daylight table at 64°N: the time band's sunrise and sunset are that day's, and its twilight
+ * runs from dawn (the sun through −6°) to sunrise and from sunset to dusk.
  *
- * <p><b>Close clock.</b> From the strike until the fish is landed or lost the world clock runs at a tenth of its
- * speed (Fishing methods › The fight, as built). The Blueprint keeps it per player for co-op after 1.0; with one
- * world clock in Minecraft, this stand-in slows it only while every player online is in a fight, which is the solo
- * case exactly and the "slowest player" rule in co-op.
+ * <p><b>Close clock.</b> From the strike until the fish is landed or lost, each fighting player asks the Close rate
+ * every tick (Fishing methods › The fight, as built). The clock runs the world at the slowest player's rate, so in
+ * single player the fight runs at 3 game ds a tick, a tenth of the 24-minute day's World rate.
  */
 public final class FishingClock {
     private FishingClock() {}
 
-    public static final long TICKS_PER_DAY = 24_000, OFFSET_TICKS = 6_000;
-    public static final int SUNRISE_MIN = 6 * 60, SUNSET_MIN = 18 * 60, TWILIGHT_MIN = 24;
-
-    private static CloseClock carry = CloseClock.ZERO;
-
-    public static long minute(MinecraftServer server) { return toMinute(server.overworld().getDayTime()); }
-
-    public static long toMinute(long dayTime) { return Math.floorDiv((dayTime + OFFSET_TICKS) * 1440, TICKS_PER_DAY); }
+    public static long minute(MinecraftServer server) { return ClockService.get().nowMinute(); }
 
     /** Absolute day, 1 on the first May 1. */
     public static long day(long minute) { return Math.floorDiv(minute, 1440) + 1; }
 
     public static int minuteOfDay(long minute) { return (int) Math.floorMod(minute, 1440L); }
 
+    /** The time band at {@code minute} from that day's sunrise, sunset and twilight. */
     public static BiteModel.TimeBand band(long minute) {
-        return SliceBite.timeBand(minuteOfDay(minute), SUNRISE_MIN, SUNSET_MIN, TWILIGHT_MIN);
+        long absDay = Calendar.absDayOfMinute(minute);
+        Sun sun = ClockService.get().sun();
+        int rise = sun.sunriseMinute(absDay), set = Math.min(sun.sunsetMinute(absDay), 1439);
+        if (rise < 0) return BiteModel.TimeBand.DAY;
+        int twilight = Math.max(1, rise - Math.max(0, sun.dawnMinute(absDay)));
+        return SliceBite.timeBand(minuteOfDay(minute), rise, set, twilight);
     }
 
-    /** Every non-spectator player online is in a fight, and at least one fight is on. */
-    static boolean closeClockOn(MinecraftServer server) {
-        if (FishingService.activeFights() == 0) return false;
-        for (ServerPlayer p : server.getPlayerList().getPlayers()) {
-            if (!p.isSpectator() && !FishingService.inFight(p)) return false;
-        }
-        return true;
-    }
-
-    /** After the overworld's tick: give back the share of this tick's minute the close clock does not spend. */
+    /** Each tick, every player in a fight asks for the close clock. */
     public static void afterLevelTick(Level level) {
-        if (!(level instanceof ServerLevel sl) || sl.dimension() != Level.OVERWORLD) return;
-        if (!sl.getGameRules().getBoolean(GameRules.RULE_DAYLIGHT) || !closeClockOn(sl.getServer())) {
-            carry = CloseClock.ZERO;
-            return;
-        }
-        CloseClock.Step s = carry.tick(FishingConfig.tuning().closeClockRate());
-        carry = s.next();
-        sl.setDayTime(sl.getDayTime() - 1 + s.ticks());
+        if (level.isClientSide || level.getServer() == null || level != level.getServer().overworld()) return;
+        for (ServerPlayer p : FishingService.fighters()) ClockService.get().requestRate(p, Rate.CLOSE, "fishing fight");
     }
 
-    static void clear() { carry = CloseClock.ZERO; }
+    static void clear() { }
 }

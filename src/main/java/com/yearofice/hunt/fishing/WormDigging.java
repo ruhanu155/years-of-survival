@@ -37,7 +37,7 @@ public final class WormDigging {
         long minute = FishingClock.minute(level.getServer());
         int month = FishSeason.month(FishSeason.dayOfYear(FishingClock.day(minute)));
         if (month >= 10 || month <= 4) return 0;
-        int max = level.isRaining() ? 2 * t.wormDigMax() : t.wormDigMax();
+        int max = com.yearofice.api.env.EnvService.get().precip(level, pos).liquid() ? 2 * t.wormDigMax() : t.wormDigMax();
         double u = Draws.u(level.getSeed() ^ Draws.name("worm"), pos.asLong(), level.getGameTime(), 1);
         return (int) Math.floor(u * (max + 1));
     }

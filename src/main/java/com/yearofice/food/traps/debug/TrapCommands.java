@@ -77,8 +77,8 @@ public final class TrapCommands {
         long next = SliceCalendar.rollAtOrBefore(now, t.dawnMin(), t.duskMin()) + 1;
         long at = SliceCalendar.rollMinute(next, t.dawnMin(), t.duskMin());
         double p = Snare.pNow(be.state(), be.env(), now);
-        long ticks = Math.round((at - SliceClock.minuteD(level)) * SliceClock.TICKS_PER_MINUTE) + 1;
-        for (ServerLevel l : level.getServer().getAllLevels()) l.setDayTime(l.getDayTime() + Math.max(0, ticks));
+        long minutes = (long) Math.ceil(at - SliceClock.minuteD(level)) + 1;
+        com.yearofice.api.clock.ClockService.get().advance(Math.max(0, minutes));
         int before = be.state().catches();
         be.settle(true);
         boolean caught = be.state().catches() > before;

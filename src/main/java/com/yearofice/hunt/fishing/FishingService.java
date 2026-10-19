@@ -23,6 +23,7 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import com.yearofice.api.env.EnvService;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -31,7 +32,6 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -77,6 +77,15 @@ public final class FishingService {
     public static boolean inFight(ServerPlayer p) {
         BobberEntity b = bobberOf(p);
         return b != null && b.fight != null && !b.fight.over();
+    }
+
+    /** The players in a fight now (their bobbers' owners), for the close-clock requests. */
+    static java.util.List<ServerPlayer> fighters() {
+        java.util.List<ServerPlayer> out = new java.util.ArrayList<>();
+        for (BobberEntity b : BOBBERS.values()) {
+            if (!b.isRemoved() && b.fight != null && !b.fight.over() && b.owner != null && !b.owner.isRemoved()) out.add(b.owner);
+        }
+        return out;
     }
 
     public static int activeFights() {
@@ -206,15 +215,28 @@ public final class FishingService {
         return new SliceBite.Inputs(FishingSpecies.grayling(), FishingSpecies.season(FishingSpecies.GRAYLING),
                 SliceSpots.SPOT_TYPE, spot.atSpot(), t.spotQ(), spot.depthM(), t.spotRadiusM(), st.n(), st.k(), b.bait(),
                 FishSeason.dayOfYear(day), FishingClock.band(minute), weather(level, b.blockPosition()),
-                t.waterTempC(), t.turbidity(), stocks.spooked(spot.key(), minute));
+                waterC(level, minute), t.turbidity(), stocks.spooked(spot.key(), minute));
     }
 
+    /**
+     * The bite roll's weather from the Environment field: the day's state, with Wet and Severe split by what falls
+     * at the bobber (snow, or rain and the rest); a Wet or Severe day between its showers reads Cloudy.
+     */
     static BiteModel.Weather weather(ServerLevel level, BlockPos at) {
-        if (level.isThundering()) return BiteModel.Weather.STORM;
-        if (level.isRaining()) {
-            return level.getBiome(at).value().getPrecipitationAt(at) == Biome.Precipitation.SNOW ? BiteModel.Weather.SNOW : BiteModel.Weather.RAIN;
-        }
-        return BiteModel.Weather.CLEAR;
+        com.yearofice.sim.weather.WeatherModel.Hour h = EnvService.get().valley(level);
+        com.yearofice.sim.env.Precip p = EnvService.get().precip(level, at);
+        boolean snow = p == com.yearofice.sim.env.Precip.SNOW;
+        return switch (h.state()) {
+            case CLEAR -> BiteModel.Weather.CLEAR;
+            case CLOUDY -> BiteModel.Weather.CLOUDY;
+            case WET -> p == com.yearofice.sim.env.Precip.NONE ? BiteModel.Weather.CLOUDY : snow ? BiteModel.Weather.SNOW : BiteModel.Weather.RAIN;
+            case SEVERE -> p == com.yearofice.sim.env.Precip.NONE ? BiteModel.Weather.CLOUDY : snow ? BiteModel.Weather.BLIZZARD : BiteModel.Weather.STORM;
+        };
+    }
+
+    /** Water at the slice spot, a creek mouth: the Environment field's creek value (Blueprint › Conditions). */
+    public static double waterC(ServerLevel level, long minute) {
+        return EnvService.get().waterCAt(level, EnvService.WaterKind.CREEK, minute);
     }
 
     static long biteSeed(ServerLevel level) { return level.getSeed() ^ Draws.name("bite"); }
@@ -345,11 +367,11 @@ public final class FishingService {
         double kg = SizeDraw.kg(sp, t.baitDepthM(), st.fraction(), t.spotQ(), Draws.u(seed, id, 0, SliceBite.SALT_SIZE),
                 Draws.u(seed, id, 0, SliceBite.SALT_TROPHY), Draws.u(seed, id, 0, SliceBite.SALT_BAND));
         if (!Double.isNaN(kgOverride)) kg = kgOverride;
-        boolean wet = b.minutesInWater >= t.lineWetMin() || level.isRaining();
+        boolean wet = b.minutesInWater >= t.lineWetMin() || EnvService.get().precip(level, b.blockPosition()).liquid();
         Tackle tackle = Tackle.plantFiberWillow().withWet(wet).withCondition(RodItem.lineCondition(heldRod(owner)));
         double castM = Mth.clamp(b.castM, 0.5, tackle.lineCarriedM());
         FightModel.Params params = new FightModel.Params(sp, kg, tackle, seed, id, castM, weak(owner), false,
-                t.assistOn(), t.waterTempC(), false, false, false);
+                t.assistOn(), waterC(level, minute), false, false, false);
         b.fight = new FightSession(id, params, level.getGameTime(), t.inputTimeoutTicks());
         b.setState(BobberEntity.State.HOOKED);
         b.setCue(StrikeJudge.Cue.NONE, 0);
