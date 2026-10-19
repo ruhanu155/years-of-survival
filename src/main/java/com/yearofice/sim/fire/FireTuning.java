@@ -33,7 +33,7 @@ package com.yearofice.sim.fire;
  * @param drillPracticedPct  bow-drill success at Practiced (95).
  * @param drillSkillReps     N for the Fire skill: reps to Practiced (10, Crafting › Practice).
  * @param drillKcal          kcal a bow-drill try costs, whether it works or not (60).
- * @param drillMinEnergy     energy bolts below which a bow-drill attempt ends (2).
+ * @param drillMinEnergy     energy bolts (0–10, BodyService) below which a bow-drill attempt ends (4).
  * @param drillWindPct       Automatic-mode success × this in wind over {@code emberWindMs} without shelter (85).
  * @param packedArmloads     more armloads than this packs an open fire too full (3).
  * @param packedHotArmloads  more armloads than this packs a Hot fire too full (2).

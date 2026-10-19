@@ -1,16 +1,17 @@
 package com.yearofice.fire;
 
+import com.yearofice.api.body.BodyService;
 import com.yearofice.core.rules.YoiConfig;
 import com.yearofice.sim.fire.FirePractice;
 import com.yearofice.sim.fire.FireTuning;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
 /**
- * The player's Fire skill counter and energy, as the bow drill reads them. Both are stand-ins until their owners
- * land: reps live in the player's persistent data under {@code yearofice_fire} until the studio's
- * {@code yearofice:practice} attachment exists (M3), and energy is read from the vanilla food bar (0–20 → 0–5
- * bolts) until {@code api.BodyService} exposes the body's energy. Neither writes body state.
+ * The player's Fire skill counter and energy, as the bow drill reads them. Reps are a stand-in: they live in the
+ * player's persistent data under {@code yearofice_fire} until the studio's {@code yearofice:practice} attachment
+ * exists (M3). Energy is read from {@code api.body.BodyService} (0–10 bolts). Nothing here writes body state.
  */
 public final class FireSkill {
     private FireSkill() {}
@@ -47,8 +48,8 @@ public final class FireSkill {
         return p.level().getGameTime() / ticksPerDay;
     }
 
-    /** Energy in bolts (0–5). Stand-in: the food bar, until the body exposes energy. */
+    /** Energy in bolts (0–10), read from {@link BodyService} (RECONCILE 164). Full energy off the server. */
     public static double energyBolts(Player p) {
-        return p.getFoodData().getFoodLevel() / 4.0;
+        return p instanceof ServerPlayer sp ? BodyService.get().energy(sp) : 10.0;
     }
 }
