@@ -70,6 +70,26 @@ Eighteen new gameplay concepts that give the endless year its long-term reasons 
 
 **Sample moment.** Day 61, the player lies on the Esker for 3 game minutes while a beaver tows a birch across the pond. The sketch finishes with 3 stars and Beaver reaches level 4. That night a tail slap 200 m off gets a mark on the compass.
 
+**Field-note cards (video 2, A8; RECONCILE 170).** The first time the player does or meets something on a list of about 120 triggers, a small card pairs one real fact with the game rule it drives. The second video's "Wilderness Tip" cards were the part more than five commenters said they loved. These cards are not the Field study's radio field notes, which are research logs.
+
+**What a card says.** Two lines: a real-world fact, then the rule. "Spruce tips carry vitamin C. 1 cup = 1 C-day." Triggers include needle tea, yarrow, snow blindness, a first mineral lick, the first ice-thickness read, fish guts left at camp, a moose in rut, the first warn-once of each kind and the first plant identified in each family. Each card is `data/yearofice/field_note/<id>.json`, naming its trigger event and its two lang keys.
+
+**Display rules.**
+
+- The card shows bottom left for 8 real seconds; the key `key.yearofice.dismiss_card` (default J) closes it sooner.
+- At most one card per 10 real minutes. Later triggers queue and show in order; a card queued more than 1 game day files to the notebook unseen, marked new.
+- Never during the close clock or a danger alert: it waits until both end.
+- Every card is kept in the messenger notebook › Field notes, by date, and never shows twice.
+- Client option `field_note_cards`: On (default), First year only, or Off. Off still files them in the notebook.
+
+**Accuracy.** Every card's fact is checked by the Docs department against a cited source in its data file, and no card gives medical advice: a card on yarrow says what the game does, never what a person should take.
+
+**Failure cases.** A trigger that fires while the messenger is off or flat still files its card, and it shows the first time the device works. Two triggers in one minute show 10 real minutes apart. A card's game-rule line reads the live tuning, so a Gentle world prints Gentle's numbers.
+
+**Ties.** Warn once and the messenger (Blueprint › Moment-to-moment mechanics), the notebook, plant identification, the close clock and the HUD layer stack.
+
+**Build.** GUI layer `yearofice:field_note_card` (the 16th, bottom left, Minecraft development › Layer 8), drawn by `client.hud.FieldNoteCardLayer`; first-trigger bookkeeping in `story.notes.FieldNotes`, reusing the warn-once plumbing and the `yearofice:journal` attachment; line type `card` on the HudBus; data kind `field_note/`; sound `yearofice:ui.field_note_card`, a soft paper slide. Owner Look, sound and UI. Milestone M3, with onboarding. GameTests `yearofice:hud/field_note_cap` (M3): 30 triggers in 5 real minutes show 1 card, and the rest at 10-minute intervals in order; `yearofice:hud/field_note_quiet_in_danger` (M3): a trigger during a bear charge's close clock shows only after the clock ends, and never over a danger alert.
+
 ### 2. Reading the sky
 
 **What it is.** The player's own forecast, made from signs in the sky and in animals, written in the notebook and scored the next morning. It works with the messenger switched off, which matters in midwinter when the panel barely charges.

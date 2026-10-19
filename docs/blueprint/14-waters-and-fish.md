@@ -486,6 +486,34 @@ Each species carries a and b in its data; most use b = 3.0, with a from 0.000008
 
 Every fish over 10 kg already gives the big-catch +6 Spirits. A legend's +10 adds to it.
 
+**The game page (video 2, A5; RECONCILE 170).** The record book gains a game page beside the fish page, so big game gets records too. The item stays `yearofice:fish_record_book`, named "Record book" in game; the id is kept so no save breaks.
+
+**Every big-game animal has a size.** It is drawn when the animal's record is made, from its species' mean and sd, and saved with it. Age shifts the draw: young males −1 sd, prime males 0, old males +0.5 sd. Only males are measured for antlers and horns; cows, ewes and calves get weight only.
+
+| Species | Measured | Mean | sd | Trophy class at | Arvid's best |
+| --- | --- | --- | --- | --- | --- |
+| Moose, bull | Antler spread | 140 cm | 14 cm | 163 cm | 168 cm, 1957 |
+| Caribou, bull | Main beam | 105 cm | 12 cm | 125 cm | 128 cm, 1949 |
+| Dall sheep, ram | Horn length | 80 cm | 8 cm | 93 cm | 97 cm, 1964 |
+| Grizzly | Skull length + width | 56 cm | 3.5 cm | 61.8 cm | 62.5 cm, 1942 |
+| Black bear | Skull length + width | 46 cm | 2.5 cm | 50.1 cm | 50.8 cm, 1960 |
+| Wolf | Weight | 45 kg | 6 kg | 54.9 kg | 57 kg, 1968 |
+| Muskox, bull | Horn boss width | 22 cm | 2 cm | 25.3 cm | — |
+
+**Trophy class** is the top 5% of the species, z ≥ 1.645, stamped in the book with the date, place and weapon. Arvid's 1938–1971 bests fill the second column once his record page is found, as on the fish page.
+
+**Measuring.** The measuring stick (Small items) reads a carcass in 10 game minutes. Bear skulls are read after skinning, and a wolf is weighed on the steelyard or estimated from its length at ±15%, written with "≈". Only measured animals set a record.
+
+**Reading it before the shot.** Old bulls show wider palms, and binoculars at 200 m or less name the class: "Wide palms. A big bull." for z ≥ 1. A shed antler keeps the spread of the bull that dropped it, so a big shed shows where a big bull winters.
+
+**What it gives.** Hanging a mount gives Spirits once: +6 for a trophy-class head, +3 for any other. After that the mount counts toward the decorated-room cap as before. The mount rule is unchanged: a head and 1 game hour. Records give no extra food or loot.
+
+**Failure cases.** A head shot through the skull or antlers broken in a fall (a sheep off a ledge) reads −10%, and the book notes "broken". A carcass left to spoil past Turning can still be measured; a scavenged one cannot.
+
+**Ties.** Hunting and hit zones, butchering and the carcass record, the measuring stick and steelyard, Spirits, the trophy-wall ambitions (Open world in depth › Ambitions) and Arvid's story pages.
+
+**Build.** The species file gains a `trophy` block (`measure`, `mean_cm` or `mean_kg`, `sd_cm` or `sd_kg`, `age_shift_sd`); the draw lives in `sim.ecology.TrophyDraw` and is stored in the animal record; data component `yearofice:trophy_size` (`measure`, `value`, `z`, `class`) moves to the head or antler item at butchering; `story.collection.RecordBook` gains the game page; action `data/yearofice/action/measure_carcass.json`. Owner Ecosystem. Milestone M6, with big game. GameTest `yearofice:hunt/trophy_class_top5` (M6): over 10,000 drawn prime bulls, 5% ±0.4 reach trophy class, and the stick reads each within 1 cm of its stored spread.
+
 ## Gear and structures
 
 The fish wheel, drying racks, fish camp, weir, gill nets, minnow trap and the ice-fishing shack already exist. These eight are new, with the small items they need.

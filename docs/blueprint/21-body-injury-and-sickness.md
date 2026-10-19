@@ -11,7 +11,7 @@ This tab gives the body ten parts, each with its own health from 0 to 100, so an
 - **Condition** is still 0–100, heals by the table in Health, medicine and nutrition, sets the Fine, Hurt and Badly hurt bands, and collapses at 0 under the SOS rules.
 - **Every problem** keeps its cause, stages, Condition losses, timers, one treatment and recovery time. This tab only says which parts each can land on and what it adds there.
 - **Every source** in Danger in detail › Damage sources keeps its Condition loss and its injury roll. This tab adds the part weights.
-- **Strength** is still Condition × clamp((BMI − 17)/6, 0, 1). Parts change how a bow or axe is used, not Strength itself.
+- **Strength** is still Condition × clamp((BMI − 17)/6, 0, 1). Parts change how a bow or axe is used, not Strength itself. Strength also scales the load bands from 0.8× to 1.15× and sets the frames' minimum (video 2, A11: Minecraft development › Player systems and client › Strength carries more), so losing BMI shrinks what the player can carry.
 - **Body states are fields of `yearofice:body`**, not mob effects (RECONCILE 19, settled in Player systems and client).
 
 ### Where each video concept lives

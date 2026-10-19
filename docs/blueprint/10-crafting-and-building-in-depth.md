@@ -172,6 +172,33 @@ A stave inside the fire ring instead of beside it chars and is ruined. The messe
 | Cache-leg guards | 16 tin cans, or 2 kg of salvaged sheet (1 aluminum panel), 8 nails | Hatchet | 1 h | 250 | A set of 4 tin bands, 60 cm wide, for 4 peeled legs (Every concept from the video › Raised cache legs) |
 | Radio mast repair † | 2 kg bar iron as a sleeve, 15 m of the plane's control cable, the plane's charged battery | Workbench, then on site | 16 h | 4,000 | Working radio |
 
+**Black sand in the pan (video 2, A10; RECONCILE 170).** Creek gravel gives slow, renewing iron. Viewers asked for gold pans and sluices, and an Alaskan viewer noted the real thing: magnetite black sand settles in the pan with the gold, and interior placer creeks carry it.
+
+| Method | Where | Yield of black sand |
+| --- | --- | --- |
+| The mining camp's `gold_pan`, or a crafted `birch_pan` at 0.5× speed | Cut banks and riffles of `yearofice:placer_gravel`, the rust-stained gravel of placer reaches | 0.3 kg a game hour |
+| Gold pan | Any other creek gravel | 0.1 kg a game hour |
+| Sluice box (Iron tier, 8 planks and 2 poles, 3 game hours to place across a riffle) | Placer gravel | 3× the pan, while someone shovels |
+
+**Rules.**
+
+- **Panning** is hold-to-work at the water's edge with the pan in hand, at the light-work rate. Hands get wet and cold by the existing wet rules, so panning below 5 °C water costs warmth fast.
+- **Season.** Open water only, May to October; frozen gravel reads "Frozen. Wait for breakup."
+- **Smelting.** 4 kg of `black_sand` stands in for one 3 kg iron nodule in the bloomery (the recipe above), and the bloom yield is the same.
+- **Regrowth.** Each breakup re-deposits a placer reach: its yield resets to full, and a reach worked out (10 kg taken) drops to the other-gravel rate until then.
+- **Placement.** Placer reaches are flagged at world creation, 1–3 per valley, each 30–80 m of creek. They stay 400 m or more from the start site, so the start-site iron-distance check still holds.
+- **Gold.** Flakes are unchanged: a few an hour, worth Spirits only (Blueprint › Set pieces).
+
+**On screen and sound.** The pan swirls with `yearofice:work.pan_swirl`; a black streak settles at the rim and the yield line reads "+0.3 kg black sand". Placer gravel shows rust-orange in the cut bank. The sluice rattles with `yearofice:work.sluice_wash`.
+
+**Failure cases.** A crafted birch pan cracks on 5% of hours below 0 °C air. A sluice left in the creek at freeze-up is iced in and takes −100 HP; at breakup it is swept away unless pulled. Panning ordinary gravel all day gives 0.8 kg, a fifth of a bloom.
+
+**Ties.** The bloomery and the Iron tier (this tab), surface iron (Explore, don't dig: no digging is needed), the wet and cold rules, the breakup (Water, calls and encounters), and the mining camp's gold pan.
+
+**Build.** Items `yearofice:black_sand` and `yearofice:birch_pan` (birch round and knife, 1 game hour, Bushcraft); the found `gold_pan` (Items › Found and salvaged items); block `yearofice:placer_gravel`, generated from a `placer` block in `worldgen_params/valley.json`; block entity `yearofice:sluice_box` (`build.water.SluiceBoxBlockEntity`); action `data/yearofice/action/pan.json`; the bloomery recipe gains a `black_sand` input. Owner Building and crafting (the gravel block is World generation's). Milestones: panning and black sand M5; the sluice and black-sand blooms M9, with the bloomery.
+
+**GameTests.** `yearofice:build/black_sand_pan_rates` (M5): an hour of the gold pan on placer gravel gives 0.3 ±0.01 kg, on other gravel 0.1, and the birch pan takes 2 game hours for the same 0.3. `yearofice:worldgen/placer_far_from_start` (M5): over 200 seeds every placer reach lies 400 m or more from the start site. `yearofice:build/sluice_triple` (M9): a worked sluice gives 0.9 ±0.03 kg a game hour. `yearofice:build/black_sand_bloom` (M9): 4 kg of black sand in the bloomery gives the same bloom as one 3 kg nodule.
+
 **More Iron recipes.** The pierced lantern is what lights a camp once the 6 plexiglass offcuts are used.
 
 | Recipe | Inputs | Station and tool | Time | kcal | Output |
@@ -280,6 +307,7 @@ Here m\_light is 2 in the dark, and m\_body is the product of the body's slowdow
 | Smoking | A batch | 10 | Flare-up loss 30% → 5% |
 | Smithing | A smelt or a forged item | 20 | Bloom yield 2.0 → 2.5 kg |
 | Fishing | A fish landed | 50 | Strike window +0.2 s; cast scatter ±10% → ±4% |
+| Hauling (video 2, A11) | 100 m walked in the Heavy load band | 300 | No speed effect; the load-band edges grow up to +10%, about one game year of hauling (Minecraft development › Strength carries more) |
 
 The bow drill's 3-second hold is a change to the real-time minigame. Its game time still follows the formula.
 
@@ -400,6 +428,18 @@ A squirrel in a felled tree leaps clear 70% of the time (Every concept from the 
 **Beavers fell trees too.** A colony fells 1 aspen, poplar, willow or birch of up to 30 cm a week of open water, within 30 blocks of its pond. The tree falls toward the water 70% of the time and leaves a pencil-point `stump` with `gnawed=true`. Its trunk lies as `fallen_log` blocks that the beavers cut and tow away over 5 days, so a fresh beaver tree near the bank is 4 free armloads of green wood. A beaver tree can hang up or land on a piece like any other. A cage of 3 m of snare wire (5 game minutes) saves a tree. `ecosystem.species.beaver.DamWork` submits it as a `FALL` op through `WorldEditService.submit`.
 
 **Bears and falling trees.** A grizzly shoving a stand tree under 20 cm topples it after 3 shoves (Every concept from the video › Bears and tree stands). It uses the same `falling_tree` entity and damage table, with the fall line pointing away from the bear, and the player falls by the 3–5 m fall rules. Trees of 20–30 cm are only shaken, those over 30 cm are safe, and bears fell nothing else.
+
+**Placed logs never fall (video 2, A1; RECONCILE 170).** A cabin can never topple as a tree. In the second video a tree mod read a cabin's logs as one trunk and dropped the whole cabin, a 7-day rebuild. Here felling acts only on a tree record, and placed blocks stop it.
+
+- **Placed, not grown.** Every natural log block (`yearofice:<wood>_log` and the snag, punk and rotten logs) carries the block state `placed`, default false. `build.wood.PlacedLogs` sets `placed=true` on any log the player places, from a bucked log or a log item, on `BlockEvent.EntityPlaceEvent`. Placed logs, log walls, sills, cribs and every other piece are in the tag `#yearofice:fell_stops`.
+- **The fall search.** `FellingService` clears only the trunk column of a record in `yearofice:trees`, from its rooted base (soil within 1 block below) up to its height. The column ends at the first block in `#yearofice:fell_stops` or with `placed=true`, and nothing past it is ever cleared or turned into `falling_tree`.
+- **Chopping a placed log.** LMB on a placed log or a log wall shows no fall arrow. It takes the tool's buck time for one armload (3 game minutes with the crate hatchet, 2 with the felling axe) and removes that one block as 2 `<wood>_round` items. Pieces above follow Structures and buildables › Structural support: an unsupported piece drops as items under the refund rules, and no log entity spawns.
+- **Sneak to cut one block.** Sneak + LMB on a standing natural trunk never starts a felling. It cuts only the column's top trunk block at twice the tool's buck time (6 game minutes with the crate hatchet) and gives 2 rounds. The record's height drops by 1, and at the base it becomes a `stump`. This answers the viewer who asked to hold Shift to stop the chop cascade: a tree by the cabin can be taken down from the top, one block at a time.
+- **On screen.** An axe on a placed log shows "Cut one block (placed log): 3 min". Sneaking at a trunk shows "Cut the top block: 6 min" and hides the fall arrow.
+- **Failure cases.** A wall built against a standing trunk does not join it: felling that tree clears only its own column, and a fall line across the cabin still damages pieces by the Onto a piece row above. A placed log used as a post carries what sits on it, so cutting it drops that load by the support rules, never more.
+- **Ties.** Felling (this section), Structural support and the 1-hour refund (Structures and buildables), the Practice skill Felling (a sneak cut counts no rep), and the Trees chunk attachment.
+- **Build.** Block state `placed` on the natural log blocks; tag `#yearofice:fell_stops`; action `data/yearofice/action/cut_block.json`; classes `build.wood.PlacedLogs` and the column check in `build.wood.FellingService`; tuning `[wood] sneak_cut_time_mult = 2.0`. Owner Building and crafting. Milestone M2, with felling.
+- **GameTests.** `yearofice:build/placed_logs_never_fall` (M2): in a 5 × 5 × 4 cabin of placed logs, cutting a window removes exactly 1 block per cut and spawns no `falling_tree` or `felled_log`; a 25 cm spruce felled beside the wall leaves every wall block in place. `yearofice:build/sneak_cut_one_block` (M2): sneak + LMB on a 6 m white spruce removes only its top block in 6 ±0.5 game minutes with the crate hatchet, lowers the record's height by 1 and never shows a fall arrow.
 
 **On screen and sound.** Chips fly on each swing, the notch shows pale on the bark, and the fall arrow turns amber for a crown in the line and red for a snag or a piece. Trail Messenger lines: "Fall line east. A birch is in the way." · "Hung up. Lever it or leave it." · "Barber chair: the trunk split." Sounds: `tree.chop`, `tree.creak`, `tree.fall`, `tree.split`, `tree.hang_creak`, with the existing `tree.snag_pop` and `tree.shove_creak`.
 
