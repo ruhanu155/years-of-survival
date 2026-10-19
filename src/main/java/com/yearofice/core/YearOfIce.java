@@ -25,6 +25,7 @@ public final class YearOfIce {
         com.yearofice.hud.HudSystem.init();
         com.yearofice.item.component.YoiComponents.register(modBus);
         com.yearofice.decay.DecaySystem.init(modBus);
+        com.yearofice.item.inventory.PackSystem.init(modBus);
         com.yearofice.body.BodySystem.init(modBus);
         com.yearofice.fire.FireSystem.init(modBus);
         com.yearofice.worldgen.gen.WorldgenRegistry.init(modBus);

@@ -457,7 +457,8 @@ public final class Onboarding {
         BlockPos target = l.target;
         OnboardingSyncPayload payload = new OnboardingSyncPayload(r.night.status().ordinal(), r.night.step().ordinal(),
                 StoryConfig.beacon(), target != null, target == null ? BlockPos.ZERO : target,
-                (int) Math.round(t.nearFireRadiusM()), StoryClock.sunsetOf(minute));
+                (int) Math.round(t.nearFireRadiusM()), StoryClock.sunsetOf(minute),
+                com.yearofice.hud.messenger.MessengerAccess.live(p));
         if (!payload.equals(l.sent)) {
             l.sent = payload;
             StoryNet.sendToOwner(p, payload);

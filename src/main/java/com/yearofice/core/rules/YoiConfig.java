@@ -22,6 +22,7 @@ public final class YoiConfig {
                 .defineInRange("day_length_min", 24, 24, 72);
         b.pop();
         com.yearofice.story.clock.ClockConfig.define(b);
+        com.yearofice.item.inventory.PackConfig.define(b);
         com.yearofice.body.BodyConfig.define(b);
         com.yearofice.fire.FireConfig.define(b);
         com.yearofice.hunt.fishing.FishingConfig.define(b);

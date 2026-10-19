@@ -132,12 +132,14 @@ public final class ContentLint {
 
     /**
      * Registry files in Minecraft's or NeoForge's own format (dimension types, dimensions, worldgen registries,
-     * biome modifiers): their keys are not ours to name, so checks 1–2 skip them. Our own kinds under
+     * biome modifiers), and Curios's slot and entity files under {@code curios/} ("size" is a slot count): their
+     * keys are not ours to name, so checks 1–2 skip them. Our own kinds under
      * {@code worldgen_params/} and the rest are still checked.
      */
     static boolean vanillaSchema(String relToDataYearofice) {
         return relToDataYearofice.startsWith("dimension_type/") || relToDataYearofice.startsWith("dimension/")
-                || relToDataYearofice.startsWith("worldgen/") || relToDataYearofice.startsWith("neoforge/");
+                || relToDataYearofice.startsWith("worldgen/") || relToDataYearofice.startsWith("neoforge/")
+                || relToDataYearofice.startsWith("curios/");
     }
 
     private void walk(JsonElement el, String file, String path, boolean unitAbove) {

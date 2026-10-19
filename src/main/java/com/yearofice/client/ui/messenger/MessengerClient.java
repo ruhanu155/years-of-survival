@@ -1,6 +1,5 @@
 package com.yearofice.client.ui.messenger;
 
-import com.mojang.blaze3d.platform.InputConstants;
 import com.yearofice.body.net.BodyNet;
 import com.yearofice.body.net.DrinkPayload;
 import com.yearofice.client.hud.ClientBody;
@@ -23,30 +22,23 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.InputEvent;
-import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
-import org.lwjgl.glfw.GLFW;
 
 /**
  * The client half of the messenger and of drinking: installs the item's open hook and the {@code body_sync} sink,
- * registers the M key, and turns an empty-hand use on open water into a {@code yearofice:drink} request.
+ * reads the M key, and turns an empty-hand use on open water into a {@code yearofice:drink} request.
  */
 @EventBusSubscriber(modid = YearOfIce.MOD_ID, value = Dist.CLIENT)
 public final class MessengerClient {
     private MessengerClient() {}
 
-    public static final KeyMapping OPEN = new KeyMapping("key.yearofice.messenger", InputConstants.Type.KEYSYM,
-            GLFW.GLFW_KEY_M, "key.categories.yearofice");
+    /** The M key, registered with the other 12 in {@code client.input.YoiKeys}. */
+    public static final KeyMapping OPEN = com.yearofice.client.input.YoiKeys.MESSENGER;
 
     @SubscribeEvent
     public static void setup(FMLClientSetupEvent e) {
         TrailMessengerItem.openScreen = MessengerClient::open;
         BodyNet.clientSink = ClientBody::accept;
-    }
-
-    @SubscribeEvent
-    public static void keys(RegisterKeyMappingsEvent e) {
-        e.register(OPEN);
     }
 
     public static void open() {
@@ -59,7 +51,11 @@ public final class MessengerClient {
         Minecraft mc = Minecraft.getInstance();
         while (OPEN.consumeClick()) {
             if (mc.player == null || mc.screen != null) continue;
-            if (mc.player.getInventory().contains(new net.minecraft.world.item.ItemStack(MessengerItems.MESSENGER.get()))) {
+            boolean neck = false;
+            for (int i = 0; i < com.yearofice.item.inventory.PackSlots.size(mc.player, com.yearofice.item.inventory.PackSlots.NECK); i++) {
+                neck |= com.yearofice.item.inventory.PackSlots.get(mc.player, com.yearofice.item.inventory.PackSlots.NECK, i).is(MessengerItems.MESSENGER.get());
+            }
+            if (neck || mc.player.getInventory().contains(new net.minecraft.world.item.ItemStack(MessengerItems.MESSENGER.get()))) {
                 open();
             } else {
                 mc.player.displayClientMessage(Component.translatable("messenger.yearofice.warn.no_messenger"), true);

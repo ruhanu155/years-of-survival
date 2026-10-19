@@ -18,9 +18,11 @@ import net.minecraft.resources.ResourceLocation;
  * @param target       the block the beacon stands on
  * @param nearFireM    the near-fire radius in whole metres, for the sleep line
  * @param sunsetMinute today's sunset as an absolute game minute, for the Guide page
+ * @param messenger    a Trail Messenger with battery is in a hand or the neck slot (the HUD bus's own rule); the
+ *                     beacon is the messenger's, so it hides without one
  */
 public record OnboardingSyncPayload(int status, int step, boolean beacon, boolean hasTarget, BlockPos target,
-                                    int nearFireM, long sunsetMinute) implements CustomPacketPayload {
+                                    int nearFireM, long sunsetMinute, boolean messenger) implements CustomPacketPayload {
 
     public static final Type<OnboardingSyncPayload> TYPE =
             new Type<>(ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, "onboarding_sync"));
@@ -36,11 +38,12 @@ public record OnboardingSyncPayload(int status, int step, boolean beacon, boolea
         b.writeBlockPos(p.target);
         b.writeVarInt(p.nearFireM);
         b.writeVarLong(p.sunsetMinute);
+        b.writeBoolean(p.messenger);
     }
 
     static OnboardingSyncPayload read(RegistryFriendlyByteBuf b) {
         return new OnboardingSyncPayload(b.readVarInt(), b.readVarInt(), b.readBoolean(), b.readBoolean(), b.readBlockPos(),
-                b.readVarInt(), b.readVarLong());
+                b.readVarInt(), b.readVarLong(), b.readBoolean());
     }
 
     @Override

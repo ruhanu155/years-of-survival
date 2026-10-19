@@ -8,8 +8,6 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.MeshData;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import com.yearofice.body.net.BodySyncPayload;
-import com.yearofice.client.hud.ClientBody;
 import com.yearofice.core.YearOfIce;
 import com.yearofice.sim.story.BeaconLook;
 import com.yearofice.sim.story.OnboardingTuning;
@@ -33,7 +31,8 @@ import org.joml.Matrix4f;
  * <p>Look rules: one column at a time; faint (30% at most) and fading to nothing on the way up; visible through
  * trees (no depth test, additive, so it reads as light and never hides what is behind it); gone within 4 m of the
  * target and growing to full strength by 12 m ({@link BeaconLook}); hidden while any screen is open, with F1, and
- * when the messenger is dead or not carried. No screen-wide effect of any kind.
+ * when no live messenger is in a hand or the neck slot (the server's
+ * {@code onboarding_sync} says, by the HUD bus's rule). No screen-wide effect of any kind.
  */
 @EventBusSubscriber(modid = YearOfIce.MOD_ID, value = Dist.CLIENT)
 public final class BeaconRenderer {
@@ -50,8 +49,7 @@ public final class BeaconRenderer {
         if (mc.player == null || mc.level == null || mc.options.hideGui || mc.screen != null) return;
         OnboardingSyncPayload p = ClientOnboarding.get();
         if (!ClientOnboarding.active(p) || !p.beacon() || !p.hasTarget()) return;
-        BodySyncPayload body = ClientBody.get();
-        if (body != null && body.battery() <= 0) return;
+        if (!p.messenger()) return;
 
         OnboardingTuning t = StoryConfig.tuning();
         BlockPos target = p.target();

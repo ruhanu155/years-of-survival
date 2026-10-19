@@ -1,0 +1,65 @@
+{
+  "replace": false,
+  "values": {
+    "yearofice:arctic_grayling": {
+      "weight_g": 350
+    },
+    "yearofice:bow_drill": {
+      "weight_g": 600
+    },
+    "yearofice:crate_backpack": {
+      "weight_g": 1000
+    },
+    "yearofice:fire_ring": {
+      "weight_g": 12000
+    },
+    "yearofice:hare_pelt": {
+      "weight_g": 200
+    },
+    "yearofice:kindling": {
+      "weight_g": 1500
+    },
+    "yearofice:match": {
+      "weight_g": 2
+    },
+    "yearofice:messenger": {
+      "weight_g": 200
+    },
+    "yearofice:rod": {
+      "weight_g": 400
+    },
+    "yearofice:sinew": {
+      "weight_g": 20
+    },
+    "yearofice:snare_wire": {
+      "weight_g": 10
+    },
+    "yearofice:snowshoe_hare_meat": {
+      "weight_g": 100
+    },
+    "yearofice:tinder_bundle": {
+      "weight_g": 50
+    },
+    "yearofice:whole_game": {
+      "weight_g": 1500
+    },
+    "yearofice:willow_ptarmigan_meat": {
+      "weight_g": 100
+    },
+    "yearofice:worm": {
+      "weight_g": 5
+    },
+    "minecraft:spruce_log": {
+      "weight_g": 7500
+    },
+    "minecraft:stripped_spruce_log": {
+      "weight_g": 7500
+    },
+    "minecraft:birch_log": {
+      "weight_g": 7500
+    },
+    "minecraft:stripped_birch_log": {
+      "weight_g": 7500
+    }
+  }
+}

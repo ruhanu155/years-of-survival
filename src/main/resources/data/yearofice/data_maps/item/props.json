@@ -1,0 +1,92 @@
+{
+  "replace": false,
+  "values": {
+    "yearofice:arctic_grayling": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:bow_drill": {
+      "category": "fire",
+      "stack_class": "single",
+      "material": "wood",
+      "max_condition": 100
+    },
+    "yearofice:crate_backpack": {
+      "category": "pack",
+      "stack_class": "single",
+      "floats": true,
+      "material": "wood",
+      "max_condition": 200
+    },
+    "yearofice:fire_ring": {
+      "category": "fire",
+      "stack_class": "single",
+      "material": "stone"
+    },
+    "yearofice:hare_pelt": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:kindling": {
+      "category": "fire",
+      "stack_class": "medium",
+      "floats": true,
+      "material": "wood"
+    },
+    "yearofice:match": {
+      "category": "fire",
+      "stack_class": "small"
+    },
+    "yearofice:messenger": {
+      "category": "device",
+      "stack_class": "single",
+      "shiny": true,
+      "max_condition": 100
+    },
+    "yearofice:rod": {
+      "category": "tool",
+      "stack_class": "single",
+      "floats": true,
+      "material": "wood",
+      "max_condition": 100
+    },
+    "yearofice:sinew": {
+      "category": "material",
+      "stack_class": "small"
+    },
+    "yearofice:snare_wire": {
+      "category": "trap",
+      "stack_class": "medium",
+      "shiny": true,
+      "material": "iron"
+    },
+    "yearofice:snowshoe_hare_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 2
+    },
+    "yearofice:tinder_bundle": {
+      "category": "fire",
+      "stack_class": "medium",
+      "floats": true
+    },
+    "yearofice:whole_game": {
+      "category": "food",
+      "stack_class": "single",
+      "scent_level": 3
+    },
+    "yearofice:willow_ptarmigan_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 2
+    },
+    "yearofice:worm": {
+      "category": "bait",
+      "stack_class": "small",
+      "scent_level": 1
+    }
+  }
+}

@@ -19,6 +19,11 @@ import com.yearofice.sim.fire.FireWeather;
 import com.yearofice.sim.story.FirstNight;
 import com.yearofice.sim.story.FirstNightStep;
 import com.yearofice.story.DayOne;
+import com.yearofice.item.inventory.PackRules;
+import com.yearofice.item.inventory.PackSlots;
+import com.yearofice.item.inventory.Pickup;
+import com.yearofice.item.messenger.MessengerKit;
+import net.minecraft.world.entity.item.ItemEntity;
 import com.yearofice.story.Onboarding;
 import com.yearofice.api.env.EnvService;
 import com.yearofice.sim.time.Calendar;
@@ -169,7 +174,21 @@ public final class StoryGameTests {
             h.useBlock(RING, p);
         }
 
-        void hold(ItemStack s) { p.setItemInHand(InteractionHand.MAIN_HAND, s); }
+        /** The bot's hand is the last belt slot, so what it carries in slots 0–7 is never overwritten. */
+        void hold(ItemStack s) {
+            p.getInventory().selected = 8;
+            p.setItemInHand(InteractionHand.MAIN_HAND, s);
+        }
+
+        /** Drops {@code s} at the bot's feet and picks it up with the use key, as {@code yearofice:pickup} does. */
+        Pickup.Result pick(ItemStack s) {
+            ItemEntity e = new ItemEntity(h.getLevel(), p.getX(), p.getY() + 0.2, p.getZ(), s);
+            e.setNoPickUpDelay();
+            h.getLevel().addFreshEntity(e);
+            Pickup.Result r = Pickup.pickUp(p, e);
+            if (e.isAlive()) e.discard();
+            return r;
+        }
 
         FirstNightStep step() { return StoryAttachments.of(p).night().step(); }
     }
@@ -193,9 +212,13 @@ public final class StoryGameTests {
             // 1. Gather: tinder, kindling, wood and the crate's matches.
             b.pass(40, Activity.WALK);
             h.assertTrue(b.step() == FirstNightStep.TINDER, "nothing gathered yet, still step 1");
-            p.getInventory().setItem(9, new ItemStack(item("tinder_bundle")));
-            p.getInventory().setItem(10, new ItemStack(item("kindling"), 2));
-            p.getInventory().setItem(11, new ItemStack(Items.SPRUCE_LOG, 16));
+            // Picked up with the use key (no walk-over pickup): into the belt, the only open slots without a pack.
+            h.assertTrue(b.pick(new ItemStack(item("tinder_bundle"))) == Pickup.Result.TAKEN, "picked up the tinder");
+            h.assertTrue(b.pick(new ItemStack(item("kindling"), 2)) == Pickup.Result.TAKEN, "picked up the kindling");
+            h.assertTrue(b.pick(new ItemStack(Items.SPRUCE_LOG, 8)) != Pickup.Result.GONE, "picked up wood");
+            for (int i = PackRules.ROW_START; i < PackRules.ROW_END; i++) {
+                h.assertTrue(p.getInventory().getItem(i).isEmpty(), "nothing lands in a locked pack row: slot " + i);
+            }
             Onboarding.check(p, b.story);
             h.assertTrue(b.step() == FirstNightStep.RING, "tinder and kindling close step 1, at " + b.step());
 
@@ -233,7 +256,7 @@ public final class StoryGameTests {
             b.pass(90, Activity.WALK);
             ItemStack meat = new ItemStack(item("snowshoe_hare_meat"), 3);
             DecayService.get().stamp(h.getLevel(), meat, FoodState.RAW);
-            p.getInventory().setItem(20, meat); // in the pack, off the hotbar the bot's hand works from
+            h.assertTrue(b.pick(meat) == Pickup.Result.TAKEN, "picked up the meat");
             Onboarding.check(p, b.story);
             h.assertTrue(b.step() == FirstNightStep.EAT, "food in the pack closes step 4, at " + b.step());
 
@@ -243,7 +266,7 @@ public final class StoryGameTests {
             for (int i = 0; i < p.getInventory().getContainerSize() && slot < 0; i++) {
                 if (p.getInventory().getItem(i).is(item("snowshoe_hare_meat"))) slot = i;
             }
-            h.assertTrue(slot >= 0, "the meat is in the pack");
+            h.assertTrue(slot >= 0 && slot < PackRules.ROW_START, "the meat is on the belt: slot " + slot);
             ItemStack cooked = p.getInventory().getItem(slot);
             DecayService.get().changeState(h.getLevel(), cooked, FoodState.COOKED);
             for (int i = 0; i < 3; i++) {
@@ -291,8 +314,13 @@ public final class StoryGameTests {
             FirstNight n = StoryAttachments.of(back).night();
             h.assertTrue(n.status() == FirstNight.Status.SKIPPED && n.ending() == FirstNight.Ending.RETURNING,
                     "a returning player is skipped: " + n.status() + " " + n.ending());
+            // The first-join kit: the Trail Messenger on its lanyard in the neck slot, so the night's lines reach the screen.
+            h.assertTrue(MessengerKit.giveIfFirstJoin(fresh), "the kit was given");
+            h.assertTrue(PackSlots.get(fresh, PackSlots.NECK, 0).is(item("messenger")), "the messenger is in the neck slot");
             Onboarding.onJoin(fresh, 12 * 60);
             h.assertTrue(StoryAttachments.of(fresh).night().active(), "a new player gets the night");
+            h.assertFalse(journalHas(fresh, "messenger.yearofice.alert.first_night_wake"),
+                    "with a live messenger the wake line goes to the screen, not the journal");
             Onboarding.onJoin(fresh, 13 * 60);
             h.assertTrue(StoryAttachments.of(fresh).night().startMinute() == 12 * 60, "a second join does not restart it");
             Onboarding.skip(fresh, 13 * 60);

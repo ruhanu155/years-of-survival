@@ -19,7 +19,7 @@ public final class Units {
         double v = hundredths / 100.0;
         return switch (unit) {
             case "c" -> String.format(Locale.ROOT, "%.0f °C", v);
-            case "kg" -> String.format(Locale.ROOT, v < 10 ? "%.1f kg" : "%.0f kg", v);
+            case "kg" -> String.format(Locale.ROOT, v < 10 && v != Math.rint(v) ? "%.1f kg" : "%.0f kg", v);
             case "g" -> String.format(Locale.ROOT, "%.0f g", v);
             case "m" -> v >= 1000 ? String.format(Locale.ROOT, "%.1f km", v / 1000) : String.format(Locale.ROOT, "%.0f m", v);
             case "km" -> String.format(Locale.ROOT, "%.1f km", v);

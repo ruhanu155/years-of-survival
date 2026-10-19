@@ -1649,6 +1649,18 @@
    "licence": "project",
    "generator_version": "world_blocks 1.0",
    "release_blocker": false
+  },
+  {
+   "asset_id": "tex_crate_backpack",
+   "files": [
+    "assets/yearofice/textures/item/crate_backpack.png",
+    "assets/yearofice/models/item/crate_backpack.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
   }
  ]
 }

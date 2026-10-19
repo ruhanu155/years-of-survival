@@ -10,7 +10,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 /**
- * The player arrives with the Trail Messenger: it is given once, on the first join of each world. The flag lives
+ * The player arrives with the Trail Messenger round the neck (the Curios {@code neck} slot, or the pockets when the
+ * slot is missing): it is given once, on the first join of each world. The flag lives
  * in the persisted player data, so a flight out never gives a second one. The rest of the starting kit is M3
  * ({@code loot_table/player/starting_kit.json}).
  */
@@ -30,7 +31,10 @@ public final class MessengerKit {
         CompoundTag persisted = p.getPersistentData().getCompound(Player.PERSISTED_NBT_TAG);
         if (persisted.getBoolean(GIVEN_KEY)) return false;
         ItemStack stack = new ItemStack(MessengerItems.MESSENGER.get());
-        if (!p.getInventory().add(stack)) p.drop(stack, false);
+        // On a lanyard in the first neck slot (Inventory and slots), so its lines reach the screen; else the pockets.
+        boolean worn = com.yearofice.item.inventory.PackSlots.get(p, com.yearofice.item.inventory.PackSlots.NECK, 0).isEmpty()
+                && com.yearofice.item.inventory.PackSlots.set(p, com.yearofice.item.inventory.PackSlots.NECK, 0, stack);
+        if (!worn && !p.getInventory().add(stack)) p.drop(stack, false);
         persisted.putBoolean(GIVEN_KEY, true);
         p.getPersistentData().put(Player.PERSISTED_NBT_TAG, persisted);
         return true;
