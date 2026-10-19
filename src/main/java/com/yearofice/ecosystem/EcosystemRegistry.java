@@ -5,11 +5,11 @@ import com.yearofice.ecosystem.ai.Sensing;
 import com.yearofice.ecosystem.carcass.CarcassEntity;
 import com.yearofice.ecosystem.carcass.CarcassRecord;
 import com.yearofice.ecosystem.carcass.Freshness;
+import com.yearofice.food.YoiFoodItem;
 import com.yearofice.ecosystem.carcass.WholeGameItem;
 import com.yearofice.ecosystem.species.MooseEntity;
 import com.yearofice.ecosystem.species.SnowshoeHareEntity;
 import com.yearofice.ecosystem.species.bird.WillowPtarmiganEntity;
-import com.yearofice.sim.decay.Fresh;
 import java.util.Optional;
 import java.util.function.Supplier;
 import net.minecraft.core.component.DataComponentType;
@@ -32,9 +32,9 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 /**
  * The ecosystem's registry entries for the M2.5 slice. Every id here is in {@code studio/inventory.json}.
  *
- * <p>{@code yearofice:fresh} is registered here because carcasses and their meat are its first writer; it is
- * studio-owned shared state, and moves to {@code item.component.YoiComponents} (with the decay layer) under the same
- * id, as {@code yearofice:moisture} will from the fire package.
+ * <p>{@code yearofice:fresh} is registered once, in {@code item.component.YoiComponents} (RECONCILE 169); carcasses
+ * and their meat write it through {@link Freshness}. The two meats are {@link YoiFoodItem}s, eaten through the food
+ * package's bite rules.
  */
 public final class EcosystemRegistry {
     private EcosystemRegistry() {}
@@ -61,8 +61,6 @@ public final class EcosystemRegistry {
 
     // ---- components and attachments ----
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Fresh>> FRESH =
-            COMPONENTS.registerComponentType("fresh", b -> b.persistent(Freshness.CODEC).networkSynchronized(ByteBufCodecs.fromCodec(Freshness.CODEC)));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<CarcassRecord>> CARCASS_COMPONENT =
             COMPONENTS.registerComponentType("carcass", b -> b.persistent(CarcassRecord.CODEC).networkSynchronized(ByteBufCodecs.fromCodec(CarcassRecord.CODEC)));
     public static final Supplier<AttachmentType<CarcassRecord>> CARCASS = ATTACHMENTS.register("carcass",
@@ -71,8 +69,8 @@ public final class EcosystemRegistry {
     // ---- items (Bestiary › In Minecraft: carcasses; Items › Food values; item_family/) ----
 
     public static final DeferredItem<WholeGameItem> WHOLE_GAME = ITEMS.registerItem("whole_game", WholeGameItem::new, new Item.Properties().stacksTo(1));
-    public static final DeferredItem<Item> SNOWSHOE_HARE_MEAT = ITEMS.registerItem("snowshoe_hare_meat", Item::new, new Item.Properties().stacksTo(80));
-    public static final DeferredItem<Item> WILLOW_PTARMIGAN_MEAT = ITEMS.registerItem("willow_ptarmigan_meat", Item::new, new Item.Properties().stacksTo(80));
+    public static final DeferredItem<Item> SNOWSHOE_HARE_MEAT = ITEMS.register("snowshoe_hare_meat", () -> new YoiFoodItem(new Item.Properties().stacksTo(80)));
+    public static final DeferredItem<Item> WILLOW_PTARMIGAN_MEAT = ITEMS.register("willow_ptarmigan_meat", () -> new YoiFoodItem(new Item.Properties().stacksTo(80)));
     public static final DeferredItem<Item> HARE_PELT = ITEMS.registerItem("hare_pelt", Item::new, new Item.Properties().stacksTo(16));
     public static final DeferredItem<Item> SINEW = ITEMS.registerItem("sinew", Item::new, new Item.Properties().stacksTo(32));
 

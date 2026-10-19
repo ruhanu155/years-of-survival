@@ -21,5 +21,10 @@
    "bone",
    4
   ]
+ },
+ "variants": {
+  "burnt": {
+   "meat_cooked": "fur_black"
+  }
  }
 }

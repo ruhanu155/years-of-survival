@@ -1,5 +1,5 @@
 """snare: writes the yearofice:snare blockstate and block models (G0 blockout), and the item models of the
-ecosystem slice's game items (whole_game, the two meats and the hare pelt), which reuse the art wave's sprites.
+ecosystem slice's game items (whole_game and the hare pelt), which reuse the art wave's sprites.
 
 The snare is a wire loop 10 cm across a fist's height above the ground, hung from a cross stick between two guide
 sticks (Blueprint > Traps). `sprung` closes the loop. Textures are vanilla references, never copies.
@@ -14,7 +14,8 @@ STICK = "minecraft:block/stripped_spruce_log"
 WIRE = "minecraft:block/iron_block"
 
 # item id -> the art wave's sprite it shows until its own icon is drawn
-ITEMS = {"whole_game": "raw_hare", "snowshoe_hare_meat": "raw_hare", "willow_ptarmigan_meat": "raw_grouse", "hare_pelt": "raw_hide"}
+# (the two meats moved to tools/artgen/cooking.py, whose models switch between raw, cooked and burnt)
+ITEMS = {"whole_game": "raw_hare", "hare_pelt": "raw_hide"}
 
 
 def cube(frm, to, tex):

@@ -1,5 +1,8 @@
 package com.yearofice.hunt.fishing;
 
+import com.yearofice.api.decay.DecayService;
+import com.yearofice.item.component.YoiComponents;
+import com.yearofice.sim.decay.FoodState;
 import com.yearofice.api.body.BodyService;
 import com.yearofice.hunt.fishing.net.FishInputPayload;
 import com.yearofice.hunt.fishing.net.FishResultPayload;
@@ -410,6 +413,8 @@ public final class FishingService {
                 grams = (int) Math.round(f.params.kg() * 1000);
                 if (o != null) {
                     ItemStack fish = landedFish(grams);
+                    // A whole, uncleaned fish: raw life 3.6 days at 5 °C (k 0.6), from its food row.
+                    DecayService.get().stamp(o.level(), fish, FoodState.RAW);
                     if (!o.getInventory().add(fish)) o.drop(fish, false);
                     long minute = FishingClock.minute(o.server);
                     SliceSpots.stocks((ServerLevel) b.level()).harvest(SliceSpots.key(b.waterBlock()), FishingClock.day(minute), t, 1);
@@ -442,7 +447,7 @@ public final class FishingService {
 
     public static ItemStack landedFish(int grams) {
         ItemStack fish = new ItemStack(FishingRegistry.ARCTIC_GRAYLING.get());
-        fish.set(FishingRegistry.WEIGHT_G.get(), grams);
+        fish.set(YoiComponents.WEIGHT_G.get(), grams);
         return fish;
     }
 

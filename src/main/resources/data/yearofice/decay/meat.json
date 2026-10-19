@@ -1,0 +1,7 @@
+{
+  "curve": "living_rot",
+  "shape": "linear",
+  "ladder": "food",
+  "frozen_below_c": -5.0,
+  "note": "The living-rot curve that raw and cooked meat and fish run on (Blueprint > Spoilage model; Minecraft development > Layer 5). f_T is the whole-degree table L(5 C)/L(T): x3 per 10 C, 0.2 half-frozen between frozen_below_c and 0 C, 0 below. Safe lives by state are spoil_days_at_5c in data_maps/item/food.json."
+}
