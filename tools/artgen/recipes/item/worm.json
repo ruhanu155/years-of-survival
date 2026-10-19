@@ -1,0 +1,74 @@
+{
+ "id": "yearofice:worm",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "line",
+   "points": [
+    [
+     2,
+     12
+    ],
+    [
+     4,
+     10
+    ],
+    [
+     6,
+     11
+    ],
+    [
+     8,
+     9
+    ],
+    [
+     9,
+     7
+    ],
+    [
+     11,
+     6
+    ],
+    [
+     13,
+     7
+    ]
+   ],
+   "width": 2,
+   "ramp": "meat_raw",
+   "step": 3
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     6,
+     11
+    ],
+    [
+     7,
+     10
+    ]
+   ],
+   "width": 1,
+   "ramp": "meat_raw",
+   "step": 4,
+   "flat": true
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     13,
+     7
+    ],
+    [
+     12,
+     6
+    ]
+   ],
+   "ramp": "meat_raw",
+   "step": 2
+  }
+ ]
+}

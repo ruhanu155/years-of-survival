@@ -1,0 +1,62 @@
+{
+ "id": "yearofice:bobber",
+ "kind": "icon",
+ "folder": "entity",
+ "shapes": [
+  {
+   "kind": "ellipse",
+   "box": [
+    4,
+    5,
+    11,
+    12
+   ],
+   "ramp": "bark_birch",
+   "step": 3
+  },
+  {
+   "kind": "rect",
+   "box": [
+    4,
+    5,
+    11,
+    8
+   ],
+   "ramp": "stem_red",
+   "step": 3
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     7,
+     2
+    ],
+    [
+     7,
+     5
+    ]
+   ],
+   "width": 2,
+   "ramp": "wood_cut",
+   "step": 2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     5,
+     10
+    ],
+    [
+     9,
+     10
+    ]
+   ],
+   "width": 1,
+   "ramp": "bark_birch",
+   "step": 0,
+   "flat": true
+  }
+ ]
+}

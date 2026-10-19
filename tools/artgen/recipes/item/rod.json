@@ -1,0 +1,34 @@
+{
+ "id": "yearofice:rod",
+ "kind": "found_icon",
+ "found": "ninja_adventure",
+ "source": "art-src/found/ninja_adventure/Items/Weapons/Fishing Rod/Sprite.png",
+ "model_parent": "minecraft:item/handheld_rod",
+ "map": {
+  "#141b1b": "outline",
+  "#965340": [
+   "wood_cut",
+   1
+  ],
+  "#a3754e": [
+   "wood_cut",
+   2
+  ],
+  "#ffad5d": [
+   "wood_cut",
+   3
+  ],
+  "#abc2bc": [
+   "steel",
+   3
+  ],
+  "#eecf9b": [
+   "bone",
+   3
+  ],
+  "#f2eaf1": [
+   "bone",
+   4
+  ]
+ }
+}
