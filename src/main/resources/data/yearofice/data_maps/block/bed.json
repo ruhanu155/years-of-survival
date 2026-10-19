@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": {
+    "yearofice:bough_bed": {
+      "quality": 0.95,
+      "sleep_warmth_c": 5
+    }
+  }
+}

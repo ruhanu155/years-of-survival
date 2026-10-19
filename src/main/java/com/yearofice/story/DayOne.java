@@ -22,8 +22,8 @@ import net.neoforged.neoforge.event.server.ServerStartedEvent;
  * world. The decision is saved in SavedData {@code yearofice_story} so it is taken once, when the world is new; a
  * world created before this, or with the guided night off, keeps its clock and its drawn weather.
  *
- * <p>Not done here (they are other layers' Day 1 rules): the clock at half speed until the first fire (a Clock rate),
- * no predator in the Active tier near the outpost until 06:00 (Ecosystem), hypothermia held at shivering (Body).
+ * <p>Not done here (they are other layers' Day 1 rules): the clock at half speed until the first fire
+ * ({@link DayOneClock}, the Clock's {@code day_one} rate), no predator in the Active tier near the outpost until 06:00 (Ecosystem), hypothermia held at shivering (Body).
  */
 @EventBusSubscriber(modid = YearOfIce.MOD_ID)
 public final class DayOne {

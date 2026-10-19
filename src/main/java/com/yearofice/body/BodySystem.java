@@ -23,6 +23,7 @@ public final class BodySystem {
         BodyAttachments.register(modBus);
         MessengerItems.register(modBus);
         BodyService.install(new BodyServiceImpl());
+        com.yearofice.body.sleep.Sleep.init();
     }
 
     /**

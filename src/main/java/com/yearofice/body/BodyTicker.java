@@ -121,9 +121,10 @@ public final class BodyTicker {
     public static BodyModel.Inputs inputs(ServerPlayer p, long minute, Activity activity, boolean asleep, boolean moving) {
         EnvSampler.Sample smp = env.sample(p, minute);
         LAST_SAMPLE.put(p.getUUID(), smp);
-        double quality = asleep ? (p.isSleeping() ? 1.0 : 0.7) : 0;
-        return new BodyModel.Inputs(activity, asleep, quality, smp.env(), smp.heat(), smp.shelter(), smp.depth(),
-                moving, loadKcal(p));
+        // Sleep quality and the bed's insulation from the bed under the sleeper (bare ground 0.70, +0 °C).
+        com.yearofice.api.body.SleepService.Spot bed = asleep ? com.yearofice.body.sleep.Sleep.spotFor(p) : null;
+        return new BodyModel.Inputs(activity, asleep, bed == null ? 0 : bed.quality(), smp.env(), smp.heat(), smp.shelter(),
+                smp.depth(), moving, loadKcal(p), bed == null ? 0 : bed.warmthC());
     }
 
     /** The load band's calorie factor for what {@code p} carries (1.0 under the first band). */

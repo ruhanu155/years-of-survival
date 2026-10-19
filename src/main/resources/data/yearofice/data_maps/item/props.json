@@ -68,6 +68,12 @@
       "stack_class": "by_weight",
       "scent_level": 2
     },
+    "yearofice:spruce_boughs": {
+      "category": "material",
+      "stack_class": "medium",
+      "floats": true,
+      "material": "wood"
+    },
     "yearofice:tinder_bundle": {
       "category": "fire",
       "stack_class": "medium",

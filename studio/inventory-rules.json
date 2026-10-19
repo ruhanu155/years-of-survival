@@ -178,7 +178,11 @@
     {"basis": "M2 lane B (PR #16, #21, #23) registered these and they were hand-edited into studio/inventory.json; folded into the rules (RECONCILE 181)", "milestone": "m2", "owner": "studio", "type": "data_map", "ids": ["pack", "props"]},
     {"basis": "M2 lane B (PR #16, #21, #23) registered these and they were hand-edited into studio/inventory.json; folded into the rules (RECONCILE 181)", "milestone": "m2", "owner": "studio", "type": "tag", "ids": ["auto_pickup", "never_expires"]},
     {"basis": "M2 lane B (PR #16, #21, #23) registered these and they were hand-edited into studio/inventory.json; folded into the rules (RECONCILE 181)", "milestone": "m2_5", "owner": "look", "type": "gui_layer", "ids": ["messenger_corner"]},
-    {"basis": "Integration pass (RECONCILE 180): Decay's clock head for the slice clock air:slice (Minecraft development > Layer 5, Sync; the registry table lists it for M5 with body, pocket and container clocks)", "milestone": "m2", "owner": "studio", "type": "payload", "ids": ["decay_heads"]}
+    {"basis": "Integration pass (RECONCILE 180): Decay's clock head for the slice clock air:slice (Minecraft development > Layer 5, Sync; the registry table lists it for M5 with body, pocket and container clocks)", "milestone": "m2", "owner": "studio", "type": "payload", "ids": ["decay_heads"]},
+    {"basis": "RECONCILE 181: the bough bed pulled forward from M3 into the M2.5 slice; spruce boughs are its material (Crafting and building in depth > More Start recipes, Cut boughs)", "milestone": "m2_5", "owner": "building", "type": "item", "ids": ["spruce_boughs"]},
+    {"basis": "RECONCILE 181: beds' quality and sleep warmth as a block data map (Blueprint > Sleep, bed factor; Making camp)", "milestone": "m2_5", "owner": "building", "type": "data_map", "ids": ["bed"]},
+    {"basis": "RECONCILE 181: leaf blocks boughs are cut from", "milestone": "m2_5", "owner": "building", "type": "tag", "ids": ["bough_sources"]},
+    {"basis": "RECONCILE 181: what wakes a sleeper (Blueprint > Sleep: a large animal within 30 m, a predator within 60 m)", "milestone": "m2_5", "owner": "body", "type": "tag", "ids": ["large_animals", "predators"]}
   ],
   "expand": {
     "<wood>": ["spruce", "birch", "aspen", "poplar", "tamarack", "willow", "alder", "drift"]
@@ -261,7 +265,8 @@
     { "basis": "Ecosystem M2.5 slice: the snared hare's tell (Every concept from the video > Trap sounds)", "type": "sound_event", "milestone": "m2_5", "ids": ["trap.snare_hare"]},
     { "basis": "Ecosystem M2.5 slice: the animal and carcass entity tags", "type": "tag", "milestone": "m2_5", "ids": ["animals", "carcasses"]},
     { "basis": "Ready for development > M2.5: one rod method (hook, line and bobber with worms, the fight overlay) in hunt.fishing; slice work item 6", "type": "item", "milestone": "m2_5", "owner": "food", "ids": ["rod", "worm"] },
-    {"basis": "Inventory gap (RECONCILE 175): Waters and fish ships the measuring stick in M5 for fish measuring (Waters and fish > Registry ids), not M7 as the pattern rule gave", "type": "item", "milestone": "m5", "owner": "food", "ids": ["measuring_stick"]}
+    {"basis": "Inventory gap (RECONCILE 175): Waters and fish ships the measuring stick in M5 for fish measuring (Waters and fish > Registry ids), not M7 as the pattern rule gave", "type": "item", "milestone": "m5", "owner": "food", "ids": ["measuring_stick"]},
+    {"basis": "RECONCILE 181: the bough bed pulled forward from M3 (and the m8 pattern) into the M2.5 slice", "type": "block", "milestone": "m2_5", "owner": "building", "ids": ["bough_bed"]}
   ],
   "patterns": [
     { "types": ["entity"], "pattern": "falling_tree|felled_log", "milestone": "m2", "owner": "worldgen" },

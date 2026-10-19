@@ -24,12 +24,14 @@ public final class YoiConfig {
         com.yearofice.story.clock.ClockConfig.define(b);
         com.yearofice.item.inventory.PackConfig.define(b);
         com.yearofice.body.BodyConfig.define(b);
+        com.yearofice.body.sleep.SleepConfig.define(b);
         com.yearofice.fire.FireConfig.define(b);
         com.yearofice.hunt.fishing.FishingConfig.define(b);
         com.yearofice.ecosystem.EcoConfig.define(b);
         com.yearofice.decay.DecayConfig.define(b);
         com.yearofice.food.FoodConfig.define(b);
         com.yearofice.story.StoryConfig.define(b);
+        com.yearofice.build.BuildConfig.define(b);
         SPEC = b.build();
     }
 

@@ -22,7 +22,7 @@ public final class RateArbiter {
     public static Rate forWorld(Collection<Rate> perPlayer, Rates rates, int dayLengthMin) {
         Rate best = null;
         for (Rate r : perPlayer) {
-            if (best == null || rates.dsPerTick(r, dayLengthMin) < rates.dsPerTick(best, dayLengthMin)) best = r;
+            if (best == null || rates.centiDsPerTick(r, dayLengthMin) < rates.centiDsPerTick(best, dayLengthMin)) best = r;
         }
         return best == null ? Rate.WORLD : best;
     }

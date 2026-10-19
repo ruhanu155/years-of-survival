@@ -61,6 +61,7 @@ public final class OnboardingCommands {
                 + " | ring " + (r.ring() == null ? "-" : r.ring().toShortString())
                 + " | beacon " + (StoryConfig.beacon() ? (target == null ? "no target" : target.toShortString()) : "off")
                 + " | dusk warning " + (r.warn().fired(Onboarding.DUSK_NO_FIRE) ? "given" : "armed")
+                + " | day 1 clock " + (com.yearofice.story.DayOneClock.applies(p, StoryClock.minute(p.server)) ? "half speed" : "normal")
                 + " | now " + StoryDay.hhmm(StoryClock.minute(p.server));
         c.getSource().sendSuccess(() -> Component.literal(line), false);
         return 1;

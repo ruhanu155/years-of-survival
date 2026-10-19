@@ -3,8 +3,9 @@ package com.yearofice.sim.time;
 import java.util.Locale;
 
 /**
- * The six clock rates (Minecraft development › Layer 1). Declaration order is the per-player priority the
- * {@link RateArbiter} applies: close, then work, then until done, then sleep, then travel, then world. Across
+ * The clock rates (Minecraft development › Layer 1), the six of the doc plus Day 1. Declaration order is the
+ * per-player priority the {@link RateArbiter} applies: close, then work, then until done, then sleep, then travel,
+ * then Day 1, then world. Across
  * players the world runs at the slowest requested rate, the one with the fewest game deciseconds a tick.
  */
 public enum Rate {
@@ -18,6 +19,12 @@ public enum Rate {
     SLEEP,
     /** Moving with no job: 12 game s a real second. */
     TRAVEL,
+    /**
+     * Day 1 (Blueprint › Start site › Day 1 rules): a guided-night player with no fire lit yet, before 22:00 on the
+     * first day, asks for the World rate at {@code first_fire_world_pct} (half), so the first afternoon gives about
+     * 20 real minutes of daylight work on the 24-minute day. Any other request of the player's wins over it.
+     */
+    DAY_ONE,
     /** The default: 1 game min a real second on the 24-minute day; the only rate the day length scales. */
     WORLD;
 

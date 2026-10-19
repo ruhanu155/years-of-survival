@@ -83,6 +83,8 @@ public final class StoryGameTests {
     static final BlockPos RING = new BlockPos(1, 1, 1);
     /** Where the bot stands and later sleeps: 2 m from the ring, inside the 3 m near-fire radius. */
     static final BlockPos BED = new BlockPos(1, 1, 3);
+    /** The bough bed's blocks (head at {@link #BED}, foot south of it), the ground under them and the space above. */
+    static final List<BlockPos> CAMP = List.of(BED, BED.south(), BED.below(), BED.south().below(), BED.above(), BED.south().above());
 
     @GameTestGenerator
     public static Collection<TestFunction> storyTests() {
@@ -201,6 +203,7 @@ public final class StoryGameTests {
     static void sliceFirstNight(GameTestHelper h) {
         ServerPlayer p = player(h, "first-night-bot");
         Bot b = new Bot(h, p);
+        java.util.Map<BlockPos, net.minecraft.world.level.block.state.BlockState> saved = new java.util.LinkedHashMap<>();
         try {
             h.setBlock(RING.below(), Blocks.STONE);
             Onboarding.onJoin(p, b.story);
@@ -284,7 +287,19 @@ public final class StoryGameTests {
             // 6. Sleep by the fire.
             double warmth = BodyService.get().warmth(p);
             h.assertTrue(warmth > 40, "warmth at sleep " + warmth);
-            p.startSleeping(h.absolutePos(BED));
+            // On the bough bed (RECONCILE 181), its head where the bot stands, 2 m from the ring, foot to the south. The
+            // spot is on the test area's barrier wall, so the wall blocks there are kept and put back afterwards.
+            for (BlockPos q : CAMP) saved.put(q, h.getBlockState(q));
+            h.setBlock(BED.above(), Blocks.AIR);
+            h.setBlock(BED.south().above(), Blocks.AIR);
+            h.setBlock(BED.below(), Blocks.STONE);
+            h.setBlock(BED.south().below(), Blocks.STONE);
+            com.yearofice.build.camp.BoughBedBlock bed = com.yearofice.build.BuildRegistry.BOUGH_BED.get();
+            h.setBlock(BED.south(), bed.foot(Direction.NORTH));
+            h.setBlock(BED, bed.head(Direction.NORTH));
+            com.yearofice.api.body.SleepService.Refusal lay = com.yearofice.api.body.SleepService.get().lieDown(p, h.absolutePos(BED), b.story);
+            h.assertTrue(lay == com.yearofice.api.body.SleepService.Refusal.NONE && p.isSleeping(), "lay down on the bough bed: " + lay
+                    + " (above the head: " + h.getBlockState(BED.above()) + ", at " + h.absolutePos(BED.above()) + ")");
             Onboarding.check(p, b.story);
             h.assertTrue(n.status() == FirstNight.Status.DONE && n.ending() == FirstNight.Ending.SLEPT,
                     "sleeping by the fire ends the night: " + n.status() + " " + n.ending());
@@ -301,6 +316,8 @@ public final class StoryGameTests {
             if (p.isSleeping()) p.stopSleeping();
             Onboarding.forget(p);
             BodyTicker.VANILLA_ENV.override(p, null);
+            com.yearofice.body.sleep.Sleep.forget(p);
+            for (var e : saved.entrySet()) h.setBlock(e.getKey(), e.getValue());
         }
     }
 

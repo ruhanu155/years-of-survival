@@ -49,7 +49,8 @@ final class ClockResources extends SimplePreparableReloadListener<ClockResources
         int[] l = new int[lens.size()];
         for (int i = 0; i < l.length; i++) l[i] = lens.get(i).getAsInt();
         return new Rates(d.get("close").getAsInt(), d.get("travel").getAsInt(), d.get("world_at_l24").getAsInt(),
-                d.get("work").getAsInt(), d.get("until_done").getAsInt(), d.get("sleep").getAsInt(), l);
+                d.get("work").getAsInt(), d.get("until_done").getAsInt(), d.get("sleep").getAsInt(), l,
+                o.has("first_fire_world_pct") ? o.get("first_fire_world_pct").getAsInt() : Rates.DEFAULT_DAY_ONE_PCT);
     }
 
     @Override
