@@ -93,6 +93,24 @@
       "category": "bait",
       "stack_class": "small",
       "scent_level": 1
-    }
+    },
+    "yearofice:spruce_round": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:spruce_split": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:birch_round": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:birch_split": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:aspen_round": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:aspen_split": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:poplar_round": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:poplar_split": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:tamarack_round": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:tamarack_split": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:willow_round": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:willow_split": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:alder_round": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:alder_split": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:drift_round": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:drift_split": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
+    "yearofice:hatchet": {"category": "tool", "stack_class": "single", "material": "steel", "theft": "porcupine"},
+    "yearofice:chopping_block": {"category": "piece", "stack_class": "single", "material": "wood"}
   }
 }

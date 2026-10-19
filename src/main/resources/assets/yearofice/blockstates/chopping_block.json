@@ -1,0 +1,10 @@
+{
+ "variants": {
+  "stump=false": {
+   "model": "yearofice:block/chopping_block"
+  },
+  "stump=true": {
+   "model": "yearofice:block/stump"
+  }
+ }
+}

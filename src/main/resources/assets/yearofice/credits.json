@@ -3,6 +3,30 @@
  "note": "One entry per shipped art file. Generated entries name their recipe; found entries name source, licence file and the original's SHA-256.",
  "entries": [
   {
+   "asset_id": "tex_alder_round",
+   "files": [
+    "assets/yearofice/textures/item/alder_round.png",
+    "assets/yearofice/models/item/alder_round.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/alder_round.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_alder_split",
+   "files": [
+    "assets/yearofice/textures/item/alder_split.png",
+    "assets/yearofice/models/item/alder_split.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/alder_split.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
    "asset_id": "tex_arctic_grayling",
    "files": [
     "assets/yearofice/textures/item/arctic_grayling.png",
@@ -11,6 +35,30 @@
    ],
    "source_type": "generated",
    "recipe": "tools/artgen/recipes/item/arctic_grayling.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_aspen_round",
+   "files": [
+    "assets/yearofice/textures/item/aspen_round.png",
+    "assets/yearofice/models/item/aspen_round.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/aspen_round.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_aspen_split",
+   "files": [
+    "assets/yearofice/textures/item/aspen_split.png",
+    "assets/yearofice/models/item/aspen_split.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/aspen_split.json",
    "licence": "project",
    "generator_version": "artgen 0.4.0",
    "release_blocker": false
@@ -36,6 +84,30 @@
    "original": "art-src/found/ninja_adventure/Items/Scroll/Scroll.png",
    "original_sha256": "526a293d206cf37ea2ce56890918b849a4f4070c5538fb216372de7ddc07e8d6",
    "generator_version": "artgen 0.4.0"
+  },
+  {
+   "asset_id": "tex_birch_round",
+   "files": [
+    "assets/yearofice/textures/item/birch_round.png",
+    "assets/yearofice/models/item/birch_round.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/birch_round.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_birch_split",
+   "files": [
+    "assets/yearofice/textures/item/birch_split.png",
+    "assets/yearofice/models/item/birch_split.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/birch_split.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
   },
   {
    "asset_id": "tex_blueberries",
@@ -221,6 +293,18 @@
    "generator_version": "artgen 0.4.0"
   },
   {
+   "asset_id": "tex_crate_backpack",
+   "files": [
+    "assets/yearofice/textures/item/crate_backpack.png",
+    "assets/yearofice/models/item/crate_backpack.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
    "asset_id": "tex_dried_fish",
    "files": [
     "assets/yearofice/textures/item/dried_fish.png",
@@ -241,6 +325,30 @@
    "original": "art-src/found/ninja_adventure/Items/Food/Fish.png",
    "original_sha256": "d2cbc923cd9886a1e8977ca32c9fe073091ecef62982db80dea9034b69998638",
    "generator_version": "artgen 0.4.0"
+  },
+  {
+   "asset_id": "tex_drift_round",
+   "files": [
+    "assets/yearofice/textures/item/drift_round.png",
+    "assets/yearofice/models/item/drift_round.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/drift_round.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_drift_split",
+   "files": [
+    "assets/yearofice/textures/item/drift_split.png",
+    "assets/yearofice/models/item/drift_split.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/drift_split.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
   },
   {
    "asset_id": "tex_fat",
@@ -580,6 +688,30 @@
    "release_blocker": false
   },
   {
+   "asset_id": "tex_poplar_round",
+   "files": [
+    "assets/yearofice/textures/item/poplar_round.png",
+    "assets/yearofice/models/item/poplar_round.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/poplar_round.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_poplar_split",
+   "files": [
+    "assets/yearofice/textures/item/poplar_split.png",
+    "assets/yearofice/models/item/poplar_split.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/poplar_split.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
    "asset_id": "tex_raw_fish_fillet",
    "files": [
     "assets/yearofice/textures/item/raw_fish_fillet.png",
@@ -747,6 +879,30 @@
    "release_blocker": false
   },
   {
+   "asset_id": "tex_spruce_round",
+   "files": [
+    "assets/yearofice/textures/item/spruce_round.png",
+    "assets/yearofice/models/item/spruce_round.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/spruce_round.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_spruce_split",
+   "files": [
+    "assets/yearofice/textures/item/spruce_split.png",
+    "assets/yearofice/models/item/spruce_split.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/spruce_split.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
    "asset_id": "tex_spruce_tips",
    "files": [
     "assets/yearofice/textures/item/spruce_tips.png",
@@ -769,6 +925,30 @@
    "generator_version": "artgen 0.4.0"
   },
   {
+   "asset_id": "tex_tamarack_round",
+   "files": [
+    "assets/yearofice/textures/item/tamarack_round.png",
+    "assets/yearofice/models/item/tamarack_round.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/tamarack_round.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_tamarack_split",
+   "files": [
+    "assets/yearofice/textures/item/tamarack_split.png",
+    "assets/yearofice/models/item/tamarack_split.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/tamarack_split.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
    "asset_id": "tex_tinder_bundle",
    "files": [
     "assets/yearofice/textures/item/tinder_bundle.png",
@@ -789,6 +969,30 @@
    "original": "art-src/found/ninja_adventure/Items/Resource/Grass.png",
    "original_sha256": "1f507bb591e0b2fb4eea40ca7a39c99929ab446e15ab9373dd4e8d89418b9a75",
    "generator_version": "artgen 0.4.0"
+  },
+  {
+   "asset_id": "tex_willow_round",
+   "files": [
+    "assets/yearofice/textures/item/willow_round.png",
+    "assets/yearofice/models/item/willow_round.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/willow_round.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_willow_split",
+   "files": [
+    "assets/yearofice/textures/item/willow_split.png",
+    "assets/yearofice/models/item/willow_split.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/willow_split.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
   },
   {
    "asset_id": "tex_worm",
@@ -1113,101 +1317,6 @@
    "release_blocker": false
   },
   {
-   "asset_id": "model_snare",
-   "files": [
-    "assets/yearofice/blockstates/snare.json",
-    "assets/yearofice/models/block/snare.json",
-    "assets/yearofice/models/block/snare_sprung.json",
-    "assets/yearofice/models/item/whole_game.json",
-    "assets/yearofice/models/item/hare_pelt.json"
-   ],
-   "source_type": "generated",
-   "recipe": "tools/artgen/snare.py",
-   "licence": "project",
-   "generator_version": "snare 0.1.0",
-   "release_blocker": false
-  },
-  {
-   "asset_id": "model_cooking",
-   "files": [
-    "assets/yearofice/blockstates/spit.json",
-    "assets/yearofice/models/block/spit.json",
-    "assets/yearofice/models/item/snowshoe_hare_meat_aging.json",
-    "assets/yearofice/models/item/snowshoe_hare_meat_spoiled.json",
-    "assets/yearofice/models/item/snowshoe_hare_meat_cooked.json",
-    "assets/yearofice/models/item/snowshoe_hare_meat_burnt.json",
-    "assets/yearofice/models/item/snowshoe_hare_meat.json",
-    "assets/yearofice/models/item/willow_ptarmigan_meat_aging.json",
-    "assets/yearofice/models/item/willow_ptarmigan_meat_spoiled.json",
-    "assets/yearofice/models/item/willow_ptarmigan_meat_cooked.json",
-    "assets/yearofice/models/item/willow_ptarmigan_meat_burnt.json",
-    "assets/yearofice/models/item/willow_ptarmigan_meat.json",
-    "assets/yearofice/models/item/arctic_grayling_aging.json",
-    "assets/yearofice/models/item/arctic_grayling_spoiled.json",
-    "assets/yearofice/models/item/arctic_grayling_cooked.json",
-    "assets/yearofice/models/item/arctic_grayling_burnt.json",
-    "assets/yearofice/models/item/arctic_grayling.json"
-   ],
-   "source_type": "generated",
-   "recipe": "tools/artgen/cooking.py",
-   "licence": "project",
-   "generator_version": "cooking 0.1.0",
-   "release_blocker": false
-  },
-  {
-   "asset_id": "gui_messenger_device",
-   "files": [
-    "assets/yearofice/textures/gui/messenger/device.png",
-    "assets/yearofice/textures/gui/messenger/corner.png"
-   ],
-   "source_type": "generated",
-   "recipe": "tools/artgen/gui_messenger.py",
-   "licence": "project",
-   "generator_version": "gui_messenger 1.0",
-   "release_blocker": false
-  },
-  {
-   "asset_id": "gui_hud_vitals_strip",
-   "files": [
-    "assets/yearofice/textures/gui/sprites/hud/warmth.png",
-    "assets/yearofice/textures/gui/sprites/hud/wet.png",
-    "assets/yearofice/textures/gui/sprites/hud/water.png",
-    "assets/yearofice/textures/gui/sprites/hud/calories.png",
-    "assets/yearofice/textures/gui/sprites/hud/energy.png",
-    "assets/yearofice/textures/gui/sprites/hud/condition.png"
-   ],
-   "source_type": "generated",
-   "recipe": "tools/artgen/gui_messenger.py",
-   "licence": "project",
-   "generator_version": "gui_messenger 1.0",
-   "release_blocker": false
-  },
-  {
-   "asset_id": "snd_fire_bow_drill",
-   "files": [
-    "assets/yearofice/sounds/fire/bow_drill1.ogg",
-    "assets/yearofice/sounds/fire/bow_drill2.ogg"
-   ],
-   "source_type": "generated",
-   "recipe": "tools/soundgen/recipes/fire/bow_drill.json",
-   "licence": "project",
-   "generator_version": "soundgen 0.1.0",
-   "release_blocker": false
-  },
-  {
-   "asset_id": "snd_fire_crackle",
-   "files": [
-    "assets/yearofice/sounds/fire/crackle1.ogg",
-    "assets/yearofice/sounds/fire/crackle2.ogg",
-    "assets/yearofice/sounds/fire/crackle3.ogg"
-   ],
-   "source_type": "generated",
-   "recipe": "tools/soundgen/recipes/fire/crackle.json",
-   "licence": "project",
-   "generator_version": "soundgen 0.1.0",
-   "release_blocker": false
-  },
-  {
    "asset_id": "tex_block_birch_leaves",
    "files": [
     "assets/yearofice/textures/block/birch_leaves_all.png"
@@ -1249,6 +1358,18 @@
    ],
    "source_type": "generated",
    "recipe": "tools/artgen/recipes/block/black_spruce_log.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_chopping_block",
+   "files": [
+    "assets/yearofice/textures/block/chopping_block_side.png",
+    "assets/yearofice/textures/block/chopping_block_top.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/chopping_block.json",
    "licence": "project",
    "generator_version": "artgen 0.4.0",
    "release_blocker": false
@@ -1651,15 +1772,111 @@
    "release_blocker": false
   },
   {
-   "asset_id": "tex_crate_backpack",
+   "asset_id": "model_snare",
    "files": [
-    "assets/yearofice/textures/item/crate_backpack.png",
-    "assets/yearofice/models/item/crate_backpack.json"
+    "assets/yearofice/blockstates/snare.json",
+    "assets/yearofice/models/block/snare.json",
+    "assets/yearofice/models/block/snare_sprung.json",
+    "assets/yearofice/models/item/whole_game.json",
+    "assets/yearofice/models/item/hare_pelt.json"
    ],
    "source_type": "generated",
-   "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+   "recipe": "tools/artgen/snare.py",
    "licence": "project",
-   "generator_version": "artgen 0.4.0",
+   "generator_version": "snare 0.1.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "model_wood_blocks",
+   "files": [
+    "assets/yearofice/blockstates/chopping_block.json",
+    "assets/yearofice/models/block/chopping_block.json",
+    "assets/yearofice/models/item/chopping_block.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/wood_blocks.py",
+   "licence": "project",
+   "generator_version": "wood_blocks 0.1.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "model_cooking",
+   "files": [
+    "assets/yearofice/blockstates/spit.json",
+    "assets/yearofice/models/block/spit.json",
+    "assets/yearofice/models/item/snowshoe_hare_meat_aging.json",
+    "assets/yearofice/models/item/snowshoe_hare_meat_spoiled.json",
+    "assets/yearofice/models/item/snowshoe_hare_meat_cooked.json",
+    "assets/yearofice/models/item/snowshoe_hare_meat_burnt.json",
+    "assets/yearofice/models/item/snowshoe_hare_meat.json",
+    "assets/yearofice/models/item/willow_ptarmigan_meat_aging.json",
+    "assets/yearofice/models/item/willow_ptarmigan_meat_spoiled.json",
+    "assets/yearofice/models/item/willow_ptarmigan_meat_cooked.json",
+    "assets/yearofice/models/item/willow_ptarmigan_meat_burnt.json",
+    "assets/yearofice/models/item/willow_ptarmigan_meat.json",
+    "assets/yearofice/models/item/arctic_grayling_aging.json",
+    "assets/yearofice/models/item/arctic_grayling_spoiled.json",
+    "assets/yearofice/models/item/arctic_grayling_cooked.json",
+    "assets/yearofice/models/item/arctic_grayling_burnt.json",
+    "assets/yearofice/models/item/arctic_grayling.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/cooking.py",
+   "licence": "project",
+   "generator_version": "cooking 0.1.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "gui_messenger_device",
+   "files": [
+    "assets/yearofice/textures/gui/messenger/device.png",
+    "assets/yearofice/textures/gui/messenger/corner.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/gui_messenger.py",
+   "licence": "project",
+   "generator_version": "gui_messenger 1.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "gui_hud_vitals_strip",
+   "files": [
+    "assets/yearofice/textures/gui/sprites/hud/warmth.png",
+    "assets/yearofice/textures/gui/sprites/hud/wet.png",
+    "assets/yearofice/textures/gui/sprites/hud/water.png",
+    "assets/yearofice/textures/gui/sprites/hud/calories.png",
+    "assets/yearofice/textures/gui/sprites/hud/energy.png",
+    "assets/yearofice/textures/gui/sprites/hud/condition.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/gui_messenger.py",
+   "licence": "project",
+   "generator_version": "gui_messenger 1.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "snd_fire_bow_drill",
+   "files": [
+    "assets/yearofice/sounds/fire/bow_drill1.ogg",
+    "assets/yearofice/sounds/fire/bow_drill2.ogg"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/soundgen/recipes/fire/bow_drill.json",
+   "licence": "project",
+   "generator_version": "soundgen 0.1.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "snd_fire_crackle",
+   "files": [
+    "assets/yearofice/sounds/fire/crackle1.ogg",
+    "assets/yearofice/sounds/fire/crackle2.ogg",
+    "assets/yearofice/sounds/fire/crackle3.ogg"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/soundgen/recipes/fire/crackle.json",
+   "licence": "project",
+   "generator_version": "soundgen 0.1.0",
    "release_blocker": false
   },
   {

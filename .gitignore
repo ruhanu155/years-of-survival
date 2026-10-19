@@ -9,7 +9,7 @@
 *.iml
 .vscode/
 .DS_Store
-logs/
+/logs/
 
 # Python tool caches
 __pycache__/

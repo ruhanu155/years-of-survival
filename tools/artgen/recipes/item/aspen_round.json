@@ -1,0 +1,59 @@
+{
+ "id": "yearofice:aspen_round",
+ "kind": "icon",
+ "notes": "A aspen round: bark side and the end grain with rings (from firewood_round, bark ramp bark_aspen).",
+ "shapes": [
+  {
+   "kind": "ellipse",
+   "box": [
+    1,
+    5,
+    14,
+    15
+   ],
+   "ramp": "bark_aspen",
+   "step": 2,
+   "noise": 0.2
+  },
+  {
+   "kind": "ellipse",
+   "box": [
+    1,
+    2,
+    14,
+    11
+   ],
+   "ramp": "wood_cut",
+   "step": 3
+  },
+  {
+   "kind": "ring",
+   "box": [
+    4,
+    4,
+    11,
+    9
+   ],
+   "width": 1,
+   "ramp": "wood_cut",
+   "step": 2,
+   "flat": true
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     7,
+     6
+    ],
+    [
+     8,
+     6
+    ]
+   ],
+   "ramp": "wood_cut",
+   "step": 1,
+   "flat": true
+  }
+ ]
+}

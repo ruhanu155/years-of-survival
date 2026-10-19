@@ -63,6 +63,24 @@
     },
     "minecraft:stripped_birch_log": {
       "weight_g": 7500
-    }
+    },
+    "yearofice:spruce_round": {"weight_g": 3750},
+    "yearofice:spruce_split": {"weight_g": 3750},
+    "yearofice:birch_round": {"weight_g": 3750},
+    "yearofice:birch_split": {"weight_g": 3750},
+    "yearofice:aspen_round": {"weight_g": 3750},
+    "yearofice:aspen_split": {"weight_g": 3750},
+    "yearofice:poplar_round": {"weight_g": 3750},
+    "yearofice:poplar_split": {"weight_g": 3750},
+    "yearofice:tamarack_round": {"weight_g": 3750},
+    "yearofice:tamarack_split": {"weight_g": 3750},
+    "yearofice:willow_round": {"weight_g": 3750},
+    "yearofice:willow_split": {"weight_g": 3750},
+    "yearofice:alder_round": {"weight_g": 3750},
+    "yearofice:alder_split": {"weight_g": 3750},
+    "yearofice:drift_round": {"weight_g": 3750},
+    "yearofice:drift_split": {"weight_g": 3750},
+    "yearofice:hatchet": {"weight_g": 900},
+    "yearofice:chopping_block": {"weight_g": 15000}
   }
 }
