@@ -28,7 +28,6 @@ import net.minecraft.server.network.CommonListenerCookie;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.gametest.GameTestHolder;
@@ -151,7 +150,9 @@ public final class FishingGameTests {
      * Test 3: worms at the spot give a first bite within 30 game minutes in 90% of 200 runs. Each run is a fresh
      * world seed casting a fresh worm at the slice spot on a clear May morning (day 1–3, starting 07:01–10:29, so the
      * half hour stays in m_time's ordinary day band), read through the adapter at the real pool, then rolled minute
-     * by minute as the bobber rolls them.
+     * by minute as the bobber rolls them. The water input stays the fishing department's {@code waterTempC} (8 °C):
+     * the live roll now reads the Environment field's creek water, which on May 1–3 is below 4 °C (bites ×0.7) and
+     * gives about 177 of 200; the ruling on that is the Director's (M2 lane B report).
      */
     static void sliceRodBite(GameTestHelper h) {
         pool(h, 2);
@@ -323,31 +324,41 @@ public final class FishingGameTests {
         h.succeed();
     }
 
-    /** From the strike the world clock runs at a tenth: 40 ticks of fight move the day time 4 ticks. */
+    /**
+     * From the strike the fighter asks the Close rate: every tick the fight is on, the clock moves 3 game ds (a
+     * tenth of the 24-minute day's World rate). Ticks after the fish is landed are not counted; the tick the fight
+     * starts or ends in may step at the World rate, depending on where the test ticker falls in the server tick.
+     */
     static void closeClock(GameTestHelper h) {
         pool(h, 2);
         ServerPlayer p = angler(h);
         BobberEntity b = bobber(h, p);
         ServerLevel level = h.getLevel();
-        GameRules.BooleanValue rule = level.getGameRules().getRule(GameRules.RULE_DAYLIGHT);
-        boolean was = rule.get();
-        long[] start = {Long.MIN_VALUE};
-        int[] ticks = {0};
-        FishingService.startFight(b, 0.5);
+        com.yearofice.api.clock.ClockService clock = com.yearofice.api.clock.ClockService.get();
+        long[] prev = {Long.MIN_VALUE};
+        long[] moved = {0};
+        int[] counted = {0}, ticks = {0};
+        boolean[] wasOn = {false};
+        FishingService.startFight(b, 1.0);
         FightSession f = b.fight;
         h.onEachTick(() -> {
-            if (start[0] == Long.MIN_VALUE) {
-                rule.set(true, level.getServer());
-                start[0] = level.getDayTime();
+            long now = clock.nowDs();
+            if (wasOn[0] && !f.over()) {
+                moved[0] += now - prev[0];
+                counted[0]++;
             }
+            prev[0] = now;
+            wasOn[0] = !f.over();
             ticks[0]++;
             if (!f.over()) f.accept(f.state().tick() + 1, new byte[] {new FightModel.Input(true, false, FightModel.Side.INLINE, false, false).toByte()}, level.getGameTime());
         });
         h.succeedWhen(() -> {
-            h.assertTrue(ticks[0] >= 41, "waiting");
-            long moved = level.getDayTime() - start[0];
-            rule.set(was, level.getServer());
-            h.assertTrue(moved >= 3 && moved <= 5, "day time moved " + moved + " ticks in 40");
+            h.assertTrue(ticks[0] >= 41 || f.over() && ticks[0] > 2, "waiting");
+            h.assertTrue(counted[0] >= 5, "the fight ran " + counted[0] + " ticks");
+            // Up to two boundary ticks (the strike's and the landing's) may step at the World rate, 27 ds more each.
+            long close = 3L * counted[0];
+            h.assertTrue(moved[0] >= close && moved[0] <= close + 2 * 27, "clock moved " + moved[0] + " ds in " + counted[0] + " fight ticks (world "
+                    + clock.rate().id() + ", fighters " + FishingService.fighters().size() + ")");
             done(h, p);
         });
     }
@@ -361,7 +372,7 @@ public final class FishingGameTests {
         h.setBlock(new BlockPos(2, 2, 2), Blocks.DIRT);
         int n = WormDigging.wormsAt(level, dirt, Blocks.DIRT.defaultBlockState(), t);
         int month = FishSeason.month(FishSeason.dayOfYear(FishingClock.day(FishingClock.minute(level.getServer()))));
-        int max = level.isRaining() ? 2 * t.wormDigMax() : t.wormDigMax();
+        int max = com.yearofice.api.env.EnvService.get().precip(level, dirt).liquid() ? 2 * t.wormDigMax() : t.wormDigMax();
         if (month >= 10 || month <= 4) h.assertTrue(n == 0, "frozen ground: " + n);
         else h.assertTrue(n >= 0 && n <= max, "worms " + n);
         h.assertTrue(WormDigging.wormsAt(level, dirt, Blocks.STONE.defaultBlockState(), t) == 0, "stone has no worms");

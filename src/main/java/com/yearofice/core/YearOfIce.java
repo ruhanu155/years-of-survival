@@ -19,6 +19,9 @@ public final class YearOfIce {
     public YearOfIce(IEventBus modBus, ModContainer container) {
         container.registerConfig(ModConfig.Type.COMMON, YoiConfig.SPEC, "yearofice-common.toml");
         NeoForge.EVENT_BUS.addListener(YoiCommands::register);
+        // The shared layers first: every system below reads time and weather through them.
+        com.yearofice.story.clock.ClockSystem.init();
+        com.yearofice.env.EnvSystem.init();
         com.yearofice.item.component.YoiComponents.register(modBus);
         com.yearofice.decay.DecaySystem.init(modBus);
         com.yearofice.body.BodySystem.init(modBus);

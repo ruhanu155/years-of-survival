@@ -1,7 +1,7 @@
 package com.yearofice.body;
 
 import com.yearofice.body.clock.BodyClock;
-import com.yearofice.body.clock.VanillaDayClock;
+import com.yearofice.body.clock.ServiceBodyClock;
 import com.yearofice.body.env.EnvSampler;
 import com.yearofice.body.env.VanillaEnvSampler;
 import com.yearofice.body.net.BodyNet;
@@ -42,7 +42,7 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 public final class BodyTicker {
     private BodyTicker() {}
 
-    public static volatile BodyClock clock = new VanillaDayClock();
+    public static volatile BodyClock clock = new ServiceBodyClock();
     public static final VanillaEnvSampler VANILLA_ENV = new VanillaEnvSampler();
     public static volatile EnvSampler env = VANILLA_ENV;
     static final ActivitySampler ACTIVITY = new ActivitySampler();
