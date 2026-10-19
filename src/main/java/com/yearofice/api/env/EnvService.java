@@ -68,6 +68,12 @@ public interface EnvService {
     /** The valley floor's hour now: the drawn state, air, wind and precipitation before place rules. */
     WeatherModel.Hour valley(ServerLevel level);
 
+    /**
+     * The valley floor's hour at absolute game minute {@code minute}, with this level's override, from the year
+     * table (no blocks): closed forms that walk the past or the future read it (Decay's {@code air:} clock).
+     */
+    WeatherModel.Hour valleyAt(ServerLevel level, long minute);
+
     /** The drawn day {@code absDay}. */
     WeatherModel.Day day(ServerLevel level, long absDay);
 
@@ -87,6 +93,13 @@ public interface EnvService {
      * Not saved here: the system that owns the rule (story, for the guided first night) sets it on every start.
      */
     void fixFirstDay(ServerLevel level, WeatherModel.FixedDay day);
+
+    /**
+     * A counter that changes whenever already-drawn weather history changes (today: {@link #fixFirstDay}), so
+     * caches built from past hours (the decay clock's summed year) know to re-sum. Pins don't count: they are
+     * read live by every caller.
+     */
+    default long historyVersion() { return 0; }
 
     static EnvService get() {
         EnvService s = Holder.service;

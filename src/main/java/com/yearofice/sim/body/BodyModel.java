@@ -8,7 +8,8 @@ import java.util.List;
 
 /**
  * The body tick's model: {@code step(record, inputs, minutes)} (Minecraft development › Layer 7 and The body
- * tick). This is the M2.5 slice of the 13 steps: 1 sample (the adapter's job), 2 burn, 3 stomach and absorb,
+ * tick). This is the M2.5 slice of the 13 steps: 1 sample (the adapter's job), 2 burn (times the load band's
+ * calorie factor), 3 stomach and absorb,
  * 4 weight, 5 water, 6 warmth, 7 energy, 10 derive, 12 check. Condition is held (no illness or injury
  * stepping yet); steps 8, 9 and 11 are M4.
  *
@@ -32,14 +33,23 @@ public final class BodyModel {
      * @param heat          heat sources around the player; {@code null} reads {@code env.heatBonusC()} instead
      * @param sleepQuality  bed quality times the other sleep factors, 0–1 (used only when asleep)
      * @param moving        moving this minute (drying rate)
+     * @param loadKcal      the load band's calorie factor (Layer 6, Load: 1.0 under 15 kg, 1.2, 1.5), on the
+     *                      activity burn while awake; shivering and sleep are not carrying
      */
     public record Inputs(Activity activity, boolean asleep, double sleepQuality, EnvSample env, List<HeatSource> heat,
-                         ShelterState shelter, ColdWater.Depth depth, boolean moving) {
+                         ShelterState shelter, ColdWater.Depth depth, boolean moving, double loadKcal) {
         public Inputs {
             if (activity == null) activity = Activity.REST;
             if (shelter == null) shelter = ShelterState.NONE;
             if (depth == null) depth = ColdWater.Depth.NONE;
             if (asleep) activity = Activity.SLEEP;
+            if (!(loadKcal > 0)) loadKcal = 1.0;
+        }
+
+        /** Unloaded inputs (load factor 1). */
+        public Inputs(Activity activity, boolean asleep, double sleepQuality, EnvSample env, List<HeatSource> heat,
+                      ShelterState shelter, ColdWater.Depth depth, boolean moving) {
+            this(activity, asleep, sleepQuality, env, heat, shelter, depth, moving, 1.0);
         }
 
         public static Inputs resting(EnvSample env) {
@@ -49,20 +59,27 @@ public final class BodyModel {
         public Inputs doing(Activity a) {
             boolean sleep = a == Activity.SLEEP;
             return new Inputs(a, sleep, sleep && sleepQuality <= 0 ? 1.0 : sleepQuality, env, heat, shelter, depth,
-                    a == Activity.WALK || a == Activity.RUN || a == Activity.HEAVY);
+                    a == Activity.WALK || a == Activity.RUN || a == Activity.HEAVY, loadKcal);
         }
 
         public Inputs in(EnvSample e) {
-            return new Inputs(activity, asleep, sleepQuality, e, heat, shelter, depth, moving);
+            return new Inputs(activity, asleep, sleepQuality, e, heat, shelter, depth, moving, loadKcal);
         }
 
         public Inputs inWater(ColdWater.Depth d) {
-            return new Inputs(activity, asleep, sleepQuality, env, heat, shelter, d, moving);
+            return new Inputs(activity, asleep, sleepQuality, env, heat, shelter, d, moving, loadKcal);
         }
 
         public Inputs withHeat(List<HeatSource> h) {
-            return new Inputs(activity, asleep, sleepQuality, env, h, shelter, depth, moving);
+            return new Inputs(activity, asleep, sleepQuality, env, h, shelter, depth, moving, loadKcal);
         }
+
+        public Inputs carrying(double kcalFactor) {
+            return new Inputs(activity, asleep, sleepQuality, env, heat, shelter, depth, moving, kcalFactor);
+        }
+
+        /** The load factor on this step's activity burn: 1 while asleep. */
+        public double burnFactor() { return asleep ? 1.0 : loadKcal; }
     }
 
     /** The outcome of a step: the first collapse and the game minute it happened, or NONE. */
@@ -126,7 +143,7 @@ public final class BodyModel {
 
         // 2–4. Burn, absorb, weight.
         double burned = Metabolism.kcalPerHour(a) / 60.0 * s.bmr() / Metabolism.DEFAULT_BMR * t.calorieBurn() * done
-                + shiver;
+                * in.burnFactor() + shiver;
         double absorbed = s.pendingKcal;
         s.pendingKcal = 0;
         s.kg += (absorbed - burned) / t.kcalPerKg();

@@ -14,11 +14,13 @@ import org.junit.jupiter.api.Test;
 /** The slice rod's pure parts: season, the spot rule, the bait, the strike, the close clock and the bite target. */
 class SliceFishingTest {
     static final FishingTuning T = FishingTuning.standard();
+    /** The spawning tributary's water the slice bite test is defined at (RECONCILE 174), °C. */
+    static final double SPAWNING_TRIBUTARY_C = 8.0;
 
     static SliceBite.Inputs slice(int day, TimeBand band, HookBait bait) {
         double k = T.graylingCapacity() * T.spotQ() * T.spawnCapacityX();
         return new SliceBite.Inputs(FishSpecies.arcticGrayling(), FishSeason.arcticGrayling(), "creek_mouth", true, T.spotQ(),
-                1.89, T.spotRadiusM(), k, k, bait, day, band, Weather.CLEAR, T.waterTempC(), T.turbidity(), false);
+                1.89, T.spotRadiusM(), k, k, bait, day, band, Weather.CLEAR, SPAWNING_TRIBUTARY_C, T.turbidity(), false);
     }
 
     @Test

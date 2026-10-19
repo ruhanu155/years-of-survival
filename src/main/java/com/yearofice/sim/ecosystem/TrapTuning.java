@@ -20,21 +20,22 @@ package com.yearofice.sim.ecosystem;
  * @param tellRangeM     a caught hare is heard within this range ("Snare on a hare: thrash and a short squeal,
  *                       40 m")
  * @param setMinutes     setting a snare takes this many game minutes (2)
- * @param dawnMin        the dawn roll's minute of day, until the Clock and calendar lands (06:00)
- * @param duskMin        the dusk roll's minute of day (18:00)
+ *
+ * <p>Rolls fall at the sun's dawn and dusk ({@link Snare.Rolls}, Layer 1); the M2.5 stand-in keys {@code dawn_min}
+ * and {@code dusk_min} (06:00 and 18:00) are retired.
  */
 public record TrapTuning(double hareP, double trailMult, double coverMult, double funnelMult, double placeCap,
                          double baitMult, double scentFloor, double theftAfterH, double theftPerDayPct,
                          int catchOffsetMaxMin, int wireCatches, double respawnDays, double tellRangeM,
-                         int setMinutes, int dawnMin, int duskMin) {
+                         int setMinutes) {
 
     public static TrapTuning standard() { return Preset.STANDARD.tuning; }
 
     /** Gentle, Standard and Brutal (Blueprint › Realism presets). GameTests run on Standard. */
     public enum Preset {
-        GENTLE(new TrapTuning(0.035, 4, 1.5, 1.3, 6, 1.5, 0.35, 72, 20, 120, 25, 4, 50, 2, 360, 1080)),
-        STANDARD(new TrapTuning(0.025, 4, 1.5, 1.3, 6, 1.5, 0.35, 48, 35, 120, 20, 6, 40, 2, 360, 1080)),
-        BRUTAL(new TrapTuning(0.02, 4, 1.5, 1.3, 6, 1.5, 0.35, 36, 50, 120, 15, 8, 40, 2, 360, 1080));
+        GENTLE(new TrapTuning(0.035, 4, 1.5, 1.3, 6, 1.5, 0.35, 72, 20, 120, 25, 4, 50, 2)),
+        STANDARD(new TrapTuning(0.025, 4, 1.5, 1.3, 6, 1.5, 0.35, 48, 35, 120, 20, 6, 40, 2)),
+        BRUTAL(new TrapTuning(0.02, 4, 1.5, 1.3, 6, 1.5, 0.35, 36, 50, 120, 15, 8, 40, 2));
 
         public final TrapTuning tuning;
 

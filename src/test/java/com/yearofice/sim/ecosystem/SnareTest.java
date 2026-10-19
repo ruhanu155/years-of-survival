@@ -9,8 +9,19 @@ import org.junit.jupiter.api.Test;
 /** Blueprint › Traps: the catch formula, its tests, and catch-up equal to live. */
 class SnareTest {
     static final TrapTuning T = TrapTuning.standard();
+    /** The slice's old fixed roll times, 06:00 and 18:00: the pure model's tests keep them explicitly. */
+    static final int DAWN = 360, DUSK = 1080;
+    static final Snare.Rolls ROLLS = Snare.Rolls.fixed(DAWN, DUSK);
+    /** A schedule that moves every day, with dusk sometimes after midnight, as the sun's does at 64°N. */
+    static final Snare.Rolls MOVING = new Snare.Rolls() {
+        public long dawn(long d) { return d * 1440 + 150 + Math.floorMod(d * 37, 300); }
 
-    record E(long seed, int x, int y, int z, double n, Snare.SetQuality quality) implements Snare.Env {
+        public long dusk(long d) { return d * 1440 + 1000 + Math.floorMod(d * 53, 520); }
+    };
+
+    record E(long seed, int x, int y, int z, double n, Snare.SetQuality quality, Snare.Rolls rolls) implements Snare.Env {
+        E(long seed, int x, int y, int z, double n, Snare.SetQuality quality) { this(seed, x, y, z, n, quality, ROLLS); }
+
         public double hares(long roll) { return n; }
         public TrapTuning tuning() { return T; }
     }
@@ -41,7 +52,7 @@ class SnareTest {
         int caught = 0, runs = 4000;
         for (int i = 0; i < runs; i++) {
             E env = new E(i, 3, 64, 9, 1, TRAIL_BAITED);
-            Snare.State s = Snare.advance(Snare.State.set(7 * 60, T), 7 * 60 + 5 * 1440, env);
+            Snare.State s = Snare.advance(Snare.State.set(7 * 60, ROLLS), 7 * 60 + 5 * 1440, env);
             if (s.catches() > 0) caught++;
         }
         double share = caught / (double) runs;
@@ -55,7 +66,7 @@ class SnareTest {
         int total = 0, inRange = 0, runs = 2000;
         for (int i = 0; i < runs; i++) {
             E env = new E(1000L + i, i, 70, -i, n, TRAIL);
-            Snare.State s = Snare.State.set(7 * 60, T);
+            Snare.State s = Snare.State.set(7 * 60, ROLLS);
             int got = 0;
             for (int day = 1; day <= 10; day++) {
                 long check = day * 1440L + 7 * 60;
@@ -77,16 +88,17 @@ class SnareTest {
         Mulberry32 r = new Mulberry32(42);
         for (int i = 0; i < 10_000; i++) {
             E env = new E(r.nextUInt(), r.nextInt(2000) - 1000, 60, r.nextInt(2000) - 1000, r.nextDouble() * 4,
-                    new Snare.SetQuality(r.nextDouble() < 0.5, r.nextDouble() < 0.5, false, r.nextDouble() < 0.5, 1, 1));
+                    new Snare.SetQuality(r.nextDouble() < 0.5, r.nextDouble() < 0.5, false, r.nextDouble() < 0.5, 1, 1),
+                    i % 2 == 0 ? ROLLS : MOVING);
             long start = r.nextInt(5000);
             long end = start + r.nextInt(20 * 1440);
-            Snare.State live = Snare.State.set(start, T);
+            Snare.State live = Snare.State.set(start, env.rolls());
             long t = start;
             while (t < end) {
                 t = Math.min(end, t + 1 + r.nextInt(900));
                 live = Snare.advance(live, t, env);
             }
-            Snare.State once = Snare.advance(Snare.State.set(start, T), end, env);
+            Snare.State once = Snare.advance(Snare.State.set(start, env.rolls()), end, env);
             assertEquals(once, live, "history " + i);
         }
     }
@@ -94,13 +106,13 @@ class SnareTest {
     @Test
     void rollsOnlyAtDawnAndDusk() {
         E env = new E(5, 1, 2, 3, 50, TRAIL_BAITED);
-        Snare.State s = Snare.State.set(0, T);
+        Snare.State s = Snare.State.set(0, ROLLS);
         for (int day = 0; day < 30; day++) {
             s = Snare.advance(s, day * 1440L + 1439, env);
             if (s.held() != null) {
-                long at = SliceCalendar.rollMinute(s.held().roll(), T.dawnMin(), T.duskMin());
-                int mod = SliceCalendar.minuteOfDay(at);
-                assertTrue(mod == T.dawnMin() || mod == T.duskMin(), "roll at " + mod);
+                long at = ROLLS.minute(s.held().roll());
+                int mod = (int) Math.floorMod(at, 1440L);
+                assertTrue(mod == DAWN || mod == DUSK, "roll at " + mod);
                 assertTrue(s.held().minute() - at <= T.catchOffsetMaxMin());
                 s = Snare.check(s, s.held().minute(), T);
             }
@@ -108,12 +120,29 @@ class SnareTest {
         assertTrue(s.catches() > 0);
     }
 
+    /** Roll k is the day's dawn (even) or dusk (odd); the last roll at or before a minute is found on any schedule. */
+    @Test
+    void rollScheduleFindsTheLastRoll() {
+        assertEquals(0, ROLLS.atOrBefore(360));
+        assertEquals(-1, ROLLS.atOrBefore(359));
+        assertEquals(3, ROLLS.atOrBefore(1440 + 1100));
+        assertEquals(1440 + 1080, ROLLS.minute(3));
+        assertTrue(Snare.Rolls.isDawn(4) && !Snare.Rolls.isDawn(5) && Snare.Rolls.isDawn(-2));
+        for (Snare.Rolls rolls : new Snare.Rolls[] {ROLLS, MOVING}) {
+            for (long k = -4; k < 2000; k++) {
+                assertTrue(rolls.minute(k) < rolls.minute(k + 1), "rolls rise at " + k);
+                assertEquals(k, rolls.atOrBefore(rolls.minute(k)), "roll " + k + " at its own minute");
+                assertEquals(k, rolls.atOrBefore(rolls.minute(k + 1) - 1), "roll " + k + " just before the next");
+            }
+        }
+    }
+
     @Test
     void aCatchLeftLongEnoughIsTakenAndTheWireWears() {
         int taken = 0;
         for (int i = 0; i < 400; i++) {
             E env = new E(i, 0, 0, 0, 50, TRAIL_BAITED);
-            Snare.State s = Snare.advance(Snare.State.set(0, T), 1440, env);
+            Snare.State s = Snare.advance(Snare.State.set(0, ROLLS), 1440, env);
             if (s.held() == null) continue;
             long c = s.held().minute();
             s = Snare.advance(s, c + 4 * 1440, env);

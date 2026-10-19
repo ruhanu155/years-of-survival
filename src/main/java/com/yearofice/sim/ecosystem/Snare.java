@@ -1,6 +1,8 @@
 package com.yearofice.sim.ecosystem;
 
 import com.yearofice.sim.decay.Thresholds;
+import com.yearofice.sim.time.Calendar;
+import com.yearofice.sim.time.Sun;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,8 @@ import java.util.List;
  *   P_catch = 1 − (1 − p_s · m)^n        m = min(6, place) · bait · max(0.35, scent) · weather
  * </pre>
  *
- * Rolls happen at dawn and dusk only ({@link SliceCalendar#rollMinute}). Each roll draws from the stream
+ * Rolls happen at dawn and dusk only ({@link Rolls}: the sun's −6° crossings, the minutes {@code ClockEvent.Dawn} and
+ * {@code Dusk} fire at). Each roll draws from the stream
  * (seed, "snare", x, y, z, k), so the outcome depends only on the trap and the roll, never on whether the chunk
  * was loaded: {@link #advance} over any split of a span gives the same state as one call over the whole span, and
  * chunk-load catch-up is that one call.
@@ -33,6 +36,55 @@ public final class Snare {
     private Snare() {}
 
     public enum Status { SET, CAUGHT, TAKEN, BROKEN }
+
+    /**
+     * When a snare rolls: roll k is on absolute day k ÷ 2, at that day's dawn when k is even and its dusk when it is
+     * odd (Blueprint › Traps: "Ground sets roll at dawn and dusk"). Minutes are absolute game minutes; roll minutes
+     * rise with k.
+     */
+    public interface Rolls {
+        /** Absolute minute of the dawn of absolute day {@code absDay}. */
+        long dawn(long absDay);
+
+        /** Absolute minute of the dusk of absolute day {@code absDay} (may fall after that day's midnight). */
+        long dusk(long absDay);
+
+        /** Absolute minute of roll k. */
+        default long minute(long k) {
+            long day = Math.floorDiv(k, 2);
+            return isDawn(k) ? dawn(day) : dusk(day);
+        }
+
+        /** The last roll at or before {@code minute}. */
+        default long atOrBefore(long minute) {
+            long k = 2 * (Calendar.absDayOfMinute(minute) + 1) + 1;
+            while (minute(k) > minute) k--;
+            return k;
+        }
+
+        static boolean isDawn(long k) { return Math.floorMod(k, 2) == 0; }
+
+        /** The sun's dawn and dusk at −6° (Layer 1), as {@code ClockEvent.Dawn} and {@code Dusk} fire them. */
+        static Rolls of(Sun sun) {
+            return new Rolls() {
+                public long dawn(long d) { return d * Calendar.MINUTES_PER_DAY + sun.dawnMinute(d); }
+
+                public long dusk(long d) { return d * Calendar.MINUTES_PER_DAY + sun.duskMinute(d); }
+            };
+        }
+
+        /** Fixed minutes of the day, dawn before dusk (tests). */
+        static Rolls fixed(int dawnMin, int duskMin) {
+            if (!(0 <= dawnMin && dawnMin < duskMin && duskMin < Calendar.MINUTES_PER_DAY)) {
+                throw new IllegalArgumentException("dawn must come before dusk");
+            }
+            return new Rolls() {
+                public long dawn(long d) { return d * Calendar.MINUTES_PER_DAY + dawnMin; }
+
+                public long dusk(long d) { return d * Calendar.MINUTES_PER_DAY + duskMin; }
+            };
+        }
+    }
 
     /** Where and how a snare is set; the multipliers of the catch formula. */
     public record SetQuality(boolean onTrail, boolean besideCover, boolean funnel, boolean baited, double scent,
@@ -64,8 +116,8 @@ public final class Snare {
             recent = List.copyOf(recent);
         }
 
-        public static State set(long minute, TrapTuning t) {
-            return new State(minute, SliceCalendar.rollAtOrBefore(minute, t.dawnMin(), t.duskMin()), Status.SET, null, 0, List.of());
+        public static State set(long minute, Rolls rolls) {
+            return new State(minute, rolls.atOrBefore(minute), Status.SET, null, 0, List.of());
         }
 
         /** The held catch, once its minute has come. */
@@ -82,6 +134,8 @@ public final class Snare {
         double hares(long roll);
         SetQuality quality();
         TrapTuning tuning();
+        /** When this snare's rolls fall. */
+        Rolls rolls();
     }
 
     public static double pCatch(double pS, double m, double n) {
@@ -93,8 +147,8 @@ public final class Snare {
     /** Hares covering the trap at roll k, after this snare's catches within the respawn window. */
     public static double effectiveHares(State s, Env env, long roll) {
         TrapTuning t = env.tuning();
-        long at = SliceCalendar.rollMinute(roll, t.dawnMin(), t.duskMin());
-        double window = t.respawnDays() * SliceCalendar.DAY_MIN;
+        long at = env.rolls().minute(roll);
+        double window = t.respawnDays() * Calendar.MINUTES_PER_DAY;
         int taken = 0;
         for (long m : s.recent()) if (m <= at && at - m < window) taken++;
         return Math.max(0, env.hares(roll) - taken);
@@ -102,24 +156,23 @@ public final class Snare {
 
     /** Settles every roll up to and including {@code toMinute}. */
     public static State advance(State s, long toMinute, Env env) {
-        TrapTuning t = env.tuning();
-        long last = SliceCalendar.rollAtOrBefore(toMinute, t.dawnMin(), t.duskMin());
+        long last = env.rolls().atOrBefore(toMinute);
         for (long k = s.lastRoll() + 1; k <= last; k++) s = roll(s, k, env);
         return s;
     }
 
     static State roll(State s, long k, Env env) {
         TrapTuning t = env.tuning();
-        long at = SliceCalendar.rollMinute(k, t.dawnMin(), t.duskMin());
+        long at = env.rolls().minute(k);
         List<Long> recent = new ArrayList<>();
-        for (long m : s.recent()) if (at - m < t.respawnDays() * SliceCalendar.DAY_MIN) recent.add(m);
+        for (long m : s.recent()) if (at - m < t.respawnDays() * Calendar.MINUTES_PER_DAY) recent.add(m);
         switch (s.status()) {
             case BROKEN, TAKEN -> {
                 return new State(s.setMinute(), k, s.status(), s.held(), s.catches(), recent);
             }
             case CAUGHT -> {
                 Catch c = s.held();
-                if (SliceCalendar.isDawn(k) && at - c.minute() > t.theftAfterH() * 60) {
+                if (Rolls.isDawn(k) && at - c.minute() > t.theftAfterH() * 60) {
                     double u = Thresholds.stream(env.seed(), "snare_theft", env.x(), env.y(), env.z(), k).nextDouble();
                     if (u < t.theftPerDayPct() / 100.0) return new State(s.setMinute(), k, Status.TAKEN, null, s.catches(), recent);
                 }
@@ -150,7 +203,7 @@ public final class Snare {
     /** P per roll right now, for /yoi snare info. */
     public static double pNow(State s, Env env, long now) {
         TrapTuning t = env.tuning();
-        long next = SliceCalendar.rollAtOrBefore(now, t.dawnMin(), t.duskMin()) + 1;
+        long next = env.rolls().atOrBefore(now) + 1;
         return pCatch(t.hareP(), env.quality().multiplier(t), effectiveHares(s, env, next));
     }
 }

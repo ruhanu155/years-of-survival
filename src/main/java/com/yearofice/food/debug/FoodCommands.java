@@ -30,7 +30,7 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
  *
  * <ul>
  *   <li>{@code food info}: the held stack's grams a bite, kcal, freshness (points, stage, state, days to Turning at the
- *       stand-in temperature, due and life on its clock), doneness, and the nearest spit's load and progress.</li>
+ *       valley air the slice clock reads, due and life on its clock), doneness, and the nearest spit's load and progress.</li>
  *   <li>{@code decay advance <days>}: ages every food stack in the player's inventory, and every spit load within
  *       16 blocks, by that many game days at the clock's temperature. It moves the food, not the world clock, so other
  *       players' and GameTests' food is untouched.</li>

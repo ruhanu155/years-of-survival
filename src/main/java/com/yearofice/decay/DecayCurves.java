@@ -18,8 +18,7 @@ import net.neoforged.neoforge.event.AddReloadListenerEvent;
  * table (3× per 10 °C, 0.2 half-frozen), so the file sets the frozen line and names the shape and stage ladder it
  * uses; the safe lives by state stay in {@code data_maps/item/food.json} as {@code spoil_days_at_5c}.
  *
- * <p>The client never loads server data, so it reads {@link ColdCurve#STANDARD}; at the slice's 5 °C stand-in both
- * give f_T = 1.
+ * <p>The client never loads server data; it reads the rate the server sends with the clock head ({@link DecayAir}).
  */
 public final class DecayCurves {
     private DecayCurves() {}
@@ -53,6 +52,7 @@ public final class DecayCurves {
                 YearOfIce.LOG.warn("decay/meat.json is missing; using the Standard curve");
             }
             meat = next;
+            DecayAir.clear();
         }
     }
 }

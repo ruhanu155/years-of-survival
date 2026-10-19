@@ -3,7 +3,6 @@ package com.yearofice.food.traps;
 import com.yearofice.api.body.BodyService;
 import com.yearofice.ecosystem.EcoConfig;
 import com.yearofice.ecosystem.clock.SliceClock;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -21,7 +20,7 @@ public class SnareWireItem extends BlockItem {
     @Override
     public InteractionResult place(BlockPlaceContext ctx) {
         if (ctx.getPlayer() instanceof ServerPlayer sp && BodyService.get().energy(sp) < EcoConfig.tuning().minWorkEnergy()) {
-            sp.displayClientMessage(Component.translatable("ecosystem.yearofice.too_tired"), true);
+            SnareBlockEntity.checkLine(sp, "too_tired");
             return InteractionResult.FAIL;
         }
         InteractionResult r = super.place(ctx);

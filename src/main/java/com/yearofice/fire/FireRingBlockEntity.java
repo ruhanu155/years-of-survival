@@ -1,7 +1,6 @@
 package com.yearofice.fire;
 
 import com.yearofice.api.fire.FireStateEvent;
-import com.yearofice.core.rules.YoiConfig;
 import com.yearofice.sim.env.FireSetting;
 import com.yearofice.sim.fire.Armload;
 import com.yearofice.sim.fire.Fire;
@@ -36,8 +35,9 @@ import net.neoforged.neoforge.common.NeoForge;
 
 /**
  * The block entity of {@code yearofice:fire_ring} (Blueprint › Fire, water and light › The fire state machine): one
- * {@link Fire} per ring, stepped each game minute from the server tick, with the ember's real seconds counted per
- * tick. On every change it updates the block state (light and model), the heat index, and posts
+ * {@link Fire} per ring, stepped by the clock's game minutes ({@code ClockEvent.Minute}, through {@link FireClock}),
+ * so the Close, Work and Sleep rates burn it as fast as they move time; the ember's real seconds are counted per
+ * server tick. On every change it updates the block state (light and model), the heat index, and posts
  * {@link FireStateEvent}. Interactions come from {@link FireRingBlock}; {@code /yoi fire} and the GameTests call the
  * public methods directly.
  */
@@ -45,8 +45,8 @@ public class FireRingBlockEntity extends BlockEntity {
     private Fire fire = new Fire();
     /** The stacks laid into the unlit lay, in order, so a part can be taken back and a broken ring drops them. */
     private final List<ItemStack> layStacks = new ArrayList<>();
-    private double minuteCarry;
     private FireWeather weatherOverride;
+    private boolean paused;
     private long lastPuffTick = -100;
     private FireState shownState = FireState.OUT;
 
@@ -61,22 +61,23 @@ public class FireRingBlockEntity extends BlockEntity {
 
     public FireWeather weather() { return level == null ? FireWeather.CALM : FireEnv.sample(level, worldPosition, weatherOverride); }
 
-    /** Game minutes per server tick at the World rate: 1,440 a day over the configured day length. */
-    static double minutesPerTick() {
-        int dayMin = YoiConfig.SPEC.isLoaded() ? YoiConfig.DAY_LENGTH_MIN.get() : 24;
-        return 1440.0 / (dayMin * 60.0 * 20.0);
-    }
+    /** GameTests hold a ring still: neither the clock's minutes nor the ember's seconds move it. */
+    public void pause(boolean p) { paused = p; }
+
+    public boolean paused() { return paused; }
 
     // ---- ticking -------------------------------------------------------------------------------------------
 
+    /** The server tick: only the ember's real seconds. Game minutes come from the clock ({@link #clockMinutes}). */
     public static void serverTick(Level level, BlockPos pos, BlockState state, FireRingBlockEntity be) {
+        if (be.paused) return;
         Fire.Change c = be.fire.tick();
         if (c != null) be.changed(c, null);
-        be.minuteCarry += minutesPerTick();
-        while (be.minuteCarry >= 1) {
-            be.minuteCarry -= 1;
-            be.stepMinutes(1);
-        }
+    }
+
+    /** {@code minutes} game minutes from the clock ({@code ClockEvent.Minute}, or a jump's closed form). */
+    void clockMinutes(int minutes) {
+        if (!paused && minutes > 0) stepMinutes(minutes);
     }
 
     /** Steps {@code minutes} game minutes in the current weather (the closed-form catch-up the tests also use). */
@@ -381,7 +382,6 @@ public class FireRingBlockEntity extends BlockEntity {
         }
         f.put("fuel", fuel);
         tag.put("fire", f);
-        tag.putDouble("minute_carry", minuteCarry);
         ListTag stacks = new ListTag();
         for (ItemStack st : layStacks) if (!st.isEmpty()) stacks.add(st.save(regs));
         tag.put("lay_stacks", stacks);
@@ -410,7 +410,6 @@ public class FireRingBlockEntity extends BlockEntity {
                     f.getInt("puffs_needed"), f.getInt("ember_ticks"), f.getDouble("burned_armloads"), f.getBoolean("packed_warned"),
                     f.getBoolean("coal_bed"), f.getDouble("tinder_moisture"), f.getInt("kindling"), f.getDouble("kindling_moisture"), lay, fuel));
         }
-        minuteCarry = tag.getDouble("minute_carry");
         layStacks.clear();
         for (Tag el : tag.getList("lay_stacks", Tag.TAG_COMPOUND)) ItemStack.parse(regs, el).ifPresent(layStacks::add);
         shownState = fire.state();

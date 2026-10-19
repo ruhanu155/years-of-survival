@@ -3,6 +3,7 @@ package com.yearofice.sim.ecosystem;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.yearofice.sim.time.Calendar;
 import org.junit.jupiter.api.Test;
 
 /** Awareness, the prey transitions, gaits, looks, the calendar and dressing. */
@@ -81,28 +82,31 @@ class AnimalRulesTest {
 
     @Test
     void coatsAndAntlersByDate() {
-        assertEquals(SeasonalLooks.Coat.SUMMER, SeasonalLooks.hare(SliceCalendar.doy(5, 1)));
-        assertEquals(SeasonalLooks.Coat.MOTTLED, SeasonalLooks.hare(SliceCalendar.doy(10, 10)));
-        assertEquals(SeasonalLooks.Coat.WINTER, SeasonalLooks.hare(SliceCalendar.doy(1, 15)));
-        assertEquals(SeasonalLooks.Coat.MOTTLED, SeasonalLooks.hare(SliceCalendar.doy(4, 20)));
-        assertEquals(SeasonalLooks.Coat.WINTER, SeasonalLooks.ptarmigan(SliceCalendar.doy(12, 1)));
-        assertEquals(SeasonalLooks.Coat.MOULT, SeasonalLooks.ptarmigan(SliceCalendar.doy(10, 5)));
-        assertEquals(SeasonalLooks.Coat.MOULT, SeasonalLooks.ptarmigan(SliceCalendar.doy(5, 5)));
-        assertEquals(SeasonalLooks.Coat.SUMMER, SeasonalLooks.ptarmigan(SliceCalendar.doy(7, 1)));
-        assertEquals(0, SeasonalLooks.antlers(SliceCalendar.doy(2, 1)), 1e-12);
-        assertEquals(1, SeasonalLooks.antlers(SliceCalendar.doy(9, 20)), 1e-12);
-        double june = SeasonalLooks.antlers(SliceCalendar.doy(6, 15));
+        assertEquals(SeasonalLooks.Coat.SUMMER, SeasonalLooks.hare(Calendar.dayOfYear(5, 1)));
+        assertEquals(SeasonalLooks.Coat.MOTTLED, SeasonalLooks.hare(Calendar.dayOfYear(10, 10)));
+        assertEquals(SeasonalLooks.Coat.WINTER, SeasonalLooks.hare(Calendar.dayOfYear(1, 15)));
+        assertEquals(SeasonalLooks.Coat.MOTTLED, SeasonalLooks.hare(Calendar.dayOfYear(4, 20)));
+        assertEquals(SeasonalLooks.Coat.WINTER, SeasonalLooks.ptarmigan(Calendar.dayOfYear(12, 1)));
+        assertEquals(SeasonalLooks.Coat.MOULT, SeasonalLooks.ptarmigan(Calendar.dayOfYear(10, 5)));
+        assertEquals(SeasonalLooks.Coat.MOULT, SeasonalLooks.ptarmigan(Calendar.dayOfYear(5, 5)));
+        assertEquals(SeasonalLooks.Coat.SUMMER, SeasonalLooks.ptarmigan(Calendar.dayOfYear(7, 1)));
+        assertEquals(0, SeasonalLooks.antlers(Calendar.dayOfYear(2, 1)), 1e-12);
+        assertEquals(1, SeasonalLooks.antlers(Calendar.dayOfYear(9, 20)), 1e-12);
+        double june = SeasonalLooks.antlers(Calendar.dayOfYear(6, 15));
         assertTrue(june > 0.3 && june < 0.6, "June antlers " + june);
     }
 
     @Test
     void calendarAndRolls() {
-        assertEquals(364, SliceCalendar.doy(4, 30));
-        assertEquals("Oct 21", SliceCalendar.date(SliceCalendar.doy(10, 21)));
-        assertEquals(0, SliceCalendar.rollAtOrBefore(360, 360, 1080));
-        assertEquals(-1, SliceCalendar.rollAtOrBefore(359, 360, 1080));
-        assertEquals(3, SliceCalendar.rollAtOrBefore(1440 + 1100, 360, 1080));
-        assertEquals(1440 + 1080, SliceCalendar.rollMinute(3, 360, 1080));
+        assertEquals(364, Calendar.dayOfYear(4, 30));
+        assertEquals("Oct 21", Calendar.shortDate(Calendar.dayOfYear(10, 21)));
+        Snare.Rolls rolls = Snare.Rolls.fixed(360, 1080);
+        assertEquals(0, rolls.atOrBefore(360));
+        assertEquals(-1, rolls.atOrBefore(359));
+        assertEquals(3, rolls.atOrBefore(1440 + 1100));
+        assertEquals(1440 + 1080, rolls.minute(3));
+        assertTrue(Calendar.within(Calendar.dayOfYear(1, 15), Calendar.dayOfYear(10, 21), Calendar.dayOfYear(4, 10)), "a window over May 1");
+        assertEquals(Calendar.dayOfYear(12, 1), Calendar.dayOfYearOfMinute(Calendar.dayOfYear(12, 1) * 1440L + 365 * 1440L + 5));
     }
 
     @Test

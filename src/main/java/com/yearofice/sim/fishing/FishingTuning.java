@@ -4,7 +4,9 @@ package com.yearofice.sim.fishing;
  * Every rod-fishing tuning number the slice adapter reads, as the {@code [fishing]} section of
  * {@code yearofice-common.toml} holds them ({@code com.yearofice.hunt.fishing.FishingConfig} fills it; tests use
  * {@link #standard()}). The fight's own rates stay in {@link FightModel}, {@link Tackle} and {@link FishSpecies},
- * which are the Blueprint's numbers. Sources: Blueprint › Fishing in depth unless a field says otherwise.
+ * which are the Blueprint's numbers. Sources: Blueprint › Fishing in depth unless a field says otherwise. Water
+ * temperature comes from the Environment field and the fight's clock from the Close rate ({@code clock/rates.json});
+ * the M2.5 keys {@code close_clock_rate} and {@code water_temp_c} are retired.
  *
  * @param spotQ               q of the slice's spot. The slice valley's one spot is a creek mouth on its creek:
  *                            (0.55 base + 0.10 deeper than 2 m + 0.05 within 300 m below a lake) × r 1.2, the top
@@ -34,12 +36,10 @@ package com.yearofice.sim.fishing;
  * @param snapWearPct         line condition a snap costs in the slice, where the line is re-tied from the winder
  *                            instead of replaced (slice rule)
  * @param lineWetMin          a line wets after this many game minutes in use (10, Lines)
- * @param closeClockRate      the close clock's share of the world clock during a fight (0.1)
  * @param inputTimeoutTicks   the server steps an idle input for any tick the client is this late with (slice rule)
  * @param assist              1 turns on the fishing assist (on by default in Gentle, The fight, as built › Assist)
  * @param wormDigMax          worms one broken riparian soil block may give, 0 to this (stand-in for the dig job)
  * @param wormDigRange        soil within this many blocks of water counts as riparian
- * @param waterTempC          water temperature until {@code env.water} lands
  * @param turbidity           turbidity until {@code env.water} lands (0 clear to 1 muddy)
  */
 public record FishingTuning(double spotQ, double spotMinDepthM, int spotMinWidth, double spotRadiusM,
@@ -48,8 +48,8 @@ public record FishingTuning(double spotQ, double spotMinDepthM, int spotMinWidth
                             double castScatterPct, double castScatterDeg, double strikeGraceS,
                             double missBaitLossPct, double spookMin, double nibbleShare, double leadMinS,
                             double leadMaxS, double nibbleS, double lineWearPct, double snapWearPct,
-                            double lineWetMin, double closeClockRate, int inputTimeoutTicks, int assist,
-                            int wormDigMax, int wormDigRange, double waterTempC, double turbidity) {
+                            double lineWetMin, int inputTimeoutTicks, int assist,
+                            int wormDigMax, int wormDigRange, double turbidity) {
 
     public static FishingTuning standard() { return FishingPreset.STANDARD.tuning; }
 

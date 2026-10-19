@@ -150,6 +150,8 @@ public final class EnvServiceImpl implements EnvService {
 
     @Override public WeatherModel.Hour valley(ServerLevel level) { return hourAt(level, now()); }
 
+    @Override public WeatherModel.Hour valleyAt(ServerLevel level, long minute) { return hourAt(level, minute); }
+
     @Override public WeatherModel.Day day(ServerLevel level, long absDay) { return model(level).day(absDay); }
 
     @Override
@@ -176,7 +178,12 @@ public final class EnvServiceImpl implements EnvService {
         if (day == null) firstDays.remove(level.getSeed());
         else firstDays.put(level.getSeed(), day);
         model(level).fixFirstDay(day);
+        historyVersion++;
     }
+
+    private volatile long historyVersion;
+
+    @Override public long historyVersion() { return historyVersion; }
 
     @Override
     public boolean heavy(ServerLevel level) { return model(level).heavy(valley(level)); }

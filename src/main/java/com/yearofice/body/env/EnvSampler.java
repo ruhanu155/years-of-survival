@@ -9,8 +9,8 @@ import net.minecraft.server.level.ServerPlayer;
 
 /**
  * What the body tick's step 1 reads about the place a player stands (Minecraft development › Layer 2,
- * {@code EnvService.sample}). The body reads the environment only through this interface; when the Environment
- * field lands, its service replaces {@link VanillaEnvSampler} here.
+ * {@code EnvService.sample}). The body reads the environment only through this interface; {@link VanillaEnvSampler}
+ * answers it from {@code EnvService}.
  */
 public interface EnvSampler {
 

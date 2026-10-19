@@ -2,12 +2,12 @@ package com.yearofice.api.hud;
 
 /**
  * One typed argument of a {@link HudLine} (Layer 8): an int, a fixed-point number with a unit tag (hundredths:
- * {@code 1250} with {@code "kg"} is 12.5 kg), an item id, a species id, or plain text for lines a system words
- * itself (prompts offered with {@code offerPrompt}). The client formats numbers through {@code client.ui.Units},
- * metric first.
+ * {@code 1250} with {@code "kg"} is 12.5 kg), an item id, a species id, plain text for lines a system words
+ * itself (prompts offered with {@code offerPrompt}), or a lang key the client translates (a word chosen from a
+ * fixed set, like an SOS cause). The client formats numbers through {@code client.ui.Units}, metric first.
  */
 public record HudArg(Kind kind, long value, String text) {
-    public enum Kind { INT, FIXED, ITEM, SPECIES, TEXT }
+    public enum Kind { INT, FIXED, ITEM, SPECIES, TEXT, KEY }
 
     /** Unit tags the client knows: kg, g, c (°C), m, km, cm, mm, l, ml, kcal, pct, min, h, ms (m/s). */
     public static HudArg fixed(double v, String unit) { return new HudArg(Kind.FIXED, Math.round(v * 100), unit); }
@@ -19,6 +19,9 @@ public record HudArg(Kind kind, long value, String text) {
     public static HudArg species(String id) { return new HudArg(Kind.SPECIES, 0, id); }
 
     public static HudArg text(String s) { return new HudArg(Kind.TEXT, 0, s); }
+
+    /** A lang key, shown translated. */
+    public static HudArg key(String langKey) { return new HudArg(Kind.KEY, 0, langKey); }
 
     public HudArg {
         if (text == null) text = "";

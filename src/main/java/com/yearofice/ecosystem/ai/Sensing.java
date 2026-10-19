@@ -1,12 +1,11 @@
 package com.yearofice.ecosystem.ai;
 
+import com.yearofice.api.env.EnvService;
 import com.yearofice.ecosystem.EcosystemRegistry;
 import com.yearofice.ecosystem.YoiAnimal;
-import com.yearofice.sim.decay.Thresholds;
 import com.yearofice.sim.ecosystem.Awareness;
 import com.yearofice.sim.ecosystem.Posture;
 import com.yearofice.sim.ecosystem.Senses;
-import com.yearofice.ecosystem.clock.SliceClock;
 import java.util.Set;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -77,8 +76,8 @@ public final class Sensing {
     }
 
     /**
-     * Scent: the animal sits in the player's downwind cone (25° each side) within its smell range. Until the
-     * weather system lands, the wind's direction is drawn per game hour from the seed (stream "wind").
+     * Scent: the animal sits in the player's downwind cone (25° each side) within its smell range. The wind is the
+     * Environment field's at the animal ({@code EnvService.wind}).
      */
     public static final class Scent extends Base {
         public static final double CONE_DEG = 25;
@@ -89,7 +88,7 @@ public final class Sensing {
         protected void doTick(ServerLevel level, YoiAnimal a) {
             if (!a.scentEnabled()) return;
             Senses s = a.species().senses();
-            double wind = windTowardDeg(level);
+            double wind = windTowardDeg(level, a.blockPosition());
             for (LivingEntity t : ThreatSources.near(level, a.position(), s.smellM(), a)) {
                 double toAnimal = bearing(t.position(), a.position());
                 if (Math.abs(Mth.wrapDegrees(toAnimal - wind)) > CONE_DEG) continue;
@@ -100,10 +99,13 @@ public final class Sensing {
         }
     }
 
-    /** The yaw the wind blows toward this game hour, in Minecraft degrees. */
-    public static double windTowardDeg(ServerLevel level) {
-        long hour = Math.floorDiv(SliceClock.minute(level), 60);
-        return Thresholds.stream(level.getSeed(), "wind", hour).nextDouble() * 360.0 - 180.0;
+    /**
+     * The yaw the wind at {@code pos} blows toward, in Minecraft degrees. The field gives the compass bearing it
+     * blows from (clockwise from north); it blows toward that + 180°, and a compass bearing c is yaw c − 180°
+     * (north is yaw 180, south 0), so the yaw toward is the bearing from.
+     */
+    public static double windTowardDeg(ServerLevel level, BlockPos pos) {
+        return Mth.wrapDegrees(EnvService.get().wind(level, pos).fromDeg());
     }
 
     /** Minecraft yaw from one point toward another. */

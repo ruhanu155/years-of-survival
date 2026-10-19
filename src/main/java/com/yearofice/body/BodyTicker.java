@@ -1,5 +1,6 @@
 package com.yearofice.body;
 
+import com.yearofice.api.item.LoadService;
 import com.yearofice.body.clock.BodyClock;
 import com.yearofice.body.clock.ServiceBodyClock;
 import com.yearofice.body.env.EnvSampler;
@@ -7,8 +8,7 @@ import com.yearofice.body.env.VanillaEnvSampler;
 import com.yearofice.body.net.BodyNet;
 import com.yearofice.body.net.BodySyncPayload;
 import com.yearofice.core.YearOfIce;
-import com.yearofice.item.messenger.MessengerItems;
-import com.yearofice.item.messenger.TrailMessengerItem;
+import com.yearofice.item.messenger.MessengerSlots;
 import com.yearofice.sim.body.Activity;
 import com.yearofice.sim.body.BodyModel;
 import com.yearofice.sim.body.BodyState;
@@ -21,8 +21,6 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -35,8 +33,8 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
  * in one tick (the night skip, {@code /yoi time forward}) step in closed form. Collapse goes to {@link SosFlow};
  * the owner's vitals go out as {@code body_sync}.
  *
- * <p>Time and environment come in through {@link BodyClock} and {@link EnvSampler}, so the Clock and Environment
- * layers replace the stand-ins without touching this class.
+ * <p>Time and environment come in through {@link BodyClock} and {@link EnvSampler} (Layer 1's {@code ClockService} and
+ * Layer 2's {@code EnvService}); the load band's calorie factor comes from {@link LoadService#kcalFactor}.
  */
 @EventBusSubscriber(modid = YearOfIce.MOD_ID)
 public final class BodyTicker {
@@ -125,7 +123,16 @@ public final class BodyTicker {
         LAST_SAMPLE.put(p.getUUID(), smp);
         double quality = asleep ? (p.isSleeping() ? 1.0 : 0.7) : 0;
         return new BodyModel.Inputs(activity, asleep, quality, smp.env(), smp.heat(), smp.shelter(), smp.depth(),
-                moving);
+                moving, loadKcal(p));
+    }
+
+    /** The load band's calorie factor for what {@code p} carries (1.0 under the first band). */
+    public static double loadKcal(ServerPlayer p) {
+        try {
+            return LoadService.get().kcalFactor(p);
+        } catch (IllegalStateException notInstalled) {
+            return 1.0;
+        }
     }
 
     private static void after(ServerPlayer p, BodyState s, BodyModel.Result r, long now) {
@@ -176,16 +183,11 @@ public final class BodyTicker {
                 messengerBattery(p));
     }
 
-    /** The best battery among carried messengers, or −1 with none carried. */
-    static int messengerBattery(ServerPlayer p) {
-        Inventory inv = p.getInventory();
-        int best = -1;
-        for (int i = 0; i < inv.getContainerSize(); i++) {
-            ItemStack st = inv.getItem(i);
-            if (st.is(MessengerItems.MESSENGER.get())) best = Math.max(best, TrailMessengerItem.battery(st));
-        }
-        return best;
-    }
+    /**
+     * The battery of the messenger the player can read: in a hand or the neck slot, as the HUD bus finds it
+     * ({@link MessengerSlots}); −1 with none there. A messenger deep in the pack does not show vitals.
+     */
+    static int messengerBattery(ServerPlayer p) { return MessengerSlots.battery(p); }
 
     @SubscribeEvent
     public static void onLogin(PlayerEvent.PlayerLoggedInEvent e) {

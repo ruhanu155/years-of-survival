@@ -1,5 +1,7 @@
 package com.yearofice.sim.ecosystem;
 
+import com.yearofice.sim.time.Calendar;
+
 /**
  * Looks by date (Land animals in depth › Seasonal looks; Birds and the air › Grouse and ptarmigan). The server
  * sets the look bytes from these; the client never computes a date. Pure Java.
@@ -30,36 +32,36 @@ public final class SeasonalLooks {
         }
     }
 
-    static final int HARE_TURN_START = SliceCalendar.doy(10, 1), HARE_WHITE = SliceCalendar.doy(10, 21),
-            HARE_BROWN_START = SliceCalendar.doy(4, 11), HARE_WHITE_END = SliceCalendar.doy(4, 10),
-            HARE_TURN_END = SliceCalendar.doy(10, 20), HARE_BROWN_END = SliceCalendar.doy(4, 30);
+    static final int HARE_TURN_START = Calendar.dayOfYear(10, 1), HARE_WHITE = Calendar.dayOfYear(10, 21),
+            HARE_BROWN_START = Calendar.dayOfYear(4, 11), HARE_WHITE_END = Calendar.dayOfYear(4, 10),
+            HARE_TURN_END = Calendar.dayOfYear(10, 20), HARE_BROWN_END = Calendar.dayOfYear(4, 30);
 
     public static Coat hare(int doy) {
-        if (SliceCalendar.within(doy, HARE_TURN_START, HARE_TURN_END)) return Coat.MOTTLED;
-        if (SliceCalendar.within(doy, HARE_WHITE, HARE_WHITE_END)) return Coat.WINTER;
-        if (SliceCalendar.within(doy, HARE_BROWN_START, HARE_BROWN_END)) return Coat.MOTTLED;
+        if (Calendar.within(doy, HARE_TURN_START, HARE_TURN_END)) return Coat.MOTTLED;
+        if (Calendar.within(doy, HARE_WHITE, HARE_WHITE_END)) return Coat.WINTER;
+        if (Calendar.within(doy, HARE_BROWN_START, HARE_BROWN_END)) return Coat.MOTTLED;
         return Coat.SUMMER;
     }
 
-    static final int PTARMIGAN_MOULT_IN = SliceCalendar.doy(9, 29), PTARMIGAN_WHITE = SliceCalendar.doy(10, 20),
-            PTARMIGAN_WHITE_END = SliceCalendar.doy(4, 20), PTARMIGAN_MOULT_OUT_END = SliceCalendar.doy(5, 11);
+    static final int PTARMIGAN_MOULT_IN = Calendar.dayOfYear(9, 29), PTARMIGAN_WHITE = Calendar.dayOfYear(10, 20),
+            PTARMIGAN_WHITE_END = Calendar.dayOfYear(4, 20), PTARMIGAN_MOULT_OUT_END = Calendar.dayOfYear(5, 11);
 
     public static Coat ptarmigan(int doy) {
-        if (SliceCalendar.within(doy, PTARMIGAN_WHITE, PTARMIGAN_WHITE_END)) return Coat.WINTER;
-        if (SliceCalendar.within(doy, PTARMIGAN_MOULT_IN, PTARMIGAN_WHITE - 1)) return Coat.MOULT;
-        if (SliceCalendar.within(doy, PTARMIGAN_WHITE_END + 1, PTARMIGAN_MOULT_OUT_END)) return Coat.MOULT;
+        if (Calendar.within(doy, PTARMIGAN_WHITE, PTARMIGAN_WHITE_END)) return Coat.WINTER;
+        if (Calendar.within(doy, PTARMIGAN_MOULT_IN, PTARMIGAN_WHITE - 1)) return Coat.MOULT;
+        if (Calendar.within(doy, PTARMIGAN_WHITE_END + 1, PTARMIGAN_MOULT_OUT_END)) return Coat.MOULT;
         return Coat.SUMMER;
     }
 
-    static final int ANTLER_REGROW = SliceCalendar.doy(4, 15), ANTLER_FULL = SliceCalendar.doy(8, 25),
-            ANTLER_SHED = SliceCalendar.doy(12, 15);
+    static final int ANTLER_REGROW = Calendar.dayOfYear(4, 15), ANTLER_FULL = Calendar.dayOfYear(8, 25),
+            ANTLER_SHED = Calendar.dayOfYear(12, 15);
 
     /** Bull antler scale, 0 to 1. */
     public static double antlers(int doy) {
-        if (SliceCalendar.within(doy, ANTLER_FULL, ANTLER_SHED)) return 1.0;
-        if (SliceCalendar.within(doy, ANTLER_SHED + 1, ANTLER_REGROW)) return 0.0;
-        int span = Math.floorMod(ANTLER_FULL - ANTLER_REGROW, SliceCalendar.YEAR_DAYS);
-        int into = Math.floorMod(doy - ANTLER_REGROW, SliceCalendar.YEAR_DAYS);
+        if (Calendar.within(doy, ANTLER_FULL, ANTLER_SHED)) return 1.0;
+        if (Calendar.within(doy, ANTLER_SHED + 1, ANTLER_REGROW)) return 0.0;
+        int span = Math.floorMod(ANTLER_FULL - ANTLER_REGROW, Calendar.DAYS_PER_YEAR);
+        int into = Math.floorMod(doy - ANTLER_REGROW, Calendar.DAYS_PER_YEAR);
         return Math.min(1.0, (double) into / span);
     }
 }

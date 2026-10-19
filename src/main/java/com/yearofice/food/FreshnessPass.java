@@ -1,6 +1,10 @@
 package com.yearofice.food;
 
 import com.yearofice.api.decay.DecayService;
+import com.yearofice.api.hud.HudArg;
+import com.yearofice.api.hud.HudBus;
+import com.yearofice.api.hud.HudLine;
+import com.yearofice.api.hud.HudLineType;
 import com.yearofice.body.intake.FoodMap;
 import com.yearofice.core.YearOfIce;
 import com.yearofice.item.component.YoiComponents;
@@ -8,7 +12,6 @@ import com.yearofice.sim.decay.FoodState;
 import com.yearofice.sim.decay.Fresh;
 import com.yearofice.sim.food.EatingLadder;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
@@ -43,7 +46,8 @@ public final class FreshnessPass {
                 continue;
             }
             if (decay.stage(p.level(), s) >= EatingLadder.ROTTEN) {
-                p.displayClientMessage(Component.translatable("food.yearofice.rotted_away", s.getHoverName()), false);
+                HudBus.get().post(p, HudLine.of(HudLineType.PICKUP, "rotted_away", "food",
+                        HudArg.item(BuiltInRegistries.ITEM.getKey(s.getItem()).toString())));
                 inv.setItem(i, ItemStack.EMPTY);
                 rotted++;
             }

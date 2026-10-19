@@ -4,8 +4,8 @@ import net.minecraft.server.MinecraftServer;
 
 /**
  * What the body tick needs from Layer 1, Clock and calendar: the absolute game minute and a way to jump it for
- * debugging. The body package reads time only through this interface, so when {@code clock.ClockService} and
- * {@code ClockEvent.Minute} land, a one-class adapter replaces {@link VanillaDayClock} and nothing else moves.
+ * debugging. The body package reads time only through this interface; {@link ServiceBodyClock} answers it from
+ * {@code api.clock.ClockService}.
  *
  * <p>Game minute 0 is 00:00 of day 1. Every body rate is per game minute (RECONCILE 117), so the clock's real-time
  * rate never changes what a day costs the body.

@@ -14,6 +14,8 @@ import net.neoforged.neoforge.common.ModConfigSpec;
  * The {@code [fire]} section of {@code yearofice-common.toml}. One key per {@link FireTuning} field (its name in
  * snake_case), defaulting to the Standard value. The realism preset sets every slider's default: while a key still
  * holds the Standard number, Gentle and Brutal worlds read their preset's number instead; a moved slider wins.
+ * Wind at a fire comes from the Environment field ({@link FireEnv}); the M2.5 stand-in keys {@code calm_wind_ms},
+ * {@code rain_wind_ms} and {@code storm_wind_ms} are retired, and NeoForge drops them from an older file on load.
  */
 public final class FireConfig {
     private FireConfig() {}
@@ -54,9 +56,6 @@ public final class FireConfig {
 
     private static final List<RecordComponent> FIELDS = List.of(FireTuning.class.getRecordComponents());
     private static final List<ModConfigSpec.ConfigValue<? extends Number>> VALUES = new ArrayList<>();
-    public static ModConfigSpec.DoubleValue CALM_WIND_MS;
-    public static ModConfigSpec.DoubleValue RAIN_WIND_MS;
-    public static ModConfigSpec.DoubleValue STORM_WIND_MS;
     private static volatile FireTuning cached;
     private static volatile YoiConfig.Preset cachedFor;
 
@@ -72,9 +71,6 @@ public final class FireConfig {
             if (c.getType() == int.class) VALUES.add(b.comment(comment).defineInRange(key, s.intValue(), 0, 1_000_000));
             else VALUES.add(b.comment(comment).defineInRange(key, s.doubleValue(), 0, 1_000_000));
         }
-        CALM_WIND_MS = b.comment("Until the weather system lands: wind (m/s) on a dry day.").defineInRange("calm_wind_ms", 2.0, 0, 60);
-        RAIN_WIND_MS = b.comment("Until the weather system lands: wind (m/s) while it rains.").defineInRange("rain_wind_ms", 5.0, 0, 60);
-        STORM_WIND_MS = b.comment("Until the weather system lands: wind (m/s) in a thunderstorm.").defineInRange("storm_wind_ms", 9.0, 0, 60);
         b.pop();
     }
 

@@ -6,7 +6,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-/** The {@code [traps]} section of {@code yearofice-common.toml} (Blueprint › Traps). */
+/**
+ * The {@code [traps]} section of {@code yearofice-common.toml} (Blueprint › Traps). Rolls fall at the sun's dawn and
+ * dusk from the clock; the retired keys {@code dawn_min} and {@code dusk_min} are dropped from an older file on load.
+ */
 public final class TrapConfig {
     private TrapConfig() {}
 
@@ -26,8 +29,6 @@ public final class TrapConfig {
         NOTES.put("respawnDays", "A hare caught from a snare's range is replaced after this many game days.");
         NOTES.put("tellRangeM", "A snared hare is heard within this many metres when it is caught.");
         NOTES.put("setMinutes", "Game minutes setting a snare takes (time-lapse).");
-        NOTES.put("dawnMin", "Until the Clock and calendar lands: the dawn roll's minute of the day (360 = 06:00).");
-        NOTES.put("duskMin", "The dusk roll's minute of the day (1080 = 18:00).");
     }
 
     public static final PresetConfig<TrapTuning> TRAPS = new PresetConfig<>(TrapTuning.class, p -> switch (p) {

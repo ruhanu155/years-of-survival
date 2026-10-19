@@ -1,7 +1,8 @@
 package com.yearofice.body.env;
 
+import com.yearofice.api.clock.ClockService;
+import com.yearofice.api.env.EnvService;
 import com.yearofice.api.fire.FireHeatLookup;
-import com.yearofice.body.clock.BodyClock;
 import com.yearofice.sim.body.ColdWater;
 import com.yearofice.sim.env.EnvSample;
 import com.yearofice.sim.env.FireSetting;
@@ -17,31 +18,31 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 /**
- * The basic environment sample of the slice, read from vanilla until the Environment field exists:
+ * The body's environment sample, from the Environment field ({@link EnvService}, Layer 2), at the player's feet:
  *
  * <ul>
- *   <li>Air: the biome's base temperature as °C = 28·t − 8 (plains 0.8 → 14 °C, taiga 0.25 → −1 °C, snowy plains
- *       0 → −8 °C), −6.5 °C a km above y 64, and a daily swing of ±5 °C peaking at 15:00.</li>
- *   <li>Precipitation: rain or snow where vanilla rains on the player's head, 2.5 mm/h (8 in a thunderstorm).</li>
- *   <li>Wind: 2 m/s, 5 in rain, 9 in a thunderstorm; halved under a roof.</li>
- *   <li>Water: air − 4 °C, between 1 and 20, and the depth the player stands in.</li>
+ *   <li>Air, wind, precipitation and water: {@link EnvService#sample} now, or {@link EnvService#sampleAbstract} for
+ *       another minute (a scripted day plan's start). The water is the field's creek water.</li>
+ *   <li>Under a roof (no sky above the head) no precipitation reaches the player; the {@link #ROOF} shelter halves
+ *       the wind chill.</li>
  *   <li>Heat: every fire ring the fire system reports within 8 m ({@link FireHeatLookup}), plus vanilla lit
- *       campfires (Steady), fire blocks (Low) and lava (Hot) as stand-ins.</li>
+ *       campfires (Steady), fire blocks (Low) and lava (Hot), which have no fire system of their own.</li>
  * </ul>
  *
  * A per-player override, set by {@code /yoi body env} and by GameTests, replaces the sampled air, wind and
- * precipitation.
+ * precipitation for that player alone, so a test never moves another test's weather.
+ *
+ * <p>The name is historical (it read the biome until M2 lane B); other packages' tests hold it, so it stays.
  */
 public final class VanillaEnvSampler implements EnvSampler {
 
-    /** A debug or test override; {@code waterC} NaN keeps the derived value. */
+    /** A debug or test override; {@code waterC} NaN keeps the field's water. */
     public record EnvOverride(double airC, double windMs, Precip precip, double precipMmH, double waterC) {}
 
     private final Map<UUID, EnvOverride> overrides = new ConcurrentHashMap<>();
@@ -56,46 +57,31 @@ public final class VanillaEnvSampler implements EnvSampler {
 
     public EnvOverride overrideOf(ServerPlayer p) { return overrides.get(p.getUUID()); }
 
-    public static double biomeAirC(float baseTemperature, int y) {
-        double c = 28 * baseTemperature - 8;
-        if (y > 64) c -= (y - 64) * 0.0065;
-        return c;
-    }
-
-    public static double diurnalC(long minute) {
-        double phase = (BodyClock.minuteOfDay(minute) - 15 * 60) / 1440.0 * 2 * Math.PI;
-        return 5 * Math.cos(phase);
+    /** The field's sample at the player's feet at {@code minute}: the live sample within a minute of now. */
+    public static EnvSample field(ServerPlayer p, long minute) {
+        ServerLevel level = p.serverLevel();
+        EnvService env = EnvService.get();
+        long now = ClockService.installed() ? ClockService.get().nowMinute() : minute;
+        if (Math.abs(minute - now) <= 1) return env.sample(level, p.blockPosition());
+        return env.sampleAbstract(level, p.getX(), p.getY(), p.getZ(), minute);
     }
 
     @Override
     public Sample sample(ServerPlayer p, long minute) {
         ServerLevel level = p.serverLevel();
-        BlockPos feet = p.blockPosition();
         BlockPos head = BlockPos.containing(p.getEyePosition());
-        Biome biome = level.getBiome(feet).value();
-
         boolean roofed = !level.canSeeSky(head.above());
-        double air = biomeAirC(biome.getBaseTemperature(), feet.getY()) + diurnalC(minute);
-        Precip precip = Precip.NONE;
-        double mmH = 0;
-        if (level.isRainingAt(head.above()) || (level.isRaining() && !roofed && biome.coldEnoughToSnow(feet))) {
-            precip = biome.coldEnoughToSnow(feet) || air < 0 ? Precip.SNOW : Precip.RAIN;
-            mmH = level.isThundering() ? 8 : 2.5;
-        }
-        double wind = level.isThundering() ? 9 : (level.isRaining() ? 5 : 2);
-        double waterC = Math.max(1, Math.min(20, air - 4));
 
         EnvOverride o = overrides.get(p.getUUID());
+        EnvSample env;
         if (o != null) {
-            air = o.airC();
-            wind = o.windMs();
-            precip = o.precip();
-            mmH = o.precipMmH();
-            if (!Double.isNaN(o.waterC())) waterC = o.waterC();
+            double water = Double.isNaN(o.waterC()) ? field(p, minute).waterC() : o.waterC();
+            env = EnvSample.outdoors(o.airC(), o.windMs()).withPrecip(o.precip(), o.precipMmH()).withWater(water);
+        } else {
+            env = field(p, minute);
+            if (roofed) env = env.withPrecip(Precip.NONE, 0);
         }
-
         List<HeatSource> heat = heatSources(level, p);
-        EnvSample env = EnvSample.outdoors(air, wind).withPrecip(precip, mmH).withWater(waterC);
         return new Sample(env, heat, roofed ? ROOF : ShelterState.NONE, depth(p));
     }
 

@@ -2,12 +2,16 @@ package com.yearofice.body.gametest;
 
 import com.mojang.authlib.GameProfile;
 import com.yearofice.api.body.BodyService;
+import com.yearofice.api.clock.ClockService;
+import com.yearofice.api.env.EnvService;
+import com.yearofice.api.item.LoadService;
+import com.yearofice.item.component.YoiComponents;
+import com.yearofice.sim.pack.LoadBands;
 import com.yearofice.body.BodyAttachments;
 import com.yearofice.body.BodyCodec;
 import com.yearofice.body.BodyTicker;
 import com.yearofice.body.DamageRouter;
 import com.yearofice.body.clock.BodyClock;
-import com.yearofice.body.clock.VanillaDayClock;
 import com.yearofice.body.env.VanillaEnvSampler;
 import com.yearofice.body.intake.Drinking;
 import com.yearofice.body.intake.FoodMap;
@@ -211,6 +215,35 @@ public final class BodyGameTests {
         return n;
     }
 
+    /**
+     * {@code body_sync}'s battery reads the messenger where the HUD bus does: the neck slot or a hand. One in the
+     * pockets alone is not read (−1), as it carries no messenger lines either.
+     */
+    @GameTest(template = T, batch = BATCH)
+    public static void messenger_battery_from_neck(GameTestHelper h) {
+        ServerPlayer p = player(h);
+        try {
+            long m = ClockService.get().nowMinute();
+            h.assertTrue(BodyTicker.payload(p, m).battery() == -1, "no messenger: battery " + BodyTicker.payload(p, m).battery());
+            h.assertTrue(com.yearofice.item.inventory.PackSlots.size(p, "neck") > 0, "the player has a neck slot");
+            ItemStack neck = new ItemStack(MessengerItems.MESSENGER.get());
+            neck.set(MessengerItems.BATTERY.get(), 6_400);
+            h.assertTrue(com.yearofice.item.inventory.PackSlots.set(p, "neck", 0, neck), "the messenger went round the neck");
+            h.assertTrue(BodyTicker.payload(p, m).battery() == 6_400, "neck: battery " + BodyTicker.payload(p, m).battery());
+            com.yearofice.item.inventory.PackSlots.set(p, "neck", 0, ItemStack.EMPTY);
+            ItemStack pocket = new ItemStack(MessengerItems.MESSENGER.get());
+            pocket.set(MessengerItems.BATTERY.get(), 3_000);
+            p.getInventory().setItem(20, pocket);
+            h.assertTrue(BodyTicker.payload(p, m).battery() == -1, "pockets only: battery " + BodyTicker.payload(p, m).battery());
+            p.getInventory().setItem(20, ItemStack.EMPTY);
+            p.setItemInHand(net.minecraft.world.InteractionHand.OFF_HAND, pocket);
+            h.assertTrue(BodyTicker.payload(p, m).battery() == 3_000, "off hand: battery " + BodyTicker.payload(p, m).battery());
+            h.succeed();
+        } finally {
+            done(h, p);
+        }
+    }
+
     /** The first join gives the Trail Messenger once. */
     @GameTest(template = T, batch = BATCH)
     public static void messenger_given_on_first_join(GameTestHelper h) {
@@ -326,20 +359,75 @@ public final class BodyGameTests {
         h.succeed();
     }
 
-    /** The stand-in clock and environment: minute conversions both ways, biome air and the daily swing. */
+    /**
+     * The body reads the shared layers: its clock is {@code ClockService}'s minute, and with no override its sample's
+     * air, wind, precipitation and water are {@code EnvService}'s at the player's feet (no precipitation under a
+     * roof), the abstract sample for another minute; a player's own override still wins for that player alone.
+     */
     @GameTest(template = T, batch = BATCH)
     public static void clock_and_env_conversions(GameTestHelper h) {
-        h.assertTrue(VanillaDayClock.toMinute(0) == 6 * 60, "day time 0 is 06:00");
-        h.assertTrue(VanillaDayClock.toMinute(24_000) == 1440 + 6 * 60, "one vanilla day is 1,440 minutes");
-        for (long m = 0; m < 3 * 1440; m += 7) {
-            h.assertTrue(VanillaDayClock.toMinute(VanillaDayClock.toDayTime(m)) == m, "minute " + m + " round trip");
-        }
         h.assertTrue(BodyClock.day(2 * 1440 + 5) == 3 && BodyClock.hhmm(14 * 60 + 22).equals("14:22"), "calendar");
-        h.assertTrue(Math.abs(VanillaEnvSampler.biomeAirC(0.8f, 64) - 14.4) < 1e-4, "plains 14.4 °C");
-        h.assertTrue(Math.abs(VanillaEnvSampler.biomeAirC(0f, 164) + 8.65) < 1e-6, "lapse rate");
-        h.assertTrue(Math.abs(VanillaEnvSampler.diurnalC(15 * 60) - 5) < 1e-9
-                && Math.abs(VanillaEnvSampler.diurnalC(3 * 60) + 5) < 1e-9, "daily swing");
-        h.succeed();
+        ServerPlayer p = player(h);
+        try {
+            ServerLevel level = h.getLevel();
+            h.assertTrue(BodyTicker.clock.minute(level.getServer()) == ClockService.get().nowMinute(), "the body clock is the clock");
+            BlockPos at = h.absolutePos(new BlockPos(1, 1, 1));
+            p.moveTo(at.getX() + 0.5, at.getY(), at.getZ() + 0.5);
+            long now = ClockService.get().nowMinute();
+            EnvSample field = EnvService.get().sample(level, p.blockPosition());
+            EnvSample got = BodyTicker.VANILLA_ENV.sample(p, now).env();
+            boolean roofed = !level.canSeeSky(BlockPos.containing(p.getEyePosition()).above());
+            h.assertTrue(got.airC() == field.airC() && got.windMs() == field.windMs() && got.waterC() == field.waterC(),
+                    "air " + got.airC() + " / " + field.airC() + ", wind " + got.windMs() + " / " + field.windMs());
+            h.assertTrue(got.precip() == (roofed ? Precip.NONE : field.precip()), "precipitation " + got.precip() + " / " + field.precip());
+            long later = now + 3 * 1440 + 7 * 60;
+            EnvSample abs = EnvService.get().sampleAbstract(level, p.getX(), p.getY(), p.getZ(), later);
+            h.assertTrue(BodyTicker.VANILLA_ENV.sample(p, later).env().airC() == abs.airC(), "another minute reads the abstract sample");
+            BodyTicker.VANILLA_ENV.override(p, new VanillaEnvSampler.EnvOverride(-20, 3, Precip.SNOW, 1.0, Double.NaN));
+            EnvSample o = BodyTicker.VANILLA_ENV.sample(p, now).env();
+            h.assertTrue(o.airC() == -20 && o.windMs() == 3 && o.precip() == Precip.SNOW && o.waterC() == field.waterC(),
+                    "the override wins: " + o);
+            h.succeed();
+        } finally {
+            done(h, p);
+        }
+    }
+
+    /**
+     * Layer 6, Load: the load band's calorie factor reaches the body's burn. 20 kg is the 15–30 kg band at any
+     * Strength (edges ×0.8–1.15), so an hour's walk burns 1.2 times the unloaded walk; asleep, the load adds nothing.
+     */
+    @GameTest(template = T, batch = BATCH)
+    public static void load_raises_burn(GameTestHelper h) {
+        ServerPlayer loaded = player(h), free = player(h);
+        try {
+            ItemStack rock = new ItemStack(Items.STONE);
+            rock.set(YoiComponents.WEIGHT_G.get(), 20_000);
+            loaded.getInventory().setItem(0, rock);
+            h.assertTrue(LoadService.get().band(loaded) == LoadBands.Band.HEAVY, "20 kg is the second band, was " + LoadService.get().band(loaded));
+            h.assertTrue(LoadService.get().kcalFactor(loaded) == 1.2 && BodyTicker.loadKcal(loaded) == 1.2, "factor " + BodyTicker.loadKcal(loaded));
+            h.assertTrue(BodyTicker.loadKcal(free) == 1.0, "unloaded factor " + BodyTicker.loadKcal(free));
+            long m = 12 * 60;
+            double[] out = new double[2];
+            ServerPlayer[] ps = {loaded, free};
+            for (int i = 0; i < 2; i++) {
+                BodyTicker.VANILLA_ENV.override(ps[i], new VanillaEnvSampler.EnvOverride(15, 0, Precip.NONE, 0, Double.NaN));
+                BodyTicker.step(ps[i], m, 60, Activity.WALK, false, true, BodyTuning.STANDARD);
+                out[i] = BodyAttachments.of(ps[i]).kcalOutToday(m + 59);
+            }
+            h.assertTrue(out[1] > 0 && Math.abs(out[0] / out[1] - 1.2) < 1e-9, "loaded walk burned " + out[0] + ", unloaded " + out[1]);
+            double[] sleep = new double[2];
+            for (int i = 0; i < 2; i++) {
+                ps[i].setData(BodyAttachments.BODY.get(), new BodyState());
+                BodyTicker.step(ps[i], m, 60, Activity.SLEEP, true, false, BodyTuning.STANDARD);
+                sleep[i] = BodyAttachments.of(ps[i]).kcalOutToday(m + 59);
+            }
+            h.assertTrue(Math.abs(sleep[0] - sleep[1]) < 1e-9, "asleep the load adds nothing: " + sleep[0] + " vs " + sleep[1]);
+            h.succeed();
+        } finally {
+            done(h, loaded);
+            done(h, free);
+        }
     }
 
     /** A bow-drill try's FireEffortEvent is charged to the body: 60 kcal in this hour's burn. */

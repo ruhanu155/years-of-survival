@@ -13,7 +13,7 @@ import com.yearofice.sim.decay.Thresholds;
 import com.yearofice.sim.ecosystem.Density;
 import com.yearofice.sim.ecosystem.EcoTuning;
 import com.yearofice.sim.ecosystem.HareCycle;
-import com.yearofice.sim.ecosystem.SliceCalendar;
+import com.yearofice.sim.time.Calendar;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -121,7 +121,7 @@ public final class SlotSpawner {
     static Cell cell(ServerLevel level, Kind k, int cx, int cz, long minute) {
         String key = k.id() + ":" + cx + ":" + cz;
         Cell c = CELLS.get(key);
-        if (c != null && minute - c.minute() < SliceCalendar.DAY_MIN) return c;
+        if (c != null && minute - c.minute() < Calendar.MINUTES_PER_DAY) return c;
         BlockPos center = new BlockPos(cx * k.cellM() + k.cellM() / 2, 64, cz * k.cellM() + k.cellM() / 2);
         if (!level.hasChunkAt(center)) return c;
         SpeciesDef d = SpeciesBook.get(k.id());
@@ -158,12 +158,12 @@ public final class SlotSpawner {
     public static double hareMultiplier(ServerLevel level, long minute) {
         int pinned = EcoConfig.hareCycleYear();
         if (pinned >= 0) return HareCycle.TABLE[pinned];
-        return HareCycle.multiplier(HareCycle.phase(level.getSeed()), SliceCalendar.year(minute));
+        return HareCycle.multiplier(HareCycle.phase(level.getSeed()), (Calendar.yearOfDay(Calendar.absDayOfMinute(minute)) - 1));
     }
 
     public static int cycleYear(ServerLevel level, long minute) {
         int pinned = EcoConfig.hareCycleYear();
-        return pinned >= 0 ? pinned : HareCycle.cycleYear(HareCycle.phase(level.getSeed()), SliceCalendar.year(minute));
+        return pinned >= 0 ? pinned : HareCycle.cycleYear(HareCycle.phase(level.getSeed()), (Calendar.yearOfDay(Calendar.absDayOfMinute(minute)) - 1));
     }
 
     /** Places a body, tagged with its slot. Debug spawns use a "debug:" key and are counted like the rest. */
@@ -186,7 +186,7 @@ public final class SlotSpawner {
         BODIES.remove(key);
         if (key.startsWith("debug:")) return;
         SpeciesDef d = a.species();
-        SlotData.of(level).harvest(key, SliceClock.minute(level) + Math.round(d.respawnDays() * SliceCalendar.DAY_MIN));
+        SlotData.of(level).harvest(key, SliceClock.minute(level) + Math.round(d.respawnDays() * Calendar.MINUTES_PER_DAY));
     }
 
     /** A snare took a hare: the nearest hare slot within its home range empties, and its body goes. */
@@ -206,7 +206,7 @@ public final class SlotSpawner {
             }
         }
         if (best == null) return;
-        data.harvest(best.key(), minute + Math.round(respawnDays * SliceCalendar.DAY_MIN));
+        data.harvest(best.key(), minute + Math.round(respawnDays * Calendar.MINUTES_PER_DAY));
         UUID id = BODIES.remove(best.key());
         if (id != null) {
             Entity e = level.getEntity(id);

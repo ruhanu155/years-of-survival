@@ -2,7 +2,6 @@ package com.yearofice.food.cooking;
 
 import com.yearofice.api.decay.DecayService;
 import com.yearofice.body.intake.FoodMap;
-import com.yearofice.core.rules.YoiConfig;
 import com.yearofice.food.FoodConfig;
 import com.yearofice.food.Meals;
 import com.yearofice.item.component.YoiComponents;
@@ -31,15 +30,14 @@ import org.jetbrains.annotations.Nullable;
  * {@code yearofice:doneness}. The client shows: the load stack and its ring come down in the block-entity update and
  * {@code client.food.SpitRenderer} draws it on the crossbar.
  *
- * <p>Minutes accrue at the World rate the fire ring itself steps at (1,440 game minutes over the configured day
- * length), so doneness stays in step with the ring's fuel and states; a STAND-IN until ClockService lands. GameTests
- * {@link #pause} the tick and drive {@link #stepMinutes} in step with the ring's own catch-up.
+ * <p>Minutes come from the game clock ({@code ClockEvent.Minute}, through {@link SpitClock}), after the ring below has
+ * stepped the same minutes, so doneness stays in step with the ring's fuel and states at every clock rate. GameTests
+ * {@link #pause} the spit and drive {@link #stepMinutes} in step with the ring's own catch-up.
  */
 public class SpitBlockEntity extends BlockEntity {
     private ItemStack load = ItemStack.EMPTY;
     private @Nullable Roasting.Spit spit;
     private Doneness.Ring shown = Doneness.Ring.RAW;
-    private double minuteCarry;
     private boolean paused;
 
     public SpitBlockEntity(BlockPos pos, BlockState state) { super(CookingRegistry.SPIT_ENTITY.get(), pos, state); }
@@ -53,22 +51,30 @@ public class SpitBlockEntity extends BlockEntity {
 
     public boolean empty() { return load.isEmpty(); }
 
-    /** GameTests stop the real tick and step minutes themselves. */
+    /** GameTests stop the clock's minutes and step minutes themselves. */
     public void pause(boolean p) { paused = p; }
 
-    static double minutesPerTick() {
-        int dayMin = YoiConfig.SPEC.isLoaded() ? YoiConfig.DAY_LENGTH_MIN.get() : 24;
-        return 1440.0 / (dayMin * 60.0 * 20.0);
+    /** {@code minutes} game minutes from the clock. */
+    void clockMinutes(int minutes) {
+        if (!paused && !load.isEmpty()) stepMinutes(minutes);
     }
 
-    public static void serverTick(Level level, BlockPos pos, BlockState state, SpitBlockEntity be) {
-        if (be.paused || be.load.isEmpty()) return;
-        be.minuteCarry += minutesPerTick();
-        if (be.minuteCarry >= 1) {
-            int whole = (int) Math.floor(be.minuteCarry);
-            be.minuteCarry -= whole;
-            be.stepMinutes(whole);
-        }
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        if (level != null && !level.isClientSide) SpitClock.add(level, worldPosition);
+    }
+
+    @Override
+    public void setRemoved() {
+        super.setRemoved();
+        if (level != null && !level.isClientSide) SpitClock.remove(level, worldPosition);
+    }
+
+    @Override
+    public void onChunkUnloaded() {
+        super.onChunkUnloaded();
+        if (level != null && !level.isClientSide) SpitClock.remove(level, worldPosition);
     }
 
     /** The fire under the spit now. */
@@ -116,7 +122,6 @@ public class SpitBlockEntity extends BlockEntity {
         Doneness.Ring already = taken.get(YoiComponents.DONENESS.get());
         spit = Roasting.Spit.load(Roasting.spitMinutes(food.spit(), g * n, t), already);
         shown = already == null ? Doneness.Ring.RAW : already;
-        minuteCarry = 0;
         sync();
         return n;
     }
@@ -157,7 +162,6 @@ public class SpitBlockEntity extends BlockEntity {
             tag.putBoolean("burnt", spit.burnt());
         }
         tag.putString("ring", shown.name().toLowerCase(java.util.Locale.ROOT));
-        tag.putDouble("minute_carry", minuteCarry);
     }
 
     @Override
@@ -167,7 +171,6 @@ public class SpitBlockEntity extends BlockEntity {
         spit = tag.contains("cook_min") && !load.isEmpty()
                 ? new Roasting.Spit(tag.getDouble("cook_min"), tag.getDouble("progress"), tag.getBoolean("burnt")) : null;
         shown = tag.contains("ring") ? Doneness.Ring.valueOf(tag.getString("ring").toUpperCase(java.util.Locale.ROOT)) : Doneness.Ring.RAW;
-        minuteCarry = tag.getDouble("minute_carry");
     }
 
     @Override
