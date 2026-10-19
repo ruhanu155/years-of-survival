@@ -2,5 +2,31 @@
  "parent": "minecraft:item/generated",
  "textures": {
   "layer0": "yearofice:item/arctic_grayling"
- }
+ },
+ "overrides": [
+  {
+   "predicate": {
+    "yearofice:look": 0.25
+   },
+   "model": "yearofice:item/arctic_grayling_aging"
+  },
+  {
+   "predicate": {
+    "yearofice:look": 0.5
+   },
+   "model": "yearofice:item/arctic_grayling_spoiled"
+  },
+  {
+   "predicate": {
+    "yearofice:look": 0.75
+   },
+   "model": "yearofice:item/arctic_grayling_cooked"
+  },
+  {
+   "predicate": {
+    "yearofice:look": 1.0
+   },
+   "model": "yearofice:item/arctic_grayling_burnt"
+  }
+ ]
 }

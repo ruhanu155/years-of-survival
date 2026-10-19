@@ -333,7 +333,7 @@ The rigs add up to 35: 8 + 1 + 3 + 15 + 6 + 1 + 1 by template. The species colum
 
 ### Procedural animations from gait parameters
 
-**The base set is computed, not keyframed by hand.** `modelgen` writes `rig_<rig>.animation.json` with the shared set for each rig and species overrides from the gait block. Hand-keyed extras (`rut_thrash`, `drum`, `lek_dance`) live in `<id>_extra.animation.json`, and `AnimationMergeProvider` merges both as Entities and AI sets.
+**The base set is computed, not keyframed by hand.** `modelgen` writes `rig_<rig>.animation.json` with the shared set for each rig and species overrides from the gait block. Hand-keyed extras (`rut_thrash`, `drum`, `lek_dance`, and the encounter clips of RECONCILE 171: `huff_jaw_pop`, `stand_sniff`, `bluff_charge`, `swat`, `pin_bite`, `feed`, `flinch`, `retreat_look_back` and the black bear's `climb` for both bears; `ears_back_hackles`, `charge`, `front_stomp` and `bluff_stop` for the moose; `lunge_snap` for the wolf and coyote, whose `circle` is procedural from the walk) live in `<id>_extra.animation.json`, and `AnimationMergeProvider` merges both as Entities and AI sets (Minecraft development › Encounter clips). The player's hand clips `cover_neck`, `push_up`, `desperate_strike`, `catch_fall` and `stagger` are GeckoLib hand animations, keyed by hand as well.
 
 **Legs follow a phase table.** Each upper leg bone swings as a sine with its own phase offset. The lower bone flexes only on the forward swing.
 
@@ -561,6 +561,12 @@ The rigs add up to 35: 8 + 1 + 3 + 15 + 6 + 1 + 1 by template. The species colum
 | `item.*`, `fishing.*`, `work.*`, `build.*`, `tree.*`, `fire.*`, `ice.*`, `decay.*`, `bug.*` | 16, plus 12 new fire, work and ice ids | Synth |
 | Music | 12 pieces | Generative, rendered |
 
+**New sound ids (RECONCILE 170, 171).** Look owns them all; each ships a synth fallback first.
+
+- **Encounter, M4 (player):** `body.breath_panic` (fast breath through the nose), `body.hit_grunt`, `body.bite_crunch` (muffled), `item.pack_tear` (fabric tearing on the first bite).
+- **Encounter, M6 (animals):** `entity.grizzly.jaw_pop`, `entity.black_bear.huff` and `entity.black_bear.jaw_pop`, beside the existing `entity.grizzly.huff`. The Director's names `animal.bear.huff`, `animal.bear.jaw_pop`, `player.breath_panic`, `player.hit_grunt` and `gear.pack_tear` map onto these, following the `entity.<species>.*`, `body.*` and `item.*` groups above.
+- **Video 2:** `carry.box_lift`, `carry.box_set`, `ui.field_note_card` (M3); `work.crust_scrape`, `work.pan_swirl` (M5); `work.sluice_wash` (M9).
+
 ### Music tied to Spirits
 
 **Music is generated offline and plays rarely.** Twelve pieces of 1–3 minutes come from `tools/soundgen/music/`: four seasons, each with a dawn theme, a day piece and a fire piece. A seeded phrase grammar writes modal lines (Dorian and Aeolian, 50–70 beats a minute). Synthesized plucked string, bowed drone and wooden flute play them.
@@ -625,6 +631,17 @@ The rigs add up to 35: 8 + 1 + 3 + 15 + 6 + 1 + 1 by template. The species colum
 **What the slice's 85 sounds are.** It keeps the 54 from M1 and M2: water loops, world sounds, 31 steps, 5 wind loops and 8 summer beds. It adds 9 calls, 10 body sounds, 5 fire, 4 tool and 3 carcass sounds.
 
 **M6 is the largest step.** It adds 100 mobs, but 73 are birds on 14 shared rigs. Most of its work is species files and paint maps, not new templates.
+
+**Additions from video 2 and the encounter clips (RECONCILE 170, 171).** These come on top of the counts table above.
+
+| Milestone | Item icons | Other blocks drawn | HUD layers | Sound events | Clips |
+| --- | --- | --- | --- | --- | --- |
+| M2 | — | — | — | — | The pack-outline GUI sprite (A9) |
+| M3 | — | — | +1, `field_note_card` | +3: `carry.box_lift`, `carry.box_set`, `ui.field_note_card` | — |
+| M4 | +1, `large_pack_frame` | — | — | +4: `body.breath_panic`, `body.hit_grunt`, `body.bite_crunch`, `item.pack_tear` | 5 player hand clips |
+| M5 | +4: `lick_crust`, `lick_salt`, `black_sand`, `birch_pan` | +3: `drying_rack`, `smoke_rack`, `placer_gravel` | — | +2: `work.crust_scrape`, `work.pan_swirl` | — |
+| M6 | +1, `trophy_plaque` | +2: `theft_cache`, `trophy_mount` | — | +3: `entity.grizzly.jaw_pop`, `entity.black_bear.huff`, `entity.black_bear.jaw_pop` | 25 animal clips: grizzly 8, black bear 9, moose 4, wolf and coyote 2 each |
+| M9 | — | +1, `sluice_box` | — | +1, `work.sluice_wash` | — |
 
 ## Pipeline and checks
 

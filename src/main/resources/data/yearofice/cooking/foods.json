@@ -1,0 +1,8 @@
+{
+  "note": "Which spit rule each food roasts by and its eating-ladder family (Items > Food values; Decay and time > Eating decayed food). The minutes are [cooking] tuning.",
+  "foods": {
+    "yearofice:snowshoe_hare_meat": { "spit": "whole_hare", "family": "game_meat" },
+    "yearofice:willow_ptarmigan_meat": { "spit": "per_kg", "family": "game_meat" },
+    "yearofice:arctic_grayling": { "spit": "whole_fish", "family": "fish" }
+  }
+}

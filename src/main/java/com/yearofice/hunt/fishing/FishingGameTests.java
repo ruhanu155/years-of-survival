@@ -1,5 +1,6 @@
 package com.yearofice.hunt.fishing;
 
+import com.yearofice.item.component.YoiComponents;
 import com.mojang.authlib.GameProfile;
 import com.yearofice.core.YearOfIce;
 import com.yearofice.sim.fishing.BiteModel;
@@ -250,7 +251,7 @@ public final class FishingGameTests {
                 if (p.getInventory().getItem(i).is(FishingRegistry.ARCTIC_GRAYLING.get())) fish = p.getInventory().getItem(i);
             }
             h.assertFalse(fish.isEmpty(), "a grayling in the pack (slot " + slot + ")");
-            Integer g = fish.get(FishingRegistry.WEIGHT_G.get());
+            Integer g = fish.get(YoiComponents.WEIGHT_G.get());
             h.assertTrue(g != null && g >= 300 && g <= 1200 && g == Math.round(f.params().kg() * 1000), "weight_g " + g);
             double after = SliceSpots.stocks(level).get(key, day, t).n();
             h.assertTrue(Math.abs(before - after - 1) < 1e-9, "stock " + before + " -> " + after);
