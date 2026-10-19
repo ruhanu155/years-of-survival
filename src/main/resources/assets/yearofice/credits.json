@@ -1161,6 +1161,23 @@
    "licence": "project",
    "generator_version": "artgen 0.4.0",
    "release_blocker": false
+  },
+  {
+   "asset_id": "model_snare",
+   "files": [
+    "assets/yearofice/blockstates/snare.json",
+    "assets/yearofice/models/block/snare.json",
+    "assets/yearofice/models/block/snare_sprung.json",
+    "assets/yearofice/models/item/whole_game.json",
+    "assets/yearofice/models/item/snowshoe_hare_meat.json",
+    "assets/yearofice/models/item/willow_ptarmigan_meat.json",
+    "assets/yearofice/models/item/hare_pelt.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/snare.py",
+   "licence": "project",
+   "generator_version": "snare 0.1.0",
+   "release_blocker": false
   }
  ]
 }

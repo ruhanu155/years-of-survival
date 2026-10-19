@@ -1,0 +1,36 @@
+{
+ "variants": {
+  "facing=north,sprung=false": {
+   "model": "yearofice:block/snare",
+   "y": 0
+  },
+  "facing=north,sprung=true": {
+   "model": "yearofice:block/snare_sprung",
+   "y": 0
+  },
+  "facing=east,sprung=false": {
+   "model": "yearofice:block/snare",
+   "y": 90
+  },
+  "facing=east,sprung=true": {
+   "model": "yearofice:block/snare_sprung",
+   "y": 90
+  },
+  "facing=south,sprung=false": {
+   "model": "yearofice:block/snare",
+   "y": 180
+  },
+  "facing=south,sprung=true": {
+   "model": "yearofice:block/snare_sprung",
+   "y": 180
+  },
+  "facing=west,sprung=false": {
+   "model": "yearofice:block/snare",
+   "y": 270
+  },
+  "facing=west,sprung=true": {
+   "model": "yearofice:block/snare_sprung",
+   "y": 270
+  }
+ }
+}
