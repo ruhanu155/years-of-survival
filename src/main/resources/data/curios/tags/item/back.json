@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "yearofice:crate_backpack",
+    {
+      "id": "yearofice:hide_pack",
+      "required": false
+    },
+    {
+      "id": "yearofice:pack_frame",
+      "required": false
+    }
+  ]
+}

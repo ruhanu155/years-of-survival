@@ -202,17 +202,25 @@ public final class BodyGameTests {
         }
     }
 
+    /** Messengers in the pockets and the neck slot (where the first join puts it, since M2 lane B). */
+    private static int carried(ServerPlayer p) {
+        int n = p.getInventory().countItem(MessengerItems.MESSENGER.get());
+        for (int i = 0; i < com.yearofice.item.inventory.PackSlots.size(p, "neck"); i++) {
+            if (com.yearofice.item.inventory.PackSlots.get(p, "neck", i).is(MessengerItems.MESSENGER.get())) n++;
+        }
+        return n;
+    }
+
     /** The first join gives the Trail Messenger once. */
     @GameTest(template = T, batch = BATCH)
     public static void messenger_given_on_first_join(GameTestHelper h) {
         ServerPlayer p = player(h);
         try {
             MessengerKit.onLogin(new PlayerEvent.PlayerLoggedInEvent(p));
-            h.assertTrue(p.getInventory().contains(new ItemStack(MessengerItems.MESSENGER.get())),
-                    "no Trail Messenger after the first join");
+            h.assertTrue(carried(p) == 1, "no Trail Messenger after the first join");
             MessengerKit.onLogin(new PlayerEvent.PlayerLoggedInEvent(p));
             h.assertFalse(MessengerKit.giveIfFirstJoin(p), "a second messenger was given");
-            int count = p.getInventory().countItem(MessengerItems.MESSENGER.get());
+            int count = carried(p);
             h.assertTrue(count == 1, "messengers carried: " + count);
             h.succeed();
         } finally {
