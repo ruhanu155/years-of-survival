@@ -2,6 +2,7 @@
   "replace": false,
   "values": {
     "yearofice:moose_meat": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:moose_meat" }],
       "kcal_per_100g": 115,
       "protein_g_per_100g": 25,
       "fat_g_per_100g": 1.7,
@@ -15,6 +16,7 @@
       }
     },
     "yearofice:caribou_meat": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:caribou_meat" }],
       "kcal_per_100g": 115,
       "protein_g_per_100g": 25,
       "fat_g_per_100g": 1.7,
@@ -28,6 +30,7 @@
       }
     },
     "yearofice:beaver_meat": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:beaver_meat" }],
       "kcal_per_100g": 115,
       "protein_g_per_100g": 25,
       "fat_g_per_100g": 1.7,
@@ -41,6 +44,7 @@
       }
     },
     "yearofice:black_bear_meat": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:black_bear_meat" }],
       "kcal_per_100g": 115,
       "protein_g_per_100g": 17.5,
       "fat_g_per_100g": 5.0,
@@ -54,6 +58,7 @@
       }
     },
     "yearofice:grizzly_meat": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:grizzly_meat" }],
       "kcal_per_100g": 115,
       "protein_g_per_100g": 17.5,
       "fat_g_per_100g": 5.0,
@@ -67,6 +72,7 @@
       }
     },
     "yearofice:heart": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:heart" }],
       "kcal_per_100g": 130,
       "protein_g_per_100g": 26,
       "fat_g_per_100g": 2.9,
@@ -78,6 +84,7 @@
       }
     },
     "yearofice:liver": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:liver" }],
       "kcal_per_100g": 130,
       "protein_g_per_100g": 24,
       "fat_g_per_100g": 2.8,
@@ -89,6 +96,7 @@
       }
     },
     "yearofice:kidney": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:kidney" }],
       "kcal_per_100g": 100,
       "protein_g_per_100g": 17,
       "fat_g_per_100g": 3.4,
@@ -100,6 +108,7 @@
       }
     },
     "yearofice:tongue": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:tongue" }],
       "kcal_per_100g": 130,
       "protein_g_per_100g": 18,
       "fat_g_per_100g": 6.4,
@@ -111,6 +120,7 @@
       }
     },
     "yearofice:giblets": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:giblets" }],
       "kcal_per_100g": 130,
       "protein_g_per_100g": 22,
       "fat_g_per_100g": 4.7,
@@ -122,6 +132,7 @@
       }
     },
     "yearofice:brain": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:brain" }],
       "kcal_per_100g": 140,
       "protein_g_per_100g": 11,
       "fat_g_per_100g": 10,
@@ -133,6 +144,7 @@
       }
     },
     "yearofice:blood": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:blood" }],
       "kcal_per_100g": 80,
       "protein_g_per_100g": 18,
       "fat_g_per_100g": 0.9,
@@ -143,6 +155,7 @@
       }
     },
     "yearofice:animal_fat": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:animal_fat" }],
       "kcal_per_100g": 700,
       "protein_g_per_100g": 0,
       "fat_g_per_100g": 77.8,
@@ -153,6 +166,7 @@
       }
     },
     "yearofice:lard": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:lard" }],
       "kcal_per_100g": 900,
       "protein_g_per_100g": 0,
       "fat_g_per_100g": 100,
@@ -163,6 +177,7 @@
       }
     },
     "yearofice:cracklings": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:cracklings" }],
       "kcal_per_100g": 550,
       "protein_g_per_100g": 36,
       "fat_g_per_100g": 45,
@@ -173,6 +188,7 @@
       }
     },
     "yearofice:marrow_bone": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:marrow_bone" }],
       "kcal_per_100g": 30,
       "protein_g_per_100g": 0,
       "fat_g_per_100g": 3.3,
@@ -183,6 +199,7 @@
       }
     },
     "yearofice:bone_broth": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:bone_broth" }],
       "kcal_per_100g": 40,
       "protein_g_per_100g": 1,
       "fat_g_per_100g": 4.0,
@@ -193,6 +210,7 @@
       }
     },
     "yearofice:dried_meat": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:dried_meat" }],
       "kcal_per_100g": 288,
       "protein_g_per_100g": 62.5,
       "fat_g_per_100g": 4.25,
@@ -204,6 +222,7 @@
       }
     },
     "yearofice:meat_powder": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:meat_powder" }],
       "kcal_per_100g": 288,
       "protein_g_per_100g": 62.5,
       "fat_g_per_100g": 4.25,
@@ -214,6 +233,7 @@
       }
     },
     "yearofice:pemmican": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:pemmican" }],
       "kcal_per_100g": 560,
       "protein_g_per_100g": 30.8,
       "fat_g_per_100g": 46.7,
@@ -224,6 +244,7 @@
       }
     },
     "yearofice:arctic_grayling": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:arctic_grayling" }],
       "kcal_per_100g": 80.0,
       "protein_g_per_100g": 18.0,
       "fat_g_per_100g": 0.889,
@@ -235,6 +256,7 @@
       }
     },
     "yearofice:northern_pike": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:northern_pike" }],
       "kcal_per_100g": 150.0,
       "protein_g_per_100g": 33.75,
       "fat_g_per_100g": 1.667,
@@ -246,6 +268,7 @@
       }
     },
     "yearofice:burbot": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:burbot" }],
       "kcal_per_100g": 160.0,
       "protein_g_per_100g": 36.0,
       "fat_g_per_100g": 1.778,
@@ -257,6 +280,7 @@
       }
     },
     "yearofice:longnose_sucker": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:longnose_sucker" }],
       "kcal_per_100g": 100.0,
       "protein_g_per_100g": 22.5,
       "fat_g_per_100g": 1.111,
@@ -268,6 +292,7 @@
       }
     },
     "yearofice:chum_salmon": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:chum_salmon" }],
       "kcal_per_100g": 170.0,
       "protein_g_per_100g": 25.5,
       "fat_g_per_100g": 7.556,
@@ -279,6 +304,7 @@
       }
     },
     "yearofice:coho_salmon": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:coho_salmon" }],
       "kcal_per_100g": 200.0,
       "protein_g_per_100g": 30.0,
       "fat_g_per_100g": 8.889,
@@ -290,6 +316,7 @@
       }
     },
     "yearofice:sockeye_salmon": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:sockeye_salmon" }],
       "kcal_per_100g": 210.0,
       "protein_g_per_100g": 31.5,
       "fat_g_per_100g": 9.333,
@@ -301,6 +328,7 @@
       }
     },
     "yearofice:humpback_whitefish": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:humpback_whitefish" }],
       "kcal_per_100g": 150.0,
       "protein_g_per_100g": 22.5,
       "fat_g_per_100g": 6.667,
@@ -312,6 +340,7 @@
       }
     },
     "yearofice:least_cisco": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:least_cisco" }],
       "kcal_per_100g": 180.0,
       "protein_g_per_100g": 27.0,
       "fat_g_per_100g": 8.0,
@@ -323,6 +352,7 @@
       }
     },
     "yearofice:lake_trout": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:lake_trout" }],
       "kcal_per_100g": 160.0,
       "protein_g_per_100g": 24.0,
       "fat_g_per_100g": 7.111,
@@ -334,6 +364,7 @@
       }
     },
     "yearofice:sheefish": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:sheefish" }],
       "kcal_per_100g": 160.0,
       "protein_g_per_100g": 24.0,
       "fat_g_per_100g": 7.111,
@@ -345,6 +376,7 @@
       }
     },
     "yearofice:arctic_lamprey": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:arctic_lamprey" }],
       "kcal_per_100g": 330,
       "protein_g_per_100g": 33,
       "fat_g_per_100g": 22,
@@ -356,6 +388,7 @@
       }
     },
     "yearofice:dried_fish": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:dried_fish" }],
       "kcal_per_100g": 350,
       "protein_g_per_100g": 62,
       "fat_g_per_100g": 11.3,
@@ -367,6 +400,7 @@
       }
     },
     "yearofice:sour_fish": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:sour_fish" }],
       "kcal_per_100g": 70,
       "protein_g_per_100g": 12,
       "fat_g_per_100g": 2.4,
@@ -377,6 +411,7 @@
       }
     },
     "yearofice:mussel_meat": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:mussel_meat" }],
       "kcal_per_100g": 80,
       "protein_g_per_100g": 12,
       "fat_g_per_100g": 2.2,
@@ -388,6 +423,7 @@
       }
     },
     "yearofice:wild_egg": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:wild_egg" }],
       "kcal_per_100g": 140,
       "protein_g_per_100g": 13,
       "fat_g_per_100g": 9.8,
@@ -399,6 +435,7 @@
       }
     },
     "yearofice:hen_egg": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:hen_egg" }],
       "kcal_per_100g": 140,
       "protein_g_per_100g": 13,
       "fat_g_per_100g": 9.8,
@@ -410,6 +447,7 @@
       }
     },
     "yearofice:goat_milk": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:goat_milk" }],
       "kcal_per_100g": 69,
       "protein_g_per_100g": 3.6,
       "fat_g_per_100g": 4.1,
@@ -420,6 +458,7 @@
       }
     },
     "yearofice:pilot_bread": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:pilot_bread" }],
       "kcal_per_100g": 400,
       "protein_g_per_100g": 10,
       "fat_g_per_100g": 8.9,
@@ -428,6 +467,7 @@
       "spoil_days_at_5c": {}
     },
     "yearofice:canned_peaches": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:canned_peaches" }],
       "kcal_per_100g": 89,
       "protein_g_per_100g": 0.5,
       "fat_g_per_100g": 0.1,
@@ -438,6 +478,7 @@
       }
     },
     "yearofice:rose_hips": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:rose_hips" }],
       "kcal_per_100g": 160,
       "protein_g_per_100g": 1.6,
       "fat_g_per_100g": 0.3,
@@ -449,6 +490,7 @@
       }
     },
     "yearofice:spruce_tips": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:spruce_tips" }],
       "kcal_per_100g": 30,
       "protein_g_per_100g": 1,
       "fat_g_per_100g": 0.3,
@@ -459,6 +501,7 @@
       }
     },
     "yearofice:potato": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:potato" }],
       "kcal_per_100g": 77,
       "protein_g_per_100g": 2,
       "fat_g_per_100g": 0.1,
@@ -470,6 +513,7 @@
       }
     },
     "yearofice:barley": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:barley" }],
       "kcal_per_100g": 350,
       "protein_g_per_100g": 12.5,
       "fat_g_per_100g": 2.0,
@@ -478,6 +522,7 @@
       "spoil_days_at_5c": {}
     },
     "yearofice:barley_flour": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:barley_flour" }],
       "kcal_per_100g": 345,
       "protein_g_per_100g": 11,
       "fat_g_per_100g": 2.0,
@@ -486,6 +531,7 @@
       "spoil_days_at_5c": {}
     },
     "yearofice:cabbage": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:cabbage" }],
       "kcal_per_100g": 25,
       "protein_g_per_100g": 1.3,
       "fat_g_per_100g": 0.1,
@@ -496,6 +542,7 @@
       }
     },
     "yearofice:sauerkraut": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:sauerkraut" }],
       "kcal_per_100g": 20,
       "protein_g_per_100g": 1,
       "fat_g_per_100g": 0.1,
@@ -504,6 +551,7 @@
       "spoil_days_at_5c": {}
     },
     "yearofice:birch_sap": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:birch_sap" }],
       "kcal_per_100g": 4,
       "protein_g_per_100g": 0,
       "fat_g_per_100g": 0,
@@ -514,6 +562,7 @@
       }
     },
     "yearofice:birch_syrup": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:birch_syrup" }],
       "kcal_per_100g": 210,
       "protein_g_per_100g": 0,
       "fat_g_per_100g": 0,
@@ -524,12 +573,35 @@
       }
     },
     "yearofice:bumblebee_honey": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:bumblebee_honey" }],
       "kcal_per_100g": 300,
       "protein_g_per_100g": 0.3,
       "fat_g_per_100g": 0,
       "vit_c_mg_per_100g": 0,
       "curve": "never",
       "spoil_days_at_5c": {}
-    }
+    },
+    "minecraft:rabbit": {"kcal_per_100g": 115, "protein_g_per_100g": 27, "fat_g_per_100g": 0.8, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"raw": 6}, "weight_g": 300},
+    "minecraft:cooked_rabbit": {"kcal_per_100g": 115, "protein_g_per_100g": 27, "fat_g_per_100g": 0.8, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"cooked": 9}, "weight_g": 300},
+    "minecraft:chicken": {"kcal_per_100g": 115, "protein_g_per_100g": 27, "fat_g_per_100g": 0.8, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"raw": 6}, "weight_g": 300},
+    "minecraft:cooked_chicken": {"kcal_per_100g": 115, "protein_g_per_100g": 27, "fat_g_per_100g": 0.8, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"cooked": 9}, "weight_g": 300},
+    "minecraft:beef": {"kcal_per_100g": 115, "protein_g_per_100g": 25, "fat_g_per_100g": 1.7, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"raw": 6}, "weight_g": 300},
+    "minecraft:cooked_beef": {"kcal_per_100g": 115, "protein_g_per_100g": 25, "fat_g_per_100g": 1.7, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"cooked": 9}, "weight_g": 300},
+    "minecraft:mutton": {"kcal_per_100g": 115, "protein_g_per_100g": 25, "fat_g_per_100g": 1.7, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"raw": 6}, "weight_g": 300},
+    "minecraft:cooked_mutton": {"kcal_per_100g": 115, "protein_g_per_100g": 25, "fat_g_per_100g": 1.7, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"cooked": 9}, "weight_g": 300},
+    "minecraft:porkchop": {"kcal_per_100g": 115, "protein_g_per_100g": 17.5, "fat_g_per_100g": 5.0, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"raw": 6}, "weight_g": 300},
+    "minecraft:cooked_porkchop": {"kcal_per_100g": 115, "protein_g_per_100g": 17.5, "fat_g_per_100g": 5.0, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"cooked": 9}, "weight_g": 300},
+    "minecraft:cod": {"kcal_per_100g": 80, "protein_g_per_100g": 18.0, "fat_g_per_100g": 0.89, "vit_c_mg_per_100g": 2, "curve": "living_rot", "spoil_days_at_5c": {"raw": 3.6}, "weight_g": 400},
+    "minecraft:cooked_cod": {"kcal_per_100g": 80, "protein_g_per_100g": 18.0, "fat_g_per_100g": 0.89, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"cooked": 6}, "weight_g": 400},
+    "minecraft:salmon": {"kcal_per_100g": 170, "protein_g_per_100g": 25.5, "fat_g_per_100g": 7.56, "vit_c_mg_per_100g": 2, "curve": "living_rot", "spoil_days_at_5c": {"raw": 3.6}, "weight_g": 500},
+    "minecraft:cooked_salmon": {"kcal_per_100g": 170, "protein_g_per_100g": 25.5, "fat_g_per_100g": 7.56, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"cooked": 6}, "weight_g": 500},
+    "minecraft:sweet_berries": {"kcal_per_100g": 57, "protein_g_per_100g": 0.7, "fat_g_per_100g": 0.3, "vit_c_mg_per_100g": 5, "curve": "living_rot", "spoil_days_at_5c": {"raw": 9}, "weight_g": 100},
+    "minecraft:glow_berries": {"kcal_per_100g": 57, "protein_g_per_100g": 0.7, "fat_g_per_100g": 0.3, "vit_c_mg_per_100g": 5, "curve": "living_rot", "spoil_days_at_5c": {"raw": 9}, "weight_g": 100},
+    "minecraft:potato": {"kcal_per_100g": 77, "protein_g_per_100g": 2, "fat_g_per_100g": 0.1, "vit_c_mg_per_100g": 2, "curve": "living_rot", "spoil_days_at_5c": {"raw": 150}, "weight_g": 150},
+    "minecraft:baked_potato": {"kcal_per_100g": 77, "protein_g_per_100g": 2, "fat_g_per_100g": 0.1, "vit_c_mg_per_100g": 2, "curve": "living_rot", "spoil_days_at_5c": {"cooked": 9}, "weight_g": 150},
+    "minecraft:carrot": {"kcal_per_100g": 25, "protein_g_per_100g": 2, "fat_g_per_100g": 0.3, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"raw": 3}, "weight_g": 100},
+    "minecraft:beetroot": {"kcal_per_100g": 25, "protein_g_per_100g": 2, "fat_g_per_100g": 0.3, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"raw": 3}, "weight_g": 100},
+    "minecraft:bread": {"kcal_per_100g": 345, "protein_g_per_100g": 11, "fat_g_per_100g": 2.0, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"cooked": 10}, "weight_g": 200},
+    "minecraft:honey_bottle": {"kcal_per_100g": 300, "protein_g_per_100g": 0.3, "fat_g_per_100g": 0, "vit_c_mg_per_100g": 0, "curve": "never", "spoil_days_at_5c": {}, "weight_g": 100}
   }
 }
