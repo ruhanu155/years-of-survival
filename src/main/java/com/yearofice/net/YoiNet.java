@@ -4,6 +4,7 @@ import com.yearofice.core.YearOfIce;
 import com.yearofice.net.payload.ClockSyncPayload;
 import com.yearofice.net.payload.EnvSyncPayload;
 import com.yearofice.net.payload.HudLinePayload;
+import com.yearofice.net.payload.PickupPayload;
 import java.util.function.Consumer;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
@@ -31,6 +32,9 @@ public final class YoiNet {
         r.playToClient(ClockSyncPayload.TYPE, ClockSyncPayload.STREAM_CODEC, (p, ctx) -> clockSink.accept(p));
         r.playToClient(EnvSyncPayload.TYPE, EnvSyncPayload.STREAM_CODEC, (p, ctx) -> envSink.accept(p));
         r.playToClient(HudLinePayload.TYPE, HudLinePayload.STREAM_CODEC, (p, ctx) -> hudSink.accept(p));
+        r.playToServer(PickupPayload.TYPE, PickupPayload.STREAM_CODEC, (p, ctx) -> {
+            if (ctx.player() instanceof ServerPlayer sp) com.yearofice.item.inventory.Pickup.request(sp, p.entityId());
+        });
     }
 
     /** Sends to {@code p} if its connection knows the payload (GameTest mock players do not). */

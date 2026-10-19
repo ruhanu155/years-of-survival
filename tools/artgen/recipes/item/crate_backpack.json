@@ -1,0 +1,9 @@
+{"id": "yearofice:crate_backpack", "kind": "icon", "shapes": [
+ {"kind": "line", "points": [[5, 4], [5, 2], [11, 2], [11, 4]], "width": 1, "ramp": "hide_raw", "step": 0},
+ {"kind": "poly", "points": [[3, 4], [13, 4], [13, 14], [3, 14]], "ramp": "wood_cut", "step": 2},
+ {"kind": "rect", "box": [3, 8, 13, 9], "ramp": "wood_cut", "step": 0, "flat": true},
+ {"kind": "rect", "box": [3, 11, 13, 12], "ramp": "wood_cut", "step": 0, "flat": true},
+ {"kind": "rect", "box": [5, 4, 6, 14], "ramp": "hide_raw", "step": 1},
+ {"kind": "rect", "box": [10, 4, 11, 14], "ramp": "hide_raw", "step": 1},
+ {"kind": "rect", "box": [7, 5, 9, 7], "ramp": "iron", "step": 2}
+]}

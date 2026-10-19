@@ -123,7 +123,9 @@ public final class ContentLint {
                         errors.add("[json] " + rel + ": does not parse: " + e.getMessage());
                         continue;
                     }
-                    walk(json, rel, "", false);
+                    // Curios reads data/yearofice/curios/ with its own schema ("size" is a slot count): keys are still
+                    // checked, units are not.
+                    walk(json, rel, "", rel.replace('\\', '/').contains("data/yearofice/curios/"));
                 }
             }
         }
