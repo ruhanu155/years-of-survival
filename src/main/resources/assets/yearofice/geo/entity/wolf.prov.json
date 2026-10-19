@@ -1,0 +1,11 @@
+{
+ "species": "wolf",
+ "grade": "G1",
+ "generator": "modelgen 0.4.0",
+ "base": "quaternius_wolf",
+ "geo": "geo/entity/wolf.geo.json",
+ "textures": [
+  "adult_black",
+  "adult_gray"
+ ]
+}

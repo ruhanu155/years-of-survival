@@ -1,0 +1,16 @@
+{
+ "species": "mule_deer",
+ "grade": "G1",
+ "generator": "modelgen 0.4.0",
+ "base": "quaternius_deer",
+ "geo": "geo/entity/mule_deer.geo.json",
+ "textures": [
+  "antler_velvet",
+  "buck_moult",
+  "buck_summer",
+  "buck_winter",
+  "doe_moult",
+  "doe_summer",
+  "doe_winter"
+ ]
+}

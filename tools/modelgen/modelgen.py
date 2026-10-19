@@ -607,17 +607,18 @@ def animations(p, m):
             "neck": {"rotation": cyc(T2, lambda k: [-15 + 8 * sin(4 * pi * k), 0, 0])},
             "wing_l": {"rotation": cyc(T2, lambda k: [0, 0, 10])}, "wing_r": {"rotation": cyc(T2, lambda k: [0, 0, -10])}}}
         F = round(1 / g["flap_hz"], 4)
-        # folded wings hang along the flanks; z rotation lifts them out to the horizontal and beats them
+        # folded wings lie along the flanks (span along z). Flight pitches the plate flat (x 90) and
+        # swings the span out to the side (z 90), then beats it up and down about that.
         out["fly"] = {"loop": True, "animation_length": F, "bones": {
-            "wing_l": {"rotation": cyc(F, lambda k: [0, 0, 90 + 55 * cos(2 * pi * k)], 4)},
-            "wing_r": {"rotation": cyc(F, lambda k: [0, 0, -(90 + 55 * cos(2 * pi * k))], 4)},
-            "wing_l_tip": {"rotation": cyc(F, lambda k: [0, 0, 20 * cos(2 * pi * k)], 4)},
-            "wing_r_tip": {"rotation": cyc(F, lambda k: [0, 0, -20 * cos(2 * pi * k)], 4)},
+            "wing_l": {"rotation": cyc(F, lambda k: [90, 0, -(90 + 40 * cos(2 * pi * k))], 4)},
+            "wing_r": {"rotation": cyc(F, lambda k: [90, 0, 90 + 40 * cos(2 * pi * k)], 4)},
+            "wing_l_tip": {"rotation": cyc(F, lambda k: [0, 0, -15 * cos(2 * pi * k)], 4)},
+            "wing_r_tip": {"rotation": cyc(F, lambda k: [0, 0, 15 * cos(2 * pi * k)], 4)},
             "leg_l": {"rotation": cyc(F, lambda k: [70, 0, 0], 2)}, "leg_r": {"rotation": cyc(F, lambda k: [70, 0, 0], 2)},
             "tail": {"rotation": cyc(F, lambda k: [10, 0, 0], 2)}}}
         out["glide"] = {"loop": True, "animation_length": 2.0, "bones": {
-            "wing_l": {"rotation": cyc(2.0, lambda k: [0, 0, 80 + 3 * sin(2 * pi * k)], 4)},
-            "wing_r": {"rotation": cyc(2.0, lambda k: [0, 0, -80 - 3 * sin(2 * pi * k)], 4)},
+            "wing_l": {"rotation": cyc(2.0, lambda k: [90, 0, -(95 + 3 * sin(2 * pi * k))], 4)},
+            "wing_r": {"rotation": cyc(2.0, lambda k: [90, 0, 95 + 3 * sin(2 * pi * k)], 4)},
             "leg_l": {"rotation": cyc(2.0, lambda k: [70, 0, 0], 2)}, "leg_r": {"rotation": cyc(2.0, lambda k: [70, 0, 0], 2)}}}
         out["idle"] = {"loop": True, "animation_length": 6.0, "bones": {
             "head": {"rotation": {"0.0": [0, 0, 0], "1.5": [0, 30, 0], "2.0": [0, 30, 0], "3.5": [0, -25, 0], "4.5": [0, -25, 0], "6.0": [0, 0, 0]}},
@@ -656,9 +657,9 @@ def animations(p, m):
                 al[e] = {"rotation": {"0.0": [0, 0, 0], "0.4": [20, 0, 0]}}
         if rig == "small_rodent":
             # sit up tall: body pitched up about the haunch
-            al["body"] = {"rotation": {"0.0": [0, 0, 0], "0.4": [-35, 0, 0]}}
+            al["body"] = {"rotation": {"0.0": [0, 0, 0], "0.4": [-20, 0, 0]}}
             for leg in ("leg_hl_upper", "leg_hr_upper"):
-                al[leg] = {"rotation": {"0.0": [0, 0, 0], "0.4": [35, 0, 0]}}
+                al[leg] = {"rotation": {"0.0": [0, 0, 0], "0.4": [20, 0, 0]}}
         out["alert"] = {"loop": "hold_on_last_frame", "animation_length": 0.4, "bones": al}
         if rig in ("ungulate", "cervid", "small_rodent"):
             fl = copy.deepcopy(out["run"])

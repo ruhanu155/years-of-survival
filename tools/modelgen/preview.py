@@ -253,6 +253,31 @@ def sheet(spec, out):
     return sh.size
 
 
+def icon_sheet(out, title="Item sprites (16 x 16) at GUI scale 4, with GUI scale 1 inset"):
+    """Every item icon at scale 4 on a slot background, its 1x size beside it, grouped by name."""
+    base = os.path.join(ROOT, "src", "main", "resources", "assets", "yearofice", "textures", "item")
+    files = sorted(f for f in os.listdir(base) if f.endswith(".png"))
+    load = os.path.join(base, "load")
+    if os.path.isdir(load):
+        files += ["load/" + f for f in sorted(os.listdir(load)) if f.endswith(".png")]
+    cols, cw, ch = 8, 132, 104
+    rows = (len(files) + cols - 1) // cols
+    sh = Image.new("RGB", (cols * cw + 8, rows * ch + 34), (34, 36, 38))
+    d = ImageDraw.Draw(sh)
+    d.text((8, 8), title, fill=(235, 235, 235))
+    for i, f in enumerate(files):
+        im = Image.open(os.path.join(base, f)).convert("RGBA")
+        x, y = 8 + (i % cols) * cw, 30 + (i // cols) * ch
+        d.rectangle((x, y, x + 71, y + 71), fill=(139, 139, 139))
+        d.rectangle((x + 2, y + 2, x + 69, y + 69), fill=(118, 118, 118))
+        big = im.resize((64, 64), Image.NEAREST)
+        sh.paste(big, (x + 4, y + 4), big)
+        sh.paste(im, (x + 80, y + 4), im)
+        d.text((x, y + 76), f[:-4][:21], fill=(200, 200, 190))
+    sh.save(out)
+    return sh.size
+
+
 def main(argv):
     if argv[0] == "one":
         geo = json.load(open(argv[1]))
@@ -271,6 +296,13 @@ def main(argv):
             out.paste(im.convert("RGB"), (x, 0))
             x += im.width + 10
         out.save(argv[3])
+    elif argv[0] == "icons":
+        print(icon_sheet(argv[1]))
+    elif argv[0] == "sheets":  # every contact sheet in tools/modelgen/sheets plus the item sheet
+        for f in sorted(os.listdir(os.path.join(HERE, "sheets"))):
+            spec = json.load(open(os.path.join(HERE, "sheets", f)))
+            print(f, sheet(spec, os.path.join(ROOT, spec["out"])))
+        print("items", icon_sheet(os.path.join(ROOT, "docs", "art", "previews", "items.png")))
     elif argv[0] == "sheet":
         print(sheet(json.load(open(argv[1])), argv[2]))
 

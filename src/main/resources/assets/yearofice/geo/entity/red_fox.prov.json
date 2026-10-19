@@ -1,0 +1,12 @@
+{
+ "species": "red_fox",
+ "grade": "G1",
+ "generator": "modelgen 0.4.0",
+ "base": "quaternius_fox",
+ "geo": "geo/entity/red_fox.geo.json",
+ "textures": [
+  "adult_cross",
+  "adult_red",
+  "adult_silver"
+ ]
+}
