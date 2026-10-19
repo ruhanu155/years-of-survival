@@ -3,7 +3,7 @@
  "out": "docs/art/previews/bears.png",
  "rows": [
   {
-   "label": "grizzly  adult_summer   (generated)",
+   "label": "grizzly  adult_summer   (G2, Blockbench override)",
    "geo": "src/main/resources/assets/yearofice/geo/entity/grizzly.geo.json",
    "texture": "src/main/resources/assets/yearofice/textures/entity/grizzly/adult_summer.png",
    "ground": "summer",
@@ -14,7 +14,7 @@
    ]
   },
   {
-   "label": "grizzly_cub  cub_summer   (generated)",
+   "label": "grizzly_cub  cub_summer   (G2, Blockbench override)",
    "geo": "src/main/resources/assets/yearofice/geo/entity/grizzly_cub.geo.json",
    "texture": "src/main/resources/assets/yearofice/textures/entity/grizzly/cub_summer.png",
    "ground": "summer",
@@ -25,7 +25,7 @@
    ]
   },
   {
-   "label": "black_bear  adult_black   (generated)",
+   "label": "black_bear  adult_black   (G2, Blockbench override)",
    "geo": "src/main/resources/assets/yearofice/geo/entity/black_bear.geo.json",
    "texture": "src/main/resources/assets/yearofice/textures/entity/black_bear/adult_black.png",
    "ground": "summer",
@@ -36,7 +36,7 @@
    ]
   },
   {
-   "label": "black_bear  adult_cinnamon   (generated)",
+   "label": "black_bear  adult_cinnamon   (G2, Blockbench override)",
    "geo": "src/main/resources/assets/yearofice/geo/entity/black_bear.geo.json",
    "texture": "src/main/resources/assets/yearofice/textures/entity/black_bear/adult_cinnamon.png",
    "ground": "summer",
@@ -47,7 +47,7 @@
    ]
   },
   {
-   "label": "black_bear_cub  cub_black   (generated)",
+   "label": "black_bear_cub  cub_black   (G2, Blockbench override)",
    "geo": "src/main/resources/assets/yearofice/geo/entity/black_bear_cub.geo.json",
    "texture": "src/main/resources/assets/yearofice/textures/entity/black_bear/cub_black.png",
    "ground": "summer",

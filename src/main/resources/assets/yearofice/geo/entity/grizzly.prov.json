@@ -1,6 +1,6 @@
 {
  "species": "grizzly",
- "grade": "G1",
+ "grade": "G2",
  "generator": "modelgen 0.4.0",
  "base": null,
  "geo": "geo/entity/grizzly.geo.json",

@@ -9,9 +9,9 @@
   1.3,
   1.5
  ],
- "grade": "G1",
+ "grade": "G2",
  "base": null,
- "notes": "Generated: no suitably licensed bear model was found. Shoulder hump, dished face (forehead stands 3 px above the muzzle line), short round ears, short tail, long pale front claws.",
+ "notes": "G2 (RECONCILE 157): Blockbench pass over the generated rig. Shoulder hump peaks over the front legs and the back slopes to the hips; dished face (brow at 17 px, a one-step stop, muzzle top at 13.5 px, nose tip turned up); wide cheek ruff; short rounded two-tier ears; short tail; long pale front claws.",
  "torso": [
   {
    "bone": "chest",
@@ -334,5 +334,119 @@
  },
  "textures": {
   "adult_summer": {}
+ },
+ "override": "grizzly.geo.json",
+ "cube_paint": {
+  "head#0": {
+   "ramp": "fur_grizzly",
+   "step": 2,
+   "noise": 0.15,
+   "regions": [
+    {
+     "faces": "all",
+     "speckle": 0.3,
+     "dstep": 1
+    }
+   ],
+   "pixels": [
+    {
+     "faces": "sides",
+     "z": 0.15,
+     "y": 0.5,
+     "ramp": "fur_black",
+     "step": 0
+    }
+   ]
+  },
+  "head#3": {
+   "ramp": "fur_grizzly",
+   "step": 3,
+   "noise": 0.1,
+   "regions": [
+    {
+     "faces": "bottom",
+     "dstep": -1
+    },
+    {
+     "faces": "top",
+     "dstep": -1
+    }
+   ]
+  },
+  "head#4": {
+   "ramp": "fur_grizzly",
+   "step": 3,
+   "noise": 0
+  },
+  "head#5": {
+   "ramp": "fur_black",
+   "step": 1,
+   "noise": 0
+  },
+  "leg_fr_foot#1": {
+   "ramp": "bone",
+   "step": 3,
+   "noise": 0,
+   "regions": [
+    {
+     "faces": [
+      "top",
+      "front"
+     ],
+     "x": [
+      0.25,
+      0.35
+     ],
+     "step": 0
+    },
+    {
+     "faces": [
+      "top",
+      "front"
+     ],
+     "x": [
+      0.65,
+      0.75
+     ],
+     "step": 0
+    }
+   ]
+  },
+  "hump#1": {
+   "ramp": "fur_grizzly",
+   "step": 3,
+   "noise": 0.15,
+   "regions": [
+    {
+     "faces": "all",
+     "speckle": 0.45,
+     "dstep": 1
+    }
+   ]
+  },
+  "hump#2": {
+   "ramp": "fur_grizzly",
+   "step": 3,
+   "noise": 0.15,
+   "regions": [
+    {
+     "faces": "all",
+     "speckle": 0.5,
+     "dstep": 1
+    }
+   ]
+  },
+  "body#2": {
+   "ramp": "fur_grizzly",
+   "step": 2,
+   "noise": 0.15,
+   "regions": [
+    {
+     "faces": "all",
+     "speckle": 0.35,
+     "dstep": 1
+    }
+   ]
+  }
  }
 }

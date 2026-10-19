@@ -8,7 +8,7 @@
   0.7,
   0.8
  ],
- "notes": "First-summer cub: big head and ears for its body, short legs, no hump yet. Same bone names as the adult, so the adult's animation code drives it.",
+ "notes": "First-summer cub: big head and ears for its body, short legs, no hump yet. Same bone names as the adult, so the adult's animation code drives it. G2: follows the adult's Blockbench pass at cub scale (same per-cube paint order).",
  "torso": [
   {
    "bone": "chest",
@@ -209,5 +209,7 @@
  "textures": {
   "cub_summer": {},
   "_replace": true
- }
+ },
+ "override": "grizzly_cub.geo.json",
+ "grade": "G2"
 }
