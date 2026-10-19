@@ -1,6 +1,9 @@
 package com.yearofice.client.horizon;
 
+import com.yearofice.api.clock.ClockService;
 import com.yearofice.core.YearOfIce;
+import com.yearofice.sim.time.Calendar;
+import com.yearofice.sim.time.Rate;
 import com.yearofice.worldgen.ValleyWorld;
 import com.yearofice.worldgen.WaterStage;
 import com.yearofice.worldgen.gen.YoiChunkGenerator;
@@ -24,8 +27,9 @@ import net.neoforged.neoforge.client.event.ClientTickEvent;
  * The world client smoke (Definition of done › the client smoke's screenshots). Off unless the environment
  * variable {@code YEAROFICE_SMOKE=world} is set: then it creates a fresh singleplayer world on the slice valley
  * ({@code YEAROFICE_SMOKE_PRESET}, default {@code slice_valley}; seed {@code YEAROFICE_SMOKE_SEED}, default
- * 3141592), waits for the spawn, and saves screenshots at the outpost spawn, over the outpost, at the nearest creek,
- * at the slice's fishing spot and from the highest ridge near the start, then closes the game. Never in a normal launch.
+ * 3141592), waits for the spawn, sets the clock to 12:00 on May 1, and saves screenshots at the outpost spawn, over
+ * the outpost, at the nearest creek, at the slice's fishing spot and from the highest ridge near the start, each once
+ * its view has loaded, then closes the game. Never in a normal launch.
  */
 @EventBusSubscriber(modid = YearOfIce.MOD_ID, value = Dist.CLIENT)
 public final class WorldSmoke {
@@ -98,8 +102,7 @@ public final class WorldSmoke {
     private static void play(Minecraft mc) {
         if (ticks == 60) {
             mc.options.hideGui = true;
-            command(mc, "time set 6000");
-            command(mc, "gamerule doDaylightCycle false");
+            noon(mc);
             command(mc, "weather clear");
             plan(mc);
             shot = 0;
@@ -114,9 +117,16 @@ public final class WorldSmoke {
         }
         if (shot >= 0 && ticks == 61 + SETTLE - 40) command(mc, SHOTS.get(shot)[1]); // again, after any drift
         if (shot < 0 || ticks < 61 + SETTLE) return;
+        // Then wait for the view to finish loading: every chunk around the camera on the client and no section
+        // left to build, held for a second. Shooting earlier catches the load frontier, where a crown that hangs
+        // over from a chunk the server has made but not yet sent shows without its trunk.
+        if (!loaded(mc) && ticks < 61 + SETTLE + MAX_WAIT) { ready = 0; return; }
+        if (++ready < 20 && ticks < 61 + SETTLE + MAX_WAIT) return;
+        if (ticks >= 61 + SETTLE + MAX_WAIT) YearOfIce.LOG.warn("Smoke: shot {} taken before the view finished loading", SHOTS.get(shot)[0]);
+        ready = 0;
         String[] s = SHOTS.get(shot);
         Screenshot.grab(mc.gameDirectory, s[0] + ".png", mc.getMainRenderTarget(), msg -> YearOfIce.LOG.info("Smoke screenshot: {}", msg.getString()));
-        YearOfIce.LOG.info("Smoke: shot {} at {}", s[0], s[1]);
+        YearOfIce.LOG.info("Smoke: shot {} at {} ({} ticks)", s[0], s[1], ticks - 61);
         shot++;
         ticks = 61;
         if (shot >= SHOTS.size()) {
@@ -126,6 +136,39 @@ public final class WorldSmoke {
             return;
         }
         command(mc, SHOTS.get(shot)[1]);
+    }
+
+    /** Most ticks a shot waits past the settle for its view to load. */
+    static final int MAX_WAIT = 1800;
+    private static int ready = 0;
+
+    /** Every chunk within the render distance less two around the camera is on the client, and no section is queued. */
+    private static boolean loaded(Minecraft mc) {
+        if (mc.level == null || mc.player == null) return false;
+        int r = Math.max(2, mc.options.getEffectiveRenderDistance() - 2);
+        int cx = mc.player.chunkPosition().x, cz = mc.player.chunkPosition().z;
+        for (int dz = -r; dz <= r; dz++) for (int dx = -r; dx <= r; dx++) {
+            if (dx * dx + dz * dz > r * r) continue;
+            if (!mc.level.getChunkSource().hasChunk(cx + dx, cz + dz)) return false;
+        }
+        return mc.levelRenderer.hasRenderedAllSections();
+    }
+
+    /**
+     * Daylight for every shot: the game clock (ClockService, which drives the sky) to 12:00 on May 1, and the world
+     * rate pinned to close (6 game seconds a real second), so the light hardly moves while the shots are taken.
+     * The integrated server owns the clock, so this runs on its thread.
+     */
+    private static void noon(Minecraft mc) {
+        IntegratedServer srv = mc.getSingleplayerServer();
+        if (srv == null) return;
+        srv.execute(() -> {
+            if (!ClockService.installed()) return;
+            ClockService c = ClockService.get();
+            c.setNow(12 * 60 * Calendar.DS_PER_MINUTE);
+            c.forceRate(Rate.CLOSE);
+            YearOfIce.LOG.info("Smoke: clock set to {}", Calendar.format(c.nowDs()));
+        });
     }
 
     private static void plan(Minecraft mc) {
