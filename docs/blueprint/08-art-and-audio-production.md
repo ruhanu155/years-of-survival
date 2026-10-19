@@ -567,6 +567,13 @@ The rigs add up to 35: 8 + 1 + 3 + 15 + 6 + 1 + 1 by template. The species colum
 - **Encounter, M6 (animals):** `entity.grizzly.jaw_pop`, `entity.black_bear.huff` and `entity.black_bear.jaw_pop`, beside the existing `entity.grizzly.huff`. The Director's names `animal.bear.huff`, `animal.bear.jaw_pop`, `player.breath_panic`, `player.hit_grunt` and `gear.pack_tear` map onto these, following the `entity.<species>.*`, `body.*` and `item.*` groups above.
 - **Video 2:** `carry.box_lift`, `carry.box_set`, `ui.field_note_card` (M3); `work.crust_scrape`, `work.pan_swirl` (M5); `work.sluice_wash` (M9).
 
+**New sound ids, research round B (Proposed; Ruhan may veto; RECONCILE 175).** Look owns them all; each ships a synth fallback first, in the existing groups. B7's `voice.talk_walk` is named `body.talk_walk` here, since the groups have no `voice.*`.
+
+- **M4 (body):** `body.skin_sting` (B13), `body.back_twinge` (B15, played with the existing `body.grunt`).
+- **M6:** `work.bone_crush` (B5), `body.talk_walk` (B7, with `body.hum` as one variant).
+- **M7 (travel and ice):** `step.skate`, `ice.blade_ring`, `ice.blade_sing`, `ice.blade_crackle` (B1); `step.ski_glide`, `step.ski_squeal` (B2).
+- **M8:** `world.frost_drip`, `world.icicle_crack` (B8).
+
 ### Music tied to Spirits
 
 **Music is generated offline and plays rarely.** Twelve pieces of 1–3 minutes come from `tools/soundgen/music/`: four seasons, each with a dawn theme, a day piece and a fire piece. A seeded phrase grammar writes modal lines (Dorian and Aeolian, 50–70 beats a minute). Synthesized plucked string, bowed drone and wooden flute play them.
