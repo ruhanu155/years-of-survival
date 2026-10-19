@@ -301,7 +301,7 @@ public final class M2WorldGameTests {
     /**
      * {@code worldgen/chunk_budget}: 2,000 chunks of the core (columns, blocks and the tree plan) generate at an
      * average under 5 ms and a 99th percentile under 15 ms. Timed on bare proto-chunks, one thread, after a
-     * warm-up; the whole chunk pipeline in the live dimension (light, structures, trees written) is logged too.
+     * warm-up, in that thread's CPU time (a busy shared machine must not fail it); the whole chunk pipeline in the live dimension (light, structures, trees written) is logged too.
      */
     @GameTest(template = "gametest/empty3", batch = "m2", timeoutTicks = 2400)
     public static void worldgen_chunk_budget(GameTestHelper h) {
@@ -311,15 +311,18 @@ public final class M2WorldGameTests {
         var biomes = l.registryAccess().registryOrThrow(Registries.BIOME);
         int x0 = (int) w.g.originX >> 4, z0 = (int) w.g.originZ >> 4;
         int per = (int) (w.g.size / 16);
+        // Thread CPU time, so other work on a shared machine never counts against the generator.
+        java.lang.management.ThreadMXBean mx = java.lang.management.ManagementFactory.getThreadMXBean();
+        boolean cpu = mx.isCurrentThreadCpuTimeSupported();
         long[] ns = new long[2000];
         for (int k = -200; k < ns.length; k++) {
             int idx = Math.floorMod(k * 7919, per * per);
             int cx = x0 + idx % per, cz = z0 + idx / per;
             ProtoChunk pc = new ProtoChunk(new ChunkPos(cx, cz), UpgradeData.EMPTY, l, biomes, null);
-            long t0 = System.nanoTime();
+            long t0 = cpu ? mx.getCurrentThreadCpuTime() : System.nanoTime();
             gen.fill(pc);
             TreePlan.treesIn(w, cx * 16, cz * 16, cx * 16 + 16, cz * 16 + 16);
-            long t = System.nanoTime() - t0;
+            long t = (cpu ? mx.getCurrentThreadCpuTime() : System.nanoTime()) - t0;
             if (k >= 0) ns[k] = t;
         }
         long[] sorted = ns.clone();
@@ -331,8 +334,8 @@ public final class M2WorldGameTests {
         int live = 0;
         for (int dz = 0; dz < 8; dz++) for (int dx = 0; dx < 8; dx++) { l.getChunk((s[0] >> 4) + 20 + dx, (s[2] >> 4) + 20 + dz); live++; }
         double liveMs = (System.nanoTime() - t1) / 1e6 / live;
-        String msg = String.format(Locale.ROOT, "chunk budget: columns+blocks+trees avg %.2f ms, p99 %.2f ms over %d core chunks; live pipeline %.1f ms a chunk (%d chunks, main thread)",
-                avg, p99, ns.length, liveMs, live);
+        String msg = String.format(Locale.ROOT, "chunk budget: columns+blocks+trees avg %.2f ms, p99 %.2f ms (%s) over %d core chunks; live pipeline %.1f ms a chunk wall (%d chunks, main thread)",
+                avg, p99, cpu ? "thread CPU" : "wall", ns.length, liveMs, live);
         YearOfIce.LOG.info(msg);
         h.assertTrue(avg < 5.0 && p99 < 15.0, msg);
         h.succeed();
