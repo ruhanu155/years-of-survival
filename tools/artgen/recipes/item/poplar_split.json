@@ -1,0 +1,90 @@
+{
+ "id": "yearofice:poplar_split",
+ "kind": "icon",
+ "notes": "A poplar split: a split piece: end grain, split face, bark edge (from firewood_split, bark ramp bark_aspen).",
+ "shapes": [
+  {
+   "kind": "poly",
+   "points": [
+    [
+     6,
+     7
+    ],
+    [
+     8,
+     2
+    ],
+    [
+     14,
+     10
+    ],
+    [
+     11,
+     14
+    ]
+   ],
+   "ramp": "wood_cut",
+   "step": 2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     8,
+     2
+    ],
+    [
+     14,
+     10
+    ]
+   ],
+   "width": 2,
+   "ramp": "bark_aspen",
+   "step": 1
+  },
+  {
+   "kind": "poly",
+   "points": [
+    [
+     2,
+     5
+    ],
+    [
+     8,
+     2
+    ],
+    [
+     6,
+     7
+    ],
+    [
+     11,
+     14
+    ],
+    [
+     4,
+     14
+    ]
+   ],
+   "ramp": "wood_cut",
+   "step": 3
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     5,
+     8
+    ],
+    [
+     8,
+     13
+    ]
+   ],
+   "width": 1,
+   "ramp": "wood_cut",
+   "step": 2,
+   "flat": true
+  }
+ ]
+}

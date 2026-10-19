@@ -34,5 +34,17 @@ public final class WorldAttachments {
                 public Tag write(PlacedMaskData data, HolderLookup.Provider provider) { return data.write(); }
             }).build());
 
+    /** M2 felling: the felled and topped trees of a chunk ({@link TreeMarksData}); untouched chunks save nothing. */
+    public static final Supplier<AttachmentType<TreeMarksData>> TREES = TYPES.register("trees",
+            () -> AttachmentType.builder(TreeMarksData::new).serialize(new IAttachmentSerializer<Tag, TreeMarksData>() {
+                @Override
+                public TreeMarksData read(IAttachmentHolder holder, Tag tag, HolderLookup.Provider provider) {
+                    return TreeMarksData.read(tag);
+                }
+
+                @Override
+                public Tag write(TreeMarksData data, HolderLookup.Provider provider) { return data.write(); }
+            }).build());
+
     public static void register(IEventBus modBus) { TYPES.register(modBus); }
 }

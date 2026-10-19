@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": {
+    "yearofice:hatchet": {
+      "fell_max_cm": 45,
+      "swings_25cm": 6,
+      "swing_min": 4,
+      "limb_min": 10,
+      "buck_min": 3,
+      "split_strikes": 3,
+      "split_crack_strikes": 1
+    }
+  }
+}

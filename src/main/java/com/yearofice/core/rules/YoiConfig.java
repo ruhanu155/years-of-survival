@@ -31,6 +31,7 @@ public final class YoiConfig {
         com.yearofice.decay.DecayConfig.define(b);
         com.yearofice.food.FoodConfig.define(b);
         com.yearofice.story.StoryConfig.define(b);
+        com.yearofice.build.wood.WoodConfig.define(b);
         com.yearofice.build.BuildConfig.define(b);
         SPEC = b.build();
     }

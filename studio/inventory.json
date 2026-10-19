@@ -7,12 +7,12 @@
     "Items: the doc's count says 226, its list names 225"
   ],
   "counts": {
-    "total": 1398,
-    "by_type": {"mob": 154, "entity": 21, "block_with_entity": 79, "block": 151, "plant_block": 107, "multiblock": 3, "item": 380, "sound_event": 132, "particle_type": 43, "attachment": 29, "data_component": 28, "payload": 24, "gui_layer": 17, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 11, "loot_function": 8, "loot_condition": 3, "recipe_type": 5, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 74, "biome": 29, "worldgen_hook": 16, "poi_type": 14},
-    "by_milestone": {"m0": 13, "m1": 15, "m2": 196, "m2_5": 65, "m3": 91, "m4": 43, "m5": 361, "m6": 294, "m7": 141, "m8": 124, "m9": 52, "none": 3},
-    "by_owner": {"body": 225, "building": 188, "ecosystem": 255, "food": 235, "look": 207, "story": 62, "studio": 65, "worldgen": 161},
-    "by_milestone_source": {"doc": 593, "rule": 805},
-    "by_status": {"planned": 1296, "registered": 99, "retired": 3}
+    "total": 1402,
+    "by_type": {"mob": 154, "entity": 21, "block_with_entity": 79, "block": 151, "plant_block": 107, "multiblock": 3, "item": 381, "sound_event": 132, "particle_type": 43, "attachment": 30, "data_component": 29, "payload": 24, "gui_layer": 17, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 12, "loot_function": 8, "loot_condition": 3, "recipe_type": 5, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 74, "biome": 29, "worldgen_hook": 16, "poi_type": 14},
+    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 91, "m4": 43, "m5": 361, "m6": 294, "m7": 141, "m8": 124, "m9": 52, "none": 3},
+    "by_owner": {"body": 225, "building": 192, "ecosystem": 255, "food": 235, "look": 207, "story": 62, "studio": 65, "worldgen": 161},
+    "by_milestone_source": {"doc": 597, "rule": 805},
+    "by_status": {"planned": 1300, "registered": 99, "retired": 3}
   },
   "entries": [
     {"id": "yearofice:alaska_blackfish", "type": "mob", "milestone": "m5", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
@@ -695,6 +695,7 @@
     {"id": "yearofice:hand_map", "type": "item", "milestone": "m3", "owner": "story", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:hand_quern", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:hare_pelt", "type": "item", "milestone": "m2_5", "owner": "food", "milestone_source": "doc", "status": "planned"},
+    {"id": "yearofice:hatchet", "type": "item", "milestone": "m2", "owner": "building", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:heart", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:heliograph_mirror", "type": "item", "milestone": "m8", "owner": "story", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:hen_egg", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},
@@ -1111,6 +1112,7 @@
     {"id": "yearofice:stand", "type": "attachment", "milestone": "m7", "owner": "worldgen", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:study", "type": "attachment", "milestone": "m5", "owner": "story", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:tool_memory", "type": "attachment", "milestone": "m3", "owner": "studio", "milestone_source": "rule", "status": "planned"},
+    {"id": "yearofice:trees", "type": "attachment", "milestone": "m2", "owner": "building", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:trust", "type": "attachment", "milestone": "m9", "owner": "ecosystem", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:wariness", "type": "attachment", "milestone": "m6", "owner": "ecosystem", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:work", "type": "attachment", "milestone": "m2", "owner": "building", "milestone_source": "rule", "status": "planned"},
@@ -1134,6 +1136,7 @@
     {"id": "yearofice:nutrients", "type": "data_component", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:pelt_grade", "type": "data_component", "milestone": "m6", "owner": "studio", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:quality", "type": "data_component", "milestone": "m3", "owner": "studio", "milestone_source": "rule", "status": "planned"},
+    {"id": "yearofice:seasoning", "type": "data_component", "milestone": "m2", "owner": "building", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:seed_lot", "type": "data_component", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:shot_day", "type": "data_component", "milestone": "m9", "owner": "studio", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:specimen", "type": "data_component", "milestone": "m5", "owner": "studio", "milestone_source": "rule", "status": "planned"},
@@ -1239,6 +1242,7 @@
     {"id": "yearofice:pack", "type": "data_map", "milestone": "m2", "owner": "studio", "milestone_source": "doc", "status": "registered"},
     {"id": "yearofice:piece", "type": "data_map", "milestone": "m8", "owner": "building", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:props", "type": "data_map", "milestone": "m2", "owner": "studio", "milestone_source": "doc", "status": "registered"},
+    {"id": "yearofice:tool", "type": "data_map", "milestone": "m2", "owner": "building", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:wear", "type": "data_map", "milestone": "m4", "owner": "body", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:weight", "type": "data_map", "milestone": "m2", "owner": "studio", "milestone_source": "doc", "status": "registered"},
     {"id": "yearofice:carcass_condition", "type": "loot_function", "milestone": "m5", "owner": "studio", "milestone_source": "rule", "status": "planned"},

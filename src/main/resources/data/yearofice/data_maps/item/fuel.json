@@ -4,6 +4,14 @@
     "minecraft:spruce_log": { "wood": "dead_spruce", "armload_fraction": 0.5, "moisture_pct": 18 },
     "minecraft:stripped_spruce_log": { "wood": "dead_spruce", "armload_fraction": 0.5, "moisture_pct": 18 },
     "minecraft:birch_log": { "wood": "birch", "armload_fraction": 0.5, "moisture_pct": 18 },
-    "minecraft:stripped_birch_log": { "wood": "birch", "armload_fraction": 0.5, "moisture_pct": 18 }
+    "minecraft:stripped_birch_log": { "wood": "birch", "armload_fraction": 0.5, "moisture_pct": 18 },
+    "yearofice:spruce_split": {"wood": "spruce", "armload_fraction": 0.25, "moisture_pct": 18},
+    "yearofice:birch_split": {"wood": "birch", "armload_fraction": 0.25, "moisture_pct": 18},
+    "yearofice:aspen_split": {"wood": "willow", "armload_fraction": 0.25, "moisture_pct": 18},
+    "yearofice:poplar_split": {"wood": "willow", "armload_fraction": 0.25, "moisture_pct": 18},
+    "yearofice:tamarack_split": {"wood": "spruce", "armload_fraction": 0.25, "moisture_pct": 18},
+    "yearofice:willow_split": {"wood": "willow", "armload_fraction": 0.25, "moisture_pct": 18},
+    "yearofice:alder_split": {"wood": "alder", "armload_fraction": 0.25, "moisture_pct": 18},
+    "yearofice:drift_split": {"wood": "drift", "armload_fraction": 0.25, "moisture_pct": 18}
   }
 }

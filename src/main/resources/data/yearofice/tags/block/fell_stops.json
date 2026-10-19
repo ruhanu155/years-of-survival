@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:logs",
+    "#minecraft:planks",
+    "yearofice:chopping_block",
+    "yearofice:fire_ring",
+    {
+      "id": "yearofice:spit",
+      "required": false
+    },
+    {
+      "id": "yearofice:snare",
+      "required": false
+    }
+  ]
+}

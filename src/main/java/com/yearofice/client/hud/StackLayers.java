@@ -182,10 +182,25 @@ final class StackLayers {
     static final class WorkRing implements LayeredDraw.Layer {
         @Override
         public void render(GuiGraphics g, DeltaTracker d) {
-            if (hudHidden() || !HudDebug.on() || BreathRing.showing()) return;
+            if (hudHidden() || BreathRing.showing()) return;
             int cx = g.guiWidth() / 2, cy = g.guiHeight() / 2;
+            com.yearofice.client.work.ClientWork.Ring ring = com.yearofice.client.work.ClientWork.ring();
+            if (ring == null && !HudDebug.on()) return;
+            double share = ring != null ? ring.share() : 0.65;
             arc(g, cx, cy, 10, 0, 1, 0x553A3A38);
-            arc(g, cx, cy, 10, 0, 0.65, INK);
+            arc(g, cx, cy, 10, 0, share, INK);
+            // The clock face: a hand racing round with game time at the time-lapse rate (one turn a game hour).
+            double minute = (com.yearofice.client.clock.ClientClock.nowDs() / 600.0) % 60.0;
+            double a = minute / 60.0 * 2 * Math.PI - Math.PI / 2;
+            for (int r = 2; r <= 7; r++) {
+                int x = cx + (int) Math.round(Math.cos(a) * r), y = cy + (int) Math.round(Math.sin(a) * r);
+                g.fill(x, y, x + 1, y + 1, DIM);
+            }
+            if (ring != null) {
+                String label = Component.translatable("work.yearofice." + ring.phase().name().toLowerCase(java.util.Locale.ROOT)).getString()
+                        + (ring.of() > 1 ? " " + ring.done() + "/" + ring.of() : "");
+                centered(g, mc().font, Component.literal(label), cx, cy - 24, INK, false);
+            }
         }
     }
 
