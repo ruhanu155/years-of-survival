@@ -1106,6 +1106,80 @@
    "release_blocker": false
   },
   {
+   "asset_id": "tex_arctic_grayling",
+   "files": [
+    "assets/yearofice/textures/item/arctic_grayling.png",
+    "assets/yearofice/models/item/arctic_grayling.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/arctic_grayling.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_bobber",
+   "files": [
+    "assets/yearofice/textures/entity/bobber.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/bobber.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_rod",
+   "files": [
+    "assets/yearofice/textures/item/rod.png",
+    "assets/yearofice/models/item/rod.json"
+   ],
+   "source_type": "game_asset_collection",
+   "title": "Ninja Adventure - Asset Pack (Items)",
+   "author": "Pixel-boy and AAA",
+   "licence": "CC0-1.0",
+   "licence_file": "art-src/licences/ninja_adventure.txt",
+   "retrieved": "2026-10-19",
+   "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+   "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+   "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+   "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512",
+   "release_blocker": false,
+   "recipe": "tools/artgen/recipes/item/rod.json",
+   "original": "art-src/found/ninja_adventure/Items/Weapons/Fishing Rod/Sprite.png",
+   "original_sha256": "a9c0f78584c205a08405716f992b61e3e4a208beb32bdfaf8085c591351540e6",
+   "generator_version": "artgen 0.4.0"
+  },
+  {
+   "asset_id": "tex_worm",
+   "files": [
+    "assets/yearofice/textures/item/worm.png",
+    "assets/yearofice/models/item/worm.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/worm.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "model_snare",
+   "files": [
+    "assets/yearofice/blockstates/snare.json",
+    "assets/yearofice/models/block/snare.json",
+    "assets/yearofice/models/block/snare_sprung.json",
+    "assets/yearofice/models/item/whole_game.json",
+    "assets/yearofice/models/item/snowshoe_hare_meat.json",
+    "assets/yearofice/models/item/willow_ptarmigan_meat.json",
+    "assets/yearofice/models/item/hare_pelt.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/snare.py",
+   "licence": "project",
+   "generator_version": "snare 0.1.0",
+   "release_blocker": false
+  },
+  {
    "asset_id": "tex_block_birch_leaves",
    "files": [
     "assets/yearofice/textures/block/birch_leaves_all.png"

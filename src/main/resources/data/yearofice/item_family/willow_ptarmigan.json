@@ -1,0 +1,7 @@
+{
+  "species": "yearofice:willow_ptarmigan",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    { "item": "yearofice:willow_ptarmigan_meat", "kind": "meat", "unit_g": 100 }
+  ]
+}

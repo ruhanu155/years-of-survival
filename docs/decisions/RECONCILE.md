@@ -282,3 +282,152 @@ SETTLED there: 1, 7, 15; enforces lead's 6, 16, 18, 19, 21, 22, 32, 34, 35, 41, 
      - Land animals roster, Who answers to what, and Mothers and young: add rows for both deer.
      - Dev master inventory and sounds: add the deer ids and `rare_sighting/mule_deer_straggler.json`.
      - Entities: `/yearofice spawn` → `/yoi spawn`.
+156. LEFTOVERS (next docs pass):
+     - Sound events 409 → 420 with the deer calls (Art, Engine, Ready).
+     - Art still counts `yukon_floater` as a mob: remove it, so 154 mob types.
+     - Licence lists that read "CC0, CC-BY or MIT" in Engine, Main and the dev Sounds section, and the repo CLAUDE.md found-asset line: widen per 151.
+157. ART WAVE 1 merged (PR #3). Director look check: moose, deer, wolf, fox, squirrel, beaver, hare and all 37 item sprites pass G1. Bears pass only marginally: the grizzly needs a clear shoulder hump and a dished face, and the black bear reads boxy. Ptarmigan and spruce grouse are blocky. These go FIRST into a G2 pass, done in Blockbench via MCP.
+     RULINGS:
+     - The cervid rig's bone cap is 38.
+     - Young animals use separate models with the adult bone names; entity code swaps models by age class.
+     - Item ids the art team proposed (`fixed_blade_knife`, `raw_moose_meat`, `firewood_round`, …) are adopted provisionally; the Items tab confirms them in the next docs pass.
+     - The Foreck pack is not used (mixed licence wording).
+158. BODY CORES merged (PR #4): sim.env (HeatIndex adapted from Cold Sweat, GPL, release_blocker; Warmth; Clothing; RoomHeat), sim.body (WetnessModel and WaterPurity from Homeostatic, MIT), sim.body.part (Injuries reimplemented from First Aid New's design). 77 JUnit tests pass.
+     DIRECTOR RULINGS:
+     - The torso's inner zone has two layers, base and mid; every other zone has one inner layer.
+     - Wardrobe warmth follows the garment formula; the season-table totals get corrected in the next docs pass.
+     - "Drains to 70% within 2 min" applies to water weight only.
+     - The walking stick halves a blister's speed loss (0.925).
+     - Water warmth loss uses the temperature bands (item 123). Hot pools of 35 °C or more give +10 warmth a minute.
+     - All 8 interpretation defaults are accepted as written in the code: rain wetting 1/75 per mm/h per minute, exclusive problem rolls, 30% = wet, a warm room of 10 °C or more ends the soaked rule, resting dries at half rate, stacked fires capped at the hottest (+25), t_nip = 300 points, hourly ongoing losses.
+     - Move `EnvSample` to `api` when M4 adapters land.
+159. FOOD CORES merged (PR #5): sim.decay (Fresh, FreshTrait, ItemTemperature from TerraFirmaCraft (EUPL, release_blocker); DecayCore, ColdCurve, DecayClimate, DecayLadder, Thresholds, ThawCountdown reimplemented); sim.food (Doneness, MiceInStores, EatingLadder, SourFish, FoodValues + data_maps/item/food.json); sim.minigame.knapping (KnappingPattern adapted, KnappingJudge); sim.fishing (BiteModel, SizeDraw, FishStock, Tackle, FightModel, PassiveGear; Tide 2 is Apache-2.0, design reference only). After the merge: 158 tests, 2 skipped (they wait on M8/M9), GameTests 2/2.
+     DIRECTOR RULINGS:
+     - Decay life τ = L ÷ 0.7 (Decay tab wins over the dev tab's spoil_days×24).
+     - r(20) = 5.196 by the formula.
+     - cold_curve GameTests stamp on a band boundary; tolerances stay.
+     - The pike snap test runs with and without a wire leader.
+     - Broadhead shatter 25% → 5% (Crafting owns Practice).
+     - Agent's named-constant interpretations accepted.
+     - Knapping stays in `sim.minigame.knapping`.
+     - Fix MODS.md: Tide is Apache-2.0, not MPL.
+160. VIDEO 2 (GERD, "I Spent 1 Year in the Alaskan Wilderness in REALISTIC MINECRAFT"): 117 concepts. 86 are already covered; 4 Add, 10 Adapt, 17 Decline (VIDEO2.md). PENDING RUHAN APPROVAL for the 10 Add/Adapt specs:
+     - placed logs never fall;
+     - a warning when the door is left open;
+     - thieves at the drying rack;
+     - salt from the mineral lick;
+     - a game record book;
+     - trophy-wall ambitions;
+     - field-note cards;
+     - lifting a full box of 30 kg or less;
+     - no ghost inventory slots;
+     - black sand in the gold pan for bloomery iron.
+161. ART G2 merged (PR #8). Grizzly (hump over the front legs, dished face, claws) and black bear (Roman profile, highest at the hips) pass the Director's look check. The grouse rig is improved but still blocky up close; acceptable for M2.5, revisit in G3.
+     Blockbench overrides live in tools/modelgen/overrides/ (with .bbmodel sources). This direct order counts as the exception to the art spec's "two failed template fixes" rule.
+     Blockbench MCP notes: delete_offscreen_view is broken; textures need risky_eval to apply to imported cubes; calls ran with no timeouts.
+162. CI merged (PR #7). GitHub Actions jobs: `smoke` (build plus GameTests), `hashes` on macOS and Windows; all green. studio/inventory.json holds 1,171 ids (352 placed by the doc, 819 by rule). Also merged: studio/ownership.json, CODEOWNERS and `contentLint` inside `check`.
+     DIRECTOR RULINGS:
+     - Curios slots: back and neck ship in M2, clothing slots in M4 (the Ready tab's "all in M0" is wrong). Fix in the inventory rules and the next docs pass.
+     - M7 lists 21 fungi and aquatic plants; the "27" is a docs-pass fix.
+     - The generator stays at tools/content-lint (task `docInventory`).
+     - Gson 2.10.1 is test-only.
+     - Next build task: a `studio/milestone` setting, owned by the Director, so registering a later-milestone id fails the build.
+163. FIRE (slice) merged (PR #9). Contents: fire_ring built from parts in order; the fire states; the bow-drill minigame (60–90 s, 60 kcal, practice down to a 6 s hold); matches (95% calm / 50% wind); rain and wind effects; light by state; FireHeat → HeatIndex. 184 JUnit, GameTests 8/8.
+     DIRECTOR RULINGS:
+     - Banked coals last 6 h.
+     - A plain ring burns 40 game min per armload at Steady.
+     - Rain steps a fire down one state at a time.
+     - The Practiced hold is 6 s (Crafting's 3 s is wrong).
+     - "Wind" means 5 m/s or more.
+     - Snowfall runs fuel use at ×0.75.
+     - The bow drill cools after 2 missed beats.
+     - Banking is a crouch tap for now; the 3 s hold comes later.
+     LEFT OPEN:
+     - fire spread and fire builds (M3);
+     - start-kit matches (M3 loot);
+     - tinder and kindling recipes, and `<wood>_split` fuel entries (Building);
+     - energy should read BodyService once body PR lands;
+     - wind should read EnvService.
+164. BODY SLICE + TRAIL MESSENGER merged (PR #10). Contents: BodyService (energy, kcal, hydration, wetness, injuries), starvation by BMI, the Trail Messenger HUD.
+     DIRECTOR RULINGS:
+     - Item id `yearofice:messenger` is accepted.
+     - Revises 135: Gentle also uses 2,400 kcal per kg. Gentle's slower burn alone puts BMI 17 at about day 34–36, which meets the M4 "starvation twice as late" test. 3,500 overshot it.
+     - Fire now reads BodyService energy on the 0–10 scale. `drillMinEnergy` is re-expressed on that scale (the follow-up task belongs to the fire owner).
+     - Sprinting burns at the heavy-work rate, 450 kcal/h.
+     - The stomach counts as empty below 7% of capacity.
+     - The `client.ui.messenger` package is fine.
+165. ART FIX: client hang on load (PR #11). GeckoLib loads every file under `geo/` as a model, so the `*.prov.json` sidecars broke the resource reload. They moved to `art-src/provenance/models/`. modelgen and credits now point there. A JUnit guard (GeoFolderTest) keeps `geo/` to `*.geo.json` only.
+     DIRECTOR RULING: nothing but `*.geo.json` may sit under `assets/yearofice/geo/`. Provenance and notes belong in `art-src/`.
+166. FIRE ENERGY (PR #12) merged. The bow drill reads BodyService energy (0–10). drillMinEnergy: Gentle 3, Standard 4, Brutal 5. Before this, the stand-in read the food bar, which the body pins full, so "too tired" never fired. Closes 163's open item "energy should read BodyService". Wind still waits on EnvService.
+167. M1 WATER AND SET PIECES merged (PR #13). Contents: stages 4–5 (channels, braids, meanders and oxbows, falls and pools, lakes, fishing spots, shelters, iron), 22 placeholder set-piece templates, debugmap layers. 224 JUnit, 23 GameTests. M0 hashes unchanged. World creation 3.5–5 s per seed.
+     DIRECTOR RULINGS (accepting the agent's 13 resolutions, with these changes):
+     - Lake valley: widening a small basin in stage 4's own carve layer is accepted. M2 must noise the shoreline; the pure ellipse on seed 6 reads as artificial.
+     - Tarns: 13–22 lakes per valley is kept. M2 caps lake depth at 30 m, with the floor filled to the cap: deeper water adds nothing to play and costs chunk time.
+     - The fire lookout on a lower ridge is accepted. The 15° top-slope rule stands.
+     - Stage budgets (stage 4 about 1 s, stage 5 about 0.8 s) are accepted for now under the 8 s total. M2 profiles them.
+     - Set-piece registrations (structure type, placement, template piece, processors, the `mark_placed` attachment) move to M2. The Director adds them to studio/inventory.json in the M2 brief, and the placed mask moves from SavedData to the attachment there.
+     - `/yoi worldgen map|layers` placement is accepted. The Ready tab's `/yoi layers` maps to it.
+     - Trapper caches move to M3 and mineral licks to M2, as deferred.
+     - Human gate open for Ruhan: pick fishing spots on 4 seeds (the `spots` layer numbers the top 10). He runs it when the slice is playable.
+168. ROD FISHING (PR #14) merged. Contents: cast and bobber, bite roll at the spot, nibble and strike, the fight overlay with client/server lockstep, the close clock, outcomes, worms from soil near water, `[fishing]` with 31 keys. 32 GameTests; `slice_rod_bite` 193/200.
+     DIRECTOR RULINGS (accepting the agent's 14 decisions, with these notes):
+     - `hunt/slice_rod_bite` is defined at the slice's May creek mouth during the grayling spawn. The slice starts on May 1, so this is the case players meet. The Ready tab's "90% within 30 game minutes" gets the qualifier "at the slice spot in May" in the next docs pass. Outside the spawn, about 89% at q 1.0 is accepted as the design.
+     - The landed item is the species id (RULING 101): `yearofice:arctic_grayling`.
+     - Fishing posts no kcal event; it is a resting activity.
+     - `yearofice:weight_g` moves to `item.component.YoiComponents` (studio) on the next PR that needs it. There must be one registration only.
+     - The `minigame` GUI layer is owned by Look from M2 lane B on, with the same id.
+     - Worldgen exposes FishSpots (q, radius, type, stock) through an api read in M2 lane A or B. SliceSpots then drops the 2×2 rule.
+     - Bug for Art/Build: `tools/artgen/credits.py write` drops existing GUI and messenger credit entries. Fix it before the next art wave.
+169. SMALL GAME AND SNARE (PR #15) merged. Contents: hare, ptarmigan and passive moose on the YoiAnimal Brain (sight, hearing and scent sensors; routine, alert, freeze and flee); the slot spawner; carcass_small → whole_game; time-lapse dressing (hare: 13 game min, 9 meat units, pelt, sinew); the snare block entity with dawn and dusk rolls and catch-up. 253 JUnit, 40 GameTests.
+     DIRECTOR RULINGS (accepting the agent's 8 settlements, with these notes):
+     - Hare flush distance is 5 m base (7.5 m walking straight at it). Moose flee distance is 40 m. Hare density at K is 40 per km² of edge habitat.
+     - Ids: `snare` and `snare_wire` stand. The Items tab's `trail_snare` becomes an alias in the docs pass. Trap numbers live in `[traps]` config; `trap/trail_snare.json` comes back when a second trap type needs data.
+     - Meats are `<species>_meat`; `sinew` is new; `whole_game` is the picked-up small carcass.
+     - The spawner package is `ecosystem.spawn`. The docs' `ecosystem.population` is corrected in the docs pass.
+     - Hare coat dates as given; the docs pass checks them against Land animals › Snowshoe hare.
+     - `yearofice:fresh` is registered once, in EcosystemRegistry. It moves to `item.component.YoiComponents` together with weight_g (168) in one studio cleanup.
+     - Stand-ins (dawn and dusk, decay temperature, wind) switch to ClockService and EnvService when M2 lane B lands.
+     - Testing lesson: GameTests run in parallel, so force-loaded chunks must be reference-counted and threats bound to their own entity.
+     - Open risk: the entity renderers haven't been seen in a client. Check them when lane A's slice world exists.
+170. RUHAN APPROVED all 10 video-2 specs (VIDEO2.md §3: A1 placed logs never fall, A2 door left open, A3 thieves at the rack, A4 salt from mineral licks, A5 game record book, A6 trophy-wall ambitions, A7 lift a full box, A8 field-note cards, A9 no ghost slots, A10 black sand in the pan). Two additions from Ruhan:
+     - A2 and A3 are world options the player turns on or off: `[world] animals_enter_open_doors` and `[world] rack_thieves`, both on by default in every preset and changeable after world creation.
+     - NEW A11, "Strength carries more" (Ruhan: "increase the slots a person has maybe by eating more and becoming stronger"). DIRECTOR SPEC:
+       - Carry-weight load bands scale with the body's Strength, 0.8× at Strength 0 to 1.15× at Strength 100, linear and read from BodyService.strength.
+       - A Hauling practice track (reps from walking 100 m in the Heavy band) adds up to +10% after about 1 game year.
+       - Packs with more rows set a minimum Strength to wear them without the Overloaded penalty: frame pack 40, large frame pack 60.
+       - Belt slots stay 9. More slots come from bigger packs, which need strength.
+       - Losing weight (BMI) lowers Strength and so shrinks the bands. That is the readable cost of starving.
+       - Milestone: bands with M2 lane B (pack); Strength scaling and Hauling with M4 (body). Test `pack/strength_scales_bands`.
+171. RUHAN: "there is a tripping and falling mechanic within forgelabs mod, and animations are there when lets say interacting with the bear."
+     - Trips and falls are fully covered: Every concept from the video › Stumbles, trips and falls; Body › Falls, stumbles and slips; BodyCamera dip and roll. Nothing to add beyond the hand clips below.
+     - GAP: encounter animations. The rules exist (Blueprint › Danger in detail › Contact with a bear), but there are no clips for them. DIRECTOR SPEC "Encounter animations" follows.
+       ANIMAL SIDE: hand-keyed `<id>_extra` clips on the action controller, triggered by the server.
+       - Ursid (grizzly, black bear):
+         | Clip | Length |
+         | --- | --- |
+         | `huff_jaw_pop` | 1.2 s |
+         | `stand_sniff` | 3 s |
+         | `bluff_charge` | run loop plus a 0.6 s skid-stop |
+         | `swat` | 0.5 s |
+         | `pin_bite` | loop 1.5 s; head down, forepaws planted over the player's position |
+         | `feed` | loop, on a carcass |
+         | `retreat_look_back` | 2 s |
+         | `climb` | black bear only |
+       - Moose: `ears_back_hackles` (warn, 1 s), `charge`, `front_stomp` (0.6 s), `bluff_stop`.
+       - Canid: `circle` (procedural from walk), `lunge_snap` (0.5 s), `howl` (already in action).
+       - Driven by the existing standoff and contact states. The bear's model is moved so `pin_bite` lines its head up with the player's body at ground level (the server sets yaw and position at contact).
+       PLAYER SIDE: first person only (`first_person_only` stays on). The vanilla player model is not GeckoLib, so this is BodyCamera plus first-person hand clips.
+       - **Knock-down.** 0.4 s camera fall: pitch to the sky, roll 25°, dip 1.4 m to ground eye height. Hands fly out of view. Held item drops per the fall rules.
+       - **Play dead** (hold Shift while down). The camera rolls face-down over 0.6 s and the view goes 85% dark, with moss or snow texture at the screen edges. Both hands come up over the back of the neck (hand clip `cover_neck`). Each bite gives a jolt (0.15 s shake of 3° plus a red vignette pulse) and a muffled crunch. The pack takes the first bite: the sound of fabric tearing.
+       - **Stay down.** Breathing audio. After the bear leaves, a 30 s on-screen hold timer appears only if the player has seen it once (warn-once id `stay_down`).
+       - **Get up** (release Shift after the timer). 1.2 s roll back to standing, hands pushing off the ground (hand clip `push_up`).
+       - **Fight back** (LMB while down or pinned). Swing clip `desperate_strike` with the held item or a fist. A hit makes the bear `flinch` (0.3 s). A drive-off plays `retreat_look_back`.
+       - **Moose stomp.** Knocked down as above; `front_stomp` hits with the 0.15 s shake. Crawling (W while down) moves 0.5 m/s, the right answer against moose.
+       - **Stumble and fall.** Hand clips `catch_fall` (hands forward into view, 0.3 s) for a fall, and a quick `stagger` sway for a stumble. Ties into the existing BodyCamera table.
+       - Accessibility: the existing Reduce setting halves rolls and shakes; red pulses obey the flash cap.
+       SOUND: bear huff and jaw-pop, the roar turning into quiet feeding sounds (already in the rules), the pack tearing, the player's grunts and breath. Look owns the ids `animal.bear.huff`, `animal.bear.jaw_pop`, `player.breath_panic`, `player.hit_grunt`, `gear.pack_tear`.
+       BUILD:
+       - Clips go to Art via Blockbench or modelgen `_extra` files.
+       - Code: `client.camera.EncounterCamera` (an extension of BodyCamera) and hand clips in `client.render.hands`; server triggers in `ecosystem.ai` standoff and contact.
+       - Milestone: ursid and moose clips in M6 (animals; bears land there), the player camera and hand clips in M4 (body, with the BodyCamera mixin), and stumble and fall hand clips in M4.
+       - Tests: GameTest `encounter/bear_contact_sequence` (bites 2–4, the trigger order matches the clip order, Shift plays dead); client screenshot check `encounter_play_dead` (view ≥ 85% dark, hands visible); `modelgen --check` proves every encounter clip's bones exist on the ursid, ungulate and canid rigs.

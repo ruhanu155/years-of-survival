@@ -762,6 +762,9 @@
 # worldgen: World generation
 /src/main/java/com/yearofice/client/horizon/ @ruhanu155
 
+# ecosystem: Ecosystem
+/src/main/java/com/yearofice/food/traps/ @ruhanu155
+
 # body: Body and survival
 /src/main/java/com/yearofice/sim/body/ @ruhanu155
 
@@ -822,6 +825,9 @@
 # worldgen: World generation
 /src/test/java/com/yearofice/client/horizon/ @ruhanu155
 
+# ecosystem: Ecosystem
+/src/test/java/com/yearofice/food/traps/ @ruhanu155
+
 # body: Body and survival
 /src/test/java/com/yearofice/sim/body/ @ruhanu155
 
@@ -868,7 +874,19 @@
 /src/main/java/com/yearofice/client/minigame/bowdrill/ @ruhanu155
 
 # food: Food and hunting
+/src/main/java/com/yearofice/client/minigame/fishing/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/java/com/yearofice/client/render/entity/ @ruhanu155
+
+# food: Food and hunting
 /src/main/resources/data/yearofice/data_maps/item/food.json @ruhanu155
 
 # body: Body and survival
 /src/test/java/com/yearofice/client/minigame/bowdrill/ @ruhanu155
+
+# food: Food and hunting
+/src/test/java/com/yearofice/client/minigame/fishing/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/test/java/com/yearofice/client/render/entity/ @ruhanu155

@@ -1,0 +1,71 @@
+package com.yearofice.ecosystem.wound;
+
+import com.yearofice.core.YearOfIce;
+import com.yearofice.ecosystem.EcosystemRegistry;
+import com.yearofice.ecosystem.YoiAnimal;
+import com.yearofice.ecosystem.carcass.CarcassEntity;
+import com.yearofice.ecosystem.carcass.CarcassRecord;
+import com.yearofice.ecosystem.carcass.Freshness;
+import com.yearofice.ecosystem.clock.SliceClock;
+import com.yearofice.ecosystem.spawn.SlotSpawner;
+import com.yearofice.ecosystem.species.SpeciesDef;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.neoforged.neoforge.common.CommonHooks;
+
+/**
+ * Death is a pipeline, and nothing drops (Minecraft development › Carcass hand-off), the slice's steps:
+ *
+ * <ol>
+ *   <li>Cause: a player's hit, a command or the void.</li>
+ *   <li>Event: NeoForge's {@code LivingDeathEvent}, as any death posts it.</li>
+ *   <li>Record: species, sex, cause, minute, the whole weight and the coat; {@code fresh} stamped as an unopened
+ *       small carcass (k 0.6, s 1.0).</li>
+ *   <li>Body: the living entity is discarded with no drops, experience or death smoke, and a
+ *       {@code carcass_small} spawns in the same spot and facing; the collapse plays on it.</li>
+ *   <li>Counts: the animal's slot waits out its respawn days.</li>
+ * </ol>
+ * Vanilla's {@code die} never runs, so loot tables, {@code doMobLoot} and experience never come into it. Medium to
+ * huge carcasses land in M5–M6; until then a moose death (only by command) leaves no body.
+ */
+public final class DeathPipeline {
+    private DeathPipeline() {}
+
+    public static void kill(YoiAnimal animal, DamageSource source, String cause) {
+        if (!(animal.level() instanceof ServerLevel level) || animal.isRemoved()) return;
+        if (CommonHooks.onLivingDeath(animal, source)) return;
+        SpeciesDef d = animal.species();
+        double minute = SliceClock.minuteD(level);
+        if (d.carcassClass().equals("small")) {
+            CarcassRecord r = record(animal, d, cause, minute);
+            CarcassEntity c = EcosystemRegistry.CARCASS_SMALL.get().create(level);
+            if (c != null) {
+                c.moveTo(animal.getX(), animal.getY(), animal.getZ(), animal.getYRot(), 0);
+                c.setRecord(r);
+                level.addFreshEntity(c);
+            }
+        } else {
+            YearOfIce.LOG.info("{} died ({}): {} carcasses arrive with big game in M6", d.id(), cause, d.carcassClass());
+        }
+        Entity killer = source.getEntity();
+        SlotSpawner.reportDeath(level, animal, killer != null);
+        animal.remove(Entity.RemovalReason.KILLED);
+    }
+
+    public static CarcassRecord record(YoiAnimal a, SpeciesDef d, String cause, double minute) {
+        double kg = d.wholeKg() * (a.male() ? 1.0 : 0.95);
+        return new CarcassRecord(d.id(), a.male() ? 1 : 0, cause, (long) Math.floor(minute), (int) Math.round(kg * 1000), a.coat(),
+                Freshness.wholeCarcass(meatItem(d), minute));
+    }
+
+    public static Item meatItem(SpeciesDef d) {
+        String m = d.meatItem();
+        if (m == null) return Items.AIR;
+        return BuiltInRegistries.ITEM.get(ResourceLocation.parse(m));
+    }
+}

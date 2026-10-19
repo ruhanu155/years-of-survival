@@ -110,6 +110,10 @@ def build():
     entries.append({"asset_id": "model_world_blocks", "files": world_blocks.outputs(), "source_type": "generated",
                     "recipe": "tools/artgen/world_blocks.py", "licence": "project", "generator_version": world_blocks.VERSION,
                     "release_blocker": False})
+    import snare  # noqa: E402
+    entries.append({"asset_id": "model_snare", "files": snare.outputs(), "source_type": "generated",
+                    "recipe": "tools/artgen/snare.py", "licence": "project", "generator_version": snare.VERSION,
+                    "release_blocker": False})
     # synthesized sounds: one entry per soundgen recipe whose files are shipped
     for fn in sorted(glob.glob(os.path.join(ROOT, "tools", "soundgen", "recipes", "**", "*.json"), recursive=True)):
         r = json.load(open(fn))

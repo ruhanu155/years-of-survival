@@ -1,0 +1,20 @@
+{
+  "entity": "yearofice:moose",
+  "rig": "ungulate",
+  "habitat": ["riparian"],
+  "population": [4, 8],
+  "home_range_m": 3000,
+  "active": ["dawn", "dusk"],
+  "gaits": { "walk": 1.6, "trot": 4, "run": 14, "swim": 1.8, "step_height_m": 1.0 },
+  "senses": { "sight": 60, "hearing": 40, "smell": 150, "fov": 300 },
+  "behavior": {
+    "alert": 30, "response": 70, "calm": 20, "freezes": false, "flee_trigger_m": 40,
+    "flee_m": [200, 400], "flee_gait": "trot", "zigzag": false, "hide_min": [30, 60], "charges": false
+  },
+  "huntable": false,
+  "huntable_from": "m6",
+  "respawn_days": 365,
+  "breath_s": 60,
+  "carcass": { "whole_kg": 450, "class": "huge", "body_plan": "cervid", "poses": ["dead_side"] },
+  "butcher_table": "yearofice:butchering/moose"
+}
