@@ -52,6 +52,28 @@ jobs:
             exit 1
           fi
 
+      - name: Report failures as annotations
+        if: failure()
+        run: |
+          python3 - <<'PY'
+          import glob, re, xml.etree.ElementTree as ET
+          n = 0
+          for f in glob.glob('build/test-results/**/*.xml', recursive=True):
+              for tc in ET.parse(f).getroot().iter('testcase'):
+                  for bad in list(tc.findall('failure')) + list(tc.findall('error')):
+                      msg = (bad.get('message') or '').replace('\n', ' ')[:300]
+                      if n < 9: print(f"::error::JUnit {tc.get('classname')}.{tc.get('name')}: {msg}")
+                      n += 1
+          try:
+              for line in open('build/gametest.log', errors='replace'):
+                  if re.search(r'(failed|GameTestAssert|required tests|::error)', line) and not re.search(r'(yggdrasil|minecraftservices|authlib)', line, re.I):
+                      if n < 9: print('::error::GameTest ' + line.strip()[:300])
+                      n += 1
+          except FileNotFoundError:
+              pass
+          print(f'{n} failure lines found')
+          PY
+
       - name: Upload test reports
         if: always()
         uses: actions/upload-artifact@v4
