@@ -385,6 +385,8 @@ public final class ValleyWorld {
 
         public int at(int x, int z) { return (z - z0) * w + (x - x0); }
 
+        public boolean contains(int x, int z) { return x >= x0 && z >= z0 && x < x0 + w && z < z0 + d; }
+
         public boolean has(int i, int f) { return (flags[i] & f) != 0; }
 
         /** Highest non-air block of a column: water, lip cobble or ground. */

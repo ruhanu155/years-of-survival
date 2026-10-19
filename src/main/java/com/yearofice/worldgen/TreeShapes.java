@@ -8,9 +8,11 @@ package com.yearofice.worldgen;
  * overlapping trees from neighbouring chunks come out the same in any order.
  *
  * <ul>
- *   <li>White spruce: a straight trunk and a narrow cone of whorls to a single-leader spire.</li>
- *   <li>Black spruce: a thin pole with short tufts and the dense "club" at the top; on permafrost it leans
- *       (a drunken tree), one block over every few blocks of height.</li>
+ *   <li>White spruce: a straight trunk, a bare bole, and a narrow cone of whorls (radius at most
+ *       {@value #WHITE_SPRUCE_MAX_R}, tapering to 1) to a single-leader spire.</li>
+ *   <li>Black spruce: a thin pole with one-block tufts and the dense "club" at the top (radius at most
+ *       {@value #BLACK_SPRUCE_MAX_R}); on permafrost it leans (a drunken tree), one block over every few blocks of
+ *       height.</li>
  *   <li>Paper birch: a trunk with a rounded crown over its upper half.</li>
  *   <li>Willow: a stool of 2–4 stems and a blob of brush around them.</li>
  *   <li>Deadwood: a stump, and for a fallen tree a log lying from the stump along the ground.</li>
@@ -44,23 +46,35 @@ public final class TreeShapes {
 
     private static double unit(int seed, int a, int b) { return (Noise.hash(seed, a, b) >>> 8) / 16777216.0; }
 
+    /**
+     * Crown radius limits in blocks, measured from the trunk (Euclidean, so a crown never reaches a corner past
+     * them). The docs give no width ratios, so the Director's numbers hold: interior spruce are narrow cones, white
+     * spruce at most 3 at full height and black spruce at most 2, both tapering to 1 at the top.
+     */
+    public static final int WHITE_SPRUCE_MAX_R = 3, BLACK_SPRUCE_MAX_R = 2;
+
+    /** Bare bole under a white spruce crown: the first whorl is at least this high, so a player walks under it. */
+    static final int WHITE_SPRUCE_BOLE = 2;
+
     static void whiteSpruce(TreePlan.Tree t, Sink out) {
         int h = t.height();
         for (int y = 0; y < h; y++) out.put(0, y, 0, Part.LOG);
-        int y0 = Math.max(1, h / 5);
-        double maxR = 1.0 + h / 12.0;
-        for (int y = y0; y <= h; y++) {
-            double f = (double) (y - y0) / Math.max(1, h - y0);
-            double r = maxR * (1 - f) + 0.5;
-            // Whorls: every other layer reaches a little further.
-            if (((y - y0) & 1) == 0) r += 0.35;
-            int ri = (int) Math.ceil(r);
+        int y0 = Math.max(WHITE_SPRUCE_BOLE, h / 4);
+        // Full radius only on a full-grown tree: 11 blocks reach 2.4, 16 and over reach 3.
+        double maxR = Math.min(WHITE_SPRUCE_MAX_R, 1.0 + h / 8.0);
+        for (int y = y0; y < h; y++) {
+            double f = h - 1 - y0 <= 0 ? 1.0 : (double) (y - y0) / (h - 1 - y0); // 1 at the top log layer
+            double r = 1.0 + (maxR - 1.0) * (1.0 - f);
+            // Whorls: every other layer is pulled in a block, so the crown reads as tiers, not one mass.
+            if (((h - 1 - y) & 1) == 1) r = Math.max(1.0, r - 1.0);
+            int ri = (int) Math.floor(r);
             for (int dz = -ri; dz <= ri; dz++) for (int dx = -ri; dx <= ri; dx++) {
-                if (dx == 0 && dz == 0 && y < h) continue;
-                double d2 = dx * dx + dz * dz + 0.35 * unit(t.seed(), dx * 31 + y, dz);
-                if (d2 <= r * r) out.put(dx, y, dz, Part.LEAVES);
+                if (dx == 0 && dz == 0) continue;
+                int d2 = dx * dx + dz * dz;
+                if (d2 <= 1 || d2 <= r * r + 0.5 - 0.8 * unit(t.seed(), dx * 31 + y, dz)) out.put(dx, y, dz, Part.LEAVES);
             }
         }
+        // The single leader.
         out.put(0, h, 0, Part.LEAVES);
         out.put(0, h + 1, 0, Part.LEAVES);
     }
@@ -84,7 +98,9 @@ public final class TreeShapes {
                 }
             }
         }
+        // A spire over the club: one leader block, two on a tree of 7 or more.
         out.put(ox, h, oz, Part.LEAVES);
+        if (h >= 7) out.put(ox, h + 1, oz, Part.LEAVES);
     }
 
     static void birch(TreePlan.Tree t, Sink out) {

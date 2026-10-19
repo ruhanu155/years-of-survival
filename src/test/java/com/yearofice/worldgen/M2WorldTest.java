@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -245,11 +246,139 @@ class M2WorldTest {
                     boolean[] base = {false};
                     TreeShapes.build(t, (dx, dy, dz, part) -> {
                         reach[0] = Math.max(reach[0], Math.max(Math.abs(dx), Math.abs(dz)));
+                        if (part != TreeShapes.Part.FALLEN_X && part != TreeShapes.Part.FALLEN_Z) {
+                            assertTrue(Math.max(Math.abs(dx), Math.abs(dz)) <= TreePlacer.R && dy < h + 4,
+                                    t + ": a standing part outside TreePlacer's grid");
+                        }
                         assertTrue(dy >= 0 && dy <= h + 2, "part at height " + dy);
                         if (dx == 0 && dz == 0 && dy == 0) base[0] = true;
                     });
                     assertTrue(reach[0] <= 12, sp + " " + k + " reaches " + reach[0]);
                     assertTrue(base[0], sp + " " + k + " h" + h + " has no base block");
+                }
+            }
+        }
+    }
+
+    /** Crown reach from a log, per species (white spruce, black spruce, birch, willow), in blocks (Chebyshev). */
+    static final int[] REACH = {TreeShapes.WHITE_SPRUCE_MAX_R, TreeShapes.BLACK_SPRUCE_MAX_R, 3, 3};
+
+    /**
+     * No floating trees, on 512 × 512 blocks around the start of every seed, through {@link TreePlacer} (what the
+     * feature writes): every trunk base stands on its own soil column's ground; nothing is written inside the ground
+     * or water; every leaf is within its species' reach of a log of its own tree; every standing part is joined to
+     * the base; fallen logs lie on their own ground; and every part lies within a chunk of its base's chunk (the
+     * feature's write radius), so no tree is cut at a chunk edge.
+     */
+    @Test
+    void treesStandOnTheirGroundAndNothingFloats() {
+        for (long seed : SEEDS) {
+            ValleyWorld w = world(seed);
+            int[] s = w.spawn();
+            int x0 = s[0] - 256, z0 = s[2] - 256, n = 512, m = TreePlacer.MARGIN + 12;
+            ValleyWorld.Columns c = w.columns(x0 - m, z0 - m, n + 2 * m, n + 2 * m);
+            int trees = 0, parts = 0, wrote = 0;
+            for (TreePlan.Tree t : TreePlan.treesIn(w, x0, z0, x0 + n, z0 + n)) {
+                int[] built = {0};
+                TreeShapes.build(t, (dx, dy, dz, part) -> built[0]++);
+                List<int[]> got = new ArrayList<>();
+                boolean stood = TreePlacer.place(w, t, c, (x, y, z, part) -> got.add(new int[] {x, y, z, part.ordinal()}));
+                int bi = c.at(t.x(), t.z());
+                String at = "seed " + seed + ": " + t;
+                if (!stood) {
+                    assertTrue(c.kind[bi] != ValleyWorld.SOIL, at + " refused on soil");
+                    continue;
+                }
+                assertEquals(ValleyWorld.SOIL, c.kind[bi], at + " stands on column kind " + c.kind[bi]);
+                trees++;
+                parts += built[0];
+                wrote += got.size();
+                java.util.Set<Long> wood = new java.util.HashSet<>(), all = new java.util.HashSet<>();
+                boolean base = false;
+                for (int[] g : got) {
+                    TreeShapes.Part part = TreeShapes.Part.values()[g[3]];
+                    int i = c.at(g[0], g[2]);
+                    assertTrue(g[1] > c.top(i), at + ": " + part + " inside the ground or water at " + g[0] + " " + g[1] + " " + g[2]);
+                    assertTrue(Math.abs((g[0] >> 4) - (t.x() >> 4)) <= 1 && Math.abs((g[2] >> 4) - (t.z() >> 4)) <= 1,
+                            at + ": " + part + " outside the feature's write radius");
+                    if (part == TreeShapes.Part.FALLEN_X || part == TreeShapes.Part.FALLEN_Z) {
+                        assertEquals(c.ground[i] + 1, g[1], at + ": fallen log off its ground");
+                        assertEquals(ValleyWorld.SOIL, c.kind[i], at + ": fallen log on column kind " + c.kind[i]);
+                        continue;
+                    }
+                    if (g[0] == t.x() && g[2] == t.z() && g[1] == c.ground[bi] + 1) {
+                        base = true;
+                        assertTrue(TreePlacer.wood(part), at + ": the base is " + part);
+                    }
+                    all.add(TreePlacer.key(g[0], g[1], g[2]));
+                    if (TreePlacer.wood(part)) wood.add(TreePlacer.key(g[0], g[1], g[2]));
+                }
+                assertTrue(base, at + ": no trunk base on the ground at y " + (c.ground[bi] + 1));
+                int reach = REACH[t.species()];
+                for (int[] g : got) {
+                    TreeShapes.Part part = TreeShapes.Part.values()[g[3]];
+                    if (part != TreeShapes.Part.LEAVES && part != TreeShapes.Part.BRUSH) continue;
+                    boolean near = false;
+                    for (int dz = -reach; dz <= reach && !near; dz++) for (int dy = -reach; dy <= reach && !near; dy++)
+                        for (int dx = -reach; dx <= reach && !near; dx++) near = wood.contains(TreePlacer.key(g[0] + dx, g[1] + dy, g[2] + dz));
+                    assertTrue(near, at + ": " + part + " at " + g[0] + " " + g[1] + " " + g[2] + " is more than " + reach + " from a log");
+                }
+                // Joined: every standing part reaches the base through the tree's own parts.
+                java.util.Set<Long> seen = new java.util.HashSet<>();
+                java.util.ArrayDeque<Long> q = new java.util.ArrayDeque<>();
+                long b0 = TreePlacer.key(t.x(), c.ground[bi] + 1, t.z());
+                q.add(b0);
+                seen.add(b0);
+                while (!q.isEmpty()) {
+                    long k = q.poll();
+                    int x = TreePlacer.kx(k), y = TreePlacer.ky(k), z = TreePlacer.kz(k);
+                    for (int dz = -1; dz <= 1; dz++) for (int dy = -1; dy <= 1; dy++) for (int dx = -1; dx <= 1; dx++) {
+                        long o = TreePlacer.key(x + dx, y + dy, z + dz);
+                        if (all.contains(o) && seen.add(o)) q.add(o);
+                    }
+                }
+                assertEquals(all.size(), seen.size(), at + ": " + (all.size() - seen.size()) + " parts not joined to the trunk");
+            }
+            assertTrue(trees > 200, "seed " + seed + ": only " + trees + " trees near the start");
+            System.out.printf("trees grounded seed %d: %d trees, %d of %d shape blocks written (%.2f%% inside the ground or water, cut off, or shared)%n",
+                    seed, trees, wrote, parts, 100.0 * (parts - wrote) / Math.max(1, parts));
+        }
+    }
+
+    /**
+     * Interior spruce are narrow cones (TreeShapes): white spruce leaves within {@value TreeShapes#WHITE_SPRUCE_MAX_R}
+     * blocks of the trunk, black spruce within {@value TreeShapes#BLACK_SPRUCE_MAX_R}, both 1 at the top layer; a
+     * grown white spruce's crown is at least 3 times as tall as its reach from the trunk; and the lowest whorl leaves room to
+     * walk under.
+     */
+    @Test
+    void spruceCrownsAreNarrow() {
+        for (int sp : new int[] {Cover.WHITE_SPRUCE, Cover.BLACK_SPRUCE}) {
+            int max = sp == Cover.WHITE_SPRUCE ? TreeShapes.WHITE_SPRUCE_MAX_R : TreeShapes.BLACK_SPRUCE_MAX_R;
+            for (int h = 2; h <= 24; h++) {
+                for (int seed = 0; seed < 40; seed++) {
+                    TreePlan.Tree t = new TreePlan.Tree(0, 0, sp, h, TreePlan.Kind.LIVE, sp == Cover.BLACK_SPRUCE ? seed % 5 - 1 : -1, seed * 7919 + h);
+                    java.util.Map<Integer, int[]> trunk = new java.util.HashMap<>();
+                    List<int[]> leaves = new ArrayList<>();
+                    TreeShapes.build(t, (dx, dy, dz, part) -> {
+                        if (part == TreeShapes.Part.LOG) trunk.put(dy, new int[] {dx, dz});
+                        else leaves.add(new int[] {dx, dy, dz});
+                    });
+                    int lowest = Integer.MAX_VALUE, widest = 0;
+                    for (int[] l : leaves) {
+                        int[] o = trunk.getOrDefault(l[1], trunk.get(h - 1));
+                        int ex = l[0] - o[0], ez = l[2] - o[1];
+                        int d2 = ex * ex + ez * ez;
+                        String at = Cover.SPECIES.get(sp) + " h" + h + " seed " + seed + ": leaf " + Arrays.toString(l);
+                        assertTrue(d2 <= max * max, at + " is " + Math.sqrt(d2) + " from the trunk");
+                        if (l[1] >= h - 1) assertTrue(d2 <= 1, at + " widens the top");
+                        lowest = Math.min(lowest, l[1]);
+                        widest = Math.max(widest, Math.max(Math.abs(ex), Math.abs(ez)));
+                    }
+                    if (sp == Cover.WHITE_SPRUCE && h >= 8) {
+                        assertTrue(lowest >= 2, "white spruce h" + h + ": a whorl at " + lowest + " blocks, too low to walk under");
+                        assertTrue((h + 2 - lowest) >= 3 * widest, "white spruce h" + h + ": crown " + (h + 2 - lowest) + " tall, " + widest + " wide");
+                    }
                 }
             }
         }
