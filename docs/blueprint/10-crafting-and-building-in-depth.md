@@ -403,7 +403,52 @@ A squirrel in a felled tree leaps clear 70% of the time (Every concept from the 
 | By water | Roll it in: a `drift_log` | A log boom below catches it |
 | Split wood | In the pack | Crate backpack 2 armloads, pack frame 3, sled 8 |
 
-**Drying, seasoning and the woodshed.** Moisture follows Every concept from the video › Firewood drying: seasoned means under 20%, and a woodshed dries split wood at twice a rack's rate. The rule the numbers make: green wood (50%) split into the woodshed needs 30 points, so 10 days in summer and 25 in September or October; wood split after October 15 is not seasoned until about mid-December, so late wood dries by the stove (−4 a day, 4 armloads at most within 3 blocks). Seasoned wood never rots under cover (Decay and time).
+**Drying, seasoning and the woodshed.** Moisture follows Every concept from the video › Firewood drying: seasoned means under 20%, and a woodshed dries split wood at 1.3 times a rack's rate (B4, Proposed; was twice). The rule the numbers make: green wood (50%) split into the woodshed needs 30 points, so about 58 days from a June 1 split, and September wood waits for the next June (B4, Proposed; was 10 days in summer and 25 in September or October); wood split after about July 5 is not seasoned for that winter (B4, Proposed; was after October 15, seasoned about mid-December), so late wood dries by the stove (−4 a day, 4 armloads at most within 3 blocks). Seasoned wood never rots under cover (Decay and time).
+
+**B4 Seasoning by the calendar (Proposed; Ruhan may veto).** Firewood dries on the measured interior schedule, so the cut date decides next winter's fires. UAF Cooperative Extension measured Fairbanks birch and spruce reaching 20% moisture 63–67 days after a green-up cut, about 300 days after a midsummer cut and 290–380 days after a freeze-up cut. The old rule seasoned a woodshed load in 10 summer days, so a July cut still burned clean that winter.
+
+- **Where and when.** Every split stack, woodpile rack and woodshed, all year. It matters twice: in May and June, when this winter's wood must be split, and from January, when frozen rounds split fast for next year.
+- **Rules.** Split wood loses moisture points per game day by month. The covered rack is the base; the woodshed is ×1.3.
+
+| Month | Split, covered rack | Split, woodshed |
+| --- | --- | --- |
+| April, after melt-out | 0.10 | 0.13 |
+| May | 0.45 | 0.59 |
+| June | 0.45 | 0.59 |
+| July | 0.35 | 0.46 |
+| August | 0.30 | 0.39 |
+| September | 0.15 | 0.20 |
+| October, while the daily mean is above 0 °C | 0.05 | 0.07 |
+| November–March | 0 | 0 |
+
+| Where the wood is | Multiplier or extra |
+| --- | --- |
+| Stack with no top cover | ×0.7, and +1.5 points back per rainy day |
+| Unsplit rounds | ×0.4 |
+| Whole logs, birch rounds in their bark | ×0.25 |
+| Within 3 m of a burning stove in a warm room (existing) | −4.0 a day in any month, 4 armloads at most |
+
+Standing dead spruce stays at 18%, so snags remain the shortcut. Half-seasoned wood (20–30%) burns at the heat formula's ×0.75–1.0 (about ×0.85 at 25%) and adds +3 creosote an armload, between seasoned spruce's +2 and green wood's +5 (Warm rooms › Creosote).
+
+**What it means** for green birch at 50%:
+
+| Cut and split | Covered rack | Woodshed | UAF measured |
+| --- | --- | --- | --- |
+| March 20, before snowmelt | About July 4 | About June 18 | 102–126 days, about July |
+| May 25, after green-up | About August 10 | About July 20 | 63–67 days, late July |
+| June 1 | About August 20 | About July 29 | — |
+| July 10, midsummer | About May 15 next year | About April 24 next year | 298–316 days |
+| October 15, after freeze-up | About July 4 next year | About June 18 next year | 292 (spruce) to 382 (birch) days |
+
+So wood for this winter must be split by about June 20 on a rack, or about July 5 in a woodshed. Later wood burns part-dry or dries by the stove.
+
+- **What the player sees and hears.** A stack's hover gives a forecast from the climate table: "Dry by about Aug 7". The words stay as Every concept from the video › Firewood drying gives them, and the exact percentage still needs Splitting at 10 reps (Practice). Part-dry wood hisses and smokes on the fire (`fire.hiss_wet`).
+- **Failure cases.** A late cut gives a smoky, hungry winter: part-dry heat, more armloads a day and creosote toward the 70 mark where chimney fires start. An uncovered stack in a wet August barely dries. Rounds left unsplit are not dry for over a year.
+- **Ties.** Fire (Blueprint › Fire, water and light › Seasoning), Warm rooms (creosote, armloads a day), Weather and storms › Monthly climate at 64°N (rain days), Practice, the morning prompt's armload estimate, and the ambition "Season a winter's firewood" (300 armloads under cover by October 1, unchanged).
+- **Winter splitting.** The existing rule stands: below −15 °C frozen rounds split in half the time (Splitting, above). B4's own figure of 0.75× the swings is dropped, because the written bonus is larger and already covers the idea.
+- **Changed numbers, each marked "(B4, Proposed)" where it stands, to restore on a veto.** Rack −1.5 a summer day, −0.6 in fall and −0.2 in winter, and woodshed −3.0, −1.2 and −0.4, become the monthly table. The woodshed's ×2 becomes ×1.3. Unsplit rounds ×0.5 become ×0.4. Rain on an uncovered stack +5 a wet day becomes ×0.7 and +1.5. "10 summer days or 25 fall days" in a woodshed becomes about 58 days from June 1, with September wood waiting for the next June. "Split after October 15, dries only by the stove" becomes "split after about July 5". GameTests `fire/shed_birch_june` (10 ±1 days) and `fire/moisture_drying` (June 30 to July 8) move to the new dates. The stove spot's −4.0 is unchanged; the spec's 2.0 is dropped, since it was meant to be the existing value.
+- **Build.** No new registry ids. `sim.fire.Seasoning` (pure: the month's rate × the place multiplier, summed in closed form over days) feeds `fire.Moisture`, which steps woodpile and woodshed block entities on `ClockEvent.Day` as written. Data component `yearofice:moisture` as written. Tuning `[fire] seasoning_rate_<month>`, `woodshed_mult = 1.3`, `uncovered_mult = 0.7`, `rain_wet_points = 1.5`, `unsplit_mult = 0.4`, `log_mult = 0.25`, each with Gentle, Standard and Brutal values. Debug `/yoi wood dry` gains `forecast`. Milestone M8, beside `fire/moisture_drying`. GameTest `yearofice:fire/seasoning_calendar` (batch `m8`): on the Standard climate and a fixed seed, birch split May 25 on a covered rack falls under 20% between July 25 and August 15, and birch split July 10 is still over 20% on October 15.
+- **Pillars.** Scarcity is the clock (a late cut costs the winter), The year changes the map (the cut date matters), Respect the player's time (no new action, only planning), Everything readable (the forecast).
 
 **Armloads burned per day at −30 °C.**
 
@@ -522,7 +567,7 @@ U is heat loss in W per m² per °C (game values for the room model below), and 
 | Bunk | 1 × 2 m | 4 poles, 6 m cordage, 40 boughs | 2 h | 900 | — | 200 | Full rest in a warm room |
 | Roof brace | A post | 1 pole | 20 min | 150 | — | 600 | Doubles the snow a roof carries, 60 to 120 cm |
 | Raised cache | 1.5 × 1.5 m on 3 m legs | 4 posts, 12 logs, 6 planks, a ladder of 2 poles | 16 h | 7,200 | — | 1,200 | 27 slots. A grizzly cannot reach a deck whose underside is 3 m or more above the ground it stands on. Peeled legs with a set of 4 bands set right are wolverine-proof; only snow deep enough to bring a band within reach lets one climb, at 20% a visit. The legs may be 3 or 4 living trees cut at 3 m, the video's platform cache, which climbers use until they are peeled and banded |
-| Woodshed | 3 × 2 m | 6 posts, 8 poles, pole-and-bark roof | 8 h | 3,600 | — | 600 | Holds 60 armloads; seasons wood twice as fast |
+| Woodshed | 3 × 2 m | 6 posts, 8 poles, pole-and-bark roof | 8 h | 3,600 | — | 600 | Holds 60 armloads; seasons wood 1.3 times as fast (B4, Proposed; was twice) |
 | Root cellar | 2 × 2 m into a hillside | 20 logs, 4 m² of sod roof, a plank door | 32 h | 14,400 | 0.3 | 2,000 | Holds 2–4 °C; 54 slots of roots; can't be dug in frozen ground |
 | Cold frame | 1 × 2 m | 4 planks, the plexiglass window or 2 rawhide lids | 2 h | 900 | — | 200 | Bed inside is 6 °C warmer by day; sow 3 weeks early |
 | Brush fence | 2 m | 10 bundles of brush | 15 min | 113 | — | 50 | Stops hares and grouse |
@@ -639,6 +684,59 @@ Off-screen rooms settle in closed form when their chunk loads, from the hourly t
 - *Draft test:* the unchinked cabin needs 4–6 armloads a day to match it.
 - *Outpost test:* the repaired, unheated outpost cabin with the player inside holds +6 to +10 °C above a −30 °C day.
 
+**B8 The cabin tells (Proposed; Ruhan may veto).** Frost lines on leaky seams, window frost and a leaning flame show where the heat is going. The cabin card already rates Draft and Insulation in words, and a poor roof already grows icicles; this puts the leak itself on the wall.
+
+- **Where and when.** Any warm room with a seam, door edge or window, on nights at −20 °C or colder, from about November to March.
+- **Frost lines.** With the outside at −20 °C or colder and the room under +10 °C near the wall, any seam metre leaking 0.1 W/°C or more grows a white hoarfrost line on its inner face within 2 game hours. That is every unchinked metre (0.4 W/°C in the heat model), drawn thick, and every moss-only metre (0.1 W/°C), drawn thin. Below −30 °C, iron nails and pegs in walls and shelves frost whatever the room. Re-chinking the seam clears its line.
+- **Window frost** is a free room thermometer.
+
+| Room at the window | A rawhide or plexiglass window shows |
+| --- | --- |
+| 15 °C or more | Clear |
+| 5–15 °C | Fern frost at the edges |
+| −5 to 5 °C | Half covered |
+| Below −5 °C | Fully white |
+
+- **A flame leans toward a draft.** A candle, lamp or fat lamp within 2 m of a leaking seam or door edge leans and flickers toward it while the outside wind is over 4 m/s.
+- **Icicles, extended.** Their length counts the days of roof heat loss (Snow on the roof, above). An icicle of 1 m has a 5% chance to fall on each afternoon above 0 °C in March and April: a crack first (`world.icicle_crack`), then −4 Condition to the head of anyone beneath.
+- **What the player sees and hears.** The lines, the window and the flame are the tells. At the morning heat-up the frost drips (`world.frost_drip`) and wets anything on the floor below it for 1 game hour.
+- **Failure cases.** Dripping frost wets a bed or a pack left under a bad seam. A falling icicle hurts. The frost line is the warning that the room needs more armloads tonight.
+- **Ties.** The heat model (m\_open and m\_moss), the cabin card's Draft rating, chinking and the September 1 shrinkage (Building pieces › Damage), Snow on the roof, item wetness (Items › Wet), Body (Condition).
+- **Build.** No new blocks: the server keeps leaking seam metres per room in `build.rooms` (`build.rooms.LeakMarks`, from the heat model's seam terms) and syncs them with the room; the client draws frost-line decals, window stages and flame lean in `client.render.RoomTells`, so server decides and client shows. Sounds `world.frost_drip`, `world.icicle_crack`. Tuning `[build] frost_line_out_c = -20`, `frost_line_leak_wpc = 0.1`, `nail_frost_out_c = -30`, `icicle_fall_chance = 0.05`. Debug `/yoi room info` (planned in M8) gains `leaks`. Milestone M8. GameTest `yearofice:build/frost_marks_leaky_seam` (batch `m8`): in a cabin with one unchinked seam at −30 °C outside, the frost line appears on that seam only, and after chinking it clears within 1 game hour of heat.
+- **Pillars.** Everything readable (read the cabin, not a menu), Grow without an end (a fixed cabin shows it).
+
+**B10 Stale air in snow shelters (Proposed; Ruhan may veto).** A sealed snow shelter runs out of good air in a few hours, and the candle flame is the tell. Real snow walls pass almost no gas once glazed; carbon dioxide builds faster than oxygen falls, and the vent hole matters.
+
+- **Where and when.** Quinzhees, snow caves and snow-block shelters (Structures and buildables › Snow, ice and trails), whenever the player sleeps or waits inside one. Canvas and hide tents breathe, so B11's hot tent is exempt unless drifted over to the ridge.
+- **The air budget.** Each snow shelter carries an air value from 100 (fresh) to 0.
+
+| Change per game hour | Amount |
+| --- | --- |
+| A sleeper | −8 |
+| An awake person | −10 |
+| A candle | −4 |
+| A fat lamp | −6 |
+| Glazed walls, after 2 nights occupied | All losses ×1.5 |
+| A vent hole (poke with a stick, pole or ski pole, 1 game minute) | +15 exchange |
+| The door block open | +40, but −5 °C inside |
+
+Wind over 10 m/s drifts a vent shut at a 20% chance a game hour, so it must be re-poked.
+
+| Air | Effect |
+| --- | --- |
+| Under 60 | Headache; sleep restores 15% less |
+| Under 40 | The candle flame shrinks and gutters; energy restores 30% less |
+| Under 25 | A sleeper wakes with a pounding headache 50% of the time |
+| Under 15 for 1 game hour asleep | Collapse (Blueprint › Collapse and SOS) |
+
+With one sleeper, a candle and a clear vent, air settles above 70. Sealed, it falls to 60 in about 3.3 game hours, which matches real reports of headaches after a few hours.
+
+- **What the player sees and hears.** The guttering candle, a dull headache glyph on the head part, the morning body line "Woke with a headache. Stale air." The warn-once `snow_vent` fires when a quinzhee is finished: "Poke an air hole near the top."
+- **Failure cases.** A storm seals the vent overnight. A second sleeper and a fat lamp halve the time to the headache band. A sleeper under 15 for an hour collapses. Opening the door costs 5 °C on the coldest night.
+- **Ties.** The quinzhee (+3 °C a candle, the vent step already in its build steps), Energy and Sleep, Collapse and SOS, B11, wind (Weather and storms).
+- **Build.** No new registry ids. The `build.rooms` room record gains `air` (0–100) for rooms whose walls are all `#yearofice:snow_walls` (the `quinzhee_snow` and `snow_block` blocks); `body.air.ShelterAir` applies the effects. Data `prompt/snow_vent.json`. Tuning `[body] air_loss_sleeper = 8`, `air_vent_gain = 15`, `air_collapse = 15`. Debug `/yoi body air`. Milestone M7, beside `build/quinzhee`. GameTest `yearofice:body/stale_air_vent` (batch `m7`): a sealed quinzhee with one sleeper and a candle reaches the headache band by 4 game hours and the collapse band by 8; with a vent, air stays at 70 or more.
+- **Pillars.** Everything readable (a fair, learnable danger with a visible tell), Scarcity is the clock.
+
 **Winter gear.** It lives in the Clothing section: layers, body slots, warmth, wind and wet values, wear, repair and each garment's recipe. Snowshoes and the sled stay in Crafting and progression. A warm room changes clothing only through its temperature, which the warmth formula reads as the air.
 
 **Review audit (Tree cutting; Camp to cabin).** Reviewer D, Build and craft, pre-development round. Keys are the engine table's: LMB swing, right mouse use and hold-to-work, E pack, Left Alt + wheel to turn, K blueprint mode, F off-hand.
@@ -654,7 +752,7 @@ Off-screen rooms settle in closed form when their chunk loads, from the hourly t
 | Limb, buck, halve | Limb 10 min (5 felling axe); 4 m log or rounds; 4 rounds an armload; halves for the workbench | Same › Limbing and bucking | Fixed in this round |
 | Split | Chopping block (any stump, or a 30 cm round, 2 min); crack 1 strike; Split all after 10 armloads; ground ×1.3 | Same › Splitting; Blueprint › Making camp | Fixed in this round |
 | Carry and skid | Shoulder 40 kg ×0.6; drag rope 0.5 m/s; skid trail ×2; sled 3 logs; log boom | Same › Carrying and moving wood; Building pieces › Skid trail; More Bushcraft › Log boom | Fixed in this round |
-| Dry and store | `yearofice:moisture`; seasoned under 20%; woodshed −3.0 a summer day; after Oct 15 only by the stove | Same › Drying; Blueprint › Fire › Seasoning; Video › Firewood drying | Fixed in this round |
+| Dry and store | `yearofice:moisture`; seasoned under 20%; woodshed ×1.3 of the monthly rack rate, 0.59 a day in May and June (B4, Proposed; was −3.0 a summer day); split after about July 5, not dry that winter (B4, Proposed; was after Oct 15) | Same › Drying; Blueprint › Fire › Seasoning; Video › Firewood drying | Fixed in this round |
 | Burn | 2 armloads a day in the chinked cabin, 5 unchinked; Low = 0.4 of Steady; birch on Low 14 h | Same › Armloads burned; Warm rooms › Heat sources; `build/winter_wood` | Fixed in this round |
 | Build with logs | Peel 15 min (drawknife 8), May 15–Jul 15 half time + 2 bark sheets; peeled rot 2%/yr; log deck | Same › Logs for building; Building pieces | Fixed in this round |
 | Stumps and regrowth | `stump` age 0–3; fatwood at 10 yrs; rotten with grubs at 15; regrowth table; near stand 150 m after 3 winters | Same › Stumps and regrowth | Fixed in this round |
@@ -673,7 +771,7 @@ Off-screen rooms settle in closed form when their chunk loads, from the hourly t
 | Camp pieces | Debris bed, bough bed, lean-to, reflector, stand, line, woodpile, chopping block, cleaning spot, meat pole, latrine, chest | Blueprint › Making camp | Fixed in this round |
 | Smoker | Rack (Bushcraft) and smokehouse † (Hide and bone); checks every 4 game hours; spruce smoke −1 Spirits a meal | Blueprint › The smoker; Queued jobs 5 | Fixed in this round |
 | Cache | Deck underside 3 m or more; 4 bands; 3–4 living-tree legs until peeled and banded; walkway stops 1 block short | Building pieces › Raised cache; More Bushcraft › Walkway | Ready |
-| Woodshed | 60 armloads; dries ×2 | Building pieces › Woodshed; Trees › Drying | Ready |
+| Woodshed | 60 armloads; dries ×1.3 (B4, Proposed; was ×2) | Building pieces › Woodshed; Trees › Drying | Ready |
 | Cabin, log by log | 1 m grid; 5 × 6 blocks; log wall block = 3.3 course-metres, 50 min; ghost, frame, hold right mouse; skid-pole slip 10% → 2% | Placing and snapping; Minecraft engine › The 1 m grid; Blueprint › Building a cabin | Fixed in this round |
 | Queued jobs and blueprints | Queue of 8 (12 in a workshop) at the work-until-done rate; K, two corners, 400 blocks | Queued jobs; Placing and snapping › Blueprints | Ready |
 | Roof, chimney, door, stove | Sod roof needs ridge and purlins; chimney 0.6 m above ridge; plank door 6 h; barrel stove 2 h to install | Building pieces; Structures › Structural support | Ready |

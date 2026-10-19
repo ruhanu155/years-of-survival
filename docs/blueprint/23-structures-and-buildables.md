@@ -203,6 +203,30 @@ Building time is costed at the high rate of 450 kcal a game hour unless a row sa
 
 **Water-hole box.** A mossed lid over an ice hole. The hole skins over 2 cm a night instead of closing within an hour below −20 °C, as Fishing methods says. Reopening takes 2 game minutes instead of 20, which cuts the winter water chore by about 6 game hours a month.
 
+**B11 The hot tent (Proposed; Ruhan may veto).** A canvas or hide wall tent with a small stove makes a warm camp anywhere on the winter trapline or a far hunt, at the cost of fuel every 1.5 hours. Trappers kept a wall tent at the end of the line.
+
+- **Where and when.** Bought or built, then pitched anywhere with 6 poles to cut, from freeze-up to breakup. It is the far camp before a line cabin exists.
+
+| Tent | Source | Weight | Envelope loss, L\_air |
+| --- | --- | --- | --- |
+| Canvas wall tent, 3 × 3.6 m (`yearofice:canvas_wall_tent`) | Pete's catalogue, 40 points | 18 kg | 18 W/°C |
+| The caribou-camp hide tent (Open world in depth › Outposts) | As written | 20 kg | 16 W/°C |
+
+A **stove jack** (`yearofice:stove_jack`) is a tin plate sewn around a hole in the tent: 1 tin can and 30 game minutes of sewing. Either tent takes one.
+
+| Stove | Source | Weight | Steady output | One armload lasts |
+| --- | --- | --- | --- | --- |
+| Folding tin stove with 2 m of pipe (`yearofice:tent_stove`) | Catalogue, 30 points | 8 kg | 1.0 kW | 1.5 h on Steady, 3 h banked on Low |
+| Can stove (`yearofice:can_stove`) | 4 large tins and wire at Iron tier, 2 game hours | 2 kg | 0.8 kW | 1 h |
+
+- **Pitching.** 6 poles cut on site and 45 game minutes. Striking takes 20 game minutes. A spruce-bough floor of 40 boughs gives a floor loss of 3 W/°C (about 0.3 per m²); bare snow gives 10. While it stands, the tent registers as an outpost, "Tent camp", for Travel to and the map.
+- **Heat.** It is a room in the heat model (Warm rooms) with a heat capacity of only 4 Wh/°C. At −30 °C outside, fed on Steady with 90% of the stove's heat kept, the canvas tent holds about +17 °C and the hide tent about +21 °C. Thirty game minutes after the fire dies it is within 4 °C of the outside. The banked night lasts 3 hours, so the existing cold-wake rule wakes the player about 03:00 to refuel, as real tent campers know.
+- **What the player sees and hears.** The glow through the canvas from outside, the stove's tick as it heats, frost on the inner walls by morning, and the cabin card's words for a tent: "Fair, Poor, +47 °C at Steady".
+- **Failure cases.** Sparks hole the canvas on 4% of nights burned on Hot (hide 1%): each hole costs 5% condition and adds a leak until patched with the sewing kit. A wire spark screen (`yearofice:spark_screen`, 10 game minutes) stops it. A tent packed wet rots ×3 (Decay and time). A tent drifted over to the ridge stops breathing and B10's air budget applies.
+- **Ties.** Warm rooms (the heat model and cold-wake), Outposts and Travel to, the trapline, the hand sled and the wolf sled (weight), Pete's catalogue, Decay and time, B10.
+- **Build.** Items `yearofice:canvas_wall_tent`, `yearofice:stove_jack`, `yearofice:tent_stove`, `yearofice:can_stove`, `yearofice:spark_screen`; the pitched tent is the multiblock `yearofice:wall_tent` (state `cover` canvas or hide) in `data/yearofice/multiblock/wall_tent.json`, heated through `build.rooms` with `data_maps/block/heat.json` rows for canvas and hide walls; the stoves are heater rows. Package `build` (Building and crafting). Tuning `[outpost] tent_loss_canvas_wpc = 18`, `tent_loss_hide_wpc = 16`, `tent_floor_boughs_wpc = 3`, `tent_heat_capacity_whc = 4`, `tent_stove_kw = 1.0`, `tent_spark_hole_hot = 0.04`. The spec's "wall U 6 and 4, floor U 2", read as per-m² values over the tent's 31 m², would need about 9 kW at −30 °C; these whole-tent losses keep the spec's 1 kW stove and its test true. Debug `/yoi outpost tent`. Milestone M8. GameTest `yearofice:build/hot_tent_warms` (batch `m8`): at −30 °C, Steady-fed, the tent is +12 °C or warmer; 30 game minutes unfed, it is −20 °C or colder.
+- **Pillars.** Explore, don't dig (a warm camp anywhere), Respect the player's time (no line cabin needed for a far camp), Scarcity is the clock (fuel every 1.5 hours, weight on the sled).
+
 ## Snow, ice and trails
 
 | Structure | Tier | Blocks | Materials | Build steps | Time | kcal |

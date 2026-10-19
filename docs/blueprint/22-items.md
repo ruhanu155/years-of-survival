@@ -455,6 +455,54 @@ Each sign shows on the messenger map as a pin, and Pete's next sked line confirm
 
 **Debug and tests.** `/yoi food info` prints the held stack's row, state, band and clock; `/yoi give food <id> <grams> [state]` makes a stack; tuning that is not per food (the C-day scale, the stomach, the nausea limit) sits in the `[food]` table of `yearofice-common.toml`. GameTests: `yearofice:food/units_match_kcal` (every row's kcal equals 4P + 9F + 4C within 2 kcal, and C ≥ 0), `yearofice:food/render_never_gains` (1 kg of `animal_fat` rendered gives at most 7,000 kcal of products), `yearofice:food/dish_sums` (a camp stew of 1 kg moose with bones gives 1,323 kcal ±1).
 
+**B5 Bone grease (Proposed; Ruhan may veto).** Pounding marrow bones to grit and simmering them gives late-winter fat at a real cost. Archaeologists call it a low-return job; it pays when the body needs fat in February and March.
+
+- **Where and when.** At camp with a pot or kettle, any time after a big kill: 8 kg of `marrow_bone` from a bull moose (Blueprint › Butchering and yields). It matters most in February and March, when Macros and strength runs short of fat.
+- **Rules.**
+  1. **Crush.** A hammerstone (any fist stone, `rough_stone`) on an anvil stone (`flat_stone`) crushes 1 kg of marrow bone in 20 game minutes of Heavy work (350 kcal an hour), making `yearofice:crushed_bone`. Crushed bone spoils at half the meat rate.
+  2. **Simmer.** 1 L of water per kg in a pot or kettle on Low for 3 game hours. On Steady or Hot the fat emulsifies, the water turns milky and the yield halves.
+  3. **Cool.** Below 5 °C: 20 game minutes outside in winter, or overnight in the cellar or the creek in summer. A white cake sets on top.
+  4. **Skim.** 2 game minutes.
+- **Yield.** 50 g of `yearofice:bone_grease` per kg of bone (900 kcal per 100 g, so 450 kcal a kg of bone). A moose's 8 kg gives 0.40 kg (3,600 kcal) for about 2.7 game hours of crushing (about 950 kcal) and 1 armload. The water left, about 6 L from 8 kg, is a `yearofice:dish` with `dish_id` `skimmed_broth`: 10 kcal per 100 g (100 kcal a litre, since the fat went to the cake) and +5 warmth hot. It is not `bone_broth`, whose 40 kcal per 100 g still holds its fat.
+- **Uses.** It keeps like lard: 1 year below 5 °C. It counts as lard everywhere (fat lamp, hide curing, frying, the face grease of B13). Pemmican made with it is Fine quality (`yearofice:quality` fine): +2 Spirits once a day, with the same keeping time.
+- **Trade-offs.** Crushed bone has no tool use, so the player chooses grease, or awls and fish hooks; the existing line "Leftover bone still goes to tools" holds only for bone not crushed. Marrow broth can come first, from the split leg bones only, as written.
+- **What the player sees and hears.** The dull crack of bone on stone (`work.bone_crush`), a milky pot when the fire runs too hot ("Too hot: the grease is mixing in"), and a white cake on the cooled pot.
+- **Failure cases.** A Steady or Hot fire halves the yield. Crushed bone left warm spoils. Bears and wolverines smell a grease pot as they smell rendering (Animals and the player's camp).
+- **Ties.** Butchering and yields, Cooking (rendering, stews), Macros and strength, Preserving in detail (pemmican), Spoilage model, B13 (face and glove grease).
+- **Build.** Items `yearofice:crushed_bone` and `yearofice:bone_grease` (Food and hunting, `food.FoodItems`) with `data_maps/item/food.json` rows: bone grease 900 kcal, 0 g protein, 100 g fat per 100 g, curve `lard`; crushed bone as marrow bone, at half its spoil rate. Recipes `recipe/bone_grease_*.json` of type `yearofice:station` at the fire. Pure yield in `sim.food.BoneGrease`. Sound `work.bone_crush`. Tuning `[food] bone_grease_g_per_kg = 50`, `bone_crush_min_per_kg = 20`, `bone_grease_boil_penalty = 0.5`. Debug `/yoi food grease <kg>`. Milestone M6, with butchering. GameTest `yearofice:food/bone_grease_yield` (batch `m6`): 8 kg of marrow bone on Low gives 0.40 ±0.02 kg; on Hot it gives 0.20 ±0.02 kg.
+- **Pillars.** Scarcity is the clock (an honest low-return job), The year changes the map (late winter), Grow without an end.
+
+**B6 The sourdough starter (Proposed; Ruhan may veto).** A living starter to feed and keep warm, with better bread and the old Northern title "a sourdough" for a winter kept. Klondike cooks kept theirs on a shelf by the stovepipe, or in a tin inside the shirt on the trail.
+
+- **Where and when.** Two sources, both from the radio loop (Open world in depth › The radio).
+  - **Lorraine's recipe** teaches how to catch a wild one: 100 g of flour and 0.1 L of water in a tin or jar at 18–30 °C, fed 50 g of flour a day for 5 game days, gives an Active starter 60% of the time. Otherwise it molds and the flour is lost.
+  - **Pete's catalogue** sells "a starter in a tobacco tin" for 10 points.
+- **The item.** `yearofice:sourdough_starter`, 0.3 kg, single, carrying the component `yearofice:starter` (state and the stamp of its last feed).
+
+| State | How it gets there | Bread |
+| --- | --- | --- |
+| Active | Fed 50 g of flour every 3 days at room temperature (1 game minute) | Full rise |
+| Hungry | 4–20 days unfed above 5 °C | Rises half; 2 feeds revive it |
+| Dormant | Below 0 °C; the clock stops | Needs 2 feeds after thawing. Each freeze and thaw has a 10% chance to kill it (30% below −30 °C) |
+| Dead | 21 days unfed above 5 °C | — |
+
+- **Keeping it warm.** A shelf piece within 1 m of a stovepipe keeps it at 18 °C or more while the stove burns. In an inner pocket (Curios `inner_pocket`) it rides at body heat on the trail. The cellar makes it Dormant for a long trip.
+- **Uses.** Each dish is a `yearofice:dish` with its `dish_id`, made by the Cooking methods as written.
+
+| Dish (`dish_id`) | Ingredients | Method | Gives | Keeps |
+| --- | --- | --- | --- | --- |
+| Sourdough pancakes (`sourdough_pancakes`) | 150 g flour, 50 g starter | Stone fry, 10 game minutes | 560 kcal | Eat fresh |
+| Sourdough bread (`sourdough_bread`) | 500 g flour, 100 g starter, water | Rise 8 game hours at 20 °C (16 at 10 °C), then a 1-hour Dutch-oven or reflector bake | 1,800 kcal; +3 Spirits the first time | 7 days (flatbread 5) |
+| Biscuits (`sourdough_biscuits`) | As bread | Rise as bread, 40-minute bake | As bread, scaled | 5 days |
+
+- **Cost.** About 6 kg of flour a year keeps it Active, from the quern (`barley_flour`) or the drops (wheat), so it competes with porridge and flatbread.
+- **What the player sees and hears.** The tin's tooltip shows the state and "Fed 2 days ago". The morning prompt lists "Feed the starter" when it is due, and the job queues with others. A Hungry starter smells sour on hover; a Dead one is grey.
+- **Failure cases.** Mold on a failed catch. A starter forgotten for 21 days dies. A trip in the cold without the pocket risks the freeze and thaw kill. Flour runs out before spring.
+- **Ties.** The radio (Lorraine, Pete's catalogue), Crop farming (barley and the quern), Cooking (stone fry, Dutch oven, reflector oven), Warm rooms (the stovepipe shelf), Spirits, Curios inner pockets.
+- **Ambition.** "Sourdough": keep one starter Active or Dormant from November 1 to April 30. +10 Spirits, and the year card names the survivor "a sourdough" (`ambition/sourdough.json`).
+- **Build.** Item `yearofice:sourdough_starter` and component `yearofice:starter` (Food and hunting, `food.FoodItems` and `food.SourdoughStarter`); the three dishes as `dish_id` values in `food/dish/`; a catalogue row in the radio's stock data. Tuning `[food] starter_feed_days = 3`, `starter_hungry_days = 4`, `starter_dead_days = 21`, `starter_freeze_death = 0.10`. Debug `/yoi food starter state|age`. Milestone M9, with the radio and drops; the quern ships in M5. GameTest `yearofice:food/starter_states` (batch `m9`): a starter left unfed at 20 °C is Hungry on day 4 and Dead on day 21; at −10 °C it stays Dormant for 60 days; two feeds revive a Hungry starter.
+- **Pillars.** Grow without an end (a living thing kept for years), Scarcity is the clock (flour), Respect the player's time (a 1-minute task every 3 days that can be paused), The year changes the map.
+
 ## Camp comforts and trade-offs
 
 ### Camp comforts

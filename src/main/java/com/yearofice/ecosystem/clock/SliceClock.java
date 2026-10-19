@@ -1,62 +1,45 @@
 package com.yearofice.ecosystem.clock;
 
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
+import com.yearofice.api.clock.ClockService;
+import com.yearofice.sim.time.Rate;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 
 /**
- * The ecosystem's reading of the game clock until Layer 1 lands, on the same footing as the body's stand-in: game
- * time is the overworld's day time, 24,000 ticks a day, day time 0 at 06:00, so dawn and dusk match the sky the
- * player sees. Game minutes count from midnight of day 0 ({@link com.yearofice.sim.ecosystem.SliceCalendar}).
+ * The ecosystem's reading of the game clock, through Layer 1's {@link ClockService} (M2 lane B: the clock now
+ * drives vanilla's day time from the true sun, so reading the day time linearly no longer gives game minutes).
+ * Game minutes count from midnight of day 0 ({@link com.yearofice.sim.ecosystem.SliceCalendar}), as the clock's do.
  *
- * <p>{@link #lapse} is the Work time-lapse (Minecraft engine › The four rates) for one player's hold-to-work job:
- * it moves the day time on, as {@code TimeService.requestRate(player, WORK)} will. In single player the world
- * follows the request; with more than one player online the world keeps its rate (co-op rule, RECONCILE 115).
+ * <p>{@link #lapse} asks the Work rate for one player's hold-to-work job (Minecraft development › Layer 1); the
+ * clock runs the world at the slowest player's rate, so in single player the world follows the request and in
+ * co-op it does not (RECONCILE 115).
  */
 public final class SliceClock {
     private SliceClock() {}
 
+    /** Real ticks per game minute at the World rate on the vanilla-length day the slice was tuned on. */
     public static final long TICKS_PER_DAY = 24_000;
     public static final long OFFSET_TICKS = 6_000;
     public static final double TICKS_PER_MINUTE = TICKS_PER_DAY / 1440.0;
 
     /** Fractional game minutes now. */
     public static double minuteD(Level level) {
-        Level clock = level instanceof ServerLevel sl ? sl.getServer().overworld() : level;
-        return (clock.getDayTime() + OFFSET_TICKS) / TICKS_PER_MINUTE;
+        return ClockService.installed() ? ClockService.get().nowDs() / 600.0 : 0;
     }
 
     public static long minute(Level level) { return (long) Math.floor(minuteD(level)); }
 
-    private static final Map<UUID, Double> CARRY = new ConcurrentHashMap<>();
-
-    /**
-     * Adds the time-lapse's extra game minutes for one tick of work at {@code minPerS}, beyond the World rate the
-     * day time already runs at (1,440 game minutes in 20 real minutes). Only a player in the server's list counts.
-     */
+    /** One tick of a hold-to-work job: ask the Work rate for this player this tick. */
     public static void lapse(ServerPlayer p, double minPerS) {
-        MinecraftServer server = p.getServer();
-        if (server == null || server.getPlayerList().getPlayer(p.getUUID()) != p) return;
-        if (server.getPlayerList().getPlayerCount() > 1) return;
-        double worldMinPerTick = 1.0 / TICKS_PER_MINUTE;
-        double extraMin = Math.max(0, minPerS / 20.0 - worldMinPerTick);
-        double ticks = CARRY.getOrDefault(p.getUUID(), 0.0) + extraMin * TICKS_PER_MINUTE;
-        long whole = (long) Math.floor(ticks);
-        CARRY.put(p.getUUID(), ticks - whole);
-        if (whole <= 0) return;
-        for (ServerLevel level : server.getAllLevels()) level.setDayTime(level.getDayTime() + whole);
+        ClockService.get().requestRate(p, Rate.WORK, "butchering");
     }
 
-    /** Moves the day time on by whole game minutes (setting a snare, a debug advance). */
+    /** Moves the clock on by whole game minutes (setting a snare, a debug advance); single player only. */
     public static void advance(ServerPlayer p, int minutes) {
         MinecraftServer server = p.getServer();
         if (server == null || server.getPlayerList().getPlayer(p.getUUID()) != p) return;
         if (server.getPlayerList().getPlayerCount() > 1) return;
-        long ticks = Math.round(minutes * TICKS_PER_MINUTE);
-        for (ServerLevel level : server.getAllLevels()) level.setDayTime(level.getDayTime() + ticks);
+        ClockService.get().advance(minutes);
     }
 }

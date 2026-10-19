@@ -68,8 +68,7 @@ public final class BodyCommands {
                                         .executes(c -> show(c, EntityArgument.getPlayers(c, "player")))))
                         .then(env()))
                 .then(Commands.literal("time")
-                        .then(Commands.literal("day").then(Commands.argument("n", IntegerArgumentType.integer(1))
-                                .executes(c -> day(c, IntegerArgumentType.getInteger(c, "n")))))
+                        // /yoi time day <n> is the clock's (story.clock.ClockCommands).
                         .then(Commands.literal("forward").then(Commands.argument("minutes",
                                         IntegerArgumentType.integer(1, 366 * 1440))
                                 .executes(c -> forward(c, IntegerArgumentType.getInteger(c, "minutes"), null))
@@ -192,16 +191,6 @@ public final class BodyCommands {
     }
 
     // --- /yoi time -------------------------------------------------------------------------------------------
-    private static int day(CommandContext<CommandSourceStack> c, int n) {
-        MinecraftServer server = c.getSource().getServer();
-        BodyTicker.clock.setDay(server, n);
-        BodyTicker.resync(server);
-        long m = BodyTicker.clock.minute(server);
-        c.getSource().sendSuccess(() -> Component.literal("Day " + BodyClock.day(m) + ", " + BodyClock.hhmm(m)
-                + " (bodies not stepped)"), true);
-        return n;
-    }
-
     private static int forward(CommandContext<CommandSourceStack> c, int minutes, DayPlan plan) {
         MinecraftServer server = c.getSource().getServer();
         BodyTuning t = BodyConfig.tuning();

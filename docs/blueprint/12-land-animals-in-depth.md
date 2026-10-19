@@ -157,7 +157,7 @@ Each block adds what the existing tabs lack: body and age, the state machine's s
 
 **States.** The herd runs the herd flow in Caribou herds. One animal's Alert spreads to every neighbour within 15 m after 0.3–0.8 s, so a wave crosses the herd. Flee is 500 m, then milling for 2–5 game minutes, then the route resumes. A single caribou that cannot see what alarmed it circles downwind to scent it (the curious caribou in Animal encounters). From July 1 to August 15, warble and nose bot flies drive it (Caribou bot flies, below, for the herd and hide; Birds and the air › Flies on the caribou owns the flying insects). Rut in the Interior is October 1–20: bulls chase cows and grunt, with hunger weight 0.3.
 
-**Verbs.** Never baited or trapped; hazing a herd only splits it. The call is the arm-antler trick.
+**Verbs.** Never baited or trapped, except by the one lead-fence snare (B12, Proposed; Caribou herds); hazing a herd only splits it. The call is the arm-antler trick.
 
 **Sounds.** Rut grunt, the ankle click of a walking herd (30 m), calf bawl, the herd's run (600 m).
 
@@ -811,6 +811,28 @@ Y works; — does not; T tame; R raise an orphan; L livestock care. Insects and 
 **Seasons.** Bulls travel apart from June to August. Cows with calves lead the fall passage; bulls follow 1–3 days behind after the rut.
 
 **Thousands in Minecraft.** The Interior's herd of 800–3,000 is a herd controller, not 3,000 entities. Up to 60 animals nearest the player are group members, real entities with a 4 Hz follower brain inside 96 blocks (S16); the rest are drawn by the client as instanced, AI-free impostors beyond 96 blocks, moving with the controller's flow field.
+
+**B12 The caribou lead fence (Proposed; Ruhan may veto).** A multi-year build that funnels a migrating band past the player's blind. It is a solo-scale version of the Gwich'in drift fences, kilometres long, that led caribou to corrals; the docs credit them as the source, and the in-game names stay plain: lead fence and mouth.
+
+- **Where and when.** On a caribou migration trail in the Caribou Barrens or wherever a herd's route crosses the home valley's edge. Bands use it in the spring window (April–May) and the fall window (September–October).
+- **Pieces.** A lead-fence segment (`yearofice:lead_fence`, Bushcraft) is 4 m of 3 dead spruce poles and brush, built in 30 game minutes. Two wings meet at a mouth 15–20 m wide, and an existing pole blind or box blind (`yearofice:pole_blind`, `yearofice:box_blind`) stands at it.
+- **How caribou respond.** A band travelling the route meets a wing within 30° of its heading and follows it toward the mouth at a walk, unless it scents the player: wind toward the band gives 0%.
+
+| Wing length | Bands that follow |
+| --- | --- |
+| 20 segments (80 m) | 50% |
+| 50 segments (200 m) | 80% |
+
+At the mouth, animals pass 10–20 m from the blind for 30–90 s, the shot window. The band bolts after the first shot, under the herd rules above.
+
+- **One snare, not hundreds.** A single caribou snare of six-strand babiche (`yearofice:caribou_snare`) can hang in the mouth: 18 m of babiche and 2 game hours. It holds one animal on 15% of band passes. This is the one exception to the caribou rule "never baited or trapped" (Caribou, above).
+- **Upkeep and learning.** Snow load drops 5% of segments each winter, and windthrow drops more. Poles rot out in 8–10 years. A fence where 3 or more caribou were taken in one season sees its route used half as often the next year (Populations, local refill).
+- **What the player sees and hears.** The lead cow turning along the wing, the ankle click of a walking herd at 30 m, and the band bunching at the mouth. The messenger's herd card names the fence: "Band of 40 following the north wing."
+- **Failure cases.** Wind toward the band: none follow. A bolted band shifts its route 1–3 km for the rest of the passage, as written. Gaps from snow load let bands leak through. Overuse halves next year's traffic.
+- **Ties.** Caribou herds (the flow, the wave and the bolt), Setting up the hunt (blinds, wind), Traps (babiche and the snare), Populations, Decay and time (pole rot), the migration calendar.
+- **Ambition.** "At the fence": take a caribou at a lead fence you built (`ambition/at_the_fence.json`).
+- **Build.** Block `yearofice:lead_fence` (Building and crafting, a fence-shaped block in `#yearofice:fences`); block entity `yearofice:caribou_snare` (Food and hunting, with the trap set, `trap/caribou_snare.json`). `ecosystem.herd.LeadFence` adds the wings as a steering force in the herd controller's flow field. Tuning `[hunt] lead_fence_follow_80m = 0.5`, `lead_fence_follow_200m = 0.8`, `caribou_snare_hold = 0.15`, `fence_learn_kills = 3`. Debug `/yoi herd fence <pos>`. Milestone M9, with migrations from M7 and pieces from M8. GameTest `yearofice:hunt/lead_fence_funnels` (batch `m9`): of 50 simulated bands crossing an 80 m-a-wing fence in neutral wind, 40–60% pass within 20 m of the blind; with wind toward the bands, none do.
+- **Pillars.** Grow without an end (a multi-year build), The year changes the map (the migrations), Explore, don't dig (find the routes), Scarcity is the clock (one or two animals a pass).
 
 ### Wolf packs and roles
 

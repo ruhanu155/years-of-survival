@@ -582,6 +582,26 @@ Encounters are the moments players retell. The director on top of Populations de
 5. **Never close.** It is never revealed inside 25 m. Camp visitors and night-trail animals start 120 m out and walk in.
 6. **Then it is free.** Once revealed, it runs the normal AI. Left alone, it goes back to its routine within 2–20 game minutes and leaves along its trail.
 
+**B7 Talk as you walk (Proposed; Ruhan may veto).** A voice toggle that keeps bears and moose from being surprised in thick brush, at the cost of scaring game. Berry pickers in bear country talk, sing or clap so a bear hears them coming; the game makes that a choice with a price.
+
+- **Where and when.** Anywhere, but it matters in berry patches, willow and alder from July 15 to September 15, when grizzlies feed in the same brush as the player (Danger in detail; Plants and fungi › Berries).
+- **The toggle.** Double-tap V. The survivor talks, hums or claps every 15 game seconds until V is double-tapped again. The existing V tap (Talk) and V hold (the voice wheel, Shout by default) are unchanged (Minecraft development › Input and keybinds).
+
+| Ground | Heard at |
+| --- | --- |
+| Open ground | 80 m |
+| Dense cover: willow, alder, a berry patch | 50 m |
+| Beside a riffle or rapids | Half the distance |
+
+- **What it does.** A bear or moose that hears the player before it sees or smells them turns Alert and avoids: it moves off 50–150 m. That happens 85% of the time, or 70% for a sow with cubs, and for that animal the "Surprised inside 25 m" trigger (Blueprint › Danger in detail › How a bear decides) cannot fire.
+- **The cost.** Every animal within the heard radius gains +40 awareness. Grouse and ptarmigan flush. No call works. Stalking is impossible. Picking speed is ×0.95. So it is a choice between safety and game.
+- **The director.** It may still stage the berry-patch bear, but with talk on, the bear starts Aware at 50 m or more, never inside 25 m (Staging rule 5 already keeps staged animals beyond 25 m; this covers the unstaged ones).
+- **What the player sees and hears.** The survivor's own low voice, hum or clap (`body.talk_walk`, with `body.hum` as one of its variants), a small mouth glyph by the load meter while it is on, and bears turning away at the edge of sight. The warn-once `talk_in_brush` fires on entering a berry patch or alder thicket inside a grizzly range in the season: "Thick brush. Talk as you walk (V V)."
+- **Failure cases.** 15% of bears (30% of sows with cubs) do not move off, and the normal bear decision runs. Beside rapids the voice carries half as far. Leaving it on while hunting empties the patch of game.
+- **Ties.** Danger in detail (How a bear decides, bear spray in the off-hand), the encounter director, Layer 3: Scent and sound field, Senses by species, calls (no call works while talking), Plants and fungi (picking speed).
+- **Build.** No new registry ids beyond the sound. The keybind adds a double-tap to the V mapping; the toggle rides the existing `yearofice:talk` payload with a `walk` flag. `ecosystem.encounter.TalkWalk` emits a sound-field event every 15 game seconds at the radii above. Data `prompt/talk_in_brush.json`. Sound `body.talk_walk`. Tuning `[danger] talk_radius_open_m = 80`, `talk_radius_cover_m = 50`, `talk_avoid_chance = 0.85`, `talk_avoid_chance_sow = 0.70`. Debug `/yoi danger talk`. Milestone M6. GameTest `yearofice:encounter/talk_prevents_surprise` (batch `m6`): 100 runs down a willow corridor toward an unaware grizzly; with talk on, Defensive inside 25 m happens in 5% of runs or fewer and the bear moves off in 80% or more; with talk off, the baseline holds.
+- **Pillars.** Everything readable (the player chooses their own sound), Scarcity is the clock (safety costs game).
+
 ### Encounter types
 
 Targets are encounters per season: spring (April 15 – May 31), summer (June – August), fall (September – October) and winter (November – April 14).
