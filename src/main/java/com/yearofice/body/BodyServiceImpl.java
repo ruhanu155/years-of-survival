@@ -15,6 +15,10 @@ import com.yearofice.sim.body.part.InjuryContext;
 import com.yearofice.sim.body.part.Injuries;
 import com.yearofice.sim.food.FoodValues;
 import net.minecraft.network.chat.Component;
+import com.yearofice.api.hud.HudArg;
+import com.yearofice.api.hud.HudBus;
+import com.yearofice.api.hud.HudLine;
+import com.yearofice.api.hud.HudLineType;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
@@ -86,11 +90,11 @@ public final class BodyServiceImpl implements BodyService {
         boolean ok = BodyModel.eat(b, t, m, grams, v.kcal(grams), v.carbsGPer100g() * f, v.fatGPer100g() * f,
                 v.proteinGPer100g() * f, Metabolism.waterPoints(row.waterMlPer100g() * f / 1000.0));
         if (!ok) {
-            p.displayClientMessage(Component.translatable("messenger.yearofice.warn.stomach_full"), true);
+            HudBus.get().post(p, HudLine.of(HudLineType.WARN, "stomach_full", "body"));
             return false;
         }
-        p.displayClientMessage(Component.translatable("messenger.yearofice.pickup.ate", Math.round(v.kcal(grams)),
-                Math.round(b.stomachPct(t.stomachKg()) * 100)), true);
+        HudBus.get().post(p, HudLine.of(HudLineType.PICKUP, "ate", "body", HudArg.of(Math.round(v.kcal(grams))),
+                HudArg.of(Math.round(b.stomachPct(t.stomachKg()) * 100))));
         BodyTicker.sync(p, m, true);
         return true;
     }
@@ -103,14 +107,14 @@ public final class BodyServiceImpl implements BodyService {
                 + ":" + m));
         WaterPurity.Drink d = WaterPurity.drink(source.purity, boiled, BodyConfig.tuning().unboiledIllness(), rng);
         BodyModel.drink(b, m, litres, d.ill() ? d.onsetMinutes() : -1);
-        p.displayClientMessage(Component.translatable("messenger.yearofice.pickup.drank",
-                Math.round(litres * 1000), Math.round(b.water)), true);
+        HudBus.get().post(p, HudLine.of(HudLineType.PICKUP, "drank", "body", HudArg.of(Math.round(litres * 1000)),
+                HudArg.of(Math.round(b.water))));
         BodyTicker.sync(p, m, true);
     }
 
     @Override
     public void wake(ServerPlayer p, String cause) {
         if (p.isSleeping()) p.stopSleepInBed(true, true);
-        p.displayClientMessage(Component.translatable("messenger.yearofice.warn.woke", cause), false);
+        HudBus.get().post(p, HudLine.of(HudLineType.WARN, "woke", "body", HudArg.text(cause)));
     }
 }

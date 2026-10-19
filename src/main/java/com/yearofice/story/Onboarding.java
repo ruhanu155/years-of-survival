@@ -5,6 +5,10 @@ import com.yearofice.api.body.BodyService;
 import com.yearofice.api.fire.FireHeatLookup;
 import com.yearofice.api.event.ClockEvent;
 import com.yearofice.api.fire.FireStateEvent;
+import com.yearofice.api.hud.HudArg;
+import com.yearofice.api.hud.HudBus;
+import com.yearofice.api.hud.HudLine;
+import com.yearofice.api.hud.HudLineType;
 import com.yearofice.core.YearOfIce;
 import com.yearofice.sim.fire.FireHeat;
 import com.yearofice.sim.story.FirstNight;
@@ -20,7 +24,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -43,7 +46,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * {@code story.Onboarding}: the guided first night of the M2.5 slice (Blueprint › Start site › The guided first
  * night). The server runs one {@link FirstNight} per player, saved in {@code yearofice:onboarding}; the six prompts
- * go out through {@link StoryLines}, and the objective beacon's target goes to the owner in
+ * go out through {@code api.hud.HudBus} (see {@link #offerStep}), and the objective beacon's target goes to the owner in
  * {@code yearofice:onboarding_sync} for {@code client.story} to draw.
  *
  * <p>Every step closes on a real game event or a check, read only through {@code com.yearofice.api} and vanilla:
@@ -140,9 +143,9 @@ public final class Onboarding {
         int doy = com.yearofice.sim.time.Calendar.dayOfYearOfDay(StoryDay.absDay(minute));
         String date = com.yearofice.sim.time.Calendar.monthName(com.yearofice.sim.time.Calendar.month(doy)) + " "
                 + com.yearofice.sim.time.Calendar.dayOfMonth(doy);
-        StoryLines.post(p, prompt("wake", StoryDay.day(minute), date, StoryDay.hhmm(minute)));
-        StoryLines.post(p, prompt("dark", StoryDay.hhmm(StoryClock.sunsetOf(minute))));
-        StoryLines.post(p, stepLine(FirstNightStep.TINDER, t));
+        alert(p, "wake", HudArg.of(StoryDay.day(minute)), HudArg.text(date), HudArg.text(StoryDay.hhmm(minute)));
+        alert(p, "dark", HudArg.text(StoryDay.hhmm(StoryClock.sunsetOf(minute))));
+        offerStep(p, FirstNightStep.TINDER, t);
         sync(p, r, l, minute);
     }
 
@@ -150,8 +153,12 @@ public final class Onboarding {
     public static void skip(ServerPlayer p, long minute) {
         OnboardingRecord r = of(p);
         boolean was = r.night.active();
+        FirstNightStep on = r.night.step();
         r.night.skip(minute, FirstNight.Ending.SKIPPED);
-        if (was) StoryLines.post(p, prompt("skipped"));
+        if (was) {
+            clearStep(p, on);
+            alert(p, "skipped");
+        }
         sync(p, r, live(p), minute);
     }
 
@@ -165,7 +172,6 @@ public final class Onboarding {
     public static void forget(ServerPlayer p) {
         Live l = LIVE.get(p.getUUID());
         if (l != null && l.player == p) LIVE.remove(p.getUUID());
-        StoryLines.forget(p.getUUID());
     }
 
     @SubscribeEvent
@@ -176,7 +182,6 @@ public final class Onboarding {
     @SubscribeEvent
     public static void onStopped(ServerStoppedEvent e) {
         LIVE.clear();
-        StoryLines.clear();
     }
 
     // ---- the check ------------------------------------------------------------------------------------------
@@ -188,7 +193,6 @@ public final class Onboarding {
         long minute = check ? StoryClock.minute(e.getServer()) : 0;
         for (ServerPlayer p : e.getServer().getPlayerList().getPlayers()) {
             if (check && !p.isSpectator()) check(p, minute);
-            StoryLines.drain(p, p.serverLevel().getGameTime());
         }
     }
 
@@ -206,13 +210,16 @@ public final class Onboarding {
         }
         OnboardingTuning t = StoryConfig.tuning();
         FirstNightFacts f = facts(p, r, l, t);
+        FirstNightStep before = r.night.step();
         FirstNight.Advance a = r.night.advance(f, minute, StoryDay.firstMorning(r.night.startMinute(), StoryClock.DAWN));
         if (a.finished()) {
-            StoryLines.post(p, prompt("done"));
+            clearStep(p, before);
+            alert(p, "done");
             YearOfIce.LOG.info("[story] {} finished the guided first night ({}) at {}", p.getGameProfile().getName(),
                     r.night.ending().name().toLowerCase(java.util.Locale.ROOT), StoryDay.hhmm(minute));
         } else if (a.moved()) {
-            StoryLines.post(p, stepLine(a.now(), t));
+            clearStep(p, before);
+            offerStep(p, a.now(), t);
         }
         if (r.night.active()) duskWarning(p, r, minute, StoryDay.inDuskWindow(minute, t.duskLeadMin(), StoryClock.SUNSET, StoryClock.DAWN));
         sync(p, r, l, minute);
@@ -226,8 +233,8 @@ public final class Onboarding {
     static void duskWarning(ServerPlayer p, OnboardingRecord r, long minute, boolean dusk) {
         boolean noFire = r.night.fireLitMinute() < 0 && warmFireWithin(p, FIRE_QUIET_M, null) == null;
         if (r.warn.update(DUSK_NO_FIRE, dusk && noFire, minute)) {
-            StoryLines.post(p, Component.translatable("messenger.yearofice.warn." + DUSK_NO_FIRE,
-                    StoryDay.hhmm(StoryClock.sunsetOf(minute))));
+            HudBus.get().post(p, HudLine.of(HudLineType.WARN, DUSK_NO_FIRE, SOURCE,
+                    HudArg.text(StoryDay.hhmm(StoryClock.sunsetOf(minute)))));
         }
     }
 
@@ -388,12 +395,32 @@ public final class Onboarding {
 
     // ---- lines and sync -------------------------------------------------------------------------------------
 
-    static Component prompt(String id, Object... args) {
-        return Component.translatable("messenger.yearofice.prompt.first_night_" + id, args);
+    /** The bus source tag for every story line. */
+    static final String SOURCE = "story";
+
+    /** A step's prompt line id: lang key {@code messenger.yearofice.prompt.first_night_<step>}. */
+    static String stepId(FirstNightStep s) { return "first_night_" + s.id; }
+
+    /**
+     * Offers the step's instruction on the prompt row as a {@code prompt} line through {@code HudBus.post}, so it
+     * stays a lang key the client translates ({@code offerPrompt} carries server-worded literal text, which a
+     * dedicated server cannot translate). Its key is the full lang key, which {@link #clearStep} withdraws.
+     */
+    static void offerStep(ServerPlayer p, FirstNightStep s, OnboardingTuning t) {
+        HudLine line = s == FirstNightStep.SLEEP
+                ? HudLine.of(HudLineType.PROMPT, stepId(s), SOURCE, HudArg.of(Math.round(t.nearFireRadiusM())))
+                : HudLine.of(HudLineType.PROMPT, stepId(s), SOURCE);
+        HudBus.get().post(p, line);
     }
 
-    static Component stepLine(FirstNightStep s, OnboardingTuning t) {
-        return s == FirstNightStep.SLEEP ? prompt(s.id, (int) Math.round(t.nearFireRadiusM())) : prompt(s.id);
+    /** Withdraws a closed step's prompt from the prompt row ({@code HudBus.clearPrompt}). */
+    static void clearStep(ServerPlayer p, FirstNightStep s) {
+        HudBus.get().clearPrompt(p, HudLine.of(HudLineType.PROMPT, stepId(s), SOURCE).key());
+    }
+
+    /** A messenger line ({@code alert}: the device speaking), {@code messenger.yearofice.alert.first_night_<id>}. */
+    static void alert(ServerPlayer p, String id, HudArg... args) {
+        HudBus.get().post(p, HudLine.of(HudLineType.ALERT, "first_night_" + id, SOURCE, args));
     }
 
     /** Refreshes the beacon target when the step changed or 10 s passed, and sends the sync if anything moved. */

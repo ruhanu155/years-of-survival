@@ -299,7 +299,9 @@ public class FireRingBlockEntity extends BlockEntity {
     }
 
     private void tell(Player p, String line) {
-        if (p != null && line != null) p.displayClientMessage(Component.literal(line), true);
+        if (p instanceof net.minecraft.server.level.ServerPlayer sp && line != null) {
+            com.yearofice.api.hud.HudBus.get().offerPrompt(sp, "fire", line, 2);
+        }
     }
 
     /** A change nobody caused right now (rain, a timer): the players within 16 blocks hear about it. */
