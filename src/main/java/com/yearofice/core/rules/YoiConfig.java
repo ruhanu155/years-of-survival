@@ -21,6 +21,7 @@ public final class YoiConfig {
         DAY_LENGTH_MIN = b.comment("Default real minutes per game day for new worlds (24-72; steps 24,30,36,40,45,48,60,72).")
                 .defineInRange("day_length_min", 24, 24, 72);
         b.pop();
+        com.yearofice.fire.FireConfig.define(b);
         SPEC = b.build();
     }
 

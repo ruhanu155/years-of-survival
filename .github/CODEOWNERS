@@ -864,5 +864,11 @@
 # food: Food and hunting
 /src/generated/resources/data/yearofice/data_maps/item/food.json @ruhanu155
 
+# body: Body and survival
+/src/main/java/com/yearofice/client/minigame/bowdrill/ @ruhanu155
+
 # food: Food and hunting
 /src/main/resources/data/yearofice/data_maps/item/food.json @ruhanu155
+
+# body: Body and survival
+/src/test/java/com/yearofice/client/minigame/bowdrill/ @ruhanu155

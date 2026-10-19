@@ -1,0 +1,43 @@
+{
+ "parent": "minecraft:block/block",
+ "render_type": "minecraft:cutout",
+ "textures": {
+  "particle": "yearofice:block/fire_ring_coals",
+  "coals": "yearofice:block/fire_ring_coals"
+ },
+ "elements": [
+  {
+   "from": [
+    7,
+    2,
+    7
+   ],
+   "to": [
+    9,
+    2.6,
+    9
+   ],
+   "faces": {
+    "north": {
+     "texture": "#coals"
+    },
+    "south": {
+     "texture": "#coals"
+    },
+    "east": {
+     "texture": "#coals"
+    },
+    "west": {
+     "texture": "#coals"
+    },
+    "up": {
+     "texture": "#coals"
+    },
+    "down": {
+     "texture": "#coals"
+    }
+   }
+  }
+ ],
+ "ambientocclusion": false
+}

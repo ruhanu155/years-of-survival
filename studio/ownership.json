@@ -53,6 +53,7 @@
     { "package": "com.yearofice.sound", "department": "look" },
     { "package": "com.yearofice.client", "department": "look" },
     { "package": "com.yearofice.client.horizon", "department": "worldgen" },
+    { "package": "com.yearofice.client.minigame.bowdrill", "department": "body", "note": "The bow-drill screen, with the fire package (M2.5 slice fire, pulled forward from M3)" },
     { "package": "com.yearofice.gametest", "department": "testers" }
   ],
   "data": [

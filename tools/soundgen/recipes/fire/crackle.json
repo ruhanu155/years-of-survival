@@ -1,0 +1,2 @@
+{ "id": "yearofice:fire.crackle", "kind": "crackle", "variants": 3, "length_s": 1.6, "lufs": -24,
+  "hiss_hz": 2500, "hiss_gain": 0.05, "pops_per_s": 7, "pop_low_hz": 1800, "pop_high_hz": 6000, "thumps": 1, "highpass_hz": 60 }
