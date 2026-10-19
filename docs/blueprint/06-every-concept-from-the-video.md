@@ -1106,7 +1106,7 @@ The trunk line is 1 block wide; the crown covers 3 blocks either side for its to
 
 ### Firewood drying (Deepened)
 
-**Missing so far.** Seasoned, green and wet wood burn differently, and a woodshed dries wood twice as fast. The video's last complaint was that it was unclear how wood gets dry. This makes it readable.
+**Missing so far.** Seasoned, green and wet wood burn differently, and a woodshed dries wood 1.3 times as fast (B4, Proposed; was twice as fast). The video's last complaint was that it was unclear how wood gets dry. This makes it readable.
 
 **Moisture.** Every firewood stack carries a moisture percentage, shown on hover: "Birch, split: moisture 34%. Smoky, 60% heat."
 
@@ -1127,15 +1127,28 @@ Below 20% moisture, wood burns at full heat; at 50% it gives 25%; at 60% or more
 
 **Drying per game day.**
 
-| Where | Summer (May–Aug) | Fall (Sep–Oct) | Winter (Nov–Mar) |
-| --- | --- | --- | --- |
-| Logs scattered in sun, unsplit | −0.8 points | −0.3 | −0.1 |
-| Split, on a woodpile rack under bark | −1.5 | −0.6 | −0.2 |
-| Split, in the woodshed | −3.0 | −1.2 | −0.4 |
-| Split, inside a warm room within 3 m of a stove | −4.0 | −4.0 | −4.0 |
-| Any, rained on without cover | +5 per wet day | +5 | +2 (snow) |
+| Month (B4, Proposed) | Split, covered rack | Split, woodshed (×1.3) |
+| --- | --- | --- |
+| April, after melt-out | −0.10 | −0.13 |
+| May | −0.45 | −0.59 |
+| June | −0.45 | −0.59 |
+| July | −0.35 | −0.46 |
+| August | −0.30 | −0.39 |
+| September | −0.15 | −0.20 |
+| October, while the daily mean is above 0 °C | −0.05 | −0.07 |
+| November–March | 0 | 0 |
 
-So green split birch in the woodshed in June is seasoned by early July, while scattered logs in October will not be dry before spring. Bringing tomorrow's armloads inside next to the stove dries them overnight, at the cost of space.
+| Where (B4, Proposed) | Rate |
+| --- | --- |
+| Split, stack with no top cover | ×0.7 of the month's rate, and +1.5 per rainy day |
+| Unsplit rounds | ×0.4 of the split rate |
+| Whole logs, birch rounds in their bark | ×0.25 |
+| Split, inside a warm room within 3 m of a stove (unchanged) | −4.0 in any month |
+| Any, snowed on without cover (unchanged) | +2 per snow day |
+
+**Before B4** (restore on a veto): per game day, scattered unsplit logs −0.8 summer, −0.3 fall, −0.1 winter; split on a covered rack −1.5, −0.6, −0.2; split in the woodshed −3.0, −1.2, −0.4; rained on without cover +5 per wet day. The calendar and its sources are in Crafting and building in depth › Trees, felling and firewood › B4 Seasoning by the calendar.
+
+So green split birch put in the woodshed on June 1 is seasoned by about July 29 (B4, Proposed; was early July), while scattered logs in October will not be dry before the next summer (B4, Proposed; was spring). Bringing tomorrow's armloads inside next to the stove dries them overnight, at the cost of space.
 
 **Ties.** Fire (Blueprint › Fire, water and light), woodshed and woodpile (Blueprint › Making camp), warm rooms (Crafting and building in depth › Warm rooms), smoke indoors.
 
@@ -1157,7 +1170,7 @@ So green split birch in the woodshed in June is seasoned by early July, while sc
 
 **More drying rules.**
 
-- An unsplit round dries ×0.5 of the split rate. Birch rounds in their bark dry ×0.25.
+- An unsplit round dries ×0.4 of the split rate (B4, Proposed; was ×0.5). Whole logs and birch rounds in their bark dry ×0.25.
 - Wood above 35% that lies on bare ground for 1 year turns punky: heat ×0.6 for good. Punky rounds hold grubs (Viewers tab › Grubs and ant brood).
 - Below −15 °C, frozen rounds split in half the time.
 - Wood within 1 m of a stove on Hot catches 1% of game hours. The 3 m drying spot holds 4 armloads at most.
@@ -1182,13 +1195,13 @@ So green split birch in the woodshed in June is seasoned by early July, while sc
 
 The exact percentage shows after Practice "firewood" reaches 10 armloads judged.
 
-**Worked year.** Birch cut green on June 1 and split into the woodshed is at 20% by June 11. Scattered rounds cut on October 1 with no rain are still at 25% on April 1.
+**Worked year.** Birch cut green on June 1 and split into the woodshed is under 20% by about July 29 (B4, Proposed; was June 11). Scattered rounds cut on October 1 are still at about 50% on April 1, because nothing dries from November to March (B4, Proposed; was 25%).
 
-**Ties.** Fire danger (above). Coal seams (below). Thunderstorms: rain on the woodpile adds +5. Warm rooms: drying indoors.
+**Ties.** Fire danger (above). Coal seams (below). Thunderstorms: rain on an uncovered woodpile adds +1.5 (B4, Proposed; was +5). Warm rooms: drying indoors.
 
 **Build.** Data component `yearofice:moisture` (int). `fire.Moisture` steps woodpile and woodshed block entities on `ClockEvent.Day`; unloaded piles settle in closed form from the year table's wet days. Ships in M8.
 
-**GameTests (m8).** `fire/shed_birch_june`: 50% to 20% in 10 ±1 days. `fire/moisture_stacks_merge`: 5-point bands merge and other bands do not.
+**GameTests (m8).** `fire/shed_birch_june`: 50% to 20% in 58 ±4 days from June 1 (B4, Proposed; was 10 ±1). `fire/moisture_stacks_merge`: 5-point bands merge and other bands do not.
 
 **Risk.** Micromanaging every stack. Guard: the woodshed does the work, and hover lines are words, not numbers.
 
@@ -3156,7 +3169,7 @@ Each line names what the creator says he wanted, then how Year of Ice honours it
 
 1. `yearofice:build/dugout_never_yields` (batch `m8`): dig a full 4 × 2 × 6 hillside dugout on 50 seeds; 0 resource items drop, and no block outside the footprint changes.
 2. `yearofice:build/dugout_heat` (batch `m8`): a 3 × 4 × 2 dugout with a log front at −35 °C outside settles between −12 and −8 °C with only the player; with a fireplace on Low it settles between −2 and +2 °C.
-3. `yearofice:fire/moisture_drying` (batch `m8`): split green birch at 50% in a woodshed from June 1 reaches under 20% between June 30 and July 8; scattered unsplit logs from October 1 are still above 35% on November 30.
+3. `yearofice:fire/moisture_drying` (batch `m8`): split green birch at 50% in a woodshed from June 1 reaches under 20% between July 22 and August 5 (B4, Proposed; was June 30 to July 8); scattered unsplit logs from October 1 are still above 35% on November 30.
 4. `yearofice:worldgen/coal_seams` (batch `m2`): over 200 seeds, every seed has 3–6 seams, at least one between 1.5 and 3 km from the start, none within 600 m, and none below the surface.
 5. `yearofice:story/mist_count` (batch `m7`): over 20 simulated years, mist mornings per year fall between 25 and 40, and none form on a day with wind over 2 m/s at 05:00.
 6. `yearofice:food/stomach_limits` (batch `m5`): a full stomach empties to under 5% in 13–15 game hours awake; eating stops at 100%; a feast from a cache never pushes the stomach above 100%.

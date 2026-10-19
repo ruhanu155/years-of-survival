@@ -287,7 +287,7 @@ The video's best moments come from design choices, not from any single mechanic.
 | The world hands out small miracles | Feathers snagged on felled trees, a salmon grabbed by hand on the waterfall, a dead grouse on the trail, spawned-out salmon drifting downstream. | Floating items drift and collect at snags and log jams. Rare finds are seeded along rivers and trails, and they are always real objects the player can pick up. |
 | Play with the world physically | Felling trees across a river as bridges, logs rolling over the falls, a falling tree smashing the ice. | Trees fall with physics, logs float and jam, and fallen trunks become bridges or dams. Rolling a rock down a slope is allowed just because it is fun. |
 | Wild animals become characters | Peeper the rabbit got used to him, was hunted by a wolverine, and survived the winter. | Any animal that stays near camp for a few days habituates, stops fleeing and can be named. Predators hunt prey in plain view, and the player decides whether to step in. |
-| Pride in the base | Wood slabs over cobble, lanterns, a mud-brick chimney, a moose-head trophy, a woodshed built "because I like it." | Decoration and trophies raise Spirits. A woodshed dries firewood twice as fast, so the build he wanted to justify gets a reason. |
+| Pride in the base | Wood slabs over cobble, lanterns, a mud-brick chimney, a moose-head trophy, a woodshed built "because I like it." | Decoration and trophies raise Spirits. A woodshed dries firewood 1.3 times as fast (B4, Proposed; was twice), so the build he wanted to justify gets a reason. |
 | A slow, quiet pace | He chose a relaxed video over a fast one; long bobber-watching let his mind wander. | Long quiet stretches are allowed. The ambience uses real field recordings, as the video used wolf howls from his own Arctic trail camera. |
 | Tapping out is an ending | A BMI of 17, severe frostbite or scurvy would end the run; he talked about knowing when "this is enough." | Hardcore mode extracts the player at BMI 17 or from an untreated severe condition. Any mode can call SOS from the messenger, with a one-line "why I left" entry in the journal. |
 | Real dates | He noticed when the in-game date matched the real one, and when he had missed Christmas. | An optional real-date mode starts the world on the real date and shows holidays and birthdays in the messenger. A game day stays 24–72 real minutes long (Open decisions), so the two calendars drift apart and the messenger shows both dates. |
@@ -1102,7 +1102,7 @@ The quietest stretch is December to February, when work moves to the ice, the tr
 | March | Sled-hauling next summer's building logs, ptarmigan, crust travel | Logs for the summer's builds skidded to camp | Summer building waits on hauling |
 | April | Pulling nets and tip-ups, birch sap, shed antlers, moving low caches | Nets out before the 5-day mean passes 2 °C; caches above the flood line | Torn nets; a flooded cache |
 
-**Seasoning sets the summer.** Split firewood under cover seasons in 90 days with a daily mean above 5 °C, and twice as fast in a woodshed. In interior summers that means wood must be cut by July 31, or by mid-August with a woodshed, to burn at full heat in winter.
+**Seasoning sets the summer.** Split firewood under cover seasons by the monthly calendar in Every concept from the video › Firewood drying: about 80 days from a June 1 split on a covered rack, 1.3 times as fast in a woodshed (B4, Proposed; was 90 days above a 5 °C mean, twice as fast in a woodshed). In interior summers that means wood must be split by about June 20, or by about July 5 with a woodshed, to burn at full heat that winter (B4, Proposed; was July 31, or mid-August with a woodshed).
 
 The messenger counts it down from June 1: "Firewood: 140 of 330 armloads cut. 61 days to season."
 
@@ -1641,7 +1641,7 @@ When the player looks at something usable, a one-line prompt appears near the cr
 | Chest | 27 (3 rows, like a Minecraft chest) | No limit | Logs or planks, 30 game minutes. Mice and bears can get in |
 | Barrel | 18 (2 rows) | No limit | Split staves and hide lid. Rodent-proof, as the video used them to sort meat, building supplies and fishing gear |
 | Food cache | 27 (3 rows) | No limit | Raised cache; feeds the player automatically at the chosen ration |
-| Woodshed | Armloads only | 40 armloads | Dries firewood twice as fast |
+| Woodshed | Armloads only | 40 armloads | Dries firewood 1.3 times as fast (B4, Proposed; was twice) |
 
 **Stacks.** Items of one kind share a slot up to a stack size set by their bulk. Food stacks only with food of the same freshness, so spoilage stays honest.
 
@@ -1911,7 +1911,7 @@ Containers: the steel bottle (1 L) and pot (2 L) from the crate; a birch-bark bu
 
 A birch armload on Low in a stove lasts 4 × 1.4 × 2.5 = 14 game hours, which is how one load holds a cabin through a −40 °C night.
 
-**Seasoning.** Every piece of wood carries a moisture, the component `yearofice:moisture` (0–100%): green wood is 50%, dead standing spruce 18%, and seasoned means under 20%. Split wood loses 1.5 points a summer day on a covered rack and 3.0 in a woodshed, slower in fall and winter, and unsplit logs dry about half as fast (Every concept from the video › Firewood drying). So green wood split into a woodshed is seasoned in 10 summer days or 25 fall days, and wood split after October 15 dries only by the stove. That makes "cut next winter's wood this summer" a rule the numbers enforce; the chain from felling to the woodshed is in Crafting and building in depth › Trees, felling and firewood.
+**Seasoning.** Every piece of wood carries a moisture, the component `yearofice:moisture` (0–100%): green wood is 50%, dead standing spruce 18%, and seasoned means under 20%. Split wood loses points by the month's rate on a covered rack, 0.45 a day in May and June and none from November to March, and 1.3 times that in a woodshed (B4, Proposed; was 1.5 a summer day on a rack and 3.0 in a woodshed); unsplit rounds dry at 0.4 of the split rate (B4, Proposed; was about half) (Every concept from the video › Firewood drying). So green wood split into a woodshed on June 1 is seasoned in about 58 days, by late July (B4, Proposed; was 10 summer days or 25 fall days), and wood split after about July 5 is not dry that winter except by the stove (B4, Proposed; was after October 15). That makes "cut next winter's wood this summer" a rule the numbers enforce; the chain from felling to the woodshed is in Crafting and building in depth › Trees, felling and firewood.
 
 **Rain and snow.** Heavy rain drops an uncovered fire one state every 10 game minutes; light rain one every 30. A lean-to, roof or tarp over it cancels that. Snowfall puts out a Low fire in 20 game minutes and slows the others by a quarter.
 
@@ -2367,7 +2367,7 @@ Tools: one can of bear spray from the crate, a flare from a supply drop, fire, n
 | Bear state | Triggered by | What it does | The player's window |
 | --- | --- | --- | --- |
 | Unaware | Player outside its senses | Forages along its range | All the time needed to detour upwind |
-| Alert | Senses the player | Stands, sniffs and stares for 5–15 s | 10 s: talk calmly (V tap) and back away. That makes it drop and leave within 30 s 70% of the time |
+| Alert | Senses the player | Stands, sniffs and stares for 5–15 s | 10 s: talk calmly (V tap) and back away. That makes it drop and leave within 30 s 70% of the time. Talking before it notices prevents the surprise in brush (B7 Talk as you walk, Proposed; Water, calls and encounters › Staging) |
 | Curious | A young bear, or food scent with no threat felt | Circles closer, to about 20 m | Shout (V hold), stand on something high; it leaves 80% of the time |
 | Defensive | Surprised inside 25 m, a sow with cubs inside 40 m, or a bear on a carcass inside 50 m (How animals act › Species responses) | Huff, jaw-pop, ears back, then a charge | Stand still. A defensive charge at a still player stops short 3–10 m away 85% of the time |
 | Chasing | The player ran, or a bluff turned real | Runs the player down | Ends at 150 m or at a fire. Otherwise contact |
@@ -2552,11 +2552,11 @@ Any food store within 400 m of a bear home range draws bear visits; a raised cac
 | Dish | Ingredients | Method | Gives | Note |
 | --- | --- | --- | --- | --- |
 | Fish-head soup | 4–6 heads and frames, 1 L water | Stew, 45 game minutes | About 300 kcal from parts otherwise thrown away, 0.5 L water | The video's soup |
-| Marrow broth | 2 kg split leg bones from big game, 2 L water | Stew, 4 game hours, queueable | 600 kcal, mostly fat; 1.5 L water; +5 Spirits | Leftover bone still goes to tools |
+| Marrow broth | 2 kg split leg bones from big game, 2 L water | Stew, 4 game hours, queueable | 600 kcal, mostly fat; 1.5 L water; +5 Spirits | Leftover bone still goes to tools, or is crushed and simmered for late-winter fat (B5 Bone grease, Proposed; Items › Food values) |
 | Camp stew | 1 kg meat with bones, roots or greens, 1 L water | Stew | Meat ×1.15 plus the vegetables; +15 warmth | Turning meat stewed has half the gut-illness chance |
 | Liver in lard | 0.5 kg liver, 20 g lard | Stone fry, Rare | 800 kcal, 1 C-day | Eaten the day of the kill; see organ timers below |
 | Barley porridge | 200 g barley, 0.5 L water | Stew, 30 game minutes | 700 kcal of carbs | A year-2 breakfast |
-| Flatbread | 250 g barley flour, 30 g lard | Stone fry | 1,100 kcal; keeps 5 days | Trail food; flour needs a quern stone (bushcraft) |
+| Flatbread | 250 g barley flour, 30 g lard | Stone fry | 1,100 kcal; keeps 5 days | Trail food; flour needs a quern stone (bushcraft). A living starter adds sourdough bread, pancakes and biscuits (B6 The sourdough starter, Proposed; Items › Food values) |
 | Baked potatoes | 1 kg potatoes | Coal bake | 770 kcal, 2 C-days |  |
 | Akutaq | 0.5 kg lard, 0.3 kg berries, a handful of snow | Whipped by hand, 20 game minutes | 4,650 kcal, 1.5 C-days, +5 Spirits once a day | The Alaskan "ice cream"; a midwinter treat |
 | Birch syrup | 40 L of birch sap | Pot on Steady, 8 game hours, queueable | 0.4 L of syrup, 1,100 kcal in 8 servings, +5 Spirits once a day | The year's first sweet thing, at breakup |
@@ -4994,7 +4994,7 @@ Fight profiles are data. Pull is in kg-force per kg of fish; tension 100% is the
 
 | Part | Spec |
 | --- | --- |
-| Packages | `build` on the 1 m grid (Minecraft engine › The 1 m grid): ghosts, frames and the 1-hour refund; pieces and support; `build.rooms` (flood fill, room temperature, the heat model); outpost repair and the 11 cabin steps (scribing, the roll-up game, chinking, the cabin card); firewood (armloads, seasoning by `yearofice:moisture`, the woodshed's 2× drying, auto-feed from a woodpile within 3 m); stoves and chimneys in `fire` (smoke without one); storage block entities and crafting from storage within 10 m; structures (smokehouse, drying racks, root cellar, woodshed, latrine); cold smoke in `food.preserve`; blueprints as structure templates; the job queue; ageing in `decay` (5% log shrink, roof snow and sag over 60 cm, sod greening, creosote); outposts; `travel` (cut trails, skid trails, log bridges, worn paths, floating logs and jams, the raft) |
+| Packages | `build` on the 1 m grid (Minecraft engine › The 1 m grid): ghosts, frames and the 1-hour refund; pieces and support; `build.rooms` (flood fill, room temperature, the heat model); outpost repair and the 11 cabin steps (scribing, the roll-up game, chinking, the cabin card); firewood (armloads, seasoning by `yearofice:moisture`, the woodshed's 1.3× drying (B4, Proposed; was 2×), auto-feed from a woodpile within 3 m); stoves and chimneys in `fire` (smoke without one); storage block entities and crafting from storage within 10 m; structures (smokehouse, drying racks, root cellar, woodshed, latrine); cold smoke in `food.preserve`; blueprints as structure templates; the job queue; ageing in `decay` (5% log shrink, roof snow and sag over 60 cm, sod greening, creosote); outposts; `travel` (cut trails, skid trails, log bridges, worn paths, floating logs and jams, the raft) |
 | Data | `data_maps/block/heat.json` and `piece.json` (insulation, durability, materials and game hours for every piece); `multiblock/<id>.json`; `aging/`; blueprints saved as structure templates in the world, not in data |
 | Build order | (1) Grid, ghost and refunds. (2) Pieces and rooms. (3) Outpost repair. (4) Firewood. (5) Stove and chimney. (6) The log cabin and cabin card. (7) Storage and quality-of-life rules. (8) Food structures. (9) Blueprints and the job queue. (10) Floating logs and the raft. (11) Outposts, trails and bridges. (12) Cabin aging |
 | Automated tests | The M8 test above, plus: every test layout reads as a closed room, and removing one wall piece opens it; an open door drops room temperature by at least 5 °C on a −30 °C night; a simulated winter burns 2 ±0.5 armloads a day in the chinked cabin and 5 ±0.5 in a drafty one; a piece taken down within 1 game hour refunds 100%; the woodshed seasons wood at twice the open-air rate; the root cellar holds 2–4 °C all winter; a log dropped upstream drifts to the first snag or to camp; a bot's first cabin takes 160 ±20 game hours |
