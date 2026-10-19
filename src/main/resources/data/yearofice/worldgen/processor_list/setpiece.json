@@ -1,0 +1,10 @@
+{
+  "processors": [
+    {
+      "processor_type": "yearofice:loot_seed"
+    },
+    {
+      "processor_type": "yearofice:mark_placed"
+    }
+  ]
+}

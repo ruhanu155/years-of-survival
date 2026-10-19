@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "yearofice:face_rock",
+    "yearofice:iron_outcrop",
+    "yearofice:coal_seam",
+    "yearofice:frozen_soil",
+    "yearofice:riffle_cobble"
+  ]
+}

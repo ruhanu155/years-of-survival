@@ -15,7 +15,9 @@
     "width_m": { "min": 250, "max": 500 },
     "depth_m": { "min": 8, "max": 25 },
     "river_gap_m": 30,
-    "min_lake_area_m2": 220000
+    "min_lake_area_m2": 220000,
+    "shore_noise_amp": 0.3,
+    "shore_noise_scale_m": 140
   },
   "floor_soil": "silt",
   "meander": {

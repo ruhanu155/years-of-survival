@@ -64,7 +64,8 @@ public enum Archetype {
         public record Meander(Range omegaRad, Range wavelengthWidths, double restoreRad, double maxOffsetFraction) {}
 
         /** Lake valley: an elliptical basin north of the river. */
-        public record Basin(Range lengthM, Range widthM, Range depthM, double riverGapM, double minLakeAreaM2) {}
+        public record Basin(Range lengthM, Range widthM, Range depthM, double riverGapM, double minLakeAreaM2, double shoreNoiseAmp,
+                            double shoreNoiseScaleM) {}
 
         /** Canyon: a narrow, walled reach with rock steps on the river. */
         public record Canyon(Range reachM, double maxReachFraction, Range floorWidthM, Range wallHeightM,
@@ -80,7 +81,7 @@ public enum Archetype {
             if (j.has("basin")) {
                 GenJson b = j.obj("basin");
                 basin = new Basin(b.range("length_m"), b.range("width_m"), b.range("depth_m"), b.num("river_gap_m"),
-                        b.num("min_lake_area_m2", 0));
+                        b.num("min_lake_area_m2", 0), b.num("shore_noise_amp", 0), b.num("shore_noise_scale_m", 100));
                 b.done();
             }
             Canyon canyon = null;

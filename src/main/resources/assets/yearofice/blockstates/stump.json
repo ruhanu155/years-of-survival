@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "yearofice:block/stump"
+    },
+    "age=1": {
+      "model": "yearofice:block/stump"
+    },
+    "age=2": {
+      "model": "yearofice:block/stump"
+    },
+    "age=3": {
+      "model": "yearofice:block/stump"
+    }
+  }
+}

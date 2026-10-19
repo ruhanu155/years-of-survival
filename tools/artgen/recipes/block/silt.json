@@ -1,0 +1,22 @@
+{
+ "id": "yearofice:silt",
+ "kind": "block",
+ "class": "ground",
+ "faces": {
+  "all": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "soil",
+     "scale": 4,
+     "octaves": 3,
+     "steps": [
+      2,
+      4
+     ]
+    }
+   ]
+  }
+ },
+ "folder": "block"
+}

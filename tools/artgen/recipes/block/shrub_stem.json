@@ -1,0 +1,23 @@
+{
+ "id": "yearofice:shrub_stem",
+ "kind": "block",
+ "class": "bark",
+ "faces": {
+  "all": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "stem_red",
+     "scale": 2,
+     "octaves": 2,
+     "steps": [
+      0,
+      2
+     ],
+     "stretch": "vertical"
+    }
+   ]
+  }
+ },
+ "folder": "block"
+}

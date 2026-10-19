@@ -1208,6 +1208,449 @@
    "release_blocker": false
   },
   {
+   "asset_id": "tex_block_birch_leaves",
+   "files": [
+    "assets/yearofice/textures/block/birch_leaves_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/birch_leaves.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_birch_log",
+   "files": [
+    "assets/yearofice/textures/block/birch_log_side.png",
+    "assets/yearofice/textures/block/birch_log_top.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/birch_log.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_black_spruce_leaves",
+   "files": [
+    "assets/yearofice/textures/block/black_spruce_leaves_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/black_spruce_leaves.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_black_spruce_log",
+   "files": [
+    "assets/yearofice/textures/block/black_spruce_log_side.png",
+    "assets/yearofice/textures/block/black_spruce_log_top.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/black_spruce_log.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_clay_bank",
+   "files": [
+    "assets/yearofice/textures/block/clay_bank_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/clay_bank.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_coal_seam",
+   "files": [
+    "assets/yearofice/textures/block/coal_seam_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/coal_seam.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_deep_ground",
+   "files": [
+    "assets/yearofice/textures/block/deep_ground_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/deep_ground.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_deep_rock",
+   "files": [
+    "assets/yearofice/textures/block/deep_rock_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/deep_rock.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_face_rock",
+   "files": [
+    "assets/yearofice/textures/block/face_rock_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/face_rock.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_fallen_log",
+   "files": [
+    "assets/yearofice/textures/block/fallen_log_side.png",
+    "assets/yearofice/textures/block/fallen_log_top.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/fallen_log.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_forest_duff",
+   "files": [
+    "assets/yearofice/textures/block/forest_duff_top.png",
+    "assets/yearofice/textures/block/forest_duff_side.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/forest_duff.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_frozen_soil",
+   "files": [
+    "assets/yearofice/textures/block/frozen_soil_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/frozen_soil.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_grass_turf",
+   "files": [
+    "assets/yearofice/textures/block/grass_turf_top.png",
+    "assets/yearofice/textures/block/grass_turf_side.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/grass_turf.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_gravel",
+   "files": [
+    "assets/yearofice/textures/block/gravel_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/gravel.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_iron_outcrop",
+   "files": [
+    "assets/yearofice/textures/block/iron_outcrop_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/iron_outcrop.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_lichen_mat",
+   "files": [
+    "assets/yearofice/textures/block/lichen_mat_top.png",
+    "assets/yearofice/textures/block/lichen_mat_side.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/lichen_mat.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_loess",
+   "files": [
+    "assets/yearofice/textures/block/loess_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/loess.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_moss_mat",
+   "files": [
+    "assets/yearofice/textures/block/moss_mat_top.png",
+    "assets/yearofice/textures/block/moss_mat_side.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/moss_mat.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_peat",
+   "files": [
+    "assets/yearofice/textures/block/peat_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/peat.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_riffle_cobble",
+   "files": [
+    "assets/yearofice/textures/block/riffle_cobble_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/riffle_cobble.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_river_sand",
+   "files": [
+    "assets/yearofice/textures/block/river_sand_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/river_sand.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_rust_stain",
+   "files": [
+    "assets/yearofice/textures/block/rust_stain_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/rust_stain.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_scree_stones",
+   "files": [
+    "assets/yearofice/textures/block/scree_stones_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/scree_stones.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_shrub_stem",
+   "files": [
+    "assets/yearofice/textures/block/shrub_stem_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/shrub_stem.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_silt",
+   "files": [
+    "assets/yearofice/textures/block/silt_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/silt.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_snow_cover",
+   "files": [
+    "assets/yearofice/textures/block/snow_cover_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/snow_cover.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_stump",
+   "files": [
+    "assets/yearofice/textures/block/stump_side.png",
+    "assets/yearofice/textures/block/stump_top.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/stump.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_till",
+   "files": [
+    "assets/yearofice/textures/block/till_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/till.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_tundra_turf",
+   "files": [
+    "assets/yearofice/textures/block/tundra_turf_top.png",
+    "assets/yearofice/textures/block/tundra_turf_side.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/tundra_turf.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_white_spruce_leaves",
+   "files": [
+    "assets/yearofice/textures/block/white_spruce_leaves_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/white_spruce_leaves.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_white_spruce_log",
+   "files": [
+    "assets/yearofice/textures/block/white_spruce_log_side.png",
+    "assets/yearofice/textures/block/white_spruce_log_top.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/white_spruce_log.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_willow_brush",
+   "files": [
+    "assets/yearofice/textures/block/willow_brush_all.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/willow_brush.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "model_world_blocks",
+   "files": [
+    "assets/yearofice/models/block/deep_ground.json",
+    "assets/yearofice/blockstates/deep_ground.json",
+    "assets/yearofice/models/block/deep_rock.json",
+    "assets/yearofice/blockstates/deep_rock.json",
+    "assets/yearofice/models/block/face_rock.json",
+    "assets/yearofice/blockstates/face_rock.json",
+    "assets/yearofice/models/block/iron_outcrop.json",
+    "assets/yearofice/blockstates/iron_outcrop.json",
+    "assets/yearofice/models/block/coal_seam.json",
+    "assets/yearofice/blockstates/coal_seam.json",
+    "assets/yearofice/models/block/rust_stain.json",
+    "assets/yearofice/blockstates/rust_stain.json",
+    "assets/yearofice/models/block/silt.json",
+    "assets/yearofice/blockstates/silt.json",
+    "assets/yearofice/models/block/loess.json",
+    "assets/yearofice/blockstates/loess.json",
+    "assets/yearofice/models/block/till.json",
+    "assets/yearofice/blockstates/till.json",
+    "assets/yearofice/models/block/river_sand.json",
+    "assets/yearofice/blockstates/river_sand.json",
+    "assets/yearofice/models/block/gravel.json",
+    "assets/yearofice/blockstates/gravel.json",
+    "assets/yearofice/models/block/peat.json",
+    "assets/yearofice/blockstates/peat.json",
+    "assets/yearofice/models/block/clay_bank.json",
+    "assets/yearofice/blockstates/clay_bank.json",
+    "assets/yearofice/models/block/frozen_soil.json",
+    "assets/yearofice/blockstates/frozen_soil.json",
+    "assets/yearofice/models/block/scree_stones.json",
+    "assets/yearofice/blockstates/scree_stones.json",
+    "assets/yearofice/models/block/forest_duff.json",
+    "assets/yearofice/blockstates/forest_duff.json",
+    "assets/yearofice/models/block/moss_mat.json",
+    "assets/yearofice/blockstates/moss_mat.json",
+    "assets/yearofice/models/block/grass_turf.json",
+    "assets/yearofice/blockstates/grass_turf.json",
+    "assets/yearofice/models/block/tundra_turf.json",
+    "assets/yearofice/blockstates/tundra_turf.json",
+    "assets/yearofice/models/block/lichen_mat.json",
+    "assets/yearofice/blockstates/lichen_mat.json",
+    "assets/yearofice/models/block/white_spruce_log.json",
+    "assets/yearofice/blockstates/white_spruce_log.json",
+    "assets/yearofice/models/block/black_spruce_log.json",
+    "assets/yearofice/blockstates/black_spruce_log.json",
+    "assets/yearofice/models/block/birch_log.json",
+    "assets/yearofice/blockstates/birch_log.json",
+    "assets/yearofice/models/block/fallen_log.json",
+    "assets/yearofice/blockstates/fallen_log.json",
+    "assets/yearofice/models/block/white_spruce_leaves.json",
+    "assets/yearofice/blockstates/white_spruce_leaves.json",
+    "assets/yearofice/models/block/black_spruce_leaves.json",
+    "assets/yearofice/blockstates/black_spruce_leaves.json",
+    "assets/yearofice/models/block/birch_leaves.json",
+    "assets/yearofice/blockstates/birch_leaves.json",
+    "assets/yearofice/models/block/willow_brush.json",
+    "assets/yearofice/blockstates/willow_brush.json",
+    "assets/yearofice/models/block/riffle_cobble.json",
+    "assets/yearofice/blockstates/riffle_cobble.json",
+    "assets/yearofice/models/block/shrub_stem.json",
+    "assets/yearofice/blockstates/shrub_stem.json",
+    "assets/yearofice/models/block/stump.json",
+    "assets/yearofice/blockstates/stump.json",
+    "assets/yearofice/models/block/snow_cover_1.json",
+    "assets/yearofice/models/block/snow_cover_2.json",
+    "assets/yearofice/models/block/snow_cover_3.json",
+    "assets/yearofice/models/block/snow_cover_4.json",
+    "assets/yearofice/models/block/snow_cover_5.json",
+    "assets/yearofice/models/block/snow_cover_6.json",
+    "assets/yearofice/models/block/snow_cover_7.json",
+    "assets/yearofice/models/block/snow_cover_8.json",
+    "assets/yearofice/blockstates/snow_cover.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/world_blocks.py",
+   "licence": "project",
+   "generator_version": "world_blocks 1.0",
+   "release_blocker": false
+  },
+  {
    "asset_id": "tex_crate_backpack",
    "files": [
     "assets/yearofice/textures/item/crate_backpack.png",

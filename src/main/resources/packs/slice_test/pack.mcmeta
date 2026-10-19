@@ -1,0 +1,6 @@
+{
+  "pack": {
+    "description": "Year of Ice GameTest pack: adds the dimension yearofice:slice_test (the slice valley on layer seed 3141592) to the flat test world. Test only.",
+    "pack_format": 48
+  }
+}
