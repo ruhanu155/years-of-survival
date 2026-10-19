@@ -1,0 +1,35 @@
+{
+  "replace": false,
+  "values": {
+    "yearofice:crate_backpack": {
+      "rows": 2,
+      "max_kg": 30,
+      "lash_points": 0,
+      "sheds_rain": false
+    },
+    "yearofice:hide_pack": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:hide_pack"
+        }
+      ],
+      "rows": 3,
+      "max_kg": 35,
+      "lash_points": 0,
+      "sheds_rain": true
+    },
+    "yearofice:pack_frame": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:pack_frame"
+        }
+      ],
+      "rows": 3,
+      "max_kg": 45,
+      "lash_points": 3,
+      "sheds_rain": false
+    }
+  }
+}

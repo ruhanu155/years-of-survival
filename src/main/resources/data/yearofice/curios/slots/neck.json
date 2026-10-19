@@ -1,0 +1,9 @@
+{
+  "size": 2,
+  "order": 60,
+  "icon": "curios:slot/empty_necklace_slot",
+  "add_cosmetic": false,
+  "validators": [
+    "curios:tag"
+  ]
+}
