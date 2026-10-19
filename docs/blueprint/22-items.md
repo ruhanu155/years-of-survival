@@ -199,7 +199,7 @@ The lookouts read weather and watched for smoke for 32 summers. Their instrument
 | Item | Count | Found as | Weight | Use |
 | --- | --- | --- | --- | --- |
 | Dutch oven with lid | 1 | Good, 60% | 5 kg | Bakes bread and bannock buried in coals |
-| Salt crock | 1, with 2 kg of hard rock salt | Good | 2.5 kg | The only salt before the first supply drop |
+| Salt crock | 1, with 2 kg of hard rock salt | Good | 2.5 kg | The only ready salt before the first supply drop; mineral licks give a little more (Open world in depth › Salt from the mineral lick) |
 | Bearpaw snowshoes, lacing rotted | 1 pair | Crude, 20% | 2 kg | Relace with 30 m of rawhide (6 game hours) instead of building frames |
 
 **Arvid's caches.** Each cache keeps its tool upgrade from the main tab's list and adds one extra, drawn without repeats.
