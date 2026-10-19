@@ -7,8 +7,9 @@ package com.yearofice.worldgen;
  * later stages read is that curve sampled every 16 m. Beyond the core edges it runs straight on to the world
  * border, so the coarse field keeps the valley.
  *
- * <p>Distance to the path is the first-order distance to the curve, {@code |z − P(x)| / sqrt(1 + P'(x)^2)}:
- * exact for straight reaches and smooth everywhere, so the trough has no medial-axis creases at bends.
+ * <p>Distance to the path is the first-order distance to the curve, {@code |z − P(x)| / sqrt(1 + P'(x)^2)},
+ * with P and P' smoothed over a window that grows with distance: exact for straight reaches, continuous and
+ * smooth everywhere, so the trough has no medial-axis creases at bends and far hills no stripes.
  *
  * <p>Coordinates are the canonical frame: metres from the core's north-west corner, river flowing west to
  * east (+x). Mirroring is applied by the caller.
@@ -75,8 +76,14 @@ public final class RiverPath {
 
     /** Smooth distance from (x, z) to the path, and which side it lies on. */
     public double distance(double x, double z) {
-        double p = zAt(x);
-        double slope = (zAt(x + 1.0) - zAt(x - 1.0)) / 2.0;
+        // Far points see the path smoothed over a window that grows with their distance (the nearest path
+        // point of a point 500 m away lies within a few hundred metres of x), so the path's 150 m wiggles do
+        // not print as north–south stripes across the hills. Near the river the window is 1 m: exact.
+        double near = z - zAt(x);
+        if (near < 0) near = -near;
+        double h = Noise.clamp(near * 0.6, 1.0, 600.0);
+        double p = (zAt(x - h) + 2 * zAt(x - h / 2) + 3 * zAt(x) + 2 * zAt(x + h / 2) + zAt(x + h)) / 9.0;
+        double slope = (zAt(x + h) - zAt(x - h)) / (2 * h);
         double dz = z - p;
         if (dz < 0) dz = -dz;
         return dz / Math.sqrt(1.0 + slope * slope);

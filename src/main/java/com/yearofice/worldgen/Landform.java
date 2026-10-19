@@ -211,10 +211,15 @@ public final class Landform {
             return h;
         }
 
-        /** 1 inside the canyon reach, 0 outside, ramped over 100 m. Keyed on canonical x so it is continuous. */
-        double reachMask(double x) {
+        /**
+         * 1 inside the canyon reach, 0 outside. Keyed on canonical x so it is continuous; the ramp is 100 m at the
+         * lip and widens to 400 m with distance from the river, so the rim tapers into the hills, not a square end.
+         */
+        double reachMask(double x, double d) {
             if (canyon == null) return 0;
-            return Noise.smooth((x - canyon.reachStart()) / 100.0) * Noise.smooth((canyon.reachEnd() - x) / 100.0);
+            double ramp = 100.0 + Noise.clamp(d, 0, 300);
+            return Noise.smooth((x - canyon.reachStart() + ramp / 2 - 50) / ramp)
+                    * Noise.smooth((canyon.reachEnd() - x + ramp / 2 - 50) / ramp);
         }
 
         void sample(double x, double z, boolean detail, Sample out) {
@@ -223,7 +228,7 @@ public final class Landform {
             double wz = z + w.amplitudeM() * Noise.fbm(s.warpZ(), x / w.scaleM(), z / w.scaleM(), w.octaves());
 
             double d = path.distance(x, z);
-            double reach = reachMask(x);
+            double reach = reachMask(x, d);
             double width = canyon == null ? floorWidth : Noise.lerp(floorWidth, canyon.floorWidthM(), reach);
             double half = width / 2;
             double flat = a.troughFlatFraction();

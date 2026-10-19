@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Test;
 class HeightHashTest {
     /** levelSeed, attempt that passed, landform hash, height hash (eroded). */
     static final long[][] GOLDEN = {
-        {1L, 0, 0x44cfe337L, 0x34e5e4fdL},
-        {42L, 0, 0x1b816dc8L, 0x4bbe602bL},
-        {3141592L, 0, 0xe620f64bL, 0xb4351d4bL},
+        {1L, 0, 0x256d4f9dL, 0xc0c2bb20L},
+        {42L, 0, 0xb9190a8dL, 0x8ce97931L},
+        {3141592L, 0, 0x95b627d5L, 0x72b9660bL},
     };
 
     @Test

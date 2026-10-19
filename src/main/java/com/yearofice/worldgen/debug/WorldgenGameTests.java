@@ -20,7 +20,7 @@ public final class WorldgenGameTests {
     private WorldgenGameTests() {}
 
     static final long SEED = 3141592L;
-    static final int LANDFORM_HASH = 0xe620f64b;
+    static final int LANDFORM_HASH = 0x95b627d5;
 
     @GameTest(template = "gametest/empty3", batch = "m0")
     public static void worldgen_landform_hash_matches_junit(GameTestHelper helper) {
