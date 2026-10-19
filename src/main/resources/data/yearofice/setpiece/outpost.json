@@ -40,7 +40,12 @@
         12,
         12
       ],
-      "height_m": 6
+      "height_m": 6,
+      "spawn_offset": [
+        3,
+        0,
+        7
+      ]
     }
   ],
   "loot": [

@@ -1,0 +1,18 @@
+{
+  "values": [
+    "yearofice:silt",
+    "yearofice:loess",
+    "yearofice:till",
+    "yearofice:river_sand",
+    "yearofice:gravel",
+    "yearofice:peat",
+    "yearofice:clay_bank",
+    "yearofice:forest_duff",
+    "yearofice:moss_mat",
+    "yearofice:grass_turf",
+    "yearofice:tundra_turf",
+    "yearofice:lichen_mat",
+    "yearofice:scree_stones",
+    "yearofice:rust_stain"
+  ]
+}

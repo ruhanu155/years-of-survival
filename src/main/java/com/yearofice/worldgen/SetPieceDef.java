@@ -32,9 +32,13 @@ public record SetPieceDef(String id, String name, String kind, List<Integer> rin
     public record Prefer(double highElev, double lowSlope, double nearMainRiver, double nearWater, double aboveRiver,
                          double faceHeight, String viewOf, double viewWeight) {}
 
-    /** A template variant: {@code structure/setpiece/<template>.nbt}, its weight, and the site kinds it suits. */
+    /**
+     * A template variant: {@code structure/setpiece/<template>.nbt}, its weight, and the site kinds it suits.
+     * {@code spawnOffset} is the template-local block a player starts on (x, y, z before rotation), or null; the
+     * outpost's is the start site (M2).
+     */
     public record Variant(String name, String template, double weight, List<String> sites, int footprintX,
-                          int footprintZ, int heightM) {}
+                          int footprintZ, int heightM, int[] spawnOffset) {}
 
     /**
      * Whether the piece counts for the 2 km landmark test ({@code test_km} 0: never, like the hot spring's winter-only
@@ -93,8 +97,16 @@ public record SetPieceDef(String id, String name, String kind, List<Integer> rin
             double[] fp = v.nums("footprint_m");
             if (fp.length != 2) throw new IllegalArgumentException(v.path() + ": footprint_m needs [x, z]");
             List<String> sites = v.has("sites") ? v.strings("sites") : List.of();
+            int[] spawn = null;
+            if (v.has("spawn_offset")) {
+                double[] so = v.nums("spawn_offset");
+                if (so.length != 3) throw new IllegalArgumentException(v.path() + ": spawn_offset needs [x, y, z]");
+                spawn = new int[] {(int) so[0], (int) so[1], (int) so[2]};
+                if (spawn[0] < 0 || spawn[2] < 0 || spawn[0] >= fp[0] || spawn[2] >= fp[1])
+                    throw new IllegalArgumentException(v.path() + ": spawn_offset outside the footprint");
+            }
             variants.add(new Variant(template.substring(template.lastIndexOf('/') + 1), template, v.num("pick_weight"), sites,
-                    (int) fp[0], (int) fp[1], v.integer("height_m")));
+                    (int) fp[0], (int) fp[1], v.integer("height_m"), spawn));
             v.done();
             if (fp[0] > 48 || fp[1] > 48) throw new IllegalArgumentException(v.path() + ": footprint over 48 x 48");
         }

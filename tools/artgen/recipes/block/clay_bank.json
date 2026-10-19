@@ -1,0 +1,29 @@
+{
+ "id": "yearofice:clay_bank",
+ "kind": "block",
+ "class": "ground",
+ "faces": {
+  "all": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "bone",
+     "scale": 3,
+     "octaves": 2,
+     "steps": [
+      0,
+      2
+     ],
+     "stretch": "vertical"
+    },
+    {
+     "type": "speckle",
+     "ramp": "soil",
+     "step": 4,
+     "density": 0.08
+    }
+   ]
+  }
+ },
+ "folder": "block"
+}

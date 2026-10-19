@@ -1,0 +1,28 @@
+{
+ "id": "yearofice:birch_leaves",
+ "kind": "block",
+ "class": "leaves",
+ "faces": {
+  "all": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "leaf_green",
+     "scale": 4,
+     "octaves": 3,
+     "steps": [
+      1,
+      4
+     ]
+    },
+    {
+     "type": "cutout",
+     "density": 0.25,
+     "scale": 4,
+     "octaves": 2
+    }
+   ]
+  }
+ },
+ "folder": "block"
+}

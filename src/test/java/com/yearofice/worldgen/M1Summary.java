@@ -158,7 +158,12 @@ record M1Summary(
                 if (t == WaterStage.CREEK && (normal != 2 || flood != 5)) geo.add("creek flood lines " + normal + "/" + flood);
             }
             if (t == WaterStage.LAKE && (w.flowDir()[i] & 0xFF) != WaterStage.STILL) geo.add("lake cell " + i + " flows");
-            if (w.carve()[i] < 0) geo.add("negative carve at " + i);
+            // A carve below zero is a fill: only a lake floor raised to the depth cap (RECONCILE 167) may have one.
+            boolean capped = (t == WaterStage.LAKE || t == WaterStage.OXBOW) && Math.abs(w.surface()[i] - ground[i] - wp.lakeMaxDepthM()) < 1e-3;
+            if (w.carve()[i] < 0 && !capped) geo.add("negative carve at " + i);
+            if ((t == WaterStage.LAKE || t == WaterStage.OXBOW) && w.surface()[i] - ground[i] > wp.lakeMaxDepthM() + 1e-3) {
+                geo.add("lake deeper than the cap at " + i);
+            }
         }
         // The main river is always a swim: its channel is over the 0.8 m wading depth all the way.
         if (chans == 1) for (int i = 0; i < axis.size(); i++) {

@@ -1,0 +1,17 @@
+{
+  "dimensions": {
+    "minecraft:overworld": {
+      "type": "yearofice:valley",
+      "generator": {
+        "type": "yearofice:valley",
+        "biome_source": {
+          "type": "yearofice:valley",
+          "biomes": "#yearofice:valley_biomes"
+        },
+        "settings": {
+          "cut": "valley"
+        }
+      }
+    }
+  }
+}

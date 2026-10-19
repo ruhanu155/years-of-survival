@@ -117,6 +117,7 @@
     "bend_scour": 0.6,
     "lake_min_depth_m": 1.5,
     "lake_min_area_m2": 2000,
+    "lake_max_depth_m": 30,
     "bog_min_area_m2": 200,
     "bog_max_slope_deg": 2,
     "bog_max_water_dist_m": 200,
@@ -223,5 +224,491 @@
     "snowfield_min_m": 850,
     "cascade_min_face_m": 20,
     "candidate_step_m": 32
+  },
+  "cover": {
+    "patch_scale_m": 140,
+    "patch_octaves": 3,
+    "treeline_m": 760,
+    "max_tree_slope_deg": 36,
+    "tree_gap_fraction": 0.5,
+    "tree_fill": 1.6,
+    "fallen_share": 0.5,
+    "tree_water_gap_m": 1.5,
+    "coarse": {
+      "rock_slope_deg": 36,
+      "detail_scale_m": 48,
+      "detail_relief_m": 3
+    },
+    "species": {
+      "white_spruce": {
+        "height_blocks": {
+          "min": 11,
+          "max": 21
+        },
+        "treeline_shrink": 0.5
+      },
+      "black_spruce": {
+        "height_blocks": {
+          "min": 5,
+          "max": 10
+        },
+        "treeline_shrink": 0.4
+      },
+      "birch": {
+        "height_blocks": {
+          "min": 7,
+          "max": 13
+        },
+        "treeline_shrink": 0.5
+      },
+      "willow": {
+        "height_blocks": {
+          "min": 2,
+          "max": 4
+        },
+        "treeline_shrink": 0.0
+      }
+    },
+    "classes": [
+      {
+        "id": "open_river",
+        "biome": "yearofice:open_river",
+        "rule": {
+          "water": [
+            "main",
+            "creek",
+            "pool"
+          ]
+        },
+        "soil": "gravel",
+        "surface": "gravel",
+        "bed": "gravel",
+        "trees": [],
+        "permafrost": "no"
+      },
+      {
+        "id": "lake",
+        "biome": "yearofice:lake",
+        "rule": {
+          "water": [
+            "lake",
+            "oxbow"
+          ]
+        },
+        "soil": "silt",
+        "surface": "silt",
+        "bed": "silt",
+        "trees": [],
+        "permafrost": "no"
+      },
+      {
+        "id": "rock_face",
+        "biome": "yearofice:rock_scree",
+        "rule": {
+          "rock": true
+        },
+        "soil": "gravel",
+        "surface": "face_rock",
+        "bed": "gravel",
+        "trees": [],
+        "permafrost": "no"
+      },
+      {
+        "id": "gravel_bar",
+        "biome": "yearofice:gravel_bar",
+        "rule": {
+          "bank": [
+            "bar"
+          ]
+        },
+        "soil": "gravel",
+        "surface": "gravel",
+        "bed": "gravel",
+        "trees": [
+          {
+            "species": "willow",
+            "pick_weight": 1.0
+          }
+        ],
+        "tree_spacing_m": {
+          "min": 9,
+          "max": 16
+        },
+        "deadwood_pct": 2,
+        "permafrost": "no"
+      },
+      {
+        "id": "bar_edge",
+        "biome": "yearofice:gravel_bar",
+        "rule": {
+          "water_dist_m": [
+            0,
+            5
+          ],
+          "above_water_m": [
+            -1,
+            1.2
+          ],
+          "sediment_m": [
+            0.6,
+            30
+          ],
+          "slope_deg": [
+            0,
+            10
+          ]
+        },
+        "soil": "gravel",
+        "surface": "river_sand",
+        "bed": "gravel",
+        "trees": [],
+        "permafrost": "no"
+      },
+      {
+        "id": "cut_bank",
+        "biome": "yearofice:riparian",
+        "rule": {
+          "bank": [
+            "cut_bank"
+          ]
+        },
+        "soil": "clay_bank",
+        "surface": "grass_turf",
+        "bed": "gravel",
+        "trees": [
+          {
+            "species": "willow",
+            "pick_weight": 0.6
+          },
+          {
+            "species": "birch",
+            "pick_weight": 0.4
+          }
+        ],
+        "tree_spacing_m": {
+          "min": 6,
+          "max": 10
+        },
+        "deadwood_pct": 2,
+        "permafrost": "no"
+      },
+      {
+        "id": "muskeg",
+        "biome": "yearofice:muskeg",
+        "rule": {
+          "bank": [
+            "bog"
+          ]
+        },
+        "soil": "peat",
+        "surface": "moss_mat",
+        "bed": "peat",
+        "trees": [
+          {
+            "species": "black_spruce",
+            "pick_weight": 1.0
+          }
+        ],
+        "tree_spacing_m": {
+          "min": 8,
+          "max": 14
+        },
+        "deadwood_pct": 6,
+        "permafrost": "yes"
+      },
+      {
+        "id": "alpine_tundra",
+        "biome": "yearofice:alpine_tundra",
+        "rule": {
+          "elev_m": [
+            760,
+            3000
+          ],
+          "slope_deg": [
+            0,
+            32
+          ]
+        },
+        "soil": "till",
+        "surface": "tundra_turf",
+        "bed": "till",
+        "trees": [],
+        "permafrost": "no"
+      },
+      {
+        "id": "scree",
+        "biome": "yearofice:rock_scree",
+        "rule": {
+          "slope_deg": [
+            37,
+            90
+          ]
+        },
+        "soil": "gravel",
+        "surface": "scree_stones",
+        "bed": "gravel",
+        "trees": [],
+        "permafrost": "no"
+      },
+      {
+        "id": "willow_flat",
+        "biome": "yearofice:riparian",
+        "rule": {
+          "water_dist_m": [
+            0,
+            45
+          ],
+          "above_water_m": [
+            -1,
+            3.5
+          ],
+          "slope_deg": [
+            0,
+            10
+          ]
+        },
+        "soil": "silt",
+        "surface": "grass_turf",
+        "bed": "silt",
+        "trees": [
+          {
+            "species": "willow",
+            "pick_weight": 0.6
+          },
+          {
+            "species": "birch",
+            "pick_weight": 0.25
+          },
+          {
+            "species": "white_spruce",
+            "pick_weight": 0.15
+          }
+        ],
+        "tree_spacing_m": {
+          "min": 3.5,
+          "max": 6
+        },
+        "deadwood_pct": 3,
+        "permafrost": "no"
+      },
+      {
+        "id": "black_spruce_flats",
+        "biome": "yearofice:black_spruce_flats",
+        "rule": {
+          "slope_deg": [
+            0,
+            6
+          ],
+          "above_water_m": [
+            -1,
+            30
+          ],
+          "patch": [
+            0,
+            0.55
+          ]
+        },
+        "soil": "silt",
+        "surface": "moss_mat",
+        "bed": "silt",
+        "trees": [
+          {
+            "species": "black_spruce",
+            "pick_weight": 0.9
+          },
+          {
+            "species": "birch",
+            "pick_weight": 0.1
+          }
+        ],
+        "tree_spacing_m": {
+          "min": 4,
+          "max": 8
+        },
+        "deadwood_pct": 5,
+        "permafrost": "yes"
+      },
+      {
+        "id": "birch_slope",
+        "biome": "yearofice:birch_aspen_slope",
+        "rule": {
+          "aspect": "south",
+          "slope_deg": [
+            8,
+            32
+          ]
+        },
+        "soil": "loess",
+        "surface": "grass_turf",
+        "bed": "silt",
+        "trees": [
+          {
+            "species": "birch",
+            "pick_weight": 0.8
+          },
+          {
+            "species": "white_spruce",
+            "pick_weight": 0.2
+          }
+        ],
+        "tree_spacing_m": {
+          "min": 4,
+          "max": 7
+        },
+        "deadwood_pct": 3,
+        "permafrost": "no"
+      },
+      {
+        "id": "lichen_woodland",
+        "biome": "yearofice:lichen_woodland",
+        "rule": {
+          "elev_m": [
+            480,
+            760
+          ],
+          "slope_deg": [
+            0,
+            22
+          ]
+        },
+        "soil": "till",
+        "surface": "lichen_mat",
+        "bed": "till",
+        "trees": [
+          {
+            "species": "white_spruce",
+            "pick_weight": 0.75
+          },
+          {
+            "species": "black_spruce",
+            "pick_weight": 0.25
+          }
+        ],
+        "tree_spacing_m": {
+          "min": 8,
+          "max": 13
+        },
+        "deadwood_pct": 4,
+        "permafrost": "north"
+      },
+      {
+        "id": "foothill_benches",
+        "biome": "yearofice:foothill_benches",
+        "rule": {
+          "elev_m": [
+            300,
+            760
+          ],
+          "slope_deg": [
+            0,
+            9
+          ]
+        },
+        "soil": "till",
+        "surface": "grass_turf",
+        "bed": "till",
+        "trees": [
+          {
+            "species": "birch",
+            "pick_weight": 0.55
+          },
+          {
+            "species": "white_spruce",
+            "pick_weight": 0.45
+          }
+        ],
+        "tree_spacing_m": {
+          "min": 6,
+          "max": 10
+        },
+        "deadwood_pct": 4,
+        "permafrost": "no"
+      },
+      {
+        "id": "spruce_moss",
+        "biome": "yearofice:spruce_taiga",
+        "rule": {
+          "patch": [
+            0.72,
+            1
+          ]
+        },
+        "soil": "silt",
+        "surface": "moss_mat",
+        "bed": "silt",
+        "trees": [
+          {
+            "species": "white_spruce",
+            "pick_weight": 0.9
+          },
+          {
+            "species": "birch",
+            "pick_weight": 0.1
+          }
+        ],
+        "tree_spacing_m": {
+          "min": 3.5,
+          "max": 5.5
+        },
+        "deadwood_pct": 4,
+        "permafrost": "north"
+      },
+      {
+        "id": "spruce_taiga",
+        "biome": "yearofice:spruce_taiga",
+        "rule": {},
+        "soil": "silt",
+        "surface": "forest_duff",
+        "bed": "silt",
+        "trees": [
+          {
+            "species": "white_spruce",
+            "pick_weight": 0.8
+          },
+          {
+            "species": "birch",
+            "pick_weight": 0.2
+          }
+        ],
+        "tree_spacing_m": {
+          "min": 4,
+          "max": 6.5
+        },
+        "deadwood_pct": 4,
+        "permafrost": "north"
+      }
+    ]
+  },
+  "terrain": {
+    "soil_blocks": 2,
+    "footprint_skirt_m": 4,
+    "falls_flow_radius_m": 6,
+    "slice": {
+      "size_m": 1024,
+      "step_m": 64,
+      "edge_margin_m": 128,
+      "min_creek_cells": 60,
+      "min_bar_cells": 20,
+      "min_riparian_cells": 400,
+      "min_spruce_cells": 2000,
+      "min_birch_cells": 400
+    },
+    "coal": {
+      "count": {
+        "min": 3,
+        "max": 6
+      },
+      "min_start_m": 600,
+      "ring_m": {
+        "min": 1500,
+        "max": 3000
+      },
+      "spacing_m": 300,
+      "cells": {
+        "min": 2,
+        "max": 5
+      },
+      "min_face_height_m": 4
+    }
   }
 }

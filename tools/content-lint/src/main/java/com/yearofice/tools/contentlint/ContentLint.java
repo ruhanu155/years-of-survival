@@ -123,11 +123,21 @@ public final class ContentLint {
                         errors.add("[json] " + rel + ": does not parse: " + e.getMessage());
                         continue;
                     }
-                    walk(json, rel, "", false);
+                    if (!vanillaSchema(dir.relativize(p).toString().replace('\\', '/'))) walk(json, rel, "", false);
                 }
             }
         }
         checked.put("data JSON files", files);
+    }
+
+    /**
+     * Registry files in Minecraft's or NeoForge's own format (dimension types, dimensions, worldgen registries,
+     * biome modifiers): their keys are not ours to name, so checks 1–2 skip them. Our own kinds under
+     * {@code worldgen_params/} and the rest are still checked.
+     */
+    static boolean vanillaSchema(String relToDataYearofice) {
+        return relToDataYearofice.startsWith("dimension_type/") || relToDataYearofice.startsWith("dimension/")
+                || relToDataYearofice.startsWith("worldgen/") || relToDataYearofice.startsWith("neoforge/");
     }
 
     private void walk(JsonElement el, String file, String path, boolean unitAbove) {

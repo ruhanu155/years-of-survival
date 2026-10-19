@@ -1,0 +1,28 @@
+{
+ "id": "yearofice:white_spruce_leaves",
+ "kind": "block",
+ "class": "leaves",
+ "faces": {
+  "all": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "needle_green",
+     "scale": 4,
+     "octaves": 3,
+     "steps": [
+      1,
+      4
+     ]
+    },
+    {
+     "type": "cutout",
+     "density": 0.22,
+     "scale": 4,
+     "octaves": 2
+    }
+   ]
+  }
+ },
+ "folder": "block"
+}

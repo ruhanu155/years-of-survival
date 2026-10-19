@@ -1,0 +1,42 @@
+{
+ "id": "yearofice:birch_log",
+ "kind": "block",
+ "class": "bark",
+ "faces": {
+  "side": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "bark_birch",
+     "scale": 2,
+     "octaves": 2,
+     "steps": [
+      2,
+      4
+     ],
+     "stretch": "vertical"
+    },
+    {
+     "type": "plates",
+     "count": 7,
+     "step": 0
+    }
+   ]
+  },
+  "top": {
+   "layers": [
+    {
+     "type": "rings",
+     "ramp": "wood_cut",
+     "spacing": 1.8,
+     "steps": [
+      3,
+      4
+     ],
+     "bark_ramp": "bark_birch"
+    }
+   ]
+  }
+ },
+ "folder": "block"
+}

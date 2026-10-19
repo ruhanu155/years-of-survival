@@ -1,0 +1,28 @@
+{
+ "id": "yearofice:loess",
+ "kind": "block",
+ "class": "ground",
+ "faces": {
+  "all": {
+   "layers": [
+    {
+     "type": "noise",
+     "ramp": "fat_cream",
+     "scale": 4,
+     "octaves": 3,
+     "steps": [
+      0,
+      2
+     ]
+    },
+    {
+     "type": "speckle",
+     "ramp": "soil",
+     "step": 3,
+     "density": 0.1
+    }
+   ]
+  }
+ },
+ "folder": "block"
+}

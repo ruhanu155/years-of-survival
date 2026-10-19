@@ -27,6 +27,7 @@ public final class YearOfIce {
         com.yearofice.decay.DecaySystem.init(modBus);
         com.yearofice.body.BodySystem.init(modBus);
         com.yearofice.fire.FireSystem.init(modBus);
+        com.yearofice.worldgen.gen.WorldgenRegistry.init(modBus);
         com.yearofice.hunt.fishing.FishingSystem.init(modBus);
         com.yearofice.ecosystem.EcosystemSystem.init(modBus);
         com.yearofice.food.FoodSystem.init(modBus);

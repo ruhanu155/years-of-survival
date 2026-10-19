@@ -92,6 +92,13 @@ final class Lakes {
         for (int i = 0; i < total; i++) main[i] = h.type[i] == Hydro.MAIN;
         float[] dMain = g.distance(main);
         double cx = g.canonToLocalX(b.centerX()), cz = b.centerZ();
+        // The shore is the ellipse's radius times 1 + a·fBm along it (RECONCILE 167: a pure ellipse reads as made).
+        int shoreSeed = SeedStage.stageSeed(h.seed.attemptSeed(), WaterStage.STAGE + ":shore");
+        float[] shore = new float[total];
+        for (int i = 0; i < total; i++) {
+            double r = 1 + ab.shoreNoiseAmp() * Noise.fbm(shoreSeed, g.lx(i) / ab.shoreNoiseScaleM(), g.lz(i) / ab.shoreNoiseScaleM(), 3);
+            shore[i] = (float) (r * r);
+        }
         boolean[] in = new boolean[total];
         double bed = 0, ax = 1, az = 1;
         int count = 0;
@@ -101,7 +108,7 @@ final class Lakes {
             // The scour ellipse and the lake, then the lowest ground on their rim.
             for (int i = 0; i < total; i++) {
                 double dx = (g.lx(i) - cx) / ax, dz = (g.lz(i) - cz) / az;
-                in[i] = lake[i] || (dx * dx + dz * dz <= 1 && dMain[i] >= 25 && h.type[i] == Hydro.DRY && !g.edge(i));
+                in[i] = lake[i] || (dx * dx + dz * dz <= shore[i] && dMain[i] >= 25 && h.type[i] == Hydro.DRY && !g.edge(i));
             }
             double rim = Double.MAX_VALUE;
             for (int i = 0; i < total; i++) {
@@ -143,7 +150,7 @@ final class Lakes {
         for (int i = 0; i < total; i++) {
             if (!in[i]) continue;
             double dx = (g.lx(i) - cx) / ax, dz = (g.lz(i) - cz) / az;
-            double r2 = Math.min(1, dx * dx + dz * dz);
+            double r2 = Math.min(1, (dx * dx + dz * dz) / shore[i]);
             double floor = bed - 2.0 * (1 - r2); // a bowl, deepest at the middle
             double gr = h.h0[i] - h.carveMain[i];
             if (gr > floor) {
@@ -240,6 +247,23 @@ final class Lakes {
                 if (h.oxbowCarved[c]) ox++;
             }
             boolean lake = maxDepth >= wp.lakeMinDepthM() && area >= wp.lakeMinAreaM2();
+            if (lake && maxDepth > wp.lakeMaxDepthM()) {
+                // Depth cap (RECONCILE 167): the floor is filled up to the cap; deeper water adds nothing to play.
+                maxDepth = 0;
+                sumDepth = 0;
+                for (int t = 0; t < qt; t++) {
+                    int c = queue[t];
+                    double d = fill[c] - ground[c];
+                    if (d > wp.lakeMaxDepthM()) {
+                        float raise = (float) (d - wp.lakeMaxDepthM());
+                        h.carveMain[c] -= raise;
+                        ground[c] += raise;
+                        d = fill[c] - ground[c];
+                    }
+                    sumDepth += d;
+                    if (d > maxDepth) maxDepth = d;
+                }
+            }
             if (lake) {
                 boolean oxbow = ox * 2 > qt;
                 int bodyId = h.bodies.size() + 1;

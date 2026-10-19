@@ -1,0 +1,24 @@
+{
+  "values": [
+    "yearofice:open_river",
+    "yearofice:lake",
+    "yearofice:gravel_bar",
+    "yearofice:riparian",
+    "yearofice:spruce_taiga",
+    "yearofice:black_spruce_flats",
+    "yearofice:muskeg",
+    "yearofice:cloudberry_muskeg",
+    "yearofice:slough_country",
+    "yearofice:birch_aspen_slope",
+    "yearofice:foothill_benches",
+    "yearofice:lichen_woodland",
+    "yearofice:burn",
+    "yearofice:alpine_tundra",
+    "yearofice:upland_barrens",
+    "yearofice:rock_scree",
+    "yearofice:alpine_range",
+    "yearofice:icefield",
+    "yearofice:hot_spring_basin",
+    "yearofice:tailings"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:remove_features",
+  "biomes": "#yearofice:valley_biomes",
+  "features": {
+    "type": "neoforge:not",
+    "value": [
+      "yearofice:layer_trees"
+    ]
+  }
+}
