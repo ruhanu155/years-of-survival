@@ -20,4 +20,4 @@ Edits made in the doc under Ruhan's standing rule (research ideas go in as "Prop
 | Art and audio production | Every sound group and its source | Insert after the RECONCILE 170/171 list: 12 new sound ids for B1, B2, B5, B7, B8, B13, B15 |
 | Ready for development | M4, M6, M7, M8, M9 | One "Research round B (Proposed; Ruhan may veto; RECONCILE 175)" bullet each with ids and GameTests |
 
-Repo: `docs/decisions/RECONCILE.md` gains items 173–175 from the scratchpad copy; `studio/inventory-rules.json` gains 30 additions (106 ids: 27 proposed B ids with a `note`, 3 packs, 76 found items) and an `ids` rule moving `measuring_stick` to M5; `studio/inventory.json` regenerated (1,335 entries).
+Repo: `docs/decisions/RECONCILE.md` gains items 173–175 from the scratchpad copy; `studio/inventory-rules.json` gains 30 additions (106 ids: 27 proposed B ids with a `note`, 3 packs, 76 found items) and an `ids` rule moving `measuring_stick` to M5; `studio/inventory.json` regenerated (1,337 entries after merging main).
