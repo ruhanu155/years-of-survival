@@ -1511,7 +1511,7 @@ Tapping does the obvious thing; holding does the work. The keys are Minecraft's 
 | 30–45 kg | 65% speed, 50% more calories, no running |
 | Over 45 kg | Drag only, at 30% speed |
 
-Carrying capacity grows with gear: the crate backpack holds 30 kg, a pack frame 45 kg, a sled 120 kg on snow, a canoe 150 kg on water.
+Carrying capacity grows with gear and with Strength, which scales these bands from 0.8× to 1.15× (Minecraft development › Strength carries more): the crate backpack holds 30 kg, a pack frame 45 kg, a sled 120 kg on snow, a canoe 150 kg on water.
 
 **The messenger's battery.** The messenger lasts about 7 days on a charge and recharges from the small solar panel in the crate in 2 hours of sun. The forecast and vitals use almost nothing; the GPS map uses the most. In the dark of December one sunny day gives only about a day of charge, so in winter the map is used sparingly and landmarks matter more.
 
@@ -2388,7 +2388,7 @@ A sow with cubs in May and June is always Defensive inside 40 m and turns Alert 
 
 1. The player is knocked down and the view falls to the ground.
 2. Against a grizzly that was defending, holding Shift (crouch) plays dead: face down, hands behind the neck, pack on the back. The pack takes the first bite.
-3. A defensive grizzly bites 2–4 times over 10–20 real seconds, then leaves. Each bite is −8 Condition with a 30% chance of a deep cut and 10% of a broken bone.
+3. A defensive grizzly bites 2–4 times over 10–20 real seconds, then leaves (clips: Minecraft development › Encounter clips). Each bite is −8 Condition with a 30% chance of a deep cut and 10% of a broken bone.
 4. Stay down 30 real seconds after it leaves. Getting up while it is within 30 m brings it back half the time.
 5. If it keeps attacking past the fourth bite, or it was a black bear or a predatory bear, the sound changes from roaring to quiet feeding sounds. Then fight: LMB strikes the face with whatever is in hand. Each hit has a 25% chance to drive it off, 40% with the hatchet.
 
@@ -2562,7 +2562,7 @@ Any food store within 400 m of a bear home range draws bear visits; a raised cac
 | Birch syrup | 40 L of birch sap | Pot on Steady, 8 game hours, queueable | 0.4 L of syrup, 1,100 kcal in 8 servings, +5 Spirits once a day | The year's first sweet thing, at breakup |
 | Spruce or rose-hip tea | Needles or 50 g hips, 0.3 L water | Steeped 10 game minutes, not boiled | 0.3 L water, +5 warmth, 1 C-day from fresh spruce tips (0.5 from old needles) or 1 from 50 g of hips | A hard boil destroys the vitamin C |
 | Mushroom stew | King or birch bolete, hedgehog mushroom, chanterelle or shaggy mane, and water; poison pax is the brown lookalike of the boletes (Land and seasons in play › New plants and fungi; Plants and fungi › Mushrooms) | Stew | 180 kcal and some water | The lookalike rule applies |
-| Sauerkraut | 1.5 kg cabbage, 30 g salt | Packed in a barrel for 21 game days | 100 kcal and 3 C-days per 0.5 kg; keeps until May | Needs salt from a supply drop |
+| Sauerkraut | 1.5 kg cabbage, 30 g salt | Packed in a barrel for 21 game days | 100 kcal and 3 C-days per 0.5 kg; keeps until May | Needs salt: the crate's crock, a supply drop or a mineral lick (Open world in depth › Salt from the mineral lick) |
 
 ### Butchering and yields
 
@@ -2672,7 +2672,7 @@ On a fall day averaging about 14 °C this gives meat 2.3 days and liver 0.7, as 
 
 **Drying.** Strips 1 cm thick go on a drying rack (bushcraft: 4 poles, a willow lattice, cordage; 1 game hour; holds 15 kg fresh). A batch needs 2 dry days of sun or wind; each uncovered hour of rain adds 6 hours, and a full day of rain sends it back to the start. Above 15 °C flies lay eggs on it unless a smoky fire burns within 3 m.
 
-**Dried weight.** Dried meat weighs 40% of fresh and keeps every calorie: about 2,900 kcal per kg. Ravens strip an unwatched rack at 0.5 kg per raven per day when nobody is within 30 m.
+**Dried weight.** Dried meat weighs 40% of fresh and keeps every calorie: about 2,900 kcal per kg. An unwatched rack is raided by foxes, jays, magpies, ravens and martens by the hourly rolls in Structures and buildables › Thieves at the rack, when nobody is within 30 m.
 
 **Pemmican.** Dried meat is pounded to powder on a flat stone (20 game minutes per kg), then mixed with warm lard and dried berries at 50 : 45 : 5 by weight. It is packed in hide or salmon-skin bags and gives about 5,600 kcal per kg (half dried meat at 2,875, 45% lard at 9,000, 5% dried berries). Without berries it still keeps, but gives no vitamin C and no sweet bonus.
 
@@ -3151,7 +3151,7 @@ Left unguarded for 3 days in September, a moose loses about 60 kg to ravens and 
 | Wolverine | Catches, baits, cached food | 60% per day while in the region; robs every trap along a line in order |
 | Otter | Fish on set lines and in nets | 20% of nights, one fish |
 | Marten | Cubby bait | 15% of visits, without a catch |
-| Ravens | Meat on open drying racks | 0.5 kg per raven per day with nobody within 30 m |
+| Ravens | Meat on open drying racks | 3% a game hour by day, 0.5 kg or less, with nobody within 30 m (Structures and buildables › Thieves at the rack) |
 | Mice | Cache food in winter | 2–3% a week without deadfalls (Video checklist) |
 
 **Build and test.** Code: `sim.animal.Predation` (daily kills in Ecology and staged chases), `Scavenging` (arrivals at carcass records) and the encounter director's staging (Water, calls and encounters). *Tests:* over 10 simulated years with no player, the core region always holds at least 2 moose and at least 5 hares; a named animal is never killed off-screen while the player is in its region; ravens reach 90% of carcasses within 2 game hours.
@@ -4360,7 +4360,7 @@ Smoking turns a kill that would rot in 2 days into food that keeps for weeks or 
 | Hot smoke | 60–80 °C | 8–12 game hours | 2–4 weeks | Fish, small game, eating soon |
 | Cold smoke | Under 30 °C | 2–4 game days, then air drying | 3–6 months | Winter stores; needs the smokehouse |
 
-**Doing it right.** Meat is cut into strips about 1 cm thick and fish are split and opened flat. Salt from a supply drop doubles shelf life but is optional. The fire must smolder, not flame. Green alder or willow gives the best smoke, birch is fine, and spruce makes the meat bitter and costs −1 Spirits at every meal. Smoked meat loses about 60% of its weight as water but keeps its calories, so a smoked moose is far easier to carry and store.
+**Doing it right.** Meat is cut into strips about 1 cm thick and fish are split and opened flat. Salt from the crate's crock, a supply drop or a mineral lick doubles shelf life but is optional (Open world in depth › Salt from the mineral lick). The fire must smolder, not flame. Green alder or willow gives the best smoke, birch is fine, and spruce makes the meat bitter and costs −1 Spirits at every meal. Smoked meat loses about 60% of its weight as water but keeps its calories, so a smoked moose is far easier to carry and store.
 
 **What goes wrong.** A flaming fire cooks the outside and leaves the middle raw, losing 20% of the batch. A fire that goes out in summer lets flies lay eggs, and the batch spoils. The smoke carries: a full smoker draws bears from 1 km, so it is placed 30–50 m from the bed but in view of it. Each batch has to be checked and its fire fed every 4 game hours, so the player can queue the job and leave, but not for a whole day.
 

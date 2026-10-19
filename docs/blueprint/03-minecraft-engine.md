@@ -410,6 +410,8 @@ The blueprint's clock is kept exactly; Minecraft's own clock only draws the sky.
 
 **Hand-carried loads.** A log or quarter on the shoulder is drawn from the player's `yearofice:carry` attachment; the camera drops 10 cm and tilts 5°, as written.
 
+**Encounters (RECONCILE 171).** A bear or moose contact is shown in first person through the camera and the hands, since the player model is not GeckoLib. A knock-down drops the eye 1.4 m to the ground in 0.4 s with a 25° roll; play dead rolls face-down and darkens the view 85% while hand clip `cover_neck` holds both hands over the neck; each bite jolts the view 3° for 0.15 s. The full camera and hand-clip table is Minecraft development › First-person feel and camera, and the animal clips are Entities and AI › Encounter clips. Camera work goes through `client.camera.EncounterCamera`, an extension of `BodyCamera`; milestone M4.
+
 ### Sound
 
 **Every sound is a file.** Minecraft plays `.ogg` files, so each sound is either rendered at build time from a synthesis recipe in `tools/soundgen/` or is a found recording under CC0, CC-BY or MIT with its row in the one credits file, `assets/yearofice/credits.json` (RECONCILE 116; Art and audio production). Our own field recordings may replace any of them later.

@@ -422,6 +422,7 @@ p = 1 - \frac{due - D_c(now)}{life} \qquad due' = D_{new}(now) + \big(due - D_{o
 | 13 | `yearofice:breath_ring` | Crosshair; hides the work ring while shown |
 | 14 | `yearofice:captions` | Bottom right; replaces vanilla subtitles (client, request 85) |
 | 15 | `yearofice:minigame` | Lower centre |
+| 16 | `yearofice:field_note_card` | Bottom left; from M3 (video 2, A8: Creative concepts › Field-note cards) |
 
 **One minigame slot (reconcile 8).** `yearofice:minigame` hosts the bow drill gauges, tension bar, cordage marker, pull-and-brace, fishing fight, sling beat and the call rhythm bar. `CallRhythmOverlay` is a renderer inside this layer, not its own layer. `client.hud.MinigameSlot` grants the slot to one owner at a time, so two overlays can never stack.
 
@@ -1120,6 +1121,15 @@ The Land tab's biome modifier for pingos targets `yearofice:slough_country` and 
 
 **Dedicated servers.** `server.properties` uses `level-type=yearofice\:year_of_ice` and `generator-settings` with the same JSON fields as the screen, for example `{"realism":"standard","mode":"endless"}`.
 
+**World toggles (RECONCILE 170).** Two world options from Ruhan's video 2 approval are set per world and, unlike mode, can be changed after creation.
+
+| Option | Key | Default | Where it is set | What it does |
+| --- | --- | --- | --- | --- |
+| Animals enter open doors | `[world] animals_enter_open_doors` | On in every preset | The Customize screen; later `/yoi world set animals_enter_open_doors on\|off` | Door entry rolls and the `door_open` warning (Structures and buildables › Door left open) |
+| Rack thieves | `[world] rack_thieves` | On in every preset | The Customize screen; later `/yoi world set rack_thieves on\|off` | Theft rolls at racks (Structures and buildables › Thieves at the rack) |
+
+The values live in `yearofice_world` with the other world choices; the `[world]` table in `serverconfig/yearofice-server.toml` gives only the defaults offered, as Config files and defaults requires. A change takes effect at the next game hour and is written to the journal. Presets never change them, so GameTests on Standard run with both on. Class `core.rules.WorldToggles`; GameTests `ecology/door_entry_toggle` and `ecology/rack_thieves_toggle`.
+
 **Other presets.** `yearofice:test_flat` (hidden): a flat valley floor at y 150 with no layers beyond a 4-chunk river, for GameTests and template authoring. `yearofice:layer_preview` (dev only): generates layers and draws the debug map to the loading screen without building chunks.
 
 ### The dev border
@@ -1375,7 +1385,7 @@ generate is the generator at version v, ops are the history ops in canonical ord
 | `forest_duff`, `moss_mat`, `grass_turf`, `tundra_turf`, `tussock_turf`, `lichen_mat` | Surface blocks (`trodden`, `wet`) | `worldgen.block.SurfaceBlock` | Same tags; colour handler | M2 |
 | `gravel_layer`, `sand_layer`, `mud_layer` | Layer blocks 1–7 | `worldgen.block.GroundLayerBlock` | — | M2 (if kept) |
 | `mud`, `pond_mud`, `slump_mud`, `silt_layer`, `ash_layer` (`warm`, `cold`, `leached`, from Decay and time), `burnt_duff`, `worn_ground` | Ground blocks | `worldgen.block.SoilBlock` subclasses | `tags/block/rough_ground.json` | M7–M9 |
-| `salt_crust` | Surface block at licks | `worldgen.block.SurfaceBlock` | — | M6 |
+| `salt_crust` | Surface block at licks | `worldgen.block.SurfaceBlock` | — | M2, with the licks (RECONCILE 167, 170) |
 | `snow_cover` (`layers` 1–8, `crust`, `wet`) | Block | `world.snow.SnowCoverBlock` | — | M7 |
 | `skim_ice`, `river_ice` (`stage`), `shove_ice`, `aufeis` (layers), `pressure_ice`, `candle_ice`, `anchor_ice`, `frazil_slush`, `ground_ice`, `pingo_ice` | Ice blocks | `world.ice.*IceBlock` | `phenomenon/<id>.json` | M7 |
 | `ice_block` | Cut ice, item | `build.snow.CutIceBlock` | `data_maps/item/weight.json` (900 kg) | M8 |
@@ -1604,11 +1614,45 @@ Every living thing in the valley is one of ten entity base classes, driven by on
 | Controller | Plays | Driven by | Rigs |
 | --- | --- | --- | --- |
 | `base` | Gait, state loop: idle, graze, walk, trot, gallop, swim, flap, glide, hold | Synced activity id and speed, 4-tick blend | All |
-| `action` | One-shots: warn, howl, fight, takeoff, strike, die | `triggerAnim` from the server (`TriggerableAnim`), one packet per event | All |
+| `action` | One-shots: warn, howl, fight, takeoff, strike, die; the encounter clips below | `triggerAnim` from the server (`TriggerableAnim`), one packet per event | All |
 | `ears_tail` | Ear flicks and tail swishes every 2–6 s, faster in bug season | Client timer seeded by entity id | Land rigs |
 | `head` | Head and neck yaw toward the look target | `setCustomAnimations` reading `look_target`, no keyframes | Land and bird rigs |
 | `wings` | Flap rate, fold, mantle | Flight state and vertical speed | Bird rigs |
 | `fins` | Fin scull, gill rate | Current speed at the fish | Fish rigs |
+
+**Encounter clips (RECONCILE 171).** The bear, moose and wolf encounters in Blueprint › Danger in detail get hand-keyed clips on the `action` controller, so a contact reads on screen as it does in the Forge Labs video. They live in each species' `<id>_extra.animation.json` (`grizzly`, `black_bear`, `moose`, `wolf`, `coyote`), made in Blockbench or as modelgen `_extra` files (Art and audio production › The model generator), and the server fires them with `triggerAnim` from the standoff and contact states in `ecosystem.ai`.
+
+| Rig | Clip | Length | Fired by |
+| --- | --- | --- | --- |
+| Ursid | `huff_jaw_pop` | 1.2 s | Warn: the huff and jaw-pop |
+| Ursid | `stand_sniff` | 3 s | Alert at range: stands to scent the player |
+| Ursid | `bluff_charge` | Run loop, then a 0.6 s skid-stop | A charge that is a bluff |
+| Ursid | `swat` | 0.5 s | Contact: the knock-down |
+| Ursid | `pin_bite` | Loop of 1.5 s per bite | Each bite: head down, forepaws planted over the player's position |
+| Ursid | `feed` | Loop | Feeding on a carcass, and the predatory turn past the fourth bite |
+| Ursid | `flinch` | 0.3 s | A fight-back hit |
+| Ursid | `retreat_look_back` | 2 s | Leaving after contact, or driven off |
+| Ursid | `climb` | Loop | Black bear only, up a trunk |
+| Ungulate (moose) | `ears_back_hackles` | 1 s | Warn |
+| Ungulate (moose) | `charge` | Run loop | A charge |
+| Ungulate (moose) | `front_stomp` | 0.6 s | Contact: each stomp |
+| Ungulate (moose) | `bluff_stop` | 0.8 s | A bluff that stops short |
+| Canid | `circle` | Procedural from the walk | Wolves testing a weak player |
+| Canid | `lunge_snap` | 0.5 s | A test lunge or a cornered snap |
+| Canid | `howl` | As in `action` | Unchanged |
+
+**Lining up the pin.** At contact the server sets the bear's yaw and position so `pin_bite` puts its head over the player's body at ground level, and it holds them for the loop. The player's side of the same sequence is in First-person feel and camera.
+
+| Step (Contact with a bear) | Bear clip | Player | Sound |
+| --- | --- | --- | --- |
+| 1. Knocked down | `swat` | Knock-down camera; hands fly out of view | `entity.grizzly.huff`, `body.hit_grunt` |
+| 2. Play dead (hold Shift) | `pin_bite` loop | Face-down roll, 85% dark, hand clip `cover_neck` | First bite: `item.pack_tear` |
+| 3. Each bite | `pin_bite` | Bite jolt | `body.bite_crunch`, `body.breath_panic` |
+| 4. It leaves; stay down 30 s | `retreat_look_back` | Hold timer, after warn-once `stay_down` | Breathing |
+| 5. Feeding turn, fight back | `feed`, then `flinch` on a hit | Swing clip `desperate_strike` | The roar turns to quiet feeding sounds |
+| Get up | — | Hand clip `push_up` | — |
+
+**Build.** Clips: ursid and moose in M6 with big game, canid in M6. Tests: GameTest `yearofice:encounter/bear_contact_sequence` (M6): a defensive grizzly bites 2–4 times, its triggers arrive in the clip order of the table, and holding Shift plays dead; `modelgen --check` proves every encounter clip's bones exist on the ursid, ungulate and canid rigs.
 
 **Death plays once and hands off.** `die` runs 20–40 ticks with AI off; on its last frame the server builds the carcass (Carcass hand-off, below). GeckoLib's tip-over is off: each renderer returns 0 from `getDeathMaxRotation`, and the red overlay never shows because `hurtTime` stays 0.
 
@@ -2392,6 +2436,15 @@ kcal_{min} = \frac{rate_{activity}}{60} \cdot \frac{BMR}{1794} \cdot m_{preset} 
 
 **Dropped items.** The lead's rule (Architecture › Vanilla systems we replace) stands: a dropped item lasts 7 game days by its game-minute stamp, items in `#yearofice:never_expires` (keepsakes, notes, the messenger, packs) never expire, and sunk gear becomes `lost_gear`. The map pin lasts the same 7 days. Everything in a `left_pack` never expires.
 
+**No ghost slots (video 2, A9; RECONCILE 170).** A locked row is never drawn, in the pack screen or any container screen. The second video drew the 27 locked slots greyed while the player had no pack, and a viewer asked why they could not use them.
+
+- **No pack.** `PackScreen` draws only the 9 belt slots and a pack outline in place of the grid, with the line "No pack: 9 belt slots, 5 kg. A pack adds rows."
+- **With a pack.** Exactly its `rows` appear: 2 for the crate backpack, 3 for the hide pack and the frames. Nothing greyed, nothing padded.
+- **Container screens.** A chest, barrel, cache or sled panel beside the pack shows the player's side the same way, so a shift-click can only land in a drawn row.
+- **Server side.** `item.inventory.PackMenu` adds `Slot` objects only for open rows, so the menu itself has no locked slots to click, and the engine's `Inventory` mixin still limits free-slot search (Minecraft engine › Inventory and packs).
+- **Ties.** Pack rows from data (above), the Curios `back` slot, the load meter and every container block.
+- **Build.** `client.pack.PackScreen` and `item.inventory.PackMenu`; no new registry ids. Owner Studio lead. Milestone M2, with the pack. GameTest `yearofice:pack/no_ghost_rows` (M2): the menu holds 9 player grid slots with no pack, 27 with the crate backpack and 36 with a 3-row pack, and a shift-click from a chest never lands outside them. Client smoke shots `client/pack_screen_no_pack` and `client/pack_screen_rows` are compared with golden images (Art and audio production › Golden images and limits).
+
 ### Hand-carried loads and carcasses
 
 **The `carry` attachment.** It holds one load: a log, a quarter, a stone, or a carcass record from the Bestiary's Carcasses and bodies, with a mode (`arms`, `shoulders`, `drag`). While it is set:
@@ -2406,6 +2459,55 @@ kcal_{min} = \frac{rate_{activity}}{60} \cdot \frac{BMR}{1794} \cdot m_{preset} 
 **Drawing it.** First person: `RenderHandEvent` cancels the hands and draws the species' GeckoLib model in the `carried_arms` or `carried_shoulders` pose. Third person: a render layer from `EntityRenderersEvent.AddLayers`. Logs and quarters use plain baked models in the same two poses.
 
 **SOS and loads.** A carried load always drops on collapse, as the blueprint says.
+
+**Lift a full box (video 2, A7; RECONCILE 170).** A chest, barrel or crate of 30 kg or less, contents included, can be picked up whole and carried. The second video used a carry mod to move full chests; this is built in, with no Carry On dependency, and capped by weight.
+
+- **Which boxes.** Blocks in `#yearofice:liftable_containers`: the supply crate (6 kg empty) from M3, and the chest (12 kg), barrel (8 kg) and blue poly barrel (4 kg) when storage blocks ship in M8. The raised cache, the sled and every multiblock are not boxes.
+- **Lift.** Shift + RMB held 1 s with an empty main hand. A plain RMB still opens the box, so the hold is Shift-gated. The box becomes the `carry` load in mode `arms`, its contents kept in the record as a `minecraft:container` component, and the carry slot reads "Chest · 24 kg · 19 stacks".
+- **Weight.** Total weight is the box plus `LoadCalculator`'s sum of its contents. Over 30 kg it is refused: "Too heavy to lift: 38 kg. Take out 8 kg." From M4 the cap scales with the Strength factor below (24 kg at Strength 0, 34.5 at 100). The carry speeds and load bands apply as for any hand-carried load.
+- **Frozen down.** A box that has stood 24 game hours on frozen ground with air below 0 °C, outside a room above 0 °C, is frozen to the ground. Hold LMB 2 s with a hatchet, knife or ice chisel to chip it free first; the prompt reads "Frozen down. Chip it free."
+- **Set down.** Shift + RMB on a block (1 s) places it back with its contents and facing. Q sets it down at once in front of the player; with no room there it is refused, "No room to set it down". On collapse it is set down where the player falls, never spilled.
+- **Failure cases.** It cannot be set on water or on a carried sled. Contents keep their freshness clocks while carried, so a box of meat carried in July still ages.
+- **Ties.** Hand-carried loads (above), the Item model's weights, the load bands, storage blocks, and the outposts: moving a cache between camps is one trip.
+- **Build.** `item.inventory.BoxCarry` (lift, chip and set-down rules) on the existing `yearofice:carry` attachment; tag `#yearofice:liftable_containers`; empty weights in `data_maps/item/weight.json`; sounds `yearofice:carry.box_lift` and `yearofice:carry.box_set`. Owner Studio lead. Milestone M3. GameTests `yearofice:pack/lift_box_30kg` (M3): a chest with 18 kg inside (30 kg in all) lifts after a 1 s hold, one with 18.1 kg is refused with the line, and a frozen box needs the 2 s chip first. `yearofice:pack/box_keeps_contents` (M3): 100 lift-and-set cycles of a box with 27 mixed stacks lose no item, keep every freshness stamp and keep facing.
+
+**Strength carries more (video 2, A11; RECONCILE 170).** The load bands grow with the body's Strength, so eating well and getting strong lets the player carry more, and starving shrinks them. Ruhan asked to "increase the slots a person has maybe by eating more and becoming stronger". The belt stays 9 slots; more slots come from bigger packs, and bigger packs need strength.
+
+**The bands, named.** Blueprint › Inventory by weight's four bands get names and scale by a factor f:
+
+| Band | Load at f = 1 | Effect |
+| --- | --- | --- |
+| Light | Under 15 kg | Full speed |
+| Loaded | 15–30 kg | 85% speed, 20% more calories |
+| Heavy | 30–45 kg | 65% speed, 50% more calories, no running |
+| Overloaded | Over 45 kg | Drag only, at 30% speed |
+
+```latex
+f = \left(0.8 + 0.35 \cdot \frac{Strength}{100}\right) \cdot \left(1 + 0.10 \cdot \frac{\min(n, 300)}{300}\right)
+```
+
+Every band edge, and the 45 kg pickup refusal in Inventory and slots, is multiplied by f. Strength is read from `BodyService.strength` (Condition × clamp((BMI − 17)/6, 0, 1)), so f runs from 0.8 at Strength 0 to 1.15 at Strength 100; Strength 57 gives the table as written.
+
+**Hauling.** A Practice skill (Crafting and building in depth › Practice): one rep is 100 m walked in the Heavy band, N is 300, and Practiced adds +10% to f. At the daily cap of 60 reps that is at least 5 days; in normal play, meat seasons and wood hauling take about one game year.
+
+**Packs need strength.** `data_maps/item/pack.json` gains `min_strength`. Below it the pack's usable `max_kg` falls to 30, and anything over 30 kg in that pack counts as Overloaded.
+
+| Pack | `rows` | `max_kg` | `min_strength` |
+| --- | --- | --- | --- |
+| Crate backpack | 2 | 30 | 0 |
+| Hide pack | 3 | 35 | 0 |
+| Pack frame | 3 + 3 lash points | 45 | 40 |
+| Large pack frame (new, `yearofice:large_pack_frame`) | 3 + 3 lash points | 55 | 60 |
+
+The large pack frame is Hide and bone tier: 6 spruce poles, 2 cured hides, 10 m of cordage and a hide hip belt, 6 game hours at the workbench, 3 kg. Rows stay at 3 because vanilla's main inventory has 27 slots; its gain is weight, which only a strong, practiced body can use (at f = 1.265 the Overloaded edge is 56.9 kg).
+
+**What the player reads.** The load meter marks the band edges as ticks, which move as Strength changes. The daily body line adds the bands: "Weight −0.3 kg (68.9 kg). BMI 20.6. Strength 61. Heavy from 30.4 kg." Wearing a frame below its minimum: "Too weak for the frame: 30 kg before it drags you. Strength 34 of 40."
+
+**Failure cases.** A player at BMI 19 and full Condition has Strength 33, f 0.92, and Heavy from 27.5 kg, too weak for the pack frame. That is the readable cost of starving. Injuries lower Condition and so Strength the same way; a Hurt arm changes tools, not bands (Body, injury and sickness).
+
+**Ties.** Body (Strength, BMI, Condition), Practice, packs, hand-carried loads and lifted boxes, kcal burn by band, and the Overloaded sprain risk on slopes (Blueprint › Danger in detail).
+
+**Build.** `sim.body.LoadBands` (pure: f and the band edges); `item.inventory.LoadCalculator` reads it; `build.craft.PracticeService` gains the skill `hauling`; `data_maps/item/pack.json` gains `min_strength`; item `yearofice:large_pack_frame`; tuning `[body] strength_band_min = 0.8`, `strength_band_max = 1.15`, `hauling_bonus_pct = 10`. Owner Studio lead (Body and survival for Strength). Milestones: the named bands with M2 lane B (f fixed at 1); Strength scaling, Hauling, `min_strength` and the large pack frame in M4. GameTests `yearofice:pack/strength_scales_bands` (M4): at Strength 0 the edges are 12, 24 and 36 kg ±2%, at 100 they are 17.25, 34.5 and 51.75 kg, and at 57 within 1% of the table. `yearofice:pack/hauling_practice` (M4): 300 reps take at least 5 game days and add exactly +10%; a 100 m walk that leaves the Heavy band counts nothing. `yearofice:pack/pack_min_strength` (M4): a Strength-35 player with 32 kg in the pack frame is Overloaded, and at Strength 40 Heavy.
 
 ### The HUD layer stack
 
@@ -2614,12 +2716,29 @@ The 4% a game hour for the map follows Controls and interaction, which matches t
 | Shivering | 0.3° tremor | Angles | Off with Reduce screen effects |
 | Slowed | Turning lag, mouse sensitivity ×0.7 | Client sensitivity scale | Halved with Reduce |
 | Collapse close | Sinking 20 cm, tunnel vision | Eye offset; frost 70% | Frost halved with Reduce |
-| Stumble, fall, knock-down | Dip 0.15 m, pitch 35°, roll up to 40° | Angles and offset | Roll halved with Reduce |
+| Stumble, fall (an animal's knock-down: the encounter rows below) | Dip 0.15 m, pitch 35°, roll up to 40° | Angles and offset | Roll halved with Reduce |
 | Nausea | Slow sway, period 6 s, up to 2° | Angles | Sickness visuals Full or Soft |
 | Fever, concussion | Edge shimmer; blur | `body_fx`; vanilla `blur` post chain when no shader pack is active, otherwise a soft vignette | Sickness visuals |
 | Vomiting | Kneel 4 s | Eye offset 0.6 m down | Soft replaces it with a dim and a cough; Off with a text line |
 | Snow blindness | White wash rising over 20 s, held a day at 40% | `body_fx` | Never a flash |
 | Load on the shoulder | 10 cm lower, 5° tilt | Offset and roll | — |
+| Knock-down by an animal (RECONCILE 171) | 0.4 s fall: pitch to the sky, roll 25°, dip 1.4 m to ground eye height; hands fly out of view; the held item drops by the fall rules | EncounterCamera: angles and offset | Roll halved with Reduce |
+| Play dead (hold Shift while down) | Roll face-down over 0.6 s; view 85% dark with moss or snow at the edges; both hands over the back of the neck | Angles, body\_fx mask, hand clip cover\_neck | Roll halved with Reduce |
+| Bite or stomp jolt | 0.15 s shake of 3° and a red vignette pulse, with a muffled crunch | Angles, body\_fx | Shake halved with Reduce; the pulse obeys the flash cap |
+| Stay down, get up | Breathing; a 30 s hold timer after the bear leaves, shown only once warn-once stay\_down has fired; releasing Shift after it rolls back up over 1.2 s, hands pushing off the ground | Angles and offset, hand clip push\_up | Roll halved with Reduce |
+| Fight back, crawl | LMB while down or pinned swings desperate\_strike with the held item or a fist; W while down after a moose stomp crawls at 0.5 m/s, the right answer to a moose | Hand clip; eye offset at ground height | — |
+
+**Encounter camera and hand clips (RECONCILE 171).** The player stays in first person (`yearofice:first_person_only` stays on), and the vanilla player model is not GeckoLib, so an encounter is shown through the camera and the first-person hands. The animal's side is in Entities and AI › Encounter clips.
+
+| Hand clip | Length | Plays on |
+| --- | --- | --- |
+| `cover_neck` | Held | Play dead: both hands over the back of the neck |
+| `push_up` | 1.2 s | Getting up after the stay-down timer |
+| `desperate_strike` | 0.5 s | LMB while down or pinned, with the held item or a fist |
+| `catch_fall` | 0.3 s | A fall: hands forward into view (Body, injury and sickness › Falls, stumbles and slips) |
+| `stagger` | 0.4 s sway | A stumble |
+
+**Build.** `client.camera.EncounterCamera` extends `BodyCamera` through the same `CameraMixin`; the hand clips are GeckoLib hand animations in `client.render.hands`, fired by `body_sync` events. Warn-once id `stay_down`. Sounds `yearofice:body.breath_panic`, `body.hit_grunt`, `body.bite_crunch` and `item.pack_tear`. Owner Look, sound and UI. Milestone M4, with the body and the BodyCamera mixin; the bear sequence runs end to end from M6. Client screenshot check `encounter_play_dead` (M4): the view is at least 85% dark and both hands show. The Reduce screen effects option halves every roll and shake here, and red pulses obey the flash cap (Accessibility).
 
 **Field of view.** Vanilla widens and narrows FOV with movement speed, so our load and cold modifiers would squeeze the view. `ComputeFovModifierEvent` removes the share from `yearofice:*` speed modifiers, keeps vanilla's sprint widening, and adds the bow's 10% and the binoculars' 4× zoom.
 
@@ -2953,6 +3072,7 @@ Every top-level folder under `data/yearofice/` must be declared in the code regi
 | Phenomenon, sky sign | `phenomenon/<id>.json`, `sky_sign/<id>.json` | Entries | World and story | Yes | No | M7 |
 | Event | `event/<id>.json` | Entries | World and story | No | No | M7 |
 | Ambition, prompt, note | `ambition/`, `prompt/`, `note/` | Entries | World and story | Prompts and notes | No | M3–M5 |
+| Field-note card (video 2, A8) | `field_note/<id>.json` | Entries | Look, sound and UI | Yes | No | M3 |
 | Thread, legend, legend rule | `thread/`, `legend/`, `legend_rule/` | Entries | World and story | No | No | M7–M9 |
 | Action | `action/<id>.json` | Entries | Building and crafting | Yes | No | M2 |
 | Body, preset, injury, remedy | `body/standard.json`, `preset/`, `injury/`, `remedy/` | Table, entries | Body and survival | Presets yes | No | M4 |
@@ -3199,6 +3319,8 @@ All ids below are in the `yearofice:` namespace. Retired and renamed ids are lef
 - **Food and dishes (RECONCILE 137), M5:** item `dish` with the `dish_id` and `nutrients` components; content flag `droppings`; food items `pemmican`, `dried_fish`, `hen_egg`, `goat_milk`, `rose_hips`, `spruce_tips`, `barley_flour`, `sauerkraut`, `birch_sap`, `birch_syrup`. The list's `page` is retired: logbook pages are the one item `note` with `note_id`.
 - **Final pass (RECONCILE 146), M8:** block `slab_floor` (state `wood`, the 8 woods; Crafting and building in depth › Building pieces); the existing `path` gains the state `surface` (`gravel`, `plank`); GameTests `build/slab_floor_u` and `build/path_speed`.
 - **Deer (RECONCILE 152, 154, 155), M6, behind the content flag `yearofice:deer`:** mobs `mule_deer` and `sitka_black_tailed_deer` on the new `cervid` rig (the 35th; 163 entity types in all); items `mule_deer_meat`, `mule_deer_hide`, `sitka_black_tailed_deer_meat`, `sitka_black_tailed_deer_hide`, with heart, liver, kidney, tongue, `antler` and `brain` taking the species component; sound events `entity.mule_deer.snort`, `.stamp`, `.grunt`, `.fawn_bleat`, `.antler_clash`, `.stott` and `entity.sitka_black_tailed_deer.whistle_snort`, `.stamp`, `.grunt`, `.fawn_bleat`, `.antler_clash`; activity `look_back`; `shed_antler` gains the species states `mule_deer` and `sitka_black_tailed_deer`; data `species/`, `loot_table/butchering/`, `hitzone/` and `item_family/` for both ids, `rare_sighting/mule_deer_straggler.json` and `flag/deer.json`; GameTests `DeerGameTests` (2) (Land animals in depth › Deer).
+- **Video 2 specs and the racks (RECONCILE 170, the Forge Labs racks), M2–M9:** tag `fell_stops` (A1, M2); activities `raid_shelter` and `rack_raid`, memory types `open_door_target` and `rack_target`, block `theft_cache` (A2, A3, M6); block `drying_rack` and `smoke_rack` (Food, M5); items `lick_crust` and `lick_salt`, tag `salt` (A4, M5), with the surface block `salt_crust` moved to M2 with the licks; component `trophy_size`, block `trophy_mount`, item `trophy_plaque` (A5, A6, M6); tag `liftable_containers` and sounds `carry.box_lift`, `carry.box_set` (A7, M3); GUI layer `field_note_card` and sound `ui.field_note_card` (A8, M3); items `black_sand` and `birch_pan`, block `placer_gravel`, sounds `work.crust_scrape` and `work.pan_swirl` (A4, A10, M5); block `sluice_box` and sound `work.sluice_wash` (A10, M9); item `large_pack_frame` (A11, M4). A9 adds no ids.
+- **Encounter clips (RECONCILE 171), M4 and M6:** sounds `body.breath_panic`, `body.hit_grunt`, `body.bite_crunch`, `item.pack_tear` (M4, the player) and `entity.grizzly.jaw_pop`, `entity.black_bear.huff`, `entity.black_bear.jaw_pop` (M6, the bears); the clips themselves are animation files, not registry ids (Entities and AI › Encounter clips).
 
 ### Conflicting ids
 

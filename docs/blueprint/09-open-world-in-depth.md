@@ -199,6 +199,7 @@ m\_distraction is 1.0 normally, 0.5 with game in sight, and 0.3 mid-chase.
 | First winter | All ten fingers | Reach April 1 with no frostbite that winter |
 | First winter | Steady through the dark | Keep Spirits at Steady or Bright from December 1 to January 31 |
 | First winter | Held the door | Drive off wolves at the shelter without losing food |
+| First winter | Shut tight | No animal enters any of your buildings from November 1 to March 31 (Structures and buildables › Door left open) |
 | Year one | See the thaw | Be alive at the first breakup |
 | Year one | Take a moose | Kill and butcher a moose |
 | Year one | Keep BMI above 20 for 30 days | 30 game days in a row above BMI 20 |
@@ -240,6 +241,25 @@ m\_distraction is 1.0 normally, 0.5 with game in sight, and 0.3 mid-chase.
 | Beyond: long life | Steady body | Keep BMI between 21 and 25 for a whole year |
 | Beyond: long life | Every place | Visit every set piece in the home valley and the Interior |
 | Beyond: long life | Seen it all (hidden) | Live through each of the eight rare events |
+
+**Trophy wall (video 2, A6; RECONCILE 170).** A new group, "Beyond: trophy wall", with no deadline and no gold. It replaces the video's 100-day collection race with an open goal, and it opens when the player hangs a first trophy mount. Sizes and trophy class come from the game page of the record book (Waters and fish › The fish record book).
+
+| Ambition | Condition | Reward |
+| --- | --- | --- |
+| Big five | Mount a moose, a caribou, a grizzly, a wolf and a Dall sheep | +10 Spirits |
+| Winter coats | Mount a white-tailed or willow ptarmigan, a snowshoe hare and an ermine, each in white coat; white coats exist only November–April | +5 Spirits |
+| Beat Arvid's bull | Mount a moose whose antler spread beats Arvid's 168 cm | +10 Spirits; that mount's plate becomes Arvid's brass plate, engraved with both spreads |
+| A wall of ten | Mount 10 species, fish included | +10 Spirits |
+
+**Mounts and their costs.** The mount rule stands: a head and 1 game hour (Crafting and building in depth › Building pieces). New pieces:
+
+- **Plaque.** 1 split birch plank and 2 whittled pegs, 30 game minutes with the knife. A big-game head or a fish hangs on it.
+- **Small-game mount.** A whole small carcass or pelt, the knife, a bone or steel needle and 1 m of cordage, 30 game minutes, on a plaque. Any small game counts, down to a ptarmigan, as a viewer asked.
+- **Hanging.** A mount is the block `yearofice:trophy_mount` on a wall face. It stores species, size, trophy class, coat and date, and its plate reads them on inspect.
+
+**Rules.** Winter coats needs the coat on the day of the kill, which the carcass record keeps. A mount taken down and rehung counts once. Five or more mounts within one 4 × 2 area still make the Trophy wall structure (Structures and buildables › Animals, signals and pride).
+
+**Build.** Data `data/yearofice/ambition/big_five.json`, `winter_coats.json`, `beat_arvids_bull.json` and `wall_of_ten.json`, read by `story.ambition.AmbitionTracker` on `TrophyHungEvent`; item `yearofice:trophy_plaque`; block `yearofice:trophy_mount` (`build.decor.TrophyMountBlockEntity`, state `plate`: `plain` or `arvid`). Owner Ecosystem. Milestone M6. GameTest `yearofice:story/trophy_wall_ambitions` (M6): hanging the five named heads completes Big five once; a moose of 169 cm completes Beat Arvid's bull and one of 168 cm does not; a hare mounted in its brown coat does not count toward Winter coats.
 
 ## Story
 
@@ -396,6 +416,29 @@ Raising the mast takes 4 game hours and a pull-and-brace game like raising wall 
 | Two goats (doe and buck) | 150 | — | Landing drop only; milk for 240 days after a May kidding |
 | Three hens and a rooster (RECONCILE 28) | 100 | — | Landing drop only; eggs, and chicks with the rooster |
 | Two reindeer | 180 | — | Landing drop only; Homestead tier, after 2 years of steady research logs ("Pete's last favour"; Ideas from viewers › Livestock by supply drop) |
+
+**Salt from the mineral lick (video 2, A4; RECONCILE 170).** The drop's 5 kg of salt stays the easy route; a mineral lick is the slow one. The video boiled seawater for salt, but there is no sea in the interior, and real interior licks carry a salty crust.
+
+**Where.** Every lick carries `yearofice:salt_crust` blocks: the valley's 2–4 lick set pieces (Blueprint › Set pieces) and its 6–12 natural-feature licks (World map). The seep variant caps at 1 kg of crust; the clay-bank variant shows a thinner crust and caps at 0.5 kg. The crust exists only while the ground is thawed, May to September; from October it reads "Frozen mud. Nothing to scrape."
+
+1. **Scrape.** Hold RMB with a knife on a crust block: 0.05 kg of `yearofice:lick_crust` in 15 game minutes, at the light-work rate.
+2. **Boil down.** At a fire with a pot, 2 kg of crust in 4 L of water is strained through cloth or grass and boiled down over 2 game hours. It burns 1 armload and yields 0.15 kg of `yearofice:lick_salt`.
+
+**Regrowth.** A lick regrows 0.2 kg of crust a week up to its cap. Regrowth doubles in the first dry week after rain, as salts wick up and dry on the surface (the Environment field gives rain and dryness). One lick fully scraped through a summer gives about 5 kg of crust; the valley's licks together give 1–2 kg of salt a year.
+
+**Uses.** `lick_salt` and the crate's `rock_salt` are both in `#yearofice:salt`, so every recipe that asks for salt takes either. Salting meat or fish costs 1 kg of salt per 5 kg, packed in a barrel; that dose is what Blueprint › Preserving's "salt doubles every figure" costs. A salted green hide takes 0.1 kg per kg (Decay and time), and sauerkraut 30 g per 1.5 kg of cabbage. So lick salt goes on what matters most: a few hides, one batch of winter fish, the sauerkraut.
+
+**Danger.** Moose and Dall sheep visit licks at dawn and dusk (Water, calls and encounters › Water draws animals). Scraping at midday is safe; scraping at dusk risks a cow with a calf at under 30 m, by Blueprint › Danger in detail › Moose. Game trails converge on the white crust, so a lick is easy to read and easy to find.
+
+**On screen and sound.** Inspecting a lick reads "White crust: about 0.6 kg to scrape." The scrape plays `yearofice:work.crust_scrape`. A pot of lick brine boils down to a grey crust ring, and the yield line reads "0.15 kg of salt from 2 kg of crust."
+
+**Failure cases.** Boiling unstrained crust gives 0.15 kg of `lick_salt` at Poor quality, which salts at half strength. A pot left past dry on a Hot fire scorches: the salt is lost and the pot takes −10 condition. Rain on the crust before it is scraped washes 0.1 kg away.
+
+**Ties.** Preserving (Blueprint), Decay and time, the fire and cooking pot, set pieces and natural features (World map), and moose and sheep at the lick.
+
+**Build.** Items `yearofice:lick_crust` and `yearofice:lick_salt`; tag `#yearofice:salt` (with `rock_salt`); the existing block `yearofice:salt_crust` with state `crust` 0–4 (0.25 kg a step); action `data/yearofice/action/scrape_lick.json`; recipe `data/yearofice/recipe/station/lick_salt.json` at the fire; regrowth in `forage.LickCrust` on the day pass, with catch-up in closed form; tuning `[forage] lick_regrow_kg_per_week = 0.2`. Owner Building and crafting (the salt crust block stays World generation's). Milestone M5; the crust block generates from M2 with the licks (RECONCILE 167).
+
+**GameTests.** `yearofice:forage/lick_salt_yield` (M5): 40 scrapes over 2 full licks give 2.0 kg of crust in 10 ±0.1 game hours, and one boil gives 0.15 kg of salt and burns 1 armload. `yearofice:forage/lick_regrowth` (M5): an empty seep lick holds 0.2 ±0.01 kg after 7 dry game days, 0.4 after a dry week that follows rain, never more than 1 kg, and grows nothing from October to April.
 
 ## Data formats
 

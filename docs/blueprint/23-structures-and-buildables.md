@@ -93,6 +93,32 @@ The door and cache rules in Shelter and building stand: a wolf does 10 HP a hit 
 
 Porcupine gnawing is the surprise players tell friends about. The outhouse seat goes first, then the axe left in the chopping block. The messenger's morning line names it: "A porcupine chewed the axe handle. 40% left."
 
+**Door left open (video 2, A2; RECONCILE 170).** An open door or hatch lets animals into a building, and the game warns once before dark. In the second video a wolf walked in through an open cabin door, and an Alaskan viewer wrote "I always forget to shut the doors".
+
+**The dusk warning.** Thirty game minutes before civil dusk, the building the player last slept in is checked: the room in `yearofice_rooms` that holds their last bed. If any of its doors or hatches is open, warn-once id `door_open` fires: "Cabin door open. Close it before dark." Within 100 m it shows on the messenger and as a prompt near the crosshair; farther away it is a messenger line only, or a journal line without the device. Warn once's rule holds: it fires again only after the doors have been shut for 24 game hours.
+
+**Who comes in.** An open door is the `DOOR_OPEN` path type (Minecraft development › Pathfinding in voxel terrain), so animals can path through it. While the player is more than 20 m away, each open building rolls once a game hour. Scent is on the Items scale of 0–3.
+
+| Animal | When | Condition | Chance per game hour | What happens |
+| --- | --- | --- | --- | --- |
+| Red fox, marten, ermine | Night | Food scent 0.3 or more inside | 5% | Takes one food item of 1 kg or less and leaves |
+| Wolf | Any time | The pack's hunger drive is 0.6 or more, the pack is within 300 m and food is inside | 2% | Stays inside until driven out by noise or fire |
+| Grizzly or black bear | Any time, outside the den months | Scent 0.6 or more | 3% | Stays until driven out; opens chests and barrels by the bear rule above (50 HP a swipe, emptied at 0) |
+
+**What the player finds.** Every entry leaves fresh tracks on the threshold and a messenger line: "Fox tracks at the cabin door. 0.4 kg of dried fish gone." A wolf or bear still inside follows the existing standoff rules (Blueprint › Danger in detail): it defends only when cornered and never hunts the player. A shout, a banged pot or a lit torch at the door drives it out in 1–3 game minutes, by those rules.
+
+**Failure cases.** A hide door flap counts as closed but wolves still tear it (Crafting and building in depth › Building pieces). A door left open while the player sleeps inside rolls nothing, since the player is within 20 m. A bear inside at night makes the cabin a standoff at the doorway, the danger the warning exists to prevent.
+
+**The world option.** Entries roll only while `[world] animals_enter_open_doors` is on. It is on by default in every preset and can be changed after world creation (Minecraft development › World creation options and presets). Off, no animal enters and `door_open` never fires; heat still leaks through an open door (Warm rooms).
+
+**Ambition.** The existing "Held the door" gains a twin, "Shut tight": no animal enters any of the player's buildings from November 1 to March 31 (Open world in depth › Ambitions).
+
+**Ties.** Rooms and doors (Warm rooms), scent (Minecraft development › Layer 3), wolf packs and bear dens (Land animals in depth), warn once and the messenger, and the year: longer nights mean more night hours to roll.
+
+**Build.** `build.rooms.DoorWatch` checks the slept-in room at dusk and posts `door_open` through `HudBus`; `ecosystem.raid.ShelterEntry` rolls entries, with the odds in `sim.ecology.RaidOdds` (no Minecraft imports). Brain activity `yearofice:raid_shelter` and memory `yearofice:open_door_target`. Tuning `[ecosystem] door_entry_scale` (Gentle 0.5, Standard 1.0, Brutal 1.5); world option `[world] animals_enter_open_doors = true`. Ambition `data/yearofice/ambition/shut_tight.json`. Debug `/yoi raid door <species>`. Owner Ecosystem. Milestone M6.
+
+**GameTests.** `yearofice:ecology/door_entry_rates` (M6): an open cabin holding 2 kg of dried fish inside a fox range, with the player 50 m away, has a fox entry in 5% ±0.5 of 10,000 night hours, none by day and none with the door shut. `yearofice:ecology/door_entry_toggle` (M6): with the option off, 1,000 nights give 0 entries and no `door_open` line. `yearofice:hud/door_open_warn` (M6): the warning fires 30 ±1 game minutes before civil dusk and not again until the door has been shut 24 game hours.
+
 ### Rot
 
 The base rates stand: an unpeeled log loses 10% of its remaining HP a year and a peeled one 2%, so an unpeeled log keeps about 37% after 10 years. `RotModel` multiplies them once a game day.
@@ -233,6 +259,46 @@ The meltwater drain keeps the ice dry; a blocked drain doubles melt. Food inside
 **Potato clamp.** The year-1 store before a root cellar. It holds 0–4 °C until the ground freezes, then stays above freezing only under 40 cm of snow, which a snow fence can supply. It loses 15% to rot and voles by spring.
 
 **Fish-cutting shed.** The fish camp's kitchen, which Outposts lists only as a cleaning spot. Cleaning at its table takes ×0.7 time, and a smudge under the roof keeps flies off cut fish. Guts sent down the chute into current over 1 m/s leave no scent point at the shed. They do draw grizzlies to the next riffle downstream within 3 days, a new bear spot the player made. A gut barrel instead holds 10 kg of offal for wolves or the garden's fertility.
+
+**Drying rack and smoke rack, as blocks.** The Forge Labs dried and smoked meat runs on two racks, specified in Blueprint › Preserving in detail (drying) and The smoker (the smoke rack). This adds their ids and build lines; every number there stands.
+
+| Rack | Id | Blocks | Holds | Rule it runs | Data |
+| --- | --- | --- | --- | --- | --- |
+| Drying rack | `yearofice:drying_rack` | 2 × 1 × 2 | 15 kg fresh strips | 1 cm strips dry in 2 dry days of sun or wind; each uncovered rain hour adds 6 h; a full day of rain restarts the batch; above 15 °C flies lay eggs unless a smoky fire burns within 3 m | `data/yearofice/food/drying_rack.json` |
+| Smoke rack | `yearofice:smoke_rack` | 1 × 1 × 3, snapped over a fire ring | 10 kg of meat or fish | Hot smoke at 60–80 °C for 8–12 game hours; loses heat and smoke in wind over 8 m/s (Weather and storms) | `data/yearofice/food/smoke_rack.json` |
+
+Both are block entities in `food.preserve` (`DryingRackBlockEntity`, `SmokeRackBlockEntity`), owned by Food and hunting, in M5. Strips go on as `dried_meat` or `dried_fish` (Items › Food values) and take state `dried` or `smoked` when done; the shelf lives are Decay and time's (dried 60 days, hot-smoked 30, salt doubles each). The smoke rack reads its heat from the fire ring's state, so a dying fire stalls the batch. Debug `/yoi food rack` prints the batch, hours left and rain hours. GameTests: `yearofice:food/drying_rack_two_dry_days` (M5): 15 kg of moose strips on a rack in dry July air reach `dried` in 48 ±1 game hours, and in 54 ±1 with one uncovered rain hour. `yearofice:food/hot_smoke_keeps_30_days` (M5): hot-smoked strips from the smoke rack, kept dry at 5 °C, stay above Stale for 30 ±1 game days, and 60 ±1 when salted.
+
+**Thieves at the rack (video 2, A3; RECONCILE 170).** Meat, fish and hides left out to dry are raided by real animals, and every theft leaves sign. In the second video foxes stole drying hides until the rack was fenced. The rolls cover the `drying_rack`, the `smoke_rack`, hides on a `stretcher_board`, strips on a `smudge_fish_rack` and quarters on a meat pole. Each rolls once a game hour while the player is more than 30 m away.
+
+| Thief | When | Chance per game hour | Takes | Where it goes |
+| --- | --- | --- | --- | --- |
+| Red fox | Night | 4% | One hide of 2 kg or less, or a meat strip | Dragged 20–60 m and cached under moss or snow as a `yearofice:theft_cache`; tracks lead to it; 70% recoverable within 2 game days, after that eaten |
+| Gray jay or black-billed magpie | Day | 8% | One fish or meat strip of 0.2 kg or less; never hides | Eaten |
+| Raven | Day | 3% | Meat of 0.5 kg or less | Eaten |
+| Marten | Night, within 300 m of spruce | 2% | Meat or fish | Eaten |
+
+**Protection.**
+
+- A 2-block pole fence with a closed gate stops foxes. An open gate stops nothing.
+- Martens climb, so only a roofed rack stops them.
+- A roof, or a lit smoker within 4 blocks, halves the bird rolls.
+- A tamed wolf within 20 m multiplies every roll by 0.25.
+- With the player within 30 m every chance is 0. A named jay (Items › Theft by animals) takes nothing.
+
+**What the player sees.** Fox or marten prints, scratch marks and droppings, or feathers lie under the rack. The messenger reports each theft once: "Fox tracks at the rack. One hide missing." A fox's drag mark runs to the cache, a moss or snow mound that RMB opens. A cache found after 2 game days is empty.
+
+**Failure cases.** A hide dragged through rain or snow arrives wet (Items › Wet). A rack inside a fence with the gate left open is unguarded. A meat pole 4 m up stops foxes and martens only if they cannot climb to it; the marten still can, as Blueprint › Field care says of wolverines.
+
+**Rules.** These rolls replace the Blueprint's flat raven loss on drying racks (0.5 kg per raven a day) wherever both would apply. Items › Theft by animals still covers food and gear on the ground and the camp-robber jay near a fire. Unloaded racks catch up on chunk load by replaying the missed hourly rolls from the same seeded stream, so a rack left a week loses what it would have lost live.
+
+**The world option.** Rolls run only while `[world] rack_thieves` is on: on by default in every preset and changeable after world creation (Minecraft development › World creation options and presets). Off, racks lose nothing to thieves; rain, flies and spoilage still apply.
+
+**Ties.** Preserving (the racks above), Decay and time, Items › Theft by animals, fences and gates, the tamed wolf (Open world in depth › Taming a wolf), and sign and tracks (Blueprint › Tracks and sign). Fences and drying sheds now earn their place.
+
+**Build.** `ecosystem.raid.RackThieves` rolls each rack, with the odds in `sim.ecology.RaidOdds`; the thief's visit is resolved by roll, and sign decals and the cache are written as world edits. Brain activity `yearofice:rack_raid` and memory `yearofice:rack_target` drive a thief the player can see when within sight range. Block entity `yearofice:theft_cache` holds the stolen stack and its day. Tuning `[ecosystem] rack_theft_scale` (Gentle 0.5, Standard 1.0, Brutal 1.5); world option `[world] rack_thieves = true`. Debug `/yoi raid rack <thief>`. Owner Ecosystem. Milestone M6.
+
+**GameTests.** `yearofice:ecology/rack_thief_rates` (M6): over 10,000 simulated night hours an open rack with a hide loses it to a fox in 4% ±0.4 of hours; behind a 2-block fence with the gate closed, in 0; with a tamed wolf within 20 m, in 1% ±0.2. `yearofice:ecology/rack_thieves_toggle` (M6): with the option off, 1,000 game days of unattended racks lose nothing to thieves, and turning it on mid-world takes effect at the next game hour.
 
 ## Hides, fire, earth and metal
 
