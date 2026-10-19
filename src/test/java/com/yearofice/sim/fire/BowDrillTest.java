@@ -108,7 +108,7 @@ class BowDrillTest {
 
     @Test
     void judgeAcceptsAPlausibleFire() {
-        BowDrillJudge.Verdict v = BowDrillJudge.judge(goodStrokes(), facts(75, 15, 10, 4), T);
+        BowDrillJudge.Verdict v = BowDrillJudge.judge(goodStrokes(), facts(75, 15, 10, 8), T);
         assertEquals(Outcome.FLAME, v.outcome());
         assertEquals(60, v.kcal());
         assertEquals(1, v.reps(), 1e-9);
@@ -118,13 +118,13 @@ class BowDrillTest {
     @Test
     void judgeRejectsTheImpossible() {
         // Too fast: under 70% of the fastest legal run.
-        assertEquals(Outcome.REJECTED, BowDrillJudge.judge(goodStrokes(), facts(30, 15, 10, 4), T).outcome());
+        assertEquals(Outcome.REJECTED, BowDrillJudge.judge(goodStrokes(), facts(30, 15, 10, 8), T).outcome());
         // Strokes that could not have built 100 heat.
-        assertEquals(Outcome.REJECTED, BowDrillJudge.judge(new Summary(Claim.FLAME, 60, 60, 100, 3, false), facts(75, 15, 10, 4), T).outcome());
+        assertEquals(Outcome.REJECTED, BowDrillJudge.judge(new Summary(Claim.FLAME, 60, 60, 100, 3, false), facts(75, 15, 10, 8), T).outcome());
         // The held shortcut before Practiced.
-        assertEquals(Outcome.REJECTED, BowDrillJudge.judge(new Summary(Claim.FLAME, 0, 0, 100, 3, true), facts(10, 15, 10, 4), T).outcome());
+        assertEquals(Outcome.REJECTED, BowDrillJudge.judge(new Summary(Claim.FLAME, 0, 0, 100, 3, true), facts(10, 15, 10, 8), T).outcome());
         // A rejected result still costs its kcal and counts as a failed try.
-        BowDrillJudge.Verdict v = BowDrillJudge.judge(goodStrokes(), facts(30, 15, 10, 4), T);
+        BowDrillJudge.Verdict v = BowDrillJudge.judge(goodStrokes(), facts(30, 15, 10, 8), T);
         assertEquals(60, v.kcal());
         assertEquals(0.5, v.reps(), 1e-9);
         // At Practiced the 6-second hold is legal.
@@ -134,11 +134,11 @@ class BowDrillTest {
 
     @Test
     void judgeAppliesWetWoodWetTinderAndEnergy() {
-        assertEquals(Outcome.WET_BOARD, BowDrillJudge.judge(goodStrokes(), facts(75, 55, 10, 4), T).outcome());
-        assertEquals(Outcome.WET_TINDER, BowDrillJudge.judge(goodStrokes(), facts(75, 15, 50, 4), T).outcome());
-        assertEquals(Outcome.TOO_TIRED, BowDrillJudge.judge(goodStrokes(), facts(75, 15, 10, 1.5), T).outcome());
+        assertEquals(Outcome.WET_BOARD, BowDrillJudge.judge(goodStrokes(), facts(75, 55, 10, 8), T).outcome());
+        assertEquals(Outcome.WET_TINDER, BowDrillJudge.judge(goodStrokes(), facts(75, 15, 50, 8), T).outcome());
+        assertEquals(Outcome.TOO_TIRED, BowDrillJudge.judge(goodStrokes(), facts(75, 15, 10, 3.5), T).outcome());
         // Quitting before a stroke costs nothing.
-        BowDrillJudge.Verdict quit = BowDrillJudge.judge(new Summary(Claim.ABORTED, 0, 0, 0, 0, false), facts(1, 15, 10, 4), T);
+        BowDrillJudge.Verdict quit = BowDrillJudge.judge(new Summary(Claim.ABORTED, 0, 0, 0, 0, false), facts(1, 15, 10, 8), T);
         assertEquals(0, quit.kcal());
         assertEquals(0, quit.reps(), 1e-9);
     }

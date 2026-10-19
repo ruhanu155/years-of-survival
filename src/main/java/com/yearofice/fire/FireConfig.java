@@ -44,7 +44,7 @@ public final class FireConfig {
         NOTES.put("drillPracticedPct", "Bow-drill success % at Practiced.");
         NOTES.put("drillSkillReps", "Fire skill reps to Practiced (then the drill is one 6 s hold).");
         NOTES.put("drillKcal", "kcal one bow-drill try costs.");
-        NOTES.put("drillMinEnergy", "Energy bolts below which a bow-drill attempt ends.");
+        NOTES.put("drillMinEnergy", "Energy bolts (0-10) below which a bow-drill attempt ends.");
         NOTES.put("drillWindPct", "Bow-drill success x this % in strong wind without shelter.");
         NOTES.put("packedArmloads", "More armloads than this packs a fire too full.");
         NOTES.put("packedHotArmloads", "More armloads than this packs a Hot fire too full.");
