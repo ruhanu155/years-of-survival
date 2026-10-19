@@ -1,0 +1,9 @@
+{
+  "species": "yearofice:snowshoe_hare",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    { "item": "yearofice:snowshoe_hare_meat", "kind": "meat", "unit_g": 100 },
+    { "item": "yearofice:hare_pelt", "kind": "cover" },
+    { "item": "yearofice:sinew", "kind": "sinew" }
+  ]
+}

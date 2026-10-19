@@ -22,6 +22,7 @@ public final class YearOfIce {
         com.yearofice.body.BodySystem.init(modBus);
         com.yearofice.fire.FireSystem.init(modBus);
         com.yearofice.hunt.fishing.FishingSystem.init(modBus);
+        com.yearofice.ecosystem.EcosystemSystem.init(modBus);
         LOG.info("Year of Ice loading (preset {})", "from config");
     }
 }

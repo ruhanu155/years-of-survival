@@ -1,0 +1,16 @@
+{
+  "species": "yearofice:moose",
+  "poses": {
+    "standing": [
+      { "zone": "heart_lungs", "center_m": [0, 1.35, 0.55], "radii_m": [0.25, 0.225, 0.25], "shoulder_front": 0.3 },
+      { "zone": "liver", "center_m": [0, 1.35, 0.2], "radii_m": [0.15, 0.125, 0.15] },
+      { "zone": "spine", "center_m": [0, 2.0, 0], "radii_m": [0.04, 0.04, 1.1] },
+      { "zone": "brain", "center_m": [0, 2.1, 1.55], "radii_m": [0.05, 0.05, 0.05] },
+      { "zone": "gut", "center_m": [0, 1.4, -0.25], "radii_m": [0.45, 0.45, 0.7] },
+      { "zone": "legs", "below_y_m": 1.0 }
+    ],
+    "bedded": { "from": "standing", "lower_m": 0.9 }
+  },
+  "kill_threshold_j": 30,
+  "bloodshot": { "heart_lungs": ["ribs", "front_left", "front_right"], "gut": ["loin", "hind_left", "hind_right"] }
+}

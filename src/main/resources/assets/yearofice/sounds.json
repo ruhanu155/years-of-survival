@@ -6,5 +6,13 @@
   "fire.bow_drill": {
     "subtitle": "subtitles.yearofice.fire.bow_drill",
     "sounds": ["yearofice:fire/bow_drill1", "yearofice:fire/bow_drill2"]
+  },
+  "trap.snare_hare": {
+    "subtitle": "subtitles.yearofice.trap.snare_hare",
+    "sounds": [
+      {"name": "minecraft:mob/rabbit/hurt1", "attenuation_distance": 40},
+      {"name": "minecraft:mob/rabbit/hurt2", "attenuation_distance": 40},
+      {"name": "minecraft:mob/rabbit/hurt3", "attenuation_distance": 40}
+    ]
   }
 }

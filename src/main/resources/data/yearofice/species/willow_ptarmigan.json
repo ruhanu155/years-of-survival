@@ -1,0 +1,23 @@
+{
+  "entity": "yearofice:willow_ptarmigan",
+  "rig": "grouse",
+  "habitat": ["open_shrub", "willow_edge"],
+  "population": [10, 30],
+  "home_range_m": 300,
+  "active": ["dawn", "day", "dusk"],
+  "gaits": { "walk": 0.8, "trot": 2, "run": 3, "fly": 12 },
+  "senses": { "sight": 30, "hearing": 10, "smell": 0, "fov": 300 },
+  "behavior": {
+    "alert": 30, "response": 70, "calm": 20, "freezes": true, "flush_m": 3,
+    "flee_m": [25, 35], "flee_gait": "fly", "zigzag": false, "hide_min": [10, 30], "charges": false
+  },
+  "huntable": true,
+  "respawn_days": 10,
+  "carcass": {
+    "whole_kg": 0.55, "class": "small", "body_plan": "bird", "tau_h": 1, "floats": true,
+    "poses": ["dead_wings"],
+    "steps": { "gut": 2, "pluck": 4 },
+    "parts": { "meat": 0.35, "organs": { "giblets": 0.03 }, "cover": { "feathers": 12, "kind": "soft feet" }, "guts_kg": 0.06 }
+  },
+  "butcher_table": "yearofice:butchering/willow_ptarmigan"
+}
