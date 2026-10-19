@@ -9,7 +9,7 @@ import net.minecraft.network.chat.Component;
 
 /**
  * One page of the Trail Messenger (Minecraft development › Messenger screens). The slice ships Vitals, Nutrition
- * and Weather; Map, Prompts, Notebook, Stores, Fires, Ambitions, Journal, Radio and SOS follow with their systems.
+ * and Weather, plus the guided night's Guide; Map, Prompts, Notebook, Stores, Fires, Ambitions, Journal, Radio and SOS follow with their systems.
  */
 public interface MessengerPage {
 
@@ -152,7 +152,15 @@ public interface MessengerPage {
         }
     };
 
-    MessengerPage[] ALL = {VITALS, NUTRITION, WEATHER};
+    /** Guide: the guided first night's current step, replayed (client.story.GuidePage). */
+    MessengerPage GUIDE = new MessengerPage() {
+        @Override public String id() { return "guide"; }
+
+        @Override
+        public void render(Lcd l, BodySyncPayload p) { com.yearofice.client.story.GuidePage.render(l, p); }
+    };
+
+    MessengerPage[] ALL = {VITALS, NUTRITION, WEATHER, GUIDE};
 
     static String band(float bmi) {
         if (bmi >= 25) return "heavy";

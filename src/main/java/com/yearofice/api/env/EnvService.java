@@ -81,6 +81,13 @@ public interface EnvService {
 
     WeatherOverride override(ServerLevel level);
 
+    /**
+     * Fixes the weather of May 1 of year 1 for this world (Blueprint › Start site › Day 1 rules), or null to draw it.
+     * Unlike {@link #setOverride} it is part of the weather itself: the day chain and the anomaly continue from it.
+     * Not saved here: the system that owns the rule (story, for the guided first night) sets it on every start.
+     */
+    void fixFirstDay(ServerLevel level, WeatherModel.FixedDay day);
+
     static EnvService get() {
         EnvService s = Holder.service;
         if (s == null) throw new IllegalStateException("EnvService not installed yet");

@@ -80,6 +80,8 @@
     { "type": "tag", "status": "registered", "basis": "Registered by M2 lane A (worldgen); the Director re-tags on merge", "ids": ["terrain_steps", "diggable_soil", "freezing_soils", "erodible_bank", "valley_biomes"] }
   ],
   "additions": [
+    { "basis": "World and story, M2.5 slice guided first night: story.Onboarding's per-player state machine and warn-once memory (Ready for development M2.5, Story; Blueprint > Start site > The guided first night)", "milestone": "m2_5", "owner": "story", "type": "attachment", "ids": ["onboarding"] },
+    { "basis": "World and story, M2.5 slice guided first night: the objective beacon's target and the Guide page's step, to the owner (Minecraft engine > The HUD: the beacon is world-space, drawn by client.story)", "milestone": "m2_5", "owner": "story", "type": "payload", "ids": ["onboarding_sync"] },
     { "basis": "Added in the review round: Trees and firewood (RECONCILE 103); Ready for development M2 ids", "milestone": "m2", "owner": "worldgen", "type": "block", "ids": ["stump", "fallen_log", "chopping_block"] },
     { "basis": "Added in the review round: Trees and firewood; Ready for development M2 ids (the 16 <wood>_round and <wood>_split items)", "milestone": "m2", "owner": "building", "type": "item", "ids": ["<wood>_round", "<wood>_split", "spruce_bark"] },
     { "basis": "Added in the review round: Trees and firewood", "milestone": "m2", "owner": "look", "type": "sound_event", "ids": ["tree.chop", "tree.creak", "tree.fall", "tree.split", "tree.hang_creak"] },
