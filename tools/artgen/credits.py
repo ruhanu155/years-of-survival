@@ -45,7 +45,7 @@ def build():
         name = r["id"].split(":")[1]
         folder = r.get("folder", "item")
         files = [f"assets/yearofice/textures/{folder}/{name}.png"] + [f"assets/yearofice/textures/{folder}/{name}_{v}.png" for v in r.get("variants", {})]
-        if folder == "item":
+        if folder == "item" and r.get("model", True):
             files.append(f"assets/yearofice/models/item/{name}.json")
         recipe = os.path.relpath(fn, ROOT)
         if r["kind"] == "found_icon":
@@ -100,6 +100,19 @@ def build():
     entries.append({"asset_id": "model_snare", "files": snare.outputs(), "source_type": "generated",
                     "recipe": "tools/artgen/snare.py", "licence": "project", "generator_version": snare.VERSION,
                     "release_blocker": False})
+    import cooking  # noqa: E402
+    entries.append({"asset_id": "model_cooking", "files": cooking.outputs(), "source_type": "generated",
+                    "recipe": "tools/artgen/cooking.py", "licence": "project", "generator_version": cooking.VERSION,
+                    "release_blocker": False})
+    # GUI textures drawn by gui_messenger.py (the entries `write` used to drop: RECONCILE 168 bug)
+    import gui_messenger  # noqa: E402
+    entries.append({"asset_id": "gui_messenger_device", "files": ["assets/yearofice/textures/gui/messenger/device.png",
+                    "assets/yearofice/textures/gui/messenger/corner.png"], "source_type": "generated",
+                    "recipe": "tools/artgen/gui_messenger.py", "licence": "project", "generator_version": gui_messenger.VERSION,
+                    "release_blocker": False})
+    entries.append({"asset_id": "gui_hud_vitals_strip", "files": [f"assets/yearofice/textures/gui/sprites/hud/{n}.png" for n in gui_messenger.ICONS],
+                    "source_type": "generated", "recipe": "tools/artgen/gui_messenger.py", "licence": "project",
+                    "generator_version": gui_messenger.VERSION, "release_blocker": False})
     # synthesized sounds: one entry per soundgen recipe whose files are shipped
     for fn in sorted(glob.glob(os.path.join(ROOT, "tools", "soundgen", "recipes", "**", "*.json"), recursive=True)):
         r = json.load(open(fn))

@@ -1,5 +1,6 @@
 package com.yearofice.ecosystem.carcass;
 
+import com.yearofice.item.component.YoiComponents;
 import com.yearofice.api.body.BodyService;
 import com.yearofice.ecosystem.EcoConfig;
 import com.yearofice.ecosystem.EcosystemRegistry;
@@ -30,7 +31,7 @@ public class WholeGameItem extends Item {
     public static ItemStack of(CarcassRecord r) {
         ItemStack s = new ItemStack(EcosystemRegistry.WHOLE_GAME.get());
         s.set(EcosystemRegistry.CARCASS_COMPONENT.get(), r);
-        s.set(EcosystemRegistry.FRESH.get(), r.fresh());
+        s.set(YoiComponents.FRESH.get(), r.fresh());
         return s;
     }
 
@@ -48,7 +49,7 @@ public class WholeGameItem extends Item {
         CarcassRecord r = record(stack);
         if (r == null) return;
         lines.add(Component.translatable("item.yearofice.whole_game.weight", String.format("%.2f", r.weightG() / 1000.0)));
-        Fresh f = stack.get(EcosystemRegistry.FRESH.get());
+        Fresh f = stack.get(YoiComponents.FRESH.get());
         if (f != null && Butchering.clientLevel() != null) {
             double fr = f.freshness(Freshness.dNow(Butchering.clientLevel()));
             int stage = DecayLadder.FOOD.stageOf(f.progress(Freshness.dNow(Butchering.clientLevel())));

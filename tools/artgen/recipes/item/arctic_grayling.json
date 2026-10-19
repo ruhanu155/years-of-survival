@@ -136,5 +136,17 @@
    "step": 1,
    "flat": true
   }
- ]
+ ],
+ "model": false,
+ "variants": {
+  "cooked": {
+   "steel": "meat_cooked",
+   "stem_red": "meat_cooked"
+  },
+  "burnt": {
+   "steel": "fur_black",
+   "stem_red": "bark_spruce",
+   "smoked": "bark_spruce"
+  }
+ }
 }
