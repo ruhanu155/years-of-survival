@@ -1,0 +1,2 @@
+{ "id": "yearofice:fire.bow_drill", "kind": "stroke", "variants": 2, "length_s": 0.32, "lufs": -22,
+  "rasp_hz": 900, "rasp_q": 2.0, "grain_density": 0.02, "grain_gain": 0.6, "squeal_hz": 1450, "squeal_gain": 0.08, "highpass_hz": 120 }

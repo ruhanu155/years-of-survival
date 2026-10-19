@@ -1,16 +1,21 @@
 {
   "commands.yearofice.info": "Year of Ice info",
-
+  "block.yearofice.fire_ring": "Fire Ring",
+  "item.yearofice.tinder_bundle": "Tinder Bundle",
+  "item.yearofice.kindling": "Kindling",
+  "item.yearofice.bow_drill": "Bow Drill",
+  "item.yearofice.match": "Match",
+  "screen.yearofice.bow_drill": "Bow drill",
+  "subtitles.yearofice.fire.crackle": "Fire crackles",
+  "subtitles.yearofice.fire.bow_drill": "Bow drill saws",
   "item.yearofice.messenger": "Trail Messenger",
   "item.yearofice.messenger.battery": "Battery %s%%",
   "item.yearofice.messenger.hint": "Use or press M to open",
   "key.categories.yearofice": "Year of Ice",
   "key.yearofice.messenger": "Trail Messenger",
-
   "messenger.yearofice.page.vitals": "VITALS",
   "messenger.yearofice.page.nutrition": "FOOD",
   "messenger.yearofice.page.weather": "WEATHER",
-
   "messenger.yearofice.vitals.waiting": "Waiting for the satellite...",
   "messenger.yearofice.vitals.status": "Day %s  %s",
   "messenger.yearofice.vitals.battery": "Bat %s%%",
@@ -69,14 +74,12 @@
   "messenger.yearofice.vitals.activity.heavy": "heavy work",
   "messenger.yearofice.vitals.activity.run": "running",
   "messenger.yearofice.vitals.activity.swim": "swimming",
-
   "messenger.yearofice.corner.day": "d%s",
   "messenger.yearofice.corner.warmth": "Warm %s  %s",
   "messenger.yearofice.corner.water": "Water %s  wet %s",
   "messenger.yearofice.corner.energy": "Energy %s / %s",
   "messenger.yearofice.corner.kcal": "24 h %s kcal",
   "messenger.yearofice.corner.dead": "Battery dead",
-
   "messenger.yearofice.pickup.ate": "+%s kcal (stomach %s%%)",
   "messenger.yearofice.pickup.drank": "+%s mL water (water %s)",
   "messenger.yearofice.warn.stomach_full": "Stomach full.",

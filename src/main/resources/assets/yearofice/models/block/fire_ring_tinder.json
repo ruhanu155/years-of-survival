@@ -1,0 +1,42 @@
+{
+ "parent": "minecraft:block/block",
+ "render_type": "minecraft:cutout",
+ "textures": {
+  "particle": "yearofice:block/fire_ring_tinder",
+  "tinder": "yearofice:block/fire_ring_tinder"
+ },
+ "elements": [
+  {
+   "from": [
+    6,
+    0.2,
+    6
+   ],
+   "to": [
+    10,
+    2,
+    10
+   ],
+   "faces": {
+    "north": {
+     "texture": "#tinder"
+    },
+    "south": {
+     "texture": "#tinder"
+    },
+    "east": {
+     "texture": "#tinder"
+    },
+    "west": {
+     "texture": "#tinder"
+    },
+    "up": {
+     "texture": "#tinder"
+    },
+    "down": {
+     "texture": "#tinder"
+    }
+   }
+  }
+ ]
+}

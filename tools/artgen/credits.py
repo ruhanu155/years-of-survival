@@ -15,7 +15,7 @@ import modelgen  # noqa: E402
 ALLOWED = {"project", "CC0-1.0", "CC-BY-3.0", "CC-BY-4.0", "CC-BY-SA-3.0", "CC-BY-SA-4.0", "CC-BY-NC-4.0", "CC-BY-NC-SA-4.0",
            "MIT", "BSD-2-Clause", "BSD-3-Clause", "Zlib", "OFL-1.1", "permission"}
 BLOCKER = {"CC-BY-SA-3.0", "CC-BY-SA-4.0", "CC-BY-NC-4.0", "CC-BY-NC-SA-4.0"}  # RECONCILE 151: personal use only
-COVERED = ("geo", "animations", "textures", "models")
+COVERED = ("geo", "animations", "textures", "models", "blockstates", "sounds")
 
 
 def rel(p):
@@ -91,6 +91,22 @@ def build():
         else:
             entries.append({"asset_id": f"model_{sid}", "files": files, "source_type": "generated", "recipe": sf,
                             "licence": "project", "generator_version": modelgen.VERSION, "release_blocker": False})
+    # generated block models and blockstates
+    import fire_ring  # noqa: E402
+    entries.append({"asset_id": "model_fire_ring", "files": fire_ring.outputs(), "source_type": "generated",
+                    "recipe": "tools/artgen/fire_ring.py", "licence": "project", "generator_version": fire_ring.VERSION,
+                    "release_blocker": False})
+    # synthesized sounds: one entry per soundgen recipe whose files are shipped
+    for fn in sorted(glob.glob(os.path.join(ROOT, "tools", "soundgen", "recipes", "**", "*.json"), recursive=True)):
+        r = json.load(open(fn))
+        base = r["id"].split(":")[1].replace(".", "/")
+        n = r.get("variants", 1)
+        files = [f"assets/yearofice/sounds/{base}{i + 1 if n > 1 else ''}.ogg" for i in range(n)]
+        files = [f for f in files if os.path.isfile(os.path.join(ROOT, "src", "main", "resources", f))]
+        if files:
+            entries.append({"asset_id": "snd_" + r["id"].split(":")[1].replace(".", "_"), "files": files, "source_type": "generated",
+                            "recipe": os.path.relpath(fn, ROOT), "licence": "project", "generator_version": "soundgen 0.1.0",
+                            "release_blocker": False})
     return {"schema": 1, "note": "One entry per shipped art file. Generated entries name their recipe; found entries name source, licence file and the original's SHA-256.", "entries": entries}
 
 

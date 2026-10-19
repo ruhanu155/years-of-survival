@@ -1,0 +1,78 @@
+{
+ "id": "yearofice:fire_ring_stone",
+ "kind": "icon",
+ "folder": "block",
+ "rim": false,
+ "notes": "River stones of the ring.",
+ "shapes": [
+  {
+   "kind": "rect",
+   "box": [
+    0,
+    0,
+    15,
+    15
+   ],
+   "ramp": "rock_schist",
+   "step": 2,
+   "noise": 0.25,
+   "speckle": {
+    "density": 0.12,
+    "step": 1
+   }
+  },
+  {
+   "kind": "ellipse",
+   "box": [
+    1,
+    1,
+    7,
+    6
+   ],
+   "ramp": "rock_schist",
+   "step": 3
+  },
+  {
+   "kind": "ellipse",
+   "box": [
+    8,
+    4,
+    14,
+    9
+   ],
+   "ramp": "gravel",
+   "step": 3
+  },
+  {
+   "kind": "ellipse",
+   "box": [
+    2,
+    9,
+    8,
+    14
+   ],
+   "ramp": "rock_schist",
+   "step": 3
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     3,
+     2
+    ],
+    [
+     10,
+     5
+    ],
+    [
+     4,
+     10
+    ]
+   ],
+   "ramp": "rock_schist",
+   "step": 4,
+   "flat": true
+  }
+ ]
+}

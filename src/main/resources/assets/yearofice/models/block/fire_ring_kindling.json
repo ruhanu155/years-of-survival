@@ -1,0 +1,156 @@
+{
+ "parent": "minecraft:block/block",
+ "render_type": "minecraft:cutout",
+ "textures": {
+  "particle": "yearofice:block/fire_ring_kindling",
+  "kindling": "yearofice:block/fire_ring_kindling"
+ },
+ "elements": [
+  {
+   "from": [
+    3.5,
+    2,
+    7.5
+   ],
+   "to": [
+    12.5,
+    3,
+    8.5
+   ],
+   "faces": {
+    "north": {
+     "texture": "#kindling"
+    },
+    "south": {
+     "texture": "#kindling"
+    },
+    "east": {
+     "texture": "#kindling"
+    },
+    "west": {
+     "texture": "#kindling"
+    },
+    "up": {
+     "texture": "#kindling"
+    },
+    "down": {
+     "texture": "#kindling"
+    }
+   }
+  },
+  {
+   "from": [
+    7.5,
+    2.2,
+    3.5
+   ],
+   "to": [
+    8.5,
+    3.2,
+    12.5
+   ],
+   "faces": {
+    "north": {
+     "texture": "#kindling"
+    },
+    "south": {
+     "texture": "#kindling"
+    },
+    "east": {
+     "texture": "#kindling"
+    },
+    "west": {
+     "texture": "#kindling"
+    },
+    "up": {
+     "texture": "#kindling"
+    },
+    "down": {
+     "texture": "#kindling"
+    }
+   }
+  },
+  {
+   "from": [
+    3.5,
+    3,
+    7.4
+   ],
+   "to": [
+    12.5,
+    4,
+    8.4
+   ],
+   "faces": {
+    "north": {
+     "texture": "#kindling"
+    },
+    "south": {
+     "texture": "#kindling"
+    },
+    "east": {
+     "texture": "#kindling"
+    },
+    "west": {
+     "texture": "#kindling"
+    },
+    "up": {
+     "texture": "#kindling"
+    },
+    "down": {
+     "texture": "#kindling"
+    }
+   },
+   "rotation": {
+    "origin": [
+     8,
+     3.5,
+     8
+    ],
+    "axis": "y",
+    "angle": 45
+   }
+  },
+  {
+   "from": [
+    3.5,
+    3.1,
+    7.6
+   ],
+   "to": [
+    12.5,
+    4.1,
+    8.6
+   ],
+   "faces": {
+    "north": {
+     "texture": "#kindling"
+    },
+    "south": {
+     "texture": "#kindling"
+    },
+    "east": {
+     "texture": "#kindling"
+    },
+    "west": {
+     "texture": "#kindling"
+    },
+    "up": {
+     "texture": "#kindling"
+    },
+    "down": {
+     "texture": "#kindling"
+    }
+   },
+   "rotation": {
+    "origin": [
+     8,
+     3.5,
+     8
+    ],
+    "axis": "y",
+    "angle": -45
+   }
+  }
+ ]
+}

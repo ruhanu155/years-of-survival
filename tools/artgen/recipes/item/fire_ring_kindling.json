@@ -1,0 +1,57 @@
+{
+ "id": "yearofice:fire_ring_kindling",
+ "kind": "icon",
+ "folder": "block",
+ "rim": false,
+ "notes": "Dead spruce twigs, end and side.",
+ "shapes": [
+  {
+   "kind": "rect",
+   "box": [
+    0,
+    0,
+    15,
+    15
+   ],
+   "ramp": "bark_spruce",
+   "step": 2,
+   "noise": 0.25
+  },
+  {
+   "kind": "rect",
+   "box": [
+    0,
+    6,
+    15,
+    8
+   ],
+   "ramp": "wood_cut",
+   "step": 2,
+   "noise": 0.2
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     2,
+     1
+    ],
+    [
+     7,
+     3
+    ],
+    [
+     12,
+     12
+    ],
+    [
+     5,
+     13
+    ]
+   ],
+   "ramp": "bark_spruce",
+   "step": 4,
+   "flat": true
+  }
+ ]
+}

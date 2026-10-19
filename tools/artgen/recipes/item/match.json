@@ -1,0 +1,46 @@
+{
+ "id": "yearofice:match",
+ "kind": "icon",
+ "notes": "A wooden strike-anywhere match from the crate tin.",
+ "shapes": [
+  {
+   "kind": "line",
+   "points": [
+    [
+     3,
+     13
+    ],
+    [
+     11,
+     5
+    ]
+   ],
+   "width": 2,
+   "ramp": "wood_cut",
+   "step": 3
+  },
+  {
+   "kind": "ellipse",
+   "box": [
+    10,
+    2,
+    14,
+    6
+   ],
+   "ramp": "berry_red",
+   "step": 2
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     12,
+     3
+    ]
+   ],
+   "ramp": "berry_red",
+   "step": 4,
+   "flat": true
+  }
+ ]
+}

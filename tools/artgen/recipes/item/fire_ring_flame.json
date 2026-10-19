@@ -1,0 +1,94 @@
+{
+ "id": "yearofice:fire_ring_flame",
+ "kind": "icon",
+ "folder": "block",
+ "notes": "Flame tongues for the crossed planes.",
+ "shapes": [
+  {
+   "kind": "poly",
+   "points": [
+    [
+     1,
+     15
+    ],
+    [
+     3,
+     7
+    ],
+    [
+     5,
+     10
+    ],
+    [
+     7,
+     1
+    ],
+    [
+     9,
+     8
+    ],
+    [
+     11,
+     4
+    ],
+    [
+     13,
+     9
+    ],
+    [
+     14,
+     15
+    ]
+   ],
+   "ramp": "fire",
+   "step": 2
+  },
+  {
+   "kind": "poly",
+   "points": [
+    [
+     4,
+     15
+    ],
+    [
+     6,
+     9
+    ],
+    [
+     8,
+     4
+    ],
+    [
+     10,
+     10
+    ],
+    [
+     12,
+     15
+    ]
+   ],
+   "ramp": "fire",
+   "step": 3
+  },
+  {
+   "kind": "poly",
+   "points": [
+    [
+     6,
+     15
+    ],
+    [
+     8,
+     9
+    ],
+    [
+     10,
+     15
+    ]
+   ],
+   "ramp": "fire",
+   "step": 4,
+   "flat": true
+  }
+ ]
+}

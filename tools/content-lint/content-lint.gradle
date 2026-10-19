@@ -1,0 +1,54 @@
+// tools/content-lint: the content linter, the doc inventory and the CODEOWNERS generator (build developer).
+// Pure Java over the repository; Gson comes from the main classpath. Usage:
+//   ./gradlew contentLint                 runs the lint checks (a dependency of check, so build runs it)
+//   ./gradlew docInventory                regenerates studio/inventory.json from the doc and studio/inventory-rules.json
+//   ./gradlew codeowners                  regenerates .github/CODEOWNERS from studio/ownership.json
+// The report lands in build/content-lint/report.txt.
+sourceSets {
+    contentLint {
+        java { srcDir 'tools/content-lint/src/main/java' }
+        compileClasspath += sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.runtimeClasspath
+    }
+}
+
+def contentLintLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
+def minecraftResourcesJar = layout.buildDirectory.file("moddev/artifacts/neoforge-${neo_version}-client-extra-aka-minecraft-resources.jar")
+
+tasks.register('contentLint', JavaExec) {
+    group = 'verification'
+    description = 'Lints data keys and units, file names, credits and licences, Mojang assets in the jar, and CODEOWNERS'
+    dependsOn tasks.named('jar'), tasks.named('createMinecraftArtifacts')
+    classpath = sourceSets.contentLint.runtimeClasspath
+    mainClass = 'com.yearofice.tools.contentlint.ContentLint'
+    javaLauncher = contentLintLauncher
+    workingDir = projectDir
+    def jarFile = tasks.named('jar').flatMap { it.archiveFile }
+    argumentProviders.add({ [projectDir.absolutePath, jarFile.get().asFile.absolutePath, minecraftResourcesJar.get().asFile.absolutePath] } as CommandLineArgumentProvider)
+    inputs.files(fileTree('src/main/resources'), fileTree('src/generated/resources').matching { include '**/*' }, 'studio', '.github/CODEOWNERS', jarFile)
+        .withPropertyName('lintInputs').optional()
+    inputs.files(fileTree('docs/blueprint'), 'docs/ready-for-development.md', fileTree('art-src')).withPropertyName('docsAndArt')
+    outputs.file(layout.buildDirectory.file('content-lint/report.txt'))
+}
+
+tasks.register('docInventory', JavaExec) {
+    group = 'yearofice'
+    description = 'Regenerates studio/inventory.json from the Master registry inventory and studio/inventory-rules.json (--args=--check to verify)'
+    classpath = sourceSets.contentLint.runtimeClasspath
+    mainClass = 'com.yearofice.tools.contentlint.DocInventory'
+    javaLauncher = contentLintLauncher
+    workingDir = projectDir
+    args projectDir.absolutePath
+}
+
+tasks.register('codeowners', JavaExec) {
+    group = 'yearofice'
+    description = 'Regenerates .github/CODEOWNERS from studio/ownership.json (--args=--check to verify)'
+    classpath = sourceSets.contentLint.runtimeClasspath
+    mainClass = 'com.yearofice.tools.contentlint.Codeowners'
+    javaLauncher = contentLintLauncher
+    workingDir = projectDir
+    args projectDir.absolutePath
+}
+
+tasks.named('check') { dependsOn 'contentLint' }

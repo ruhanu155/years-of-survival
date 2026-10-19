@@ -1,0 +1,53 @@
+{
+ "id": "yearofice:fire_ring_log",
+ "kind": "icon",
+ "folder": "block",
+ "rim": false,
+ "notes": "Split firewood: bark side and cut face.",
+ "shapes": [
+  {
+   "kind": "rect",
+   "box": [
+    0,
+    0,
+    15,
+    15
+   ],
+   "ramp": "bark_spruce",
+   "step": 2,
+   "noise": 0.25,
+   "speckle": {
+    "density": 0.1,
+    "step": 0
+   }
+  },
+  {
+   "kind": "rect",
+   "box": [
+    0,
+    9,
+    15,
+    15
+   ],
+   "ramp": "wood_cut",
+   "step": 2,
+   "noise": 0.2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     0,
+     12
+    ],
+    [
+     15,
+     12
+    ]
+   ],
+   "ramp": "wood_cut",
+   "step": 1,
+   "flat": true
+  }
+ ]
+}

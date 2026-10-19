@@ -1,0 +1,874 @@
+# Generated from studio/ownership.json by ./gradlew codeowners. Do not edit by hand.
+# Rules run shallow to deep because the last match wins. The comment above each rule names its department.
+
+* @ruhanu155
+
+# studio: Studio lead
+/.claude/ @ruhanu155
+
+# build: Build developer
+/.github/ @ruhanu155
+
+# studio: Studio lead
+/CLAUDE.md @ruhanu155
+
+# studio: Studio lead
+/README.md @ruhanu155
+
+# studio: Studio lead
+/THIRD_PARTY_NOTICES.md @ruhanu155
+
+# art: Art and audio
+/art-src/ @ruhanu155
+
+# build: Build developer
+/build.gradle @ruhanu155
+
+# docs: Docs
+/docs/ @ruhanu155
+
+# build: Build developer
+/gradle.properties @ruhanu155
+
+# build: Build developer
+/gradle/ @ruhanu155
+
+# build: Build developer
+/gradlew @ruhanu155
+
+# build: Build developer
+/gradlew.bat @ruhanu155
+
+# studio: Studio lead
+/licenses/ @ruhanu155
+
+# build: Build developer
+/settings.gradle @ruhanu155
+
+# build: Build developer
+/studio/ @ruhanu155
+
+# art: Art and audio
+/tools/artgen/ @ruhanu155
+
+# build: Build developer
+/tools/content-lint/ @ruhanu155
+
+# worldgen: World generation
+/tools/debugmap/ @ruhanu155
+
+# art: Art and audio
+/tools/modelgen/ @ruhanu155
+
+# art: Art and audio
+/tools/requirements.txt @ruhanu155
+
+# art: Art and audio
+/tools/soundgen/ @ruhanu155
+
+# build: Build developer
+/src/main/templates/ @ruhanu155
+
+# art: Art and audio
+/src/main/resources/assets/yearofice/ @ruhanu155
+
+# building: Building and crafting
+/src/generated/resources/data/yearofice/action/ @ruhanu155
+
+# building: Building and crafting
+/src/generated/resources/data/yearofice/aging/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/ambition/ @ruhanu155
+
+# food: Food and hunting
+/src/generated/resources/data/yearofice/aquatic_event/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/archetype/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/generated/resources/data/yearofice/arrival/ @ruhanu155
+
+# body: Body and survival
+/src/generated/resources/data/yearofice/body/ @ruhanu155
+
+# body: Body and survival
+/src/generated/resources/data/yearofice/body_part/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/breakup/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/generated/resources/data/yearofice/call/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/clock/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/collection/ @ruhanu155
+
+# body: Body and survival
+/src/generated/resources/data/yearofice/crop/ @ruhanu155
+
+# look: Look, sound and UI
+/src/generated/resources/data/yearofice/curios/ @ruhanu155
+
+# body: Body and survival
+/src/generated/resources/data/yearofice/damage_type/ @ruhanu155
+
+# studio: Studio lead
+/src/generated/resources/data/yearofice/data_maps/ @ruhanu155
+
+# food: Food and hunting
+/src/generated/resources/data/yearofice/decay/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/district/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/district_type/ @ruhanu155
+
+# body: Body and survival
+/src/generated/resources/data/yearofice/dye/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/generated/resources/data/yearofice/encounter/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/generated/resources/data/yearofice/encounter_director/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/event/ @ruhanu155
+
+# body: Body and survival
+/src/generated/resources/data/yearofice/fire/ @ruhanu155
+
+# food: Food and hunting
+/src/generated/resources/data/yearofice/fish/ @ruhanu155
+
+# food: Food and hunting
+/src/generated/resources/data/yearofice/fish_disease/ @ruhanu155
+
+# food: Food and hunting
+/src/generated/resources/data/yearofice/fish_run/ @ruhanu155
+
+# studio: Studio lead
+/src/generated/resources/data/yearofice/flag/ @ruhanu155
+
+# food: Food and hunting
+/src/generated/resources/data/yearofice/food/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/footage/ @ruhanu155
+
+# body: Body and survival
+/src/generated/resources/data/yearofice/forage/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/fur_market/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/generated/resources/data/yearofice/hatch/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/generated/resources/data/yearofice/hitzone/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/ice/ @ruhanu155
+
+# body: Body and survival
+/src/generated/resources/data/yearofice/illness/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/generated/resources/data/yearofice/index/ @ruhanu155
+
+# body: Body and survival
+/src/generated/resources/data/yearofice/injury/ @ruhanu155
+
+# body: Body and survival
+/src/generated/resources/data/yearofice/injury_source/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/interior/ @ruhanu155
+
+# food: Food and hunting
+/src/generated/resources/data/yearofice/item_family/ @ruhanu155
+
+# food: Food and hunting
+/src/generated/resources/data/yearofice/keep_container/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/legend/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/legend_rule/ @ruhanu155
+
+# building: Building and crafting
+/src/generated/resources/data/yearofice/livestock/ @ruhanu155
+
+# studio: Studio lead
+/src/generated/resources/data/yearofice/loot_table/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/microclimate/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/generated/resources/data/yearofice/migration/ @ruhanu155
+
+# building: Building and crafting
+/src/generated/resources/data/yearofice/multiblock/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/natural_feature/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/note/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/paper_map/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/phenomenon/ @ruhanu155
+
+# body: Body and survival
+/src/generated/resources/data/yearofice/plant/ @ruhanu155
+
+# body: Body and survival
+/src/generated/resources/data/yearofice/plant_sign/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/pledge/ @ruhanu155
+
+# body: Body and survival
+/src/generated/resources/data/yearofice/preset/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/prompt/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/province_kind/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/generated/resources/data/yearofice/rare_sighting/ @ruhanu155
+
+# building: Building and crafting
+/src/generated/resources/data/yearofice/recipe/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/region/ @ruhanu155
+
+# body: Body and survival
+/src/generated/resources/data/yearofice/remedy/ @ruhanu155
+
+# studio: Studio lead
+/src/generated/resources/data/yearofice/retired/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/generated/resources/data/yearofice/rig/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/ritual_template/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/generated/resources/data/yearofice/scent/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/season/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/generated/resources/data/yearofice/senses/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/setpiece/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/sky_sign/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/generated/resources/data/yearofice/species/ @ruhanu155
+
+# food: Food and hunting
+/src/generated/resources/data/yearofice/stocking/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/study/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/succession/ @ruhanu155
+
+# studio: Studio lead
+/src/generated/resources/data/yearofice/tags/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/generated/resources/data/yearofice/taming/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/terrain_process/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/thread/ @ruhanu155
+
+# food: Food and hunting
+/src/generated/resources/data/yearofice/trap/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/valley_memory/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/water_feature/ @ruhanu155
+
+# food: Food and hunting
+/src/generated/resources/data/yearofice/water_life/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/water_type/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/weather/ @ruhanu155
+
+# story: World and story
+/src/generated/resources/data/yearofice/weekly_twist/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/worldgen/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/worldgen_params/ @ruhanu155
+
+# studio: Studio lead
+/src/main/java/com/yearofice/api/ @ruhanu155
+
+# body: Body and survival
+/src/main/java/com/yearofice/body/ @ruhanu155
+
+# building: Building and crafting
+/src/main/java/com/yearofice/build/ @ruhanu155
+
+# look: Look, sound and UI
+/src/main/java/com/yearofice/client/ @ruhanu155
+
+# studio: Studio lead
+/src/main/java/com/yearofice/core/ @ruhanu155
+
+# build: Build developer
+/src/main/java/com/yearofice/data/ @ruhanu155
+
+# food: Food and hunting
+/src/main/java/com/yearofice/decay/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/java/com/yearofice/ecosystem/ @ruhanu155
+
+# story: World and story
+/src/main/java/com/yearofice/env/ @ruhanu155
+
+# body: Body and survival
+/src/main/java/com/yearofice/fire/ @ruhanu155
+
+# food: Food and hunting
+/src/main/java/com/yearofice/food/ @ruhanu155
+
+# body: Body and survival
+/src/main/java/com/yearofice/forage/ @ruhanu155
+
+# testers: Testers
+/src/main/java/com/yearofice/gametest/ @ruhanu155
+
+# look: Look, sound and UI
+/src/main/java/com/yearofice/hud/ @ruhanu155
+
+# food: Food and hunting
+/src/main/java/com/yearofice/hunt/ @ruhanu155
+
+# studio: Studio lead
+/src/main/java/com/yearofice/item/ @ruhanu155
+
+# studio: Studio lead
+/src/main/java/com/yearofice/net/ @ruhanu155
+
+# studio: Studio lead
+/src/main/java/com/yearofice/sim/ @ruhanu155
+
+# look: Look, sound and UI
+/src/main/java/com/yearofice/sound/ @ruhanu155
+
+# story: World and story
+/src/main/java/com/yearofice/story/ @ruhanu155
+
+# building: Building and crafting
+/src/main/java/com/yearofice/travel/ @ruhanu155
+
+# worldgen: World generation
+/src/main/java/com/yearofice/world/ @ruhanu155
+
+# worldgen: World generation
+/src/main/java/com/yearofice/worldgen/ @ruhanu155
+
+# look: Look, sound and UI
+/src/main/resources/assets/yearofice/lang/ @ruhanu155
+
+# building: Building and crafting
+/src/main/resources/data/yearofice/action/ @ruhanu155
+
+# building: Building and crafting
+/src/main/resources/data/yearofice/aging/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/ambition/ @ruhanu155
+
+# food: Food and hunting
+/src/main/resources/data/yearofice/aquatic_event/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/archetype/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/resources/data/yearofice/arrival/ @ruhanu155
+
+# body: Body and survival
+/src/main/resources/data/yearofice/body/ @ruhanu155
+
+# body: Body and survival
+/src/main/resources/data/yearofice/body_part/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/breakup/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/resources/data/yearofice/call/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/clock/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/collection/ @ruhanu155
+
+# body: Body and survival
+/src/main/resources/data/yearofice/crop/ @ruhanu155
+
+# look: Look, sound and UI
+/src/main/resources/data/yearofice/curios/ @ruhanu155
+
+# body: Body and survival
+/src/main/resources/data/yearofice/damage_type/ @ruhanu155
+
+# studio: Studio lead
+/src/main/resources/data/yearofice/data_maps/ @ruhanu155
+
+# food: Food and hunting
+/src/main/resources/data/yearofice/decay/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/district/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/district_type/ @ruhanu155
+
+# body: Body and survival
+/src/main/resources/data/yearofice/dye/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/resources/data/yearofice/encounter/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/resources/data/yearofice/encounter_director/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/event/ @ruhanu155
+
+# body: Body and survival
+/src/main/resources/data/yearofice/fire/ @ruhanu155
+
+# food: Food and hunting
+/src/main/resources/data/yearofice/fish/ @ruhanu155
+
+# food: Food and hunting
+/src/main/resources/data/yearofice/fish_disease/ @ruhanu155
+
+# food: Food and hunting
+/src/main/resources/data/yearofice/fish_run/ @ruhanu155
+
+# studio: Studio lead
+/src/main/resources/data/yearofice/flag/ @ruhanu155
+
+# food: Food and hunting
+/src/main/resources/data/yearofice/food/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/footage/ @ruhanu155
+
+# body: Body and survival
+/src/main/resources/data/yearofice/forage/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/fur_market/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/resources/data/yearofice/hatch/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/resources/data/yearofice/hitzone/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/ice/ @ruhanu155
+
+# body: Body and survival
+/src/main/resources/data/yearofice/illness/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/resources/data/yearofice/index/ @ruhanu155
+
+# body: Body and survival
+/src/main/resources/data/yearofice/injury/ @ruhanu155
+
+# body: Body and survival
+/src/main/resources/data/yearofice/injury_source/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/interior/ @ruhanu155
+
+# food: Food and hunting
+/src/main/resources/data/yearofice/item_family/ @ruhanu155
+
+# food: Food and hunting
+/src/main/resources/data/yearofice/keep_container/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/legend/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/legend_rule/ @ruhanu155
+
+# building: Building and crafting
+/src/main/resources/data/yearofice/livestock/ @ruhanu155
+
+# studio: Studio lead
+/src/main/resources/data/yearofice/loot_table/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/microclimate/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/resources/data/yearofice/migration/ @ruhanu155
+
+# building: Building and crafting
+/src/main/resources/data/yearofice/multiblock/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/natural_feature/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/note/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/paper_map/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/phenomenon/ @ruhanu155
+
+# body: Body and survival
+/src/main/resources/data/yearofice/plant/ @ruhanu155
+
+# body: Body and survival
+/src/main/resources/data/yearofice/plant_sign/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/pledge/ @ruhanu155
+
+# body: Body and survival
+/src/main/resources/data/yearofice/preset/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/prompt/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/province_kind/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/resources/data/yearofice/rare_sighting/ @ruhanu155
+
+# building: Building and crafting
+/src/main/resources/data/yearofice/recipe/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/region/ @ruhanu155
+
+# body: Body and survival
+/src/main/resources/data/yearofice/remedy/ @ruhanu155
+
+# studio: Studio lead
+/src/main/resources/data/yearofice/retired/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/resources/data/yearofice/rig/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/ritual_template/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/resources/data/yearofice/scent/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/season/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/resources/data/yearofice/senses/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/setpiece/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/sky_sign/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/resources/data/yearofice/species/ @ruhanu155
+
+# food: Food and hunting
+/src/main/resources/data/yearofice/stocking/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/study/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/succession/ @ruhanu155
+
+# studio: Studio lead
+/src/main/resources/data/yearofice/tags/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/resources/data/yearofice/taming/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/terrain_process/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/thread/ @ruhanu155
+
+# food: Food and hunting
+/src/main/resources/data/yearofice/trap/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/valley_memory/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/water_feature/ @ruhanu155
+
+# food: Food and hunting
+/src/main/resources/data/yearofice/water_life/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/water_type/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/weather/ @ruhanu155
+
+# story: World and story
+/src/main/resources/data/yearofice/weekly_twist/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/worldgen/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/worldgen_params/ @ruhanu155
+
+# studio: Studio lead
+/src/test/java/com/yearofice/api/ @ruhanu155
+
+# body: Body and survival
+/src/test/java/com/yearofice/body/ @ruhanu155
+
+# building: Building and crafting
+/src/test/java/com/yearofice/build/ @ruhanu155
+
+# look: Look, sound and UI
+/src/test/java/com/yearofice/client/ @ruhanu155
+
+# studio: Studio lead
+/src/test/java/com/yearofice/core/ @ruhanu155
+
+# build: Build developer
+/src/test/java/com/yearofice/data/ @ruhanu155
+
+# food: Food and hunting
+/src/test/java/com/yearofice/decay/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/test/java/com/yearofice/ecosystem/ @ruhanu155
+
+# story: World and story
+/src/test/java/com/yearofice/env/ @ruhanu155
+
+# body: Body and survival
+/src/test/java/com/yearofice/fire/ @ruhanu155
+
+# food: Food and hunting
+/src/test/java/com/yearofice/food/ @ruhanu155
+
+# body: Body and survival
+/src/test/java/com/yearofice/forage/ @ruhanu155
+
+# testers: Testers
+/src/test/java/com/yearofice/gametest/ @ruhanu155
+
+# look: Look, sound and UI
+/src/test/java/com/yearofice/hud/ @ruhanu155
+
+# food: Food and hunting
+/src/test/java/com/yearofice/hunt/ @ruhanu155
+
+# studio: Studio lead
+/src/test/java/com/yearofice/item/ @ruhanu155
+
+# studio: Studio lead
+/src/test/java/com/yearofice/net/ @ruhanu155
+
+# studio: Studio lead
+/src/test/java/com/yearofice/sim/ @ruhanu155
+
+# look: Look, sound and UI
+/src/test/java/com/yearofice/sound/ @ruhanu155
+
+# story: World and story
+/src/test/java/com/yearofice/story/ @ruhanu155
+
+# building: Building and crafting
+/src/test/java/com/yearofice/travel/ @ruhanu155
+
+# worldgen: World generation
+/src/test/java/com/yearofice/world/ @ruhanu155
+
+# worldgen: World generation
+/src/test/java/com/yearofice/worldgen/ @ruhanu155
+
+# building: Building and crafting
+/src/generated/resources/data/yearofice/data_maps/block/ @ruhanu155
+
+# body: Body and survival
+/src/generated/resources/data/yearofice/data_maps/damage_type/ @ruhanu155
+
+# food: Food and hunting
+/src/generated/resources/data/yearofice/loot_table/butchering/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/neoforge/biome_modifier/ @ruhanu155
+
+# testers: Testers
+/src/generated/resources/data/yearofice/structure/gametest/ @ruhanu155
+
+# worldgen: World generation
+/src/generated/resources/data/yearofice/structure/setpiece/ @ruhanu155
+
+# worldgen: World generation
+/src/main/java/com/yearofice/client/horizon/ @ruhanu155
+
+# body: Body and survival
+/src/main/java/com/yearofice/sim/body/ @ruhanu155
+
+# building: Building and crafting
+/src/main/java/com/yearofice/sim/build/ @ruhanu155
+
+# food: Food and hunting
+/src/main/java/com/yearofice/sim/decay/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/main/java/com/yearofice/sim/ecosystem/ @ruhanu155
+
+# story: World and story
+/src/main/java/com/yearofice/sim/env/ @ruhanu155
+
+# body: Body and survival
+/src/main/java/com/yearofice/sim/fire/ @ruhanu155
+
+# food: Food and hunting
+/src/main/java/com/yearofice/sim/fishing/ @ruhanu155
+
+# food: Food and hunting
+/src/main/java/com/yearofice/sim/food/ @ruhanu155
+
+# body: Body and survival
+/src/main/java/com/yearofice/sim/forage/ @ruhanu155
+
+# food: Food and hunting
+/src/main/java/com/yearofice/sim/hunt/ @ruhanu155
+
+# food: Food and hunting
+/src/main/java/com/yearofice/sim/minigame/ @ruhanu155
+
+# story: World and story
+/src/main/java/com/yearofice/sim/story/ @ruhanu155
+
+# worldgen: World generation
+/src/main/java/com/yearofice/sim/terrain/ @ruhanu155
+
+# building: Building and crafting
+/src/main/resources/data/yearofice/data_maps/block/ @ruhanu155
+
+# body: Body and survival
+/src/main/resources/data/yearofice/data_maps/damage_type/ @ruhanu155
+
+# food: Food and hunting
+/src/main/resources/data/yearofice/loot_table/butchering/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/neoforge/biome_modifier/ @ruhanu155
+
+# testers: Testers
+/src/main/resources/data/yearofice/structure/gametest/ @ruhanu155
+
+# worldgen: World generation
+/src/main/resources/data/yearofice/structure/setpiece/ @ruhanu155
+
+# worldgen: World generation
+/src/test/java/com/yearofice/client/horizon/ @ruhanu155
+
+# body: Body and survival
+/src/test/java/com/yearofice/sim/body/ @ruhanu155
+
+# building: Building and crafting
+/src/test/java/com/yearofice/sim/build/ @ruhanu155
+
+# food: Food and hunting
+/src/test/java/com/yearofice/sim/decay/ @ruhanu155
+
+# ecosystem: Ecosystem
+/src/test/java/com/yearofice/sim/ecosystem/ @ruhanu155
+
+# story: World and story
+/src/test/java/com/yearofice/sim/env/ @ruhanu155
+
+# body: Body and survival
+/src/test/java/com/yearofice/sim/fire/ @ruhanu155
+
+# food: Food and hunting
+/src/test/java/com/yearofice/sim/fishing/ @ruhanu155
+
+# food: Food and hunting
+/src/test/java/com/yearofice/sim/food/ @ruhanu155
+
+# body: Body and survival
+/src/test/java/com/yearofice/sim/forage/ @ruhanu155
+
+# food: Food and hunting
+/src/test/java/com/yearofice/sim/hunt/ @ruhanu155
+
+# food: Food and hunting
+/src/test/java/com/yearofice/sim/minigame/ @ruhanu155
+
+# story: World and story
+/src/test/java/com/yearofice/sim/story/ @ruhanu155
+
+# worldgen: World generation
+/src/test/java/com/yearofice/sim/terrain/ @ruhanu155
+
+# food: Food and hunting
+/src/generated/resources/data/yearofice/data_maps/item/food.json @ruhanu155
+
+# body: Body and survival
+/src/main/java/com/yearofice/client/minigame/bowdrill/ @ruhanu155
+
+# food: Food and hunting
+/src/main/resources/data/yearofice/data_maps/item/food.json @ruhanu155
+
+# body: Body and survival
+/src/test/java/com/yearofice/client/minigame/bowdrill/ @ruhanu155

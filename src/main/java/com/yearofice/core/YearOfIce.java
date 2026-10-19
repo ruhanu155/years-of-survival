@@ -20,6 +20,7 @@ public final class YearOfIce {
         container.registerConfig(ModConfig.Type.COMMON, YoiConfig.SPEC, "yearofice-common.toml");
         NeoForge.EVENT_BUS.addListener(YoiCommands::register);
         com.yearofice.body.BodySystem.init(modBus);
+        com.yearofice.fire.FireSystem.init(modBus);
         LOG.info("Year of Ice loading (preset {})", "from config");
     }
 }

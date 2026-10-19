@@ -55,6 +55,8 @@ dependencies {
     implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
     implementation "top.theillusivec4.curios:curios-neoforge:${curios_version}"
 
+    // Gson for the inventory registry check (InventoryTest); the version Minecraft itself ships.
+    testImplementation "com.google.code.gson:gson:${gson_version}"
     testImplementation platform("org.junit:junit-bom:${junit_version}")
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -63,6 +65,7 @@ dependencies {
 test { useJUnitPlatform() }
 
 apply from: 'tools/debugmap/debugmap.gradle'
+apply from: 'tools/content-lint/content-lint.gradle'
 
 var generateModMetadata = tasks.register('generateModMetadata', ProcessResources) {
     var replaceProperties = [

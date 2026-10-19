@@ -1,0 +1,42 @@
+{
+ "id": "yearofice:fire_ring_ash",
+ "kind": "icon",
+ "folder": "block",
+ "rim": false,
+ "notes": "Ash banked over coals.",
+ "shapes": [
+  {
+   "kind": "rect",
+   "box": [
+    0,
+    0,
+    15,
+    15
+   ],
+   "ramp": "gravel",
+   "step": 3,
+   "noise": 0.25,
+   "speckle": {
+    "density": 0.15,
+    "ramp": "lichen_pale",
+    "step": 1
+   }
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     6,
+     8
+    ],
+    [
+     11,
+     4
+    ]
+   ],
+   "ramp": "fire",
+   "step": 1,
+   "flat": true
+  }
+ ]
+}
