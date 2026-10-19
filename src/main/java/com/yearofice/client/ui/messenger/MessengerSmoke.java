@@ -55,7 +55,7 @@ public final class MessengerSmoke {
     }
 
     /** A sample reading for the screenshot: day 143, 19:40, thin, cold and wet after a creek crossing. */
-    static BodySyncPayload sample() {
+    public static BodySyncPayload sample() {
         float[] feel = {-6f, 3.2f, 6.5f, 0f, 3f, 0f, 3f, -1f};
         return new BodySyncPayload(142 * 1440 + 19 * 60 + 40, 62.4f, 18.6f, 820f, 2410f, -1590f, 3.6f, 8f, 46f,
                 -10.7f, feel, 0.65f, 52f, 0.22f, 100f, 27f, 0.41f, 0.18f, 0.66f, 750f, false, 0,

@@ -40,7 +40,7 @@ public final class BowDrillService {
         FireTuning t = FireConfig.tuning();
         String why = be.fire().cannotLight(t);
         if (why != null) {
-            player.displayClientMessage(Component.literal(why), true);
+            tell(player, why);
             return;
         }
         if (!(player instanceof ServerPlayer sp)) return;
@@ -83,9 +83,9 @@ public final class BowDrillService {
         }
         if (v.lit()) {
             Fire.Result r = be.emberCaught(player);
-            player.displayClientMessage(Component.literal(r.ok() ? v.line() : r.line()), true);
+            tell(player, r.ok() ? v.line() : r.line());
         } else if (v.line() != null) {
-            player.displayClientMessage(Component.literal(v.line()), true);
+            tell(player, v.line());
         }
     }
 
@@ -93,5 +93,12 @@ public final class BowDrillService {
         if (p.getMainHandItem().is(FireRegistry.BOW_DRILL.get())) return p.getMainHandItem();
         if (p.getOffhandItem().is(FireRegistry.BOW_DRILL.get())) return p.getOffhandItem();
         return ItemStack.EMPTY;
+    }
+
+    /** Bow-drill lines go to the prompt row through the HUD bus. */
+    private static void tell(net.minecraft.world.entity.player.Player player, String line) {
+        if (player instanceof net.minecraft.server.level.ServerPlayer sp && line != null) {
+            com.yearofice.api.hud.HudBus.get().offerPrompt(sp, "fire.drill", line, 2);
+        }
     }
 }
