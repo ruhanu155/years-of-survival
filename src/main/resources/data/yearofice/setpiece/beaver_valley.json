@@ -1,0 +1,74 @@
+{
+  "id": "yearofice:beaver_valley",
+  "name": "Beaver valley",
+  "kind": "setpiece",
+  "ring": [
+    1
+  ],
+  "count": {
+    "min": 1,
+    "max": 2
+  },
+  "priority": 50,
+  "spacing_m": 500,
+  "abandoned_year": 1971,
+  "areas": [
+    "core",
+    "outside_core"
+  ],
+  "fit": {
+    "sites": [
+      "beaver_reach"
+    ],
+    "max_slope_deg": 12,
+    "creek_gradient_pct": {
+      "min": 1,
+      "max": 3
+    },
+    "creek_reach_m": {
+      "min": 400,
+      "max": 1200
+    },
+    "min_main_river_dist_m": 100
+  },
+  "prefer": {
+    "low_slope_weight": 1.0
+  },
+  "rotation": "face_water",
+  "variants": [
+    {
+      "template": "beaver_valley/dam_staircase",
+      "pick_weight": 2,
+      "footprint_m": [
+        8,
+        8
+      ],
+      "height_m": 5
+    },
+    {
+      "template": "beaver_valley/great_dam",
+      "pick_weight": 1,
+      "footprint_m": [
+        8,
+        8
+      ],
+      "height_m": 5
+    },
+    {
+      "template": "beaver_valley/drained_meadow",
+      "pick_weight": 1,
+      "footprint_m": [
+        8,
+        8
+      ],
+      "height_m": 4
+    }
+  ],
+  "loot": [
+    "yearofice:setpiece/beaver_valley"
+  ],
+  "notes": [
+    "yearofice:birch_bark_canoe"
+  ],
+  "story": "The ruin of Arvid Lund's last line cabin stands in the newest pond, water to its windowsill; the page beside his stretcher frame is the recipe for a birch-bark canoe."
+}

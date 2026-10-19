@@ -10,5 +10,12 @@
   "floor_sediment_multiplier": 2.0,
   "channels": { "min": 3, "max": 6 },
   "gravel_belt_m": { "min": 150, "max": 400 },
-  "minimum_falls": 1
+  "minimum_falls": 1,
+  "floor_soil": "gravel",
+  "meander": {
+    "omega_rad": { "min": 0.25, "max": 0.45 },
+    "wavelength_widths": { "min": 14, "max": 20 },
+    "restore_rad": 0.5,
+    "max_offset_fraction": 0.45
+  }
 }

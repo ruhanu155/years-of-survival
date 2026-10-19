@@ -1,0 +1,81 @@
+{
+  "id": "yearofice:plane_wreck",
+  "name": "J.O.'s 1979 bush-plane wreck",
+  "kind": "setpiece",
+  "ring": [
+    1
+  ],
+  "count": {
+    "min": 1,
+    "max": 1
+  },
+  "priority": 90,
+  "spacing_m": 500,
+  "abandoned_year": 1979,
+  "areas": [
+    "core"
+  ],
+  "fit": {
+    "sites": [
+      "gravel_bar",
+      "lake_shore",
+      "ridge_clearing"
+    ],
+    "max_slope_deg": 10
+  },
+  "prefer": {
+    "low_slope_weight": 1.0,
+    "near_water_weight": 0.5
+  },
+  "rotation": "face_water",
+  "variants": [
+    {
+      "template": "plane_wreck/nose_down_bar",
+      "pick_weight": 2,
+      "sites": [
+        "gravel_bar"
+      ],
+      "footprint_m": [
+        14,
+        12
+      ],
+      "height_m": 6
+    },
+    {
+      "template": "plane_wreck/treetops",
+      "pick_weight": 1,
+      "sites": [
+        "ridge_clearing"
+      ],
+      "footprint_m": [
+        14,
+        14
+      ],
+      "height_m": 5
+    },
+    {
+      "template": "plane_wreck/half_sunk_beach",
+      "pick_weight": 2,
+      "sites": [
+        "lake_shore"
+      ],
+      "footprint_m": [
+        14,
+        12
+      ],
+      "height_m": 5
+    }
+  ],
+  "landmark": {
+    "test_km": 2,
+    "height_m": 5,
+    "silhouette": "yearofice:silhouette/wreck_tail"
+  },
+  "loot": [
+    "yearofice:setpiece/plane_wreck"
+  ],
+  "notes": [
+    "yearofice:jo_windscreen_1979"
+  ],
+  "story": "Sept 14, 1979. Fog came down on the bar. Gear's gone, radio's dead. Walking downriver. - J.O."
+}

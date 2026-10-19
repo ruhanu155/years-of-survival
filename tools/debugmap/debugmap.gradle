@@ -18,10 +18,19 @@ tasks.register('debugmap', JavaExec) {
     classpath = sourceSets.debugmap.runtimeClasspath
     mainClass = 'com.yearofice.tools.debugmap.DebugMap'
     workingDir = projectDir
-    maxHeapSize = '2g'
+    maxHeapSize = '3g'
     systemProperty 'java.awt.headless', 'true'
     javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
 }
 
 // Keep the tool compiling with every build.
 tasks.named('check') { dependsOn 'debugmapClasses' }
+
+// Writes the M1 placeholder set-piece templates (and the GameTest pad) into src/main/resources.
+tasks.register('setpieceTemplates', JavaExec) {
+    group = 'yearofice'
+    description = 'Writes placeholder structure/setpiece/<id>/<variant>.nbt templates from the setpiece data'
+    classpath = sourceSets.debugmap.runtimeClasspath
+    mainClass = 'com.yearofice.tools.setpiece.TemplateGen'
+    workingDir = projectDir
+}

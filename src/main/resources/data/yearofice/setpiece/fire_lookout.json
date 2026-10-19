@@ -1,0 +1,76 @@
+{
+  "id": "yearofice:fire_lookout",
+  "name": "Fire lookout tower",
+  "kind": "setpiece",
+  "ring": [
+    1
+  ],
+  "count": {
+    "min": 1,
+    "max": 2
+  },
+  "priority": 80,
+  "spacing_m": 800,
+  "abandoned_year": 1984,
+  "areas": [
+    "core",
+    "outside_core"
+  ],
+  "fit": {
+    "sites": [
+      "ridge_top"
+    ],
+    "max_slope_deg": 15,
+    "min_elev_m": 250,
+    "min_water_dist_m": 50
+  },
+  "prefer": {
+    "high_elev_weight": 2.0,
+    "low_slope_weight": 0.5
+  },
+  "rotation": "face_downhill",
+  "variants": [
+    {
+      "template": "fire_lookout/tower_intact",
+      "pick_weight": 3,
+      "footprint_m": [
+        9,
+        9
+      ],
+      "height_m": 18
+    },
+    {
+      "template": "fire_lookout/ground_cab",
+      "pick_weight": 1,
+      "footprint_m": [
+        9,
+        9
+      ],
+      "height_m": 6
+    },
+    {
+      "template": "fire_lookout/tower_collapsed",
+      "pick_weight": 1,
+      "footprint_m": [
+        9,
+        9
+      ],
+      "height_m": 6
+    }
+  ],
+  "landmark": {
+    "test_km": 2,
+    "height_m": 14,
+    "silhouette": "yearofice:silhouette/lookout",
+    "variants": [
+      "tower_intact"
+    ]
+  },
+  "loot": [
+    "yearofice:setpiece/fire_lookout"
+  ],
+  "notes": [
+    "yearofice:lookout_log_1979"
+  ],
+  "story": "Staffed every summer from 1952 to 1984. Sept 16, 1979: signal fire on the river bar, 10 km west. Plane went over at 14:10."
+}

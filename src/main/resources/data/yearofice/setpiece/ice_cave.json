@@ -1,0 +1,67 @@
+{
+  "id": "yearofice:ice_cave",
+  "name": "Ice cave",
+  "kind": "setpiece",
+  "ring": [
+    1
+  ],
+  "count": {
+    "min": 1,
+    "max": 1
+  },
+  "priority": 55,
+  "spacing_m": 500,
+  "abandoned_year": 1911,
+  "areas": [
+    "core",
+    "outside_core"
+  ],
+  "fit": {
+    "sites": [
+      "face_foot"
+    ],
+    "max_slope_deg": 20,
+    "min_elev_m": 500,
+    "face_min_height_m": 10,
+    "face_aspect": "north"
+  },
+  "prefer": {
+    "face_height_weight": 1.0,
+    "high_elev_weight": 0.5
+  },
+  "rotation": "face_downhill",
+  "variants": [
+    {
+      "template": "ice_cave/cold_trap",
+      "pick_weight": 2,
+      "footprint_m": [
+        9,
+        9
+      ],
+      "height_m": 6
+    },
+    {
+      "template": "ice_cave/snowfield_cave",
+      "pick_weight": 1,
+      "footprint_m": [
+        10,
+        10
+      ],
+      "height_m": 6
+    },
+    {
+      "template": "ice_cave/miners_tunnel",
+      "pick_weight": 1,
+      "footprint_m": [
+        7,
+        9
+      ],
+      "height_m": 5
+    }
+  ],
+  "loot": [
+    "yearofice:setpiece/ice_cave"
+  ],
+  "notes": [],
+  "story": "Doane kept the claim's meat here: D. 1909 carved by the door. The tusk was here 30,000 years before him."
+}

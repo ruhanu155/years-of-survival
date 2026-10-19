@@ -102,6 +102,68 @@ public final class GenJson {
         return out;
     }
 
+    public boolean bool(String key) {
+        Object e = need(key);
+        if (!(e instanceof Boolean b)) throw new IllegalArgumentException(path + ": '" + key + "' is not a boolean");
+        return b;
+    }
+
+    public boolean bool(String key, boolean fallback) { return has(key) ? bool(key) : fallback; }
+
+    public double num(String key, double fallback) { return has(key) ? num(key) : fallback; }
+
+    public String str(String key, String fallback) { return has(key) ? str(key) : fallback; }
+
+    private List<?> list(String key) {
+        Object e = need(key);
+        if (!(e instanceof List<?> l)) throw new IllegalArgumentException(path + ": '" + key + "' is not an array");
+        return l;
+    }
+
+    /** An array of strings. */
+    public List<String> strings(String key) {
+        List<String> out = new ArrayList<>();
+        int k = 0;
+        for (Object o : list(key)) {
+            if (!(o instanceof String v)) throw new IllegalArgumentException(path + "." + key + "[" + k + "] is not a string");
+            out.add(v);
+            k++;
+        }
+        return List.copyOf(out);
+    }
+
+    /** An array of numbers. */
+    public double[] nums(String key) {
+        List<?> l = list(key);
+        double[] out = new double[l.size()];
+        for (int k = 0; k < out.length; k++) {
+            if (!(l.get(k) instanceof Double d)) throw new IllegalArgumentException(path + "." + key + "[" + k + "] is not a number");
+            out[k] = d;
+        }
+        return out;
+    }
+
+    /** An array of objects, each strict like any other. */
+    @SuppressWarnings("unchecked")
+    public List<GenJson> objects(String key) {
+        List<GenJson> out = new ArrayList<>();
+        int k = 0;
+        for (Object o : list(key)) {
+            if (!(o instanceof Map)) throw new IllegalArgumentException(path + "." + key + "[" + k + "] is not an object");
+            out.add(new GenJson((Map<String, Object>) o, path + "." + key + "[" + k + "]"));
+            k++;
+        }
+        return List.copyOf(out);
+    }
+
+    /** The object's keys in file order; every key counts as read. */
+    public List<String> keys() {
+        read.addAll(obj.keySet());
+        return List.copyOf(obj.keySet());
+    }
+
+    public String path() { return path; }
+
     /** Fails if the object holds a key nobody read. Call once every field is read. */
     public void done() {
         List<String> unknown = new ArrayList<>();
