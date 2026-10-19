@@ -1,0 +1,46 @@
+{
+ "id": "yearofice:snare_wire",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "ring",
+   "box": [
+    2,
+    3,
+    13,
+    13
+   ],
+   "width": 2,
+   "ramp": "steel",
+   "step": 2
+  },
+  {
+   "kind": "ring",
+   "box": [
+    5,
+    6,
+    10,
+    10
+   ],
+   "width": 1,
+   "ramp": "steel",
+   "step": 3
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     11,
+     11
+    ],
+    [
+     14,
+     14
+    ]
+   ],
+   "width": 1,
+   "ramp": "steel",
+   "step": 3
+  }
+ ]
+}

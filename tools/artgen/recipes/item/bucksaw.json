@@ -1,0 +1,90 @@
+{
+ "id": "yearofice:bucksaw",
+ "kind": "icon",
+ "model_parent": "minecraft:item/handheld",
+ "shapes": [
+  {
+   "kind": "line",
+   "points": [
+    [
+     2,
+     11
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     11,
+     3
+    ],
+    [
+     13,
+     11
+    ]
+   ],
+   "width": 1,
+   "ramp": "wood_cut",
+   "step": 2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     5,
+     7
+    ],
+    [
+     10,
+     7
+    ]
+   ],
+   "width": 1,
+   "ramp": "wood_cut",
+   "step": 1
+  },
+  {
+   "kind": "rect",
+   "box": [
+    1,
+    11,
+    14,
+    12
+   ],
+   "ramp": "steel",
+   "step": 3
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     2,
+     13
+    ],
+    [
+     4,
+     13
+    ],
+    [
+     6,
+     13
+    ],
+    [
+     8,
+     13
+    ],
+    [
+     10,
+     13
+    ],
+    [
+     12,
+     13
+    ]
+   ],
+   "ramp": "steel",
+   "step": 1,
+   "flat": true
+  }
+ ]
+}

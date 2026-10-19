@@ -1,0 +1,95 @@
+{
+ "id": "yearofice:pemmican",
+ "kind": "icon",
+ "notes": "A cake of pounded dried meat, rendered fat and berries.",
+ "shapes": [
+  {
+   "kind": "poly",
+   "points": [
+    [
+     2,
+     7
+    ],
+    [
+     9,
+     4
+    ],
+    [
+     14,
+     6
+    ],
+    [
+     14,
+     11
+    ],
+    [
+     7,
+     14
+    ],
+    [
+     2,
+     12
+    ]
+   ],
+   "ramp": "meat_cooked",
+   "step": 1,
+   "speckle": {
+    "density": 0.3,
+    "ramp": "fat_cream",
+    "step": 1
+   }
+  },
+  {
+   "kind": "poly",
+   "points": [
+    [
+     2,
+     7
+    ],
+    [
+     9,
+     4
+    ],
+    [
+     14,
+     6
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "ramp": "meat_cooked",
+   "step": 2,
+   "speckle": {
+    "density": 0.3,
+    "ramp": "fat_cream",
+    "step": 2
+   }
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     5,
+     11
+    ],
+    [
+     10,
+     10
+    ],
+    [
+     8,
+     7
+    ],
+    [
+     12,
+     8
+    ]
+   ],
+   "ramp": "berry_blue",
+   "step": 1,
+   "flat": true
+  }
+ ]
+}

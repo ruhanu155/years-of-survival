@@ -1,0 +1,26 @@
+{
+ "id": "yearofice:lard",
+ "kind": "found_icon",
+ "found": "ninja_adventure",
+ "source": "art-src/found/ninja_adventure/Items/Potion/MilkPot.png",
+ "notes": "Rendered lard in a lidded tin.",
+ "map": {
+  "#141b1b": "outline",
+  "#e46d3a": [
+   "iron",
+   1
+  ],
+  "#ffad5d": [
+   "iron",
+   3
+  ],
+  "#abc2bc": [
+   "fat_cream",
+   1
+  ],
+  "#f2eaf1": [
+   "fat_cream",
+   3
+  ]
+ }
+}

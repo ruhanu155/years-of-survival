@@ -1,0 +1,63 @@
+{
+ "id": "yearofice:birch_bark",
+ "kind": "found_icon",
+ "found": "ninja_adventure",
+ "source": "art-src/found/ninja_adventure/Items/Scroll/Scroll.png",
+ "notes": "A rolled sheet of birch bark: white outer bark, orange inner bark at the ends, black lenticel dashes.",
+ "map": {
+  "#141b1b": "outline",
+  "#d2b37d": [
+   "bark_birch",
+   2
+  ],
+  "#eecf9b": [
+   "bark_birch",
+   3
+  ],
+  "#f2eaf1": [
+   "bark_birch",
+   4
+  ],
+  "#ffad5d": [
+   "bark_tamarack",
+   3
+  ],
+  "#e66a3a": [
+   "bark_tamarack",
+   2
+  ]
+ },
+ "edits": [
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     6,
+     7
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     9
+    ],
+    [
+     9,
+     9
+    ],
+    [
+     6,
+     11
+    ],
+    [
+     10,
+     5
+    ]
+   ],
+   "ramp": "bark_birch",
+   "step": 0
+  }
+ ]
+}

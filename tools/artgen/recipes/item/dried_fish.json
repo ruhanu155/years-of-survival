@@ -1,0 +1,29 @@
+{
+ "id": "yearofice:dried_fish",
+ "kind": "found_icon",
+ "found": "ninja_adventure",
+ "source": "art-src/found/ninja_adventure/Items/Food/Fish.png",
+ "map": {
+  "#141b1b": "outline",
+  "#345a52": [
+   "smoked",
+   0
+  ],
+  "#79b8ce": [
+   "smoked",
+   2
+  ],
+  "#8feff1": [
+   "smoked",
+   3
+  ],
+  "#ffad5d": [
+   "fat_cream",
+   1
+  ],
+  "#ffffff": [
+   "smoked",
+   4
+  ]
+ }
+}

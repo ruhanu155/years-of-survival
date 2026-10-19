@@ -1,0 +1,34 @@
+{
+ "source": "original.glb",
+ "length_axis": "z",
+ "torso_len_over_back_height": 0.982,
+ "belly_height_over_back_height": 0.087,
+ "chest_depth_over_back_height": 0.913,
+ "neck_extent_over_back_height": [
+  0.325,
+  0.436,
+  0.286
+ ],
+ "head_extent_over_back_height": [
+  0.421,
+  0.417,
+  0.421
+ ],
+ "ear_extent_over_back_height": [
+  0.451,
+  0.176,
+  0.256
+ ],
+ "tail_extent_over_back_height": [
+  0.217,
+  0.567,
+  0.859
+ ],
+ "head_top_over_back_height": 1.147,
+ "px_per_source_unit_at_shoulder": 2.7659,
+ "suggested_px": {
+  "back_top": 6.4,
+  "belly": 0.56,
+  "torso_len": 6.28
+ }
+}

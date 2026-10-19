@@ -1,0 +1,27 @@
+{
+ "asset_id": "ninja_adventure",
+ "source_type": "game_asset_collection",
+ "title": "Ninja Adventure - Asset Pack (Items)",
+ "author": "Pixel-boy and AAA",
+ "licence": "CC0-1.0",
+ "licence_file": "art-src/licences/ninja_adventure.txt",
+ "pack_page": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+ "mirror_repo": "https://github.com/rinn7e/ninja-adventure-indigo",
+ "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+ "mirror_path": "assets/Ninja Adventure - Asset Pack/Items/",
+ "retrieved": "2026-10-19",
+ "files": {
+  "Items/Food/Beaf.png": "55b45e050566e2cfe2ca537338ff659f3a6157e2c056c74a641f73fb536623fa",
+  "Items/Food/Fish.png": "d2cbc923cd9886a1e8977ca32c9fe073091ecef62982db80dea9034b69998638",
+  "Items/Food/Meat.png": "ef6a6fa6354d3fef7969a4d64e9157048884628a658bece6c3c47a6dcbcf8d8d",
+  "Items/Food/Nut.png": "7ade4eb61bd899c074d017c764c01d0b6040f54fad0f0cb782ba456ef7c347c5",
+  "Items/Food/TeaLeaf.png": "a426c88d0ce48a60c8f15f9f22c042f5deb17a8d5a3c75e1ecc823e26deda283",
+  "Items/Potion/MilkPot.png": "c002549e199be052e35d6866874296c74b21bba81f8deb860331242e0d14439e",
+  "Items/Resource/Grass.png": "1f507bb591e0b2fb4eea40ca7a39c99929ab446e15ab9373dd4e8d89418b9a75",
+  "Items/Scroll/Scroll.png": "526a293d206cf37ea2ce56890918b849a4f4070c5538fb216372de7ddc07e8d6",
+  "Items/Tool/Axe.png": "d566a1a2a264613c0e982bc839c6d5ad6663aa6a5096faebd828fc6ccd8e00bb",
+  "Items/Tool/Hammer.png": "3fd9a22235136b8408e46f70cdf68bf7fa99e5866c270930d9b9ce01ab927d71",
+  "Items/Weapons/AxeTool/Sprite.png": "bfa9235f2a5d140bf75c8fbd43e0e5c2fbf20b9d50569695a61d9add1a4e6907",
+  "Items/Weapons/Fishing Rod/Sprite.png": "a9c0f78584c205a08405716f992b61e3e4a208beb32bdfaf8085c591351540e6"
+ }
+}

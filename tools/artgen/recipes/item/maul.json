@@ -1,0 +1,31 @@
+{
+ "id": "yearofice:maul",
+ "kind": "found_icon",
+ "found": "ninja_adventure",
+ "source": "art-src/found/ninja_adventure/Items/Tool/Hammer.png",
+ "model_parent": "minecraft:item/handheld",
+ "notes": "Splitting maul: the found sledge recoloured to a dark iron head on an ash handle.",
+ "map": {
+  "#141b1b": "outline",
+  "#5f7160": [
+   "iron",
+   1
+  ],
+  "#abc2bc": [
+   "iron",
+   2
+  ],
+  "#f2eaf1": [
+   "iron",
+   4
+  ],
+  "#e66a3a": [
+   "wood_cut",
+   1
+  ],
+  "#ffad5d": [
+   "wood_cut",
+   3
+  ]
+ }
+}

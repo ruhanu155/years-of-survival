@@ -1,0 +1,72 @@
+{
+ "id": "yearofice:sinew",
+ "kind": "icon",
+ "notes": "Dried back sinew pulled into pale threads, tied in the middle.",
+ "shapes": [
+  {
+   "kind": "line",
+   "points": [
+    [
+     2,
+     13
+    ],
+    [
+     12,
+     2
+    ]
+   ],
+   "width": 1,
+   "ramp": "fat_cream",
+   "step": 3
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     3,
+     14
+    ],
+    [
+     13,
+     3
+    ]
+   ],
+   "width": 1,
+   "ramp": "fat_cream",
+   "step": 2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     4,
+     14
+    ],
+    [
+     14,
+     4
+    ]
+   ],
+   "width": 1,
+   "ramp": "fat_cream",
+   "step": 3
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     6,
+     6
+    ],
+    [
+     10,
+     10
+    ]
+   ],
+   "width": 1,
+   "ramp": "hide_raw",
+   "step": 1,
+   "flat": true
+  }
+ ]
+}

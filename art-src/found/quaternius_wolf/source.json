@@ -1,0 +1,16 @@
+{
+ "source_type": "model_library",
+ "author": "Quaternius",
+ "licence": "CC0-1.0",
+ "licence_file": "art-src/licences/quaternius_ultimate_animated_animals.txt",
+ "pack": "Ultimate Animated Animal Pack",
+ "pack_page": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+ "mirror_repo": "https://github.com/trebeljahr/quaternius-showcase",
+ "mirror_commit": "722c39e964360beff2728a8ee4d103e2d11d457c",
+ "retrieved": "2026-10-19",
+ "use": "Proportion reference only: tools/modelgen/import_glb.py measured it into measure.json; no mesh, texture or animation from it is shipped. The original is not committed (no Git LFS yet); refetch it from mirror_url and compare original_sha256.",
+ "asset_id": "quaternius_wolf",
+ "title": "Wolf (Ultimate Animated Animal Pack)",
+ "mirror_url": "https://raw.githubusercontent.com/trebeljahr/quaternius-showcase/722c39e964360beff2728a8ee4d103e2d11d457c/public/glb/animals_pack/Wolf.glb",
+ "original_sha256": "8382f3d3b97e2338d2fd26190ddcc095d34d642d0e97105bda807ec87ccfd534"
+}

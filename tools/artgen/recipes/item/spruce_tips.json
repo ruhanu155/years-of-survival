@@ -1,0 +1,21 @@
+{
+ "id": "yearofice:spruce_tips",
+ "kind": "found_icon",
+ "found": "ninja_adventure",
+ "source": "art-src/found/ninja_adventure/Items/Food/TeaLeaf.png",
+ "map": {
+  "#141b1b": "outline",
+  "#56864c": [
+   "needle_tamarack",
+   2
+  ],
+  "#74a334": [
+   "needle_tamarack",
+   3
+  ],
+  "#adbc3a": [
+   "needle_tamarack",
+   4
+  ]
+ }
+}

@@ -1,0 +1,37 @@
+{
+ "id": "yearofice:raw_moose_meat",
+ "kind": "found_icon",
+ "found": "ninja_adventure",
+ "source": "art-src/found/ninja_adventure/Items/Food/Beaf.png",
+ "map": {
+  "#141b1b": "outline",
+  "#3b3643": [
+   "meat_raw",
+   0
+  ],
+  "#8f3e56": [
+   "meat_raw",
+   1
+  ],
+  "#e46d3a": [
+   "meat_raw",
+   3
+  ],
+  "#ffad5d": [
+   "meat_raw",
+   4
+  ],
+  "#ffffff": [
+   "fat_cream",
+   3
+  ]
+ },
+ "variants": {
+  "aging": {
+   "meat_raw": "meat_aging"
+  },
+  "spoiled": {
+   "meat_raw": "meat_spoiled"
+  }
+ }
+}
