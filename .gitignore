@@ -1,8 +1,10 @@
+# Gradle output at the root and in tool subprojects only; never Java packages named build
 .gradle/
-build/
-run/
-runs/
-out/
+/build/
+/tools/*/build/
+/run/
+/runs/
+/out/
 .idea/
 *.iml
 .vscode/

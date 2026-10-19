@@ -106,6 +106,12 @@ public final class Onboarding {
 
     public static OnboardingRecord of(ServerPlayer p) { return StoryAttachments.of(p); }
 
+    /** True once a fire event at the player's ring was seen this session, before the next check books its minute. */
+    static boolean fireSeen(ServerPlayer p) {
+        Live l = LIVE.get(p.getUUID());
+        return l != null && l.player == p && l.fireSeen;
+    }
+
     // ---- start, skip, reset ---------------------------------------------------------------------------------
 
     @SubscribeEvent

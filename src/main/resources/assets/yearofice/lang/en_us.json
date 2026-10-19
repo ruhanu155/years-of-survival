@@ -212,5 +212,19 @@
   "key.yearofice.open_coat": "Open coat",
   "key.yearofice.mittens": "Mittens off",
   "key.yearofice.rotate_modifier": "Rotate a piece (with the wheel)",
-  "key.yearofice.blueprint": "Blueprint mode"
+  "key.yearofice.blueprint": "Blueprint mode",
+  "block.yearofice.bough_bed": "Bough Bed",
+  "item.yearofice.spruce_boughs": "Spruce Boughs",
+  "building.yearofice.boughs_cut": "Cut %s spruce boughs. %s carried.",
+  "building.yearofice.bed_blocked": "No room. A bough bed needs two clear blocks.",
+  "building.yearofice.bed_no_ground": "Needs firm ground under both ends.",
+  "building.yearofice.bed_few_boughs": "A bough bed takes %s boughs. You have %s.",
+  "building.yearofice.bed_stopped": "Bed work stopped.",
+  "building.yearofice.bed_built": "Bough bed built. You'll sleep 5 °C warmer on it.",
+  "body.yearofice.sleep.not_tired": "Not tired yet. Sleep after 21:00, or when tired.",
+  "body.yearofice.sleep.occupied": "Someone is sleeping there.",
+  "body.yearofice.sleep.obstructed": "No room to lie down here.",
+  "body.yearofice.sleep.not_a_bed": "That is no bed.",
+  "body.yearofice.sleep.busy": "You can't lie down now.",
+  "body.yearofice.sleep.none": "You lie down."
 }

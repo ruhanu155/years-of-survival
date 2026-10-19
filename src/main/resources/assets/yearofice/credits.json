@@ -1661,6 +1661,43 @@
    "licence": "project",
    "generator_version": "artgen 0.4.0",
    "release_blocker": false
+  },
+  {
+   "asset_id": "tex_spruce_boughs",
+   "files": [
+    "assets/yearofice/textures/item/spruce_boughs.png",
+    "assets/yearofice/models/item/spruce_boughs.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/spruce_boughs.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_block_bough_bed",
+   "files": [
+    "assets/yearofice/textures/block/bough_bed_top.png",
+    "assets/yearofice/textures/block/bough_bed_side.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/block/bough_bed.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "model_bough_bed",
+   "files": [
+    "assets/yearofice/blockstates/bough_bed.json",
+    "assets/yearofice/models/block/bough_bed_foot.json",
+    "assets/yearofice/models/block/bough_bed_head.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/bough_bed.py",
+   "licence": "project",
+   "generator_version": "bough_bed 0.1.0",
+   "release_blocker": false
   }
  ]
 }

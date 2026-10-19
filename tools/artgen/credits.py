@@ -114,6 +114,10 @@ def build():
     entries.append({"asset_id": "model_snare", "files": snare.outputs(), "source_type": "generated",
                     "recipe": "tools/artgen/snare.py", "licence": "project", "generator_version": snare.VERSION,
                     "release_blocker": False})
+    import bough_bed  # noqa: E402
+    entries.append({"asset_id": "model_bough_bed", "files": bough_bed.outputs(), "source_type": "generated",
+                    "recipe": "tools/artgen/bough_bed.py", "licence": "project", "generator_version": bough_bed.VERSION,
+                    "release_blocker": False})
     import cooking  # noqa: E402
     entries.append({"asset_id": "model_cooking", "files": cooking.outputs(), "source_type": "generated",
                     "recipe": "tools/artgen/cooking.py", "licence": "project", "generator_version": cooking.VERSION,

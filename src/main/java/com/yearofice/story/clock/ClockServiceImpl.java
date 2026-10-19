@@ -48,6 +48,8 @@ public final class ClockServiceImpl implements ClockService {
     private final Map<UUID, Vec3> lastPos = new HashMap<>();
     private double moonOffset;
     private int ticks;
+    /** Hundredths of a ds carried from tick to tick at a rate that is not a whole ds a tick (Day 1 on some days). */
+    private int carryCenti;
     /** For tests: the minute events posted by the last step, newest last, at most 64. */
     final List<ClockEvent> recent = new ArrayList<>();
 
@@ -71,6 +73,7 @@ public final class ClockServiceImpl implements ClockService {
         worldRate = Rate.WORLD;
         forced = null;
         ticks = 0;
+        carryCenti = 0;
         writeDayTime();
         YearOfIce.LOG.info("Clock: {} ({}-minute day)", Calendar.format(data.gameDs), data.dayLengthMin);
     }
@@ -184,10 +187,14 @@ public final class ClockServiceImpl implements ClockService {
         if (changed) {
             Rate was = worldRate;
             worldRate = next;
+            carryCenti = 0;
             NeoForge.EVENT_BUS.post(new RateChangedEvent(was, next));
         }
         long from = data.gameDs;
-        move(from, from + dsPerTick(), false);
+        carryCenti += rates().centiDsPerTick(worldRate, dayLengthMin());
+        int step = carryCenti / 100;
+        carryCenti -= step * 100;
+        move(from, from + step, false);
         ticks++;
         if (changed || ticks % 20 == 0) syncAll();
     }

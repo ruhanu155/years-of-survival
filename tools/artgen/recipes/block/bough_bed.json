@@ -1,0 +1,22 @@
+{
+ "id": "yearofice:bough_bed",
+ "kind": "block",
+ "class": "leaves",
+ "notes": "Placeholder (G0): the top is a mat of laid spruce boughs, shingled; the side shows the bough ends over a pole frame.",
+ "faces": {
+  "top": {
+   "layers": [
+    {"type": "noise", "ramp": "needle_green", "scale": 4, "octaves": 3, "steps": [0, 3]},
+    {"type": "furrows", "spacing": 3, "jitter": 1, "step": 0},
+    {"type": "speckle", "density": 0.05, "ramp": "bark_spruce", "step": 2}
+   ]
+  },
+  "side": {
+   "layers": [
+    {"type": "noise", "ramp": "needle_green", "scale": 4, "octaves": 2, "steps": [0, 2]},
+    {"type": "speckle", "density": 0.08, "ramp": "bark_spruce", "step": 1}
+   ]
+  }
+ },
+ "folder": "block"
+}

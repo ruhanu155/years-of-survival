@@ -35,21 +35,24 @@ public final class BodyModel {
      * @param moving        moving this minute (drying rate)
      * @param loadKcal      the load band's calorie factor (Layer 6, Load: 1.0 under 15 kg, 1.2, 1.5), on the
      *                      activity burn while awake; shivering and sleep are not carrying
+     * @param bedC          the bed's insulation while asleep, °C (bough bed +5; bare ground 0), added on top of the
+     *                      2 °C sleeping chill (Blueprint › Sleep, Sleeping cold; Making camp)
      */
     public record Inputs(Activity activity, boolean asleep, double sleepQuality, EnvSample env, List<HeatSource> heat,
-                         ShelterState shelter, ColdWater.Depth depth, boolean moving, double loadKcal) {
+                         ShelterState shelter, ColdWater.Depth depth, boolean moving, double loadKcal, double bedC) {
         public Inputs {
             if (activity == null) activity = Activity.REST;
             if (shelter == null) shelter = ShelterState.NONE;
             if (depth == null) depth = ColdWater.Depth.NONE;
             if (asleep) activity = Activity.SLEEP;
             if (!(loadKcal > 0)) loadKcal = 1.0;
+            if (!Double.isFinite(bedC)) bedC = 0;
         }
 
-        /** Unloaded inputs (load factor 1). */
+        /** Unloaded inputs with no bed insulation (load factor 1; awake, or asleep on bare ground). */
         public Inputs(Activity activity, boolean asleep, double sleepQuality, EnvSample env, List<HeatSource> heat,
                       ShelterState shelter, ColdWater.Depth depth, boolean moving) {
-            this(activity, asleep, sleepQuality, env, heat, shelter, depth, moving, 1.0);
+            this(activity, asleep, sleepQuality, env, heat, shelter, depth, moving, 1.0, 0);
         }
 
         public static Inputs resting(EnvSample env) {
@@ -59,23 +62,28 @@ public final class BodyModel {
         public Inputs doing(Activity a) {
             boolean sleep = a == Activity.SLEEP;
             return new Inputs(a, sleep, sleep && sleepQuality <= 0 ? 1.0 : sleepQuality, env, heat, shelter, depth,
-                    a == Activity.WALK || a == Activity.RUN || a == Activity.HEAVY, loadKcal);
+                    a == Activity.WALK || a == Activity.RUN || a == Activity.HEAVY, loadKcal, bedC);
         }
 
         public Inputs in(EnvSample e) {
-            return new Inputs(activity, asleep, sleepQuality, e, heat, shelter, depth, moving, loadKcal);
+            return new Inputs(activity, asleep, sleepQuality, e, heat, shelter, depth, moving, loadKcal, bedC);
         }
 
         public Inputs inWater(ColdWater.Depth d) {
-            return new Inputs(activity, asleep, sleepQuality, env, heat, shelter, d, moving, loadKcal);
+            return new Inputs(activity, asleep, sleepQuality, env, heat, shelter, d, moving, loadKcal, bedC);
         }
 
         public Inputs withHeat(List<HeatSource> h) {
-            return new Inputs(activity, asleep, sleepQuality, env, h, shelter, depth, moving, loadKcal);
+            return new Inputs(activity, asleep, sleepQuality, env, h, shelter, depth, moving, loadKcal, bedC);
+        }
+
+        /** The same inputs on a bed of {@code q} quality and {@code c} °C insulation. */
+        public Inputs onBed(double q, double c) {
+            return new Inputs(activity, asleep, q, env, heat, shelter, depth, moving, loadKcal, c);
         }
 
         public Inputs carrying(double kcalFactor) {
-            return new Inputs(activity, asleep, sleepQuality, env, heat, shelter, depth, moving, kcalFactor);
+            return new Inputs(activity, asleep, sleepQuality, env, heat, shelter, depth, moving, kcalFactor, bedC);
         }
 
         /** The load factor on this step's activity burn: 1 while asleep. */
@@ -119,7 +127,7 @@ public final class BodyModel {
                         heatNear(in))
                 .in(in.depth());
         WarmthContext ctx = new WarmthContext(in.shelter(), a,
-                Metabolism.bmiWarmthC(s.bmi()) + (in.asleep() ? Metabolism.SLEEP_FEEL_C : 0));
+                Metabolism.bmiWarmthC(s.bmi()) + (in.asleep() ? Metabolism.SLEEP_FEEL_C + in.bedC() : 0));
         double shiver = 0;
         Collapse collapse = Collapse.NONE;
         int done = 0;

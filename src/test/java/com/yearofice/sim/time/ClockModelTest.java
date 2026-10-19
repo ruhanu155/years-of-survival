@@ -28,18 +28,21 @@ class ClockModelTest {
         daylightNormals = p.climate().daylightH();
     }
 
-    /** One real minute (1,200 ticks) at each rate adds exactly 1,200 × its ds; World is a third on the 72-minute day. */
+    /**
+     * One real minute (1,200 ticks) at each rate adds exactly 1,200 × its ds; World (and Day 1, half of it) is a
+     * third on the 72-minute day.
+     */
     @Test
     void ratesExact() {
         Rates r = Rates.STANDARD;
-        int[] want = {3 * 1200, 150 * 1200, 600 * 1200, 1800 * 1200, 6 * 1200, 30 * 1200};
+        int[] want = {3 * 1200, 150 * 1200, 600 * 1200, 1800 * 1200, 6 * 1200, 15 * 1200, 30 * 1200};
         for (Rate rate : Rate.values()) {
             long ds = 0;
             for (int t = 0; t < 1200; t++) ds += r.dsPerTick(rate, 24);
             assertEquals(want[rate.ordinal()], ds, rate.id());
             long ds72 = 0;
             for (int t = 0; t < 1200; t++) ds72 += r.dsPerTick(rate, 72);
-            assertEquals(rate == Rate.WORLD ? want[rate.ordinal()] / 3 : want[rate.ordinal()], ds72, rate.id() + " at 72 min");
+            assertEquals(rate == Rate.WORLD || rate == Rate.DAY_ONE ? want[rate.ordinal()] / 3 : want[rate.ordinal()], ds72, rate.id() + " at 72 min");
         }
         // Every allowed day length divides exactly, and a whole game day takes exactly L real minutes at World.
         for (int l : r.dayLengths()) assertEquals(Calendar.DS_PER_DAY, (long) r.dsPerTick(Rate.WORLD, l) * l * 60 * 20, "L=" + l);
@@ -58,6 +61,7 @@ class ClockModelTest {
         for (int i = 0; i < lens.length; i++) lens[i] = l.get(i).getAsInt();
         assertEquals(Rates.STANDARD, new Rates(d.get("close").getAsInt(), d.get("travel").getAsInt(), d.get("world_at_l24").getAsInt(),
                 d.get("work").getAsInt(), d.get("until_done").getAsInt(), d.get("sleep").getAsInt(), lens));
+        assertEquals(Rates.DEFAULT_DAY_ONE_PCT, o.get("first_fire_world_pct").getAsInt(), "Day 1 is half speed");
     }
 
     @Test
