@@ -325,7 +325,8 @@ public final class FishingGameTests {
 
     /**
      * From the strike the fighter asks the Close rate: every tick the fight is on, the clock moves 3 game ds (a
-     * tenth of the 24-minute day's World rate). Ticks after the fish is landed are not counted.
+     * tenth of the 24-minute day's World rate). Ticks after the fish is landed are not counted; the tick the fight
+     * starts or ends in may step at the World rate, depending on where the test ticker falls in the server tick.
      */
     static void closeClock(GameTestHelper h) {
         pool(h, 2);
@@ -353,7 +354,9 @@ public final class FishingGameTests {
         h.succeedWhen(() -> {
             h.assertTrue(ticks[0] >= 41 || f.over() && ticks[0] > 2, "waiting");
             h.assertTrue(counted[0] >= 5, "the fight ran " + counted[0] + " ticks");
-            h.assertTrue(moved[0] == 3L * counted[0], "clock moved " + moved[0] + " ds in " + counted[0] + " fight ticks (world "
+            // Up to two boundary ticks (the strike's and the landing's) may step at the World rate, 27 ds more each.
+            long close = 3L * counted[0];
+            h.assertTrue(moved[0] >= close && moved[0] <= close + 2 * 27, "clock moved " + moved[0] + " ds in " + counted[0] + " fight ticks (world "
                     + clock.rate().id() + ", fighters " + FishingService.fighters().size() + ")");
             done(h, p);
         });
