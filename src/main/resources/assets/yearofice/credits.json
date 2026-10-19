@@ -1092,6 +1092,34 @@
    "licence": "project",
    "generator_version": "soundgen 0.1.0",
    "release_blocker": false
+  },
+  {
+   "asset_id": "gui_messenger_device",
+   "files": [
+    "assets/yearofice/textures/gui/messenger/device.png",
+    "assets/yearofice/textures/gui/messenger/corner.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/gui_messenger.py",
+   "licence": "project",
+   "generator_version": "gui_messenger 1.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "gui_hud_vitals_strip",
+   "files": [
+    "assets/yearofice/textures/gui/sprites/hud/warmth.png",
+    "assets/yearofice/textures/gui/sprites/hud/wet.png",
+    "assets/yearofice/textures/gui/sprites/hud/water.png",
+    "assets/yearofice/textures/gui/sprites/hud/calories.png",
+    "assets/yearofice/textures/gui/sprites/hud/energy.png",
+    "assets/yearofice/textures/gui/sprites/hud/condition.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/gui_messenger.py",
+   "licence": "project",
+   "generator_version": "gui_messenger 1.0",
+   "release_blocker": false
   }
  ]
 }
