@@ -224,6 +224,16 @@ class BodyModelTest {
     }
 
     @Test
+    void charged_work_burns_like_any_other() {
+        BodyState s = new BodyState();
+        BodyModel.charge(s, 0, 2400);
+        assertEquals(2400, s.kcalOutToday(0), 1e-9);
+        double before = s.kg;
+        BodyModel.step(s, rest(MILD), BodyTuning.STANDARD, 0, 1);
+        assertEquals(-1.0, s.kg - before, 0.001);
+    }
+
+    @Test
     void sos_return_body() {
         BodyState s = new BodyState();
         s.kg = 55;

@@ -334,5 +334,22 @@ public final class BodyGameTests {
         h.succeed();
     }
 
+    /** A bow-drill try's FireEffortEvent is charged to the body: 60 kcal in this hour's burn. */
+    @GameTest(template = T, batch = BATCH)
+    public static void fire_effort_charged_to_body(GameTestHelper h) {
+        ServerPlayer p = player(h);
+        try {
+            p.setGameMode(net.minecraft.world.level.GameType.SURVIVAL);
+            BodyState s = BodyAttachments.of(p);
+            double before = s.balance24h();
+            NeoForge.EVENT_BUS.post(new com.yearofice.api.fire.FireEffortEvent(p, "bow_drill", 60, 7.5));
+            h.assertTrue(Math.abs(before - s.balance24h() - 60) < 1e-6, "charged " + (before - s.balance24h()));
+            h.assertTrue(Math.abs(s.pendingKcal + 60) < 1e-6, "weight moves at the next step");
+            h.succeed();
+        } finally {
+            done(h, p);
+        }
+    }
+
     static double rel(double x, double y) { return Math.abs(x - y) / Math.max(1e-9, Math.abs(y)); }
 }

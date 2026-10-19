@@ -197,6 +197,17 @@ public final class BodyModel {
         return true;
     }
 
+    /**
+     * Work charged by another system (a bow-drill try is 60 kcal): booked in this hour's burn and taken off the next
+     * step's absorb, so weight moves by it at the next step like any other burn.
+     */
+    public static void charge(BodyState s, long minute, double kcal) {
+        if (kcal <= 0) return;
+        s.advanceBins(minute);
+        s.kcalOut[(int) Math.floorMod(Math.floorDiv(minute, 60), 24)] += kcal;
+        s.pendingKcal -= kcal;
+    }
+
     /** A drink of {@code litres}. A bad roll starts the gut-illness clock {@code onsetMin} minutes later. */
     public static void drink(BodyState s, long minute, double litres, int onsetMin) {
         s.advanceBins(minute);

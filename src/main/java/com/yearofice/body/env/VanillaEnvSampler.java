@@ -1,5 +1,6 @@
 package com.yearofice.body.env;
 
+import com.yearofice.api.fire.FireHeatLookup;
 import com.yearofice.body.clock.BodyClock;
 import com.yearofice.sim.body.ColdWater;
 import com.yearofice.sim.env.EnvSample;
@@ -31,7 +32,8 @@ import net.minecraft.world.phys.Vec3;
  *   <li>Precipitation: rain or snow where vanilla rains on the player's head, 2.5 mm/h (8 in a thunderstorm).</li>
  *   <li>Wind: 2 m/s, 5 in rain, 9 in a thunderstorm; halved under a roof.</li>
  *   <li>Water: air − 4 °C, between 1 and 20, and the depth the player stands in.</li>
- *   <li>Heat: lit campfires (Steady), fire blocks (Low) and lava (Hot) within 8 m.</li>
+ *   <li>Heat: every fire ring the fire system reports within 8 m ({@link FireHeatLookup}), plus vanilla lit
+ *       campfires (Steady), fire blocks (Low) and lava (Hot) as stand-ins.</li>
  * </ul>
  *
  * A per-player override, set by {@code /yoi body env} and by GameTests, replaces the sampled air, wind and
@@ -111,8 +113,8 @@ public final class VanillaEnvSampler implements EnvSampler {
     private static final int R = 8, RY = 3;
 
     static List<HeatSource> heatSources(ServerLevel level, ServerPlayer p) {
-        List<HeatSource> out = new ArrayList<>(2);
         Vec3 at = p.position().add(0, 0.9, 0);
+        List<HeatSource> out = new ArrayList<>(FireHeatLookup.INSTANCE.sourcesNear(level, at.x, at.y, at.z));
         BlockPos c = p.blockPosition();
         BlockPos.MutableBlockPos m = new BlockPos.MutableBlockPos();
         for (int dx = -R; dx <= R; dx++) {
