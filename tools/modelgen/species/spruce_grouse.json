@@ -6,24 +6,9 @@
   "willow_ptarmigan",
   "spruce_grouse"
  ],
- "notes": "Same grouse rig. Male: slate grey, black throat and breast edged with white spots, red comb; female: brown, heavily barred.",
+ "notes": "Same grouse rig (G2). Male: slate grey above with pale bars, black throat, breast and belly front, big red comb over the eye, dark wide fan tail with a pale tip; female: brown, heavily barred.",
  "head": {
-  "pixels": [
-   {
-    "faces": "lr",
-    "z": 0.45,
-    "y": 0.8,
-    "ramp": "feather_grouse_male",
-    "step": 0
-   },
-   {
-    "faces": "lr",
-    "z": 0.45,
-    "y": 0.0,
-    "ramp": "comb_red",
-    "step": 2
-   }
-  ]
+  "pixels": []
  },
  "paint": {
   "_replace": true,
@@ -39,9 +24,8 @@
    "regions": [
     {
      "faces": "lr",
-     "speckle": 0.12,
-     "ramp": "fur_white",
-     "step": 1
+     "speckle": 0.15,
+     "step": 4
     }
    ]
   },
@@ -66,29 +50,27 @@
       0.8,
       1
      ],
-     "ramp": "fur_white",
-     "step": 1
+     "step": 4
     }
    ]
   },
   "breast": {
-   "ramp": "feather_grouse_male",
-   "step": 0,
-   "noise": 0,
+   "ramp": "fur_black",
+   "step": 1,
+   "noise": 0.1,
    "regions": [
     {
      "faces": [
       "bottom",
-      "front",
       "lr"
      ],
      "y": [
-      0.5,
+      0.6,
       1
      ],
-     "speckle": 0.18,
-     "ramp": "fur_white",
-     "step": 1
+     "speckle": 0.2,
+     "ramp": "feather_grouse_male",
+     "step": 4
     }
    ]
   },
@@ -111,34 +93,38 @@
    ]
   },
   "neck": {
-   "ramp": "feather_grouse_male",
-   "step": 0
+   "ramp": "fur_black",
+   "step": 1
   },
   "*": {
    "ramp": "feather_grouse_male",
-   "step": 2,
+   "step": 3,
    "noise": 0.2,
    "regions": [
     {
      "faces": "sides",
      "y": [
-      0.5,
+      0.3,
       1
      ],
-     "speckle": 0.15,
-     "ramp": "fur_white",
+     "speckle": 0.22,
+     "step": 4
+    },
+    {
+     "faces": "front",
+     "ramp": "fur_black",
      "step": 1
     },
     {
      "faces": "bottom",
+     "ramp": "fur_black",
+     "step": 1
+    },
+    {
+     "faces": "bottom",
+     "speckle": 0.3,
      "ramp": "feather_grouse_male",
-     "step": 0
-    },
-    {
-     "faces": "bottom",
-     "speckle": 0.25,
-     "ramp": "fur_white",
-     "step": 1
+     "step": 4
     }
    ]
   }
@@ -149,7 +135,8 @@
   "female_adult": {
    "remap": {
     "feather_grouse_male": "feather_grouse_female",
-    "comb_red": "feather_grouse_female"
+    "comb_red": "feather_grouse_female",
+    "fur_black": "feather_grouse_female"
    },
    "extra_regions": {
     "*": [
@@ -160,6 +147,88 @@
      }
     ]
    }
+  }
+ },
+ "cube_paint": {
+  "_replace": true,
+  "head#0": {
+   "ramp": "feather_grouse_male",
+   "step": 2,
+   "noise": 0.1,
+   "regions": [
+    {
+     "faces": [
+      "lr",
+      "bottom"
+     ],
+     "y": [
+      0.55,
+      1
+     ],
+     "ramp": "fur_black",
+     "step": 1
+    }
+   ],
+   "pixels": [
+    {
+     "faces": "lr",
+     "z": 0.3,
+     "y": 0.4,
+     "ramp": "fur_black",
+     "step": 0
+    }
+   ]
+  },
+  "tail#0": {
+   "ramp": "feather_grouse_male",
+   "step": 0,
+   "noise": 0
+  },
+  "tail#1": {
+   "ramp": "feather_grouse_male",
+   "step": 0,
+   "noise": 0,
+   "regions": [
+    {
+     "faces": "all",
+     "z": [
+      0.6,
+      1
+     ],
+     "step": 4
+    }
+   ]
+  },
+  "leg_r#1": {
+   "ramp": "feather_grouse_male",
+   "step": 3,
+   "noise": 0
+  },
+  "head#1": {
+   "ramp": "comb_red",
+   "step": 3,
+   "noise": 0,
+   "light": 0
+  },
+  "body#1": {
+   "ramp": "fur_black",
+   "step": 1,
+   "noise": 0.1,
+   "regions": [
+    {
+     "faces": [
+      "bottom",
+      "lr"
+     ],
+     "y": [
+      0.6,
+      1
+     ],
+     "speckle": 0.2,
+     "ramp": "feather_grouse_male",
+     "step": 4
+    }
+   ]
   }
  }
 }

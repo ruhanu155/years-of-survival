@@ -14,9 +14,9 @@
   0.4,
   0.4
  ],
- "grade": "G1",
+ "grade": "G2",
  "base": null,
- "notes": "Generated shared grouse rig (DV3: birds share geo/entity/rig_<rig>.geo.json, species differ by texture and scale). Plump body and breast, small head, short beak, fan tail, folded wings, short feathered legs.",
+ "notes": "G2 (RECONCILE 157): Blockbench pass on the shared grouse rig. Plump teardrop body (octagonal section, rounded breast, tapered rear), small round head low on a short neck, eye comb cube, short fan tail with a wider outer fan that only the spruce grouse paints, feathered feet. Species differ by paint.",
  "body": {
   "len": 6,
   "w": 4,
@@ -56,22 +56,7 @@
   "h": 2,
   "len": 2.5,
   "back": 1,
-  "pixels": [
-   {
-    "faces": "lr",
-    "z": 0.45,
-    "y": 0.8,
-    "ramp": "fur_black",
-    "step": 0
-   },
-   {
-    "faces": "lr",
-    "z": 0.45,
-    "y": 0.0,
-    "ramp": "comb_red",
-    "step": 2
-   }
-  ]
+  "pixels": []
  },
  "beak": {
   "w": 1,
@@ -230,6 +215,68 @@
     },
     "share": 0.5
    }
+  }
+ },
+ "override": "rig_grouse.geo.json",
+ "cube_paint": {
+  "head#0": {
+   "ramp": "feather_ptarmigan_summer",
+   "step": 2,
+   "noise": 0.2,
+   "pixels": [
+    {
+     "faces": "lr",
+     "z": 0.3,
+     "y": 0.4,
+     "ramp": "fur_black",
+     "step": 0
+    }
+   ]
+  },
+  "tail#1": {
+   "ramp": "none",
+   "step": 0,
+   "noise": 0
+  },
+  "leg_r#1": {
+   "ramp": "fur_white",
+   "step": 4,
+   "noise": 0,
+   "regions": [
+    {
+     "faces": "sides",
+     "y": [
+      0.5,
+      1
+     ],
+     "step": 3
+    }
+   ]
+  },
+  "head#1": {
+   "ramp": "comb_red",
+   "step": 2,
+   "noise": 0,
+   "light": 0
+  },
+  "body#1": {
+   "ramp": "feather_ptarmigan_summer",
+   "step": 3,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": [
+      "bottom",
+      "front"
+     ],
+     "y": [
+      0.5,
+      1
+     ],
+     "ramp": "fur_white",
+     "step": 3
+    }
+   ]
   }
  }
 }

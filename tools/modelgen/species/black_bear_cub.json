@@ -7,7 +7,7 @@
   0.6,
   0.7
  ],
- "notes": "First-summer cub on the black bear rig: big head and ears, short legs.",
+ "notes": "First-summer cub on the black bear rig: big head and ears, short legs. G2: follows the adult's Blockbench pass at cub scale (same per-cube paint order).",
  "torso": [
   {
    "bone": "chest",
@@ -174,5 +174,7 @@
  "textures": {
   "cub_black": {},
   "_replace": true
- }
+ },
+ "override": "black_bear_cub.geo.json",
+ "grade": "G2"
 }

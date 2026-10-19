@@ -36,7 +36,7 @@
    ]
   },
   {
-   "label": "willow_ptarmigan  adult_summer   (generated)",
+   "label": "willow_ptarmigan  adult_summer   (G2, Blockbench override)",
    "geo": "src/main/resources/assets/yearofice/geo/entity/rig_grouse.geo.json",
    "texture": "src/main/resources/assets/yearofice/textures/entity/willow_ptarmigan/adult_summer.png",
    "ground": "summer",
@@ -47,7 +47,7 @@
    ]
   },
   {
-   "label": "willow_ptarmigan  adult_winter   (generated)",
+   "label": "willow_ptarmigan  adult_winter   (G2, Blockbench override)",
    "geo": "src/main/resources/assets/yearofice/geo/entity/rig_grouse.geo.json",
    "texture": "src/main/resources/assets/yearofice/textures/entity/willow_ptarmigan/adult_winter.png",
    "ground": "snow",
@@ -58,7 +58,7 @@
    ]
   },
   {
-   "label": "willow_ptarmigan  adult_moult   (generated)",
+   "label": "willow_ptarmigan  adult_moult   (G2, Blockbench override)",
    "geo": "src/main/resources/assets/yearofice/geo/entity/rig_grouse.geo.json",
    "texture": "src/main/resources/assets/yearofice/textures/entity/willow_ptarmigan/adult_moult.png",
    "ground": "summer",
@@ -69,7 +69,7 @@
    ]
   },
   {
-   "label": "spruce_grouse  male_adult   (generated)",
+   "label": "spruce_grouse  male_adult   (G2, Blockbench override)",
    "geo": "src/main/resources/assets/yearofice/geo/entity/rig_grouse.geo.json",
    "texture": "src/main/resources/assets/yearofice/textures/entity/spruce_grouse/male_adult.png",
    "ground": "summer",
@@ -80,7 +80,7 @@
    ]
   },
   {
-   "label": "spruce_grouse  female_adult   (generated)",
+   "label": "spruce_grouse  female_adult   (G2, Blockbench override)",
    "geo": "src/main/resources/assets/yearofice/geo/entity/rig_grouse.geo.json",
    "texture": "src/main/resources/assets/yearofice/textures/entity/spruce_grouse/female_adult.png",
    "ground": "summer",

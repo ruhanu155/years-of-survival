@@ -1,0 +1,44 @@
+{
+ "_rule": "Art spec, The Blockbench fallback: one line per override saying why. modelgen copies the geometry, re-packs UVs, paints from the palette ramps and runs all seven checks.",
+ "grizzly.geo.json": {
+  "species": [
+   "grizzly"
+  ],
+  "grade": "G2",
+  "source": "blockbench/grizzly_g2.bbmodel",
+  "why": "RECONCILE 157 (Director look check) ordered a G2 polish pass in Blockbench. The look needs rotated chamfer cubes and per-cube paint, which the template cannot place; bones, parents and pivots are the template's own, so the generated animations still bind (modelgen refuses the override otherwise). Hump peaking over the front legs with a back ramp to the hips, dished face (brow, stop, low muzzle, upturned nose), cheek ruff, two-tier round ears, long pale front claws."
+ },
+ "grizzly_cub.geo.json": {
+  "species": [
+   "grizzly_cub"
+  ],
+  "grade": "G2",
+  "source": "blockbench/grizzly_cub_g2.bbmodel",
+  "why": "Follows the adult grizzly's G2 changes at cub scale (start of a hump, dished face, round ears), same per-cube order so the adult's paint applies."
+ },
+ "black_bear.geo.json": {
+  "species": [
+   "black_bear"
+  ],
+  "grade": "G2",
+  "source": "blockbench/black_bear_g2.bbmodel",
+  "why": "RECONCILE 157 (Director look check) ordered a G2 polish pass in Blockbench. The look needs rotated chamfer cubes and per-cube paint, which the template cannot place; bones, parents and pivots are the template's own, so the generated animations still bind (modelgen refuses the override otherwise). Rounder octagonal body with rounded brisket and rump, no hump, back rising to the hips, straight Roman profile with a longer tan muzzle, taller pointed ears, short dark claws."
+ },
+ "black_bear_cub.geo.json": {
+  "species": [
+   "black_bear_cub"
+  ],
+  "grade": "G2",
+  "source": "blockbench/black_bear_cub_g2.bbmodel",
+  "why": "Follows the adult black bear's G2 changes at cub scale, same per-cube order so the adult's paint applies."
+ },
+ "rig_grouse.geo.json": {
+  "species": [
+   "willow_ptarmigan",
+   "spruce_grouse"
+  ],
+  "grade": "G2",
+  "source": "blockbench/rig_grouse_g2.bbmodel",
+  "why": "RECONCILE 157 (Director look check) ordered a G2 polish pass in Blockbench. The look needs rotated chamfer cubes and per-cube paint, which the template cannot place; bones, parents and pivots are the template's own, so the generated animations still bind (modelgen refuses the override otherwise). Shared grouse rig: plump teardrop body, small head low on a short neck, eye-comb cube, short fan tail plus an outer fan only the spruce grouse paints (clear on the ptarmigan), feathered feet."
+ }
+}

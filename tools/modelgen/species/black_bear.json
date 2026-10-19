@@ -9,9 +9,9 @@
   1.0,
   1.1
  ],
- "grade": "G1",
+ "grade": "G2",
  "base": null,
- "notes": "Generated. Against the grizzly: no hump (rump as high as the shoulder), straight Roman-nosed profile, taller pointed ears, tan muzzle, short dark claws.",
+ "notes": "G2 (RECONCILE 157): Blockbench pass. Rounder body (octagonal sections, rounded brisket and rump), no hump, back rising to the highest point over the hips; straight Roman profile from brow to nose with a longer, lighter tan muzzle; taller pointed two-tier ears; short dark claws.",
  "torso": [
   {
    "bone": "chest",
@@ -255,6 +255,71 @@
    "remap": {
     "fur_black": "fur_cinnamon"
    }
+  }
+ },
+ "override": "black_bear.geo.json",
+ "cube_paint": {
+  "head#0": {
+   "ramp": "fur_black",
+   "step": 2,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": "all",
+     "y": [
+      0,
+      0.3
+     ],
+     "speckle": 0.25,
+     "dstep": 1
+    },
+    {
+     "faces": "sides",
+     "y": [
+      0.75,
+      1
+     ],
+     "dstep": -1
+    }
+   ],
+   "pixels": [
+    {
+     "faces": "sides",
+     "z": 0.15,
+     "y": 0.5,
+     "ramp": "fur_tan",
+     "step": 1
+    }
+   ]
+  },
+  "head#2": {
+   "ramp": "fur_tan",
+   "step": 3,
+   "noise": 0.12,
+   "regions": [
+    {
+     "faces": "bottom",
+     "dstep": -1
+    },
+    {
+     "faces": "sides",
+     "y": [
+      0.67,
+      1
+     ],
+     "dstep": -1
+    }
+   ]
+  },
+  "head#3": {
+   "ramp": "fur_black",
+   "step": 0,
+   "noise": 0
+  },
+  "leg_fr_foot#1": {
+   "ramp": "fur_tan",
+   "step": 0,
+   "noise": 0
   }
  }
 }

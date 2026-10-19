@@ -1,6 +1,6 @@
 {
  "species": "black_bear_cub",
- "grade": "G1",
+ "grade": "G2",
  "generator": "modelgen 0.4.0",
  "base": null,
  "geo": "geo/entity/black_bear_cub.geo.json",

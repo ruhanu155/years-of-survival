@@ -5,6 +5,9 @@ Usage (from the repository root):
   python3 -I tools/modelgen/modelgen.py build [species ...]   write every species (or the named ones)
   python3 -I tools/modelgen/modelgen.py check                 validate what is on disk, exit 1 on failure
 
+A species file with "override": "<geo_id>.geo.json" takes its cubes from tools/modelgen/overrides/ (the
+Blockbench fallback) instead of the template; see from_override.
+
 Units: species files are in model pixels, 16 px = 1 m = 1 block, the same texel size as blocks.
 Coordinates: y up from the ground, the animal faces -Z (north), +X is its right side.
 Every random draw seeds from SHA-256 of (species, cube, face, layer) so output is byte-identical."""
@@ -367,6 +370,55 @@ def bird(p):
 
 
 TEMPLATES = {"quadruped": quadruped, "bird": bird}
+OVERRIDES = os.path.join(HERE, "overrides")
+
+
+def mirror_name(name):
+    """leg_fl_upper -> leg_fr_upper, ear_l -> ear_r, wing_l_tip -> wing_r_tip; None on the right side."""
+    for a, b in (("_fl_", "_fr_"), ("_hl_", "_hr_"), ("_l_", "_r_")):
+        if a in name:
+            return name.replace(a, b)
+    return name[:-2] + "_r" if name.endswith("_l") else None
+
+
+def from_override(p, template):
+    """The Blockbench fallback (Art spec: The Blockbench fallback): the cubes come from a hand-edited
+    Bedrock geometry in overrides/, the bones must match the template's names, parents and pivots
+    exactly so the generated animations still bind. UVs are re-packed and painted here, so the
+    texture always comes from the palette ramps. Per-cube paint: species "cube_paint" {"bone#i": paint},
+    else the bone's paint glob; ramp "none" leaves the cube's texels clear (alpha 0, hidden under GeckoLib's
+    cutout render type). Left-side cubes mirror the matching right-side cube's UV island and paint."""
+    g = json.load(open(os.path.join(OVERRIDES, p["override"])))["minecraft:geometry"][0]
+    want = {b["name"]: (b.get("parent"), b["pivot"]) for b in template.bones}
+    have = {b["name"]: (b.get("parent"), [round(float(v), 3) for v in b["pivot"]]) for b in g["bones"]}
+    if want != have:
+        diff = [n for n in sorted(set(want) | set(have)) if want.get(n) != have.get(n)]
+        raise SystemExit(f"{p['geo_id']}: override bones differ from the rig (names, parents or pivots): {diff}")
+    m = Model(p["geo_id"], p["tier"], p["rig"])
+    sizes = {}
+    for b in g["bones"]:
+        m.bone(b["name"], b.get("parent"), b["pivot"], b.get("rotation"))
+        for i, c in enumerate(b.get("cubes", [])):
+            sizes[f"{b['name']}#{i}"] = [int(round(v)) for v in c["size"]]
+    cp = p.get("cube_paint", {})
+    for b in g["bones"]:
+        twin = mirror_name(b["name"])
+        for i, c in enumerate(b.get("cubes", [])):
+            key = f"{b['name']}#{i}"
+            size = [int(round(v)) for v in c["size"]]
+            if [abs(v - round(v)) > 1e-6 for v in c["size"]].count(True):
+                raise SystemExit(f"{p['geo_id']}: {key} has a fractional size {c['size']}; box UV needs whole pixels")
+            paint = copy.deepcopy(cp[key]) if key in cp else paint_for(p, b["name"])
+            share = f"{twin}#{i}" if twin and sizes.get(f"{twin}#{i}") == size else None
+            cube = {"origin": [round(float(v), 3) for v in c["origin"]], "size": size, "paint": paint,
+                    "share": share, "mirror": bool(share), "key": key}
+            if c.get("rotation") and any(c["rotation"]):
+                cube["rotation"] = [round(float(v), 3) for v in c["rotation"]]
+                cube["pivot"] = [round(float(v), 3) for v in c.get("pivot", b["pivot"])]
+            if c.get("inflate") and c["inflate"] > 0:  # deliberate inflates stay; z-fight hairs are redone
+                cube["inflate"] = c["inflate"]
+            m.by[b["name"]]["_cubes"].append(cube)
+    return m
 
 
 def fix_coplanar(m):
@@ -402,6 +454,67 @@ def fix_coplanar(m):
                 small["inflate"] = round(small.get("inflate", 0) - 0.03, 3)
                 n += 1
     return n
+
+
+def _world_faces(m):
+    """Each cube face at rest pose in model space: (cube, unit normal, plane offset, 2D extents)."""
+    mats = G.bone_matrices([{k: v for k, v in b.items() if not k.startswith("_")} for b in m.bones])
+    out = []
+    for b, c in m.cubes():
+        inf = c.get("inflate", 0.0)
+        o = np.array(c["origin"], float) - inf
+        s = np.array(c["size"], float) + 2 * inf
+        W = mats[b["name"]]
+        if c.get("rotation"):
+            W = W @ G.affine(c["rotation"], c["pivot"])
+        for ax in range(3):
+            oth = [k for k in range(3) if k != ax]
+            for side in (0, 1):
+                pts = []
+                for a in (0, 1):
+                    for bb in (0, 1):
+                        p = o.copy()
+                        p[ax] += s[ax] * side
+                        p[oth[0]] += s[oth[0]] * a
+                        p[oth[1]] += s[oth[1]] * bb
+                        pts.append((W @ np.append(p, 1.0))[:3])
+                n = np.zeros(3)
+                n[ax] = 1.0 if side else -1.0
+                n = W[:3, :3] @ n
+                out.append((c, n, float(n @ pts[0]), np.array(pts)))
+    return out
+
+
+def fix_coplanar_world(m, step=0.03, rounds=12):
+    """fix_coplanar for hand-edited overrides: compares faces in model space at rest pose, so rotated
+    bones and rotated cubes are covered too. Any two same-facing faces on one plane that overlap get
+    the smaller cube shrunk by `step` through inflate, repeated until no pair is left."""
+    total = 0
+    for _ in range(rounds):
+        faces = _world_faces(m)
+        hit = {}
+        for i in range(len(faces)):
+            ca, na, da, pa = faces[i]
+            for j in range(i + 1, len(faces)):
+                cb, nb, db, pb = faces[j]
+                if ca is cb or na @ nb < 0.9999 or abs(da - db) > 1e-3:
+                    continue
+                u = pa[1] - pa[0]
+                u = u / np.linalg.norm(u)
+                v = np.cross(na, u)
+                A = np.array([[p @ u, p @ v] for p in pa])
+                B = np.array([[p @ u, p @ v] for p in pb])
+                ox = min(A[:, 0].max(), B[:, 0].max()) - max(A[:, 0].min(), B[:, 0].min())
+                oy = min(A[:, 1].max(), B[:, 1].max()) - max(A[:, 1].min(), B[:, 1].min())
+                if ox > 0.01 and oy > 0.01:
+                    small = ca if np.prod(ca["size"]) <= np.prod(cb["size"]) else cb
+                    hit[id(small)] = small
+        if not hit:
+            return total
+        for c in hit.values():
+            c["inflate"] = round(c.get("inflate", 0) - step, 3)
+        total += len(hit)
+    return total
 
 
 # ----------------------------------------------------------------------------- UV packing
@@ -503,6 +616,7 @@ def paint_texture(m, p, coat_remap=None, coat_name="", mask_remap=None, only=Non
                 ramp[v0 + iv, u0 + iu] = px["ramp"]
                 step[v0 + iv, u0 + iu] = px["step"]
     step = np.clip(step, 0, 4)
+    ramp[ramp == "none"] = ""
     if coat_remap:
         for a, bb in coat_remap.items():
             ramp[ramp == a] = bb
@@ -763,7 +877,11 @@ def deep_merge(a, b):
 def build(sid, write=True):
     p = load_species(sid)
     m = TEMPLATES[p["template"]](p)
-    fix_coplanar(m)
+    if p.get("override"):
+        m = from_override(p, m)
+        fix_coplanar_world(m)
+    else:
+        fix_coplanar(m)
     ok, used = pack_uv(m)
     if not ok:
         raise SystemExit(f"{sid}: UV overflow, needs {used} rows of {TIERS[m.tier][2][1]}")
