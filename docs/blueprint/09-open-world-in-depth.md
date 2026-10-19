@@ -73,6 +73,8 @@ The detailed rules for the open world, its story and the engine. The summaries s
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | On foot | 1.0 (3.0 m/s) | About 1.1 h | 250, rising with load | The crate pack's 30 kg, a pack frame's 45 kg | — | Start | All year; ×0.6 in snow over 40 cm |
 | Snowshoes | 0.9 in deep snow; 0.8 on bare ground and slopes over 15° | About 1.2 h in deep snow | 300 | As on foot | 2 bent birch frames, 6 m of rawhide lacing; 6 game hours. Relace every 30 days of use | Hide | Snow over 20 cm, about November–April |
+| Skates (B1, Proposed) | 2.0 on black ice; 1.5 on white ice and refrozen overflow; refused on snow over 1 cm | About 0.55 h on black ice | 400 | As on foot; a hand sled tows at ×1.2 | Found at Arvid's cabin, or forged: 1 kg bar iron, 2 birch soles, 2 m rawhide straps; 2 game hours | Iron | Ice of 10 cm or more under 1 cm of snow: late October–November, scoured patches, January–March overflow |
+| Skis (B2, Proposed) | 1.5 on packed or set trail, lake snow and crust; 1.0 breaking powder; 0.5 in brush; 2.0 downhill in the open | About 0.75 h on a packed trail | 300; ×1.3 breaking trail | As on foot | Found behind Arvid's door, or made: 2 seasoned 2.2 m birch staves, steam-bent tips, 0.2 kg pitch; 8 game hours | Bushcraft | Snow over 20 cm, about November–April; best on the March crust |
 | Hand sled | 0.7 loaded on packed snow or ice; 0.45 in deep snow, 0.6 with snowshoes | About 1.6 h | 400 | 120 kg | 2 split birch runners, 6 crosspieces, rawhide lashing; 8 game hours | Hide | Snow over 10 cm, or ice of 20 cm or more |
 | Raft | Drifts at the current (0.8–1.5 m/s on the main river); poled upstream at 0.25 in slow water only | About 2.8 h downriver | 75 drifting, 450 poling | 200 kg | 6 logs of 4 m, 2 cross poles, 20 m of cordage; 6 game hours | Bushcraft | Open water |
 | Birch-bark canoe | 1.4 on flat water; current added downriver and taken away upriver; 0.8 on a portage with the canoe carried | About 0.6 h down, 0.8 h flat, 1.1 h up | 250 downriver and flat, 450 upriver | 150 kg | Bark from 6–8 large birch, 40 m of split spruce root, spruce ribs and gunwales, 1 kg of spruce gum; 60 game hours over at least 6 days. Regum every 20 days of use (0.5 kg) | Homestead | Mid-May to mid-October |
@@ -92,6 +94,76 @@ The detailed rules for the open world, its story and the engine. The summaries s
 **River current.** The main river runs at 1.2 m/s on average and 2.5 m/s in Upriver Canyon. Rapids and Long Falls block any canoe going up the canyon; the 400 m portage is the only way. Logs float at the current's speed and jam at snags, as in Building. Tipping: on a raft or in a canoe, each surge of a hooked fish over 3 kg and each beaver strike rolls a capsize chance of 5% on a raft and 10% in a canoe, ×2 standing, ×0.5 kneeling, ×2 below 3 energy bolts, and ×1.5 in current over 1.5 m/s. A tipped player is in the water (Swimming and working in water), and unlashed gear drifts or sinks (Items › Items in the river). Lashing gear takes 2 game minutes per item at the bank.
 
 **The shoulder seasons.** For about 2 weeks at freeze-up and 2 at breakup the river is neither paddled nor walked. An outpost across or up the river is cut off then, and the messenger names those weeks a season ahead.
+
+**B1 Glare-ice skating (Proposed; Ruhan may veto).** Strap-on skates turn clear lake ice into the fastest ground travel in the valley, for a few weeks a year. Real wild-ice skaters on interior lakes want 10–13 cm of clear ice and carry ice picks; the game keeps both rules.
+
+- **Where and when.** Arvid's pair, `yearofice:skates`, hangs on a nail in his cabin in Worn condition. The forge makes a pair at Iron tier: 1 kg of bar iron, 2 birch soles and 2 m of rawhide straps, 2 game hours. Glare ice comes in three windows.
+  1. **Fall.** From lake ice reaching 10 cm until the first lasting snow over 1 cm, typically late October to November. Some years have no window.
+  2. **Midwinter.** Windstorms over 10 m/s scour patches to black ice (Weather and storms › Windstorms and blowdown).
+  3. **January to March.** Refrozen overflow sheets are skateable glare.
+- **Rules.** Putting skates on takes 1 game minute, sitting. They work on ice of 10 cm or more under 1 cm of snow or less.
+
+| Surface | Speed | kcal per game hour |
+| --- | --- | --- |
+| Black ice, clear and snow-free | ×2.0 (6 m/s, about 22 km/h) | 400 |
+| White or rough ice, refrozen overflow | ×1.5 | 400 |
+| Snow over 1 cm | ×0.3 with a stumble roll every 10 m; the prompt reads "Too much snow to skate" | 400 |
+
+- **Wind.** A tailwind adds ×0.05 per m/s, up to +0.3. A headwind takes the same away.
+- **Face cold.** Skating adds 6 m/s to the wind on the face for feels-like, so the ruff matters (Clothing).
+- **Towing.** A hand sled tows at ×1.2.
+- **Falls.** Crossing a crack or pressure ridge (Land and seasons in play › Pressure ridges) at full speed has a 10% fall chance: a Bruise on the knee or wrist, the part drops to Sore for 1 game day. A pack over 20 kg doubles the chance. Sneak slows to ×1.0 with no fall roll.
+- **What the player sees and hears.** Tapping ahead is impossible at speed, so the blades do the reading. Over 15 cm of ice they give a deep ring (`ice.blade_ring`). At 10–15 cm the pitch rises into a singing note (`ice.blade_sing`; Creative concepts › 13, Singing ice). Under 10 cm a dry crackle (`ice.blade_crackle`) plays 1.5 s before the existing break check runs. The glide itself is `step.skate`. The weather card shows "Glare ice on the Big Lake" while a lake qualifies. Under clear ice, fish see the skater (Ideas from viewers › Fish that see you).
+- **Failure cases.** Thin ice: Danger is heard first, and a fall-through follows Danger in detail › Thin ice. Ridge falls at speed, doubled with a heavy pack. Face frostnip from the added wind. A fall with no window, when snow beats the ice. The warn-once `skate_alone` fires on the first skate: "Ice picks round your neck before you skate."
+- **Ties.** Traversal (the Speed and cost table), thin ice and self-rescue, wind (Weather and storms), the Big Lake, Fish that see you, Body (Bruise and the Sore band), Clothing (face).
+- **Build.** Item `yearofice:skates`, worn in the Curios `snowshoes` slot, which takes one over-the-boot item; `data_maps/item/weight.json` and `props.json` rows; warn-once `prompt/skate_alone.json`. Package `travel` (Building and crafting): `travel.Skating` reads ice thickness and snow depth from `env.water.IceData`. Sounds `step.skate`, `ice.blade_ring`, `ice.blade_sing`, `ice.blade_crackle`. Tuning `[travel] skate_speed_black = 2.0`, `skate_speed_white = 1.5`, `skate_fall_ridge = 0.10` (Gentle, Standard, Brutal presets). Debug `/yoi ice glare <lake>`. Milestone M7, with the ice. GameTest `yearofice:travel/skate_black_ice` (batch `m7`): on a 200 m test lake with 12 cm of clear ice and no snow, a skater covers 200 m in 33 ±3 s; with 2 cm of snow the skates refuse; on 8 cm ice the crackle cue fires at least 1.5 s before the break.
+- **Pillars.** The year changes the map (a window that opens the lakes for a few weeks), Respect the player's time (fast travel earned by timing), Everything readable (the blades' pitch), Scarcity is the clock (the ice can kill).
+
+**B2 Arvid's skis (Proposed; Ruhan may veto).** Wooden skis are a second winter travel tool beside snowshoes: fast on trails, lakes and the March crust, worse in brush. Nordic prospectors brought skis north around 1900, and Arvid was one of them.
+
+- **Where and when.** A pair, `yearofice:skis` (2.1 m birch, rawhide toe straps, one pole), stands behind Arvid's cabin door. Woodcraft makes a pair at Bushcraft tier: 2 seasoned birch staves of 2.2 m under 20% moisture, tips steam-bent over a boiling pot in 2 game hours, carved in 6 game hours, the base pitch-tarred with 0.2 kg of pitch burned in. Climbing skins, `yearofice:climbing_skins`, are 2 strips of moose shin hide with the hair laid backward, 1 game hour. Skis work wherever snowshoes do, about November to April.
+- **Rules.**
+
+| Snow | Skis | Snowshoes (existing) |
+| --- | --- | --- |
+| Packed or set trail, wind-packed lake and river snow, the March crust | ×1.5 | ×1.0 |
+| Deep powder on the flat (over 40 cm), breaking trail | ×1.0, kcal ×1.3 | ×0.9 |
+| Spruce taiga, willow thicket | ×0.5 (tips catch) | ×0.75 |
+| Uphill over 10° | ×0.5; ×0.75 with skins | ×0.8 |
+| Downhill 10–25°, open | ×2.0 glide; Sneak snowploughs at ×1.2 | ×0.8 |
+| Downhill in trees | ×2.0 with a 5% fall per 50 m; Sneak ×1.2 with no fall | ×0.8 |
+| Hand sled in deep snow | ×0.5 | ×0.6 |
+
+- **Glide.** Skins drag on the flat: ×1.5 becomes ×1.2 until they are pulled off (1 game minute). Below −25 °C the snow turns sandy: glide ×0.8, or ×0.9 on a pine-tarred base. Tallow rubbed on the base (10 game minutes, 10 g) gives +0.1 for 15 km above −15 °C.
+- **Choosing.** Skis win on trails, lakes and crust. Snowshoes win in brush, in deep snow with a sled, and on steep timbered ground. So the player carries both, or plans the route.
+- **What the player sees and hears.** A hiss of glide (`step.ski_glide`) that turns to a dry squeal in deep cold (`step.ski_squeal`), so the player hears the cold penalty before reading it. Two parallel tracks with pole holes, which wolves and hares read as any trail.
+- **Failure cases.** A fall in trees at speed leaves the player snow-soaked with a Bruise, the part dropping to Sore. Skis in brush are slower than walking. Climbing without skins stalls at ×0.5. A deep-cold day takes a fifth off the glide.
+- **Ties.** Traversal, snowshoes and the hand sled, Trees, felling and firewood (seasoned staves), Recipes (pitch, tallow, rawhide), B3 (a set trail is ski ground), Weather and storms (deep cold).
+- **Ambition.** "Arvid's way": ski 50 km in one winter (`ambition/arvids_way.json`).
+- **Build.** Items `yearofice:skis` and `yearofice:climbing_skins`; skis wear in the Curios `snowshoes` slot; recipe at the workbench, `yearofice:station` type. Package `travel`: `travel.Skis` applies the table above as a ground factor. Sounds `step.ski_glide`, `step.ski_squeal`. Tuning `[travel] ski_speed_packed = 1.5`, `ski_speed_powder = 1.0`, `ski_speed_brush = 0.5`, `ski_fall_trees_50m = 0.05`. Debug `/yoi travel ski`. Milestone M7, with the snowshoes slot. GameTest `yearofice:travel/ski_vs_snowshoe` (batch `m7`): on a packed 500 m trail, skis beat snowshoes by at least 40%; in 60 cm of powder through taiga, snowshoes beat skis.
+- **Pillars.** Explore, don't dig (crust and lake routes reach farther), The year changes the map (best in March), Everything readable (the glide's sound).
+
+**B3 Break it today, use it tomorrow (Proposed; Ruhan may veto).** A snowshoe or ski trail sets firm overnight, so a trapline needs one pass out and one back, not 20. Real trappers cut a trail two snowshoes wide going out and widened it on the way home.
+
+- **Where and when.** Any snow over 20 cm, about November to April, on every trail the player breaks: the trapline, the wood road, the route to an outpost.
+- **Rules.** Snowshoes or skis leave a broken trail on each 2 m cell they cross. After 6 game hours with air at −2 °C or colder, a broken trail sets.
+  - **On foot.** A set trail counts as packed snow at ground factor 1.0. It walks without snowshoes, under up to 40 cm of drift (Weather and storms › Blizzards: the trail by feel).
+  - **Sleds.** It takes a hand sled at the packed rate (×0.7).
+  - **Sled lane.** A second pass on the return widens it to a sled lane, at 1.3× the walking time for that pass. A set sled lane carries the wolf sled at ×2.0.
+  - **Scope.** In snow, this replaces the 20-pass worn-path rule (Blueprint › The open world). Summer worn paths keep their rule.
+
+| Weather | Effect on a set trail |
+| --- | --- |
+| A day above 0 °C | Goes soft (×0.8 on foot) until it refreezes |
+| Fresh snow up to 40 cm | Hidden, but firm underfoot |
+| Fresh snow over 40 cm | Needs one more pass to re-set |
+| 21 days unused with snowfall | Gone |
+
+- **What the player sees and hears.** A set trail shows as a firm grey groove and plays the packed-snow step. The messenger hover reads "Set trail (firm)" or "Broken trail, sets by about 21:00".
+- **Failure cases.** A thaw day softens every trail at once. A trail broken in a warm spell above −2 °C never sets until the cold returns. A blizzard over 40 cm costs one more pass. Leaving the trail in a ground blizzard drops to deep-snow speed.
+- **Ties.** The trapline loop (Hunting in depth › Traps), Travel to, wolves and other animals using the player's trail (Blueprint › The open world › Trails and animals), the wolf sled, B2.
+- **Build.** No new registry ids. The chunk attachment `trail_wear` (per 2 m cell, RECONCILE 96) gains the states `broken`, `set` and `sled_lane` and a set stamp, settled in closed form on chunk load. Package `travel`: `travel.TrailSet`. Tuning `[travel] trail_set_hours = 6`, `trail_set_max_temp_c = -2`, `trail_fade_days = 21`. Debug `/yoi trail info|set`. Milestone M7. GameTest `yearofice:travel/trail_sets_overnight` (batch `m7`): break 100 m at −10 °C and advance 6 game hours; a player without snowshoes then walks it at 0.95× bare-ground speed or better; at +2 °C it has not set.
+- **Pillars.** Respect the player's time (2 passes instead of 20), The year changes the map, Everything readable (the groove and the hover line).
 
 ## Taming a wolf
 

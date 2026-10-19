@@ -318,6 +318,25 @@ r\_h is the hour's rate in mm. Glaze melts at 0.5 mm per game hour above 0 °C (
 
 **Counterplay.** Cross open ground early, before the afternoon wind. Plant trail wands (Land) on lake crossings. Never leave the trail in a ground blizzard.
 
+**B9 Drifts bury fences (Proposed; Ruhan may veto).** From January to March, drifts bridge pens, garden fences and the rack fence, and animals walk over the top. The snow-fence rule already drops drifts behind a fence built for it; every fence now catches its own.
+
+- **Where and when.** Any fence in the yard: the A3 rack fence, garden fences, goat pens and the wolf yard, after each storm over 10 m/s, most often in ground blizzards (above).
+- **Effective height.** A fence's effective height is its height minus the snow depth on its higher side, drifts included.
+
+| Animal | Crosses when the effective height is |
+| --- | --- |
+| Fox, hare, lynx, wolf | 0.6 m or less |
+| Moose, caribou | 1.0 m or less (they step over) |
+| Goats in a pen | 0.8 m or less (they get out) |
+
+- **Fences catch drifts.** A brush or pole-and-bough fence gathers a 0.5 m lee drift after each storm over 10 m/s, up to its own height. This is the snow-fence rule (Structures and buildables › Snow, ice and trails) applied to every fence.
+- **What the player can do.** Shovel the fence line: 10 game minutes per 4 m. Add a rail: 2 poles and 10 game minutes per 2 m. Build on the windward side of where the drift will lie.
+- **What the player sees and hears.** The drift is visible against the fence, tracks cross on top, and the messenger reports what came over: "Drift over the rack fence. Fox tracks on top." It names the animal only from tracks the player could read (Tracks and sign).
+- **Failure cases.** A fox at the drying rack (A3), goats loose in the bush at dusk, a moose browsing the garden's young willows. Three storms over 10 m/s bury a 1.5 m fence to its top.
+- **Ties.** A3 Thieves at the rack (under its world option `[world] rack_thieves`), A2 Door left open, garden and pen fences (Structures and buildables), Raising animals (Ideas from viewers), snow cover passes (Minecraft development › Snow cover and permafrost blocks).
+- **Build.** No new registry ids. The snow-cover pass gains a fence-lee drift for blocks tagged `#yearofice:fences` (`world.snow.FenceDrift`), and the animals' path cost reads effective height from the snow layer. Tuning `[world] drift_cross_small_m = 0.6`, `drift_cross_large_m = 1.0`, `drift_cross_goat_m = 0.8`, `fence_drift_m_per_storm = 0.5`. Debug `/yoi snow drift <pos>`. Milestone M8. GameTest `yearofice:world/drift_bridges_fence` (batch `m8`): a 1.2 m pole fence with 0.7 m of drift lets a fox path across and stops a hare's path at 0.5 m of drift; after shoveling, both are blocked.
+- **Pillars.** The year changes the map (January to March changes the yard), Everything readable, Scarcity is the clock (the rack is at risk).
+
 ### Cold snaps, deep cold and ice fog
 
 **The Blueprint's cold snap (3 or more days at −8 °C anomaly) and the hard winter stand.** This sets how often each band of deep cold is reached on the valley floor, and what the cold does to gear.

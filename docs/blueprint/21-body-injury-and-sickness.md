@@ -199,6 +199,21 @@ Sight range sets the fog distance and the 10 m plant-naming range; hearing range
 
 **What garments add.** The existing rule that a bear or wolf strike tears the torso layer now tears the outer garment of the hit part's zone, −15% condition. A thick outer layer there (hide coat, parka, hide pants, mukluks, fur mittens or fur hat) turns a rolled minor cut from a bite or claw into a bruise 25% of the time (new).
 
+**B13 Face grease against glare and wind (Proposed; Ruhan may veto).** Spring sun on snow burns a bare face, and a hard wind at −10 °C chaps it; fat rubbed in prevents both. Roland Welker rubbed musk-ox fat into his gloves and face on Alone, so fat gets a use besides eating.
+
+- **Where and when.** Sunburn: March 1 to April 30, on snow, under a sky less than half clouded, with the sun above 15°. Windburn: any month, wind over 8 m/s with air below −10 °C.
+- **Rules.**
+  - **Sunburn.** A bare face accrues a sunburn timer under those conditions; a ruffed hood halves it. After 3 game hours the head part gains the problem "Sunburned".
+  - **Windburn.** 2 game hours of that wind on a bare face gives "Windburned".
+  - **Effects, both.** Spirits −2 a day for 2 days, and the face's safe-to limit is 5 °C warmer for 2 days, so frostnip comes sooner (Injury sources › the frost counter).
+  - **Face grease.** 10 g of lard, bear fat or bone grease (B5) rubbed in, 1 game minute, protects for 8 game hours against both and makes the face safe 2 °C colder.
+  - **Glove grease.** 5 g rubbed into leather gloves or mittens makes them gain wetness ×0.7 for 3 days (Items › Wet).
+- **What the player sees and hears.** A red face in third person and in the signal mirror, a stinging cue (`body.skin_sting`) as the problem lands, and the head glyph on the body figure. The morning body line reads "Face sunburned. Grease it before the snow."
+- **Failure cases.** A spring day of hunting on the lake without grease or a hood. Grease used on the face is fat not eaten: 10 g is 90 kcal a day. The glare rule for the eyes (snow blindness and goggles) is unchanged and separate.
+- **Ties.** Problems by part (head), Bands and part effects (safe-to limits), Clothing (the ruff), Spirits, Items › Food values (lard), B5, Wet (gloves).
+- **Build.** No new registry ids. Problems `injury/sunburn.json` and `injury/windburn.json` on the head part; the status `face_grease` and the glove field in the body record; actions `action/grease_face.json` and `action/grease_gloves.json` taking any item in `#yearofice:grease` (lard, animal fat, bone grease). Package `body`. Sound `body.skin_sting`. Tuning `[body] sunburn_hours = 3`, `windburn_hours = 2`, `face_grease_hours = 8`, `glove_grease_wet_mult = 0.7`. Debug `/yoi body face`. Milestone M4. GameTest `yearofice:body/face_grease_prevents_sunburn` (batch `m4`): 4 game hours on April snow at noon leave a bare face Sunburned and a greased one not.
+- **Pillars.** Scarcity is the clock (fat competes with the stomach), The year changes the map (spring glare), Everything readable.
+
 ### Injury sources
 
 **Every source rolls its part first, then its problem.** The Condition loss and the problem roll are Danger in detail's, unchanged; the part weights are new. Part damage follows the split rule (3 × L on the hit part). "Off" and "main" are sides.
@@ -248,6 +263,27 @@ t_{nip,p} = \frac{300}{T_{limit,p} - T_{feel,zone(p)}} \ \text{game minutes}
 ```
 
 Both hands normally share the hands zone's limit. They differ when one hand is wet (a hand in the water pulling a net or at an ice hole uses the wet limit, −10 °C) or holds bare metal below −20 °C (the limit counts 5 °C warmer, new). The feet differ when one boot is wet.
+
+**B15 Back strain (Proposed; Ruhan may veto).** A heavy lift done carelessly can strain the back for days; lifting with the legs prevents most of it. It ties the hand-carried loads of A7 and the Strength bands of A11 to the body.
+
+- **Where and when.** Any single lift of a heavy load: a 40 kg green log to the shoulder, an A7 box, a meat quarter, a carcass.
+- **Rules.** A lift of 90% or more of that load's hand-carry cap has a 3% chance of a strained back. The caps are the ones that already exist (the 30 kg box, the 40 kg shouldered log, quarters and carcasses by the Bestiary's carcass table), scaled by Strength as A11 scales the load bands.
+
+| Condition | Chance multiplier |
+| --- | --- |
+| A squat lift ("lift with the legs") | ×0.3 |
+| Energy under 3 bolts, or warmth under 40 | ×2 |
+| Log building Practiced, or Hauling (A11) at Practiced | ×0.5 |
+
+- **The squat lift.** Every lift already starts with Shift + RMB. Holding it 1 s longer than the lift needs makes it a squat lift: the camera dips 40 cm and rises with the load.
+- **Effect.** The torso gains "Strained back" (lower back) for 2–4 game days: carry limits ×0.8, swings take ×1.1 the time, ground sleep restores 10% less.
+- **Recovery.** Rest days count double. A banya session or a hot-spring soak halves the time left.
+- **Tedium guard.** At most once per 10 game days. Off on Gentle; Brutal ×1.5 the chance.
+- **What the player sees and hears.** A grunt (`body.grunt`) and a twinge (`body.back_twinge`) on the lift that causes it, the torso glyph lit amber on the body figure, and a stiff first-person stand-up for the duration. The line reads "Wrenched your back. Lift with your legs."
+- **Failure cases.** A tired, cold player hauling logs in the evening doubles the chance. A strain in the middle of a moose haul cuts the carry cap by a fifth until it heals.
+- **Ties.** A7 Lift a full box, A11 Strength carries more, hand-carried loads, Practice (Log building, Hauling), Rest days, the banya, the tedium guard.
+- **Build.** No new registry ids. Problem `injury/back_strain.json` on the torso; source `injury_source/heavy_lift.json`, rolled by `body.injury.InjuryService` from the `carry` attachment's take-hold. Package `body`. Sound `body.back_twinge`. Tuning `[body] back_strain_chance = 0.03`, `back_strain_squat_mult = 0.3`, `back_strain_cooldown_days = 10`. Debug `/yoi body problem back_strain`. Milestone M4, or with A11 if that lands later. GameTest `yearofice:body/back_strain_crouch_lift` (batch `m4`): with the cooldown off, 1,000 lifts of a 40 kg log strain 3 ±1% of the time as a plain lift and under 1.5% as a squat lift; with the cooldown on, a day of 50 lifts never strains twice within 10 game days.
+- **Pillars.** Everything readable (form matters and the game says so), Scarcity is the clock (the body).
 
 ### Falls, stumbles and slips
 
@@ -571,6 +607,20 @@ With 2 or 3 parts, L is split evenly across them before the 3L part rule, so a 1
 | `something_ate` | "Weak and sick. Something you ate." |
 
 **Journal lines are firsts.** "First blood. My own." "Splinted my own arm with two sticks and a length of cord." "Lost a finger to the cold. Day 214." "Sat in the creek with a burned foot. It worked." A run's year card counts wounds dressed, bones set and digits lost.
+
+**B14 Beard and hair (Proposed; Ruhan may veto).** Hair and beard grow through the year, so time shows on the body. A full beard warms the face until it ices.
+
+- **Where and when.** From day 1 of every run: Stubble at once, then a new stage every 30 game days.
+- **Rules.** The body record gains `hair_days`. The beard grows through a stage every 30 game days: Stubble, Short, Full, Long, and Wild at the cap of 120 days. Head hair grows the same way for any body.
+  - **Warmth.** Full or longer makes the face safe 2 °C colder.
+  - **Ice.** Below −25 °C, breath ices a Full-or-longer beard after 1 game hour outdoors. "Iced beard" removes the warmth bonus and speeds chin frostnip ×1.1, until 10 game minutes at a fire.
+  - **Trimming.** A sharp knife at a fire, or with the signal mirror, 10 game minutes: +2 Spirits, once a week. Trimming sets `hair_days` back to the stage the player picks.
+- **What the player sees and hears.** Third person, the year-card photo (Creative concepts › 3. Cameras and footage) and the signal mirror. An iced beard shows white rime and crackles when the player talks.
+- **Failure cases.** An iced beard on a long cold walk makes the face the first part to nip. A Wild beard with no knife stays Wild.
+- **Options.** A per-player setting `facial_hair = on|off`, sent to the server on join. Off means no beard, so no beard bonus and no icing; head hair still grows.
+- **Ties.** The face's safe-to limit (Bands and part effects), frostnip (Injury sources › the frost counter), Spirits, Cameras and footage, B13.
+- **Build.** No new registry ids. Field `hair_days` in the `yearofice:body` attachment (with B13's `face_grease` and glove fields, the attachment's schema rises from 2 to 3, defaults 0, covered by `data/migrate_fixtures`); the stage is derived and synced in `yearofice:body_public` for other players. Model layers in the client player renderer. Package `body`. Tuning `[body] beard_stage_days = 30`, `beard_face_bonus_c = 2`, `beard_ice_temp_c = -25`. Debug `/yoi body hair <days>`. Milestone M4. GameTest `yearofice:body/beard_stages` (batch `m4`): 60 game days gives Full (Stubble from day 0, Short 30, Full 60, Long 90, Wild 120); at −30 °C outdoors for 1 game hour, Full ices and the face bonus is gone; 10 game minutes at a fire restores it.
+- **Pillars.** Everything readable (time shows on the body), Grow without an end.
 
 ### The tedium guard
 
