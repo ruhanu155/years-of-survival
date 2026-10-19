@@ -1,0 +1,19 @@
+{
+  "id": "yearofice:oxbow_marsh",
+  "floor_width_m": { "min": 600, "max": 1000 },
+  "floor_gradient_pct": { "min": 0.05, "max": 0.15 },
+  "river_swing_m": { "min": 150, "max": 250 },
+  "trough_depth_m": { "min": 20, "max": 60 },
+  "trough_flat_fraction": 0.6,
+  "floor_noise_m": 1.0,
+  "mountain_fraction": 0.25,
+  "floor_sediment_multiplier": 1.0,
+  "channels": { "min": 1, "max": 1 },
+  "minimum_falls": 1,
+  "oxbows": {
+    "lakes": { "min": 2, "max": 4 },
+    "depth_m": { "min": 2, "max": 3 },
+    "swing_retry_factor": 1.2,
+    "max_retries": 3
+  }
+}

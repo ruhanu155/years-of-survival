@@ -1,0 +1,23 @@
+{
+  "id": "yearofice:canyon",
+  "floor_width_m": { "min": 60, "max": 150 },
+  "floor_gradient_pct": { "min": 0.6, "max": 1.2 },
+  "river_swing_m": { "min": 20, "max": 40 },
+  "trough_depth_m": { "min": 20, "max": 60 },
+  "trough_flat_fraction": 0.3,
+  "floor_noise_m": 2.0,
+  "mountain_fraction": 0.5,
+  "floor_sediment_multiplier": 1.0,
+  "channels": { "min": 1, "max": 1 },
+  "minimum_falls": 4,
+  "canyon": {
+    "reach_m": { "min": 600, "max": 1200 },
+    "max_reach_fraction": 0.5,
+    "floor_width_m": { "min": 60, "max": 150 },
+    "wall_height_m": { "min": 20, "max": 60 },
+    "wall_run_m": 14,
+    "steps": { "min": 4, "max": 8 },
+    "step_height_m": { "min": 3, "max": 8 },
+    "outside_floor_width_m": 320
+  }
+}

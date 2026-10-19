@@ -1,0 +1,14 @@
+{
+  "id": "yearofice:braided_flats",
+  "floor_width_m": { "min": 400, "max": 700 },
+  "floor_gradient_pct": { "min": 0.2, "max": 0.4 },
+  "river_swing_m": { "min": 40, "max": 80 },
+  "trough_depth_m": { "min": 20, "max": 60 },
+  "trough_flat_fraction": 0.5,
+  "floor_noise_m": 1.5,
+  "mountain_fraction": 0.333,
+  "floor_sediment_multiplier": 2.0,
+  "channels": { "min": 3, "max": 6 },
+  "gravel_belt_m": { "min": 150, "max": 400 },
+  "minimum_falls": 1
+}

@@ -1,0 +1,96 @@
+{
+  "generator_version": 1,
+  "grid": {
+    "core_size_m": 2048,
+    "cell_m": 2,
+    "core_origin_x_m": -2048,
+    "core_origin_z_m": 0,
+    "world_size_m": 8192,
+    "coarse_cell_m": 32,
+    "edge_blend_m": 64
+  },
+  "elevation": {
+    "min_m": 120,
+    "max_m": 900,
+    "floor_m": 150,
+    "floor_tolerance_m": 30,
+    "soft_cap_knee_m": 760,
+    "soft_cap_m": 892,
+    "soft_floor_knee_m": 130,
+    "soft_floor_m": 123,
+    "world_cap_m": 1450
+  },
+  "base_noise": {
+    "scale_m": 1200,
+    "octaves": 5,
+    "relief_m": 380,
+    "stretch_north_south": 1.5
+  },
+  "ridged_noise": {
+    "scale_m": 700,
+    "octaves": 4,
+    "relief_m": 560,
+    "stretch_north_south": 2.0
+  },
+  "detail_noise": {
+    "scale_m": 180,
+    "octaves": 3,
+    "relief_m": 12,
+    "stretch_north_south": 1.0
+  },
+  "domain_warp": {
+    "amplitude_m": 150,
+    "scale_m": 600,
+    "octaves": 2
+  },
+  "valley_walls": {
+    "rise_distance_m": 260
+  },
+  "river_path": {
+    "point_spacing_m": 16,
+    "long_scale_m": 400,
+    "short_scale_m": 150,
+    "long_weight": 0.65,
+    "band_min_fraction": 0.34,
+    "band_max_fraction": 0.66,
+    "max_total_drop_m": 50
+  },
+  "hardness": {
+    "scale_m": 500,
+    "octaves": 3,
+    "base": 0.32,
+    "noise": 0.22,
+    "ridged_boost": 0.55,
+    "canyon_wall_boost": 0.6
+  },
+  "erosion": {
+    "droplets": 60000,
+    "droplet_lifetime_steps": 30,
+    "inertia": 0.05,
+    "sediment_capacity": 4,
+    "min_sediment_capacity": 0.01,
+    "erode_rate": 0.3,
+    "deposit_rate": 0.3,
+    "brush_radius_cells": 3,
+    "evaporation_per_step": 0.01,
+    "gravity": 4,
+    "max_erode_per_step_m": 0.3,
+    "hard_threshold": 0.6,
+    "hard_erode_factor": 0.25,
+    "thermal_passes": 50,
+    "talus_drop_per_cell_m": 1.4,
+    "thermal_move_fraction": 0.5,
+    "floor_alluvium_m": 0.8,
+    "edge_fade_m": 64
+  },
+  "seed": {
+    "virtual_catchment_km2": { "min": 64, "max": 200 },
+    "hare_cycle_years": 10,
+    "max_attempts": 20
+  },
+  "checks": {
+    "mass_balance_fraction": 0.02,
+    "hard_face_slope_deg": 40,
+    "hard_face_keep_fraction": 0.8
+  }
+}

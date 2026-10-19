@@ -62,6 +62,8 @@ dependencies {
 
 test { useJUnitPlatform() }
 
+apply from: 'tools/debugmap/debugmap.gradle'
+
 var generateModMetadata = tasks.register('generateModMetadata', ProcessResources) {
     var replaceProperties = [
         minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
