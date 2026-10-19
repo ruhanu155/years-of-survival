@@ -22,6 +22,7 @@ public final class YearOfIce {
         // The shared layers first: every system below reads time and weather through them.
         com.yearofice.story.clock.ClockSystem.init();
         com.yearofice.env.EnvSystem.init();
+        com.yearofice.hud.HudSystem.init();
         com.yearofice.item.component.YoiComponents.register(modBus);
         com.yearofice.decay.DecaySystem.init(modBus);
         com.yearofice.body.BodySystem.init(modBus);
