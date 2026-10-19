@@ -21,6 +21,7 @@ public final class YearOfIce {
         NeoForge.EVENT_BUS.addListener(YoiCommands::register);
         com.yearofice.body.BodySystem.init(modBus);
         com.yearofice.fire.FireSystem.init(modBus);
+        com.yearofice.hunt.fishing.FishingSystem.init(modBus);
         LOG.info("Year of Ice loading (preset {})", "from config");
     }
 }

@@ -1,0 +1,140 @@
+{
+ "id": "yearofice:arctic_grayling",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "poly",
+   "points": [
+    [
+     1,
+     9
+    ],
+    [
+     4,
+     7
+    ],
+    [
+     9,
+     6
+    ],
+    [
+     13,
+     7
+    ],
+    [
+     14,
+     9
+    ],
+    [
+     13,
+     10
+    ],
+    [
+     9,
+     11
+    ],
+    [
+     4,
+     11
+    ]
+   ],
+   "ramp": "steel",
+   "step": 3
+  },
+  {
+   "kind": "poly",
+   "points": [
+    [
+     5,
+     7
+    ],
+    [
+     7,
+     3
+    ],
+    [
+     11,
+     4
+    ],
+    [
+     11,
+     6
+    ]
+   ],
+   "ramp": "stem_red",
+   "step": 3
+  },
+  {
+   "kind": "poly",
+   "points": [
+    [
+     13,
+     8
+    ],
+    [
+     15,
+     6
+    ],
+    [
+     15,
+     12
+    ],
+    [
+     13,
+     10
+    ]
+   ],
+   "ramp": "steel",
+   "step": 2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     4,
+     10
+    ],
+    [
+     12,
+     10
+    ]
+   ],
+   "width": 1,
+   "ramp": "steel",
+   "step": 1,
+   "flat": true
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     3,
+     8
+    ]
+   ],
+   "ramp": "steel",
+   "step": 4,
+   "flat": true
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     7,
+     8
+    ],
+    [
+     9,
+     9
+    ],
+    [
+     10,
+     7
+    ]
+   ],
+   "ramp": "smoked",
+   "step": 1,
+   "flat": true
+  }
+ ]
+}

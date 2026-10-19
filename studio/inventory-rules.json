@@ -95,7 +95,10 @@
     { "basis": "Added in the review round: Deer (RECONCILE 152, 154, 155), M6", "milestone": "m6", "owner": "ecosystem", "type": "activity", "ids": ["look_back"] },
     { "basis": "Fire team, M2.5 slice fire from parts with the bow drill pulled forward from M3 (Blueprint > Building a campfire; Items > Master items table: tinder_bundle, bow_drill, match; kindling is the campfire's layer 4)", "milestone": "m2_5", "owner": "body", "type": "item", "ids": ["tinder_bundle", "kindling", "bow_drill", "match"] },
     { "basis": "Fire team, M2.5 slice: fire crackle and bow-drill stroke (Blueprint > Sound: bow-drill stroke; Minecraft development > Sound ids, group fire); registered by the fire package until sound.SoundBus lands", "milestone": "m2_5", "owner": "body", "type": "sound_event", "ids": ["fire.crackle", "fire.bow_drill"] },
-    { "basis": "Fire team, M2.5 slice with the bow drill pulled forward from M3: the bow-drill screen's open payload and the shared minigame_result payload (Minecraft development > Minigames in Minecraft terms; Payloads)", "milestone": "m2_5", "owner": "body", "type": "payload", "ids": ["bow_drill_open", "minigame_result"] }
+    { "basis": "Fire team, M2.5 slice with the bow drill pulled forward from M3: the bow-drill screen's open payload and the shared minigame_result payload (Minecraft development > Minigames in Minecraft terms; Payloads)", "milestone": "m2_5", "owner": "body", "type": "payload", "ids": ["bow_drill_open", "minigame_result"] },
+    { "basis": "Food and hunting, M2.5 slice rod method: the landed grayling is the item with the species id (DIRECTOR RULING 101; Minecraft engine > Fishing > The fight: yearofice:arctic_grayling); the grayling mob stays M5", "milestone": "m2_5", "owner": "food", "type": "item", "ids": ["arctic_grayling"] },
+    { "basis": "Food and hunting, M2.5 slice rod method: the rod carries its tackle as the yearofice:tackle component (Waters and fish > Fishing ids, tackle and keys); in the slice it holds the bait on the hook", "milestone": "m2_5", "owner": "food", "type": "data_component", "ids": ["tackle"] },
+    { "basis": "Food and hunting, M2.5 slice rod method: the lockstep fight's payloads (Blueprint > Fishing methods, Build line: fish_input, fish_state, fish_result; Minecraft development > Minigames in Minecraft terms)", "milestone": "m2_5", "owner": "food", "type": "payload", "ids": ["fish_input", "fish_state", "fish_result"] }
   ],
   "expand": {
     "<wood>": ["spruce", "birch", "aspen", "poplar", "tamarack", "willow", "alder", "drift"]
@@ -170,7 +173,8 @@
     { "basis": "Ready for development M4: the yearofice:body attachment at schema 2", "type": "attachment", "milestone": "m4", "owner": "body", "ids": ["body"] },
     { "basis": "Ready for development M2.5: field dressing of carcass_small reads the carcass record", "type": "attachment", "milestone": "m2_5", "owner": "ecosystem", "ids": ["carcass"] },
     { "basis": "Content flags are an M0 data kind (Data kinds)", "type": "loot_condition", "milestone": "m0", "ids": ["flag"] },
-    { "basis": "Content flags are an M0 data kind (Data kinds)", "type": "worldgen_hook", "milestone": "m0", "ids": ["flag"] }
+    { "basis": "Content flags are an M0 data kind (Data kinds)", "type": "worldgen_hook", "milestone": "m0", "ids": ["flag"] },
+    { "basis": "Ready for development > M2.5: one rod method (hook, line and bobber with worms, the fight overlay) in hunt.fishing; slice work item 6", "type": "item", "milestone": "m2_5", "owner": "food", "ids": ["rod", "worm"] }
   ],
   "patterns": [
     { "types": ["entity"], "pattern": "falling_tree|felled_log", "milestone": "m2", "owner": "worldgen" },
