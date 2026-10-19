@@ -1,0 +1,55 @@
+{
+ "id": "yearofice:fire_starter",
+ "kind": "icon",
+ "notes": "Ferro rod in an orange grip with its steel striker.",
+ "shapes": [
+  {
+   "kind": "line",
+   "points": [
+    [
+     5,
+     11
+    ],
+    [
+     12,
+     4
+    ]
+   ],
+   "width": 2,
+   "ramp": "iron",
+   "step": 2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     2,
+     14
+    ],
+    [
+     5,
+     11
+    ]
+   ],
+   "width": 3,
+   "ramp": "plastic_orange",
+   "step": 2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     9,
+     14
+    ],
+    [
+     14,
+     10
+    ]
+   ],
+   "width": 1,
+   "ramp": "steel",
+   "step": 3
+  }
+ ]
+}

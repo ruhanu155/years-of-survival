@@ -1,0 +1,112 @@
+{
+ "id": "yearofice:moose_quarter",
+ "kind": "icon",
+ "folder": "item/load",
+ "shapes": [
+  {
+   "kind": "poly",
+   "ramp": "meat_raw",
+   "step": 2,
+   "noise": 0.25,
+   "points": [
+    [
+     3,
+     4
+    ],
+    [
+     8,
+     2
+    ],
+    [
+     12,
+     4
+    ],
+    [
+     13,
+     8
+    ],
+    [
+     11,
+     11
+    ],
+    [
+     8,
+     12
+    ],
+    [
+     5,
+     11
+    ],
+    [
+     3,
+     8
+    ]
+   ]
+  },
+  {
+   "kind": "poly",
+   "ramp": "fat_cream",
+   "step": 2,
+   "points": [
+    [
+     3,
+     4
+    ],
+    [
+     8,
+     2
+    ],
+    [
+     9,
+     3
+    ],
+    [
+     4,
+     5
+    ]
+   ]
+  },
+  {
+   "kind": "line",
+   "ramp": "bone",
+   "step": 3,
+   "width": 2,
+   "points": [
+    [
+     9,
+     11
+    ],
+    [
+     12,
+     14
+    ]
+   ]
+  },
+  {
+   "kind": "ellipse",
+   "ramp": "bone",
+   "step": 4,
+   "box": [
+    11,
+    13,
+    13,
+    15
+   ]
+  },
+  {
+   "kind": "line",
+   "ramp": "meat_raw",
+   "step": 0,
+   "points": [
+    [
+     12,
+     5
+    ],
+    [
+     13,
+     8
+    ]
+   ]
+  }
+ ]
+}

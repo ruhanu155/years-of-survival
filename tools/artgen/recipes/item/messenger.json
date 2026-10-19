@@ -1,0 +1,81 @@
+{
+ "id": "yearofice:messenger",
+ "kind": "icon",
+ "notes": "The Trail Messenger: a handheld satellite messenger with a stub antenna and a small screen.",
+ "shapes": [
+  {
+   "kind": "rect",
+   "box": [
+    4,
+    3,
+    11,
+    14
+   ],
+   "ramp": "plastic_orange",
+   "step": 2
+  },
+  {
+   "kind": "rect",
+   "box": [
+    9,
+    0,
+    10,
+    3
+   ],
+   "ramp": "iron",
+   "step": 2
+  },
+  {
+   "kind": "rect",
+   "box": [
+    5,
+    5,
+    10,
+    8
+   ],
+   "ramp": "iron",
+   "step": 0,
+   "flat": true
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     6
+    ]
+   ],
+   "ramp": "iron",
+   "step": 3,
+   "flat": true
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     6,
+     10
+    ],
+    [
+     8,
+     10
+    ],
+    [
+     6,
+     12
+    ],
+    [
+     8,
+     12
+    ]
+   ],
+   "ramp": "iron",
+   "step": 1,
+   "flat": true
+  }
+ ]
+}

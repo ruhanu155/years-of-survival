@@ -1,0 +1,80 @@
+{
+ "id": "yearofice:spruce_bark",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "poly",
+   "points": [
+    [
+     2,
+     13
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     12,
+     2
+    ],
+    [
+     13,
+     11
+    ]
+   ],
+   "ramp": "bark_spruce",
+   "step": 2,
+   "noise": 0.2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     5,
+     12
+    ],
+    [
+     6,
+     5
+    ]
+   ],
+   "width": 1,
+   "ramp": "bark_spruce",
+   "step": 0,
+   "flat": true
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     9,
+     11
+    ],
+    [
+     9,
+     4
+    ]
+   ],
+   "width": 1,
+   "ramp": "bark_spruce",
+   "step": 0,
+   "flat": true
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     12,
+     2
+    ],
+    [
+     13,
+     11
+    ]
+   ],
+   "width": 1,
+   "ramp": "wood_cut",
+   "step": 3
+  }
+ ]
+}

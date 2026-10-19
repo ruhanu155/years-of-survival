@@ -1,0 +1,30 @@
+{
+ "id": "yearofice:felling_axe",
+ "kind": "found_icon",
+ "found": "ninja_adventure",
+ "source": "art-src/found/ninja_adventure/Items/Tool/Axe.png",
+ "model_parent": "minecraft:item/handheld",
+ "map": {
+  "#141b1b": "outline",
+  "#5f7160": [
+   "steel",
+   1
+  ],
+  "#abc2bc": [
+   "steel",
+   2
+  ],
+  "#f2eaf1": [
+   "steel",
+   4
+  ],
+  "#e66a3a": [
+   "wood_cut",
+   1
+  ],
+  "#ffad5d": [
+   "wood_cut",
+   3
+  ]
+ }
+}

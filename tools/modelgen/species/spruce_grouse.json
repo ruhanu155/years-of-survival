@@ -1,0 +1,165 @@
+{
+ "inherit": "willow_ptarmigan",
+ "id": "spruce_grouse",
+ "texture_dir": "spruce_grouse",
+ "anim_copies": [
+  "willow_ptarmigan",
+  "spruce_grouse"
+ ],
+ "notes": "Same grouse rig. Male: slate grey, black throat and breast edged with white spots, red comb; female: brown, heavily barred.",
+ "head": {
+  "pixels": [
+   {
+    "faces": "lr",
+    "z": 0.45,
+    "y": 0.8,
+    "ramp": "feather_grouse_male",
+    "step": 0
+   },
+   {
+    "faces": "lr",
+    "z": 0.45,
+    "y": 0.0,
+    "ramp": "comb_red",
+    "step": 2
+   }
+  ]
+ },
+ "paint": {
+  "_replace": true,
+  "wing_*_tip": {
+   "ramp": "feather_grouse_male",
+   "step": 1,
+   "noise": 0
+  },
+  "wing_*": {
+   "ramp": "feather_grouse_male",
+   "step": 2,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": "lr",
+     "speckle": 0.12,
+     "ramp": "fur_white",
+     "step": 1
+    }
+   ]
+  },
+  "leg_*": {
+   "ramp": "feather_grouse_male",
+   "step": 1,
+   "noise": 0
+  },
+  "beak": {
+   "ramp": "feather_grouse_male",
+   "step": 0,
+   "noise": 0
+  },
+  "tail": {
+   "ramp": "feather_grouse_male",
+   "step": 0,
+   "noise": 0,
+   "regions": [
+    {
+     "faces": "all",
+     "z": [
+      0.8,
+      1
+     ],
+     "ramp": "fur_white",
+     "step": 1
+    }
+   ]
+  },
+  "breast": {
+   "ramp": "feather_grouse_male",
+   "step": 0,
+   "noise": 0,
+   "regions": [
+    {
+     "faces": [
+      "bottom",
+      "front",
+      "lr"
+     ],
+     "y": [
+      0.5,
+      1
+     ],
+     "speckle": 0.18,
+     "ramp": "fur_white",
+     "step": 1
+    }
+   ]
+  },
+  "head": {
+   "ramp": "feather_grouse_male",
+   "step": 2,
+   "noise": 0.1,
+   "regions": [
+    {
+     "faces": [
+      "lr",
+      "bottom"
+     ],
+     "y": [
+      0.6,
+      1
+     ],
+     "step": 0
+    }
+   ]
+  },
+  "neck": {
+   "ramp": "feather_grouse_male",
+   "step": 0
+  },
+  "*": {
+   "ramp": "feather_grouse_male",
+   "step": 2,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": "sides",
+     "y": [
+      0.5,
+      1
+     ],
+     "speckle": 0.15,
+     "ramp": "fur_white",
+     "step": 1
+    },
+    {
+     "faces": "bottom",
+     "ramp": "feather_grouse_male",
+     "step": 0
+    },
+    {
+     "faces": "bottom",
+     "speckle": 0.25,
+     "ramp": "fur_white",
+     "step": 1
+    }
+   ]
+  }
+ },
+ "textures": {
+  "_replace": true,
+  "male_adult": {},
+  "female_adult": {
+   "remap": {
+    "feather_grouse_male": "feather_grouse_female",
+    "comb_red": "feather_grouse_female"
+   },
+   "extra_regions": {
+    "*": [
+     {
+      "faces": "all",
+      "speckle": 0.3,
+      "dstep": 2
+     }
+    ]
+   }
+  }
+ }
+}

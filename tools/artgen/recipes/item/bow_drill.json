@@ -1,0 +1,81 @@
+{
+ "id": "yearofice:bow_drill",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "rect",
+   "box": [
+    1,
+    12,
+    14,
+    14
+   ],
+   "ramp": "wood_cut",
+   "step": 2
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     8,
+     12
+    ]
+   ],
+   "ramp": "wood_cut",
+   "step": 0,
+   "flat": true
+  },
+  {
+   "kind": "rect",
+   "box": [
+    7,
+    3,
+    8,
+    11
+   ],
+   "ramp": "wood_cut",
+   "step": 3
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     1,
+     7
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     12,
+     4
+    ],
+    [
+     14,
+     7
+    ]
+   ],
+   "width": 1,
+   "ramp": "stem_red",
+   "step": 2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     2,
+     7
+    ],
+    [
+     13,
+     7
+    ]
+   ],
+   "width": 1,
+   "ramp": "bone",
+   "step": 3,
+   "flat": true
+  }
+ ]
+}

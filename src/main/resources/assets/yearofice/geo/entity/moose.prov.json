@@ -1,0 +1,11 @@
+{
+ "species": "moose",
+ "grade": "G1",
+ "generator": "modelgen 0.4.0",
+ "base": "quaternius_stag",
+ "geo": "geo/entity/moose.geo.json",
+ "textures": [
+  "bull_summer",
+  "cow_summer"
+ ]
+}

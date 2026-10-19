@@ -1,0 +1,11 @@
+{
+ "species": "black_bear",
+ "grade": "G1",
+ "generator": "modelgen 0.4.0",
+ "base": null,
+ "geo": "geo/entity/black_bear.geo.json",
+ "textures": [
+  "adult_black",
+  "adult_cinnamon"
+ ]
+}

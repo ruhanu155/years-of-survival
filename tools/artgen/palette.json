@@ -1,0 +1,516 @@
+{
+ "version": 2,
+ "rule": "Each ramp is 5 steps, dark to light. Chroma (max minus min RGB channel, 0-1) <= 0.45 on material ramps and <= 0.70 on accent ramps; emissive ramps are exempt. A texture uses at most 3 ramps plus the outline colour.",
+ "ramps": {
+  "bark_spruce": [
+   "#2b221c",
+   "#3d3027",
+   "#544234",
+   "#6b5644",
+   "#857059"
+  ],
+  "bark_tamarack": [
+   "#3a2219",
+   "#552f22",
+   "#6f412e",
+   "#8a573f",
+   "#a37358"
+  ],
+  "bark_birch": [
+   "#3a3633",
+   "#8c8780",
+   "#bdb8ae",
+   "#d9d4c8",
+   "#ece8de"
+  ],
+  "bark_aspen": [
+   "#4a4a3e",
+   "#7d8170",
+   "#a3a891",
+   "#c0c4ae",
+   "#d6d9c6"
+  ],
+  "wood_cut": [
+   "#5e4630",
+   "#7f6143",
+   "#9c7c58",
+   "#b8996f",
+   "#d0b58a"
+  ],
+  "needle_green": [
+   "#1c2b20",
+   "#26392a",
+   "#324a35",
+   "#435e44",
+   "#587456"
+  ],
+  "needle_tamarack": [
+   "#2f3d1f",
+   "#45592b",
+   "#5d7536",
+   "#7a9145",
+   "#98ab5c"
+  ],
+  "leaf_green": [
+   "#26331f",
+   "#364829",
+   "#4a5f35",
+   "#617744",
+   "#7c9056"
+  ],
+  "leaf_silver": [
+   "#4a5048",
+   "#6c7468",
+   "#8e9787",
+   "#adb5a5",
+   "#c8cfc0"
+  ],
+  "stem_red": [
+   "#3b1d18",
+   "#57281f",
+   "#743629",
+   "#8f4835",
+   "#a65f49"
+  ],
+  "soil": [
+   "#241c16",
+   "#33281f",
+   "#45372b",
+   "#594838",
+   "#6e5b48"
+  ],
+  "duff": [
+   "#2a2219",
+   "#3c3022",
+   "#50412e",
+   "#66543c",
+   "#7d6a4e"
+  ],
+  "rock_schist": [
+   "#34363a",
+   "#4a4d51",
+   "#62666a",
+   "#7b7f82",
+   "#96999b"
+  ],
+  "gravel": [
+   "#3e3b37",
+   "#5a554e",
+   "#78716a",
+   "#958e85",
+   "#b0aaa1"
+  ],
+  "moss_green": [
+   "#2a3318",
+   "#3b4720",
+   "#4f5e2b",
+   "#667637",
+   "#7f8e47"
+  ],
+  "sphagnum": [
+   "#4a3a22",
+   "#6b5a2e",
+   "#8f7d3f",
+   "#a99253",
+   "#c2a96c"
+  ],
+  "lichen_pale": [
+   "#6a6c5e",
+   "#8a8d7a",
+   "#a6a993",
+   "#bec1aa",
+   "#d3d5c0"
+  ],
+  "snow": [
+   "#8e9aa8",
+   "#aeb9c5",
+   "#c8d1db",
+   "#dde4eb",
+   "#eef2f6"
+  ],
+  "ice": [
+   "#2f4a5c",
+   "#45667a",
+   "#5f8396",
+   "#80a2b2",
+   "#a6c2cf"
+  ],
+  "fur_moose": [
+   "#1d1612",
+   "#2d221b",
+   "#3f3026",
+   "#554133",
+   "#6d5644"
+  ],
+  "fur_hare_summer": [
+   "#3a2e22",
+   "#57452f",
+   "#76603f",
+   "#937a53",
+   "#ad9469"
+  ],
+  "fur_white": [
+   "#8f949a",
+   "#b2b6ba",
+   "#cdd0d2",
+   "#e2e4e5",
+   "#f1f2f2"
+  ],
+  "feather_ptarmigan_summer": [
+   "#2e241a",
+   "#4a3a28",
+   "#6a5438",
+   "#8a7049",
+   "#a98c5f"
+  ],
+  "meat_raw": [
+   "#3d1414",
+   "#5c1d1c",
+   "#7d2a26",
+   "#9a3d35",
+   "#b4574b"
+  ],
+  "fat_cream": [
+   "#8a7a5c",
+   "#a8977a",
+   "#c2b295",
+   "#d6c9ad",
+   "#e6dcc5"
+  ],
+  "bone": [
+   "#7a7264",
+   "#9c9383",
+   "#b9b0a0",
+   "#d0c8b8",
+   "#e3ddd0"
+  ],
+  "iron": [
+   "#25272a",
+   "#393c40",
+   "#50545a",
+   "#6a6f75",
+   "#878c92"
+  ],
+  "rust": [
+   "#3b1f12",
+   "#5a2e17",
+   "#7a401e",
+   "#975628",
+   "#a86d3e"
+  ],
+  "fur_grizzly": [
+   "#483629",
+   "#59432f",
+   "#6e5434",
+   "#876f4a",
+   "#a59064"
+  ],
+  "fur_black": [
+   "#1a1716",
+   "#221e1c",
+   "#2c2724",
+   "#38332f",
+   "#46413d"
+  ],
+  "fur_tan": [
+   "#524135",
+   "#66513d",
+   "#7d6446",
+   "#99825f",
+   "#baa77d"
+  ],
+  "fur_cinnamon": [
+   "#503126",
+   "#633c2a",
+   "#7a4a2c",
+   "#956843",
+   "#b68c5f"
+  ],
+  "fur_wolf": [
+   "#494541",
+   "#5a564f",
+   "#6f6a60",
+   "#888478",
+   "#a6a395"
+  ],
+  "fur_wolf_pale": [
+   "#6e6760",
+   "#877f73",
+   "#a59c8a",
+   "#c9c1ac",
+   "#f4eed6"
+  ],
+  "fur_fox": [
+   "#653d2f",
+   "#7c4a33",
+   "#985a34",
+   "#b97f50",
+   "#e1ab72"
+  ],
+  "fur_beaver": [
+   "#3a2820",
+   "#493225",
+   "#5a3f2a",
+   "#6f563c",
+   "#887152"
+  ],
+  "fur_squirrel": [
+   "#5b352a",
+   "#71402d",
+   "#8a4e2e",
+   "#a87047",
+   "#cd9866"
+  ],
+  "fur_moose_leg": [
+   "#504945",
+   "#635b53",
+   "#7a7064",
+   "#958c7e",
+   "#b6ae9d"
+  ],
+  "fur_calf": [
+   "#503329",
+   "#633f2d",
+   "#7a4e30",
+   "#956c47",
+   "#b69063"
+  ],
+  "fur_moose_cow": [
+   "#2f241f",
+   "#3b2e25",
+   "#4a3a2c",
+   "#5c4d3c",
+   "#71634f"
+  ],
+  "feather_grouse_male": [
+   "#323335",
+   "#3f4042",
+   "#4e4f52",
+   "#616265",
+   "#787a7c"
+  ],
+  "feather_grouse_female": [
+   "#483a2f",
+   "#594838",
+   "#6e5a40",
+   "#877556",
+   "#a59571"
+  ],
+  "meat_cooked": [
+   "#503125",
+   "#633c29",
+   "#7a4a2a",
+   "#956841",
+   "#b68c5d"
+  ],
+  "meat_aging": [
+   "#482421",
+   "#592b25",
+   "#6e3426",
+   "#874f3b",
+   "#a56f54"
+  ],
+  "meat_spoiled": [
+   "#3d382b",
+   "#4c4733",
+   "#5e5a3c",
+   "#747150",
+   "#8e8a68"
+  ],
+  "fish_flesh": [
+   "#76463f",
+   "#905446",
+   "#b0644a",
+   "#d68d6a",
+   "#ffbe92"
+  ],
+  "smoked": [
+   "#453026",
+   "#563c2b",
+   "#6a4a30",
+   "#826445",
+   "#9f845e"
+  ],
+  "hide_raw": [
+   "#67574b",
+   "#7e6b58",
+   "#9a8466",
+   "#bca885",
+   "#e4d3aa"
+  ],
+  "steel": [
+   "#4a4c50",
+   "#5a5e63",
+   "#6e737a",
+   "#898f95",
+   "#a9b0b6"
+  ],
+  "fur_mule_summer": [
+   "#674738",
+   "#7e573f",
+   "#9a6a44",
+   "#bc8f61",
+   "#e4bb84"
+  ],
+  "fur_mule_winter": [
+   "#524c47",
+   "#665e56",
+   "#7d7468",
+   "#999183",
+   "#bab3a3"
+  ],
+  "fur_mule_fawn": [
+   "#6b4334",
+   "#835238",
+   "#a0643a",
+   "#c38b57",
+   "#edb97b"
+  ],
+  "fur_sitka_summer": [
+   "#5b352b",
+   "#71412e",
+   "#8a4f2f",
+   "#a87148",
+   "#cd9967"
+  ],
+  "fur_sitka_winter": [
+   "#322c2a",
+   "#3f3834",
+   "#4e463f",
+   "#605951",
+   "#777066"
+  ],
+  "fur_sitka_fawn": [
+   "#543127",
+   "#673d2b",
+   "#7f4a2c",
+   "#9b6944",
+   "#bd8e61"
+  ],
+  "deer_cream": [
+   "#8e8678",
+   "#aea594",
+   "#cdc4b0",
+   "#e8e0cc",
+   "#f3eee3"
+  ],
+  "deer_dark": [
+   "#1e1a17",
+   "#26201c",
+   "#36302a",
+   "#4a3f36",
+   "#62574c"
+  ]
+ },
+ "accent": {
+  "berry_red": [
+   "#4a0f0c",
+   "#741812",
+   "#9c2516",
+   "#bd3a1f",
+   "#d4572e"
+  ],
+  "berry_blue": [
+   "#15172e",
+   "#232848",
+   "#353d63",
+   "#4c577f",
+   "#687597"
+  ],
+  "flower_magenta": [
+   "#4a1834",
+   "#6e2449",
+   "#93355f",
+   "#b04c78",
+   "#c86a93"
+  ],
+  "flower_white": [
+   "#7d7f73",
+   "#a3a597",
+   "#c2c4b5",
+   "#d9dbcd",
+   "#ebece2"
+  ],
+  "flower_yellow": [
+   "#5e4a10",
+   "#8a6c16",
+   "#b08c21",
+   "#cca633",
+   "#e0bd4f"
+  ],
+  "needle_gold": [
+   "#5a4316",
+   "#7d5d1e",
+   "#a07a2a",
+   "#bf973c",
+   "#d6b257"
+  ],
+  "leaf_fall": [
+   "#4d2a17",
+   "#70391c",
+   "#93512a",
+   "#b0703d",
+   "#c99258"
+  ],
+  "berry_lingon": [
+   "#702626",
+   "#8a2b24",
+   "#a8301e",
+   "#cc573b",
+   "#f8875e"
+  ],
+  "hip_orange": [
+   "#763527",
+   "#903e25",
+   "#b04a1e",
+   "#d6753c",
+   "#ffa861"
+  ],
+  "berry_cran": [
+   "#5b202b",
+   "#71202a",
+   "#8a1c22",
+   "#a83634",
+   "#cd5c52"
+  ],
+  "comb_red": [
+   "#702d32",
+   "#8a2d2f",
+   "#a8302a",
+   "#cc5747",
+   "#f8856c"
+  ],
+  "plastic_orange": [
+   "#76412e",
+   "#904f2e",
+   "#b0602a",
+   "#d68b49",
+   "#ffbe6e"
+  ]
+ },
+ "outline": "Darkest step of the texture's main ramp, or #1a1512 for items. Never pure black.",
+ "season_remap": {
+  "summer": {},
+  "fall": {
+   "leaf_green": "leaf_fall",
+   "needle_tamarack": "needle_gold"
+  },
+  "winter": {
+   "leaf_green": null,
+   "needle_tamarack": null,
+   "fur_hare_summer": "fur_white",
+   "feather_ptarmigan_summer": "fur_white"
+  },
+  "spring": {}
+ },
+ "emissive": {
+  "fire": [
+   "#5a1c06",
+   "#9a3a0a",
+   "#d0640f",
+   "#ec9a2a",
+   "#f7cf6a"
+  ]
+ },
+ "generated_note": "Ramps added in art wave 1 were made with palette_lib.make_ramp(step-2 base) and pass lint_ramp."
+}

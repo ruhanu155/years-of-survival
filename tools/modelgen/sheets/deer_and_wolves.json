@@ -1,0 +1,169 @@
+{
+ "title": "Moose, deer, wolf and fox - columns: side, front, 3/4 and black silhouette at the 8 m size (1080p, 70 deg FOV), then close 3/4 and an animation pose",
+ "out": "docs/art/previews/deer_and_wolves.png",
+ "rows": [
+  {
+   "label": "moose  bull_summer   (base: quaternius_stag)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/moose.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/moose/bull_summer.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/moose.animation.json",
+    "animation.moose.run",
+    0.225
+   ]
+  },
+  {
+   "label": "moose  cow_summer   (base: quaternius_stag)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/moose.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/moose/cow_summer.png",
+   "ground": "summer",
+   "hide": [
+    "antler"
+   ],
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/moose.animation.json",
+    "animation.moose.graze",
+    0.99
+   ]
+  },
+  {
+   "label": "moose_calf  calf_summer   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/moose_calf.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/moose/calf_summer.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/moose_calf.animation.json",
+    "animation.moose_calf.walk",
+    0.275
+   ]
+  },
+  {
+   "label": "mule_deer  buck_summer   (base: quaternius_deer)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/mule_deer.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/mule_deer/buck_summer.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/mule_deer.animation.json",
+    "animation.mule_deer.walk",
+    0.3
+   ]
+  },
+  {
+   "label": "mule_deer  doe_winter   (base: quaternius_deer)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/mule_deer.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/mule_deer/doe_winter.png",
+   "ground": "snow",
+   "hide": [
+    "antler"
+   ],
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/mule_deer.animation.json",
+    "animation.mule_deer.alert",
+    0.99
+   ]
+  },
+  {
+   "label": "mule_deer_fawn  fawn_summer   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/mule_deer_fawn.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/mule_deer/fawn_summer.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/mule_deer_fawn.animation.json",
+    "animation.mule_deer_fawn.walk",
+    0.2
+   ]
+  },
+  {
+   "label": "sitka_black_tailed_deer  buck_winter   (base: quaternius_deer)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/sitka_black_tailed_deer.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/sitka_black_tailed_deer/buck_winter.png",
+   "ground": "snow",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/sitka_black_tailed_deer.animation.json",
+    "animation.sitka_black_tailed_deer.walk",
+    0.263
+   ]
+  },
+  {
+   "label": "sitka_black_tailed_deer  doe_summer   (base: quaternius_deer)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/sitka_black_tailed_deer.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/sitka_black_tailed_deer/doe_summer.png",
+   "ground": "summer",
+   "hide": [
+    "antler"
+   ],
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/sitka_black_tailed_deer.animation.json",
+    "animation.sitka_black_tailed_deer.flee",
+    0.99
+   ]
+  },
+  {
+   "label": "sitka_black_tailed_deer_fawn  fawn_summer   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/sitka_black_tailed_deer_fawn.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/sitka_black_tailed_deer/fawn_summer.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/sitka_black_tailed_deer_fawn.animation.json",
+    "animation.sitka_black_tailed_deer_fawn.walk",
+    0.2
+   ]
+  },
+  {
+   "label": "wolf  adult_gray   (base: quaternius_wolf)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/wolf.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/wolf/adult_gray.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/wolf.animation.json",
+    "animation.wolf.run",
+    0.105
+   ]
+  },
+  {
+   "label": "wolf  adult_black   (base: quaternius_wolf)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/wolf.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/wolf/adult_black.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/wolf.animation.json",
+    "animation.wolf.walk",
+    0.25
+   ]
+  },
+  {
+   "label": "red_fox  adult_red   (base: quaternius_fox)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/red_fox.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/red_fox/adult_red.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/red_fox.animation.json",
+    "animation.red_fox.walk",
+    0.175
+   ]
+  },
+  {
+   "label": "red_fox  adult_cross   (base: quaternius_fox)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/red_fox.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/red_fox/adult_cross.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/red_fox.animation.json",
+    "animation.red_fox.walk",
+    0.175
+   ]
+  },
+  {
+   "label": "red_fox  adult_silver   (base: quaternius_fox)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/red_fox.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/red_fox/adult_silver.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/red_fox.animation.json",
+    "animation.red_fox.walk",
+    0.175
+   ]
+  }
+ ]
+}

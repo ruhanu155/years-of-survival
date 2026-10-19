@@ -1,0 +1,10 @@
+{
+ "species": "grizzly",
+ "grade": "G1",
+ "generator": "modelgen 0.4.0",
+ "base": null,
+ "geo": "geo/entity/grizzly.geo.json",
+ "textures": [
+  "adult_summer"
+ ]
+}

@@ -1,0 +1,116 @@
+{
+ "title": "Small game: hare, grouse, squirrel, beaver - columns: side, front, 3/4 and black silhouette at the 8 m size (1080p, 70 deg FOV), then close 3/4 and an animation pose",
+ "out": "docs/art/previews/small_game.png",
+ "rows": [
+  {
+   "label": "snowshoe_hare  adult_summer   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/snowshoe_hare.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/snowshoe_hare/adult_summer.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/snowshoe_hare.animation.json",
+    "animation.snowshoe_hare.run",
+    0.087
+   ]
+  },
+  {
+   "label": "snowshoe_hare  adult_winter   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/snowshoe_hare.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/snowshoe_hare/adult_winter.png",
+   "ground": "snow",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/snowshoe_hare.animation.json",
+    "animation.snowshoe_hare.alert",
+    0.99
+   ]
+  },
+  {
+   "label": "snowshoe_hare  adult_mottled   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/snowshoe_hare.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/snowshoe_hare/adult_mottled.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/snowshoe_hare.animation.json",
+    "animation.snowshoe_hare.walk",
+    0.15
+   ]
+  },
+  {
+   "label": "willow_ptarmigan  adult_summer   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/rig_grouse.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/willow_ptarmigan/adult_summer.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/rig_grouse.animation.json",
+    "animation.rig_grouse.walk",
+    0.125
+   ]
+  },
+  {
+   "label": "willow_ptarmigan  adult_winter   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/rig_grouse.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/willow_ptarmigan/adult_winter.png",
+   "ground": "snow",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/rig_grouse.animation.json",
+    "animation.rig_grouse.fly",
+    0.99
+   ]
+  },
+  {
+   "label": "willow_ptarmigan  adult_moult   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/rig_grouse.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/willow_ptarmigan/adult_moult.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/rig_grouse.animation.json",
+    "animation.rig_grouse.walk",
+    0.125
+   ]
+  },
+  {
+   "label": "spruce_grouse  male_adult   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/rig_grouse.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/spruce_grouse/male_adult.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/rig_grouse.animation.json",
+    "animation.rig_grouse.walk",
+    0.125
+   ]
+  },
+  {
+   "label": "spruce_grouse  female_adult   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/rig_grouse.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/spruce_grouse/female_adult.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/rig_grouse.animation.json",
+    "animation.rig_grouse.forage",
+    0.99
+   ]
+  },
+  {
+   "label": "red_squirrel  adult_all   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/red_squirrel.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/red_squirrel/adult_all.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/red_squirrel.animation.json",
+    "animation.red_squirrel.run",
+    0.062
+   ]
+  },
+  {
+   "label": "beaver  adult_all   (generated)",
+   "geo": "src/main/resources/assets/yearofice/geo/entity/beaver.geo.json",
+   "texture": "src/main/resources/assets/yearofice/textures/entity/beaver/adult_all.png",
+   "ground": "summer",
+   "anim": [
+    "src/main/resources/assets/yearofice/animations/entity/beaver.animation.json",
+    "animation.beaver.walk",
+    0.2
+   ]
+  }
+ ]
+}

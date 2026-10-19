@@ -1,0 +1,27 @@
+{
+ "id": "yearofice:hatchet",
+ "kind": "found_icon",
+ "found": "ninja_adventure",
+ "source": "art-src/found/ninja_adventure/Items/Weapons/AxeTool/Sprite.png",
+ "model_parent": "minecraft:item/handheld",
+ "notes": "The crate hatchet: a short single-bit axe.",
+ "map": {
+  "#141b1b": "outline",
+  "#965340": [
+   "wood_cut",
+   1
+  ],
+  "#a3754e": [
+   "wood_cut",
+   2
+  ],
+  "#abc2bc": [
+   "steel",
+   2
+  ],
+  "#f2eaf1": [
+   "steel",
+   4
+  ]
+ }
+}

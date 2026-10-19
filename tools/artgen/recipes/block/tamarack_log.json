@@ -1,0 +1,13 @@
+{
+  "id": "yearofice:tamarack_log",
+  "kind": "block",
+  "class": "bark",
+  "faces": {
+    "side": { "layers": [
+      { "type": "noise", "ramp": "bark_tamarack", "scale": 2, "octaves": 3, "stretch": "vertical", "steps": [1, 4] },
+      { "type": "furrows", "spacing": 4, "jitter": 1, "step": 0 },
+      { "type": "plates", "count": 6, "step": 1 } ] },
+    "top": { "layers": [
+      { "type": "rings", "ramp": "wood_cut", "spacing": 1.6, "steps": [2, 3], "bark_ramp": "bark_tamarack" } ] }
+  }
+}
