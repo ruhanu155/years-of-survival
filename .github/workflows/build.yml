@@ -1,0 +1,105 @@
+# CI for Year of Ice (Content pipeline, build and the evolving modpack › Tests in CI, SMOKE PASSED).
+# smoke: build (compile, JUnit, contentLint, jar), then every GameTest on a headless GameTest server.
+# hashes: the JUnit hash tests on macOS and Windows, so the golden hashes recorded on Linux match across JVMs and OSes.
+# Never runs runServer: the GameTest server needs no EULA (CLAUDE.md).
+name: build
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    name: smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Build (compile, JUnit, contentLint, jar)
+        run: ./gradlew build --stacktrace
+
+      - name: GameTest server
+        timeout-minutes: 20
+        run: |
+          set -o pipefail
+          mkdir -p build
+          timeout 18m ./gradlew runGameTestServer --stacktrace 2>&1 | tee build/gametest.log
+
+      - name: Check the GameTest log
+        run: |
+          if ! grep -E "All [0-9]+ required tests passed" build/gametest.log; then
+            echo "::error::GameTest log lacks 'All N required tests passed'"
+            exit 1
+          fi
+          if grep -n "failed" build/gametest.log; then
+            echo "::error::GameTest log contains 'failed'"
+            exit 1
+          fi
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-reports
+          path: |
+            build/reports/
+            build/test-results/
+            build/content-lint/
+            build/gametest.log
+          if-no-files-found: ignore
+
+      - name: Upload debug maps
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debugmap
+          path: build/debugmap/
+          if-no-files-found: ignore
+
+  hashes:
+    name: hashes (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: JUnit hash tests (golden hashes across JVMs and OSes)
+        shell: bash
+        run: ./gradlew test --tests '*Hash*' --stacktrace
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hash-reports-${{ matrix.os }}
+          path: |
+            build/reports/tests/
+            build/test-results/
+          if-no-files-found: ignore
