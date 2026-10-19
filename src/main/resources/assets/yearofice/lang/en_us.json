@@ -1,1 +1,11 @@
-{ "commands.yearofice.info": "Year of Ice info" }
+{
+ "commands.yearofice.info": "Year of Ice info",
+ "block.yearofice.fire_ring": "Fire Ring",
+ "item.yearofice.tinder_bundle": "Tinder Bundle",
+ "item.yearofice.kindling": "Kindling",
+ "item.yearofice.bow_drill": "Bow Drill",
+ "item.yearofice.match": "Match",
+ "screen.yearofice.bow_drill": "Bow drill",
+ "subtitles.yearofice.fire.crackle": "Fire crackles",
+ "subtitles.yearofice.fire.bow_drill": "Bow drill saws"
+}

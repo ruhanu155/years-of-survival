@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": {
+    "minecraft:spruce_log": { "wood": "dead_spruce", "armload_fraction": 0.5, "moisture_pct": 18 },
+    "minecraft:stripped_spruce_log": { "wood": "dead_spruce", "armload_fraction": 0.5, "moisture_pct": 18 },
+    "minecraft:birch_log": { "wood": "birch", "armload_fraction": 0.5, "moisture_pct": 18 },
+    "minecraft:stripped_birch_log": { "wood": "birch", "armload_fraction": 0.5, "moisture_pct": 18 }
+  }
+}

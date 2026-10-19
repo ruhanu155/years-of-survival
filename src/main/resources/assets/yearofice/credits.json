@@ -261,6 +261,83 @@
    "generator_version": "artgen 0.4.0"
   },
   {
+   "asset_id": "tex_fire_ring_ash",
+   "files": [
+    "assets/yearofice/textures/block/fire_ring_ash.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/fire_ring_ash.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_fire_ring_coals",
+   "files": [
+    "assets/yearofice/textures/block/fire_ring_coals.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/fire_ring_coals.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_fire_ring_flame",
+   "files": [
+    "assets/yearofice/textures/block/fire_ring_flame.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/fire_ring_flame.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_fire_ring_kindling",
+   "files": [
+    "assets/yearofice/textures/block/fire_ring_kindling.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/fire_ring_kindling.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_fire_ring_log",
+   "files": [
+    "assets/yearofice/textures/block/fire_ring_log.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/fire_ring_log.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_fire_ring_stone",
+   "files": [
+    "assets/yearofice/textures/block/fire_ring_stone.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/fire_ring_stone.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "tex_fire_ring_tinder",
+   "files": [
+    "assets/yearofice/textures/block/fire_ring_tinder.png"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/fire_ring_tinder.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
    "asset_id": "tex_fire_starter",
    "files": [
     "assets/yearofice/textures/item/fire_starter.png",
@@ -353,6 +430,18 @@
    "generator_version": "artgen 0.4.0"
   },
   {
+   "asset_id": "tex_kindling",
+   "files": [
+    "assets/yearofice/textures/item/kindling.png",
+    "assets/yearofice/models/item/kindling.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/kindling.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
+  },
+  {
    "asset_id": "tex_lard",
    "files": [
     "assets/yearofice/textures/item/lard.png",
@@ -394,6 +483,18 @@
    "original": "art-src/found/isaiah658_pixel_pack/Food/cherries.png",
    "original_sha256": "3ea04697a228f4fa601fff354a82235b3342f109ba6e8be04a775a25a11fbd04",
    "generator_version": "artgen 0.4.0"
+  },
+  {
+   "asset_id": "tex_match",
+   "files": [
+    "assets/yearofice/textures/item/match.png",
+    "assets/yearofice/models/item/match.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/recipes/item/match.json",
+   "licence": "project",
+   "generator_version": "artgen 0.4.0",
+   "release_blocker": false
   },
   {
    "asset_id": "tex_maul",
@@ -944,6 +1045,53 @@
    "species_file": "tools/modelgen/species/wolf.json",
    "original_sha256": "8382f3d3b97e2338d2fd26190ddcc095d34d642d0e97105bda807ec87ccfd534",
    "generator_version": "modelgen 0.4.0"
+  },
+  {
+   "asset_id": "model_fire_ring",
+   "files": [
+    "assets/yearofice/blockstates/fire_ring.json",
+    "assets/yearofice/models/item/fire_ring.json",
+    "assets/yearofice/models/block/fire_ring_base.json",
+    "assets/yearofice/models/block/fire_ring_tinder.json",
+    "assets/yearofice/models/block/fire_ring_kindling.json",
+    "assets/yearofice/models/block/fire_ring_fuel.json",
+    "assets/yearofice/models/block/fire_ring_ember.json",
+    "assets/yearofice/models/block/fire_ring_flame_tiny.json",
+    "assets/yearofice/models/block/fire_ring_flame_small.json",
+    "assets/yearofice/models/block/fire_ring_flame.json",
+    "assets/yearofice/models/block/fire_ring_coals.json",
+    "assets/yearofice/models/block/fire_ring_ash.json"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/artgen/fire_ring.py",
+   "licence": "project",
+   "generator_version": "fire_ring 0.1.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "snd_fire_bow_drill",
+   "files": [
+    "assets/yearofice/sounds/fire/bow_drill1.ogg",
+    "assets/yearofice/sounds/fire/bow_drill2.ogg"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/soundgen/recipes/fire/bow_drill.json",
+   "licence": "project",
+   "generator_version": "soundgen 0.1.0",
+   "release_blocker": false
+  },
+  {
+   "asset_id": "snd_fire_crackle",
+   "files": [
+    "assets/yearofice/sounds/fire/crackle1.ogg",
+    "assets/yearofice/sounds/fire/crackle2.ogg",
+    "assets/yearofice/sounds/fire/crackle3.ogg"
+   ],
+   "source_type": "generated",
+   "recipe": "tools/soundgen/recipes/fire/crackle.json",
+   "licence": "project",
+   "generator_version": "soundgen 0.1.0",
+   "release_blocker": false
   }
  ]
 }

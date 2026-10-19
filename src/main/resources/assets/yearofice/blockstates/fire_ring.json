@@ -1,0 +1,83 @@
+{
+ "multipart": [
+  {
+   "apply": {
+    "model": "yearofice:block/fire_ring_base"
+   }
+  },
+  {
+   "when": {
+    "lay": "tinder|kindling|fuel",
+    "burn": "out|ember"
+   },
+   "apply": {
+    "model": "yearofice:block/fire_ring_tinder"
+   }
+  },
+  {
+   "when": {
+    "lay": "kindling|fuel",
+    "burn": "out|ember|tinder"
+   },
+   "apply": {
+    "model": "yearofice:block/fire_ring_kindling"
+   }
+  },
+  {
+   "when": {
+    "lay": "fuel"
+   },
+   "apply": {
+    "model": "yearofice:block/fire_ring_fuel"
+   }
+  },
+  {
+   "when": {
+    "burn": "ember"
+   },
+   "apply": {
+    "model": "yearofice:block/fire_ring_ember"
+   }
+  },
+  {
+   "when": {
+    "burn": "tinder"
+   },
+   "apply": {
+    "model": "yearofice:block/fire_ring_flame_tiny"
+   }
+  },
+  {
+   "when": {
+    "burn": "small|low"
+   },
+   "apply": {
+    "model": "yearofice:block/fire_ring_flame_small"
+   }
+  },
+  {
+   "when": {
+    "burn": "steady|hot"
+   },
+   "apply": {
+    "model": "yearofice:block/fire_ring_flame"
+   }
+  },
+  {
+   "when": {
+    "burn": "coals|low|steady|hot"
+   },
+   "apply": {
+    "model": "yearofice:block/fire_ring_coals"
+   }
+  },
+  {
+   "when": {
+    "burn": "banked"
+   },
+   "apply": {
+    "model": "yearofice:block/fire_ring_ash"
+   }
+  }
+ ]
+}

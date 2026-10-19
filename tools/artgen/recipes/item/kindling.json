@@ -1,0 +1,104 @@
+{
+ "id": "yearofice:kindling",
+ "kind": "icon",
+ "notes": "Two handfuls of pencil-thin dead spruce twigs, tied.",
+ "shapes": [
+  {
+   "kind": "line",
+   "points": [
+    [
+     2,
+     13
+    ],
+    [
+     13,
+     3
+    ]
+   ],
+   "width": 2,
+   "ramp": "bark_spruce",
+   "step": 3
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     3,
+     14
+    ],
+    [
+     14,
+     5
+    ]
+   ],
+   "width": 1,
+   "ramp": "wood_cut",
+   "step": 2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     1,
+     10
+    ],
+    [
+     12,
+     2
+    ]
+   ],
+   "width": 1,
+   "ramp": "bark_spruce",
+   "step": 2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     4,
+     14
+    ],
+    [
+     11,
+     9
+    ]
+   ],
+   "width": 1,
+   "ramp": "wood_cut",
+   "step": 3
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     5,
+     12
+    ],
+    [
+     10,
+     6
+    ]
+   ],
+   "width": 2,
+   "ramp": "bark_spruce",
+   "step": 1
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     6,
+     7
+    ],
+    [
+     9,
+     11
+    ]
+   ],
+   "width": 1,
+   "ramp": "stem_red",
+   "step": 2,
+   "flat": true
+  }
+ ]
+}

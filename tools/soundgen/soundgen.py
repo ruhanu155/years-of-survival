@@ -64,7 +64,35 @@ def wind(r, var):
     out[:xf] = out[:xf] * fade + out[-xf:] * (1 - fade); out = out[:-xf]
     return out
 
-KINDS = {"footstep": footstep, "wind": wind}
+def crackle(r, var):
+    # a campfire: a soft hiss bed, sparse sharp pops (resin pockets) and a few low thumps (settling wood)
+    rng = np.random.default_rng(seed(r["id"], var)); n = int(r["length_s"] * SR)
+    bed = biquad_bp(pink(n, rng), r["hiss_hz"], 0.7) * r["hiss_gain"]
+    out = bed.copy()
+    pops = rng.poisson(r["pops_per_s"] * r["length_s"])
+    for _ in range(pops):
+        k = int(rng.uniform(0, n - 2000)); m = int(rng.uniform(0.004, 0.02) * SR)
+        burst = rng.standard_normal(m) * env_ad(m, 0.0005, rng.uniform(0.002, 0.008))
+        burst = biquad_bp(burst, rng.uniform(r["pop_low_hz"], r["pop_high_hz"]), 1.5)
+        out[k:k + m] += rng.uniform(0.4, 1.0) * burst
+    for _ in range(r.get("thumps", 0)):
+        k = int(rng.uniform(0, n - 6000)); m = int(0.12 * SR)
+        out[k:k + m] += 0.5 * onepole_lp(rng.standard_normal(m), 180) * env_ad(m, 0.003, 0.04)
+    return out
+
+def stroke(r, var):
+    # one bow-drill stroke: wood-on-wood friction, a band-passed rasp that swells and fades, with a faint squeal
+    rng = np.random.default_rng(seed(r["id"], var)); n = int(r["length_s"] * SR); t = np.arange(n) / SR
+    env = np.sin(np.pi * t / r["length_s"]) ** 1.5
+    f0 = r["rasp_hz"] * rng.uniform(0.9, 1.1)
+    rasp = biquad_bp(rng.standard_normal(n), f0, r["rasp_q"]) * env
+    grain = (rng.random(n) < r["grain_density"]).astype(float) * rng.standard_normal(n)
+    rasp += r["grain_gain"] * biquad_bp(grain, f0 * 2.2, 1.0) * env
+    sq = r["squeal_hz"] * (1 + 0.15 * np.sin(2 * np.pi * 3 * t)) * rng.uniform(0.95, 1.05)
+    rasp += r["squeal_gain"] * np.sin(2 * np.pi * np.cumsum(sq) / SR) * env ** 3
+    return rasp
+
+KINDS = {"footstep": footstep, "wind": wind, "crackle": crackle, "stroke": stroke}
 
 def chain(x, r):
     x = x - x.mean()

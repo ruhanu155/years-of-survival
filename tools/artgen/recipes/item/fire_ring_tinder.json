@@ -1,0 +1,72 @@
+{
+ "id": "yearofice:fire_ring_tinder",
+ "kind": "icon",
+ "folder": "block",
+ "rim": false,
+ "notes": "Birch-bark shavings and dry grass.",
+ "shapes": [
+  {
+   "kind": "rect",
+   "box": [
+    0,
+    0,
+    15,
+    15
+   ],
+   "ramp": "bark_birch",
+   "step": 2,
+   "noise": 0.25,
+   "speckle": {
+    "density": 0.2,
+    "ramp": "lichen_pale",
+    "step": 2
+   }
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     1,
+     3
+    ],
+    [
+     14,
+     6
+    ]
+   ],
+   "ramp": "bark_birch",
+   "step": 4
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     2,
+     10
+    ],
+    [
+     13,
+     8
+    ]
+   ],
+   "ramp": "bark_birch",
+   "step": 3
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     3,
+     13
+    ],
+    [
+     12,
+     14
+    ]
+   ],
+   "ramp": "bark_birch",
+   "step": 1,
+   "flat": true
+  }
+ ]
+}

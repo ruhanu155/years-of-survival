@@ -1,0 +1,10 @@
+{
+  "fire.crackle": {
+    "subtitle": "subtitles.yearofice.fire.crackle",
+    "sounds": ["yearofice:fire/crackle1", "yearofice:fire/crackle2", "yearofice:fire/crackle3"]
+  },
+  "fire.bow_drill": {
+    "subtitle": "subtitles.yearofice.fire.bow_drill",
+    "sounds": ["yearofice:fire/bow_drill1", "yearofice:fire/bow_drill2"]
+  }
+}

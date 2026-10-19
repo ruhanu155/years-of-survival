@@ -1,0 +1,93 @@
+{
+ "parent": "minecraft:block/block",
+ "render_type": "minecraft:cutout",
+ "textures": {
+  "particle": "yearofice:block/fire_ring_flame",
+  "flame": "yearofice:block/fire_ring_flame"
+ },
+ "elements": [
+  {
+   "from": [
+    5.0,
+    0.2,
+    8
+   ],
+   "to": [
+    11.0,
+    5,
+    8
+   ],
+   "faces": {
+    "north": {
+     "texture": "#flame",
+     "uv": [
+      0,
+      11,
+      16,
+      16
+     ]
+    },
+    "south": {
+     "texture": "#flame",
+     "uv": [
+      0,
+      11,
+      16,
+      16
+     ]
+    }
+   },
+   "rotation": {
+    "origin": [
+     8,
+     8,
+     8
+    ],
+    "axis": "y",
+    "angle": 45
+   }
+  },
+  {
+   "from": [
+    5.0,
+    0.2,
+    8
+   ],
+   "to": [
+    11.0,
+    5,
+    8
+   ],
+   "faces": {
+    "north": {
+     "texture": "#flame",
+     "uv": [
+      0,
+      11,
+      16,
+      16
+     ]
+    },
+    "south": {
+     "texture": "#flame",
+     "uv": [
+      0,
+      11,
+      16,
+      16
+     ]
+    }
+   },
+   "rotation": {
+    "origin": [
+     8,
+     8,
+     8
+    ],
+    "axis": "y",
+    "angle": -45
+   }
+  }
+ ],
+ "ambientocclusion": false
+}
