@@ -98,8 +98,8 @@ public final class FishingService {
     }
 
     public static ItemStack heldRod(Player p) {
-        if (p.getMainHandItem().is(FishingRegistry.ROD.get())) return p.getMainHandItem();
-        if (p.getOffhandItem().is(FishingRegistry.ROD.get())) return p.getOffhandItem();
+        if (p.getMainHandItem().getItem() instanceof RodItem) return p.getMainHandItem();
+        if (p.getOffhandItem().getItem() instanceof RodItem) return p.getOffhandItem();
         return ItemStack.EMPTY;
     }
 
@@ -156,7 +156,7 @@ public final class FishingService {
         long seed = level.getSeed() ^ Draws.name("cast");
         double u1 = Draws.u(seed, p.getId(), level.getGameTime(), 1), u2 = Draws.u(seed, p.getId(), level.getGameTime(), 2);
         double charge = Mth.clamp(heldS / t.castChargeS(), 0.1, 1.0);
-        double d = Math.max(1.5, t.castRangeM() * charge * (1 + (u1 * 2 - 1) * t.castScatterPct() / 100.0));
+        double d = Math.max(1.5, t.castRangeM() * (rod.getItem() instanceof RodItem ri && ri.isKit() ? RodItem.KIT_CAST_X : 1.0) * charge * (1 + (u1 * 2 - 1) * t.castScatterPct() / 100.0));
         float yaw = (float) (p.getYRot() + (u2 * 2 - 1) * t.castScatterDeg());
         Vec3 eye = p.getEyePosition();
         double rad = yaw * Mth.DEG_TO_RAD;
@@ -415,7 +415,7 @@ public final class FishingService {
                 Draws.u(seed, id, 0, SliceBite.SALT_TROPHY), Draws.u(seed, id, 0, SliceBite.SALT_BAND));
         if (!Double.isNaN(kgOverride)) kg = kgOverride;
         boolean wet = b.minutesInWater >= t.lineWetMin() || EnvService.get().precip(level, b.blockPosition()).liquid();
-        Tackle tackle = Tackle.plantFiberWillow().withWet(wet).withCondition(RodItem.lineCondition(heldRod(owner)));
+        Tackle tackle = (heldRod(owner).getItem() instanceof RodItem ri && ri.isKit() ? Tackle.sinewReel() : Tackle.plantFiberWillow()).withWet(wet).withCondition(RodItem.lineCondition(heldRod(owner)));
         double castM = Mth.clamp(b.castM, 0.5, tackle.lineCarriedM());
         FightModel.Params params = new FightModel.Params(sp, kg, tackle, seed, id, castM, weak(owner), false,
                 t.assistOn(), waterC(level, minute), false, false, false);
@@ -518,6 +518,7 @@ public final class FishingService {
         SliceSpots.Spot spot = SliceSpots.at(level, water, t);
         long day = FishingClock.day(minute);
         SliceSpots.Stocks stocks = SliceSpots.stocks(level);
+        RunLedger.get(level).record(sid, RunLedger.yearOf(day), 1);
         SpotFish.Here here = SpotFish.at(level, water, FishSeason.dayOfYear(day), t);
         for (SpotFish.Entry e : here.fish()) {
             if (e.id().equals(sid)) {

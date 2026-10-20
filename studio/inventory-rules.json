@@ -2122,6 +2122,160 @@
       "ids": [
         "weir_basket"
       ]
+<<<<<<< HEAD
+=======
+    },
+    {
+      "basis": "M5 lane B2: vegetation placement feature",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "worldgen_hook",
+      "ids": [
+        "layer_plants"
+      ]
+    },
+    {
+      "basis": "M5 lane TUNE bait from hare/fish guts (Blueprint: Guts 10% bait one per 0.1 kg)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "fish_guts"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "self_bow"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "kit_bow"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "spear"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "arrow"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "pole_blind"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "blood_trail"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "tree_stand"
+      ]
+    },
+    {
+      "basis": "Birds and the air: the M6 bird sheets (M6 lane C)",
+      "milestone": "m6",
+      "owner": "ecosystem",
+      "type": "mob",
+      "ids": [
+        "stellers_jay"
+      ]
+    },
+    {
+      "basis": "M6 lane C: the one dressed-bird item all nine birds yield",
+      "milestone": "m6",
+      "owner": "ecosystem",
+      "type": "item",
+      "ids": [
+        "bird_meat"
+      ]
+    },
+    {
+      "basis": "M6 lane C: willow pole vs kit rod split",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "kit_rod"
+      ]
+    },
+    {
+      "basis": "M6 lane C: fish weir fence, fish wheel, tip-up (Waters and fish > Gear and structures)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "weir_stake",
+        "fish_wheel",
+        "tip_up"
+      ]
+    },
+    {
+      "basis": "M6 lane C: block items of the fish weir stake, fish wheel and tip-up",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "weir_stake",
+        "fish_wheel",
+        "tip_up"
+      ]
+    },
+    {
+      "basis": "M6 lane C: the other thirteen fish species' landed-fish items (Waters and fish > Species ledger)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "sockeye_salmon",
+        "arctic_char",
+        "broad_whitefish",
+        "round_whitefish",
+        "least_cisco",
+        "bering_cisco",
+        "sheefish",
+        "longnose_sucker",
+        "slimy_sculpin",
+        "lake_chub",
+        "ninespine_stickleback",
+        "alaska_blackfish",
+        "arctic_lamprey"
+      ]
+>>>>>>> origin/main
     }
   ],
   "expand": {

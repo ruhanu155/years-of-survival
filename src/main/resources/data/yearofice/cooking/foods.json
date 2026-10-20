@@ -49,6 +49,7 @@
       "spit": "per_kg",
       "family": "game_meat"
     },
+<<<<<<< HEAD
     "yearofice:dolly_varden": {
       "spit": "whole_fish",
       "family": "fish"
@@ -120,6 +121,63 @@
     "yearofice:wolverine_meat": {
       "spit": "whole_hare",
       "family": "game_meat"
+=======
+    "yearofice:bird_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:sockeye_salmon": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:arctic_char": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:broad_whitefish": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:round_whitefish": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:least_cisco": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:bering_cisco": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:sheefish": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:longnose_sucker": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:slimy_sculpin": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:lake_chub": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:ninespine_stickleback": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:alaska_blackfish": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:arctic_lamprey": {
+      "spit": "whole_fish",
+      "family": "fish"
+>>>>>>> origin/main
     }
   }
 }

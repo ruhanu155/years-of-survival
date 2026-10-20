@@ -31,6 +31,7 @@ public final class YoiConfig {
         com.yearofice.fire.FireConfig.define(b);
         com.yearofice.hunt.fishing.FishingConfig.define(b);
         com.yearofice.ecosystem.EcoConfig.define(b);
+        com.yearofice.ecosystem.bird.BirdConfig.define(b);
         com.yearofice.decay.DecayConfig.define(b);
         com.yearofice.food.FoodConfig.define(b);
         com.yearofice.story.StoryConfig.define(b);
@@ -38,7 +39,6 @@ public final class YoiConfig {
         com.yearofice.build.BuildConfig.define(b);
         com.yearofice.plant.ForageConfig.define(b);
         com.yearofice.crop.GardenConfig.define(b);
-        com.yearofice.hunt.HuntConfig.define(b);
         SPEC = b.build();
     }
 

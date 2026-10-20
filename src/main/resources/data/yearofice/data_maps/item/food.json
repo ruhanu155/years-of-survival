@@ -1270,14 +1270,15 @@
         }
       ],
       "kcal_per_100g": 100.0,
-      "protein_g_per_100g": 22.5,
-      "fat_g_per_100g": 1.111,
+      "protein_g_per_100g": 18.0,
+      "fat_g_per_100g": 3.111,
       "vit_c_mg_per_100g": 2.0,
       "curve": "living_rot",
       "spoil_days_at_5c": {
         "raw": 3.6,
         "cooked": 9
-      }
+      },
+      "weight_g": 1000
     },
     "yearofice:chum_salmon": {
       "neoforge:conditions": [
@@ -1321,14 +1322,15 @@
         }
       ],
       "kcal_per_100g": 210.0,
-      "protein_g_per_100g": 31.5,
-      "fat_g_per_100g": 9.333,
+      "protein_g_per_100g": 18.0,
+      "fat_g_per_100g": 15.333,
       "vit_c_mg_per_100g": 2.0,
       "curve": "living_rot",
       "spoil_days_at_5c": {
         "raw": 3.6,
         "cooked": 9
-      }
+      },
+      "weight_g": 3000
     },
     "yearofice:humpback_whitefish": {
       "neoforge:conditions": [
@@ -1355,14 +1357,15 @@
         }
       ],
       "kcal_per_100g": 180.0,
-      "protein_g_per_100g": 27.0,
-      "fat_g_per_100g": 8.0,
+      "protein_g_per_100g": 18.0,
+      "fat_g_per_100g": 12.0,
       "vit_c_mg_per_100g": 2.0,
       "curve": "living_rot",
       "spoil_days_at_5c": {
         "raw": 3.6,
         "cooked": 9
-      }
+      },
+      "weight_g": 190
     },
     "yearofice:lake_trout": {
       "neoforge:conditions": [
@@ -1389,14 +1392,15 @@
         }
       ],
       "kcal_per_100g": 160.0,
-      "protein_g_per_100g": 24.0,
-      "fat_g_per_100g": 7.111,
+      "protein_g_per_100g": 18.0,
+      "fat_g_per_100g": 9.778,
       "vit_c_mg_per_100g": 2.0,
       "curve": "living_rot",
       "spoil_days_at_5c": {
         "raw": 3.6,
         "cooked": 9
-      }
+      },
+      "weight_g": 9000
     },
     "yearofice:arctic_lamprey": {
       "neoforge:conditions": [
@@ -1405,15 +1409,16 @@
           "item": "yearofice:arctic_lamprey"
         }
       ],
-      "kcal_per_100g": 330,
-      "protein_g_per_100g": 33,
-      "fat_g_per_100g": 22,
+      "kcal_per_100g": 330.0,
+      "protein_g_per_100g": 18.0,
+      "fat_g_per_100g": 28.667,
       "vit_c_mg_per_100g": 2.0,
       "curve": "living_rot",
       "spoil_days_at_5c": {
         "raw": 3.6,
         "cooked": 9
-      }
+      },
+      "weight_g": 200
     },
     "yearofice:dried_fish": {
       "neoforge:conditions": [
@@ -2345,6 +2350,170 @@
         "cooked": 365
       },
       "weight_g": 50
+    },
+    "yearofice:bird_meat": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:bird_meat"
+        }
+      ],
+      "kcal_per_100g": 130,
+      "protein_g_per_100g": 23,
+      "fat_g_per_100g": 4,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 6,
+        "cooked": 9,
+        "smoked": 30,
+        "dried": 60
+      },
+      "weight_g": 100
+    },
+    "yearofice:arctic_char": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:arctic_char"
+        }
+      ],
+      "kcal_per_100g": 150.0,
+      "protein_g_per_100g": 18.0,
+      "fat_g_per_100g": 8.667,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      },
+      "weight_g": 1750
+    },
+    "yearofice:broad_whitefish": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:broad_whitefish"
+        }
+      ],
+      "kcal_per_100g": 170.0,
+      "protein_g_per_100g": 18.0,
+      "fat_g_per_100g": 10.889,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      },
+      "weight_g": 3250
+    },
+    "yearofice:round_whitefish": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:round_whitefish"
+        }
+      ],
+      "kcal_per_100g": 140.0,
+      "protein_g_per_100g": 18.0,
+      "fat_g_per_100g": 7.556,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      },
+      "weight_g": 600
+    },
+    "yearofice:bering_cisco": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:bering_cisco"
+        }
+      ],
+      "kcal_per_100g": 200.0,
+      "protein_g_per_100g": 18.0,
+      "fat_g_per_100g": 14.222,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      },
+      "weight_g": 800
+    },
+    "yearofice:slimy_sculpin": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:slimy_sculpin"
+        }
+      ],
+      "kcal_per_100g": 110.0,
+      "protein_g_per_100g": 18.0,
+      "fat_g_per_100g": 4.222,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      },
+      "weight_g": 30
+    },
+    "yearofice:lake_chub": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:lake_chub"
+        }
+      ],
+      "kcal_per_100g": 110.0,
+      "protein_g_per_100g": 18.0,
+      "fat_g_per_100g": 4.222,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      },
+      "weight_g": 35
+    },
+    "yearofice:ninespine_stickleback": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:ninespine_stickleback"
+        }
+      ],
+      "kcal_per_100g": 100.0,
+      "protein_g_per_100g": 18.0,
+      "fat_g_per_100g": 3.111,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      },
+      "weight_g": 5
+    },
+    "yearofice:alaska_blackfish": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:alaska_blackfish"
+        }
+      ],
+      "kcal_per_100g": 120.0,
+      "protein_g_per_100g": 18.0,
+      "fat_g_per_100g": 5.333,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      },
+      "weight_g": 115
     }
   }
 }

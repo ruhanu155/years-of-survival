@@ -24,7 +24,10 @@ public final class FishingSpecies {
 
     /** The ids that have a file and a landed-fish item. */
     public static final List<String> IDS = List.of("arctic_grayling", "dolly_varden", "northern_pike", "humpback_whitefish",
-            "burbot", "lake_trout", "chinook_salmon", "chum_salmon", "coho_salmon");
+            "burbot", "lake_trout", "chinook_salmon", "chum_salmon", "coho_salmon",
+            // M6 lane C: the other thirteen species of the ledger
+            "sockeye_salmon", "arctic_char", "broad_whitefish", "round_whitefish", "least_cisco", "bering_cisco", "sheefish",
+            "longnose_sucker", "slimy_sculpin", "lake_chub", "ninespine_stickleback", "alaska_blackfish", "arctic_lamprey");
 
     /** Worldgen's short spot-species names to species ids. */
     private static final Map<String, String> ALIAS = Map.of("grayling", "arctic_grayling", "pike", "northern_pike",

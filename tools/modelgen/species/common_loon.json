@@ -1,0 +1,19 @@
+{
+ "inherit": "willow_ptarmigan",
+ "id": "common_loon",
+ "texture_dir": "common_loon",
+ "anim_copies": [
+  "willow_ptarmigan",
+  "common_loon"
+ ],
+ "notes": "Black body (checkered back not modelled). Same rig (grouse), recoloured; the renderer scales it (M6 lane C).",
+ "textures": {
+  "_replace": true,
+  "adult_all": {
+   "remap": {
+    "feather_ptarmigan_summer": "fur_black",
+    "comb_red": "fur_black"
+   }
+  }
+ }
+}

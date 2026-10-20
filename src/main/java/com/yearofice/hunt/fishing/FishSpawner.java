@@ -29,6 +29,13 @@ public final class FishSpawner {
         return (int) Math.max(0, Math.min(cap, Math.ceil(st.n() / 10.0)));
     }
 
+    /** Fish to show on a game-year day: a run species shows in step with the run's strength (Salmon runs by date). */
+    public static int wantedOn(String species, FishStock st, int doy) {
+        int w = wanted(species, st);
+        if (!com.yearofice.sim.fishing.SalmonRun.isRun(species) || FishingSpecies.season(species).resident()) return w;
+        return (int) Math.ceil(w * com.yearofice.sim.fishing.SalmonRun.strength(species, doy));
+    }
+
     /** Server tick: every {@link #PERIOD_TICKS}. */
     public static void tick(ServerLevel level) {
         if (level.getGameTime() % PERIOD_TICKS != 7) return;
@@ -45,8 +52,8 @@ public final class FishSpawner {
             for (SpotFish.Entry e : SpotFish.at(level, spot.centre(), doy, FishingConfig.tuning()).fish()) {
                 if (!SpotFish.present(e.id(), doy, spot.type())) continue;
                 long day = FishingClock.day(FishingClock.minute(level.getServer()));
-                FishStock st = SpotFish.stock(level, SliceSpots.key(spot.centre()), day, e);
-                int want = wanted(e.id(), st) - countIn(level, spot, e.id());
+                FishStock st = SpotFish.stock(level, SliceSpots.key(spot.centre()), day, e, spot.type());
+                int want = wantedOn(e.id(), st, doy) - countIn(level, spot, e.id());
                 for (int i = 0; i < want; i++) if (spawn(level, spot, e.id(), i)) spawned++;
             }
         }

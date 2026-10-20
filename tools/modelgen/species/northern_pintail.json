@@ -1,0 +1,20 @@
+{
+ "inherit": "willow_ptarmigan",
+ "id": "northern_pintail",
+ "texture_dir": "northern_pintail",
+ "anim_copies": [
+  "willow_ptarmigan",
+  "northern_pintail"
+ ],
+ "notes": "Pale grey body, brown head. Same rig (grouse), recoloured; the renderer scales it (M6 lane C).",
+ "textures": {
+  "_replace": true,
+  "adult_all": {
+   "remap": {
+    "feather_ptarmigan_summer": "fur_wolf_pale",
+    "comb_red": "fur_cinnamon",
+    "fur_black": "fur_cinnamon"
+   }
+  }
+ }
+}

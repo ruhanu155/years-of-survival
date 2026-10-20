@@ -1,0 +1,76 @@
+{
+  "species": "yearofice:raven",
+  "poses": {
+    "standing": [
+      {
+        "zone": "heart_lungs",
+        "center_m": [
+          0.0,
+          0.204,
+          0.048
+        ],
+        "radii_m": [
+          0.048,
+          0.048,
+          0.06
+        ]
+      },
+      {
+        "zone": "brain",
+        "center_m": [
+          0.0,
+          0.372,
+          0.132
+        ],
+        "radii_m": [
+          0.018,
+          0.018,
+          0.018
+        ]
+      },
+      {
+        "zone": "gut",
+        "center_m": [
+          0.0,
+          0.156,
+          -0.06
+        ],
+        "radii_m": [
+          0.06,
+          0.06,
+          0.072
+        ]
+      },
+      {
+        "zone": "wings",
+        "center_m": [
+          0.0,
+          0.228,
+          0.0
+        ],
+        "radii_m": [
+          0.132,
+          0.048,
+          0.108
+        ]
+      },
+      {
+        "zone": "legs",
+        "below_y_m": 0.06
+      }
+    ],
+    "flying": {
+      "from": "standing",
+      "lower_m": 0.0
+    }
+  },
+  "kill_threshold_j": 4,
+  "bloodshot": {
+    "heart_lungs": [
+      "ribs"
+    ],
+    "gut": [
+      "loin"
+    ]
+  }
+}

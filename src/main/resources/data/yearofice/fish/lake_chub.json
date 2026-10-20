@@ -1,0 +1,45 @@
+{
+  "id": "lake_chub",
+  "kg": [
+    0.01,
+    0.06
+  ],
+  "bite_base": 0.02,
+  "kcal_per_kg": 1100,
+  "run_pull_x": 0.2,
+  "run_every_s": [
+    10,
+    20
+  ],
+  "run_length_s": [
+    1,
+    1
+  ],
+  "jump_chance": 0.0,
+  "special": "NONE",
+  "special_every_s": null,
+  "special_spike": 1.0,
+  "tire_per_s": 0.333333,
+  "bite_through_no_leader": 0,
+  "night_factor": 0.8,
+  "trophy_kg": null,
+  "bait": {
+    "worm": 0.2
+  },
+  "surface_feeder": false,
+  "season": {
+    "from": "05-01",
+    "to": "10-31"
+  },
+  "resident": true,
+  "spawn": null,
+  "parasite": "plain",
+  "net_c_per_h": 0.0,
+  "mesh": "fine",
+  "capacity": {
+    "creek_mouth": 80,
+    "lake_inlet": 60,
+    "beaver_pond": 50
+  },
+  "r_per_month": 0.7
+}

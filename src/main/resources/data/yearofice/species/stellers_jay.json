@@ -1,0 +1,75 @@
+{
+  "entity": "yearofice:stellers_jay",
+  "rig": "corvid",
+  "habitat": [
+    "forest"
+  ],
+  "population": [
+    1,
+    4
+  ],
+  "home_range_m": 500,
+  "active": [
+    "dawn",
+    "day",
+    "dusk"
+  ],
+  "gaits": {
+    "walk": 1.0,
+    "trot": 2.5,
+    "run": 4,
+    "fly": 10
+  },
+  "senses": {
+    "sight": 60,
+    "hearing": 40,
+    "smell": 0,
+    "fov": 300
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": false,
+    "flush_m": 0,
+    "flee_m": [
+      30,
+      60
+    ],
+    "flee_gait": "fly",
+    "zigzag": false,
+    "hide_min": [
+      5,
+      15
+    ],
+    "charges": false
+  },
+  "huntable": true,
+  "respawn_days": 10,
+  "carcass": {
+    "whole_kg": 0.1,
+    "class": "tiny",
+    "body_plan": "bird",
+    "tau_h": 1,
+    "floats": true,
+    "poses": [
+      "dead_wings"
+    ],
+    "steps": {
+      "gut": 2,
+      "pluck": 4
+    },
+    "parts": {
+      "meat": 0.04,
+      "organs": {
+        "giblets": 0.006
+      },
+      "cover": {
+        "feathers": 4,
+        "kind": "feathers"
+      },
+      "guts_kg": 0.007
+    }
+  },
+  "butcher_table": "yearofice:butchering/stellers_jay"
+}
