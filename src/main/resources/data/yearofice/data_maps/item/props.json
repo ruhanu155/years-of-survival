@@ -1,17 +1,90 @@
 {
   "replace": false,
   "values": {
+    "yearofice:alder_round": {
+      "category": "fuel",
+      "stack_class": "by_weight",
+      "floats": true,
+      "material": "wood"
+    },
+    "yearofice:alder_split": {
+      "category": "fuel",
+      "stack_class": "by_weight",
+      "floats": true,
+      "material": "wood"
+    },
     "yearofice:arctic_grayling": {
       "category": "food",
       "stack_class": "single",
       "floats": true,
       "scent_level": 2
     },
+    "yearofice:aspen_round": {
+      "category": "fuel",
+      "stack_class": "by_weight",
+      "floats": true,
+      "material": "wood"
+    },
+    "yearofice:aspen_split": {
+      "category": "fuel",
+      "stack_class": "by_weight",
+      "floats": true,
+      "material": "wood"
+    },
+    "yearofice:bark_bucket": {
+      "category": "container",
+      "stack_class": "single",
+      "floats": true,
+      "material": "bark",
+      "max_condition": 60
+    },
+    "yearofice:bear_spray": {
+      "category": "tool",
+      "stack_class": "single"
+    },
+    "yearofice:birch_bark_torch": {
+      "category": "light",
+      "stack_class": "single",
+      "floats": true,
+      "material": "wood"
+    },
+    "yearofice:birch_round": {
+      "category": "fuel",
+      "stack_class": "by_weight",
+      "floats": true,
+      "material": "wood"
+    },
+    "yearofice:birch_split": {
+      "category": "fuel",
+      "stack_class": "by_weight",
+      "floats": true,
+      "material": "wood"
+    },
     "yearofice:bow_drill": {
       "category": "fire",
       "stack_class": "single",
       "material": "wood",
       "max_condition": 100
+    },
+    "yearofice:chopping_block": {
+      "category": "piece",
+      "stack_class": "single",
+      "material": "wood"
+    },
+    "yearofice:compass": {
+      "category": "device",
+      "stack_class": "single"
+    },
+    "yearofice:cooking_pot": {
+      "category": "cooking",
+      "stack_class": "single",
+      "material": "steel",
+      "shiny": true,
+      "max_condition": 100
+    },
+    "yearofice:cord": {
+      "category": "material",
+      "stack_class": "small"
     },
     "yearofice:crate_backpack": {
       "category": "pack",
@@ -20,9 +93,43 @@
       "material": "wood",
       "max_condition": 200
     },
+    "yearofice:drift_round": {
+      "category": "fuel",
+      "stack_class": "by_weight",
+      "floats": true,
+      "material": "wood"
+    },
+    "yearofice:drift_split": {
+      "category": "fuel",
+      "stack_class": "by_weight",
+      "floats": true,
+      "material": "wood"
+    },
     "yearofice:fire_ring": {
       "category": "fire",
       "stack_class": "single",
+      "material": "stone"
+    },
+    "yearofice:fire_starter": {
+      "category": "fire",
+      "stack_class": "single",
+      "material": "steel",
+      "shiny": true,
+      "max_condition": 200
+    },
+    "yearofice:fixed_blade_knife": {
+      "category": "tool",
+      "stack_class": "single"
+    },
+    "yearofice:flint_knife": {
+      "category": "tool",
+      "stack_class": "single",
+      "material": "stone",
+      "max_condition": 300
+    },
+    "yearofice:flint_nodule": {
+      "category": "material",
+      "stack_class": "medium",
       "material": "stone"
     },
     "yearofice:hare_pelt": {
@@ -30,15 +137,46 @@
       "stack_class": "medium",
       "scent_level": 1
     },
+    "yearofice:hatchet": {
+      "category": "tool",
+      "stack_class": "single",
+      "material": "steel",
+      "max_condition": 5000,
+      "theft": "porcupine"
+    },
+    "yearofice:headlamp": {
+      "category": "light",
+      "stack_class": "single",
+      "material": "plastic",
+      "shiny": true,
+      "max_condition": 100
+    },
+    "yearofice:jerrycan": {
+      "category": "container",
+      "stack_class": "single",
+      "material": "steel",
+      "max_condition": 150
+    },
     "yearofice:kindling": {
       "category": "fire",
       "stack_class": "medium",
       "floats": true,
       "material": "wood"
     },
+    "yearofice:knife": {
+      "category": "tool",
+      "stack_class": "single",
+      "material": "steel",
+      "max_condition": 6000,
+      "theft": "porcupine"
+    },
     "yearofice:match": {
       "category": "fire",
       "stack_class": "small"
+    },
+    "yearofice:medkit": {
+      "category": "medical",
+      "stack_class": "single"
     },
     "yearofice:messenger": {
       "category": "device",
@@ -46,12 +184,57 @@
       "shiny": true,
       "max_condition": 100
     },
+    "yearofice:mosquito_head_net": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:pilot_bread": {
+      "category": "food",
+      "stack_class": "small"
+    },
+    "yearofice:pitch_candle": {
+      "category": "light",
+      "stack_class": "single",
+      "scent_level": 1
+    },
+    "yearofice:pitch_torch": {
+      "category": "light",
+      "stack_class": "single",
+      "floats": true,
+      "material": "wood",
+      "scent_level": 1
+    },
+    "yearofice:plant_guide": {
+      "category": "book",
+      "stack_class": "single"
+    },
+    "yearofice:poplar_round": {
+      "category": "fuel",
+      "stack_class": "by_weight",
+      "floats": true,
+      "material": "wood"
+    },
+    "yearofice:poplar_split": {
+      "category": "fuel",
+      "stack_class": "by_weight",
+      "floats": true,
+      "material": "wood"
+    },
     "yearofice:rod": {
       "category": "tool",
       "stack_class": "single",
       "floats": true,
       "material": "wood",
       "max_condition": 100
+    },
+    "yearofice:rough_stone": {
+      "category": "material",
+      "stack_class": "medium",
+      "material": "stone"
+    },
+    "yearofice:seed_packet": {
+      "category": "seed",
+      "stack_class": "small"
     },
     "yearofice:sinew": {
       "category": "material",
@@ -68,31 +251,15 @@
       "stack_class": "by_weight",
       "scent_level": 2
     },
+    "yearofice:solar_panel_small": {
+      "category": "device",
+      "stack_class": "single"
+    },
     "yearofice:spruce_boughs": {
       "category": "material",
       "stack_class": "medium",
       "floats": true,
       "material": "wood"
-    },
-    "yearofice:tinder_bundle": {
-      "category": "fire",
-      "stack_class": "medium",
-      "floats": true
-    },
-    "yearofice:whole_game": {
-      "category": "food",
-      "stack_class": "single",
-      "scent_level": 3
-    },
-    "yearofice:willow_ptarmigan_meat": {
-      "category": "food",
-      "stack_class": "by_weight",
-      "scent_level": 2
-    },
-    "yearofice:worm": {
-      "category": "bait",
-      "stack_class": "small",
-      "scent_level": 1
     },
     "yearofice:spruce_round": {
       "category": "fuel",
@@ -106,41 +273,23 @@
       "floats": true,
       "material": "wood"
     },
-    "yearofice:birch_round": {
-      "category": "fuel",
-      "stack_class": "by_weight",
+    "yearofice:stake": {
+      "category": "material",
+      "stack_class": "small",
       "floats": true,
       "material": "wood"
     },
-    "yearofice:birch_split": {
-      "category": "fuel",
-      "stack_class": "by_weight",
-      "floats": true,
-      "material": "wood"
+    "yearofice:steel_bottle": {
+      "category": "container",
+      "stack_class": "single",
+      "material": "steel",
+      "shiny": true,
+      "max_condition": 100
     },
-    "yearofice:aspen_round": {
-      "category": "fuel",
-      "stack_class": "by_weight",
-      "floats": true,
-      "material": "wood"
-    },
-    "yearofice:aspen_split": {
-      "category": "fuel",
-      "stack_class": "by_weight",
-      "floats": true,
-      "material": "wood"
-    },
-    "yearofice:poplar_round": {
-      "category": "fuel",
-      "stack_class": "by_weight",
-      "floats": true,
-      "material": "wood"
-    },
-    "yearofice:poplar_split": {
-      "category": "fuel",
-      "stack_class": "by_weight",
-      "floats": true,
-      "material": "wood"
+    "yearofice:tallow_candle": {
+      "category": "light",
+      "stack_class": "single",
+      "scent_level": 2
     },
     "yearofice:tamarack_round": {
       "category": "fuel",
@@ -154,6 +303,34 @@
       "floats": true,
       "material": "wood"
     },
+    "yearofice:tin_can": {
+      "category": "container",
+      "stack_class": "single",
+      "material": "tin",
+      "shiny": true,
+      "max_condition": 40
+    },
+    "yearofice:tinder_bundle": {
+      "category": "fire",
+      "stack_class": "medium",
+      "floats": true
+    },
+    "yearofice:tool_handle": {
+      "category": "material",
+      "stack_class": "medium",
+      "floats": true,
+      "material": "wood"
+    },
+    "yearofice:whole_game": {
+      "category": "food",
+      "stack_class": "single",
+      "scent_level": 3
+    },
+    "yearofice:willow_ptarmigan_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 2
+    },
     "yearofice:willow_round": {
       "category": "fuel",
       "stack_class": "by_weight",
@@ -166,152 +343,15 @@
       "floats": true,
       "material": "wood"
     },
-    "yearofice:alder_round": {
-      "category": "fuel",
-      "stack_class": "by_weight",
-      "floats": true,
-      "material": "wood"
-    },
-    "yearofice:alder_split": {
-      "category": "fuel",
-      "stack_class": "by_weight",
-      "floats": true,
-      "material": "wood"
-    },
-    "yearofice:drift_round": {
-      "category": "fuel",
-      "stack_class": "by_weight",
-      "floats": true,
-      "material": "wood"
-    },
-    "yearofice:drift_split": {
-      "category": "fuel",
-      "stack_class": "by_weight",
-      "floats": true,
-      "material": "wood"
-    },
-    "yearofice:hatchet": {
-      "category": "tool",
-      "stack_class": "single",
-      "material": "steel",
-      "theft": "porcupine",
-      "max_condition": 5000
-    },
-    "yearofice:chopping_block": {
-      "category": "piece",
-      "stack_class": "single",
-      "material": "wood"
-    },
-    "yearofice:knife": {
-      "category": "tool",
-      "stack_class": "single",
-      "material": "steel",
-      "max_condition": 6000,
-      "theft": "porcupine"
-    },
-    "yearofice:flint_knife": {
-      "category": "tool",
-      "stack_class": "single",
-      "material": "stone",
-      "max_condition": 300
-    },
-    "yearofice:rough_stone": {
-      "category": "material",
-      "stack_class": "medium",
-      "material": "stone"
-    },
-    "yearofice:flint_nodule": {
-      "category": "material",
-      "stack_class": "medium",
-      "material": "stone"
-    },
-    "yearofice:stake": {
-      "category": "material",
-      "stack_class": "small",
-      "floats": true,
-      "material": "wood"
-    },
-    "yearofice:tool_handle": {
-      "category": "material",
-      "stack_class": "medium",
-      "floats": true,
-      "material": "wood"
-    },
     "yearofice:workbench": {
       "category": "piece",
       "stack_class": "single",
       "material": "wood"
     },
-    "yearofice:steel_bottle": {
-      "category": "container",
-      "stack_class": "single",
-      "material": "steel",
-      "shiny": true,
-      "max_condition": 100
-    },
-    "yearofice:cooking_pot": {
-      "category": "cooking",
-      "stack_class": "single",
-      "material": "steel",
-      "shiny": true,
-      "max_condition": 100
-    },
-    "yearofice:bark_bucket": {
-      "category": "container",
-      "stack_class": "single",
-      "floats": true,
-      "material": "bark",
-      "max_condition": 60
-    },
-    "yearofice:tin_can": {
-      "category": "container",
-      "stack_class": "single",
-      "material": "tin",
-      "shiny": true,
-      "max_condition": 40
-    },
-    "yearofice:jerrycan": {
-      "category": "container",
-      "stack_class": "single",
-      "material": "steel",
-      "max_condition": 150
-    },
-    "yearofice:fire_starter": {
-      "category": "fire",
-      "stack_class": "single",
-      "material": "steel",
-      "shiny": true,
-      "max_condition": 200
-    },
-    "yearofice:birch_bark_torch": {
-      "category": "light",
-      "stack_class": "single",
-      "floats": true,
-      "material": "wood"
-    },
-    "yearofice:pitch_torch": {
-      "category": "light",
-      "stack_class": "single",
-      "floats": true,
-      "material": "wood",
+    "yearofice:worm": {
+      "category": "bait",
+      "stack_class": "small",
       "scent_level": 1
-    },
-    "yearofice:tallow_candle": {
-      "category": "light",
-      "stack_class": "single",
-      "scent_level": 2
-    },
-    "yearofice:pitch_candle": {
-      "category": "light",
-      "stack_class": "single",
-      "scent_level": 1
-    },
-    "yearofice:headlamp": {
-      "category": "light",
-      "stack_class": "single",
-      "material": "plastic",
-      "shiny": true,
-      "max_condition": 100
     }
   }
 }

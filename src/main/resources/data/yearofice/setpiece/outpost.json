@@ -38,7 +38,7 @@
       "pick_weight": 1,
       "footprint_m": [
         12,
-        12
+        15
       ],
       "height_m": 6,
       "spawn_offset": [
@@ -52,5 +52,5 @@
     "yearofice:setpiece/outpost"
   ],
   "notes": [],
-  "story": "Provisional start site: a flat bank above the main river, door toward the lookout. Stage 7's start-site score and its 12 checks (M3) replace this pick."
+  "story": "Station Nine: the half-collapsed research outpost. Stage 5 keeps a provisional pick; the start-site search (M3, worldgen.StartSite) replaces it with the scored site, door turned to the landmark."
 }

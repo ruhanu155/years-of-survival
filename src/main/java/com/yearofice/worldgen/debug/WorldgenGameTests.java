@@ -39,7 +39,7 @@ public final class WorldgenGameTests {
     static final int LANDFORM_HASH = 0x95b627d5;
     /** Stage 4 and 5 hashes of seed 3141592, as {@code M1HashTest} records them in JUnit. */
     static final int WATER_HASH = 0x88d7b428; // M2: RECONCILE 167 lake polish (was 0x71d37a3c)
-    static final int PLACES_HASH = 0xf8528e7b;
+    static final int PLACES_HASH = 0x007f2f85; // M3: Station Nine's 12 x 15 footprint (was 0xf8528e7b)
 
     @GameTest(template = "gametest/empty3", batch = "m0")
     public static void worldgen_landform_hash_matches_junit(GameTestHelper helper) {
@@ -101,6 +101,9 @@ public final class WorldgenGameTests {
         for (SetPieceDef d : SetPieceDef.loadAll()) {
             for (SetPieceDef.Variant v : d.variants()) {
                 clear(level, corner, far);
+                // A floor under the area, so blocks that need support (a door, M3's Station Nine) survive their shape updates.
+                for (BlockPos f : BlockPos.betweenClosed(corner.below(), new BlockPos(far.getX(), corner.getY() - 1, far.getZ())))
+                    level.setBlock(f, Blocks.STONE.defaultBlockState(), Block.UPDATE_CLIENTS);
                 mask.clear(corner, far);
                 Optional<StructureTemplate> t = SetPieceTemplates.load(level, v.template());
                 helper.assertTrue(t.isPresent(), "missing template " + v.template());
@@ -115,7 +118,8 @@ public final class WorldgenGameTests {
                 for (BlockPos p : BlockPos.betweenClosed(corner, far)) {
                     BlockState s = level.getBlockState(p);
                     if (s.isAir()) {
-                        helper.assertFalse(mask.isPlaced(p), v.template() + ": masked air at " + p.toShortString());
+                        helper.assertFalse(mask.isPlaced(p), v.template() + ": masked air at " + p.toShortString() + " (rotation " + rot + ", local "
+                                + p.subtract(at).toShortString() + ", below " + level.getBlockState(p.below()) + ")");
                         continue;
                     }
                     helper.assertTrue(mask.isPlaced(p), v.template() + ": " + s + " at " + p.toShortString() + " has no placed_mask bit");

@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "search": {
+    "step_m": 8,
+    "edge_margin_m": 120,
+    "pad_clearance_m": 6
+  },
+  "checks": {
+    "water": { "max_dist_m": 60 },
+    "flat": { "area_m": 20, "max_slope_deg": 8 },
+    "shelter": { "face_min_height_m": 6, "within_m": 350 },
+    "firewood": { "radius_m": 80, "trees_min": 40, "deadwood_min": 2 },
+    "tinder": { "radius_m": 150, "birch_min": 3 },
+    "fishing": { "within_m": 500, "min_q": 0.5, "none_at_or_above_q": 0.8, "none_within_m": 150 },
+    "trail": { "within_m": 300, "min_count": 1 },
+    "iron": { "min_m": 400, "max_m": 1000, "eye_m": 1.6, "outcrop_height_m": 1.5, "forest_height_m": 20, "forest_block_m": 16, "prune_inside_min": true },
+    "landmark": { "within_m": 2000 },
+    "set_piece": { "within_m": 1500 },
+    "bear": { "den_clear_m": 500, "min_overlapping_ranges": 1 },
+    "moose": { "within_m": 1200, "min_ranges": 1 }
+  },
+  "score": {
+    "trees_cap": 80,
+    "birch_cap": 10,
+    "coef_birch": 0.5,
+    "coef_face": 0.5,
+    "coef_flood": 0.5,
+    "coef_aspect": 0.3,
+    "coef_view": 0.4,
+    "flood_low_min_m": 2,
+    "flood_low_max_m": 4,
+    "flood_high_max_m": 6,
+    "flood_high_value": 0.5,
+    "view_tower_value": 1.0,
+    "view_other_value": 0.7,
+    "tower_min_elevation_deg": 0.5,
+    "tower_source": "yearofice:fire_lookout"
+  },
+  "sos_return": {
+    "search_m": 160,
+    "above_water_min_m": 0.3,
+    "flood_year_rise_m": 3.5
+  },
+  "life": {
+    "habitat_step_m": 64,
+    "moose": {
+      "count": 3,
+      "radius_m": 1500,
+      "habitat": ["riparian", "cloudberry_muskeg", "muskeg", "slough_country"]
+    },
+    "black_bear": {
+      "count": 2,
+      "radius_m": 1500,
+      "habitat": ["spruce_taiga", "birch_aspen_slope", "foothill_benches"]
+    },
+    "grizzly": {
+      "count": 1,
+      "radius_m": 3000,
+      "habitat": ["spruce_taiga", "birch_aspen_slope", "foothill_benches"]
+    },
+    "den": { "slope_min_deg": 25, "slope_max_deg": 40, "elevation_min_m": 300 },
+    "wolf_den": { "sediment_min_m": 1.0, "slope_min_deg": 15, "slope_max_deg": 30, "water_max_m": 300 },
+    "trail_step_m": 8,
+    "trail_water_points_per_range": 8,
+    "trail_water_lattice_m": 200
+  }
+}

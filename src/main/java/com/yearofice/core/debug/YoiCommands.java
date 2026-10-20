@@ -23,6 +23,7 @@ public final class YoiCommands {
                 .then(com.yearofice.worldgen.debug.WorldgenCommands.node())
                 .then(com.yearofice.worldgen.debug.WorldCommands.tp())
                 .then(com.yearofice.worldgen.debug.WorldCommands.show())
+                .then(com.yearofice.worldgen.debug.WorldCommands.seed())
                 .then(Commands.literal("info").executes(ctx -> {
                     String version = ModList.get().getModContainerById("yearofice")
                             .map(c -> c.getModInfo().getVersion().toString()).orElse("?");

@@ -58,15 +58,55 @@ public final class TemplateGen {
         b.set(x0 + 1, 0, z0 + 1, "chest[facing=south]");
     }
 
+
+    /** Where Station Nine's loot lives: the crate holds {@code loot_table/player/starting_kit.json}. */
+    static final String KIT_LOOT = "yearofice:player/starting_kit";
+
+    /**
+     * Station Nine on day 1 (Blueprint › Start site › The outpost layout), 12 × 15 blocks, door on the south (+z) side.
+     * The cabin is 5 × 6 at x 1–5, z 1–6 with its north half of the roof caved in and the south-east corner dry;
+     * the spawn stands one block outside the door at (3, 0, 7), and the firepit is 6 blocks further out along the
+     * same line at (3, 0, 13), the fire spot {@code story.BeaconTargets} looks for. Vanilla blocks only; the fire
+     * lane swaps the ash for its fire ring, and the radio, logbook and weather loops add their parts later.
+     */
+    static void outpost(Builder b) {
+        int x0 = 1, z0 = 1, w = 5, d = 6, door = 3;
+        b.walls(x0, 0, z0, x0 + w - 1, 2, z0 + d - 1, LOG);
+        // Half collapsed: the north wall and the north-west corner have lost their tops.
+        b.set(2, 1, z0, null).set(2, 2, z0, null).set(3, 2, z0, null).set(4, 2, z0, null);
+        b.set(x0, 2, z0 + 1, null).set(x0, 2, z0 + 2, null);
+        b.set(x0, 1, z0 + 3, "glass_pane[east=false,north=false,south=false,west=false]");
+        // The door, shut, in the south wall.
+        b.set(door, 0, z0 + d - 1, "spruce_door[facing=south,half=lower,hinge=left,open=false]");
+        b.set(door, 1, z0 + d - 1, "spruce_door[facing=south,half=upper,hinge=left,open=false]");
+        // The roof: the south half stands; the north half is a few boards.
+        for (int x = x0; x < x0 + w; x++) for (int z = z0; z < z0 + d; z++) {
+            boolean north = z < z0 + 3;
+            if (north && (x + z) % 3 != 0) continue;
+            b.set(x, 3, z, north ? SLAB : PLANK);
+        }
+        // Inside: the bunk of bare boards along the east wall, the supply crate in the dry south-east corner, the radio
+        // on its plank table, and roof debris on the floor.
+        for (int z = 2; z <= 4; z++) b.set(4, 0, z, SLAB);
+        b.set(4, 0, 5, "barrel[facing=up]").tag(4, 0, 5, "LootTable", KIT_LOOT);
+        b.set(2, 0, 2, PLANK).set(2, 1, 2, "daylight_detector");
+        b.set(3, 0, 3, SLAB).set(2, 0, 4, LOGZ);
+        // The old woodpile against the north wall, two armloads of rotten wood.
+        b.box(2, 0, 0, 4, 0, 0, LOGX).box(2, 1, 0, 3, 1, 0, LOGX);
+        // The scrap barrel behind the cabin.
+        b.set(6, 0, 0, "cauldron");
+        // The firepit: 8 stones round old ash, 6 blocks out of the spawn.
+        b.box(2, 0, 12, 4, 0, 14, STONE).set(3, 0, 13, "light_gray_concrete_powder");
+        // The radio mast, 8 m, lying across the yard and bent at one joint.
+        b.box(1, 0, 9, 5, 0, 9, "iron_bars").box(5, 0, 10, 7, 0, 10, "iron_bars");
+        // The weather post, 10 m from the cabin: cups seized on a crossbar.
+        b.box(11, 0, 10, 11, 2, 10, FENCE).box(10, 2, 10, 12, 2, 10, "iron_bars");
+    }
+
     static void build(String template, Builder b, int sx, int sy, int sz) {
         int cx = sx / 2, cz = sz / 2;
         switch (template) {
-            case "outpost/day_one" -> {
-                cabin(b, 1, 1, 5, 6, 3, PLANK, true);
-                b.box(8, 0, 8, 10, 0, 10, STONE).set(9, 0, 9, null); // the fire ring
-                b.set(8, 0, 2, "barrel[facing=up]"); // the crate
-                b.set(9, 0, 2, "lectern[facing=south]"); // the radio table
-            }
+            case "outpost/day_one" -> outpost(b);
             case "plane_wreck/nose_down_bar" -> {
                 b.box(2, 0, cz, 11, 1, cz, WHITE); // fuselage, nose in the gravel
                 b.box(1, 0, cz - 1, 2, 0, cz + 1, GREY);
