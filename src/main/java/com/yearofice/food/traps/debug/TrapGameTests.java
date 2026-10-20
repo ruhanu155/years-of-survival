@@ -37,6 +37,7 @@ public final class TrapGameTests {
         List<TestFunction> out = new ArrayList<>();
         out.add(test("yearofice:food/slice_snare_hare", 100, TrapGameTests::sliceSnareHare));
         out.add(test("yearofice:food/snare_catchup_equals_live", 400, TrapGameTests::catchUpEqualsLive));
+        out.add(test("yearofice:trap/snare_rolls", 100, TrapGameTests::snareRolls));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
 
@@ -89,6 +90,32 @@ public final class TrapGameTests {
         }
         double mean = total / (double) runs;
         h.assertTrue(mean >= 2 && mean <= 5, "a hare run caught " + mean + " hares in 10 days on average");
+        h.succeed();
+    }
+
+    /**
+     * Blueprint › Traps: a snare rolls twice a game day, at dawn and dusk and nowhere else; a funnel on both sides lifts
+     * the chance by 1.3 and the place multipliers cap at 6; a catch needs a hare in range.
+     */
+    static void snareRolls(GameTestHelper h) {
+        SnareBlockEntity be = snare(h);
+        TrapTuning t = TrapConfig.tuning();
+        long start = 7 * 60;
+        be.setForTest(HARE_RUN, 1.0, start, hareRun());
+        long end = start + 10 * 1440L;
+        be.setClock(end);
+        be.settle(true);
+        long first = be.state().lastRoll();
+        h.assertTrue(first >= 19 && first <= 21, "10 days hold about 20 rolls, last roll index " + first);
+        Snare.SetQuality plain = Snare.SetQuality.PLAIN;
+        Snare.SetQuality funnel = new Snare.SetQuality(false, false, true, false, 1, 1);
+        h.assertTrue(Math.abs(funnel.multiplier(t) / plain.multiplier(t) - 1.3) < 1e-9, "a funnel lifts the chance by 1.3");
+        Snare.SetQuality all = new Snare.SetQuality(true, true, true, false, 1, 1);
+        h.assertTrue(all.place(t) == t.placeCap(), "place multipliers cap at " + t.placeCap());
+        be.setForTest(HARE_RUN, 1.0, start, 0.0);
+        be.setClock(start + 30 * 1440L);
+        be.settle(true);
+        h.assertTrue(be.state().catches() == 0, "no hares in range, no catch");
         h.succeed();
     }
 

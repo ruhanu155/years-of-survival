@@ -437,6 +437,15 @@
   ],
   "additions": [
     {
+      "basis": "B13 face grease: items that can be rubbed into the face and gloves (RECONCILE 175); Body tab > Injuries on the body",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "tag",
+      "ids": [
+        "grease"
+      ]
+    },
+    {
       "basis": "World and story, M2.5 slice guided first night: story.Onboarding's per-player state machine and warn-once memory (Ready for development M2.5, Story; Blueprint > Start site > The guided first night)",
       "milestone": "m2_5",
       "owner": "story",
@@ -1677,15 +1686,6 @@
       ]
     },
     {
-      "basis": "B13 face grease: items that can be rubbed into the face and gloves (RECONCILE 175); Body tab > Injuries on the body",
-      "milestone": "m4",
-      "owner": "body",
-      "type": "tag",
-      "ids": [
-        "grease"
-      ]
-    },
-    {
       "basis": "M4 D2 encounter hand clips",
       "milestone": "m4",
       "owner": "look",
@@ -1701,6 +1701,15 @@
       "type": "payload",
       "ids": [
         "encounter_clip"
+      ]
+    },
+    {
+      "basis": "The food cache (Items > Containers; Theft by animals: mice in the cache)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "food_cache"
       ]
     },
     {
