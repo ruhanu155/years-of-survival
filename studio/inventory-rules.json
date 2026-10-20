@@ -1711,6 +1711,33 @@
       "ids": [
         "food_cache"
       ]
+    },
+    {
+      "basis": "M5 lane D2: figure-4 deadfall (Blueprint > Traps)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "deadfall"
+      ]
+    },
+    {
+      "basis": "M5 lane D2: mouse deadfall ringing the food cache",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "mouse_deadfall"
+      ]
+    },
+    {
+      "basis": "M5 lane D2: snare funnel (Every concept from the video > Snare funnels)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "snare_funnel"
+      ]
     }
   ],
   "expand": {

@@ -118,8 +118,8 @@ public final class PanJob implements WorkJob {
     /** Whole 100 g units of an hour's kg: the integer part, plus one more with the fraction's chance (a seeded draw). */
     public static int units(double kg, long seed, BlockPos pos, long load) {
         double u = kg / UNIT_KG;
-        int n = (int) Math.floor(u);
-        double frac = u - n;
+        int n = (int) Math.floor(u + 1e-9);
+        double frac = Math.max(0, u - n);
         if (frac > 0 && Thresholds.stream(seed, "pan_load", pos.getX(), pos.getY(), pos.getZ(), load).nextDouble() < frac) n++;
         return n;
     }

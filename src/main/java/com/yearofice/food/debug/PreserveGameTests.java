@@ -54,6 +54,7 @@ public final class PreserveGameTests {
         DryingRackBlockEntity be = h.getBlockEntity(AT);
         be.pause(true);
         be.pinRain(false);
+        be.pinFlies(5.0, false);
         return be;
     }
 
