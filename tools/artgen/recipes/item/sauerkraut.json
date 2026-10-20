@@ -1,0 +1,33 @@
+{
+ "id": "yearofice:sauerkraut",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "ellipse",
+   "ramp": "bark_tamarack",
+   "step": 2,
+   "box": [
+    2,
+    7,
+    13,
+    14
+   ]
+  },
+  {
+   "kind": "ellipse",
+   "ramp": "leaf_silver",
+   "step": 3,
+   "box": [
+    3,
+    6,
+    12,
+    10
+   ],
+   "speckle": {
+    "ramp": "lichen_pale",
+    "step": 4,
+    "density": 0.3
+   }
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "id": "yearofice:birch_pan",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "ellipse",
+   "ramp": "bark_birch",
+   "step": 3,
+   "box": [
+    1,
+    4,
+    13,
+    13
+   ]
+  },
+  {
+   "kind": "ellipse",
+   "ramp": "bark_birch",
+   "step": 1,
+   "box": [
+    3,
+    6,
+    11,
+    11
+   ],
+   "speckle": {
+    "ramp": "gravel",
+    "step": 3,
+    "density": 0.2
+   }
+  },
+  {
+   "kind": "line",
+   "ramp": "bark_spruce",
+   "step": 2,
+   "points": [
+    [
+     12,
+     3
+    ],
+    [
+     14,
+     1
+    ]
+   ],
+   "width": 2
+  }
+ ]
+}

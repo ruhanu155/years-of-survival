@@ -1,0 +1,55 @@
+{
+ "id": "yearofice:goat_milk",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "rect",
+   "ramp": "hide_raw",
+   "step": 2,
+   "box": [
+    4,
+    5,
+    11,
+    13
+   ]
+  },
+  {
+   "kind": "rect",
+   "ramp": "bark_spruce",
+   "step": 2,
+   "box": [
+    6,
+    2,
+    9,
+    5
+   ]
+  },
+  {
+   "kind": "rect",
+   "ramp": "fat_cream",
+   "step": 4,
+   "box": [
+    5,
+    6,
+    10,
+    8
+   ],
+   "flat": true
+  },
+  {
+   "kind": "line",
+   "ramp": "bark_spruce",
+   "step": 1,
+   "points": [
+    [
+     4,
+     9
+    ],
+    [
+     11,
+     9
+    ]
+   ]
+  }
+ ]
+}
