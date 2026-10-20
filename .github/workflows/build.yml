@@ -6,6 +6,7 @@ name: build
 
 on:
   pull_request:
+    paths-ignore: ['docs/**', '*.md']
   push:
     branches: [main]
 
@@ -94,8 +95,30 @@ jobs:
           path: build/debugmap/
           if-no-files-found: ignore
 
+  # Golden hashes only move when the generator moves: run the cross-OS jobs just for worldgen changes and main.
+  changes:
+    name: changed paths
+    runs-on: ubuntu-latest
+    outputs:
+      worldgen: ${{ steps.f.outputs.worldgen }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: f
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            worldgen:
+              - 'src/main/java/com/yearofice/worldgen/**'
+              - 'src/main/java/com/yearofice/core/hash/**'
+              - 'src/test/java/com/yearofice/worldgen/**'
+              - 'src/main/resources/data/yearofice/worldgen_params/**'
+              - 'src/main/resources/data/yearofice/archetype/**'
+              - 'gradle.properties'
+
   hashes:
     name: hashes (${{ matrix.os }})
+    needs: changes
+    if: github.event_name == 'push' || needs.changes.outputs.worldgen == 'true'
     strategy:
       fail-fast: false
       matrix:
