@@ -67,6 +67,10 @@ public final class TrapRegistry {
     public static final DeferredHolder<SoundEvent, SoundEvent> DEADFALL_SOUND = SOUNDS.register("trap.deadfall",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, "trap.deadfall")));
 
+    /** Logs, rocks, brush and packed snow that make a funnel wall beside a trail snare ({@code funnel_materials}). */
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> FUNNEL_MATERIALS = net.minecraft.tags.TagKey.create(
+            Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, "funnel_materials"));
+
     public static void register(IEventBus modBus) {
         BLOCKS.register(modBus);
         ITEMS.register(modBus);
