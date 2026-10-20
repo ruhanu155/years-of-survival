@@ -50,7 +50,7 @@ public final class BigGameGameTests {
         List<TestFunction> out = new ArrayList<>();
         out.add(test("yearofice:senses/wind_carries_scent", 400, BigGameGameTests::windCarriesScent));
         out.add(test("yearofice:senses/sight_cone", 500, BigGameGameTests::sightCone));
-        out.add(test("yearofice:ecology/predator_chase_cap_150m", 900, BigGameGameTests::chaseCap));
+        out.add(test("yearofice:ecology/predator_chase_cap_150m", 1000, BigGameGameTests::chaseCap));
         out.add(test("yearofice:ecology/moose_daily_schedule", 100, BigGameGameTests::mooseSchedule));
         out.add(test("yearofice:ecology/butcher_yields", 200, BigGameGameTests::butcherYields));
         out.add(test("yearofice:ecology/herd_alarm_spreads", 300, BigGameGameTests::herdAlarm));
@@ -194,6 +194,12 @@ public final class BigGameGameTests {
      * the wolf ran at least 120 m and no more than 150 m plus one tick of speed.
      */
     static void chaseCap(GameTestHelper h) {
+        Vec3 start0 = h.absolutePos(new BlockPos(1, Y, 1)).getCenter();
+        forceLine(h, start0, 300, true);
+        h.runAfterDelay(40, () -> chaseCapRun(h));
+    }
+
+    static void chaseCapRun(GameTestHelper h) {
         strip(h, -5, 300, 24, true);
         PredatorEntity wolf = h.spawn(EcosystemRegistry.WOLF.get(), new BlockPos(1, Y, 1));
         BigGameEntity caribou = h.spawn(EcosystemRegistry.CARIBOU.get(), new BlockPos(1 + 25, Y, 1));
@@ -228,7 +234,7 @@ public final class BigGameGameTests {
                     h.assertTrue(caribou.isAlive() && wolf.kills() == 0, "the caribou should have outrun it");
                     release.run();
                     h.succeed();
-                } else if (h.getTick() > 800) {
+                } else if (h.getTick() > 940) {
                     h.fail("the chase never ended; ran " + ran + " m, wolf " + wolf.huntDebug() + ", caribou " + caribou.state() + " at " + caribou.position().subtract(start));
                 }
             } catch (RuntimeException e) {

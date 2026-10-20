@@ -236,10 +236,11 @@ public final class EcoGameTests {
         SnowshoeHareEntity hare = h.spawn(EcosystemRegistry.SNOWSHOE_HARE.get(), AT);
         ServerPlayer p = player(h);
         p.moveTo(hare.getX() + 1, hare.getY(), hare.getZ(), 0, 0);
-        h.runAfterDelay(5, () -> {
-            h.assertTrue(hare.hurt(h.getLevel().damageSources().playerAttack(p), 1f), "the hit did not take");
-            h.runAfterDelay(10, () -> {
-                AABB box = new AABB(hare.position(), hare.position()).inflate(8);
+        // both delays are scheduled here: a runAfterDelay inside a delay callback modifies the framework's map mid-iteration and crashes the server now and then
+        h.runAfterDelay(5, () -> h.assertTrue(hare.hurt(h.getLevel().damageSources().playerAttack(p), 1f), "the hit did not take"));
+        {
+            h.runAfterDelay(15, () -> {
+                AABB box = h.getBounds().inflate(1); // this test's own cell: batch neighbours drop items within 8 blocks
                 ServerLevel l = h.getLevel();
                 List<CarcassEntity> carcasses = l.getEntitiesOfClass(CarcassEntity.class, box);
                 h.assertTrue(hare.isRemoved(), "the living hare should be gone");
@@ -261,7 +262,7 @@ public final class EcoGameTests {
                 h.assertTrue(c.isRemoved(), "the carcass entity should be taken up");
                 h.succeed();
             });
-        });
+        }
     }
 
     /** The passive moose: with {@code [ecosystem] moose_huntable} off (every preset until M6), player hits do nothing. */

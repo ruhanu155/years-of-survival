@@ -59,6 +59,9 @@ public final class CallSoundedEvent extends Event {
     public double windMs() { return windMs; }
 
     /** R_eff at a listener: the range times the wind direction factor (ground and air factors are the listener's side to add), capped at 1.5x. */
+    public double windToX() { return windToX; }
+    public double windToZ() { return windToZ; }
+
     public double reffAt(Vec3 listener) {
         double dx = listener.x - origin.x, dz = listener.z - origin.z, d = Math.sqrt(dx * dx + dz * dz);
         double cos = d < 1e-6 ? 0 : (dx * windToX + dz * windToZ) / d;

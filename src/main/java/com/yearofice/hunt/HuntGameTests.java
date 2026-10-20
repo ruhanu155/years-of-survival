@@ -215,7 +215,8 @@ public final class HuntGameTests {
             CallSoundedEvent ev = CallItem.sound(level, p, "moose_call", 3.0);
             h.assertTrue(seen.size() == 1 && seen.get(0) == ev, "the call posts one event");
             h.assertTrue(ev.sound().equals("cow_moan") && ev.baseP().containsKey("yearofice:moose"), "a 3 s hold is the cow moan for moose: " + ev.sound());
-            Vec3 listenerPos = ev.origin().add(400, 0, 0);
+            // the listener stands downwind, so the wind (random in the world) cannot shorten R_eff below the 400 m
+            Vec3 listenerPos = ev.windMs() < 1.0 ? ev.origin().add(400, 0, 0) : ev.origin().add(400 * ev.windToX(), 0, 400 * ev.windToZ());
             double rut = Calls.rut(9, 20), off = Calls.rut(7, 20);
             double p400 = ev.pRespond("yearofice:moose", listenerPos, rut, 1, false, 1);
             double expect = 0.4 * ev.quality() * (1 - 400 / ev.reffAt(listenerPos));
@@ -233,8 +234,9 @@ public final class HuntGameTests {
 
             // The squeak is flat inside its range.
             CallSoundedEvent sq = CallItem.sound(level, p, "squeak_call", 2.5);
-            double near = sq.pRespond("yearofice:red_fox", sq.origin().add(20, 0, 0), 1, 1, false, 1);
-            double far = sq.pRespond("yearofice:red_fox", sq.origin().add(250, 0, 0), 1, 1, false, 1);
+            Vec3 dir = sq.windMs() < 1.0 ? new Vec3(1, 0, 0) : new Vec3(sq.windToX(), 0, sq.windToZ());
+            double near = sq.pRespond("yearofice:red_fox", sq.origin().add(dir.scale(20)), 1, 1, false, 1);
+            double far = sq.pRespond("yearofice:red_fox", sq.origin().add(dir.scale(250)), 1, 1, false, 1);
             h.assertTrue(near > 0 && Math.abs(near - far) < 1e-9, "flat falloff: " + near + " vs " + far);
             h.succeed();
         } finally {
@@ -245,12 +247,17 @@ public final class HuntGameTests {
     // ---- hunt/blind_reduces_detection ---------------------------------------------------------------------------
 
     static void blindReducesDetection(GameTestHelper h) {
+        try { blindBody(h); } finally { HuntConcealment.snowOverrideCm = null; }
+    }
+
+    static void blindBody(GameTestHelper h) {
         ServerLevel level = h.getLevel();
         ServerPlayer p = com.yearofice.ecosystem.debug.EcoGameTests.player(h);
         BlockPos open = h.absolutePos(new BlockPos(0, 1, 2));
         BlockPos blind = h.absolutePos(new BlockPos(1, 1, 0));
         level.setBlockAndUpdate(blind, HuntRegistry.POLE_BLIND.get().defaultBlockState().setValue(HuntBlocks.PoleBlind.FRESH, false));
         var cs = ConcealmentService.get();
+        HuntConcealment.snowOverrideCm = 0.0;
         p.moveTo(Vec3.atBottomCenterOf(open));
         h.assertTrue(cs.effectFor(level, p, 20, true, true, false).sightX() == 1.0, "no blind, no cover");
         p.moveTo(Vec3.atBottomCenterOf(blind.offset(0, 0, 1)));
