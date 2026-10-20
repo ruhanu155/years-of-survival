@@ -1,6 +1,8 @@
 package com.yearofice.api.body;
 
 import com.yearofice.sim.body.WaterPurity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
@@ -53,6 +55,9 @@ public interface BodyService {
 
     /** Drinks {@code litres} from a source of the given purity; untreated water rolls gut illness. */
     void drink(ServerPlayer player, double litres, WaterPurity.Source source, boolean boiled);
+
+    /** What kind of water the open water at {@code pos} is (river, lake, a beaver pond): the purity a fill or a sip carries. */
+    WaterPurity.Source waterSourceAt(ServerLevel level, BlockPos pos);
 
     /** Ends sleep or waiting at once and says why. */
     void wake(ServerPlayer player, String cause);

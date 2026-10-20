@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": {
+    "yearofice:birch_bark_torch": { "level": 10, "burn_min": 15, "rain": "out" },
+    "yearofice:pitch_torch": { "level": 8, "burn_min": 30, "rain": "holds" },
+    "yearofice:tallow_candle": { "level": 6, "burn_min": 240, "rain": "out" },
+    "yearofice:pitch_candle": { "level": 6, "burn_min": 180, "rain": "out" },
+    "yearofice:headlamp": { "level": 12, "burn_min": 1200, "rain": "never" }
+  }
+}

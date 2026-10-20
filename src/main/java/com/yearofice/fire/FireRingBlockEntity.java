@@ -1,10 +1,17 @@
 package com.yearofice.fire;
 
+import com.yearofice.api.body.ContainerData;
+import com.yearofice.api.body.WaterContent;
+import com.yearofice.api.clock.ClockService;
 import com.yearofice.api.fire.FireStateEvent;
 import com.yearofice.sim.env.FireSetting;
 import com.yearofice.sim.fire.Armload;
 import com.yearofice.sim.fire.Fire;
+import com.yearofice.sim.fire.FireBuild;
+import com.yearofice.sim.fire.FireDanger;
 import com.yearofice.sim.fire.FireHeat;
+import com.yearofice.sim.fire.SmotherGuard;
+import com.yearofice.sim.fire.Vessel;
 import com.yearofice.sim.fire.FireState;
 import com.yearofice.sim.fire.FireTuning;
 import com.yearofice.sim.fire.FireWeather;
@@ -13,6 +20,7 @@ import com.yearofice.sim.fire.Wood;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -49,6 +57,13 @@ public class FireRingBlockEntity extends BlockEntity {
     private boolean paused;
     private long lastPuffTick = -100;
     private FireState shownState = FireState.OUT;
+    /** The pot standing on the fire (a water container, or any pot): boils with the fire's heat each game minute. */
+    private ItemStack pot = ItemStack.EMPTY;
+    /** The player who laid the first part: the fire roster lists a player's own fires. */
+    private UUID builder;
+    private int spreadMinutes;
+
+    private static final SmotherGuard<UUID> SMOTHER_GUARD = new SmotherGuard<>();
 
     public FireRingBlockEntity(BlockPos pos, BlockState state) {
         super(FireRegistry.FIRE_RING_ENTITY.get(), pos, state);
@@ -86,6 +101,8 @@ public class FireRingBlockEntity extends BlockEntity {
         for (int i = 0; i < minutes; i++) {
             Fire.Change c = fire.stepMinute(weather(), t);
             if (c != null) changed(c, null);
+            stepPot();
+            stepSpread(t);
         }
         if (minutes > 0) {
             syncLay();
@@ -102,13 +119,23 @@ public class FireRingBlockEntity extends BlockEntity {
             Fire.Result r = strikeMatch(player, stack, level.random.nextDouble());
             return r.ok() ? ItemInteractionResult.SUCCESS : ItemInteractionResult.CONSUME;
         }
+        if (stack.is(FireRegistry.FIRE_STARTER.get())) {
+            Fire.Result r = strikeFerro(player, stack, level.random.nextDouble());
+            return r.ok() ? ItemInteractionResult.SUCCESS : ItemInteractionResult.CONSUME;
+        }
         if (stack.is(FireRegistry.BOW_DRILL.get())) {
             BowDrillService.start(player, this, stack);
             return ItemInteractionResult.CONSUME;
         }
+        ContainerData container = container(stack);
+        if (container != null) {
+            if (player.isShiftKeyDown()) pourOn(player, stack);
+            else placePot(player, stack, container, level.random.nextDouble());
+            return ItemInteractionResult.SUCCESS;
+        }
         LayPart part = FireParts.part(stack);
         if (part == null) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        Fire.Result r = addPart(stack, t);
+        Fire.Result r = addPart(stack, t, player);
         tell(player, r.line());
         if (!r.ok()) return ItemInteractionResult.CONSUME;
         if (!player.getAbilities().instabuild) stack.shrink(1);
@@ -117,7 +144,10 @@ public class FireRingBlockEntity extends BlockEntity {
     }
 
     /** Adds one item as a lay part (no stack shrink): the shared path of right mouse and the tests. */
-    public Fire.Result addPart(ItemStack stack, FireTuning t) {
+    public Fire.Result addPart(ItemStack stack, FireTuning t) { return addPart(stack, t, null); }
+
+    /** As {@link #addPart(ItemStack, FireTuning)}, remembering who laid it for the fire roster. */
+    public Fire.Result addPart(ItemStack stack, FireTuning t, Player actor) {
         LayPart part = FireParts.part(stack);
         if (part == null) return new Fire.Result(false, "That will not burn.");
         FuelData fuel = part == LayPart.FUEL ? FireParts.fuel(stack) : null;
@@ -127,6 +157,7 @@ public class FireRingBlockEntity extends BlockEntity {
         Fire.Result r = fire.add(part, wood, FireParts.moisture(stack), amount, t);
         if (r.ok() && fire.lay().size() > before) layStacks.add(stack.copyWithCount(1));
         if (r.ok()) {
+            if (builder == null && actor != null) builder = actor.getUUID();
             changed(null, null);
             refreshIndex();
         }
@@ -137,6 +168,12 @@ public class FireRingBlockEntity extends BlockEntity {
         FireTuning t = FireConfig.tuning();
         FireState s = fire.state();
         if (player.isShiftKeyDown()) {
+            if (!pot.isEmpty()) {
+                ItemStack back = takePot();
+                if (!player.getInventory().add(back)) player.drop(back, false);
+                tell(player, "You lift the pot off the fire.");
+                return InteractionResult.SUCCESS;
+            }
             if (s == FireState.COALS) {
                 Fire.Result r = fire.bank();
                 tell(player, r.line());
@@ -167,8 +204,168 @@ public class FireRingBlockEntity extends BlockEntity {
             tell(player, r.line());
             return InteractionResult.SUCCESS;
         }
+        if (fire.bare()) {
+            Fire.Result r = setBuild(fire.build().next(hasPit()));
+            tell(player, r.line());
+            return InteractionResult.SUCCESS;
+        }
         tell(player, readout(t));
         return InteractionResult.SUCCESS;
+    }
+
+    // ---- builds, the ferro rod, the pot, the smother and the spread ----------------------------------------
+
+    /** A pit: the ring is set into ground that walls it on at least three sides (a Dakota hole needs one). */
+    public boolean hasPit() {
+        if (level == null) return false;
+        int walls = 0;
+        for (net.minecraft.core.Direction d : net.minecraft.core.Direction.Plane.HORIZONTAL) {
+            BlockPos n = worldPosition.relative(d);
+            if (level.getBlockState(n).isFaceSturdy(level, n, d.getOpposite())) walls++;
+        }
+        return walls >= 3;
+    }
+
+    public Fire.Result setBuild(FireBuild b) {
+        if (b == FireBuild.DAKOTA && !hasPit()) return new Fire.Result(false, "A Dakota hole needs a pit: dig the ring in.");
+        Fire.Result r = fire.setBuild(b);
+        if (r.ok()) {
+            setChanged();
+            refreshIndex();
+        }
+        return r;
+    }
+
+    /** Strikes the ferro rod on the lay; the rod wears one notch whether or not the spark took. */
+    public Fire.Result strikeFerro(Player player, ItemStack rod, double roll) {
+        FireTuning t = FireConfig.tuning();
+        String why = fire.cannotLight(t);
+        if (why != null) {
+            tell(player, why);
+            return new Fire.Result(false, why);
+        }
+        if (player != null && !player.getAbilities().instabuild && player instanceof net.minecraft.server.level.ServerPlayer sp) {
+            rod.hurtAndBreak(1, sp.serverLevel(), sp, i -> { });
+        }
+        if (player != null && builder == null) builder = player.getUUID();
+        FireState from = fire.state();
+        Fire.Result r = fire.strikeFerro(roll, weather(), player != null && player.isShiftKeyDown(), t);
+        level.playSound(null, worldPosition, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 0.6f, 1.8f);
+        tell(player, r.line());
+        changed(new Fire.Change(from, fire.state(), r.line()), player);
+        return r;
+    }
+
+    static ContainerData container(ItemStack stack) {
+        return stack.isEmpty() ? null : stack.getItemHolder().getData(ContainerData.MAP);
+    }
+
+    public ItemStack pot() { return pot; }
+
+    /** The heat class a pot on this fire gets now, or null. */
+    private com.yearofice.sim.body.WaterPurity.Heat potHeat() {
+        return Vessel.heatClass(fire.state(), fire.setting(), fire.build());
+    }
+
+    /**
+     * Sets a container on the fire (Blueprint › Boiling): it must be lit, and the container must be one that stands
+     * there. A bottle or can sits in the coals only; a pot set straight on a burning fire tips {@code pot_tip_pct}
+     * percent of the time and spills; on coals it never does. {@code tipRoll} is a uniform draw in [0, 1).
+     */
+    public Fire.Result placePot(Player player, ItemStack stack, ContainerData cd, double tipRoll) {
+        FireTuning t = FireConfig.tuning();
+        FireState s = fire.state();
+        String no = null;
+        if (!pot.isEmpty()) no = "There is a pot on the fire already.";
+        else if (!cd.onCoals()) no = "That would burn.";
+        else if (!(s == FireState.SMALL || s == FireState.FIRE || s == FireState.COALS)) no = "Light the fire first.";
+        else if (!cd.onFire() && s != FireState.COALS) no = "It sits in the coals, not the flames.";
+        else if (WaterContent.read(stack).isEmpty()) no = "There is no water in it.";
+        if (no != null) {
+            tell(player, no);
+            return new Fire.Result(false, no);
+        }
+        if (s != FireState.COALS && tipRoll * 100 < t.potTipPct()) {
+            WaterContent.write(stack, Vessel.empty());
+            level.playSound(null, worldPosition, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.6f, 1.0f);
+            tell(player, "The pot tipped and spilled.");
+            return new Fire.Result(false, "The pot tipped and spilled.");
+        }
+        if (builder == null && player != null) builder = player.getUUID();
+        pot = stack.copyWithCount(1);
+        if (player == null || !player.getAbilities().instabuild) stack.shrink(1);
+        level.playSound(null, worldPosition, SoundEvents.ANVIL_PLACE, SoundSource.BLOCKS, 0.3f, 1.6f);
+        setChanged();
+        return new Fire.Result(true, null);
+    }
+
+    /** Takes the pot off the fire, as it is. */
+    public ItemStack takePot() {
+        ItemStack out = pot;
+        pot = ItemStack.EMPTY;
+        setChanged();
+        return out;
+    }
+
+    private void stepPot() {
+        if (pot.isEmpty()) return;
+        Vessel v = WaterContent.read(pot);
+        if (v.isEmpty()) return;
+        WaterContent.write(pot, v.minute(potHeat()));
+    }
+
+    /**
+     * Pours the container's water on the fire (Fire mishaps and slips of the hand): it puts any burning fire out. The
+     * first time each game day it needs a second deliberate use within 3 s ("Hold to put out the fire."); coals and
+     * banked coals are never guarded.
+     */
+    public Fire.Result pourOn(Player player, ItemStack stack) {
+        Vessel v = WaterContent.read(stack);
+        FireState s = fire.state();
+        String no = v.isEmpty() ? "There is no water in it." : s == FireState.OUT ? "There is no fire to put out." : null;
+        if (no != null) {
+            tell(player, no);
+            return new Fire.Result(false, no);
+        }
+        boolean guarded = s != FireState.COALS && s != FireState.BANKED;
+        long day = ClockService.installed() ? Math.floorDiv(ClockService.get().nowMinute(), 1440L) : 0;
+        if (player != null && !SMOTHER_GUARD.allow(player.getUUID(), day, level.getGameTime(), guarded)) {
+            tell(player, "Hold to put out the fire. Use again to pour.");
+            return new Fire.Result(false, "Hold to put out the fire.");
+        }
+        FireState from = s;
+        Fire.Result r = fire.smother();
+        WaterContent.write(stack, Vessel.empty());
+        level.playSound(null, worldPosition, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.8f, 1.0f);
+        tell(player, r.line());
+        changed(new Fire.Change(from, fire.state(), r.line()), player);
+        return r;
+    }
+
+    /** Forgets today's guard (GameTests). */
+    public static void resetSmotherGuard() { SMOTHER_GUARD.clear(); }
+
+    /**
+     * One game minute of the packed-fire spread rule (Blueprint › Spread; Fire danger): once a game hour, while the
+     * fire is packed too full and no player is within {@code spread_away_m}, a spark has the fire danger level's
+     * chance to land on the nearest burnable piece within 2 m, which becomes a flame. A Dakota hole never sparks.
+     */
+    private void stepSpread(FireTuning t) {
+        if (level == null || level.isClientSide || !fire.state().burning() || !fire.build().sparks() || !fire.packed(t)) {
+            spreadMinutes = 0;
+            return;
+        }
+        if (++spreadMinutes < 60) return;
+        spreadMinutes = 0;
+        for (Player p : level.players()) if (p.distanceToSqr(worldPosition.getCenter()) < t.spreadAwayM() * t.spreadAwayM()) return;
+        rollSpread(level.random.nextDouble());
+    }
+
+    /** One spread roll at the current danger level; {@code roll} is a uniform draw in [0, 1). True when a flame started. */
+    public boolean rollSpread(double roll) {
+        FireTuning t = FireConfig.tuning();
+        if (roll * 100 >= t.spreadPct(FireDangerIndex.level(level))) return false;
+        return Spread.igniteNear(level, worldPosition, Spread.REACH) != null;
     }
 
     /** Strikes one match on the lay; the match is spent unless the lay could not take a flame at all. */
@@ -243,18 +440,43 @@ public class FireRingBlockEntity extends BlockEntity {
 
     /** One line: "Fire, Low. Fuel 52 min." (Every concept from the video › Fire time and the fire roster). */
     public String readout(FireTuning t) {
-        int m = (int) Math.round(fire.minutesLeft(t));
-        String left = m < 60 ? m + " min" : (m / 60) + " h " + (m % 60) + " min";
+        String left = com.yearofice.sim.fire.FireTime.format(fire.minutesLeft(t));
         return switch (fire.state()) {
             case OUT -> fire.hasTinder() ? (fire.layInOrder() ? "Laid: ready to light." : "Laid out of order.") : "Fire ring.";
             case EMBER -> "Ember. Blow on it.";
             case TINDER -> "Tinder flame.";
-            case SMALL -> "Small fire. Kindling " + left + ".";
-            case FIRE -> "Fire, " + Fire.word(fire.setting()) + ". Fuel " + left + "."
-                    + (fire.burning() != null && fire.burning().moisturePct > com.yearofice.sim.fire.FireRules.SMOKY_MOISTURE ? " Smoky: wet wood." : "");
-            case COALS -> "Coals. Out in " + left + ".";
+            case SMALL -> "Small fire. Kindling " + left + "." + potLine();
+            case FIRE -> kind() + ", " + Fire.word(fire.setting()) + ". Fuel " + left + "." + weatherLine(t)
+                    + (fire.burning() != null && fire.burning().moisturePct > com.yearofice.sim.fire.FireRules.SMOKY_MOISTURE ? " Smoky: wet wood." : "")
+                    + potLine();
+            case COALS -> "Coals. Out in " + left + "." + potLine();
             case BANKED -> "Banked. Relights for " + left + ".";
         };
+    }
+
+    /** This ring as a roster row, {@code distanceM} blocks from whoever is asking. */
+    public com.yearofice.sim.fire.FireRosterMath.Row rosterRow(double distanceM) {
+        FireTuning t = FireConfig.tuning();
+        return new com.yearofice.sim.fire.FireRosterMath.Row(kind(), fire.state(), fire.setting(), fire.minutesLeft(t),
+                fire.armloadsPerDay(t), !pot.isEmpty(), distanceM);
+    }
+
+    /** What a fire is called in the readout: "Fire" for the plain ring, else its build. */
+    public String kind() { return fire.build() == FireBuild.RING ? "Fire" : fire.build().word; }
+
+    private String weatherLine(FireTuning t) {
+        FireWeather w = weather();
+        int out = fire.rainOutMinutes(w, t);
+        if (out > 0) return " Rain: out in about " + out + " min.";
+        if (fire.snowWillPutOut(w)) return " Snow will put it out.";
+        return "";
+    }
+
+    private String potLine() {
+        if (pot.isEmpty()) return "";
+        Vessel v = WaterContent.read(pot);
+        if (v.isEmpty()) return " Pot: empty.";
+        return " Pot: " + (v.boiled() ? "boiled" : v.boiling() ? "boiling" : v.heat() > 0.05 ? "heating" : "cold") + ".";
     }
 
     // ---- state plumbing ------------------------------------------------------------------------------------
@@ -338,6 +560,7 @@ public class FireRingBlockEntity extends BlockEntity {
             for (ItemStack s : layStacks) Containers.dropItemStack(level, worldPosition.getX() + 0.5, worldPosition.getY() + 0.5, worldPosition.getZ() + 0.5, s);
         }
         layStacks.clear();
+        if (!pot.isEmpty()) Containers.dropItemStack(level, worldPosition.getX() + 0.5, worldPosition.getY() + 0.5, worldPosition.getZ() + 0.5, takePot());
         FireIndex.INSTANCE.remove(level, worldPosition);
     }
 
@@ -385,6 +608,10 @@ public class FireRingBlockEntity extends BlockEntity {
         ListTag stacks = new ListTag();
         for (ItemStack st : layStacks) if (!st.isEmpty()) stacks.add(st.save(regs));
         tag.put("lay_stacks", stacks);
+        tag.putString("build", fire.build().id());
+        if (!pot.isEmpty()) tag.put("pot", pot.save(regs));
+        if (builder != null) tag.putUUID("builder", builder);
+        tag.putInt("spread_minutes", spreadMinutes);
     }
 
     @Override
@@ -408,10 +635,17 @@ public class FireRingBlockEntity extends BlockEntity {
                     FireSetting.valueOf(f.getString("setting").toUpperCase(Locale.ROOT)),
                     f.getInt("minutes_in_state"), f.getInt("catch_minutes"), f.getDouble("rain_minutes"), f.getInt("snow_minutes"),
                     f.getInt("puffs_needed"), f.getInt("ember_ticks"), f.getDouble("burned_armloads"), f.getBoolean("packed_warned"),
-                    f.getBoolean("coal_bed"), f.getDouble("tinder_moisture"), f.getInt("kindling"), f.getDouble("kindling_moisture"), lay, fuel));
+                    f.getBoolean("coal_bed"), f.getDouble("tinder_moisture"), f.getInt("kindling"), f.getDouble("kindling_moisture"), lay, fuel,
+                    FireBuild.byId(tag.getString("build"))));
         }
         layStacks.clear();
         for (Tag el : tag.getList("lay_stacks", Tag.TAG_COMPOUND)) ItemStack.parse(regs, el).ifPresent(layStacks::add);
         shownState = fire.state();
+        pot = tag.contains("pot") ? ItemStack.parse(regs, tag.getCompound("pot")).orElse(ItemStack.EMPTY) : ItemStack.EMPTY;
+        builder = tag.hasUUID("builder") ? tag.getUUID("builder") : null;
+        spreadMinutes = tag.getInt("spread_minutes");
     }
+
+    /** The player who laid the first part of this fire, or null. */
+    public UUID builder() { return builder; }
 }

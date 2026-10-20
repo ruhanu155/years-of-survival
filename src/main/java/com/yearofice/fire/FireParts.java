@@ -39,7 +39,8 @@ public final class FireParts {
 
     /** True for anything the fire ring reacts to when held. */
     public static boolean handled(ItemStack stack) {
-        return part(stack) != null || stack.is(FireRegistry.MATCH.get()) || stack.is(FireRegistry.BOW_DRILL.get());
+        return part(stack) != null || stack.is(FireRegistry.MATCH.get()) || stack.is(FireRegistry.BOW_DRILL.get())
+                || stack.is(FireRegistry.FIRE_STARTER.get()) || FireRingBlockEntity.container(stack) != null;
     }
 
     /** The stack's moisture: its component, or the part's default. */

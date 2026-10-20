@@ -74,6 +74,11 @@
   ],
   "status": [
     { "type": "gui_layer", "status": "registered", "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)", "ids": ["body_figure", "body_fx", "breath_ring", "captions", "carry_slot", "frost", "headwear", "load_meter", "messenger_corner", "messenger_line", "minigame", "pickup_line", "prompt_line", "threat_flash", "vitals_strip", "work_ring"] },
+    { "type": "item", "status": "registered", "basis": "Registered by M3 lane C (Body/Fire: water, light, the fire kit)", "ids": ["steel_bottle", "cooking_pot", "bark_bucket", "tin_can", "jerrycan", "fire_starter", "headlamp", "birch_bark_torch", "pitch_torch", "tallow_candle", "pitch_candle"] },
+    { "type": "block", "status": "registered", "basis": "Registered by M3 lane C (Body/Fire: water, light, the fire kit)", "ids": ["flame"] },
+    { "type": "data_map", "status": "registered", "basis": "Registered by M3 lane C (Body/Fire: water, light, the fire kit)", "ids": ["container", "light"] },
+    { "type": "data_component", "status": "registered", "basis": "Registered by M3 lane C (Body/Fire: water, light, the fire kit)", "ids": ["water", "light_state"] },
+    { "type": "tag", "status": "registered", "basis": "Registered by M3 lane C (Body/Fire: water, light, the fire kit)", "ids": ["burnable"] },
     { "type": "payload", "status": "registered", "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)", "ids": ["clock_sync", "decay_heads", "env_sync", "hud_line", "pickup"] },
     { "type": "attachment", "status": "registered", "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)", "ids": ["pack_rules"] },
     { "type": "attachment", "status": "registered", "basis": "M3 lane B: crafting gate mask (Crafting and building in depth > Tiers and gates)", "owner": "building", "milestone": "m3", "type": "attachment", "ids": ["gates"] },
@@ -92,6 +97,10 @@
   ],
   "additions": [
     { "basis": "World and story, M2.5 slice guided first night: story.Onboarding's per-player state machine and warn-once memory (Ready for development M2.5, Story; Blueprint > Start site > The guided first night)", "milestone": "m2_5", "owner": "story", "type": "attachment", "ids": ["onboarding"] },
+    {"basis": "M3 lane C (Body/Fire): water, light and the fire kit (Blueprint > Fire, water and light; Items > Containers, light and signals > Light)", "milestone": "m3", "owner": "body", "type": "item", "ids": ["steel_bottle", "cooking_pot", "fire_starter", "headlamp", "birch_bark_torch"]},
+    {"basis": "M3 lane C (Body/Fire): water, light and the fire kit (Blueprint > Fire, water and light; Items > Containers, light and signals > Light): the container and light item data maps", "milestone": "m3", "owner": "body", "type": "data_map", "ids": ["container", "light"]},
+    {"basis": "M3 lane C (Body/Fire): water, light and the fire kit (Blueprint > Fire, water and light; Items > Containers, light and signals > Light): what a container holds and whether a light is lit", "milestone": "m3", "owner": "body", "type": "data_component", "ids": ["water", "light_state"]},
+    {"basis": "M3 lane C (Body/Fire): water, light and the fire kit (Blueprint > Fire, water and light; Items > Containers, light and signals > Light): blocks a packed fire can spread to (Fire danger)", "milestone": "m3", "owner": "body", "type": "tag", "ids": ["burnable"]},
     { "basis": "World and story, M2.5 slice guided first night: the objective beacon's target and the Guide page's step, to the owner (Minecraft engine > The HUD: the beacon is world-space, drawn by client.story)", "milestone": "m2_5", "owner": "story", "type": "payload", "ids": ["onboarding_sync"] },
     { "basis": "Added in the review round: Trees and firewood (RECONCILE 103); Ready for development M2 ids", "milestone": "m2", "owner": "worldgen", "type": "block", "ids": ["stump", "fallen_log", "chopping_block"] },
     { "basis": "Added in the review round: Trees and firewood; Ready for development M2 ids (the 16 <wood>_round and <wood>_split items)", "milestone": "m2", "owner": "building", "type": "item", "ids": ["<wood>_round", "<wood>_split", "spruce_bark"] },

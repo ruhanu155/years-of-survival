@@ -2,6 +2,7 @@ package com.yearofice.fire;
 
 import com.yearofice.api.event.ClockEvent;
 import com.yearofice.sim.time.Calendar;
+import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -27,7 +28,11 @@ public final class FireClock {
         NeoForge.EVENT_BUS.addListener(EventPriority.HIGH, FireClock::onJump);
     }
 
-    private static void onMinute(ClockEvent.Minute e) { stepLoaded(e.count()); }
+    private static void onMinute(ClockEvent.Minute e) {
+        stepLoaded(e.count());
+        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        if (server != null) FireRosterWatch.minute(server);
+    }
 
     private static void onJump(ClockEvent.Jump e) {
         long minutes = Calendar.minute(e.toDs()) - Calendar.minute(e.fromDs());
@@ -41,6 +46,10 @@ public final class FireClock {
             for (BlockPos pos : FireIndex.INSTANCE.rings(level)) {
                 if (!level.shouldTickBlocksAt(pos)) continue;
                 if (level.getBlockEntity(pos) instanceof FireRingBlockEntity be && !be.isRemoved()) be.clockMinutes(minutes);
+            }
+            for (BlockPos pos : List.copyOf(FlameBlockEntity.loaded(level))) {
+                if (!level.shouldTickBlocksAt(pos)) continue;
+                if (level.getBlockEntity(pos) instanceof FlameBlockEntity f && !f.isRemoved()) f.clockMinutes(minutes);
             }
         }
     }

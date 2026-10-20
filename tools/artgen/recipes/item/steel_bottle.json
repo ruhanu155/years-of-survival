@@ -1,0 +1,52 @@
+{
+ "id": "yearofice:steel_bottle",
+ "kind": "icon",
+ "notes": "A 1 L steel water bottle from the crate, with its screw cap.",
+ "shapes": [
+  {
+   "kind": "rect",
+   "box": [
+    6,
+    1,
+    10,
+    3
+   ],
+   "ramp": "iron",
+   "step": 1
+  },
+  {
+   "kind": "rect",
+   "box": [
+    5,
+    4,
+    11,
+    14
+   ],
+   "ramp": "steel",
+   "step": 2
+  },
+  {
+   "kind": "rect",
+   "box": [
+    6,
+    3,
+    10,
+    4
+   ],
+   "ramp": "steel",
+   "step": 3
+  },
+  {
+   "kind": "rect",
+   "box": [
+    5,
+    8,
+    11,
+    9
+   ],
+   "ramp": "iron",
+   "step": 1,
+   "flat": true
+  }
+ ]
+}
