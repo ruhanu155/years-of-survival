@@ -75,6 +75,8 @@ public final class WorldgenRegistry {
         PIECES.register(modBus);
         PROCESSORS.register(modBus);
         modBus.addListener(WorldgenRegistry::packs);
+        NeoForge.EVENT_BUS.addListener((net.neoforged.neoforge.event.server.ServerAboutToStartEvent e) -> ValleyWorlds.setCacheDir(
+                e.getServer().getWorldPath(net.minecraft.world.level.storage.LevelResource.ROOT).resolve("yearofice").resolve("layer_cache")));
         NeoForge.EVENT_BUS.addListener((ServerStoppedEvent e) -> ValleyWorlds.clear());
         com.yearofice.world.WorldHooks.init();
     }
