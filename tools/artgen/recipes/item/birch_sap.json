@@ -1,0 +1,62 @@
+{
+ "id": "yearofice:birch_sap",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "rect",
+   "ramp": "bark_birch",
+   "step": 3,
+   "box": [
+    4,
+    6,
+    11,
+    13
+   ]
+  },
+  {
+   "kind": "rect",
+   "ramp": "bark_spruce",
+   "step": 2,
+   "box": [
+    4,
+    6,
+    11,
+    6
+   ]
+  },
+  {
+   "kind": "rect",
+   "ramp": "ice",
+   "step": 4,
+   "box": [
+    5,
+    6,
+    10,
+    8
+   ]
+  },
+  {
+   "kind": "line",
+   "ramp": "bark_birch",
+   "step": 2,
+   "points": [
+    [
+     11,
+     8
+    ],
+    [
+     13,
+     8
+    ],
+    [
+     13,
+     11
+    ],
+    [
+     11,
+     11
+    ]
+   ]
+  }
+ ]
+}
