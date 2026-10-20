@@ -1,0 +1,1 @@
+{schema:1,height_cm:183,kg:77.0f,water:80.0f,warmth:90.0f,awake_min:120,condition:88.0f,kcal_in:[I;0,0,0,0,400,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],kcal_out:[I;0,0,0,0,120,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],bin_hour:5L,problems:[{id:"cut",part:"left_hand",stage:1,timer:30}]}

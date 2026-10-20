@@ -31,6 +31,8 @@ neoForge {
         gameTestServer {
             type = 'gameTestServer'
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            // data/migrate_fixtures: the GameTest reads the fixture saves from the project (not shipped in the jar).
+            systemProperty 'yearofice.fixtures', file('src/test/resources/saves').absolutePath
         }
         data {
             data()
@@ -47,6 +49,13 @@ neoForge {
     mods {
         "${mod_id}" { sourceSet(sourceSets.main) }
     }
+
+    // Minecraft's classes on the JUnit classpath, so the migration fixtures decode with the real NBT ops and codecs
+    // (data/migrate_fixtures). No server is started by these tests.
+    unitTest {
+        enable()
+        testedMod = mods.getByName(mod_id)
+    }
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
@@ -62,7 +71,11 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-test { useJUnitPlatform() }
+test {
+    useJUnitPlatform()
+}
+// unitTest() moves the test working directory under build/; tests read studio/, src/ and docs/ from the project root.
+afterEvaluate { tasks.named('test') { workingDir = projectDir } }
 
 apply from: 'tools/debugmap/debugmap.gradle'
 apply from: 'tools/content-lint/content-lint.gradle'
