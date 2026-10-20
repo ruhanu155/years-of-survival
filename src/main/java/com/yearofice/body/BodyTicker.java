@@ -175,14 +175,11 @@ public final class BodyTicker {
     }
 
     private static void after(ServerPlayer p, BodyState s, BodyModel.Result r, long now) {
-<<<<<<< HEAD
         drainEvents(p, s);
-=======
         if (!r.collapsed() && s.condition() <= 0) { // bled out (injury lane)
             SosFlow.trigger(p, SosFlow.Cause.CONDITION);
             return;
         }
->>>>>>> origin/main
         if (r.collapsed()) {
             SosFlow.trigger(p, switch (r.collapse()) {
                 case BMI -> SosFlow.Cause.STARVATION;
