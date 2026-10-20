@@ -25,6 +25,9 @@ import net.minecraft.world.level.levelgen.Heightmap;
 public final class Habitats {
     private Habitats() {}
 
+    /** The height from which the ground counts as crag country. */
+    public static final int ALPINE_Y = 110;
+
     public static boolean isCover(BlockState s) {
         if (s.is(BlockTags.LEAVES) || s.is(BlockTags.LOGS) || s.is(Blocks.SWEET_BERRY_BUSH) || s.is(Blocks.LARGE_FERN)
                 || s.is(Blocks.AZALEA) || s.is(Blocks.FLOWERING_AZALEA)) return true;
@@ -73,6 +76,10 @@ public final class Habitats {
         return switch (habitat) {
             case "willow_edge", "spruce_edge", "riparian_edge" -> coverWithin(level, ground, 3, 3);
             case "open_shrub" -> level.canSeeSky(ground) && coverWithin(level, ground, 2, 1);
+            case "forest" -> coverWithin(level, ground, 4, 4);
+            case "bank", "pond_edge" -> waterWithin(level, ground, habitat.equals("bank") ? 5 : 4);
+            // Rock ptarmigan: the crags above the tree line, open sky and no tall cover (Birds and the air: crags).
+            case "alpine" -> ground.getY() >= ALPINE_Y && level.canSeeSky(ground) && !coverWithin(level, ground, 3, 3);
             case "riparian" -> waterWithin(level, ground, 12) && coverWithin(level, ground, 6, 4);
             default -> false;
         };

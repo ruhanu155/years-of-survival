@@ -126,6 +126,10 @@ def build():
     entries.append({"asset_id": "model_cooking", "files": cooking.outputs(), "source_type": "generated",
                     "recipe": "tools/artgen/cooking.py", "licence": "project", "generator_version": cooking.VERSION,
                     "release_blocker": False})
+    import small_game  # noqa: E402
+    entries.append({"asset_id": "model_small_game", "files": small_game.outputs(), "source_type": "generated",
+                    "recipe": "tools/artgen/small_game.py", "licence": "project", "generator_version": small_game.VERSION,
+                    "release_blocker": False})
     # GUI textures drawn by gui_messenger.py (the entries `write` used to drop: RECONCILE 168 bug)
     import gui_messenger  # noqa: E402
     entries.append({"asset_id": "gui_messenger_device", "files": ["assets/yearofice/textures/gui/messenger/device.png",

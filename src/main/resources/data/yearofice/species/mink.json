@@ -1,0 +1,82 @@
+{
+  "entity": "yearofice:mink",
+  "rig": "small_mustelid",
+  "habitat": [
+    "bank"
+  ],
+  "population": [
+    1,
+    8
+  ],
+  "home_range_m": 500,
+  "active": [
+    "dusk",
+    "night"
+  ],
+  "gaits": {
+    "walk": 1.0,
+    "trot": 2.5,
+    "run": 2.5,
+    "swim": 1.2,
+    "step_height_m": 1.0
+  },
+  "senses": {
+    "sight": 30,
+    "hearing": 30,
+    "smell": 80,
+    "fov": 280
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": false,
+    "flush_m": 5,
+    "flee_m": [
+      15,
+      40
+    ],
+    "flee_gait": "run",
+    "zigzag": false,
+    "hide_min": [
+      10,
+      30
+    ],
+    "charges": false
+  },
+  "huntable": true,
+  "respawn_days": 8,
+  "breath_s": 10,
+  "spawn": {
+    "cell_m": 128,
+    "group": [
+      1,
+      1
+    ],
+    "density_per_km2": 4
+  },
+  "carcass": {
+    "whole_kg": 1.0,
+    "class": "small",
+    "body_plan": "mustelid",
+    "tau_h": 1,
+    "floats": true,
+    "poses": [
+      "dead_side"
+    ],
+    "steps": {
+      "gut": 2,
+      "skin": 4,
+      "joint": 3
+    },
+    "parts": {
+      "meat": 0.5,
+      "cover": {
+        "item": "yearofice:mink_pelt",
+        "kg": 0.1
+      },
+      "guts_kg": 0.1
+    }
+  },
+  "butcher_table": "yearofice:butchering/mink"
+}

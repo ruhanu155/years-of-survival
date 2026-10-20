@@ -1,0 +1,11 @@
+{
+  "species": "yearofice:ruffed_grouse",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    {
+      "item": "yearofice:ruffed_grouse_meat",
+      "kind": "meat",
+      "unit_g": 100
+    }
+  ]
+}
