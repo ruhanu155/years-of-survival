@@ -66,6 +66,7 @@ public final class PlantGameTests {
         out.add(test("yearofice:plant/poison_posts_line", PlantGameTests::poisonPostsLine));
         out.add(new TestFunction(BATCH, "yearofice:crop/garden_caught_up", TEMPLATE, 200, 0, true, PlantGameTests::gardenCaughtUp));
         out.add(test("yearofice:build/quern_mills", PlantGameTests::quernMills));
+        out.add(test("yearofice:build/station_recipe_mills", PlantGameTests::stationRecipeMills));
         out.add(new TestFunction(BATCH, "yearofice:worldgen/plants_placed_by_habitat", TEMPLATE, 2400, 0, true, PlantWorldGameTests::plantsPlacedByHabitat));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
@@ -258,6 +259,33 @@ public final class PlantGameTests {
             ItemStack old = new ItemStack(CropRegistry.BARLEY_SEED.get());
             old.set(CropRegistry.SEED_LOT.get(), ClockService.get().year() - 2);
             h.assertTrue(Grain.lotYears(old) == 2 && com.yearofice.sim.crop.CropModel.ageFactor(2, false) < com.yearofice.sim.crop.CropModel.ageFactor(0, false), "a 2-year-old lot germinates worse");
+            h.succeed();
+        } finally {
+            ClockService.get().setNow(saved);
+        }
+    }
+
+    /** The yearofice:station recipe type is registered, the quern recipe loads from data, and milling 1 kg goes through it (60 min, 1 kg of flour). */
+    static void stationRecipeMills(GameTestHelper h) {
+        long saved = ClockService.get().nowDs();
+        try {
+            ServerPlayer p = player(h);
+            ItemStack grain = new ItemStack(CropRegistry.WHEAT.get());
+            grain.set(YoiComponents.WEIGHT_G.get(), 1000);
+            var r = com.yearofice.crop.StationRecipe.find(h.getLevel(), "yearofice:hand_quern", grain);
+            h.assertTrue(r != null, "a yearofice:station recipe for the hand quern loads from data");
+            h.assertTrue(r.workMinPerKg() == 60 && r.resultItem() == CropRegistry.BARLEY_FLOUR.get(), "recipe numbers");
+            p.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new ItemStack(CropRegistry.HAND_QUERN.get()));
+            p.setItemInHand(net.minecraft.world.InteractionHand.OFF_HAND, grain);
+            long t0 = ClockService.get().nowDs();
+            Grain.use(p);
+            h.assertTrue(ClockService.get().nowDs() - t0 == 60L * 600, "1 kg takes 60 min");
+            boolean got = false;
+            for (int i = 0; i < p.getInventory().getContainerSize(); i++) {
+                ItemStack s = p.getInventory().getItem(i);
+                if (s.is(CropRegistry.BARLEY_FLOUR.get()) && s.get(YoiComponents.WEIGHT_G.get()) == 1000) got = true;
+            }
+            h.assertTrue(got, "1000 g of flour");
             h.succeed();
         } finally {
             ClockService.get().setNow(saved);

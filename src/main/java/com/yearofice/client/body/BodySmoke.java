@@ -24,7 +24,8 @@ import net.neoforged.neoforge.client.event.ClientTickEvent;
 public final class BodySmoke {
     private BodySmoke() {}
 
-    private static int lowShotAt = -1;
+    private static int lowShotAt = -1, shotAt = -1;
+    private static String pendingShot = null;
 
     private enum Phase { TITLE, CREATE, LOADING, PLAY, SHOT, DONE }
 
@@ -33,7 +34,7 @@ public final class BodySmoke {
 
     @SubscribeEvent
     public static void tick(ClientTickEvent.Post e) {
-        if (!TwoDaysDriver.ON || phase == Phase.DONE) return;
+        if (!(TwoDaysDriver.ON || com.yearofice.body.debug.MonthDriver.ON) || phase == Phase.DONE) return;
         Minecraft mc = Minecraft.getInstance();
         if (mc.getOverlay() != null) return;
         ticks++;
@@ -53,7 +54,7 @@ public final class BodySmoke {
             case CREATE -> {
                 if (mc.screen instanceof CreateWorldScreen s && ticks > 20) {
                     WorldCreationUiState ui = s.getUiState();
-                    ui.setName("yoi-smoke-body");
+                    ui.setName(com.yearofice.body.debug.MonthDriver.ON ? "yoi-smoke-month" : "yoi-smoke-body");
                     ui.setSeed("3141592");
                     ui.setGameMode(WorldCreationUiState.SelectedGameMode.SURVIVAL);
                     ui.setAllowCommands(false);
@@ -89,15 +90,29 @@ public final class BodySmoke {
                     Screenshot.grab(mc.gameDirectory, "body_two_days_vitals.png", mc.getMainRenderTarget(),
                             msg -> YearOfIce.LOG.info("Smoke screenshot (a vital under its warn line): {}", msg.getString()));
                 }
-                if (TwoDaysDriver.done) { phase = Phase.SHOT; ticks = 0; }
+                String want = com.yearofice.body.debug.MonthDriver.shot;
+                if (want != null) {
+                    com.yearofice.body.debug.MonthDriver.shot = null;
+                    pendingShot = want;
+                    shotAt = ticks + 6;
+                    // the strip is drawn in its full form for the frame (display mode only; no gameplay command)
+                    com.yearofice.client.hud.HudDebug.set(com.yearofice.client.hud.HudDebug.Mode.FULL);
+                }
+                if (pendingShot != null && ticks >= shotAt) {
+                    String n = pendingShot;
+                    pendingShot = null;
+                    Screenshot.grab(mc.gameDirectory, n + ".png", mc.getMainRenderTarget(),
+                            msg -> YearOfIce.LOG.info("Smoke screenshot: {}", msg.getString()));
+                }
+                if (TwoDaysDriver.done || com.yearofice.body.debug.MonthDriver.done) { phase = Phase.SHOT; ticks = 0; }
             }
             case SHOT -> {
                 if (ticks == 40) {
-                    Screenshot.grab(mc.gameDirectory, "body_two_days_end.png", mc.getMainRenderTarget(),
+                    Screenshot.grab(mc.gameDirectory, (com.yearofice.body.debug.MonthDriver.ON ? "m5_month_end.png" : "body_two_days_end.png"), mc.getMainRenderTarget(),
                             msg -> YearOfIce.LOG.info("Smoke screenshot: {}", msg.getString()));
                 }
                 if (ticks == 80) {
-                    YearOfIce.LOG.info("SMOKE BODY DONE: {}", TwoDaysDriver.verdict);
+                    YearOfIce.LOG.info("SMOKE BODY DONE: {}", com.yearofice.body.debug.MonthDriver.ON ? com.yearofice.body.debug.MonthDriver.verdict : TwoDaysDriver.verdict);
                     phase = Phase.DONE;
                     mc.stop();
                 }

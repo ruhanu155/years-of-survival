@@ -73,5 +73,7 @@ public final class CropRegistry {
         ITEMS.register(modBus);
         BE_TYPES.register(modBus);
         COMPONENTS.register(modBus);
+        StationRecipe.TYPES.register(modBus);
+        StationRecipe.SERIALIZERS.register(modBus);
     }
 }

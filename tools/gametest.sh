@@ -14,6 +14,7 @@ if [ -z "$slot" ]; then
   echo "gametest: both slots busy, waiting..."; exec {fd}>"$LOCKDIR/slot1.lock"; flock "$fd"; slot=1
 fi
 echo "gametest: slot $slot"
-OFF=""; [ -d "$HOME/.gradle/caches/modules-2" ] && OFF="--offline"
-./gradlew $OFF runGameTestServer "$@" 2>&1 | tee build/gametest.log | grep -E "required tests|failed at|Exception in" | tail -5
+python3 tools/validate_json.py || exit 1
+rm -rf run/world/dimensions/yearofice/slice_test
+./gradlew runGameTestServer "$@" 2>&1 | tee build/gametest.log | grep -E "required tests|failed at|Exception in" | tail -5
 grep -q "required tests passed" build/gametest.log

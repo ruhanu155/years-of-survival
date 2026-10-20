@@ -57,10 +57,11 @@ public final class Grain {
     }
 
     static String mill(ServerPlayer p, ItemStack grain) {
-        if (!grain.is(CropRegistry.BARLEY.get()) && !grain.is(CropRegistry.WHEAT.get())) return "Hold grain in your other hand to grind it.";
-        int g = grams(grain), min = Milling.millMinutes(g);
+        StationRecipe r = grain.isEmpty() ? null : StationRecipe.find(p.serverLevel(), "yearofice:hand_quern", grain);
+        if (r == null) return "Hold grain in your other hand to grind it.";
+        int g = grams(grain), min = r.minutesFor(g);
         grain.shrink(grain.getCount());
-        give(p, weighed(CropRegistry.BARLEY_FLOUR.get(), g));
+        give(p, weighed(r.resultItem(), g * r.yieldPct() / 100));
         ClockService.get().advance(min);
         return "Ground " + g + " g of grain into flour in " + min + " min.";
     }
