@@ -43,6 +43,30 @@ public final class TrapRegistry {
     public static final DeferredHolder<SoundEvent, SoundEvent> SNARE_HARE = SOUNDS.register("trap.snare_hare",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, "trap.snare_hare")));
 
+    // ---- M5 lane D2: the deadfalls, the snare funnel and their sounds ------------------------------------------------------
+
+    private static BlockBehaviour.Properties groundSet() {
+        return BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.4f).sound(SoundType.WOOD).noOcclusion()
+                .pushReaction(PushReaction.DESTROY);
+    }
+
+    public static final DeferredBlock<DeadfallBlock> DEADFALL = BLOCKS.registerBlock("deadfall", p -> new DeadfallBlock(p, false), groundSet());
+    public static final DeferredBlock<DeadfallBlock> MOUSE_DEADFALL = BLOCKS.registerBlock("mouse_deadfall", p -> new DeadfallBlock(p, true), groundSet());
+    public static final DeferredBlock<SnareFunnelBlock> SNARE_FUNNEL = BLOCKS.registerBlock("snare_funnel", SnareFunnelBlock::new,
+            BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).strength(0.2f).sound(SoundType.GRASS).noOcclusion()
+                    .pushReaction(PushReaction.DESTROY));
+
+    public static final DeferredItem<net.minecraft.world.item.BlockItem> DEADFALL_ITEM = ITEMS.registerSimpleBlockItem("deadfall", DEADFALL);
+    public static final DeferredItem<net.minecraft.world.item.BlockItem> MOUSE_DEADFALL_ITEM = ITEMS.registerSimpleBlockItem("mouse_deadfall", MOUSE_DEADFALL);
+    public static final DeferredItem<net.minecraft.world.item.BlockItem> SNARE_FUNNEL_ITEM = ITEMS.registerSimpleBlockItem("snare_funnel", SNARE_FUNNEL);
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DeadfallBlockEntity>> DEADFALL_ENTITY =
+            BLOCK_ENTITIES.register("deadfall", () -> BlockEntityType.Builder.of(DeadfallBlockEntity::new, DEADFALL.get(), MOUSE_DEADFALL.get()).build(null));
+
+    /** "A thud" (Every concept from the video › Trap sounds): vanilla stone re-pitched, 40 m. */
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEADFALL_SOUND = SOUNDS.register("trap.deadfall",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, "trap.deadfall")));
+
     public static void register(IEventBus modBus) {
         BLOCKS.register(modBus);
         ITEMS.register(modBus);

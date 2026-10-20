@@ -21,8 +21,8 @@ public final class FoodSystem {
         FoodItems.register(modBus);
         com.yearofice.food.preserve.PreserveRegistry.register(modBus);
         com.yearofice.food.preserve.PreserveClock.init();
-        modBus.addListener((ModConfigEvent.Loading e) -> { FoodConfig.COOKING.invalidate(); FoodConfig.RACKS.invalidate(); });
-        modBus.addListener((ModConfigEvent.Reloading e) -> { FoodConfig.COOKING.invalidate(); FoodConfig.RACKS.invalidate(); });
+        modBus.addListener((ModConfigEvent.Loading e) -> { FoodConfig.COOKING.invalidate(); FoodConfig.RACKS.invalidate(); FoodConfig.DEADFALL.invalidate(); FoodConfig.PAN.invalidate(); });
+        modBus.addListener((ModConfigEvent.Reloading e) -> { FoodConfig.COOKING.invalidate(); FoodConfig.RACKS.invalidate(); FoodConfig.DEADFALL.invalidate(); FoodConfig.PAN.invalidate(); });
         NeoForge.EVENT_BUS.addListener(CookingData::onAddReloadListeners);
         NeoForge.EVENT_BUS.addListener(SpitPlacing::onRightClickBlock);
         NeoForge.EVENT_BUS.addListener(FreshnessPass::onPlayerTick);
