@@ -1,0 +1,4 @@
+[
+  {id:"yearofice:old_sinew",count:12,components:{"yearofice:dampness":0.35d}},
+  {id:"yearofice:snowshoe_hare_meat",count:2,components:{"yearofice:fresh":{state:"raw",clock:1,due:30.0d,life_dh:96.0d}}}
+]

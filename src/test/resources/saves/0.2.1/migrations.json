@@ -1,0 +1,6 @@
+{
+  "steps": [
+    { "migration": "yearofice:fresh", "from": 1, "to": 2,
+      "add": { "curve": "meat" }, "rename": { "due": "due_dh" } }
+  ]
+}

@@ -20,6 +20,8 @@ public final class YearOfIce {
         container.registerConfig(ModConfig.Type.COMMON, YoiConfig.SPEC, "yearofice-common.toml");
         NeoForge.EVENT_BUS.addListener(YoiCommands::register);
         // The shared layers first: every system below reads time and weather through them.
+        // Id aliases, the world's version gate and backup, legacy conversions (Saves across versions).
+        com.yearofice.data.migrate.MigrateSystem.init(modBus);
         com.yearofice.story.clock.ClockSystem.init();
         com.yearofice.env.EnvSystem.init();
         com.yearofice.hud.HudSystem.init();
