@@ -18,6 +18,7 @@ public final class FoodSystem {
 
     public static void init(IEventBus modBus) {
         CookingRegistry.register(modBus);
+        FoodItems.register(modBus);
         com.yearofice.food.preserve.PreserveRegistry.register(modBus);
         com.yearofice.food.preserve.PreserveClock.init();
         modBus.addListener((ModConfigEvent.Loading e) -> { FoodConfig.COOKING.invalidate(); FoodConfig.RACKS.invalidate(); });
