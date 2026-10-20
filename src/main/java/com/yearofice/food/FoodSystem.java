@@ -19,6 +19,18 @@ public final class FoodSystem {
     public static void init(IEventBus modBus) {
         CookingRegistry.register(modBus);
         FoodItems.register(modBus);
+        com.yearofice.food.pan.PanRegistry.register(modBus);
+        // the pan joins hold-to-work after Building has set its wood resolver (common setup runs after every constructor)
+        modBus.addListener((net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent e) -> e.enqueueWork(() -> {
+            var wood = com.yearofice.build.work.WorkService.resolver;
+            com.yearofice.build.work.WorkService.resolver = (p, w) -> {
+                if (w.entity() < 0) {
+                    com.yearofice.build.work.WorkJob pan = com.yearofice.food.pan.PanJob.resolve(p, w.pos());
+                    if (pan != null) return pan;
+                }
+                return wood.apply(p, w);
+            };
+        }));
         com.yearofice.food.preserve.PreserveRegistry.register(modBus);
         com.yearofice.food.preserve.PreserveClock.init();
         modBus.addListener((ModConfigEvent.Loading e) -> { FoodConfig.COOKING.invalidate(); FoodConfig.RACKS.invalidate(); FoodConfig.DEADFALL.invalidate(); FoodConfig.PAN.invalidate(); });
