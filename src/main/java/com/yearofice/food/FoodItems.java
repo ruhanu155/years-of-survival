@@ -33,6 +33,10 @@ public final class FoodItems {
     /** A cooked mix: one item with {@code weight_g}, {@code nutrients} and (when the notebook names it) {@code dish_id}. */
     public static final DeferredItem<YoiFoodItem> DISH = ITEMS.registerItem("dish", YoiFoodItem::new, new Item.Properties().stacksTo(1));
 
+    /** B5 bone grease: 1 crushed_bone is 1 kg of pounded marrow bone; 1 bone_grease is 50 g of rendered fat. */
+    public static final DeferredItem<YoiFoodItem> CRUSHED_BONE = food("crushed_bone");
+    public static final DeferredItem<YoiFoodItem> BONE_GREASE = food("bone_grease");
+
     /** The ten named foods, for tests and {@code /yoi food}. */
     public static List<DeferredItem<YoiFoodItem>> named() {
         return List.of(PEMMICAN, DRIED_FISH, HEN_EGG, GOAT_MILK, ROSE_HIPS, SPRUCE_TIPS, BARLEY_FLOUR, SAUERKRAUT, BIRCH_SAP, BIRCH_SYRUP);

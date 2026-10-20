@@ -29,5 +29,12 @@ public final class YoiSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> BACK_TWINGE = reg("body.back_twinge");
     public static final DeferredHolder<SoundEvent, SoundEvent> SKIN_STING = reg("body.skin_sting");
 
+    // M6 lane D: encounter sounds (RECONCILE 171), bone crushing (B5) and the survivor's voice (B7).
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRIZZLY_JAW_POP = reg("entity.grizzly.jaw_pop");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLACK_BEAR_HUFF = reg("entity.black_bear.huff");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLACK_BEAR_JAW_POP = reg("entity.black_bear.jaw_pop");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BONE_CRUSH = reg("work.bone_crush");
+    public static final DeferredHolder<SoundEvent, SoundEvent> TALK_WALK = reg("body.talk_walk");
+
     public static void init(IEventBus modBus) { SOUNDS.register(modBus); }
 }

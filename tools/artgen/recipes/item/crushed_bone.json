@@ -1,0 +1,24 @@
+{
+ "id": "yearofice:crushed_bone",
+ "kind": "icon",
+ "notes": "A handful of pounded marrow bone, grit and splinters.",
+ "shapes": [
+  {
+   "kind": "ellipse",
+   "box": [
+    2,
+    6,
+    13,
+    10
+   ],
+   "ramp": "gravel",
+   "step": 2,
+   "noise": 0.3,
+   "speckle": {
+    "density": 0.4,
+    "ramp": "fat_cream",
+    "step": 2
+   }
+  }
+ ]
+}

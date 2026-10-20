@@ -11,7 +11,8 @@ class HandClipsTest {
     void shippedClipsParseAndSample() throws Exception {
         try (var in = getClass().getResourceAsStream("/assets/yearofice/animations/hands.animation.json")) {
             var clips = HandClips.parse(JsonParser.parseReader(new InputStreamReader(in)).getAsJsonObject());
-            assertEquals(java.util.Set.of("cover_neck", "push_up", "desperate_strike", "catch_fall", "stagger"), clips.keySet());
+            assertEquals(java.util.Set.of("cover_neck", "push_up", "desperate_strike", "catch_fall", "stagger",
+                    "still_hands", "raise_arms", "hold_ground", "brace", "shield_face", "fend_off", "back_away"), clips.keySet());
             assertEquals(0.5f, clips.get("desperate_strike").length(), 1e-6);
             assertEquals(1.2f, clips.get("push_up").length(), 1e-6);
             var c = clips.get("cover_neck");

@@ -651,5 +651,18 @@
   "block.yearofice.pole_blind": "Pole Blind",
   "block.yearofice.tree_stand": "Tree Stand",
   "block.yearofice.blood_trail": "Blood",
-  "entity.yearofice.arrow": "Arrow"
+  "entity.yearofice.arrow": "Arrow",
+  "subtitles.yearofice.entity.grizzly.jaw_pop": "Grizzly pops its jaw",
+  "subtitles.yearofice.entity.black_bear.huff": "Black bear huffs",
+  "subtitles.yearofice.entity.black_bear.jaw_pop": "Black bear pops its jaw",
+  "subtitles.yearofice.work.bone_crush": "Bone cracks on stone",
+  "subtitles.yearofice.body.talk_walk": "Survivor talks",
+  "item.yearofice.crushed_bone": "Crushed Bone",
+  "item.yearofice.bone_grease": "Bone Grease",
+  "item.yearofice.trophy_plaque": "Trophy Plaque",
+  "block.yearofice.theft_cache": "Cache",
+  "block.yearofice.trophy_mount": "Trophy Mount",
+  "messenger.yearofice.warn.talk_in_brush": "Thick brush. Talk as you walk (V V).",
+  "key.yearofice.talk_walk": "Talk as you walk (double-tap)",
+  "yearofice.journal.first_kill": "First kill: %s."
 }
