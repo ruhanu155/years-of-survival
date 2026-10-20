@@ -1,0 +1,1 @@
+{ "id": "kit_bow", "tier": "start", "strength_req": 55, "arrow_speed_mps": 46, "arrow_mass_g": 28, "draw_time_s": 0.8, "max_hold_s": 6, "effective_range_m": 20, "condition_per_shot": 0.1 }

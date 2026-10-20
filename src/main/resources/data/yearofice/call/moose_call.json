@@ -1,0 +1,6 @@
+{
+  "id": "moose_call",
+  "sounds": { "cow_moan": { "base_p": 0.4, "range_m": 800, "falloff": "linear", "hold_s": [2, 4] }, "bull_grunt": { "base_p": 0.25, "range_m": 500, "falloff": "linear", "hold_s": [0, 0.5] } },
+  "species": { "yearofice:moose": { "season": "rut", "bulls_only": true } },
+  "risk": "charge_inside_25_m"
+}

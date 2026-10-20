@@ -639,5 +639,17 @@
   "block.yearofice.gill_net": "Gill Net",
   "block.yearofice.weir_basket": "Weir Basket",
   "messenger.yearofice.warn.plant_poison": "That was %s, and it is poison. You will feel it soon.",
-  "item.yearofice.fish_guts": "Guts"
+  "item.yearofice.fish_guts": "Guts",
+  "item.yearofice.self_bow": "Self Bow",
+  "item.yearofice.kit_bow": "Kit Bow",
+  "item.yearofice.longbow": "Longbow",
+  "item.yearofice.spear": "Spear",
+  "item.yearofice.arrow": "Arrow",
+  "item.yearofice.arrowhead": "Arrowhead",
+  "item.yearofice.moose_call": "Moose Call",
+  "item.yearofice.squeak_call": "Squeak Call",
+  "block.yearofice.pole_blind": "Pole Blind",
+  "block.yearofice.tree_stand": "Tree Stand",
+  "block.yearofice.blood_trail": "Blood",
+  "entity.yearofice.arrow": "Arrow"
 }

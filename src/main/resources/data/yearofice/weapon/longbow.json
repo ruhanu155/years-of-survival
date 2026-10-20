@@ -1,0 +1,1 @@
+{ "id": "longbow", "tier": "bushcraft", "strength_req": 70, "arrow_speed_mps": 50, "arrow_mass_g": 30, "draw_time_s": 1.0, "max_hold_s": 6, "effective_range_m": 25, "condition_per_shot": 0.2 }
