@@ -1702,6 +1702,15 @@
       "ids": [
         "encounter_clip"
       ]
+    },
+    {
+      "basis": "The food cache (Items > Containers; Theft by animals: mice in the cache)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "food_cache"
+      ]
     }
   ],
   "expand": {
