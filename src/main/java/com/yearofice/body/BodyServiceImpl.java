@@ -69,6 +69,7 @@ public final class BodyServiceImpl implements BodyService {
         Mulberry32 rng = Injuries.rngFor(p.server.overworld().getSeed(), p.getStringUUID(), b.parts.injurySeq() + 1);
         Injuries.Result r = Injuries.apply(injury.source(), b.parts, rng, ctx);
         b.parts = r.record();
+        com.yearofice.body.injury.InjuryMessages.injured(p, injury.source().id(), cause, r);
         com.yearofice.core.YearOfIce.LOG.debug("Injury {} ({}) on {}: parts {}, Condition {}", injury.source().id(),
                 cause, p.getGameProfile().getName(), r.partsHit(), b.condition());
         if (b.condition() <= 0) {

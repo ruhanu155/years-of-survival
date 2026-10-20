@@ -1,0 +1,13 @@
+{
+  "condition_loss": 3,
+  "parts": {
+    "main_hand": 90,
+    "main_arm": 10
+  },
+  "problems": [
+    {
+      "id": "quills",
+      "chance": 1.0
+    }
+  ]
+}

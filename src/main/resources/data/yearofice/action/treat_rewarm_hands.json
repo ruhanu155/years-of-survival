@@ -1,0 +1,12 @@
+{
+  "game_min": 10,
+  "hold_s": 2,
+  "items": [],
+  "problems": [
+    "frostbite"
+  ],
+  "parts": [
+    "left_hand",
+    "right_hand"
+  ]
+}

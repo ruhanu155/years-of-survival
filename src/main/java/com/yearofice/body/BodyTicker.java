@@ -105,6 +105,7 @@ public final class BodyTicker {
         BodyModel.Inputs in = inputs(p, start, activity, asleep, moving);
         BodyState s = BodyAttachments.of(p);
         BodyModel.Result r = BodyModel.step(s, in, t, start, minutes);
+        com.yearofice.body.injury.InjuryTick.step(s, start, minutes, t);
         after(p, s, r, start + minutes);
         return r;
     }
@@ -114,6 +115,7 @@ public final class BodyTicker {
         BodyModel.Inputs in = inputs(p, start, Activity.REST, false, false);
         BodyState s = BodyAttachments.of(p);
         BodyModel.Result r = plan.run(s, in, t, start, minutes);
+        com.yearofice.body.injury.InjuryTick.step(s, start, minutes, t);
         after(p, s, r, start + minutes);
         return r;
     }
@@ -137,6 +139,10 @@ public final class BodyTicker {
     }
 
     private static void after(ServerPlayer p, BodyState s, BodyModel.Result r, long now) {
+        if (!r.collapsed() && s.condition() <= 0) { // bled out (injury lane)
+            SosFlow.trigger(p, SosFlow.Cause.CONDITION);
+            return;
+        }
         if (r.collapsed()) {
             SosFlow.trigger(p, switch (r.collapse()) {
                 case BMI -> SosFlow.Cause.STARVATION;

@@ -1,0 +1,14 @@
+{
+  "condition_loss": 0,
+  "parts": {
+    "feet": 75,
+    "legs": 25
+  },
+  "damage_type": "yearofice:stumble",
+  "problems": [
+    {
+      "id": "bruise",
+      "chance": 1.0
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "condition_loss": 10,
+  "parts": {
+    "feet": 35,
+    "legs": 35,
+    "hands": 10,
+    "arms": 10,
+    "torso": 10
+  },
+  "parts_hit": 2,
+  "problems": [
+    {
+      "id": "broken_bone",
+      "chance": 1.0,
+      "stage": 1
+    }
+  ]
+}

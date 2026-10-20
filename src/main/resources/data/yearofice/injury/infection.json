@@ -1,0 +1,12 @@
+{
+  "stages": 3,
+  "daily_loss_by_stage_days": [
+    -10,
+    0,
+    -20
+  ],
+  "treat": [
+    "clean_redress",
+    "salve"
+  ]
+}

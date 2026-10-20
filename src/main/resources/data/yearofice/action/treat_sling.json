@@ -1,0 +1,10 @@
+{
+  "game_min": 2,
+  "hold_s": 1,
+  "items": [
+    "yearofice:cloth_scrap"
+  ],
+  "problems": [
+    "broken_bone"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "stages": 1,
+  "heal_days": [
+    2,
+    4
+  ],
+  "carry_mult": 0.8,
+  "swing_slowdown_mult": 1.1,
+  "ground_sleep_restore_mult": 0.9,
+  "rest_days_count_double": true,
+  "banya_halves": true,
+  "treat": []
+}
