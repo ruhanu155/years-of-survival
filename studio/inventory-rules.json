@@ -1797,6 +1797,15 @@
       "ids": [
         "snare_funnel"
       ]
+    },
+    {
+      "basis": "M5 lane D food cache",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "food_cache"
+      ]
     }
   ],
   "expand": {
