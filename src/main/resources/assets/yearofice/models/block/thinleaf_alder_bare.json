@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/thinleaf_alder_bare"
+  },
+  "render_type": "minecraft:cutout"
+}

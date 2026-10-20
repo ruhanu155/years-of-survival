@@ -59,6 +59,8 @@ public final class BodySosGameTests {
         out.add(t("yearofice:body/sos_jump", 200, BodySosGameTests::sosJump));
         out.add(t("yearofice:body/own_body_sos", 400, BodySosGameTests::ownBodySos));
         out.add(t("yearofice:body/hardcore_end", 200, BodySosGameTests::hardcoreEnd));
+        out.add(t("yearofice:body/fireless_night_standard_survives", 200, h -> firelessNight(h, "standard")));
+        out.add(t("yearofice:body/fireless_night_brutal_sos", 200, h -> firelessNight(h, "brutal")));
         out.add(t("yearofice:net/body_sync_rate", 200, BodySosGameTests::bodySyncRate));
         return TestFilter.apply(out);
     }
@@ -199,6 +201,50 @@ public final class BodySosGameTests {
             } finally {
                 BodyTicker.VANILLA_ENV.override(p, null);
             }
+        }
+        h.succeed();
+    }
+
+    private static final double[] NIGHT_AIR = {3.1, 2.0, 0.9, 3.8, 3.2, 2.7, 2.3, 2.0, 2.0};
+
+    /**
+     * RECONCILE 225: a fireless first night, 21:00 to 06:00 at 1-4 degC in the starting clothes on bare ground. The
+     * preset is switched with {@code /yoi preset}; Standard ends miserable (cold wakes, warmth near 30, no collapse),
+     * Brutal collapses into the SOS. The game clock is not waited on: nine hourly steps of the live body model.
+     */
+    private static void firelessNight(GameTestHelper h, String preset) {
+        ServerPlayer p = bot(h);
+        var server = h.getLevel().getServer();
+        var prior = com.yearofice.core.rules.YoiConfig.PRESET.get();
+        try {
+            server.getCommands().performPrefixedCommand(server.createCommandSourceStack().withSuppressedOutput(), "yoi preset " + preset);
+            BodyTuning t = com.yearofice.body.BodyConfig.tuning();
+            h.assertTrue(t.preset().equals(preset), "preset switched to " + preset + ", body reads " + t.preset());
+            BodyState s = BodyAttachments.of(p);
+            s.warmth = 82;
+            double low = 100;
+            int wakes = 0;
+            long m = 21 * 60;
+            boolean collapsed = false;
+            for (int hr = 0; hr < NIGHT_AIR.length && !collapsed; hr++) {
+                var env = com.yearofice.sim.env.EnvSample.outdoors(NIGHT_AIR[hr], 0.5);
+                boolean asleep = hr >= 1 && s.warmth >= 40;
+                if (hr >= 1 && !asleep) wakes++;
+                var in = new BodyModel.Inputs(asleep ? Activity.SLEEP : Activity.REST, asleep, asleep ? 0.7 : 0, env, List.of(),
+                        com.yearofice.sim.env.ShelterState.NONE, com.yearofice.sim.body.ColdWater.Depth.NONE, false);
+                collapsed = BodyModel.step(s, in, t, m, 60).collapsed();
+                m += 60;
+                low = Math.min(low, s.warmth);
+            }
+            if (preset.equals("standard")) {
+                h.assertTrue(!collapsed, "Standard survives the fireless night");
+                h.assertTrue(wakes >= 1, "the cold wakes the sleeper: " + wakes);
+                h.assertTrue(low >= 20 && low <= 40, "warmth bottoms near 30: " + low);
+            } else {
+                h.assertTrue(collapsed, "Brutal collapses on the fireless night, low " + low);
+            }
+        } finally {
+            com.yearofice.core.rules.YoiConfig.PRESET.set(prior);
         }
         h.succeed();
     }

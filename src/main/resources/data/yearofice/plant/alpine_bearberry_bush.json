@@ -1,0 +1,75 @@
+{
+  "id": "yearofice:alpine_bearberry_bush",
+  "name": "Alpine bearberry",
+  "form": "berry_shrub",
+  "tags": [
+    "yearofice:berry_bushes"
+  ],
+  "habitat": [
+    "tundra",
+    "alpine_heath"
+  ],
+  "phases_dd": {
+    "bud": 0.0,
+    "leaf": 40.0,
+    "flower": 90.0,
+    "fruit": 520.0,
+    "seed": 740.0,
+    "senescent": "first_frost"
+  },
+  "verbs": {
+    "pick": {
+      "part": "yearofice:alpine_bearberry",
+      "unit": "cup",
+      "unit_g": 150,
+      "time_min": 25.0,
+      "units_per_clump": 1.2,
+      "phases": [
+        "fruit"
+      ],
+      "stripped_weight": 1.0
+    },
+    "strip": {
+      "allowed": true,
+      "work_scale": 0.4,
+      "stripped_weight": 1.5
+    },
+    "uproot": {
+      "drops": "minecraft:stick",
+      "empty_years": 3
+    }
+  },
+  "patch": {
+    "clumps": [
+      20,
+      60
+    ],
+    "regrow_days": [
+      5,
+      8
+    ],
+    "flush_mults": [
+      1.0
+    ]
+  },
+  "identify": {
+    "pocket_guide": false,
+    "notes": [],
+    "stages": [
+      "shoot",
+      "flower",
+      "fruit"
+    ]
+  },
+  "inspect": {
+    "look": "net_veined_leaves_black_juicy_berries",
+    "smell": "none",
+    "cut": "none"
+  },
+  "food": {
+    "part": "yearofice:alpine_bearberry",
+    "kcal_per_100g": 26.7,
+    "vit_c_mg_per_100g": 3.3,
+    "spoil_days_at_5c": 4
+  }
+}

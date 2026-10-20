@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/tall_bluebells"
+  },
+  "render_type": "minecraft:cutout"
+}

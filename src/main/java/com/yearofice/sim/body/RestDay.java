@@ -13,6 +13,17 @@ public final class RestDay {
 
     public static boolean unbroken(BodyState s) { return s.restWorkMin <= WORK_MAX_MIN && s.restAwayMin <= AWAY_MAX_MIN; }
 
+    /**
+     * Per-part rest-day healing rate (RECONCILE 213): a sprain heals at 2x, a broken bone at 1.5x on a Rest day, and
+     * anything else (cuts, burns, bruises) at the Condition rate. The injury timers read this through the
+     * injury API; the body only states the number.
+     */
+    public static double problemRate(String problemId, WellnessTuning w) {
+        if (com.yearofice.sim.body.part.Problems.SPRAIN.equals(problemId)) return w.restHeal();
+        if (com.yearofice.sim.body.part.Problems.BROKEN_BONE.equals(problemId)) return 1.5;
+        return 1.0;
+    }
+
     /** Work minutes an activity adds per minute: heavy work counts whole, a walk half (light jobs count half). */
     public static double workPerMinute(Activity a) {
         return switch (a) {

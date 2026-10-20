@@ -6,6 +6,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import com.yearofice.ecosystem.clock.SliceClock;
+import com.yearofice.food.traps.DeadfallBlockEntity;
 import com.yearofice.food.traps.SnareBlockEntity;
 import com.yearofice.food.traps.TrapConfig;
 import com.yearofice.sim.time.Calendar;
@@ -32,7 +33,7 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 public final class TrapCommands {
     private TrapCommands() {}
 
-    private static final SimpleCommandExceptionType NONE = new SimpleCommandExceptionType(Component.literal("No snare within 8 blocks."));
+    private static final SimpleCommandExceptionType NONE = new SimpleCommandExceptionType(Component.literal("No snare or deadfall within 8 blocks."));
 
     public static void register(RegisterCommandsEvent event) {
         CommandDispatcher<CommandSourceStack> d = event.getDispatcher();
@@ -62,7 +63,58 @@ public final class TrapCommands {
         return best;
     }
 
+    static DeadfallBlockEntity nearestDeadfall(CommandContext<CommandSourceStack> c) {
+        ServerLevel level = c.getSource().getLevel();
+        BlockPos at = BlockPos.containing(c.getSource().getPosition());
+        DeadfallBlockEntity best = null;
+        double bd = Double.MAX_VALUE;
+        for (BlockPos p : BlockPos.betweenClosed(at.offset(-8, -4, -8), at.offset(8, 4, 8))) {
+            if (level.getBlockEntity(p) instanceof DeadfallBlockEntity be) {
+                double dd = p.distSqr(at);
+                if (dd < bd) {
+                    bd = dd;
+                    best = be;
+                }
+            }
+        }
+        return best;
+    }
+
+    static boolean snareNear(CommandContext<CommandSourceStack> c) {
+        try {
+            nearest(c);
+            return true;
+        } catch (CommandSyntaxException e) {
+            return false;
+        }
+    }
+
+    /** {@code /yoi trap roll} on a placed deadfall: advances to the next dawn or dusk and settles it, then says what it did. */
+    static int rollDeadfall(CommandContext<CommandSourceStack> c, DeadfallBlockEntity be) {
+        ServerLevel level = c.getSource().getLevel();
+        Snare.Rolls rolls = SnareBlockEntity.rolls();
+        long now = be.now();
+        long next = rolls.atOrBefore(now) + 1;
+        long minutes = (long) Math.ceil(rolls.minute(next) - SliceClock.minuteD(level)) + 1;
+        com.yearofice.api.clock.ClockService.get().advance(Math.max(0, minutes));
+        int caught = be.settle(true);
+        String line = String.format("%s roll on day %d, %s deadfall: %s (status %s, %d of %d triggers).",
+                Snare.Rolls.isDawn(next) ? "Dawn" : "Dusk", Calendar.absDayOfMinute(rolls.minute(next)), be.mouse() ? "mouse" : "figure-4",
+                caught > 0 ? "caught" : "nothing", be.status(), be.triggers(), com.yearofice.food.FoodConfig.deadfall().sticksLife());
+        c.getSource().sendSuccess(() -> Component.literal(line), true);
+        return caught;
+    }
+
     static int info(CommandContext<CommandSourceStack> c) throws CommandSyntaxException {
+        if (!snareNear(c)) {
+            DeadfallBlockEntity d = nearestDeadfall(c);
+            if (d != null) {
+                d.settle(true);
+                c.getSource().sendSuccess(() -> Component.literal(String.format("Deadfall (%s): %s, %d triggers, slipped %s, mice %d",
+                        d.mouse() ? "mouse" : "figure-4", d.status(), d.triggers(), d.slipped(), d.mice())), false);
+                return 1;
+            }
+        }
         SnareBlockEntity be = nearest(c);
         be.settle(true);
         c.getSource().sendSuccess(() -> Component.literal(describe(be)), false);
@@ -70,6 +122,10 @@ public final class TrapCommands {
     }
 
     static int roll(CommandContext<CommandSourceStack> c) throws CommandSyntaxException {
+        if (!snareNear(c)) {
+            DeadfallBlockEntity d = nearestDeadfall(c);
+            if (d != null) return rollDeadfall(c, d);
+        }
         SnareBlockEntity be = nearest(c);
         ServerLevel level = c.getSource().getLevel();
         Snare.Rolls rolls = be.env().rolls();

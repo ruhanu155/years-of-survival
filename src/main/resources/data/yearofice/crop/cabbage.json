@@ -1,0 +1,48 @@
+{
+  "id": "yearofice:cabbage",
+  "block": "yearofice:cabbage_crop",
+  "seed": {
+    "item": "yearofice:cabbage_seed",
+    "weight_g": 2,
+    "base_germination": 0.65,
+    "saved_germination": 0.65,
+    "seeds_per_block": 1
+  },
+  "sow_window": [
+    "06-01",
+    "06-15"
+  ],
+  "units": {
+    "sprout": 0,
+    "ripe": 1000,
+    "frost_sensitive": [
+      0,
+      0
+    ]
+  },
+  "frost": {
+    "seedling_min_c": -4,
+    "head_min_c": -4,
+    "head_yield_mult": 1.0,
+    "hard_freeze_c": -5
+  },
+  "yield": {
+    "item": "yearofice:cabbage",
+    "kg_per_block": 1.5,
+    "straw_kg": 0.0,
+    "stand_formula": "piece"
+  },
+  "pests": {
+    "hare_loss_pct": 2,
+    "grouse_loss_pct": 1,
+    "moose_visit_pct": 10,
+    "moose_take_pct": 30
+  },
+  "work_min": {
+    "sow": 1,
+    "weed": 1,
+    "cut": 1,
+    "thresh": 0,
+    "winnow_per_kg": 0
+  }
+}

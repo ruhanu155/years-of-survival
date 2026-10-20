@@ -73,9 +73,26 @@ public final class Butchering {
         List<ItemStack> parts = parts(p.serverLevel(), r);
         stack.shrink(1);
         for (ItemStack part : parts) if (!p.getInventory().add(part)) p.drop(part, false);
+        leaveGuts(p.serverLevel(), p.blockPosition(), SpeciesBook.get(r.species()));
         p.displayClientMessage(Component.translatable("ecosystem.yearofice.dressed",
                 Component.translatable("entity." + r.species().replace(':', '.'))), true);
         return stack;
+    }
+
+    /** Guts of 50 g or more are left where the work was done, as a gut pile (Decay and time › Carcasses and gut piles). */
+    public static boolean leaveGuts(ServerLevel level, net.minecraft.core.BlockPos at, SpeciesDef d) {
+        if (d.gutsKg() < 0.05) return false;
+        net.minecraft.core.BlockPos spot = null;
+        for (net.minecraft.core.BlockPos c : new net.minecraft.core.BlockPos[] {at, at.north(), at.east(), at.south(), at.west()}) {
+            if ((level.getBlockState(c).isAir() || level.getBlockState(c).canBeReplaced()) && level.getFluidState(c).isEmpty()
+                    && level.getBlockState(c.below()).isFaceSturdy(level, c.below(), net.minecraft.core.Direction.UP)) {
+                spot = c;
+                break;
+            }
+        }
+        if (spot == null) return false;
+        level.setBlock(spot, EcosystemRegistry.GUT_PILE.get().defaultBlockState(), 3);
+        return true;
     }
 
     /** Rolls the species' butchering table and stamps meat with the carcass's freshness. */

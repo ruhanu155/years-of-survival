@@ -75,11 +75,14 @@ class SaveFixturesTest {
         ATTACHMENTS.put("placed_mask", in -> (Tag) call(com.yearofice.world.attach.PlacedMaskData.class, "write", call(
                 com.yearofice.world.attach.PlacedMaskData.class, "read", null, in)));
         ATTACHMENTS.put("trees", in -> TreeMarksData.load(in).saveTag());
+        ATTACHMENTS.put("plant_notes", codec(com.yearofice.plant.PlantAttachments.NOTES_CODEC));
+        ATTACHMENTS.put("patches", codec(com.yearofice.plant.PatchData.CODEC));
         SAVED_DATA.put("yearofice_clock", saved(com.yearofice.story.clock.ClockData.class));
         SAVED_DATA.put("yearofice_run", saved(com.yearofice.body.RunState.class));
         SAVED_DATA.put("yearofice_story", saved(com.yearofice.story.DayOne.Data.class));
         SAVED_DATA.put("yearofice_slots", saved(com.yearofice.ecosystem.spawn.SlotData.class));
         SAVED_DATA.put("yearofice_fish_stocks", saved(com.yearofice.hunt.fishing.SliceSpots.Stocks.class));
+        SAVED_DATA.put("yearofice_fish_gear", saved(com.yearofice.hunt.fishing.PassiveGearService.Book.class));
     }
 
     static String latest() {

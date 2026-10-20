@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/arctic_lupine_bare"
+  },
+  "render_type": "minecraft:cutout"
+}

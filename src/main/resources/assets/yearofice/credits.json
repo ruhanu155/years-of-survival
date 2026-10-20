@@ -1245,12 +1245,12 @@
     {
       "asset_id": "model_spruce_grouse",
       "files": [
-        "assets/yearofice/geo/entity/rig_grouse.geo.json",
         "assets/yearofice/animations/entity/rig_grouse.animation.json",
-        "assets/yearofice/animations/entity/willow_ptarmigan.animation.json",
         "assets/yearofice/animations/entity/spruce_grouse.animation.json",
-        "assets/yearofice/textures/entity/spruce_grouse/male_adult.png",
-        "assets/yearofice/textures/entity/spruce_grouse/female_adult.png"
+        "assets/yearofice/animations/entity/willow_ptarmigan.animation.json",
+        "assets/yearofice/geo/entity/rig_grouse.geo.json",
+        "assets/yearofice/textures/entity/spruce_grouse/female_adult.png",
+        "assets/yearofice/textures/entity/spruce_grouse/male_adult.png"
       ],
       "source_type": "generated",
       "recipe": "tools/modelgen/species/spruce_grouse.json",
@@ -1951,60 +1951,6 @@
       "release_blocker": false
     },
     {
-      "asset_id": "tex_flint_knife",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/flint_knife.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_flint_nodule",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/flint_nodule.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_knife",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/knife.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_rough_stone",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/rough_stone.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_stake",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/stake.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_tool_handle",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/tool_handle.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
       "asset_id": "tex_bark_bucket",
       "files": [
         "assets/yearofice/textures/item/bark_bucket.png",
@@ -2257,6 +2203,3225 @@
       "licence": "project",
       "generator_version": "artgen 0.4.0",
       "release_blocker": true
+    },
+    {
+      "asset_id": "model_encounter_hands",
+      "files": [
+        "assets/yearofice/geo/hands.geo.json",
+        "assets/yearofice/animations/hands.animation.json"
+      ],
+      "source_type": "generated",
+      "recipe": "hand-written original (no borrowed assets)",
+      "licence": "project",
+      "generator_version": "hand",
+      "release_blocker": false
+    },
+    {
+      "files": [
+        "assets/yearofice/models/item/dolly_varden.json",
+        "assets/yearofice/models/item/northern_pike.json",
+        "assets/yearofice/models/item/humpback_whitefish.json",
+        "assets/yearofice/models/item/burbot.json",
+        "assets/yearofice/models/item/lake_trout.json",
+        "assets/yearofice/models/item/chinook_salmon.json",
+        "assets/yearofice/models/item/chum_salmon.json",
+        "assets/yearofice/models/item/coho_salmon.json"
+      ],
+      "source_type": "generated",
+      "recipe": "hand-written original (placeholder models reusing the project's own grayling texture until the fish art pass)",
+      "licence": "project",
+      "generator_version": "hand",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "rig_fish",
+      "files": [
+        "assets/yearofice/animations/entity/fish.animation.json",
+        "assets/yearofice/geo/entity/rig_fish_resident.geo.json",
+        "assets/yearofice/geo/entity/rig_fish_school.geo.json"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_gill_net",
+      "files": [
+        "assets/yearofice/blockstates/gill_net.json",
+        "assets/yearofice/models/block/gill_net.json",
+        "assets/yearofice/textures/block/gill_net.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_set_line",
+      "files": [
+        "assets/yearofice/blockstates/set_line.json",
+        "assets/yearofice/models/block/set_line.json",
+        "assets/yearofice/models/item/set_line.json",
+        "assets/yearofice/textures/block/set_line.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_weir_basket",
+      "files": [
+        "assets/yearofice/blockstates/weir_basket.json",
+        "assets/yearofice/models/block/weir_basket.json",
+        "assets/yearofice/models/item/weir_basket.json",
+        "assets/yearofice/textures/block/weir_basket.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_fish_chunk",
+      "files": [
+        "assets/yearofice/models/item/fish_chunk.json",
+        "assets/yearofice/textures/item/fish_chunk.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_fly",
+      "files": [
+        "assets/yearofice/models/item/fly.json",
+        "assets/yearofice/textures/item/fly.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_gill_net_segment",
+      "files": [
+        "assets/yearofice/models/item/gill_net_segment.json",
+        "assets/yearofice/textures/item/gill_net_segment.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_roe",
+      "files": [
+        "assets/yearofice/models/item/roe.json",
+        "assets/yearofice/textures/item/roe.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_spoon",
+      "files": [
+        "assets/yearofice/models/item/spoon.json",
+        "assets/yearofice/textures/item/spoon.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_arctic_grayling",
+      "files": [
+        "assets/yearofice/textures/entity/fish/arctic_grayling.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_burbot",
+      "files": [
+        "assets/yearofice/textures/entity/fish/burbot.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_chinook_salmon",
+      "files": [
+        "assets/yearofice/textures/entity/fish/chinook_salmon.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_chum_salmon",
+      "files": [
+        "assets/yearofice/textures/entity/fish/chum_salmon.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_coho_salmon",
+      "files": [
+        "assets/yearofice/textures/entity/fish/coho_salmon.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_dolly_varden",
+      "files": [
+        "assets/yearofice/textures/entity/fish/dolly_varden.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_humpback_whitefish",
+      "files": [
+        "assets/yearofice/textures/entity/fish/humpback_whitefish.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_lake_trout",
+      "files": [
+        "assets/yearofice/textures/entity/fish/lake_trout.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_northern_pike",
+      "files": [
+        "assets/yearofice/textures/entity/fish/northern_pike.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_arctic_grayling",
+      "files": [
+        "assets/yearofice/textures/gui/fish/arctic_grayling.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_burbot",
+      "files": [
+        "assets/yearofice/textures/gui/fish/burbot.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_chinook_salmon",
+      "files": [
+        "assets/yearofice/textures/gui/fish/chinook_salmon.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_chum_salmon",
+      "files": [
+        "assets/yearofice/textures/gui/fish/chum_salmon.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_coho_salmon",
+      "files": [
+        "assets/yearofice/textures/gui/fish/coho_salmon.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_dolly_varden",
+      "files": [
+        "assets/yearofice/textures/gui/fish/dolly_varden.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_humpback_whitefish",
+      "files": [
+        "assets/yearofice/textures/gui/fish/humpback_whitefish.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_lake_trout",
+      "files": [
+        "assets/yearofice/textures/gui/fish/lake_trout.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_alpine_bearberry",
+      "files": [
+        "assets/yearofice/models/item/alpine_bearberry.json",
+        "assets/yearofice/textures/item/alpine_bearberry.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "plants 1.0",
+      "recipe": "tools/artgen/plants/gen.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_alpine_bearberry_bush",
+      "files": [
+        "assets/yearofice/blockstates/alpine_bearberry_bush.json",
+        "assets/yearofice/models/block/alpine_bearberry_bush.json",
+        "assets/yearofice/models/block/alpine_bearberry_bush_bare.json",
+        "assets/yearofice/textures/block/alpine_bearberry_bush.png",
+        "assets/yearofice/textures/block/alpine_bearberry_bush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_alpine_bistort",
+      "files": [
+        "assets/yearofice/blockstates/alpine_bistort.json",
+        "assets/yearofice/models/block/alpine_bistort.json",
+        "assets/yearofice/models/block/alpine_bistort_bare.json",
+        "assets/yearofice/textures/block/alpine_bistort.png",
+        "assets/yearofice/textures/block/alpine_bistort_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_arctic_lupine",
+      "files": [
+        "assets/yearofice/blockstates/arctic_lupine.json",
+        "assets/yearofice/models/block/arctic_lupine.json",
+        "assets/yearofice/models/block/arctic_lupine_bare.json",
+        "assets/yearofice/textures/block/arctic_lupine.png",
+        "assets/yearofice/textures/block/arctic_lupine_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_arnica",
+      "files": [
+        "assets/yearofice/blockstates/arnica.json",
+        "assets/yearofice/models/block/arnica.json",
+        "assets/yearofice/models/block/arnica_bare.json",
+        "assets/yearofice/textures/block/arnica.png",
+        "assets/yearofice/textures/block/arnica_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_baneberry",
+      "files": [
+        "assets/yearofice/blockstates/baneberry.json",
+        "assets/yearofice/models/block/baneberry.json",
+        "assets/yearofice/models/block/baneberry_bare.json",
+        "assets/yearofice/textures/block/baneberry.png",
+        "assets/yearofice/textures/block/baneberry_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_barclay_willow",
+      "files": [
+        "assets/yearofice/blockstates/barclay_willow.json",
+        "assets/yearofice/models/block/barclay_willow.json",
+        "assets/yearofice/models/block/barclay_willow_bare.json",
+        "assets/yearofice/textures/block/barclay_willow.png",
+        "assets/yearofice/textures/block/barclay_willow_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_barley",
+      "files": [
+        "assets/yearofice/models/item/barley.json",
+        "assets/yearofice/textures/item/barley.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_barley_crop",
+      "files": [
+        "assets/yearofice/blockstates/barley_crop.json",
+        "assets/yearofice/models/block/barley_crop_0.json",
+        "assets/yearofice/models/block/barley_crop_1.json",
+        "assets/yearofice/models/block/barley_crop_2.json",
+        "assets/yearofice/models/block/barley_crop_3.json",
+        "assets/yearofice/models/block/barley_crop_5.json",
+        "assets/yearofice/textures/block/barley_crop_0.png",
+        "assets/yearofice/textures/block/barley_crop_1.png",
+        "assets/yearofice/textures/block/barley_crop_2.png",
+        "assets/yearofice/textures/block/barley_crop_3.png",
+        "assets/yearofice/textures/block/barley_crop_5.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_barley_seed",
+      "files": [
+        "assets/yearofice/models/item/barley_seed.json",
+        "assets/yearofice/textures/item/barley_seed.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bearberry",
+      "files": [
+        "assets/yearofice/models/item/bearberry.json",
+        "assets/yearofice/textures/item/bearberry.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bearberry_bush",
+      "files": [
+        "assets/yearofice/blockstates/bearberry_bush.json",
+        "assets/yearofice/models/block/bearberry_bush.json",
+        "assets/yearofice/models/block/bearberry_bush_bare.json",
+        "assets/yearofice/textures/block/bearberry_bush.png",
+        "assets/yearofice/textures/block/bearberry_bush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_beauverd_spirea",
+      "files": [
+        "assets/yearofice/blockstates/beauverd_spirea.json",
+        "assets/yearofice/models/block/beauverd_spirea.json",
+        "assets/yearofice/models/block/beauverd_spirea_bare.json",
+        "assets/yearofice/textures/block/beauverd_spirea.png",
+        "assets/yearofice/textures/block/beauverd_spirea_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bebb_willow",
+      "files": [
+        "assets/yearofice/blockstates/bebb_willow.json",
+        "assets/yearofice/models/block/bebb_willow.json",
+        "assets/yearofice/models/block/bebb_willow_bare.json",
+        "assets/yearofice/textures/block/bebb_willow.png",
+        "assets/yearofice/textures/block/bebb_willow_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_birch_bolete",
+      "files": [
+        "assets/yearofice/blockstates/birch_bolete.json",
+        "assets/yearofice/models/block/birch_bolete.json",
+        "assets/yearofice/models/block/birch_bolete_bare.json",
+        "assets/yearofice/textures/block/birch_bolete.png",
+        "assets/yearofice/textures/block/birch_bolete_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_birch_bolete_caps",
+      "files": [
+        "assets/yearofice/models/item/birch_bolete_caps.json",
+        "assets/yearofice/textures/item/birch_bolete_caps.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_birch_polypore",
+      "files": [
+        "assets/yearofice/blockstates/birch_polypore.json",
+        "assets/yearofice/models/block/birch_polypore.json",
+        "assets/yearofice/models/block/birch_polypore_bare.json",
+        "assets/yearofice/textures/block/birch_polypore.png",
+        "assets/yearofice/textures/block/birch_polypore_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bistort_bulbils",
+      "files": [
+        "assets/yearofice/models/item/bistort_bulbils.json",
+        "assets/yearofice/textures/item/bistort_bulbils.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bistort_root",
+      "files": [
+        "assets/yearofice/models/item/bistort_root.json",
+        "assets/yearofice/textures/item/bistort_root.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_black_currant",
+      "files": [
+        "assets/yearofice/models/item/black_currant.json",
+        "assets/yearofice/textures/item/black_currant.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_black_currant_bush",
+      "files": [
+        "assets/yearofice/blockstates/black_currant_bush.json",
+        "assets/yearofice/models/block/black_currant_bush.json",
+        "assets/yearofice/models/block/black_currant_bush_bare.json",
+        "assets/yearofice/textures/block/black_currant_bush.png",
+        "assets/yearofice/textures/block/black_currant_bush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bluebell_flowers",
+      "files": [
+        "assets/yearofice/models/item/bluebell_flowers.json",
+        "assets/yearofice/textures/item/bluebell_flowers.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_blueberry_bush",
+      "files": [
+        "assets/yearofice/blockstates/blueberry_bush.json",
+        "assets/yearofice/models/block/blueberry_bush.json",
+        "assets/yearofice/models/block/blueberry_bush_bare.json",
+        "assets/yearofice/textures/block/blueberry_bush.png",
+        "assets/yearofice/textures/block/blueberry_bush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bog_cranberry",
+      "files": [
+        "assets/yearofice/models/item/bog_cranberry.json",
+        "assets/yearofice/textures/item/bog_cranberry.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bog_cranberry_bush",
+      "files": [
+        "assets/yearofice/blockstates/bog_cranberry_bush.json",
+        "assets/yearofice/models/block/bog_cranberry_bush.json",
+        "assets/yearofice/models/block/bog_cranberry_bush_bare.json",
+        "assets/yearofice/textures/block/bog_cranberry_bush.png",
+        "assets/yearofice/textures/block/bog_cranberry_bush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bog_rosemary",
+      "files": [
+        "assets/yearofice/blockstates/bog_rosemary.json",
+        "assets/yearofice/models/block/bog_rosemary.json",
+        "assets/yearofice/models/block/bog_rosemary_bare.json",
+        "assets/yearofice/textures/block/bog_rosemary.png",
+        "assets/yearofice/textures/block/bog_rosemary_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bulrush",
+      "files": [
+        "assets/yearofice/blockstates/bulrush.json",
+        "assets/yearofice/models/block/bulrush.json",
+        "assets/yearofice/models/block/bulrush_bare.json",
+        "assets/yearofice/textures/block/bulrush.png",
+        "assets/yearofice/textures/block/bulrush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bulrush_root",
+      "files": [
+        "assets/yearofice/models/item/bulrush_root.json",
+        "assets/yearofice/textures/item/bulrush_root.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bunchberries",
+      "files": [
+        "assets/yearofice/models/item/bunchberries.json",
+        "assets/yearofice/textures/item/bunchberries.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bunchberry",
+      "files": [
+        "assets/yearofice/blockstates/bunchberry.json",
+        "assets/yearofice/models/block/bunchberry.json",
+        "assets/yearofice/models/block/bunchberry_bare.json",
+        "assets/yearofice/textures/block/bunchberry.png",
+        "assets/yearofice/textures/block/bunchberry_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cabbage",
+      "files": [
+        "assets/yearofice/models/item/cabbage.json",
+        "assets/yearofice/textures/item/cabbage.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cabbage_crop",
+      "files": [
+        "assets/yearofice/blockstates/cabbage_crop.json",
+        "assets/yearofice/models/block/cabbage_crop_0.json",
+        "assets/yearofice/models/block/cabbage_crop_1.json",
+        "assets/yearofice/models/block/cabbage_crop_2.json",
+        "assets/yearofice/models/block/cabbage_crop_3.json",
+        "assets/yearofice/models/block/cabbage_crop_5.json",
+        "assets/yearofice/textures/block/cabbage_crop_0.png",
+        "assets/yearofice/textures/block/cabbage_crop_1.png",
+        "assets/yearofice/textures/block/cabbage_crop_2.png",
+        "assets/yearofice/textures/block/cabbage_crop_3.png",
+        "assets/yearofice/textures/block/cabbage_crop_5.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cabbage_seed",
+      "files": [
+        "assets/yearofice/models/item/cabbage_seed.json",
+        "assets/yearofice/textures/item/cabbage_seed.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cattail",
+      "files": [
+        "assets/yearofice/blockstates/cattail.json",
+        "assets/yearofice/models/block/cattail.json",
+        "assets/yearofice/models/block/cattail_bare.json",
+        "assets/yearofice/textures/block/cattail.png",
+        "assets/yearofice/textures/block/cattail_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cattail_roots",
+      "files": [
+        "assets/yearofice/models/item/cattail_roots.json",
+        "assets/yearofice/textures/item/cattail_roots.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_celery_stems",
+      "files": [
+        "assets/yearofice/models/item/celery_stems.json",
+        "assets/yearofice/textures/item/celery_stems.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_chaga",
+      "files": [
+        "assets/yearofice/blockstates/chaga.json",
+        "assets/yearofice/models/block/chaga.json",
+        "assets/yearofice/models/block/chaga_bare.json",
+        "assets/yearofice/textures/block/chaga.png",
+        "assets/yearofice/textures/block/chaga_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_chaga_conk",
+      "files": [
+        "assets/yearofice/models/item/chaga_conk.json",
+        "assets/yearofice/textures/item/chaga_conk.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_chickweed",
+      "files": [
+        "assets/yearofice/blockstates/chickweed.json",
+        "assets/yearofice/models/block/chickweed.json",
+        "assets/yearofice/models/block/chickweed_bare.json",
+        "assets/yearofice/textures/block/chickweed.png",
+        "assets/yearofice/textures/block/chickweed_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_chickweed_greens",
+      "files": [
+        "assets/yearofice/models/item/chickweed_greens.json",
+        "assets/yearofice/textures/item/chickweed_greens.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_chives",
+      "files": [
+        "assets/yearofice/models/item/chives.json",
+        "assets/yearofice/textures/item/chives.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cloudberries",
+      "files": [
+        "assets/yearofice/models/item/cloudberries.json",
+        "assets/yearofice/textures/item/cloudberries.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cloudberry_bush",
+      "files": [
+        "assets/yearofice/blockstates/cloudberry_bush.json",
+        "assets/yearofice/models/block/cloudberry_bush.json",
+        "assets/yearofice/models/block/cloudberry_bush_bare.json",
+        "assets/yearofice/textures/block/cloudberry_bush.png",
+        "assets/yearofice/textures/block/cloudberry_bush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_coltsfoot_leaves",
+      "files": [
+        "assets/yearofice/models/item/coltsfoot_leaves.json",
+        "assets/yearofice/textures/item/coltsfoot_leaves.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_common_juniper",
+      "files": [
+        "assets/yearofice/blockstates/common_juniper.json",
+        "assets/yearofice/models/block/common_juniper.json",
+        "assets/yearofice/models/block/common_juniper_bare.json",
+        "assets/yearofice/textures/block/common_juniper.png",
+        "assets/yearofice/textures/block/common_juniper_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cottongrass",
+      "files": [
+        "assets/yearofice/blockstates/cottongrass.json",
+        "assets/yearofice/models/block/cottongrass.json",
+        "assets/yearofice/models/block/cottongrass_bare.json",
+        "assets/yearofice/textures/block/cottongrass.png",
+        "assets/yearofice/textures/block/cottongrass_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cow_parsnip",
+      "files": [
+        "assets/yearofice/blockstates/cow_parsnip.json",
+        "assets/yearofice/models/block/cow_parsnip.json",
+        "assets/yearofice/models/block/cow_parsnip_bare.json",
+        "assets/yearofice/textures/block/cow_parsnip.png",
+        "assets/yearofice/textures/block/cow_parsnip_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_crowberry",
+      "files": [
+        "assets/yearofice/models/item/crowberry.json",
+        "assets/yearofice/textures/item/crowberry.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_crowberry_bush",
+      "files": [
+        "assets/yearofice/blockstates/crowberry_bush.json",
+        "assets/yearofice/models/block/crowberry_bush.json",
+        "assets/yearofice/models/block/crowberry_bush_bare.json",
+        "assets/yearofice/textures/block/crowberry_bush.png",
+        "assets/yearofice/textures/block/crowberry_bush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_dandelion",
+      "files": [
+        "assets/yearofice/blockstates/dandelion.json",
+        "assets/yearofice/models/block/dandelion.json",
+        "assets/yearofice/models/block/dandelion_bare.json",
+        "assets/yearofice/textures/block/dandelion.png",
+        "assets/yearofice/textures/block/dandelion_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_dandelion_greens",
+      "files": [
+        "assets/yearofice/models/item/dandelion_greens.json",
+        "assets/yearofice/textures/item/dandelion_greens.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_death_camas",
+      "files": [
+        "assets/yearofice/blockstates/death_camas.json",
+        "assets/yearofice/models/block/death_camas.json",
+        "assets/yearofice/models/block/death_camas_bare.json",
+        "assets/yearofice/textures/block/death_camas.png",
+        "assets/yearofice/textures/block/death_camas_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_devils_club",
+      "files": [
+        "assets/yearofice/blockstates/devils_club.json",
+        "assets/yearofice/models/block/devils_club.json",
+        "assets/yearofice/models/block/devils_club_bare.json",
+        "assets/yearofice/textures/block/devils_club.png",
+        "assets/yearofice/textures/block/devils_club_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_diamondleaf_willow",
+      "files": [
+        "assets/yearofice/blockstates/diamondleaf_willow.json",
+        "assets/yearofice/models/block/diamondleaf_willow.json",
+        "assets/yearofice/models/block/diamondleaf_willow_bare.json",
+        "assets/yearofice/textures/block/diamondleaf_willow.png",
+        "assets/yearofice/textures/block/diamondleaf_willow_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_digging_stick",
+      "files": [
+        "assets/yearofice/models/item/digging_stick.json",
+        "assets/yearofice/textures/item/digging_stick.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_dogwood_shoots",
+      "files": [
+        "assets/yearofice/models/item/dogwood_shoots.json",
+        "assets/yearofice/textures/item/dogwood_shoots.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_dwarf_fireweed",
+      "files": [
+        "assets/yearofice/blockstates/dwarf_fireweed.json",
+        "assets/yearofice/models/block/dwarf_fireweed.json",
+        "assets/yearofice/models/block/dwarf_fireweed_bare.json",
+        "assets/yearofice/textures/block/dwarf_fireweed.png",
+        "assets/yearofice/textures/block/dwarf_fireweed_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_dwarf_fireweed_leaves",
+      "files": [
+        "assets/yearofice/models/item/dwarf_fireweed_leaves.json",
+        "assets/yearofice/textures/item/dwarf_fireweed_leaves.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_false_hellebore",
+      "files": [
+        "assets/yearofice/blockstates/false_hellebore.json",
+        "assets/yearofice/models/block/false_hellebore.json",
+        "assets/yearofice/models/block/false_hellebore_bare.json",
+        "assets/yearofice/textures/block/false_hellebore.png",
+        "assets/yearofice/textures/block/false_hellebore_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_false_morel",
+      "files": [
+        "assets/yearofice/blockstates/false_morel.json",
+        "assets/yearofice/models/block/false_morel.json",
+        "assets/yearofice/models/block/false_morel_bare.json",
+        "assets/yearofice/textures/block/false_morel.png",
+        "assets/yearofice/textures/block/false_morel_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_feltleaf_willow",
+      "files": [
+        "assets/yearofice/blockstates/feltleaf_willow.json",
+        "assets/yearofice/models/block/feltleaf_willow.json",
+        "assets/yearofice/models/block/feltleaf_willow_bare.json",
+        "assets/yearofice/textures/block/feltleaf_willow.png",
+        "assets/yearofice/textures/block/feltleaf_willow_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fern_root",
+      "files": [
+        "assets/yearofice/models/item/fern_root.json",
+        "assets/yearofice/textures/item/fern_root.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fiddleheads",
+      "files": [
+        "assets/yearofice/models/item/fiddleheads.json",
+        "assets/yearofice/textures/item/fiddleheads.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_field_mint",
+      "files": [
+        "assets/yearofice/blockstates/field_mint.json",
+        "assets/yearofice/models/block/field_mint.json",
+        "assets/yearofice/models/block/field_mint_bare.json",
+        "assets/yearofice/textures/block/field_mint.png",
+        "assets/yearofice/textures/block/field_mint_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fire_moss",
+      "files": [
+        "assets/yearofice/blockstates/fire_moss.json",
+        "assets/yearofice/models/block/fire_moss.json",
+        "assets/yearofice/models/block/fire_moss_bare.json",
+        "assets/yearofice/textures/block/fire_moss.png",
+        "assets/yearofice/textures/block/fire_moss_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fireweed",
+      "files": [
+        "assets/yearofice/blockstates/fireweed.json",
+        "assets/yearofice/models/block/fireweed.json",
+        "assets/yearofice/models/block/fireweed_bare.json",
+        "assets/yearofice/textures/block/fireweed.png",
+        "assets/yearofice/textures/block/fireweed_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fireweed_shoots",
+      "files": [
+        "assets/yearofice/models/item/fireweed_shoots.json",
+        "assets/yearofice/textures/item/fireweed_shoots.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fly_agaric",
+      "files": [
+        "assets/yearofice/blockstates/fly_agaric.json",
+        "assets/yearofice/models/block/fly_agaric.json",
+        "assets/yearofice/models/block/fly_agaric_bare.json",
+        "assets/yearofice/textures/block/fly_agaric.png",
+        "assets/yearofice/textures/block/fly_agaric_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_foxtail_barley",
+      "files": [
+        "assets/yearofice/blockstates/foxtail_barley.json",
+        "assets/yearofice/models/block/foxtail_barley.json",
+        "assets/yearofice/models/block/foxtail_barley_bare.json",
+        "assets/yearofice/textures/block/foxtail_barley.png",
+        "assets/yearofice/textures/block/foxtail_barley_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_foxtail_seed",
+      "files": [
+        "assets/yearofice/models/item/foxtail_seed.json",
+        "assets/yearofice/textures/item/foxtail_seed.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_garden_bed",
+      "files": [
+        "assets/yearofice/blockstates/garden_bed.json",
+        "assets/yearofice/models/block/garden_bed.json",
+        "assets/yearofice/textures/block/garden_bed.png",
+        "assets/yearofice/textures/block/garden_bed_top.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_goldenrod",
+      "files": [
+        "assets/yearofice/blockstates/goldenrod.json",
+        "assets/yearofice/models/block/goldenrod.json",
+        "assets/yearofice/models/block/goldenrod_bare.json",
+        "assets/yearofice/textures/block/goldenrod.png",
+        "assets/yearofice/textures/block/goldenrod_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_grain_sheaf",
+      "files": [
+        "assets/yearofice/models/item/grain_sheaf.json",
+        "assets/yearofice/textures/item/grain_sheaf.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_hand_quern",
+      "files": [
+        "assets/yearofice/models/item/hand_quern.json",
+        "assets/yearofice/textures/item/hand_quern.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_highbush_cranberry_bush",
+      "files": [
+        "assets/yearofice/blockstates/highbush_cranberry_bush.json",
+        "assets/yearofice/models/block/highbush_cranberry_bush.json",
+        "assets/yearofice/models/block/highbush_cranberry_bush_bare.json",
+        "assets/yearofice/textures/block/highbush_cranberry_bush.png",
+        "assets/yearofice/textures/block/highbush_cranberry_bush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_hoe",
+      "files": [
+        "assets/yearofice/models/item/hoe.json",
+        "assets/yearofice/textures/item/hoe.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_iceland_moss",
+      "files": [
+        "assets/yearofice/blockstates/iceland_moss.json",
+        "assets/yearofice/models/block/iceland_moss.json",
+        "assets/yearofice/models/block/iceland_moss_bare.json",
+        "assets/yearofice/textures/block/iceland_moss.png",
+        "assets/yearofice/textures/block/iceland_moss_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_iceland_moss_pieces",
+      "files": [
+        "assets/yearofice/models/item/iceland_moss_pieces.json",
+        "assets/yearofice/textures/item/iceland_moss_pieces.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_jacobs_ladder",
+      "files": [
+        "assets/yearofice/blockstates/jacobs_ladder.json",
+        "assets/yearofice/models/block/jacobs_ladder.json",
+        "assets/yearofice/models/block/jacobs_ladder_bare.json",
+        "assets/yearofice/textures/block/jacobs_ladder.png",
+        "assets/yearofice/textures/block/jacobs_ladder_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_juniper_berries",
+      "files": [
+        "assets/yearofice/models/item/juniper_berries.json",
+        "assets/yearofice/textures/item/juniper_berries.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_labrador_tea",
+      "files": [
+        "assets/yearofice/blockstates/labrador_tea.json",
+        "assets/yearofice/models/block/labrador_tea.json",
+        "assets/yearofice/models/block/labrador_tea_bare.json",
+        "assets/yearofice/textures/block/labrador_tea.png",
+        "assets/yearofice/textures/block/labrador_tea_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_labrador_tea_leaves",
+      "files": [
+        "assets/yearofice/models/item/labrador_tea_leaves.json",
+        "assets/yearofice/textures/item/labrador_tea_leaves.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_lady_fern",
+      "files": [
+        "assets/yearofice/blockstates/lady_fern.json",
+        "assets/yearofice/models/block/lady_fern.json",
+        "assets/yearofice/models/block/lady_fern_bare.json",
+        "assets/yearofice/textures/block/lady_fern.png",
+        "assets/yearofice/textures/block/lady_fern_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_lambsquarters",
+      "files": [
+        "assets/yearofice/blockstates/lambsquarters.json",
+        "assets/yearofice/models/block/lambsquarters.json",
+        "assets/yearofice/models/block/lambsquarters_bare.json",
+        "assets/yearofice/textures/block/lambsquarters.png",
+        "assets/yearofice/textures/block/lambsquarters_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_lambsquarters_leaves",
+      "files": [
+        "assets/yearofice/models/item/lambsquarters_leaves.json",
+        "assets/yearofice/textures/item/lambsquarters_leaves.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_leatherleaf",
+      "files": [
+        "assets/yearofice/blockstates/leatherleaf.json",
+        "assets/yearofice/models/block/leatherleaf.json",
+        "assets/yearofice/models/block/leatherleaf_bare.json",
+        "assets/yearofice/textures/block/leatherleaf.png",
+        "assets/yearofice/textures/block/leatherleaf_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_lick_crust",
+      "files": [
+        "assets/yearofice/models/item/lick_crust.json",
+        "assets/yearofice/textures/item/lick_crust.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_lick_salt",
+      "files": [
+        "assets/yearofice/models/item/lick_salt.json",
+        "assets/yearofice/textures/item/lick_salt.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_lingonberry_bush",
+      "files": [
+        "assets/yearofice/blockstates/lingonberry_bush.json",
+        "assets/yearofice/models/block/lingonberry_bush.json",
+        "assets/yearofice/models/block/lingonberry_bush_bare.json",
+        "assets/yearofice/textures/block/lingonberry_bush.png",
+        "assets/yearofice/textures/block/lingonberry_bush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_map_lichen",
+      "files": [
+        "assets/yearofice/blockstates/map_lichen.json",
+        "assets/yearofice/models/block/map_lichen.json",
+        "assets/yearofice/models/block/map_lichen_bare.json",
+        "assets/yearofice/textures/block/map_lichen.png",
+        "assets/yearofice/textures/block/map_lichen_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_mint_leaves",
+      "files": [
+        "assets/yearofice/models/item/mint_leaves.json",
+        "assets/yearofice/textures/item/mint_leaves.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_monkshood",
+      "files": [
+        "assets/yearofice/blockstates/monkshood.json",
+        "assets/yearofice/models/block/monkshood.json",
+        "assets/yearofice/models/block/monkshood_bare.json",
+        "assets/yearofice/textures/block/monkshood.png",
+        "assets/yearofice/textures/block/monkshood_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_morel",
+      "files": [
+        "assets/yearofice/blockstates/morel.json",
+        "assets/yearofice/models/block/morel.json",
+        "assets/yearofice/models/block/morel_bare.json",
+        "assets/yearofice/textures/block/morel.png",
+        "assets/yearofice/textures/block/morel_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_morels",
+      "files": [
+        "assets/yearofice/models/item/morels.json",
+        "assets/yearofice/textures/item/morels.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_mountain_avens",
+      "files": [
+        "assets/yearofice/blockstates/mountain_avens.json",
+        "assets/yearofice/models/block/mountain_avens.json",
+        "assets/yearofice/models/block/mountain_avens_bare.json",
+        "assets/yearofice/textures/block/mountain_avens.png",
+        "assets/yearofice/textures/block/mountain_avens_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_mountain_heather",
+      "files": [
+        "assets/yearofice/blockstates/mountain_heather.json",
+        "assets/yearofice/models/block/mountain_heather.json",
+        "assets/yearofice/models/block/mountain_heather_bare.json",
+        "assets/yearofice/textures/block/mountain_heather.png",
+        "assets/yearofice/textures/block/mountain_heather_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_mountain_sorrel",
+      "files": [
+        "assets/yearofice/blockstates/mountain_sorrel.json",
+        "assets/yearofice/models/block/mountain_sorrel.json",
+        "assets/yearofice/models/block/mountain_sorrel_bare.json",
+        "assets/yearofice/textures/block/mountain_sorrel.png",
+        "assets/yearofice/textures/block/mountain_sorrel_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_nagoonberry",
+      "files": [
+        "assets/yearofice/models/item/nagoonberry.json",
+        "assets/yearofice/textures/item/nagoonberry.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_nagoonberry_bush",
+      "files": [
+        "assets/yearofice/blockstates/nagoonberry_bush.json",
+        "assets/yearofice/models/block/nagoonberry_bush.json",
+        "assets/yearofice/models/block/nagoonberry_bush_bare.json",
+        "assets/yearofice/textures/block/nagoonberry_bush.png",
+        "assets/yearofice/textures/block/nagoonberry_bush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_nettle",
+      "files": [
+        "assets/yearofice/blockstates/nettle.json",
+        "assets/yearofice/models/block/nettle.json",
+        "assets/yearofice/models/block/nettle_bare.json",
+        "assets/yearofice/textures/block/nettle.png",
+        "assets/yearofice/textures/block/nettle_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_nettle_tops",
+      "files": [
+        "assets/yearofice/models/item/nettle_tops.json",
+        "assets/yearofice/textures/item/nettle_tops.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_northern_bedstraw",
+      "files": [
+        "assets/yearofice/blockstates/northern_bedstraw.json",
+        "assets/yearofice/models/block/northern_bedstraw.json",
+        "assets/yearofice/models/block/northern_bedstraw_bare.json",
+        "assets/yearofice/textures/block/northern_bedstraw.png",
+        "assets/yearofice/textures/block/northern_bedstraw_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_northern_geranium",
+      "files": [
+        "assets/yearofice/blockstates/northern_geranium.json",
+        "assets/yearofice/models/block/northern_geranium.json",
+        "assets/yearofice/models/block/northern_geranium_bare.json",
+        "assets/yearofice/textures/block/northern_geranium.png",
+        "assets/yearofice/textures/block/northern_geranium_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_orange_cap_bolete",
+      "files": [
+        "assets/yearofice/blockstates/orange_cap_bolete.json",
+        "assets/yearofice/models/block/orange_cap_bolete.json",
+        "assets/yearofice/models/block/orange_cap_bolete_bare.json",
+        "assets/yearofice/textures/block/orange_cap_bolete.png",
+        "assets/yearofice/textures/block/orange_cap_bolete_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_orange_cap_bolete_caps",
+      "files": [
+        "assets/yearofice/models/item/orange_cap_bolete_caps.json",
+        "assets/yearofice/textures/item/orange_cap_bolete_caps.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_ostrich_fern",
+      "files": [
+        "assets/yearofice/blockstates/ostrich_fern.json",
+        "assets/yearofice/models/block/ostrich_fern.json",
+        "assets/yearofice/models/block/ostrich_fern_bare.json",
+        "assets/yearofice/textures/block/ostrich_fern.png",
+        "assets/yearofice/textures/block/ostrich_fern_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_parsnip_shoots",
+      "files": [
+        "assets/yearofice/models/item/parsnip_shoots.json",
+        "assets/yearofice/textures/item/parsnip_shoots.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_pasqueflower",
+      "files": [
+        "assets/yearofice/blockstates/pasqueflower.json",
+        "assets/yearofice/models/block/pasqueflower.json",
+        "assets/yearofice/models/block/pasqueflower_bare.json",
+        "assets/yearofice/textures/block/pasqueflower.png",
+        "assets/yearofice/textures/block/pasqueflower_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_pineapple_weed",
+      "files": [
+        "assets/yearofice/blockstates/pineapple_weed.json",
+        "assets/yearofice/models/block/pineapple_weed.json",
+        "assets/yearofice/models/block/pineapple_weed_bare.json",
+        "assets/yearofice/textures/block/pineapple_weed.png",
+        "assets/yearofice/textures/block/pineapple_weed_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_pineapple_weed_heads",
+      "files": [
+        "assets/yearofice/models/item/pineapple_weed_heads.json",
+        "assets/yearofice/textures/item/pineapple_weed_heads.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_plant_material",
+      "files": [
+        "assets/yearofice/models/item/plant_material.json",
+        "assets/yearofice/textures/item/plant_material.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_plantain",
+      "files": [
+        "assets/yearofice/blockstates/plantain.json",
+        "assets/yearofice/models/block/plantain.json",
+        "assets/yearofice/models/block/plantain_bare.json",
+        "assets/yearofice/textures/block/plantain.png",
+        "assets/yearofice/textures/block/plantain_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_plantain_leaves",
+      "files": [
+        "assets/yearofice/models/item/plantain_leaves.json",
+        "assets/yearofice/textures/item/plantain_leaves.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_poison_pax",
+      "files": [
+        "assets/yearofice/blockstates/poison_pax.json",
+        "assets/yearofice/models/block/poison_pax.json",
+        "assets/yearofice/models/block/poison_pax_bare.json",
+        "assets/yearofice/textures/block/poison_pax.png",
+        "assets/yearofice/textures/block/poison_pax_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_pond_weed",
+      "files": [
+        "assets/yearofice/blockstates/pond_weed.json",
+        "assets/yearofice/models/block/pond_weed.json",
+        "assets/yearofice/models/block/pond_weed_bare.json",
+        "assets/yearofice/textures/block/pond_weed.png",
+        "assets/yearofice/textures/block/pond_weed_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_potato",
+      "files": [
+        "assets/yearofice/models/item/potato.json",
+        "assets/yearofice/textures/item/potato.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_potato_crop",
+      "files": [
+        "assets/yearofice/blockstates/potato_crop.json",
+        "assets/yearofice/models/block/potato_crop_0.json",
+        "assets/yearofice/models/block/potato_crop_1.json",
+        "assets/yearofice/models/block/potato_crop_2.json",
+        "assets/yearofice/models/block/potato_crop_3.json",
+        "assets/yearofice/models/block/potato_crop_5.json",
+        "assets/yearofice/textures/block/potato_crop_0.png",
+        "assets/yearofice/textures/block/potato_crop_1.png",
+        "assets/yearofice/textures/block/potato_crop_2.png",
+        "assets/yearofice/textures/block/potato_crop_3.png",
+        "assets/yearofice/textures/block/potato_crop_5.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_raspberry",
+      "files": [
+        "assets/yearofice/models/item/raspberry.json",
+        "assets/yearofice/textures/item/raspberry.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_raspberry_bush",
+      "files": [
+        "assets/yearofice/blockstates/raspberry_bush.json",
+        "assets/yearofice/models/block/raspberry_bush.json",
+        "assets/yearofice/models/block/raspberry_bush_bare.json",
+        "assets/yearofice/textures/block/raspberry_bush.png",
+        "assets/yearofice/textures/block/raspberry_bush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_red_currant",
+      "files": [
+        "assets/yearofice/models/item/red_currant.json",
+        "assets/yearofice/textures/item/red_currant.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_red_currant_bush",
+      "files": [
+        "assets/yearofice/blockstates/red_currant_bush.json",
+        "assets/yearofice/models/block/red_currant_bush.json",
+        "assets/yearofice/models/block/red_currant_bush_bare.json",
+        "assets/yearofice/textures/block/red_currant_bush.png",
+        "assets/yearofice/textures/block/red_currant_bush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_red_osier_dogwood",
+      "files": [
+        "assets/yearofice/blockstates/red_osier_dogwood.json",
+        "assets/yearofice/models/block/red_osier_dogwood.json",
+        "assets/yearofice/models/block/red_osier_dogwood_bare.json",
+        "assets/yearofice/textures/block/red_osier_dogwood.png",
+        "assets/yearofice/textures/block/red_osier_dogwood_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_rhubarb_stems",
+      "files": [
+        "assets/yearofice/models/item/rhubarb_stems.json",
+        "assets/yearofice/textures/item/rhubarb_stems.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_rock_tripe",
+      "files": [
+        "assets/yearofice/blockstates/rock_tripe.json",
+        "assets/yearofice/models/block/rock_tripe.json",
+        "assets/yearofice/models/block/rock_tripe_bare.json",
+        "assets/yearofice/textures/block/rock_tripe.png",
+        "assets/yearofice/textures/block/rock_tripe_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_rock_tripe_pieces",
+      "files": [
+        "assets/yearofice/models/item/rock_tripe_pieces.json",
+        "assets/yearofice/textures/item/rock_tripe_pieces.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_roseroot",
+      "files": [
+        "assets/yearofice/blockstates/roseroot.json",
+        "assets/yearofice/models/block/roseroot.json",
+        "assets/yearofice/models/block/roseroot_bare.json",
+        "assets/yearofice/textures/block/roseroot.png",
+        "assets/yearofice/textures/block/roseroot_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_roseroot_leaves",
+      "files": [
+        "assets/yearofice/models/item/roseroot_leaves.json",
+        "assets/yearofice/textures/item/roseroot_leaves.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_salt_crust",
+      "files": [
+        "assets/yearofice/blockstates/salt_crust.json",
+        "assets/yearofice/models/block/salt_crust_0.json",
+        "assets/yearofice/models/block/salt_crust_1.json",
+        "assets/yearofice/models/block/salt_crust_2.json",
+        "assets/yearofice/models/block/salt_crust_3.json",
+        "assets/yearofice/models/block/salt_crust_4.json",
+        "assets/yearofice/textures/block/salt_crust_0.png",
+        "assets/yearofice/textures/block/salt_crust_1.png",
+        "assets/yearofice/textures/block/salt_crust_2.png",
+        "assets/yearofice/textures/block/salt_crust_3.png",
+        "assets/yearofice/textures/block/salt_crust_4.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_sedge_mat",
+      "files": [
+        "assets/yearofice/blockstates/sedge_mat.json",
+        "assets/yearofice/models/block/sedge_mat.json",
+        "assets/yearofice/models/block/sedge_mat_bare.json",
+        "assets/yearofice/textures/block/sedge_mat.png",
+        "assets/yearofice/textures/block/sedge_mat_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_seed_potato",
+      "files": [
+        "assets/yearofice/models/item/seed_potato.json",
+        "assets/yearofice/textures/item/seed_potato.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_shaggy_mane",
+      "files": [
+        "assets/yearofice/blockstates/shaggy_mane.json",
+        "assets/yearofice/models/block/shaggy_mane.json",
+        "assets/yearofice/models/block/shaggy_mane_bare.json",
+        "assets/yearofice/textures/block/shaggy_mane.png",
+        "assets/yearofice/textures/block/shaggy_mane_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_shaggy_mane_caps",
+      "files": [
+        "assets/yearofice/models/item/shaggy_mane_caps.json",
+        "assets/yearofice/textures/item/shaggy_mane_caps.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_shovel",
+      "files": [
+        "assets/yearofice/models/item/shovel.json",
+        "assets/yearofice/textures/item/shovel.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_shrubby_cinquefoil",
+      "files": [
+        "assets/yearofice/blockstates/shrubby_cinquefoil.json",
+        "assets/yearofice/models/block/shrubby_cinquefoil.json",
+        "assets/yearofice/models/block/shrubby_cinquefoil_bare.json",
+        "assets/yearofice/textures/block/shrubby_cinquefoil.png",
+        "assets/yearofice/textures/block/shrubby_cinquefoil_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_skunk_currant",
+      "files": [
+        "assets/yearofice/models/item/skunk_currant.json",
+        "assets/yearofice/textures/item/skunk_currant.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_skunk_currant_bush",
+      "files": [
+        "assets/yearofice/blockstates/skunk_currant_bush.json",
+        "assets/yearofice/models/block/skunk_currant_bush.json",
+        "assets/yearofice/models/block/skunk_currant_bush_bare.json",
+        "assets/yearofice/textures/block/skunk_currant_bush.png",
+        "assets/yearofice/textures/block/skunk_currant_bush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_soapberry",
+      "files": [
+        "assets/yearofice/models/item/soapberry.json",
+        "assets/yearofice/textures/item/soapberry.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_soapberry_bush",
+      "files": [
+        "assets/yearofice/blockstates/soapberry_bush.json",
+        "assets/yearofice/models/block/soapberry_bush.json",
+        "assets/yearofice/models/block/soapberry_bush_bare.json",
+        "assets/yearofice/textures/block/soapberry_bush.png",
+        "assets/yearofice/textures/block/soapberry_bush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_sorrel_leaves",
+      "files": [
+        "assets/yearofice/models/item/sorrel_leaves.json",
+        "assets/yearofice/textures/item/sorrel_leaves.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_sourdock",
+      "files": [
+        "assets/yearofice/blockstates/sourdock.json",
+        "assets/yearofice/models/block/sourdock.json",
+        "assets/yearofice/models/block/sourdock_bare.json",
+        "assets/yearofice/textures/block/sourdock.png",
+        "assets/yearofice/textures/block/sourdock_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_sourdock_leaves",
+      "files": [
+        "assets/yearofice/models/item/sourdock_leaves.json",
+        "assets/yearofice/textures/item/sourdock_leaves.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_stair_step_moss",
+      "files": [
+        "assets/yearofice/blockstates/stair_step_moss.json",
+        "assets/yearofice/models/block/stair_step_moss.json",
+        "assets/yearofice/models/block/stair_step_moss_bare.json",
+        "assets/yearofice/textures/block/stair_step_moss.png",
+        "assets/yearofice/textures/block/stair_step_moss_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_stiff_clubmoss",
+      "files": [
+        "assets/yearofice/blockstates/stiff_clubmoss.json",
+        "assets/yearofice/models/block/stiff_clubmoss.json",
+        "assets/yearofice/models/block/stiff_clubmoss_bare.json",
+        "assets/yearofice/textures/block/stiff_clubmoss.png",
+        "assets/yearofice/textures/block/stiff_clubmoss_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_straw",
+      "files": [
+        "assets/yearofice/models/item/straw.json",
+        "assets/yearofice/textures/item/straw.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_sunburst_lichen",
+      "files": [
+        "assets/yearofice/blockstates/sunburst_lichen.json",
+        "assets/yearofice/models/block/sunburst_lichen.json",
+        "assets/yearofice/models/block/sunburst_lichen_bare.json",
+        "assets/yearofice/textures/block/sunburst_lichen.png",
+        "assets/yearofice/textures/block/sunburst_lichen_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_sweet_coltsfoot",
+      "files": [
+        "assets/yearofice/blockstates/sweet_coltsfoot.json",
+        "assets/yearofice/models/block/sweet_coltsfoot.json",
+        "assets/yearofice/models/block/sweet_coltsfoot_bare.json",
+        "assets/yearofice/textures/block/sweet_coltsfoot.png",
+        "assets/yearofice/textures/block/sweet_coltsfoot_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_sweet_pea_roots",
+      "files": [
+        "assets/yearofice/models/item/sweet_pea_roots.json",
+        "assets/yearofice/textures/item/sweet_pea_roots.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_sweetgale",
+      "files": [
+        "assets/yearofice/blockstates/sweetgale.json",
+        "assets/yearofice/models/block/sweetgale.json",
+        "assets/yearofice/models/block/sweetgale_bare.json",
+        "assets/yearofice/textures/block/sweetgale.png",
+        "assets/yearofice/textures/block/sweetgale_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_sweetgrass",
+      "files": [
+        "assets/yearofice/blockstates/sweetgrass.json",
+        "assets/yearofice/models/block/sweetgrass.json",
+        "assets/yearofice/models/block/sweetgrass_bare.json",
+        "assets/yearofice/textures/block/sweetgrass.png",
+        "assets/yearofice/textures/block/sweetgrass_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tall_bluebells",
+      "files": [
+        "assets/yearofice/blockstates/tall_bluebells.json",
+        "assets/yearofice/models/block/tall_bluebells.json",
+        "assets/yearofice/models/block/tall_bluebells_bare.json",
+        "assets/yearofice/textures/block/tall_bluebells.png",
+        "assets/yearofice/textures/block/tall_bluebells_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tall_larkspur",
+      "files": [
+        "assets/yearofice/blockstates/tall_larkspur.json",
+        "assets/yearofice/models/block/tall_larkspur.json",
+        "assets/yearofice/models/block/tall_larkspur_bare.json",
+        "assets/yearofice/textures/block/tall_larkspur.png",
+        "assets/yearofice/textures/block/tall_larkspur_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_thinleaf_alder",
+      "files": [
+        "assets/yearofice/blockstates/thinleaf_alder.json",
+        "assets/yearofice/models/block/thinleaf_alder.json",
+        "assets/yearofice/models/block/thinleaf_alder_bare.json",
+        "assets/yearofice/textures/block/thinleaf_alder.png",
+        "assets/yearofice/textures/block/thinleaf_alder_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_turnip",
+      "files": [
+        "assets/yearofice/models/item/turnip.json",
+        "assets/yearofice/textures/item/turnip.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_turnip_crop",
+      "files": [
+        "assets/yearofice/blockstates/turnip_crop.json",
+        "assets/yearofice/models/block/turnip_crop_0.json",
+        "assets/yearofice/models/block/turnip_crop_1.json",
+        "assets/yearofice/models/block/turnip_crop_2.json",
+        "assets/yearofice/models/block/turnip_crop_3.json",
+        "assets/yearofice/models/block/turnip_crop_5.json",
+        "assets/yearofice/textures/block/turnip_crop_0.png",
+        "assets/yearofice/textures/block/turnip_crop_1.png",
+        "assets/yearofice/textures/block/turnip_crop_2.png",
+        "assets/yearofice/textures/block/turnip_crop_3.png",
+        "assets/yearofice/textures/block/turnip_crop_5.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_turnip_seed",
+      "files": [
+        "assets/yearofice/models/item/turnip_seed.json",
+        "assets/yearofice/textures/item/turnip_seed.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_usnea",
+      "files": [
+        "assets/yearofice/blockstates/usnea.json",
+        "assets/yearofice/models/block/usnea.json",
+        "assets/yearofice/models/block/usnea_bare.json",
+        "assets/yearofice/textures/block/usnea.png",
+        "assets/yearofice/textures/block/usnea_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_usnea_strands",
+      "files": [
+        "assets/yearofice/models/item/usnea_strands.json",
+        "assets/yearofice/textures/item/usnea_strands.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_valerian",
+      "files": [
+        "assets/yearofice/blockstates/valerian.json",
+        "assets/yearofice/models/block/valerian.json",
+        "assets/yearofice/models/block/valerian_bare.json",
+        "assets/yearofice/textures/block/valerian.png",
+        "assets/yearofice/textures/block/valerian_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_water_hemlock",
+      "files": [
+        "assets/yearofice/blockstates/water_hemlock.json",
+        "assets/yearofice/models/block/water_hemlock.json",
+        "assets/yearofice/models/block/water_hemlock_bare.json",
+        "assets/yearofice/textures/block/water_hemlock.png",
+        "assets/yearofice/textures/block/water_hemlock_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_water_horsetail",
+      "files": [
+        "assets/yearofice/blockstates/water_horsetail.json",
+        "assets/yearofice/models/block/water_horsetail.json",
+        "assets/yearofice/models/block/water_horsetail_bare.json",
+        "assets/yearofice/textures/block/water_horsetail.png",
+        "assets/yearofice/textures/block/water_horsetail_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_water_sedge",
+      "files": [
+        "assets/yearofice/blockstates/water_sedge.json",
+        "assets/yearofice/models/block/water_sedge.json",
+        "assets/yearofice/models/block/water_sedge_bare.json",
+        "assets/yearofice/textures/block/water_sedge.png",
+        "assets/yearofice/textures/block/water_sedge_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wheat",
+      "files": [
+        "assets/yearofice/models/item/wheat.json",
+        "assets/yearofice/textures/item/wheat.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wheat_crop",
+      "files": [
+        "assets/yearofice/blockstates/wheat_crop.json",
+        "assets/yearofice/models/block/wheat_crop_0.json",
+        "assets/yearofice/models/block/wheat_crop_1.json",
+        "assets/yearofice/models/block/wheat_crop_2.json",
+        "assets/yearofice/models/block/wheat_crop_3.json",
+        "assets/yearofice/models/block/wheat_crop_5.json",
+        "assets/yearofice/textures/block/wheat_crop_0.png",
+        "assets/yearofice/textures/block/wheat_crop_1.png",
+        "assets/yearofice/textures/block/wheat_crop_2.png",
+        "assets/yearofice/textures/block/wheat_crop_3.png",
+        "assets/yearofice/textures/block/wheat_crop_5.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wheat_seed",
+      "files": [
+        "assets/yearofice/models/item/wheat_seed.json",
+        "assets/yearofice/textures/item/wheat_seed.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wild_celery",
+      "files": [
+        "assets/yearofice/blockstates/wild_celery.json",
+        "assets/yearofice/models/block/wild_celery.json",
+        "assets/yearofice/models/block/wild_celery_bare.json",
+        "assets/yearofice/textures/block/wild_celery.png",
+        "assets/yearofice/textures/block/wild_celery_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wild_chives",
+      "files": [
+        "assets/yearofice/blockstates/wild_chives.json",
+        "assets/yearofice/models/block/wild_chives.json",
+        "assets/yearofice/models/block/wild_chives_bare.json",
+        "assets/yearofice/textures/block/wild_chives.png",
+        "assets/yearofice/textures/block/wild_chives_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wild_potato",
+      "files": [
+        "assets/yearofice/blockstates/wild_potato.json",
+        "assets/yearofice/models/block/wild_potato.json",
+        "assets/yearofice/models/block/wild_potato_bare.json",
+        "assets/yearofice/textures/block/wild_potato.png",
+        "assets/yearofice/textures/block/wild_potato_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wild_potato_root",
+      "files": [
+        "assets/yearofice/models/item/wild_potato_root.json",
+        "assets/yearofice/textures/item/wild_potato_root.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wild_rhubarb",
+      "files": [
+        "assets/yearofice/blockstates/wild_rhubarb.json",
+        "assets/yearofice/models/block/wild_rhubarb.json",
+        "assets/yearofice/models/block/wild_rhubarb_bare.json",
+        "assets/yearofice/textures/block/wild_rhubarb.png",
+        "assets/yearofice/textures/block/wild_rhubarb_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wild_rose",
+      "files": [
+        "assets/yearofice/blockstates/wild_rose.json",
+        "assets/yearofice/models/block/wild_rose.json",
+        "assets/yearofice/models/block/wild_rose_bare.json",
+        "assets/yearofice/textures/block/wild_rose.png",
+        "assets/yearofice/textures/block/wild_rose_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wild_strawberry",
+      "files": [
+        "assets/yearofice/models/item/wild_strawberry.json",
+        "assets/yearofice/textures/item/wild_strawberry.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wild_strawberry_bush",
+      "files": [
+        "assets/yearofice/blockstates/wild_strawberry_bush.json",
+        "assets/yearofice/models/block/wild_strawberry_bush.json",
+        "assets/yearofice/models/block/wild_strawberry_bush_bare.json",
+        "assets/yearofice/textures/block/wild_strawberry_bush.png",
+        "assets/yearofice/textures/block/wild_strawberry_bush_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wild_sweet_pea",
+      "files": [
+        "assets/yearofice/blockstates/wild_sweet_pea.json",
+        "assets/yearofice/models/block/wild_sweet_pea.json",
+        "assets/yearofice/models/block/wild_sweet_pea_bare.json",
+        "assets/yearofice/textures/block/wild_sweet_pea.png",
+        "assets/yearofice/textures/block/wild_sweet_pea_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wood_fern",
+      "files": [
+        "assets/yearofice/blockstates/wood_fern.json",
+        "assets/yearofice/models/block/wood_fern.json",
+        "assets/yearofice/models/block/wood_fern_bare.json",
+        "assets/yearofice/textures/block/wood_fern.png",
+        "assets/yearofice/textures/block/wood_fern_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wormwood",
+      "files": [
+        "assets/yearofice/blockstates/wormwood.json",
+        "assets/yearofice/models/block/wormwood.json",
+        "assets/yearofice/models/block/wormwood_bare.json",
+        "assets/yearofice/textures/block/wormwood.png",
+        "assets/yearofice/textures/block/wormwood_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_yarrow",
+      "files": [
+        "assets/yearofice/blockstates/yarrow.json",
+        "assets/yearofice/models/block/yarrow.json",
+        "assets/yearofice/models/block/yarrow_bare.json",
+        "assets/yearofice/textures/block/yarrow.png",
+        "assets/yearofice/textures/block/yarrow_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_yarrow_leaves",
+      "files": [
+        "assets/yearofice/models/item/yarrow_leaves.json",
+        "assets/yearofice/textures/item/yarrow_leaves.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_ermine",
+      "files": [
+        "assets/yearofice/geo/entity/ermine.geo.json",
+        "assets/yearofice/animations/entity/ermine.animation.json",
+        "assets/yearofice/textures/entity/ermine/adult_summer.png",
+        "assets/yearofice/textures/entity/ermine/adult_winter.png",
+        "assets/yearofice/textures/entity/ermine/adult_mottled.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/ermine.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_marten",
+      "files": [
+        "assets/yearofice/geo/entity/marten.geo.json",
+        "assets/yearofice/animations/entity/marten.animation.json",
+        "assets/yearofice/textures/entity/marten/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/marten.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_mink",
+      "files": [
+        "assets/yearofice/geo/entity/mink.geo.json",
+        "assets/yearofice/animations/entity/mink.animation.json",
+        "assets/yearofice/textures/entity/mink/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/mink.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_muskrat",
+      "files": [
+        "assets/yearofice/geo/entity/muskrat.geo.json",
+        "assets/yearofice/animations/entity/muskrat.animation.json",
+        "assets/yearofice/textures/entity/muskrat/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/muskrat.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_porcupine",
+      "files": [
+        "assets/yearofice/geo/entity/porcupine.geo.json",
+        "assets/yearofice/animations/entity/porcupine.animation.json",
+        "assets/yearofice/textures/entity/porcupine/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/porcupine.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_rock_ptarmigan",
+      "files": [
+        "assets/yearofice/animations/entity/rock_ptarmigan.animation.json",
+        "assets/yearofice/textures/entity/rock_ptarmigan/adult_summer.png",
+        "assets/yearofice/textures/entity/rock_ptarmigan/adult_winter.png",
+        "assets/yearofice/textures/entity/rock_ptarmigan/adult_moult.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/rock_ptarmigan.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_ruffed_grouse",
+      "files": [
+        "assets/yearofice/animations/entity/ruffed_grouse.animation.json",
+        "assets/yearofice/textures/entity/ruffed_grouse/male_adult.png",
+        "assets/yearofice/textures/entity/ruffed_grouse/female_adult.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/ruffed_grouse.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_wood_frog",
+      "files": [
+        "assets/yearofice/geo/entity/wood_frog.geo.json",
+        "assets/yearofice/animations/entity/wood_frog.animation.json",
+        "assets/yearofice/textures/entity/wood_frog/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/wood_frog.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_yellowjacket",
+      "files": [
+        "assets/yearofice/geo/entity/yellowjacket.geo.json",
+        "assets/yearofice/animations/entity/yellowjacket.animation.json",
+        "assets/yearofice/textures/entity/yellowjacket/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/yellowjacket.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_small_game",
+      "files": [
+        "assets/yearofice/blockstates/gut_pile.json",
+        "assets/yearofice/models/block/gut_pile_0.json",
+        "assets/yearofice/models/block/gut_pile_1.json",
+        "assets/yearofice/models/block/gut_pile_2.json",
+        "assets/yearofice/models/block/gut_pile_3.json",
+        "assets/yearofice/models/item/beaver_meat.json",
+        "assets/yearofice/models/item/beaver_pelt.json",
+        "assets/yearofice/models/item/ermine_pelt.json",
+        "assets/yearofice/models/item/marten_meat.json",
+        "assets/yearofice/models/item/marten_pelt.json",
+        "assets/yearofice/models/item/mink_meat.json",
+        "assets/yearofice/models/item/mink_pelt.json",
+        "assets/yearofice/models/item/muskrat_meat.json",
+        "assets/yearofice/models/item/muskrat_pelt.json",
+        "assets/yearofice/models/item/porcupine_meat.json",
+        "assets/yearofice/models/item/red_squirrel_meat.json",
+        "assets/yearofice/models/item/red_squirrel_pelt.json",
+        "assets/yearofice/models/item/rock_ptarmigan_meat.json",
+        "assets/yearofice/models/item/ruffed_grouse_meat.json",
+        "assets/yearofice/models/item/spruce_grouse_meat.json",
+        "assets/yearofice/textures/block/gut_pile.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/small_game.py",
+      "licence": "project",
+      "generator_version": "small_game 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_hen_egg",
+      "files": [
+        "assets/yearofice/models/item/hen_egg.json",
+        "assets/yearofice/textures/item/hen_egg.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_goat_milk",
+      "files": [
+        "assets/yearofice/models/item/goat_milk.json",
+        "assets/yearofice/textures/item/goat_milk.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_barley_flour",
+      "asset_id": "tex_flail",
+      "files": [
+        "assets/yearofice/models/item/flail.json",
+        "assets/yearofice/textures/item/flail.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen2.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_barley_flour",
+      "files": [
+        "assets/yearofice/models/item/barley_flour.json",
+        "assets/yearofice/textures/item/barley_flour.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_sauerkraut",
+      "files": [
+        "assets/yearofice/models/item/sauerkraut.json",
+        "assets/yearofice/textures/item/sauerkraut.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_birch_sap",
+      "files": [
+        "assets/yearofice/models/item/birch_sap.json",
+        "assets/yearofice/textures/item/birch_sap.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_birch_syrup",
+      "files": [
+        "assets/yearofice/models/item/birch_syrup.json",
+        "assets/yearofice/textures/item/birch_syrup.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_dish",
+      "files": [
+        "assets/yearofice/models/item/dish.json",
+        "assets/yearofice/textures/item/dish.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_gold_pan",
+      "files": [
+        "assets/yearofice/models/item/gold_pan.json",
+        "assets/yearofice/textures/item/gold_pan.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_birch_pan",
+      "files": [
+        "assets/yearofice/models/item/birch_pan.json",
+        "assets/yearofice/textures/item/birch_pan.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_black_sand",
+      "files": [
+        "assets/yearofice/models/item/black_sand.json",
+        "assets/yearofice/textures/item/black_sand.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_drying_rack",
+      "files": [
+        "assets/yearofice/blockstates/drying_rack.json",
+        "assets/yearofice/models/block/drying_rack.json",
+        "assets/yearofice/textures/block/rack_pole_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_smoke_rack",
+      "files": [
+        "assets/yearofice/blockstates/smoke_rack.json",
+        "assets/yearofice/models/block/smoke_rack.json",
+        "assets/yearofice/textures/block/smoke_rack_pole_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_food_cache",
+      "files": [
+        "assets/yearofice/blockstates/food_cache.json",
+        "assets/yearofice/models/block/food_cache.json",
+        "assets/yearofice/textures/block/food_cache_side.png",
+        "assets/yearofice/textures/block/food_cache_top.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_deadfall",
+      "files": [
+        "assets/yearofice/blockstates/deadfall.json",
+        "assets/yearofice/models/block/deadfall.json",
+        "assets/yearofice/models/block/deadfall_sprung.json",
+        "assets/yearofice/models/item/deadfall.json",
+        "assets/yearofice/textures/block/deadfall_stone_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_mouse_deadfall",
+      "files": [
+        "assets/yearofice/blockstates/mouse_deadfall.json",
+        "assets/yearofice/models/block/mouse_deadfall.json",
+        "assets/yearofice/models/block/mouse_deadfall_sprung.json",
+        "assets/yearofice/models/item/mouse_deadfall.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_snare_funnel",
+      "files": [
+        "assets/yearofice/blockstates/snare_funnel.json",
+        "assets/yearofice/models/block/snare_funnel.json",
+        "assets/yearofice/models/item/snare_funnel.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_placer_gravel",
+      "files": [
+        "assets/yearofice/blockstates/placer_gravel.json",
+        "assets/yearofice/models/block/placer_gravel.json",
+        "assets/yearofice/models/item/placer_gravel.json",
+        "assets/yearofice/textures/block/placer_gravel_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_northern_pike",
+      "files": [
+        "assets/yearofice/textures/gui/fish/northern_pike.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/plants/gen2.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
     }
   ]
 }

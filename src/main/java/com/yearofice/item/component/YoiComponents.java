@@ -57,5 +57,21 @@ public final class YoiComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Doneness.Ring>> DONENESS =
             COMPONENTS.registerComponentType("doneness", b -> b.persistent(RING_CODEC).networkSynchronized(ByteBufCodecs.fromCodec(RING_CODEC)));
 
+    /** {@code yearofice:nutrients}: what one item of a dish or dried stack gives (kcal, protein, fat, vitamin C, water). */
+    public static final Codec<com.yearofice.sim.food.Nutrients> NUTRIENTS_CODEC = RecordCodecBuilder.create(i -> i.group(
+            Codec.doubleRange(0, 1e7).fieldOf("kcal").forGetter(com.yearofice.sim.food.Nutrients::kcal),
+            Codec.doubleRange(0, 1e7).fieldOf("protein_g").forGetter(com.yearofice.sim.food.Nutrients::proteinG),
+            Codec.doubleRange(0, 1e7).fieldOf("fat_g").forGetter(com.yearofice.sim.food.Nutrients::fatG),
+            Codec.doubleRange(0, 1e7).fieldOf("vit_c_mg").forGetter(com.yearofice.sim.food.Nutrients::vitCMg),
+            Codec.doubleRange(0, 1e7).fieldOf("water_ml").forGetter(com.yearofice.sim.food.Nutrients::waterMl)
+    ).apply(i, com.yearofice.sim.food.Nutrients::new));
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<com.yearofice.sim.food.Nutrients>> NUTRIENTS =
+            COMPONENTS.registerComponentType("nutrients", b -> b.persistent(NUTRIENTS_CODEC).networkSynchronized(ByteBufCodecs.fromCodec(NUTRIENTS_CODEC)));
+
+    /** {@code yearofice:dish_id}: the name the notebook gives a dish ({@code camp_stew}, {@code akutaq}). */
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<String>> DISH_ID =
+            COMPONENTS.registerComponentType("dish_id", b -> b.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8));
+
     public static void register(IEventBus modBus) { COMPONENTS.register(modBus); }
 }

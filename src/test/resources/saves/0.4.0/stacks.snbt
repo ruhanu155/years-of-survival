@@ -7,5 +7,7 @@
   {id:"yearofice:birch_bark_torch",count:1,components:{"yearofice:light_state":{lit:1b,left:9}}},
   {id:"yearofice:willow_ptarmigan_meat",count:2,components:{"yearofice:doneness":"done"}},
   {id:"yearofice:tinder_bundle",count:5,components:{"yearofice:moisture":35}},
-  {id:"yearofice:spruce_round",count:1,components:{"yearofice:seasoning":{moisture_pct:22.5d,day:140L}}}
+  {id:"yearofice:spruce_round",count:1,components:{"yearofice:seasoning":{moisture_pct:22.5d,day:140L}}},
+  {id:"yearofice:dish",count:1,components:{"yearofice:dish_id":"camp_stew","yearofice:nutrients":{kcal:1500.0d,protein_g:120.0d,fat_g:40.0d,vit_c_mg:30.0d,water_ml:500.0d},"yearofice:weight_g":1200}},
+  {id:"yearofice:barley",count:1,components:{"yearofice:seed_lot":2,"yearofice:weight_g":800}}
 ]

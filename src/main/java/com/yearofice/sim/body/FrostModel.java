@@ -35,6 +35,23 @@ public final class FrostModel {
         return bareMetalBelowMinus20 ? l + 5 : l;
     }
 
+    /**
+     * The face's share of the head (B13, B14): grease and a dry Full beard make the face safe {@code faceBonusC}
+     * colder, so the limit drops by it ({@link Skin#faceBonusC}). Other parts ignore the bonus.
+     */
+    public static double partLimitC(double zoneLimitC, boolean partWet, boolean bareMetalBelowMinus20, Part part,
+                                    double faceBonusC) {
+        double l = partLimitC(zoneLimitC, partWet, bareMetalBelowMinus20);
+        return part == Part.HEAD ? l - Math.max(0, faceBonusC) : l;
+    }
+
+    /** A part's limit from what is worn: its zone's safe-to, wet when the zone is, less the face bonus on the head. */
+    public static double partLimitC(ClothingState worn, Part part, boolean bareMetalBelowMinus20, double faceBonusC) {
+        double zone = Clothing.zoneSafeToC(worn, part.zone);
+        boolean wet = Clothing.zoneWetness(worn, part.zone) > Clothing.WET_MARK;
+        return partLimitC(zone, wet, bareMetalBelowMinus20, part, faceBonusC);
+    }
+
     /** 0 none, 1 frostnip, 2 superficial, 3 deep. */
     public static int stage(int points) {
         if (points >= DEEP) return 3;

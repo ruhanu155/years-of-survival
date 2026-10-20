@@ -1,0 +1,11 @@
+{
+  "species": "yearofice:data_only_probe",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    {
+      "item": "yearofice:snowshoe_hare_meat",
+      "kind": "meat",
+      "unit_g": 100
+    }
+  ]
+}

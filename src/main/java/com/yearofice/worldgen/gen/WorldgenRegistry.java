@@ -55,6 +55,7 @@ public final class WorldgenRegistry {
     public static final Supplier<MapCodec<YoiChunkGenerator>> VALLEY_GENERATOR = GENERATORS.register("valley", () -> YoiChunkGenerator.CODEC);
     public static final Supplier<MapCodec<YoiBiomeSource>> VALLEY_BIOMES = BIOME_SOURCES.register("valley", () -> YoiBiomeSource.CODEC);
     public static final Supplier<Feature<NoneFeatureConfiguration>> LAYER_TREES = FEATURES.register("layer_trees", LayerTreesFeature::new);
+    public static final Supplier<Feature<NoneFeatureConfiguration>> LAYER_PLANTS = FEATURES.register("layer_plants", LayerPlantsFeature::new);
     public static final Supplier<StructureType<SetPieceStructure>> SETPIECE = STRUCTURE_TYPES.register("setpiece", () -> () -> SetPieceStructure.CODEC);
     public static final Supplier<StructurePlacementType<PlacesLayerPlacement>> PLACES_LAYER =
             PLACEMENTS.register("places_layer", () -> () -> PlacesLayerPlacement.CODEC);

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/stair_step_moss"
+  },
+  "render_type": "minecraft:cutout"
+}
