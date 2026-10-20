@@ -9,6 +9,7 @@ import com.yearofice.item.component.YoiComponents;
 import com.yearofice.item.inventory.LoadCalculator;
 import com.yearofice.item.inventory.PackAttachments;
 import com.yearofice.item.inventory.PackConfig;
+import com.yearofice.item.inventory.PackSkill;
 import com.yearofice.item.inventory.PackItems;
 import com.yearofice.item.inventory.PackRules;
 import com.yearofice.item.inventory.PackSlots;
@@ -55,6 +56,8 @@ public final class PackGameTests {
         out.add(test("yearofice:pack/no_walkover_pickup", 100, PackGameTests::noWalkoverPickup));
         out.add(test("yearofice:pack/load_bands", 100, PackGameTests::loadBands));
         out.add(test("yearofice:pack/strength_scales_bands", 100, PackGameTests::strengthScalesBands));
+        out.add(test("yearofice:pack/hauling_practice", 100, PackGameTests::haulingPractice));
+        out.add(test("yearofice:pack/pack_min_strength", 100, PackGameTests::packMinStrength));
         out.add(test("yearofice:layers/item_expiry", 100, PackGameTests::itemExpiry));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
@@ -221,6 +224,50 @@ public final class PackGameTests {
         h.assertTrue(weak < 1, "BMI 17 leaves no strength: " + weak);
         h.assertTrue(Math.abs(speedAt(p, 13) - 0.85) < 0.02 * 0.85, "13 kg is heavy at Strength 0 (edge 12 kg)");
         h.assertTrue(Math.abs(speedAt(p, 37) - 0.30) < 0.02 * 0.30, "37 kg drags at Strength 0 (edge 36 kg)");
+        h.succeed();
+    }
+
+    /** {@code pack/hauling_practice} (A11): 300 reps lift the band edges 10%; carrying 15 kg+ on foot earns reps. */
+    static void haulingPractice(GameTestHelper h) {
+        ServerPlayer p = player(h, "hauler");
+        BodyState s = BodyAttachments.of(p);
+        s.kg = Metabolism.kgForBmi(17, s.heightCm);
+        PackSkill.setReps(p, 0);
+        h.assertTrue(Math.abs(speedAt(p, 13) - 0.85) < 0.02 * 0.85, "13 kg is heavy at Strength 0 and no practice (edge 12 kg)");
+        PackSkill.setReps(p, 300);
+        h.assertTrue(Math.abs(speedAt(p, 13) - 1.0) < 1e-6, "13 kg is light at full practice (edge 13.2 kg)");
+        PackSkill.setReps(p, 150);
+        h.assertTrue(Math.abs(speedAt(p, 12.4) - 1.0) < 1e-6 && Math.abs(speedAt(p, 12.7) - 0.85) < 0.02 * 0.85, "half practice moves the edge to 12.6 kg");
+        PackSkill.setReps(p, 0);
+        speedAt(p, 20);
+        p.setOnGround(true);
+        p.setDeltaMovement(0.2, 0, 0);
+        int need = (int) PackConfig.get("hauling_rep_ticks");
+        for (int i = 0; i < need; i++) PackSkill.tick(p);
+        h.assertTrue(PackSkill.reps(p) == 1, "walking under 20 kg for one interval earns one rep: " + PackSkill.reps(p));
+        speedAt(p, 5);
+        for (int i = 0; i < need; i++) PackSkill.tick(p);
+        h.assertTrue(PackSkill.reps(p) == 1, "5 kg earns nothing");
+        h.succeed();
+    }
+
+    /** {@code pack/pack_min_strength} (A11): a frame pack worn below its minimum Strength holds only 30 kg. */
+    static void packMinStrength(GameTestHelper h) {
+        ServerPlayer p = player(h, "frame");
+        BodyState s = BodyAttachments.of(p);
+        PackSkill.setReps(p, 0);
+        s.kg = Metabolism.kgForBmi(17, s.heightCm);
+        PackSlots.setBack(p, new ItemStack(PackItems.LARGE_PACK_FRAME.get()));
+        PackSync.tick(p);
+        h.assertTrue(LoadCalculator.minStrengthOf(p) == 60, "large frame needs Strength 60");
+        h.assertTrue(LoadCalculator.maxKgOf(p) == 30, "weak: 30 kg limit, got " + LoadCalculator.maxKgOf(p));
+        h.assertTrue(LoadCalculator.bandOf(p, 31) == LoadBands.Band.OVERLOADED, "weak: over 30 kg is Overloaded");
+        s.kg = Metabolism.kgForBmi(24, s.heightCm);
+        h.assertTrue(LoadCalculator.maxKgOf(p) == 55, "strong: 55 kg limit, got " + LoadCalculator.maxKgOf(p));
+        h.assertTrue(LoadCalculator.bandOf(p, 31) != LoadBands.Band.OVERLOADED, "strong: 31 kg is not Overloaded");
+        PackSlots.setBack(p, new ItemStack(PackItems.PACK_FRAME.get()));
+        PackSync.tick(p);
+        h.assertTrue(LoadCalculator.minStrengthOf(p) == 40 && LoadCalculator.maxKgOf(p) == 45, "frame pack: 45 kg at Strength 40+");
         h.succeed();
     }
 

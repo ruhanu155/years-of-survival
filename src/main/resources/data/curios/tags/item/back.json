@@ -9,6 +9,7 @@
     {
       "id": "yearofice:pack_frame",
       "required": false
-    }
+    },
+    "yearofice:large_pack_frame"
   ]
 }

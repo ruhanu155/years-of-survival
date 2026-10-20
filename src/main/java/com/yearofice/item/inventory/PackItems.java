@@ -17,5 +17,9 @@ public final class PackItems {
 
     public static final DeferredItem<Item> CRATE_BACKPACK = ITEMS.registerItem("crate_backpack", Item::new, new Item.Properties().stacksTo(1));
 
+    /** The frames (video 2, A11): they need Strength 40 and 60 to carry their full limit (pack.json min_strength). */
+    public static final DeferredItem<Item> PACK_FRAME = ITEMS.registerItem("pack_frame", Item::new, new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> LARGE_PACK_FRAME = ITEMS.registerItem("large_pack_frame", Item::new, new Item.Properties().stacksTo(1));
+
     public static void register(IEventBus modBus) { ITEMS.register(modBus); }
 }

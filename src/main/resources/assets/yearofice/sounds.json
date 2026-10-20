@@ -22,5 +22,11 @@
   "ui.field_note_card": {"subtitle": "subtitles.yearofice.ui.field_note_card", "sounds": [{"name": "minecraft:random/pop", "pitch": 0.7, "volume": 0.5}]},
   "music.dawn": {"sounds": [{"name": "yearofice:music/dawn_spring", "stream": true}]},
   "music.day": {"sounds": [{"name": "yearofice:music/day_spring", "stream": true}]},
-  "music.fire": {"sounds": [{"name": "yearofice:music/fire_spring", "stream": true}]}
+  "music.fire": {"sounds": [{"name": "yearofice:music/fire_spring", "stream": true}]},
+  "body.breath_panic": {"subtitle": "subtitles.yearofice.body.breath_panic", "sounds": [{"name": "minecraft:entity/player/breathe", "pitch": 0.6, "volume": 0.7}]},
+  "body.hit_grunt": {"subtitle": "subtitles.yearofice.body.hit_grunt", "sounds": [{"name": "minecraft:entity/player/hurt", "pitch": 0.8, "volume": 0.8}]},
+  "body.bite_crunch": {"subtitle": "subtitles.yearofice.body.bite_crunch", "sounds": [{"name": "minecraft:entity/generic/eat1", "pitch": 0.5, "volume": 0.9}]},
+  "item.pack_tear": {"subtitle": "subtitles.yearofice.item.pack_tear", "sounds": [{"name": "minecraft:item/armor/break", "pitch": 0.7, "volume": 0.9}]},
+  "body.back_twinge": {"subtitle": "subtitles.yearofice.body.back_twinge", "sounds": [{"name": "minecraft:entity/player/hurt", "pitch": 0.6, "volume": 0.6}]},
+  "body.skin_sting": {"subtitle": "subtitles.yearofice.body.skin_sting", "sounds": [{"name": "minecraft:entity/player/hurt_sweet_berry_bush", "pitch": 0.9, "volume": 0.7}]}
 }

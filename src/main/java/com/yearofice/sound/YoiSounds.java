@@ -22,6 +22,12 @@ public final class YoiSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DAWN = reg("music.dawn");
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DAY = reg("music.day");
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_FIRE = reg("music.fire");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BREATH_PANIC = reg("body.breath_panic");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HIT_GRUNT = reg("body.hit_grunt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BITE_CRUNCH = reg("body.bite_crunch");
+    public static final DeferredHolder<SoundEvent, SoundEvent> PACK_TEAR = reg("item.pack_tear");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BACK_TWINGE = reg("body.back_twinge");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SKIN_STING = reg("body.skin_sting");
 
     public static void init(IEventBus modBus) { SOUNDS.register(modBus); }
 }

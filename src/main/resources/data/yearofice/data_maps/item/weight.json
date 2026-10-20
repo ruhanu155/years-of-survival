@@ -207,6 +207,12 @@
     },
     "yearofice:worm": {
       "weight_g": 5
+    },
+    "yearofice:pack_frame": {
+      "weight_g": 2500
+    },
+    "yearofice:large_pack_frame": {
+      "weight_g": 3000
     }
   }
 }

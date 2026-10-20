@@ -144,7 +144,7 @@ public final class PackSync {
 
     static void applyLoad(ServerPlayer p, State s) {
         LoadBands bands = PackConfig.bands();
-        s.band = bands.band(LoadCalculator.kgOf(p), LoadCalculator.strength(p));
+        s.band = LoadCalculator.bandOf(p, LoadCalculator.kgOf(p));
         AttributeInstance speed = p.getAttribute(Attributes.MOVEMENT_SPEED);
         if (speed == null) return;
         double f = bands.speed(s.band) - 1;
