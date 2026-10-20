@@ -9,15 +9,17 @@ import java.util.Locale;
  *
  * @param illnessScale   × on the duration of every timed illness the body steps (Gentle shorter, Brutal longer)
  * @param restHeal       × on Condition healing on a Rest day (2)
+ * @param feverSleepMult x on sleep recovery while a fever shows (0.7)
  * @param gloveWetMult   × on a greased glove's wetness gain (0.7)
  */
 public record WellnessTuning(double illnessScale, double restHeal, double sunburnHours, double windburnHours,
                              double faceGreaseHours, double gloveGreaseDays, double gloveWetMult,
-                             double beardStageDays, double beardFaceBonusC, double beardIceC, double greaseFaceBonusC) {
+                             double beardStageDays, double beardFaceBonusC, double beardIceC, double greaseFaceBonusC,
+                             double feverSleepMult) {
 
-    public static final WellnessTuning GENTLE = new WellnessTuning(0.75, 2, 3, 2, 8, 3, 0.7, 30, 2, -25, 2);
-    public static final WellnessTuning STANDARD = new WellnessTuning(1.0, 2, 3, 2, 8, 3, 0.7, 30, 2, -25, 2);
-    public static final WellnessTuning BRUTAL = new WellnessTuning(1.25, 2, 3, 2, 8, 3, 0.7, 30, 2, -25, 2);
+    public static final WellnessTuning GENTLE = new WellnessTuning(0.75, 2, 3, 2, 8, 3, 0.7, 30, 2, -25, 2, 0.7);
+    public static final WellnessTuning STANDARD = new WellnessTuning(1.0, 2, 3, 2, 8, 3, 0.7, 30, 2, -25, 2, 0.7);
+    public static final WellnessTuning BRUTAL = new WellnessTuning(1.25, 2, 3, 2, 8, 3, 0.7, 30, 2, -25, 2, 0.7);
 
     public static WellnessTuning of(String preset) {
         String p = preset == null ? "" : preset.toLowerCase(Locale.ROOT);

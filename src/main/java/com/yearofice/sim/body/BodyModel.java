@@ -129,11 +129,12 @@ public final class BodyModel {
         WarmthContext ctx = new WarmthContext(in.shelter(), a,
                 Metabolism.bmiWarmthC(s.bmi()) + (in.asleep() ? Metabolism.SLEEP_FEEL_C + in.bedC() : 0)
                         + Wellness.chillC(s, m));
+        double gloveMult = Skin.gloveWetMult(s, m, Wellness.tuning(t));
         double shiver = 0;
         Collapse collapse = Collapse.NONE;
         int done = 0;
         for (int k = 0; k < n; k++) {
-            clothing = WetnessModel.stepMinute(clothing, exposure);
+            clothing = WetnessModel.stepMinute(clothing, exposure, gloveMult);
             FeelsLike feel = Warmth.feelsLike(in.env(), clothing, in.heat(), ctx);
             Warmth.Step ws = Warmth.Step.of(feel, clothing, in.env(), in.heat() == null ? List.of() : in.heat(),
                     t.coldScale());
@@ -147,6 +148,7 @@ public final class BodyModel {
                 break;
             }
         }
+        FrostStep.tick(s, in.env(), in.heat(), ctx, clothing, t.coldScale(), Wellness.tuning(t), m, done);
         double[] wet = clothing.wetCopy();
         System.arraycopy(wet, 0, s.slotWet, 0, wet.length);
 
@@ -187,7 +189,7 @@ public final class BodyModel {
         // 7. Energy and sleep debt.
         if (in.asleep()) {
             if (s.energy < cap) {
-                s.energy = Math.min(cap, s.energy + Metabolism.SLEEP_BOLTS_PER_H * in.sleepQuality() / 60.0 * done);
+                s.energy = Math.min(cap, s.energy + Metabolism.SLEEP_BOLTS_PER_H * in.sleepQuality() * SleepRules.feverFactor(s, m, Wellness.tuning(t)) / 60.0 * done);
             }
             s.sleepRun += done;
             if (s.sleepRun >= 240) s.awakeMin = 0;

@@ -19,6 +19,11 @@ public record BodyPublicPayload(int entityId, int flags) implements CustomPacket
             ByteBufCodecs.VAR_INT, BodyPublicPayload::entityId, ByteBufCodecs.VAR_INT, BodyPublicPayload::flags,
             BodyPublicPayload::new);
 
+    /** Bits 8-10: the beard stage seen from across a clearing (0 = clean or Stubble, 1 = Short, 2 = Full ...). */
+    public static final int BEARD_SHIFT = 8;
+
+    public int beard() { return (flags >> BEARD_SHIFT) & 7; }
+
     public boolean has(int flag) { return (flags & flag) != 0; }
 
     @Override

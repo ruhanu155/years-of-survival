@@ -39,6 +39,7 @@ public final class Wellness {
         // Healing as each game hour closes.
         double extra = 0;
         boolean rest = RestDay.unbroken(s) && nearWarm;
+        s.restActive = rest;
         if (Math.floorMod(m + n, 60) == 0) {
             Healing.hour(s, Healing.rate(s, in, ef, rest, w));
         }

@@ -82,6 +82,11 @@ public final class SleepRules {
         return Math.max(0, Math.min(1, q));
     }
 
+    /** Sleep restores less while a fever shows (x0.7): the sleeper is resting, not recovering. */
+    public static double feverFactor(BodyState s, long minute, WellnessTuning w) {
+        return IllnessModel.active(s, "fever", minute) ? w.feverSleepMult() : 1.0;
+    }
+
     /** The bed's insulation while asleep, °C; NaN (bare ground) is 0. */
     public static double warmthC(double bedWarmthC) { return Double.isNaN(bedWarmthC) ? 0 : bedWarmthC; }
 
