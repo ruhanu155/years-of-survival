@@ -1,0 +1,75 @@
+{
+  "id": "yearofice:wild_strawberry_bush",
+  "name": "Wild strawberry",
+  "form": "berry_shrub",
+  "tags": [
+    "yearofice:berry_bushes"
+  ],
+  "habitat": [
+    "south_slope",
+    "burn_edge"
+  ],
+  "phases_dd": {
+    "bud": 0.0,
+    "leaf": 40.0,
+    "flower": 90.0,
+    "fruit": 300.0,
+    "seed": 520.0,
+    "senescent": "first_frost"
+  },
+  "verbs": {
+    "pick": {
+      "part": "yearofice:wild_strawberry",
+      "unit": "cup",
+      "unit_g": 150,
+      "time_min": 40.0,
+      "units_per_clump": 1.0,
+      "phases": [
+        "fruit"
+      ],
+      "stripped_weight": 1.0
+    },
+    "strip": {
+      "allowed": true,
+      "work_scale": 0.4,
+      "stripped_weight": 1.5
+    },
+    "uproot": {
+      "drops": "minecraft:stick",
+      "empty_years": 3
+    }
+  },
+  "patch": {
+    "clumps": [
+      20,
+      60
+    ],
+    "regrow_days": [
+      5,
+      8
+    ],
+    "flush_mults": [
+      1.0
+    ]
+  },
+  "identify": {
+    "pocket_guide": false,
+    "notes": [],
+    "stages": [
+      "shoot",
+      "flower",
+      "fruit"
+    ]
+  },
+  "inspect": {
+    "look": "three_toothed_leaflets_red_runners",
+    "smell": "sweet",
+    "cut": "none"
+  },
+  "food": {
+    "part": "yearofice:wild_strawberry",
+    "kcal_per_100g": 33.3,
+    "vit_c_mg_per_100g": 13.3,
+    "spoil_days_at_5c": 4
+  }
+}

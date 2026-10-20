@@ -1,0 +1,42 @@
+{
+ "parent": "minecraft:block/block",
+ "render_type": "minecraft:cutout",
+ "textures": {
+  "all": "yearofice:block/gill_net",
+  "particle": "yearofice:block/gill_net"
+ },
+ "elements": [
+  {
+   "from": [
+    7,
+    0,
+    0
+   ],
+   "to": [
+    9,
+    16,
+    16
+   ],
+   "faces": {
+    "down": {
+     "texture": "#all"
+    },
+    "up": {
+     "texture": "#all"
+    },
+    "north": {
+     "texture": "#all"
+    },
+    "south": {
+     "texture": "#all"
+    },
+    "east": {
+     "texture": "#all"
+    },
+    "west": {
+     "texture": "#all"
+    }
+   }
+  }
+ ]
+}

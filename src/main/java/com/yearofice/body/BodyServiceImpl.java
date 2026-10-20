@@ -54,6 +54,9 @@ public final class BodyServiceImpl implements BodyService {
     }
 
     @Override
+    public boolean beginIllness(ServerPlayer p, String illnessId) { return com.yearofice.body.illness.Illnesses.begin(p, illnessId); }
+
+    @Override
     public boolean isSafeToStage(ServerPlayer p) {
         BodyState b = s(p);
         return b.condition() > 30 && b.warmth > 30 && !p.isInWater();
@@ -103,6 +106,25 @@ public final class BodyServiceImpl implements BodyService {
         BodyTicker.sync(p, m, true);
         return true;
     }
+
+    @Override
+    public boolean eatNutrients(ServerPlayer p, double grams, double kcal, double proteinG, double fatG, double waterMl) {
+        BodyState b = s(p);
+        BodyTuning t = BodyConfig.tuning();
+        long m = now(p);
+        double carbs = Math.max(0, (kcal - 4 * proteinG - 9 * fatG) / 4.0);
+        if (!BodyModel.eat(b, t, m, grams, kcal, carbs, fatG, proteinG, Metabolism.waterPoints(waterMl / 1000.0))) {
+            HudBus.get().post(p, HudLine.of(HudLineType.WARN, "stomach_full", "body"));
+            return false;
+        }
+        HudBus.get().post(p, HudLine.of(HudLineType.PICKUP, "ate", "body", HudArg.of(Math.round(kcal)),
+                HudArg.of(Math.round(b.stomachPct(t.stomachKg()) * 100))));
+        BodyTicker.sync(p, m, true);
+        return true;
+    }
+
+    @Override
+    public void addVitaminC(ServerPlayer p, double cDays) { com.yearofice.body.illness.Illnesses.addVitaminC(p, cDays); }
 
     @Override
     public WaterPurity.Source waterSourceAt(net.minecraft.server.level.ServerLevel level, net.minecraft.core.BlockPos pos) {

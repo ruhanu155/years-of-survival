@@ -18,7 +18,7 @@ public final class WellnessConfig {
 
     private static final String[] KEYS = {"illness_scale", "rest_heal", "sunburn_hours", "windburn_hours",
             "face_grease_hours", "glove_grease_days", "glove_grease_wet_mult", "beard_stage_days",
-            "beard_face_bonus_c", "beard_ice_temp_c", "grease_face_bonus_c"};
+            "beard_face_bonus_c", "beard_ice_temp_c", "grease_face_bonus_c", "fever_sleep_mult"};
     private static final String[] COMMENTS = {
             "x on the duration of timed illnesses the body steps.",
             "x on Condition healing on a Rest day (rest_heals_double).",
@@ -30,14 +30,15 @@ public final class WellnessConfig {
             "Game days a beard takes to grow one stage (B14).",
             "Degrees colder the face is safe with a Full-or-longer beard (B14).",
             "Air temperature below which breath ices a Full beard (B14).",
-            "Degrees colder the face is safe with grease on (B13)."};
+            "Degrees colder the face is safe with grease on (B13).",
+            "x on sleep recovery while a fever shows."};
 
     private static final Map<YoiConfig.Preset, ModConfigSpec.DoubleValue[]> VALUES = new EnumMap<>(YoiConfig.Preset.class);
 
     private static double[] values(WellnessTuning t) {
         return new double[] {t.illnessScale(), t.restHeal(), t.sunburnHours(), t.windburnHours(), t.faceGreaseHours(),
                 t.gloveGreaseDays(), t.gloveWetMult(), t.beardStageDays(), t.beardFaceBonusC(), t.beardIceC(),
-                t.greaseFaceBonusC()};
+                t.greaseFaceBonusC(), t.feverSleepMult()};
     }
 
     public static void define(ModConfigSpec.Builder b) {
@@ -60,6 +61,6 @@ public final class WellnessConfig {
         if (VALUES.isEmpty() || !YoiConfig.SPEC.isLoaded()) return WellnessTuning.of(t.preset());
         ModConfigSpec.DoubleValue[] v = VALUES.get(YoiConfig.PRESET.get());
         return new WellnessTuning(v[0].get(), v[1].get(), v[2].get(), v[3].get(), v[4].get(), v[5].get(), v[6].get(),
-                v[7].get(), v[8].get(), v[9].get(), v[10].get());
+                v[7].get(), v[8].get(), v[9].get(), v[10].get(), v[11].get());
     }
 }

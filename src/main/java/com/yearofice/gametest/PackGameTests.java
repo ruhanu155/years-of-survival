@@ -56,6 +56,7 @@ public final class PackGameTests {
         out.add(test("yearofice:pack/no_walkover_pickup", 100, PackGameTests::noWalkoverPickup));
         out.add(test("yearofice:pack/load_bands", 100, PackGameTests::loadBands));
         out.add(test("yearofice:pack/strength_scales_bands", 100, PackGameTests::strengthScalesBands));
+        out.add(test("yearofice:pack/screen_shows_band", 100, PackGameTests::screenShowsBand));
         out.add(test("yearofice:pack/hauling_practice", 100, PackGameTests::haulingPractice));
         out.add(test("yearofice:pack/pack_min_strength", 100, PackGameTests::packMinStrength));
         out.add(test("yearofice:layers/item_expiry", 100, PackGameTests::itemExpiry));
@@ -224,6 +225,29 @@ public final class PackGameTests {
         h.assertTrue(weak < 1, "BMI 17 leaves no strength: " + weak);
         h.assertTrue(Math.abs(speedAt(p, 13) - 0.85) < 0.02 * 0.85, "13 kg is heavy at Strength 0 (edge 12 kg)");
         h.assertTrue(Math.abs(speedAt(p, 37) - 0.30) < 0.02 * 0.30, "37 kg drags at Strength 0 (edge 36 kg)");
+        h.succeed();
+    }
+
+    /** {@code pack/screen_shows_band}: the readout the server syncs holds Strength-scaled edges and the cap. */
+    static void screenShowsBand(GameTestHelper h) {
+        ServerPlayer p = player(h, "reader");
+        BodyState s = BodyAttachments.of(p);
+        s.kg = Metabolism.kgForBmi(17, s.heightCm);
+        PackSkill.setReps(p, 0);
+        wearCrate(h, p);
+        PackSync.refresh(p);
+        var weak = PackSync.readout(p);
+        h.assertTrue(weak != null, "a readout was built");
+        h.assertTrue(Math.abs(weak.edge0() - 12) < 0.01 && Math.abs(weak.edge1() - 24) < 0.01 && Math.abs(weak.edge2() - 36) < 0.01,
+                "edges 12/24/36 kg at Strength 0: " + weak.edge0() + "/" + weak.edge1() + "/" + weak.edge2());
+        h.assertTrue(weak.capKg() > 0, "the pack's cap is stated: " + weak.capKg());
+        s.kg = Metabolism.kgForBmi(24, s.heightCm);
+        PackSkill.setReps(p, 300);
+        PackSync.refresh(p);
+        var strong = PackSync.readout(p);
+        h.assertTrue(strong.strength() > 99, "Strength synced: " + strong.strength());
+        h.assertTrue(Math.abs(strong.edge0() - 15 * 1.15 * 1.1) < 0.01, "edge 0 at Strength 100 and full practice: " + strong.edge0());
+        h.assertTrue(strong.edge2() > weak.edge2(), "Strength lifts the edges");
         h.succeed();
     }
 

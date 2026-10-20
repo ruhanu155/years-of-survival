@@ -1,8 +1,141 @@
 {
   "note": "Which spit rule each food roasts by and its eating-ladder family (Items > Food values; Decay and time > Eating decayed food). The minutes are [cooking] tuning.",
   "foods": {
-    "yearofice:snowshoe_hare_meat": { "spit": "whole_hare", "family": "game_meat" },
-    "yearofice:willow_ptarmigan_meat": { "spit": "per_kg", "family": "game_meat" },
-    "yearofice:arctic_grayling": { "spit": "whole_fish", "family": "fish" }
+    "yearofice:snowshoe_hare_meat": {
+      "spit": "whole_hare",
+      "family": "game_meat"
+    },
+    "yearofice:willow_ptarmigan_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:arctic_grayling": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:dolly_varden": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:northern_pike": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:humpback_whitefish": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:burbot": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:lake_trout": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:chinook_salmon": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:chum_salmon": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:coho_salmon": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:red_squirrel_meat": {
+      "spit": "whole_hare",
+      "family": "game_meat"
+    },
+    "yearofice:marten_meat": {
+      "spit": "whole_hare",
+      "family": "game_meat"
+    },
+    "yearofice:mink_meat": {
+      "spit": "whole_hare",
+      "family": "game_meat"
+    },
+    "yearofice:muskrat_meat": {
+      "spit": "whole_hare",
+      "family": "game_meat"
+    },
+    "yearofice:beaver_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:porcupine_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:spruce_grouse_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:ruffed_grouse_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:rock_ptarmigan_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:bird_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:sockeye_salmon": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:arctic_char": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:broad_whitefish": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:round_whitefish": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:least_cisco": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:bering_cisco": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:sheefish": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:longnose_sucker": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:slimy_sculpin": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:lake_chub": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:ninespine_stickleback": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:alaska_blackfish": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:arctic_lamprey": {
+      "spit": "whole_fish",
+      "family": "fish"
+    }
   }
 }

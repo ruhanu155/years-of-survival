@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "crust=0": {
+      "model": "yearofice:block/salt_crust_0"
+    },
+    "crust=1": {
+      "model": "yearofice:block/salt_crust_1"
+    },
+    "crust=2": {
+      "model": "yearofice:block/salt_crust_2"
+    },
+    "crust=3": {
+      "model": "yearofice:block/salt_crust_3"
+    },
+    "crust=4": {
+      "model": "yearofice:block/salt_crust_4"
+    }
+  }
+}

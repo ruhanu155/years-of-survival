@@ -17,7 +17,7 @@ public final class BodyConfig {
     private BodyConfig() {}
 
     private static final String[] KEYS = {"calorie_burn", "kcal_per_kg", "cold", "water_need", "unboiled_illness",
-            "bleed_scale", "infection_scale", "stomach_kg", "sos_bmi", "return_bmi", "sip_l"};
+            "bleed_scale", "infection_scale", "stomach_kg", "sos_bmi", "return_bmi", "sip_l", "kit_warmth_c"};
     private static final String[] COMMENTS = {
             "Calorie burn: x on every activity rate (0.25-1.5).",
             "kcal per kg of body weight change (RECONCILE 135: 2,400; Gentle 3,500).",
@@ -29,7 +29,8 @@ public final class BodyConfig {
             "Stomach capacity, kg.",
             "BMI at or below which the Trail Messenger sends SOS.",
             "BMI the player returns at after a flight out.",
-            "Litres in one drink from open water."};
+            "Litres in one drink from open water.",
+            "Dry warmth of the starting clothes in deg C (0-40); the Blueprint table sums to 15, its May summary says about 11."};
 
     private static ModConfigSpec.DoubleValue[] overrides;
     private static ModConfigSpec.ConfigValue<String> digitLossOverride;
@@ -40,7 +41,7 @@ public final class BodyConfig {
 
     private static double[] values(BodyTuning t) {
         return new double[] {t.calorieBurn(), t.kcalPerKg(), t.coldScale(), t.waterNeed(), t.unboiledIllness(),
-                t.bleedScale(), t.infectionScale(), t.stomachKg(), t.sosBmi(), t.returnBmi(), t.sipLitres()};
+                t.bleedScale(), t.infectionScale(), t.stomachKg(), t.sosBmi(), t.returnBmi(), t.sipLitres(), t.kitWarmthC()};
     }
 
     /** Called from {@link YoiConfig}'s builder, so the table lives in the one common config file. */
@@ -83,6 +84,6 @@ public final class BodyConfig {
         boolean digits = "preset".equals(d) ? PRESET_DIGITS.get(p).get() : Boolean.parseBoolean(d);
         custom |= !"preset".equals(d);
         String name = p.name().toLowerCase(java.util.Locale.ROOT) + (custom ? "+custom" : "");
-        return new BodyTuning(name, v[0], v[1], v[2], v[3], v[4], v[5], v[6], digits, v[7], v[8], v[9], v[10]);
+        return new BodyTuning(name, v[0], v[1], v[2], v[3], v[4], v[5], v[6], digits, v[7], v[8], v[9], v[10], v[11]);
     }
 }

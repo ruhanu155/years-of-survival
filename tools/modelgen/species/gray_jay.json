@@ -1,0 +1,19 @@
+{
+ "inherit": "willow_ptarmigan",
+ "id": "gray_jay",
+ "texture_dir": "gray_jay",
+ "anim_copies": [
+  "willow_ptarmigan",
+  "gray_jay"
+ ],
+ "notes": "Soft grey body, white face. Same rig (grouse), recoloured; the renderer scales it (M6 lane C).",
+ "textures": {
+  "_replace": true,
+  "adult_all": {
+   "remap": {
+    "feather_ptarmigan_summer": "fur_wolf_pale",
+    "comb_red": "fur_white"
+   }
+  }
+ }
+}

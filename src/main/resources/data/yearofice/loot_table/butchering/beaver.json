@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:generic",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:beaver_meat",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 65
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:beaver_pelt"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+ "inherit": "willow_ptarmigan",
+ "id": "rock_ptarmigan",
+ "texture_dir": "rock_ptarmigan",
+ "anim_copies": [
+  "willow_ptarmigan",
+  "rock_ptarmigan"
+ ],
+ "notes": "Same grouse rig, greyer summer plumage than the willow ptarmigan."
+}

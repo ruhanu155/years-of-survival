@@ -9,6 +9,9 @@ import com.yearofice.hunt.fishing.FishingClock;
 import com.yearofice.hunt.fishing.FishingConfig;
 import com.yearofice.hunt.fishing.FishingRegistry;
 import com.yearofice.hunt.fishing.FishingService;
+import com.yearofice.hunt.fishing.FishingSpecies;
+import com.yearofice.hunt.fishing.PassiveGearService;
+import com.yearofice.hunt.fishing.SpotFish;
 import com.yearofice.hunt.fishing.FightSession;
 import com.yearofice.hunt.fishing.RodItem;
 import com.yearofice.hunt.fishing.SliceSpots;
@@ -55,7 +58,22 @@ public final class FishingCommands {
     public static void register(RegisterCommandsEvent event) {
         CommandDispatcher<CommandSourceStack> d = event.getDispatcher();
         d.register(Commands.literal("yoi").requires(s -> s.hasPermission(2)).then(Commands.literal("fish")
-                .then(Commands.literal("spot").executes(FishingCommands::spot))
+                .then(Commands.literal("spot").executes(FishingCommands::spot)
+                        .then(Commands.argument("pos", net.minecraft.commands.arguments.coordinates.BlockPosArgument.blockPos())
+                                .executes(FishingCommands::spotAt)))
+                .then(Commands.literal("fight")
+                        .then(Commands.argument("species", com.mojang.brigadier.arguments.StringArgumentType.word())
+                                .then(Commands.argument("kg", com.mojang.brigadier.arguments.DoubleArgumentType.doubleArg(0.01, 100))
+                                        .executes(FishingCommands::fight))))
+                .then(Commands.literal("gear")
+                        .then(Commands.literal("place")
+                                .then(Commands.argument("kind", com.mojang.brigadier.arguments.StringArgumentType.word())
+                                        .then(Commands.argument("count", com.mojang.brigadier.arguments.IntegerArgumentType.integer(1, 64))
+                                                .executes(FishingCommands::gearPlace))))
+                        .then(Commands.literal("check").executes(FishingCommands::gearCheck))
+                        .then(Commands.literal("settle")
+                                .then(Commands.argument("hours", com.mojang.brigadier.arguments.IntegerArgumentType.integer(1, 24 * 400))
+                                        .executes(FishingCommands::gearSettle))))
                 .then(Commands.literal("bite").executes(FishingCommands::bite))
                 .then(Commands.literal("info").executes(FishingCommands::info))
                 .then(Commands.literal("kit").executes(c -> {
@@ -101,6 +119,105 @@ public final class FishingCommands {
                         w.getX(), w.getY(), w.getZ(), s.depthM(), t.spotMinWidth(), t.spotMinWidth(), t.spotMinDepthM(), BiteModel.mPlace(1e9, 1));
         c.getSource().sendSuccess(() -> Component.literal(msg), false);
         return s.atSpot() ? 1 : 0;
+    }
+
+    /** {@code /yoi fish spot <pos>}: the generated spot around a block, each species' stock and the last catch. */
+    private static int spotAt(CommandContext<CommandSourceStack> c) throws CommandSyntaxException {
+        ServerLevel level = c.getSource().getLevel();
+        BlockPos pos = net.minecraft.commands.arguments.coordinates.BlockPosArgument.getBlockPos(c, "pos");
+        FishingTuning t = FishingConfig.tuning();
+        long minute = FishingClock.minute(level.getServer());
+        long day = FishingClock.day(minute);
+        SpotFish.Here here = SpotFish.at(level, pos, com.yearofice.sim.fishing.FishSeason.dayOfYear(day), t);
+        if (here.spot().isEmpty()) {
+            c.getSource().sendSuccess(() -> Component.literal("No generated fishing spot holds " + pos.toShortString() + "."), false);
+            return 0;
+        }
+        var s = here.spot().get();
+        long cell = SliceSpots.key(pos);
+        StringBuilder sb = new StringBuilder(String.format(Locale.ROOT, "Spot %s at %s: q %.2f, radius %.0f m, depth %.1f m.", s.type(),
+                s.centre().toShortString(), s.quality(), s.radiusM(), s.depthM()));
+        for (SpotFish.Entry e : here.fish()) {
+            FishStock st = SpotFish.stock(level, cell, day, e);
+            long last = SliceSpots.stocks(level).lastCatch(SliceSpots.speciesKey(cell, e.id()));
+            sb.append(String.format(Locale.ROOT, " %s %.0f/%.0f (season %.2f, last catch %s);", e.id(), st.n(), st.k(),
+                    FishingSpecies.season(e.id()).factor(com.yearofice.sim.fishing.FishSeason.dayOfYear(day), s.type()),
+                    last == Long.MIN_VALUE ? "never" : (minute - last) / 60 + " h ago"));
+        }
+        String msg = sb.toString();
+        c.getSource().sendSuccess(() -> Component.literal(msg), false);
+        return here.fish().size();
+    }
+
+    /** {@code /yoi fish fight <species> <kg>}: the fish on the floating bobber is this species and weight; the fight screen opens. */
+    private static int fight(CommandContext<CommandSourceStack> c) throws CommandSyntaxException {
+        ServerPlayer p = c.getSource().getPlayerOrException();
+        String id = FishingSpecies.canon(com.mojang.brigadier.arguments.StringArgumentType.getString(c, "species"));
+        if (!FishingSpecies.has(id)) {
+            c.getSource().sendFailure(Component.literal("Unknown species " + id + ". Known: " + FishingSpecies.IDS));
+            return 0;
+        }
+        BobberEntity b = bobber(p);
+        if (b.state() != BobberEntity.State.FLOATING) {
+            c.getSource().sendFailure(Component.literal("The bobber is " + b.state().name().toLowerCase(Locale.ROOT) + "."));
+            return 0;
+        }
+        b.biter = id;
+        FishingService.startFight(b, com.mojang.brigadier.arguments.DoubleArgumentType.getDouble(c, "kg"));
+        c.getSource().sendSuccess(() -> Component.literal("Hooked a " + id + "."), false);
+        return 1;
+    }
+
+    private static int gearPlace(CommandContext<CommandSourceStack> c) throws CommandSyntaxException {
+        ServerPlayer p = c.getSource().getPlayerOrException();
+        PassiveGearService.Kind k;
+        try {
+            k = PassiveGearService.Kind.parse(com.mojang.brigadier.arguments.StringArgumentType.getString(c, "kind"));
+        } catch (IllegalArgumentException e) {
+            c.getSource().sendFailure(Component.literal("Kinds: set_line, gill_net, fish_trap."));
+            return 0;
+        }
+        int n = com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(c, "count");
+        PassiveGearService.Gear placed = PassiveGearService.place(p.serverLevel(), k, p.blockPosition(), n, FishingClock.minute(p.server));
+        if (k == PassiveGearService.Kind.SET_LINE) placed.bait = "fish_chunk";
+        c.getSource().sendSuccess(() -> Component.literal("Placed " + k.name().toLowerCase(Locale.ROOT) + " (" + n + ") here."
+                + (k == PassiveGearService.Kind.GILL_NET && n < com.yearofice.sim.fishing.PassiveGear.NET_MIN_SEGMENTS ? " Under 4 joined segments it never catches." : "")), false);
+        return 1;
+    }
+
+    private static PassiveGearService.Gear nearestGear(ServerPlayer p) {
+        PassiveGearService.Gear best = null;
+        double bd = 36;
+        for (PassiveGearService.Gear g : PassiveGearService.book(p.serverLevel()).all().values()) {
+            double d = g.pos.distSqr(p.blockPosition());
+            if (d <= bd) { bd = d; best = g; }
+        }
+        return best;
+    }
+
+    private static int gearCheck(CommandContext<CommandSourceStack> c) throws CommandSyntaxException {
+        ServerPlayer p = c.getSource().getPlayerOrException();
+        PassiveGearService.Gear g = nearestGear(p);
+        if (g == null) {
+            c.getSource().sendFailure(Component.literal("No gear within 6 blocks."));
+            return 0;
+        }
+        var items = PassiveGearService.check(p.serverLevel(), p, g, FishingClock.minute(p.server));
+        c.getSource().sendSuccess(() -> Component.literal("Checked " + g.kind.name().toLowerCase(Locale.ROOT) + ": " + items.size() + " fish."), false);
+        return items.size();
+    }
+
+    private static int gearSettle(CommandContext<CommandSourceStack> c) throws CommandSyntaxException {
+        ServerPlayer p = c.getSource().getPlayerOrException();
+        PassiveGearService.Gear g = nearestGear(p);
+        if (g == null) {
+            c.getSource().sendFailure(Component.literal("No gear within 6 blocks."));
+            return 0;
+        }
+        long to = g.lastMinute + 60L * com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(c, "hours");
+        var r = PassiveGearService.settle(p.serverLevel(), g, to);
+        c.getSource().sendSuccess(() -> Component.literal("Settled " + r.periods() + " periods: " + r + "; holds " + g.held.size() + "."), false);
+        return r.caught();
     }
 
     private static BobberEntity bobber(ServerPlayer p) throws CommandSyntaxException {

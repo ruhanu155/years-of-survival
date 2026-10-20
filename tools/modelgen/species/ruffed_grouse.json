@@ -1,0 +1,35 @@
+{
+ "inherit": "spruce_grouse",
+ "id": "ruffed_grouse",
+ "texture_dir": "ruffed_grouse",
+ "anim_copies": [
+  "willow_ptarmigan",
+  "ruffed_grouse"
+ ],
+ "notes": "Same grouse rig. Grey-brown barred phase; the head is crested.",
+ "textures": {
+  "_replace": true,
+  "male_adult": {
+   "remap": {
+    "feather_grouse_male": "feather_grouse_female",
+    "comb_red": "feather_grouse_female"
+   }
+  },
+  "female_adult": {
+   "remap": {
+    "feather_grouse_male": "feather_grouse_female",
+    "comb_red": "feather_grouse_female",
+    "fur_black": "feather_grouse_female"
+   },
+   "extra_regions": {
+    "*": [
+     {
+      "faces": "all",
+      "speckle": 0.3,
+      "dstep": 2
+     }
+    ]
+   }
+  }
+ }
+}

@@ -40,6 +40,9 @@ public final class YoiNet {
         r.playToClient(HudLinePayload.TYPE, HudLinePayload.STREAM_CODEC, (p, ctx) -> hudSink.accept(p));
         r.playToClient(DecayHeadsPayload.TYPE, DecayHeadsPayload.STREAM_CODEC, (p, ctx) -> decaySink.accept(p));
         r.playToClient(EncounterClipPayload.TYPE, EncounterClipPayload.STREAM_CODEC, (p, ctx) -> encounterSink.accept(p));
+        r.playToClient(com.yearofice.net.payload.PackReadoutPayload.TYPE,
+                com.yearofice.net.payload.PackReadoutPayload.STREAM_CODEC,
+                (p, ctx) -> com.yearofice.net.payload.PackReadoutPayload.sink.accept(p));
         r.playToServer(PickupPayload.TYPE, PickupPayload.STREAM_CODEC, (p, ctx) -> {
             if (ctx.player() instanceof ServerPlayer sp) com.yearofice.item.inventory.Pickup.request(sp, p.entityId());
         });

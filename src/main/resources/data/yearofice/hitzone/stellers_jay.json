@@ -1,0 +1,76 @@
+{
+  "species": "yearofice:stellers_jay",
+  "poses": {
+    "standing": [
+      {
+        "zone": "heart_lungs",
+        "center_m": [
+          0.0,
+          0.136,
+          0.032
+        ],
+        "radii_m": [
+          0.032,
+          0.032,
+          0.04
+        ]
+      },
+      {
+        "zone": "brain",
+        "center_m": [
+          0.0,
+          0.248,
+          0.088
+        ],
+        "radii_m": [
+          0.012,
+          0.012,
+          0.012
+        ]
+      },
+      {
+        "zone": "gut",
+        "center_m": [
+          0.0,
+          0.104,
+          -0.04
+        ],
+        "radii_m": [
+          0.04,
+          0.04,
+          0.048
+        ]
+      },
+      {
+        "zone": "wings",
+        "center_m": [
+          0.0,
+          0.152,
+          0.0
+        ],
+        "radii_m": [
+          0.088,
+          0.032,
+          0.072
+        ]
+      },
+      {
+        "zone": "legs",
+        "below_y_m": 0.06
+      }
+    ],
+    "flying": {
+      "from": "standing",
+      "lower_m": 0.0
+    }
+  },
+  "kill_threshold_j": 1,
+  "bloodshot": {
+    "heart_lungs": [
+      "ribs"
+    ],
+    "gut": [
+      "loin"
+    ]
+  }
+}

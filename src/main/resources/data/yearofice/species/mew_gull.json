@@ -1,0 +1,75 @@
+{
+  "entity": "yearofice:mew_gull",
+  "rig": "gull",
+  "habitat": [
+    "bank"
+  ],
+  "population": [
+    1,
+    4
+  ],
+  "home_range_m": 500,
+  "active": [
+    "dawn",
+    "day",
+    "dusk"
+  ],
+  "gaits": {
+    "walk": 1.0,
+    "trot": 2.5,
+    "run": 4,
+    "fly": 12
+  },
+  "senses": {
+    "sight": 100,
+    "hearing": 50,
+    "smell": 0,
+    "fov": 300
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": false,
+    "flush_m": 0,
+    "flee_m": [
+      40,
+      100
+    ],
+    "flee_gait": "fly",
+    "zigzag": false,
+    "hide_min": [
+      5,
+      15
+    ],
+    "charges": false
+  },
+  "huntable": true,
+  "respawn_days": 10,
+  "carcass": {
+    "whole_kg": 0.4,
+    "class": "tiny",
+    "body_plan": "bird",
+    "tau_h": 1,
+    "floats": true,
+    "poses": [
+      "dead_wings"
+    ],
+    "steps": {
+      "gut": 2,
+      "pluck": 4
+    },
+    "parts": {
+      "meat": 0.2,
+      "organs": {
+        "giblets": 0.02
+      },
+      "cover": {
+        "feathers": 10,
+        "kind": "feathers"
+      },
+      "guts_kg": 0.028
+    }
+  },
+  "butcher_table": "yearofice:butchering/mew_gull"
+}

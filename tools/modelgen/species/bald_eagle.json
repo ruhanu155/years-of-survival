@@ -1,0 +1,19 @@
+{
+ "inherit": "willow_ptarmigan",
+ "id": "bald_eagle",
+ "texture_dir": "bald_eagle",
+ "anim_copies": [
+  "willow_ptarmigan",
+  "bald_eagle"
+ ],
+ "notes": "Dark brown body, white head. Same rig (grouse), recoloured; the renderer scales it (M6 lane C).",
+ "textures": {
+  "_replace": true,
+  "adult_all": {
+   "remap": {
+    "feather_ptarmigan_summer": "fur_grizzly",
+    "comb_red": "fur_white"
+   }
+  }
+ }
+}

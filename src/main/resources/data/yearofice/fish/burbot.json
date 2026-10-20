@@ -1,0 +1,53 @@
+{
+  "id": "burbot",
+  "kg": [
+    1,
+    4
+  ],
+  "bite_base": 0.03,
+  "kcal_per_kg": 1600,
+  "run_pull_x": 0.35,
+  "run_every_s": [
+    10,
+    20
+  ],
+  "run_length_s": [
+    1,
+    2
+  ],
+  "jump_chance": 0.0,
+  "special": "twist",
+  "special_every_s": [
+    2,
+    2
+  ],
+  "special_spike": 1.2,
+  "tire_per_s": 0.033333,
+  "bite_through_no_leader": 0.1,
+  "night_factor": 2.0,
+  "trophy_kg": null,
+  "bait": {
+    "fish_chunk": 1.0,
+    "live_sculpin": 1.0,
+    "guts": 0.6,
+    "stonefly": 0.8
+  },
+  "surface_feeder": false,
+  "season": {
+    "all_year": true
+  },
+  "resident": true,
+  "spawn": {
+    "site": "deep_river_hole",
+    "from": "01-25",
+    "to": "02-28"
+  },
+  "parasite": "cyst",
+  "net_c_per_h": 0.05,
+  "mesh": "coarse",
+  "capacity": {
+    "deep_river_hole": 8,
+    "lake_drop_off": 8
+  },
+  "r_per_month": 0.25
+}

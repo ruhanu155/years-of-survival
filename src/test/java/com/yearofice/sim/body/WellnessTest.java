@@ -295,7 +295,8 @@ class WellnessTest {
         BodyState s = new BodyState();
         EnvSample gale = EnvSample.outdoors(-15, 10);
         BodyModel.step(s, rest(gale), T, 0, 100);
-        assertTrue(s.parts.problems().isEmpty());
+        // Bare skin in this wind chill now also frosts (the live frost tick); only the windburn is under test here.
+        assertTrue(s.parts.problems().stream().noneMatch(p -> p.id().equals("windburn")));
         BodyModel.step(s, rest(gale), T, 100, 30);
         assertTrue(s.parts.problems().stream().anyMatch(p -> p.id().equals("windburn")));
         s.warmth = 100;

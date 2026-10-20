@@ -1,0 +1,45 @@
+{
+  "id": "longnose_sucker",
+  "kg": [
+    0.5,
+    1.5
+  ],
+  "bite_base": 0.08,
+  "kcal_per_kg": 1000,
+  "run_pull_x": 0.4,
+  "run_every_s": [
+    10,
+    20
+  ],
+  "run_length_s": [
+    1,
+    1
+  ],
+  "jump_chance": 0.0,
+  "special": "NONE",
+  "special_every_s": null,
+  "special_spike": 1.0,
+  "tire_per_s": 0.166667,
+  "bite_through_no_leader": 0,
+  "night_factor": 0.8,
+  "trophy_kg": null,
+  "bait": {
+    "worm": 1.0,
+    "insect": 0.6
+  },
+  "surface_feeder": false,
+  "season": {
+    "from": "05-01",
+    "to": "09-30"
+  },
+  "resident": true,
+  "spawn": null,
+  "parasite": "plain",
+  "net_c_per_h": 0.05,
+  "mesh": "fine",
+  "capacity": {
+    "weed_shelf": 30,
+    "deep_river_hole": 15
+  },
+  "r_per_month": 0.5
+}

@@ -1,0 +1,9 @@
+{
+  "type": "yearofice:station",
+  "station": "yearofice:hand_quern",
+  "inputs": ["yearofice:barley", "yearofice:wheat"],
+  "tool": "yearofice:hand_quern",
+  "work_min_per_kg": 60,
+  "result": "yearofice:barley_flour",
+  "yield_pct": 100
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "yearofice:block/gut_pile_0"
+    },
+    "age=1": {
+      "model": "yearofice:block/gut_pile_1"
+    },
+    "age=2": {
+      "model": "yearofice:block/gut_pile_2"
+    },
+    "age=3": {
+      "model": "yearofice:block/gut_pile_3"
+    }
+  }
+}

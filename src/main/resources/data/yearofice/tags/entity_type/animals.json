@@ -1,1 +1,29 @@
-{ "values": ["yearofice:snowshoe_hare", "yearofice:willow_ptarmigan", "yearofice:moose"] }
+{
+  "values": [
+    "yearofice:snowshoe_hare",
+    "yearofice:willow_ptarmigan",
+    "yearofice:moose",
+    "yearofice:red_squirrel",
+    "yearofice:marten",
+    "yearofice:ermine",
+    "yearofice:mink",
+    "yearofice:muskrat",
+    "yearofice:beaver",
+    "yearofice:porcupine",
+    "yearofice:wood_frog",
+    "yearofice:yellowjacket",
+    "yearofice:spruce_grouse",
+    "yearofice:ruffed_grouse",
+    "yearofice:rock_ptarmigan",
+    "yearofice:critter",
+    "yearofice:raven",
+    "yearofice:gray_jay",
+    "yearofice:stellers_jay",
+    "yearofice:bald_eagle",
+    "yearofice:great_horned_owl",
+    "yearofice:mallard",
+    "yearofice:northern_pintail",
+    "yearofice:common_loon",
+    "yearofice:mew_gull"
+  ]
+}

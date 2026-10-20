@@ -100,11 +100,11 @@ class BodyModelTest {
     @Test
     void dry_at_minus_20_cools_by_the_feels_like_rate_only() {
         BodyState s = new BodyState();
-        BodyModel.step(s, rest(EnvSample.outdoors(-20, 0)), BodyTuning.STANDARD, 0, 10);
+        BodyModel.step(s, rest(EnvSample.outdoors(-20, 0)), BodyTuning.STANDARD.withKit(0), 0, 10);
         // feels-like −20 → dW = −0.02 · 30 = −0.6 a minute
         assertEquals(100 - 6, s.warmth, 1e-9);
         BodyState g = new BodyState();
-        BodyModel.step(g, rest(EnvSample.outdoors(-20, 0)), BodyTuning.GENTLE, 0, 10);
+        BodyModel.step(g, rest(EnvSample.outdoors(-20, 0)), BodyTuning.GENTLE.withKit(0), 0, 10);
         assertEquals(100 - 3, g.warmth, 1e-9);
     }
 
@@ -112,7 +112,7 @@ class BodyModelTest {
     void rain_soaks_bare_skin_over_time() {
         BodyState s = new BodyState();
         BodyModel.step(s, rest(EnvSample.outdoors(5, 0).withPrecip(com.yearofice.sim.env.Precip.RAIN, 2.5)),
-                BodyTuning.STANDARD, 0, 60);
+                BodyTuning.STANDARD.withKit(0), 0, 60);
         assertTrue(s.wetness() > 0.9, "an hour of rain soaks bare skin: " + s.wetness());
     }
 

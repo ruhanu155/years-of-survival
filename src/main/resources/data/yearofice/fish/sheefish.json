@@ -1,0 +1,47 @@
+{
+  "id": "sheefish",
+  "kg": [
+    3,
+    15
+  ],
+  "bite_base": 0.005,
+  "kcal_per_kg": 1600,
+  "run_pull_x": 0.6,
+  "run_every_s": [
+    5,
+    9
+  ],
+  "run_length_s": [
+    2,
+    4
+  ],
+  "jump_chance": 0.35,
+  "special": "NONE",
+  "special_every_s": null,
+  "special_spike": 1.0,
+  "tire_per_s": 0.02,
+  "bite_through_no_leader": 0,
+  "night_factor": 0.8,
+  "trophy_kg": [
+    15,
+    25
+  ],
+  "bait": {
+    "spoon": 1.0,
+    "live_minnow": 0.6
+  },
+  "surface_feeder": false,
+  "season": {
+    "from": "06-01",
+    "to": "10-31"
+  },
+  "resident": true,
+  "spawn": null,
+  "parasite": "plain",
+  "net_c_per_h": 0.02,
+  "mesh": "coarse",
+  "capacity": {
+    "outside_bend": 3
+  },
+  "r_per_month": 0.1
+}
