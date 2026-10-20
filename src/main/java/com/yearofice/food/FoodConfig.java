@@ -1,6 +1,7 @@
 package com.yearofice.food;
 
 import com.yearofice.ecosystem.PresetConfig;
+import com.yearofice.sim.food.RackTuning;
 import com.yearofice.sim.food.RoastTuning;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -31,9 +32,32 @@ public final class FoodConfig {
         case BRUTAL -> RoastTuning.Preset.BRUTAL.tuning;
     }, NOTES);
 
+    private static final Map<String, String> RACK_NOTES = new LinkedHashMap<>();
+    static {
+        RACK_NOTES.put("dryHours", "Dry game hours a drying-rack batch of 1 cm strips needs.");
+        RACK_NOTES.put("rainPenaltyH", "Hours an uncovered rain hour adds to a drying batch.");
+        RACK_NOTES.put("rainResetH", "Uncovered rain hours in a row that restart a drying batch.");
+        RACK_NOTES.put("smokeMinH", "Shortest hot-smoke run, game hours.");
+        RACK_NOTES.put("smokeMaxH", "Longest hot-smoke run, game hours.");
+        RACK_NOTES.put("smokeWindMs", "Wind (m/s) above which the smoke rack loses heat and smoke.");
+        RACK_NOTES.put("dryCapacityKg", "Fresh strips a drying rack holds, kg.");
+        RACK_NOTES.put("smokeCapacityKg", "Meat or fish a smoke rack holds, kg.");
+    }
+
+    public static final PresetConfig<RackTuning> RACKS = new PresetConfig<>(RackTuning.class, p -> switch (p) {
+        case GENTLE -> RackTuning.Preset.GENTLE.tuning;
+        case STANDARD -> RackTuning.Preset.STANDARD.tuning;
+        case BRUTAL -> RackTuning.Preset.BRUTAL.tuning;
+    }, RACK_NOTES);
+
+    public static RackTuning racks() { return RACKS.tuning(); }
+
     public static void define(ModConfigSpec.Builder b) {
         b.comment("Cooking: the spit over a fire ring, doneness and eating (Blueprint > Cooking).").push("cooking");
         COOKING.define(b);
+        b.pop();
+        b.comment("Drying rack and smoke rack (Blueprint > Preserving in detail).").push("racks");
+        RACKS.define(b);
         b.pop();
     }
 

@@ -1,0 +1,74 @@
+{
+ "inherit": "red_squirrel",
+ "scale": 1.5,
+ "id": "marten",
+ "geo_id": "marten",
+ "texture_dir": "marten",
+ "hitbox": [
+  0.35,
+  0.56
+ ],
+ "notes": "Generated. Long dark-brown body, cream bib, bushy flat tail; runs logs.",
+ "tail": {
+  "angle": -8,
+  "segments": [
+   {
+    "len": 2,
+    "w": 2,
+    "h": 2
+   },
+   {
+    "len": 2,
+    "w": 2,
+    "h": 2,
+    "bend": -6
+   },
+   {
+    "len": 2,
+    "w": 1,
+    "h": 1,
+    "bend": -6
+   }
+  ]
+ },
+ "paint": {
+  "_replace": true,
+  "tail_*": {
+   "ramp": "fur_cinnamon",
+   "step": 1,
+   "noise": 0.2
+  },
+  "leg_*": {
+   "ramp": "fur_cinnamon",
+   "step": 1
+  },
+  "ear_*": {
+   "ramp": "fur_cinnamon",
+   "step": 1
+  },
+  "muzzle": {
+   "ramp": "fur_cinnamon",
+   "step": 3
+  },
+  "head": {
+   "ramp": "fur_cinnamon",
+   "step": 2
+  },
+  "*": {
+   "ramp": "fur_cinnamon",
+   "step": 2,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": "bottom",
+     "ramp": "fur_tan",
+     "step": 3
+    }
+   ]
+  }
+ },
+ "textures": {
+  "_replace": true,
+  "adult_all": {}
+ }
+}

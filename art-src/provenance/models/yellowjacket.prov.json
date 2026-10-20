@@ -1,0 +1,10 @@
+{
+ "species": "yellowjacket",
+ "grade": "G1",
+ "generator": "modelgen 0.4.0",
+ "base": null,
+ "geo": "geo/entity/yellowjacket.geo.json",
+ "textures": [
+  "adult_all"
+ ]
+}

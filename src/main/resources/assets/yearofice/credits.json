@@ -1245,9 +1245,6 @@
     {
       "asset_id": "model_spruce_grouse",
       "files": [
-        "assets/yearofice/geo/entity/rig_grouse.geo.json",
-        "assets/yearofice/animations/entity/rig_grouse.animation.json",
-        "assets/yearofice/animations/entity/willow_ptarmigan.animation.json",
         "assets/yearofice/animations/entity/spruce_grouse.animation.json",
         "assets/yearofice/textures/entity/spruce_grouse/male_adult.png",
         "assets/yearofice/textures/entity/spruce_grouse/female_adult.png"

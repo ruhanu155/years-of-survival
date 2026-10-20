@@ -1,0 +1,76 @@
+{
+  "species": "yearofice:rock_ptarmigan",
+  "poses": {
+    "standing": [
+      {
+        "zone": "heart_lungs",
+        "center_m": [
+          0,
+          0.17,
+          0.04
+        ],
+        "radii_m": [
+          0.04,
+          0.04,
+          0.05
+        ]
+      },
+      {
+        "zone": "brain",
+        "center_m": [
+          0,
+          0.31,
+          0.11
+        ],
+        "radii_m": [
+          0.015,
+          0.015,
+          0.015
+        ]
+      },
+      {
+        "zone": "gut",
+        "center_m": [
+          0,
+          0.13,
+          -0.05
+        ],
+        "radii_m": [
+          0.05,
+          0.05,
+          0.06
+        ]
+      },
+      {
+        "zone": "wings",
+        "center_m": [
+          0,
+          0.19,
+          0
+        ],
+        "radii_m": [
+          0.11,
+          0.04,
+          0.09
+        ]
+      },
+      {
+        "zone": "legs",
+        "below_y_m": 0.06
+      }
+    ],
+    "flying": {
+      "from": "standing",
+      "lower_m": 0.0
+    }
+  },
+  "kill_threshold_j": 2,
+  "bloodshot": {
+    "heart_lungs": [
+      "ribs"
+    ],
+    "gut": [
+      "loin"
+    ]
+  }
+}
