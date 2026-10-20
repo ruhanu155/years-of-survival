@@ -55,7 +55,7 @@ public final class CropRegistry {
     public static final DeferredItem<Item> CABBAGE = ITEMS.registerItem("cabbage", YoiFoodItem::new, new Item.Properties().stacksTo(16));
     public static final DeferredItem<Item> GRAIN_SHEAF = ITEMS.registerItem("grain_sheaf", Item::new, new Item.Properties().stacksTo(16));
     public static final DeferredItem<Item> FLAIL = ITEMS.registerItem("flail", Item::new, new Item.Properties().stacksTo(1).durability(150));
-    public static final DeferredItem<Item> BARLEY_FLOUR = ITEMS.registerItem("barley_flour", YoiFoodItem::new, new Item.Properties().stacksTo(64));
+    public static final DeferredItem<YoiFoodItem> BARLEY_FLOUR = com.yearofice.food.FoodItems.BARLEY_FLOUR; // registered once, by the food lane (merge of #50 and #52)
     public static final DeferredItem<Item> STRAW = ITEMS.registerItem("straw", Item::new, new Item.Properties().stacksTo(64));
 
     public static Block cropBlock(String crop) {
