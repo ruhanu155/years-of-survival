@@ -1,0 +1,11 @@
+{
+  "type": "yearofice:station",
+  "station": "yearofice:flat_stone",
+  "inputs": [
+    "yearofice:marrow_bone"
+  ],
+  "tool": "yearofice:rough_stone",
+  "work_min_per_kg": 20,
+  "result": "yearofice:crushed_bone",
+  "yield_pct": 100
+}

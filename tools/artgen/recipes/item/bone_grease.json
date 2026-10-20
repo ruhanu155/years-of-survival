@@ -1,0 +1,17 @@
+{
+ "id": "yearofice:bone_grease",
+ "kind": "found_icon",
+ "found": "ninja_adventure",
+ "source": "art-src/found/ninja_adventure/Items/Food/Nut.png",
+ "map": {
+  "#141b1b": "outline",
+  "#d3a2c0": [
+   "fat_cream",
+   1
+  ],
+  "#f2eaf1": [
+   "fat_cream",
+   3
+  ]
+ }
+}
