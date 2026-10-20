@@ -1,0 +1,192 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "name": "crate_backpack",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:crate_backpack"
+        }
+      ]
+    },
+    {
+      "name": "hatchet",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:hatchet"
+        }
+      ]
+    },
+    {
+      "name": "matches",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:match",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 3,
+              "add": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "fixed_blade_knife",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:fixed_blade_knife"
+        }
+      ]
+    },
+    {
+      "name": "steel_bottle",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:steel_bottle"
+        }
+      ]
+    },
+    {
+      "name": "cooking_pot",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:cooking_pot"
+        }
+      ]
+    },
+    {
+      "name": "pilot_bread",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:pilot_bread",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 38,
+              "add": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "medkit",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:medkit"
+        }
+      ]
+    },
+    {
+      "name": "bear_spray",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:bear_spray"
+        }
+      ]
+    },
+    {
+      "name": "cord",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:cord",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 10,
+              "add": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "seed_packet",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:seed_packet"
+        }
+      ]
+    },
+    {
+      "name": "compass",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:compass"
+        }
+      ]
+    },
+    {
+      "name": "headlamp",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:headlamp"
+        }
+      ]
+    },
+    {
+      "name": "plant_guide",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:plant_guide"
+        }
+      ]
+    },
+    {
+      "name": "solar_panel_small",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "yearofice:solar_panel_small"
+        }
+      ]
+    }
+  ],
+  "random_sequence": "yearofice:player/starting_kit"
+}

@@ -357,5 +357,15 @@
   "body.yearofice.sleep.obstructed": "No room to lie down here.",
   "body.yearofice.sleep.not_a_bed": "That is no bed.",
   "body.yearofice.sleep.busy": "You can't lie down now.",
-  "body.yearofice.sleep.none": "You lie down."
+  "body.yearofice.sleep.none": "You lie down.",
+  "item.yearofice.fixed_blade_knife": "Fixed-Blade Knife",
+  "item.yearofice.pilot_bread": "Pilot-Bread Cracker",
+  "item.yearofice.medkit": "Medkit",
+  "item.yearofice.bear_spray": "Bear Spray",
+  "item.yearofice.cord": "Cord",
+  "item.yearofice.seed_packet": "Seed Packet",
+  "item.yearofice.compass": "Compass",
+  "item.yearofice.plant_guide": "Plant Guide",
+  "item.yearofice.solar_panel_small": "Small Solar Panel",
+  "item.yearofice.mosquito_head_net": "Mosquito Head Net"
 }

@@ -47,7 +47,17 @@ public final class ValleyWorld {
 
     static final byte NODE_IRON = 1, NODE_COAL = 2;
 
+    /** Stage 5's placements, outpost included: the pre-start world the M0–M2 tests build. */
     ValleyWorld(WorldgenParams p, Pipeline.Result r, Cover.Layers cover, List<SetPieceDef> defs) {
+        this(p, r, cover, defs, r.places().placements(), false);
+    }
+
+    /**
+     * {@code placements} replace stage 5's list: the start-site search passes the list without an outpost, then with the
+     * winner ({@code startChosen}, which also keeps surface iron off the ring round the site).
+     */
+    ValleyWorld(WorldgenParams p, Pipeline.Result r, Cover.Layers cover, List<SetPieceDef> defs, List<SetPieces.Placement> placements,
+                boolean startChosen) {
         this.p = p;
         this.seed = r.seed();
         this.g = new CoreGrid(p, r.seed().mirror());
@@ -63,7 +73,7 @@ public final class ValleyWorld {
         this.coarse = r.landform().coarse();
         this.cn = r.landform().coarseCells();
         this.cover = cover;
-        this.placements = r.places().placements();
+        this.placements = placements;
         this.defs = defs;
         this.spots = r.spots();
         this.m1Hash = r.m1Hash();
@@ -89,9 +99,20 @@ public final class ValleyWorld {
 
         node = new byte[n * n];
         coalBand = new short[n * n];
-        for (WaterStage.IronCluster c : w.iron()) for (int cell : c.nodes()) node[cell] = NODE_IRON;
-        PlacesStage.Layers pl = r.places();
-        SetPieces.Placement start = pl.outpost();
+        SetPieces.Placement start = outpost();
+        // Surface iron stays at least iron.min_m from the start site (Resource placement): stage 4 laid the clusters
+        // before the site existed, so the ones inside that ring are left off the node layer once the site is chosen.
+        StartSiteParams ssp = start == null || !startChosen ? null : StartSiteParams.load();
+        double ironMin = ssp != null && ssp.ironPrune() ? ssp.ironMinM() : 0;
+        for (WaterStage.IronCluster c : w.iron()) {
+            for (int cell : c.nodes()) {
+                if (start != null) {
+                    double dx = g.worldX(cell) - start.x(), dz = g.worldZ(cell) - start.z();
+                    if (Math.sqrt(dx * dx + dz * dz) < ironMin) continue;
+                }
+                node[cell] = NODE_IRON;
+            }
+        }
         this.seams = CoalSeams.run(this, start == null ? g.originX + g.size / 2 : start.x(),
                 start == null ? g.originZ + g.size / 2 : start.z(), w.faces());
         List<CoalSeams.Seam> bl = new ArrayList<>();
@@ -135,12 +156,29 @@ public final class ValleyWorld {
     static final int SPOT_POOL_BLOCKS = 2;
     static final double SPOT_POOL_RADIUS = 2.5;
 
-    /** Runs stages 1–6 for a level seed and binds them. About 4–5 s; call it off the main thread where it can be. */
+    private volatile StartSite.Outcome startOutcome;
+
+    /**
+     * Runs stages 1–6 and the start-site search for a level seed and binds the result: attempt k + 1 on any failed
+     * check in stages 1–7, up to {@code seed.max_attempts}. About 5 s; call it off the main thread where it can be.
+     */
     public static ValleyWorld build(Pipeline pipe, long levelSeed) {
-        Pipeline.Result r = pipe.run(levelSeed);
-        if (!r.passed()) throw new IllegalStateException("seed " + levelSeed + " failed every attempt: " + r.failures());
-        Cover.Layers c = Cover.run(r.seed(), r.landform(), r.erosion(), r.water(), pipe.params());
-        return new ValleyWorld(pipe.params(), r, c, pipe.setPieces());
+        StartSite.Outcome o = StartSite.search(pipe, levelSeed, StartSiteParams.load());
+        ValleyWorld w = new ValleyWorld(pipe.params(), o.result(), o.cover(), pipe.setPieces(), o.placements(), true);
+        w.startOutcome = o;
+        return w;
+    }
+
+    /** The start-site search that made this world: every attempt's per-check report ({@code /yoi seed}). Null for test builds. */
+    public StartSite.Outcome startOutcome() { return startOutcome; }
+
+    /** The winning site, or null if this world was not built through the search. */
+    public StartSite.Site start() { return startOutcome == null ? null : startOutcome.site(); }
+
+    /** The gravel-bar block the Endless SOS flight returns to (x, y, z), or null. */
+    public int[] sosReturn() {
+        StartSite.Site s = start();
+        return s == null || s.sosReturn() == null ? null : s.sosReturn().clone();
     }
 
     // ------------------------------------------------------------------ places

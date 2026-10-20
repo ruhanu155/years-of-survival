@@ -22,6 +22,7 @@ public final class PackSystem {
 
     public static void init(IEventBus modBus) {
         PackItems.register(modBus);
+        KitItems.register(modBus);
         PackAttachments.register(modBus);
         CarryRegistry.register(modBus);
         BoxCarry.wire();

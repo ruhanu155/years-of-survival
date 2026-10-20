@@ -5,6 +5,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.yearofice.world.WorldHooks;
 import com.yearofice.worldgen.SetPieces;
+import com.yearofice.worldgen.StartSite;
 import com.yearofice.worldgen.ValleyWorld;
 import com.yearofice.worldgen.gen.YoiChunkGenerator;
 import java.util.ArrayList;
@@ -47,6 +48,30 @@ public final class WorldCommands {
         return Commands.literal("show")
                 .then(Commands.literal("current").executes(WorldCommands::showCurrent))
                 .then(Commands.literal("slice").executes(WorldCommands::showSlice));
+    }
+
+    /** {@code /yoi seed}: the start-site search for this world's level seed: rerolls and the winner's per-check report. */
+    public static LiteralArgumentBuilder<CommandSourceStack> seed() {
+        return Commands.literal("seed").executes(WorldCommands::seed);
+    }
+
+    static int seed(CommandContext<CommandSourceStack> c) {
+        ValleyWorld w = world(c);
+        if (w == null) return 0;
+        long level = c.getSource().getLevel().getSeed();
+        c.getSource().sendSuccess(() -> Component.literal("Level seed " + level + " | archetype " + w.seed.archetype().id() + " | layer attempt "
+                + w.seed.attempt()), false);
+        StartSite.Outcome o = w.startOutcome();
+        if (o == null) {
+            c.getSource().sendSuccess(() -> Component.literal("No start-site search ran for this world's layers (built outside it)."), false);
+            return 1;
+        }
+        for (String line : o.lines()) c.getSource().sendSuccess(() -> Component.literal(line), false);
+        StartSite.Site s = o.site();
+        int[] sp = w.spawn();
+        c.getSource().sendSuccess(() -> Component.literal(String.format(Locale.ROOT, "Outpost door %d %d %d | sos_return %s", sp[0], sp[1], sp[2],
+                s.sosReturn() == null ? "none (no gravel bar in reach)" : s.sosReturn()[0] + " " + s.sosReturn()[1] + " " + s.sosReturn()[2])), false);
+        return 1;
     }
 
     private static ValleyWorld world(CommandContext<CommandSourceStack> c) {

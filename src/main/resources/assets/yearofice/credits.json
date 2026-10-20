@@ -2099,6 +2099,105 @@
       "licence": "project",
       "generator_version": "artgen 0.4.0",
       "release_blocker": false
+    },
+    {
+      "asset_id": "model_pilot_bread",
+      "files": [
+        "assets/yearofice/models/item/pilot_bread.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_medkit",
+      "files": [
+        "assets/yearofice/models/item/medkit.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_bear_spray",
+      "files": [
+        "assets/yearofice/models/item/bear_spray.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_cord",
+      "files": [
+        "assets/yearofice/models/item/cord.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_seed_packet",
+      "files": [
+        "assets/yearofice/models/item/seed_packet.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_compass",
+      "files": [
+        "assets/yearofice/models/item/compass.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_plant_guide",
+      "files": [
+        "assets/yearofice/models/item/plant_guide.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_solar_panel_small",
+      "files": [
+        "assets/yearofice/models/item/solar_panel_small.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_mosquito_head_net",
+      "files": [
+        "assets/yearofice/models/item/mosquito_head_net.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
     }
   ]
 }
