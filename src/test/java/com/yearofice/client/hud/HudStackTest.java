@@ -32,12 +32,10 @@ class HudStackTest {
 
     @Test
     void orderMatchesBothDocTables() throws Exception {
-        assertEquals(15, HudStack.ORDER.size());
-        assertEquals(docOrder("### The HUD layer stack"), HudStack.ORDER, "Player systems and client › The HUD layer stack");
-        // Layer 8's table also lists the 16th layer, field_note_card, which ships in M3 (video 2, A8).
+        assertEquals(16, HudStack.ORDER.size());
         List<String> layer8 = docOrder("### Layer 8: Messenger and HUD bus");
-        assertEquals(HudStack.ORDER, layer8.subList(0, 15), "Architecture › Layer 8");
-        assertEquals(List.of("field_note_card"), layer8.subList(15, layer8.size()), "the M3 layer after the 15");
+        assertEquals(HudStack.ORDER, layer8, "Architecture › Layer 8 (the 16th, field_note_card, ships in M3)");
+        assertEquals(HudStack.ORDER.subList(0, 15), docOrder("### The HUD layer stack"), "Player systems and client › The HUD layer stack lists the first 15");
         assertEquals(List.of("headwear", "frost", "body_fx"), HudStack.ORDER.subList(0, HudStack.VIEW_LAYERS), "F1 leaves layers 1-3");
         assertEquals(List.of(5, 6, 10), HudStack.BATTERY_LAYERS.stream().map(HudStack::number).toList(), "battery 0 blanks 5, 6 and 10");
     }

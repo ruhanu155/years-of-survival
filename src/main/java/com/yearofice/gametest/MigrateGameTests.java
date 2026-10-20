@@ -63,7 +63,7 @@ public final class MigrateGameTests {
         out.add(test("yearofice:migrate/fixtures_stacks", MigrateGameTests::fixturesStacks));
         out.add(test("yearofice:migrate/fixtures_attachments", MigrateGameTests::fixturesAttachments));
         out.add(test("yearofice:migrate/world_stamp", MigrateGameTests::worldStamp));
-        return out;
+        return com.yearofice.gametest.TestFilter.apply(out);
     }
 
     static net.minecraft.gametest.framework.GameTestAssertException fail(String m) {

@@ -81,7 +81,7 @@ public final class BuildGameTests {
     public static Collection<TestFunction> buildTests() {
         List<TestFunction> out = new ArrayList<>();
         out.add(new TestFunction("m2_5", "yearofice:building/bough_bed_sleep", TEMPLATE, 400, 0, true, BuildGameTests::boughBedSleep));
-        return out;
+        return com.yearofice.gametest.TestFilter.apply(out);
     }
 
     static ServerPlayer bot(GameTestHelper h, String name) {

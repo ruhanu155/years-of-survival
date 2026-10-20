@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:blueberries"
+  },
+  "fact_key": "field_note.yearofice.blueberries.fact",
+  "rule_key": "field_note.yearofice.blueberries.rule",
+  "source": "USDA FoodData Central, blueberries, wild",
+  "docs_checked": false
+}

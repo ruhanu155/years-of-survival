@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:raw_hide"
+  },
+  "fact_key": "field_note.yearofice.raw_hide.fact",
+  "rule_key": "field_note.yearofice.raw_hide.rule",
+  "source": "Reed 1972, Skin and hide preservation",
+  "docs_checked": false
+}

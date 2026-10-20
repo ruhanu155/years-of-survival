@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:lingonberries"
+  },
+  "fact_key": "field_note.yearofice.lingonberries.fact",
+  "rule_key": "field_note.yearofice.lingonberries.rule",
+  "source": "Ryyn\u00e4nen et al. 2004, Lingonberry benzoic acid content",
+  "docs_checked": false
+}

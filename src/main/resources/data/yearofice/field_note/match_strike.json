@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:match"
+  },
+  "fact_key": "field_note.yearofice.match_strike.fact",
+  "rule_key": "field_note.yearofice.match_strike.rule",
+  "source": "Standard chemistry reference",
+  "docs_checked": false
+}

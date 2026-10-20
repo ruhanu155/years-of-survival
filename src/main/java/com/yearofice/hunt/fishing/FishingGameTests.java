@@ -61,7 +61,7 @@ public final class FishingGameTests {
         out.add(test("yearofice:hunt/rod_nibble_strike_spooks", 200, FishingGameTests::nibbleSpooks));
         out.add(test("yearofice:hunt/fight_close_clock", 400, FishingGameTests::closeClock));
         out.add(test("yearofice:hunt/worms_from_riparian_soil", 100, FishingGameTests::worms));
-        return out;
+        return com.yearofice.gametest.TestFilter.apply(out);
     }
 
     static TestFunction test(String name, int maxTicks, Consumer<GameTestHelper> body) {

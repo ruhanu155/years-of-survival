@@ -72,7 +72,7 @@ public final class FoodGameTests {
         out.add(test("yearofice:food/fish_cooked_then_eaten", FoodGameTests::fishCookedThenEaten));
         out.add(test("yearofice:food/decayed_eating", FoodGameTests::decayedEating));
         out.add(new TestFunction("m2_5", "yearofice:decay/air_follows_env", TEMPLATE, 100, 0, true, FoodGameTests::airFollowsEnv));
-        return out;
+        return com.yearofice.gametest.TestFilter.apply(out);
     }
 
     static final String BATCH = "m2_5_food_5c";

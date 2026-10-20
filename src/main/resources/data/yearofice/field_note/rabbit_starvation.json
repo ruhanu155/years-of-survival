@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_eaten",
+    "id": "yearofice:cooked_hare"
+  },
+  "fact_key": "field_note.yearofice.rabbit_starvation.fact",
+  "rule_key": "field_note.yearofice.rabbit_starvation.rule",
+  "source": "Speth 1983, Bison Kills and Bone Counts; Cordain et al. 2000",
+  "docs_checked": false
+}

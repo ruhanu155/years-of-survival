@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "block_placed",
+    "id": "yearofice:snare"
+  },
+  "fact_key": "field_note.yearofice.snare_set.fact",
+  "rule_key": "field_note.yearofice.snare_set.rule",
+  "source": "Boutin 1984, Snowshoe hare population dynamics",
+  "docs_checked": false
+}

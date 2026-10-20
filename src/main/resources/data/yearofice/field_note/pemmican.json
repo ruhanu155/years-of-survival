@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:pemmican"
+  },
+  "fact_key": "field_note.yearofice.pemmican.fact",
+  "rule_key": "field_note.yearofice.pemmican.rule",
+  "source": "Hudson's Bay Company Archives, Pemmican",
+  "docs_checked": false
+}

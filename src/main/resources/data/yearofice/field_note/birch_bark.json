@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:birch_bark"
+  },
+  "fact_key": "field_note.yearofice.birch_bark.fact",
+  "rule_key": "field_note.yearofice.birch_bark.rule",
+  "source": "Rastogi et al. 2013, Betula bark chemistry",
+  "docs_checked": false
+}

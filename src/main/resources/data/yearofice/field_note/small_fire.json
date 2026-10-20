@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "fire_state",
+    "id": "small"
+  },
+  "fact_key": "field_note.yearofice.small_fire.fact",
+  "rule_key": "field_note.yearofice.small_fire.rule",
+  "source": "US Forest Service, Fire and heat transfer basics",
+  "docs_checked": false
+}

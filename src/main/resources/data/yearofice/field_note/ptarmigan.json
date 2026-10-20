@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:willow_ptarmigan_meat"
+  },
+  "fact_key": "field_note.yearofice.ptarmigan.fact",
+  "rule_key": "field_note.yearofice.ptarmigan.rule",
+  "source": "Hannon et al. 1998, Willow Ptarmigan, Birds of North America",
+  "docs_checked": false
+}

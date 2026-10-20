@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:cast_iron_kettle"
+  },
+  "fact_key": "field_note.yearofice.kettle.fact",
+  "rule_key": "field_note.yearofice.kettle.rule",
+  "source": "Standard cookware practice",
+  "docs_checked": false
+}

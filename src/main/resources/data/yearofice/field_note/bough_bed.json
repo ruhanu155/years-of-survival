@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "block_placed",
+    "id": "yearofice:bough_bed"
+  },
+  "fact_key": "field_note.yearofice.bough_bed.fact",
+  "rule_key": "field_note.yearofice.bough_bed.rule",
+  "source": "Mears, Outdoor Survival Handbook; US Army FM 21-76",
+  "docs_checked": false
+}

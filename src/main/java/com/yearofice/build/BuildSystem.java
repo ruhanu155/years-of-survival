@@ -18,13 +18,6 @@ public final class BuildSystem {
 
     public static void init(IEventBus modBus) {
         BuildRegistry.register(modBus);
-        com.yearofice.build.craft.CraftSystem.init(modBus);
-        // A lifted box's hold (A7) is checked before the wood jobs'.
-        var woodResolver = com.yearofice.build.work.WorkService.resolver;
-        com.yearofice.build.work.WorkService.resolver = (p, w) -> {
-            var box = com.yearofice.item.inventory.BoxCarry.resolve(p, w);
-            return box != null ? box : woodResolver.apply(p, w);
-        };
         modBus.addListener((RegisterDataMapTypesEvent e) -> e.register(BedData.MAP));
         modBus.addListener(BuildSystem::creativeTabs);
         NeoForge.EVENT_BUS.addListener(BuildCommands::register);

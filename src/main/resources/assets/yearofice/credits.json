@@ -542,30 +542,6 @@
       "release_blocker": false
     },
     {
-      "asset_id": "tex_flint_knife",
-      "files": [
-        "assets/yearofice/textures/item/flint_knife.png",
-        "assets/yearofice/models/item/flint_knife.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/flint_knife.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_flint_nodule",
-      "files": [
-        "assets/yearofice/textures/item/flint_nodule.png",
-        "assets/yearofice/models/item/flint_nodule.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/flint_nodule.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
       "asset_id": "tex_hatchet",
       "files": [
         "assets/yearofice/textures/item/hatchet.png",
@@ -595,18 +571,6 @@
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/kindling.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_knife",
-      "files": [
-        "assets/yearofice/textures/item/knife.png",
-        "assets/yearofice/models/item/knife.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/knife.json",
       "licence": "project",
       "generator_version": "artgen 0.4.0",
       "release_blocker": false
@@ -879,18 +843,6 @@
       "generator_version": "artgen 0.4.0"
     },
     {
-      "asset_id": "tex_rough_stone",
-      "files": [
-        "assets/yearofice/textures/item/rough_stone.png",
-        "assets/yearofice/models/item/rough_stone.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/rough_stone.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
       "asset_id": "tex_sinew",
       "files": [
         "assets/yearofice/textures/item/sinew.png",
@@ -922,18 +874,6 @@
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/spruce_bark.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_spruce_boughs",
-      "files": [
-        "assets/yearofice/textures/item/spruce_boughs.png",
-        "assets/yearofice/models/item/spruce_boughs.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/spruce_boughs.json",
       "licence": "project",
       "generator_version": "artgen 0.4.0",
       "release_blocker": false
@@ -985,18 +925,6 @@
       "generator_version": "artgen 0.4.0"
     },
     {
-      "asset_id": "tex_stake",
-      "files": [
-        "assets/yearofice/textures/item/stake.png",
-        "assets/yearofice/models/item/stake.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/stake.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
       "asset_id": "tex_tamarack_round",
       "files": [
         "assets/yearofice/textures/item/tamarack_round.png",
@@ -1041,18 +969,6 @@
       "original": "art-src/found/ninja_adventure/Items/Resource/Grass.png",
       "original_sha256": "1f507bb591e0b2fb4eea40ca7a39c99929ab446e15ab9373dd4e8d89418b9a75",
       "generator_version": "artgen 0.4.0"
-    },
-    {
-      "asset_id": "tex_tool_handle",
-      "files": [
-        "assets/yearofice/textures/item/tool_handle.png",
-        "assets/yearofice/models/item/tool_handle.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/tool_handle.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
     },
     {
       "asset_id": "tex_willow_round",
@@ -1443,18 +1359,6 @@
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/block/black_spruce_log.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_block_bough_bed",
-      "files": [
-        "assets/yearofice/textures/block/bough_bed_top.png",
-        "assets/yearofice/textures/block/bough_bed_side.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/block/bough_bed.json",
       "licence": "project",
       "generator_version": "artgen 0.4.0",
       "release_blocker": false
@@ -1886,9 +1790,6 @@
     {
       "asset_id": "model_wood_blocks",
       "files": [
-        "assets/yearofice/blockstates/workbench.json",
-        "assets/yearofice/models/block/workbench.json",
-        "assets/yearofice/models/item/workbench.json",
         "assets/yearofice/blockstates/chopping_block.json",
         "assets/yearofice/models/block/chopping_block.json",
         "assets/yearofice/models/item/chopping_block.json"
@@ -1897,19 +1798,6 @@
       "recipe": "tools/artgen/wood_blocks.py",
       "licence": "project",
       "generator_version": "wood_blocks 0.1.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_bough_bed",
-      "files": [
-        "assets/yearofice/blockstates/bough_bed.json",
-        "assets/yearofice/models/block/bough_bed_foot.json",
-        "assets/yearofice/models/block/bough_bed_head.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/bough_bed.py",
-      "licence": "project",
-      "generator_version": "bough_bed 0.1.0",
       "release_blocker": false
     },
     {
@@ -1990,6 +1878,130 @@
       "recipe": "tools/soundgen/recipes/fire/crackle.json",
       "licence": "project",
       "generator_version": "soundgen 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_spruce_boughs",
+      "files": [
+        "assets/yearofice/textures/item/spruce_boughs.png",
+        "assets/yearofice/models/item/spruce_boughs.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/spruce_boughs.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_bough_bed",
+      "files": [
+        "assets/yearofice/textures/block/bough_bed_top.png",
+        "assets/yearofice/textures/block/bough_bed_side.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/bough_bed.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_bough_bed",
+      "files": [
+        "assets/yearofice/blockstates/bough_bed.json",
+        "assets/yearofice/models/block/bough_bed_foot.json",
+        "assets/yearofice/models/block/bough_bed_head.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/bough_bed.py",
+      "licence": "project",
+      "generator_version": "bough_bed 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_dawn_spring",
+      "files": [
+        "assets/yearofice/sounds/music/dawn_spring.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.1.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_day_spring",
+      "files": [
+        "assets/yearofice/sounds/music/day_spring.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.1.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_fire_spring",
+      "files": [
+        "assets/yearofice/sounds/music/fire_spring.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.1.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_flint_knife",
+      "files": [],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/flint_knife.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_flint_nodule",
+      "files": [],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/flint_nodule.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_knife",
+      "files": [],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/knife.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_rough_stone",
+      "files": [],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/rough_stone.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_stake",
+      "files": [],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/stake.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tool_handle",
+      "files": [],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/tool_handle.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
       "release_blocker": false
     },
     {
