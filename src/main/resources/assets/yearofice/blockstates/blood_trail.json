@@ -1,0 +1,31 @@
+{
+ "variants": {
+  "amount=1,kind=bright": {
+   "model": "yearofice:block/blood_bright_1"
+  },
+  "amount=2,kind=bright": {
+   "model": "yearofice:block/blood_bright_2"
+  },
+  "amount=3,kind=bright": {
+   "model": "yearofice:block/blood_bright_3"
+  },
+  "amount=1,kind=dark": {
+   "model": "yearofice:block/blood_dark_1"
+  },
+  "amount=2,kind=dark": {
+   "model": "yearofice:block/blood_dark_2"
+  },
+  "amount=3,kind=dark": {
+   "model": "yearofice:block/blood_dark_3"
+  },
+  "amount=1,kind=gut": {
+   "model": "yearofice:block/blood_gut_1"
+  },
+  "amount=2,kind=gut": {
+   "model": "yearofice:block/blood_gut_2"
+  },
+  "amount=3,kind=gut": {
+   "model": "yearofice:block/blood_gut_3"
+  }
+ }
+}

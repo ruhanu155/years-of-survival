@@ -5428,6 +5428,165 @@
       "note": "Original pixel art for Year of Ice (M5 lane TUNE), a recoloured fish_chunk, no found assets",
       "generator_version": "hand script (PIL)",
       "release_blocker": false
+    },
+    {
+      "asset_id": "tex_self_bow",
+      "files": [
+        "assets/yearofice/textures/item/self_bow.png",
+        "assets/yearofice/models/item/self_bow.json"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_kit_bow",
+      "files": [
+        "assets/yearofice/textures/item/kit_bow.png",
+        "assets/yearofice/models/item/kit_bow.json"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_longbow",
+      "files": [
+        "assets/yearofice/textures/item/longbow.png",
+        "assets/yearofice/models/item/longbow.json"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_spear",
+      "files": [
+        "assets/yearofice/textures/item/spear.png",
+        "assets/yearofice/models/item/spear.json"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_arrow",
+      "files": [
+        "assets/yearofice/textures/item/arrow.png",
+        "assets/yearofice/models/item/arrow.json"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_arrowhead",
+      "files": [
+        "assets/yearofice/textures/item/arrowhead.png",
+        "assets/yearofice/models/item/arrowhead.json"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_moose_call",
+      "files": [
+        "assets/yearofice/textures/item/moose_call.png",
+        "assets/yearofice/models/item/moose_call.json"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_squeak_call",
+      "files": [
+        "assets/yearofice/textures/item/squeak_call.png",
+        "assets/yearofice/models/item/squeak_call.json"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_pole_blind",
+      "files": [
+        "assets/yearofice/textures/block/pole_blind.png",
+        "assets/yearofice/models/block/pole_blind.json",
+        "assets/yearofice/models/item/pole_blind.json",
+        "assets/yearofice/blockstates/pole_blind.json"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tree_stand",
+      "files": [
+        "assets/yearofice/textures/block/tree_stand.png",
+        "assets/yearofice/models/block/tree_stand.json",
+        "assets/yearofice/models/item/tree_stand.json",
+        "assets/yearofice/blockstates/tree_stand.json"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_blood_trail",
+      "files": [
+        "assets/yearofice/textures/block/blood_bright.png",
+        "assets/yearofice/models/block/blood_bright_1.json",
+        "assets/yearofice/models/block/blood_bright_2.json",
+        "assets/yearofice/models/block/blood_bright_3.json",
+        "assets/yearofice/textures/block/blood_dark.png",
+        "assets/yearofice/models/block/blood_dark_1.json",
+        "assets/yearofice/models/block/blood_dark_2.json",
+        "assets/yearofice/models/block/blood_dark_3.json",
+        "assets/yearofice/textures/block/blood_gut.png",
+        "assets/yearofice/models/block/blood_gut_1.json",
+        "assets/yearofice/models/block/blood_gut_2.json",
+        "assets/yearofice/models/block/blood_gut_3.json",
+        "assets/yearofice/blockstates/blood_trail.json",
+        "assets/yearofice/models/item/blood_trail.json"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
     }
   ]
 }

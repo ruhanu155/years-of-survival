@@ -1,0 +1,1 @@
+{ "id": "spear", "tier": "bushcraft", "strength_req": 0, "arrow_speed_mps": 14, "arrow_mass_g": 600, "draw_time_s": 0.0, "max_hold_s": 0, "effective_range_m": 10, "condition_per_shot": 0.5, "thrust_reach_m": 2.0 }

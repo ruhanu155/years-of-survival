@@ -1,0 +1,1 @@
+{ "id": "self_bow", "tier": "bushcraft", "strength_req": 40, "arrow_speed_mps": 42, "arrow_mass_g": 25, "draw_time_s": 0.6, "max_hold_s": 6, "effective_range_m": 15, "condition_per_shot": 0.2 }

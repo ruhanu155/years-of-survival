@@ -38,6 +38,7 @@ public final class YoiConfig {
         com.yearofice.build.BuildConfig.define(b);
         com.yearofice.plant.ForageConfig.define(b);
         com.yearofice.crop.GardenConfig.define(b);
+        com.yearofice.hunt.HuntConfig.define(b);
         SPEC = b.build();
     }
 
