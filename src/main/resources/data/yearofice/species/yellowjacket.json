@@ -1,0 +1,63 @@
+{
+  "entity": "yearofice:yellowjacket",
+  "rig": "small_rodent",
+  "habitat": [
+    "forest"
+  ],
+  "population": [
+    1,
+    2
+  ],
+  "home_range_m": 40,
+  "active": [
+    "day"
+  ],
+  "gaits": {
+    "walk": 0.5,
+    "trot": 1.0,
+    "run": 4.0,
+    "swim": 0.0,
+    "step_height_m": 0.5
+  },
+  "senses": {
+    "sight": 15,
+    "hearing": 5,
+    "smell": 10,
+    "fov": 300
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": false,
+    "flush_m": 2,
+    "flee_m": [
+      5,
+      10
+    ],
+    "flee_gait": "run",
+    "zigzag": true,
+    "hide_min": [
+      2,
+      5
+    ],
+    "charges": false
+  },
+  "huntable": false,
+  "respawn_days": 5,
+  "breath_s": 10,
+  "spawn": {
+    "cell_m": 128,
+    "group": [
+      1,
+      1
+    ],
+    "density_per_km2": 0.5
+  },
+  "carcass": {
+    "whole_kg": 0.0005,
+    "class": "none",
+    "steps": {},
+    "parts": {}
+  }
+}

@@ -1704,16 +1704,75 @@
       ]
     },
     {
-      "basis": "The food cache (Items > Containers; Theft by animals: mice in the cache)",
+      "basis": "Plants and fungi: willow and rock ptarmigan; M5 lane A grouse and ptarmigan rig",
       "milestone": "m5",
-      "owner": "food",
-      "type": "block_with_entity",
+      "owner": "ecosystem",
+      "type": "mob",
       "ids": [
-        "food_cache"
+        "rock_ptarmigan"
       ]
     },
     {
-      "basis": "M5 lane D2: figure-4 deadfall (Blueprint > Traps)",
+      "basis": "Minecraft development: data-only species spawn through one generic entity type (data_only_species_spawns)",
+      "milestone": "m5",
+      "owner": "ecosystem",
+      "type": "entity",
+      "ids": [
+        "critter"
+      ]
+    },
+    {
+      "basis": "Bestiary: carcass yields, small game and furbearers (M5 lane A)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "red_squirrel_meat",
+        "marten_meat",
+        "mink_meat",
+        "muskrat_meat",
+        "porcupine_meat",
+        "beaver_meat",
+        "spruce_grouse_meat",
+        "ruffed_grouse_meat",
+        "rock_ptarmigan_meat"
+      ]
+    },
+    {
+      "basis": "Bestiary: carcass yields, pelts (M5 lane A)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "marten_pelt",
+        "mink_pelt",
+        "muskrat_pelt",
+        "red_squirrel_pelt"
+      ]
+    },
+    {
+      "basis": "Structures and buildables: Thieves at the rack, item classes the thieves take (M5 lane A)",
+      "milestone": "m5",
+      "owner": "ecosystem",
+      "type": "tag",
+      "ids": [
+        "theft_meat",
+        "theft_fish",
+        "theft_hide",
+        "theft_berry_seed"
+      ]
+    },
+    {
+      "basis": "Minecraft development: data_only_species_spawns test species, defined only in data (M5 lane A)",
+      "milestone": "m5",
+      "owner": "ecosystem",
+      "type": "mob",
+      "ids": [
+        "data_only_probe"
+      ]
+    },
+    {
+      "basis": "M5 lane D2",
       "milestone": "m5",
       "owner": "food",
       "type": "block_with_entity",
@@ -1722,7 +1781,7 @@
       ]
     },
     {
-      "basis": "M5 lane D2: mouse deadfall ringing the food cache",
+      "basis": "M5 lane D2",
       "milestone": "m5",
       "owner": "food",
       "type": "block_with_entity",
@@ -1731,7 +1790,7 @@
       ]
     },
     {
-      "basis": "M5 lane D2: snare funnel (Every concept from the video > Snare funnels)",
+      "basis": "M5 lane D2",
       "milestone": "m5",
       "owner": "food",
       "type": "block",

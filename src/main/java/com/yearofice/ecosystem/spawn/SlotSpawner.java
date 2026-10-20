@@ -50,12 +50,47 @@ public final class SlotSpawner {
     record Cell(long minute, double share, List<Slot> slots) {}
 
     record Kind(String id, int cellM, int groupMin, int groupMax, Supplier<? extends EntityType<? extends YoiAnimal>> type,
-                ToDoubleFunction<EcoTuning> density) {}
+                ToDoubleFunction<EcoTuning> density, boolean generic) {
+        Kind(String id, int cellM, int groupMin, int groupMax, Supplier<? extends EntityType<? extends YoiAnimal>> type,
+             ToDoubleFunction<EcoTuning> density) {
+            this(id, cellM, groupMin, groupMax, type, density, false);
+        }
+    }
 
     static final List<Kind> KINDS = List.of(
             new Kind(SnowshoeHareEntity.ID, 64, 1, 1, EcosystemRegistry.SNOWSHOE_HARE, EcoTuning::hareDensityPerKm2),
             new Kind(WillowPtarmiganEntity.ID, 128, 2, 5, EcosystemRegistry.WILLOW_PTARMIGAN, EcoTuning::ptarmiganGroupsPerKm2),
             new Kind(MooseEntity.ID, 512, 1, 1, EcosystemRegistry.MOOSE, EcoTuning::mooseDensityPerKm2));
+
+    /**
+     * The three slice species plus every species file with a {@code "spawn"} block (M5: the roster is data). A file's
+     * {@code entity_type} names the body; one that names {@code yearofice:critter} is a data-only species, a generic
+     * body that takes its species from the file (Minecraft development › Data-only species).
+     */
+    @SuppressWarnings("unchecked")
+    static List<Kind> kinds() {
+        List<Kind> out = new ArrayList<>(KINDS);
+        for (SpeciesDef d : SpeciesBook.all()) {
+            if (!d.spawns()) continue;
+            boolean dup = false;
+            for (Kind k : KINDS) if (k.id().equals(d.id())) dup = true;
+            if (dup) continue;
+            var rl = net.minecraft.resources.ResourceLocation.parse(d.entityType());
+            if (!net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.containsKey(rl)) continue;
+            SpeciesDef.Spawn sp = d.spawn();
+            out.add(new Kind(d.id(), sp.cellM(), sp.groupMin(), sp.groupMax(),
+                    () -> (EntityType<? extends YoiAnimal>) net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.get(rl),
+                    t -> sp.densityPerKm2() * t.smallGameDensityMult(), !d.entityType().equals(d.id())));
+        }
+        return out;
+    }
+
+    /** Every species the spawner places, by id (for the debug command's suggestions). */
+    public static List<String> speciesIds() {
+        List<String> out = new ArrayList<>();
+        for (Kind k : kinds()) out.add(k.id());
+        return out;
+    }
 
     private static final Map<String, Cell> CELLS = new ConcurrentHashMap<>();
     private static final Map<String, UUID> BODIES = new ConcurrentHashMap<>();
@@ -77,7 +112,7 @@ public final class SlotSpawner {
         int alive = BODIES.size();
         for (Player p : players) {
             if (p.isSpectator()) continue;
-            for (Kind k : KINDS) {
+            for (Kind k : kinds()) {
                 int r = (int) Math.ceil(t.activeRadiusM());
                 int x0 = Math.floorDiv(p.getBlockX() - r, k.cellM()), x1 = Math.floorDiv(p.getBlockX() + r, k.cellM());
                 int z0 = Math.floorDiv(p.getBlockZ() - r, k.cellM()), z1 = Math.floorDiv(p.getBlockZ() + r, k.cellM());
@@ -90,7 +125,7 @@ public final class SlotSpawner {
                             if (BODIES.containsKey(s.key()) || data.empty(s.key(), minute)) continue;
                             if (p.blockPosition().distSqr(s.pos()) > t.activeRadiusM() * t.activeRadiusM()) continue;
                             if (!level.isPositionEntityTicking(s.pos())) continue;
-                            if (spawn(level, k.type().get(), s.pos(), s.key()) != null) alive++;
+                            if (spawnKind(level, k, s.pos(), s.key()) != null) alive++;
                         }
                     }
                 }
@@ -166,10 +201,30 @@ public final class SlotSpawner {
         return pinned >= 0 ? pinned : HareCycle.cycleYear(HareCycle.phase(level.getSeed()), (Calendar.yearOfDay(Calendar.absDayOfMinute(minute)) - 1));
     }
 
+    /** Stops tracking a body (a GameTest keeps its own animals with no player near; the demote pass would remove them). */
+    public static void untrack(String key) { BODIES.remove(key); }
+
+    /** Places the body of a kind; a generic body is given the kind's species. */
+    static YoiAnimal spawnKind(ServerLevel level, Kind k, BlockPos pos, String key) {
+        YoiAnimal a = spawn(level, k.type().get(), pos, key, k.generic() ? k.id() : null);
+        return a;
+    }
+
+    /** Places a species by its file, for the debug command and GameTests: a registered body or the generic one. */
+    public static YoiAnimal spawnSpecies(ServerLevel level, String speciesId, BlockPos pos, String key) {
+        for (Kind k : kinds()) if (k.id().equals(speciesId)) return spawnKind(level, k, pos, key);
+        return null;
+    }
+
     /** Places a body, tagged with its slot. Debug spawns use a "debug:" key and are counted like the rest. */
     public static <T extends YoiAnimal> T spawn(ServerLevel level, EntityType<T> type, BlockPos pos, String key) {
+        return spawn(level, type, pos, key, null);
+    }
+
+    public static <T extends YoiAnimal> T spawn(ServerLevel level, EntityType<T> type, BlockPos pos, String key, String species) {
         T a = type.create(level);
         if (a == null) return null;
+        if (species != null && a instanceof com.yearofice.ecosystem.species.SmallGameEntity g) g.setSpecies(species);
         long h = Thresholds.stream(level.getSeed(), "sex", key.hashCode()).nextUInt();
         a.setMale((h & 1) == 0);
         a.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, (float) (h % 360), 0);
@@ -219,7 +274,7 @@ public final class SlotSpawner {
         Map<String, int[]> out = new HashMap<>();
         long minute = SliceClock.minute(level);
         SlotData data = SlotData.of(level);
-        for (Kind k : KINDS) out.put(k.id(), new int[3]);
+        for (Kind k : kinds()) out.put(k.id(), new int[3]);
         for (Cell c : CELLS.values()) {
             for (Slot s : c.slots()) {
                 if (s.pos().distSqr(at) > radius * radius) continue;

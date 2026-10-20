@@ -90,13 +90,19 @@ public class FoodCacheBlockEntity extends StoreBlockEntity {
     @Override
     public void setRemoved() {
         super.setRemoved();
-        if (level != null && !level.isClientSide) PreserveClock.remove(level, worldPosition);
+        if (level != null && !level.isClientSide) {
+            PreserveClock.remove(level, worldPosition);
+            if (level instanceof net.minecraft.server.level.ServerLevel sl) RackWatch.unwatch(sl, worldPosition);
+        }
     }
 
     @Override
     public void onChunkUnloaded() {
         super.onChunkUnloaded();
-        if (level != null && !level.isClientSide) PreserveClock.remove(level, worldPosition);
+        if (level != null && !level.isClientSide) {
+            PreserveClock.remove(level, worldPosition);
+            if (level instanceof net.minecraft.server.level.ServerLevel sl) RackWatch.unwatch(sl, worldPosition);
+        }
     }
 
     @Override

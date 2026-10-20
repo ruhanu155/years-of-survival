@@ -1,0 +1,52 @@
+{
+ "inherit": "red_squirrel",
+ "scale": 0.18,
+ "id": "yellowjacket",
+ "geo_id": "yellowjacket",
+ "texture_dir": "yellowjacket",
+ "hitbox": [
+  0.1,
+  0.12
+ ],
+ "notes": "Generated. Yellow and black wasp stand-in on the small-rodent rig; within 8 blocks only.",
+ "paint": {
+  "_replace": true,
+  "tail_*": {
+   "ramp": "needle_gold",
+   "step": 1,
+   "noise": 0.2
+  },
+  "leg_*": {
+   "ramp": "needle_gold",
+   "step": 1
+  },
+  "ear_*": {
+   "ramp": "needle_gold",
+   "step": 1
+  },
+  "muzzle": {
+   "ramp": "needle_gold",
+   "step": 3
+  },
+  "head": {
+   "ramp": "needle_gold",
+   "step": 2
+  },
+  "*": {
+   "ramp": "needle_gold",
+   "step": 2,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": "bottom",
+     "ramp": "fur_black",
+     "step": 3
+    }
+   ]
+  }
+ },
+ "textures": {
+  "_replace": true,
+  "adult_all": {}
+ }
+}

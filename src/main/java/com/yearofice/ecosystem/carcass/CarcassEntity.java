@@ -112,7 +112,7 @@ public class CarcassEntity extends Entity implements GeoEntity {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "pose", 0,
-                st -> st.setAndContinue(RawAnimation.begin().thenPlayAndHold("animation." + speciesPath() + ".death"))));
+                st -> st.setAndContinue(RawAnimation.begin().thenPlayAndHold("animation." + com.yearofice.ecosystem.species.SpeciesArt.animSpecies(speciesPath()) + ".death"))));
     }
 
     @Override

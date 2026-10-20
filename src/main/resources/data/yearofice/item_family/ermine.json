@@ -1,0 +1,10 @@
+{
+  "species": "yearofice:ermine",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    {
+      "item": "yearofice:ermine_pelt",
+      "kind": "cover"
+    }
+  ]
+}
