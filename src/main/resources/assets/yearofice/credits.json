@@ -2234,6 +2234,18 @@
       "licence": "project",
       "generator_version": "artgen 0.4.0",
       "release_blocker": false
+    },
+    {
+      "asset_id": "model_encounter_hands",
+      "files": [
+        "assets/yearofice/geo/hands.geo.json",
+        "assets/yearofice/animations/hands.animation.json"
+      ],
+      "source_type": "generated",
+      "recipe": "hand-written original (no borrowed assets)",
+      "licence": "project",
+      "generator_version": "hand",
+      "release_blocker": false
     }
   ]
 }
