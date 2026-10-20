@@ -57,8 +57,6 @@ public final class PassiveGearService {
         public final BlockPos pos;
         public int segments, hooks;
         public double wingM;
-        /** Bait key on a set line's hooks (empty: bare hooks catch nothing). */
-        public String bait = "";
         public long lastMinute;
         public final List<Held> held = new ArrayList<>();
 
@@ -94,43 +92,6 @@ public final class PassiveGearService {
     }
 
     public static Gear at(ServerLevel level, BlockPos pos) { return book(level).gear.get(pos.asLong()); }
-
-    /** The nearest gear of a kind within {@code reach} blocks (horizontal; 3 vertical), or null. */
-    public static Gear nearest(ServerLevel level, BlockPos pos, Kind kind, int reach) {
-        Gear best = null;
-        double bd = Double.MAX_VALUE;
-        for (Gear g : book(level).gear.values()) {
-            if (g.kind != kind || Math.abs(g.pos.getY() - pos.getY()) > 3) continue;
-            double d = Math.sqrt(g.pos.distSqr(new BlockPos(pos.getX(), g.pos.getY(), pos.getZ())));
-            if (d <= reach && d < bd) {
-                bd = d;
-                best = g;
-            }
-        }
-        return best;
-    }
-
-    /** A net segment placed at {@code pos}: joins the net within reach (+1 segment) or starts one. */
-    public static Gear addSegment(ServerLevel level, BlockPos pos, long nowMinute) {
-        Gear g = nearest(level, pos, Kind.GILL_NET, 6);
-        if (g == null) return place(level, Kind.GILL_NET, pos, 1, nowMinute);
-        settle(level, g, nowMinute);
-        g.segments++;
-        book(level).setDirty();
-        return g;
-    }
-
-    /** The block is gone: its gear leaves the book and what it held drops on the spot. */
-    public static void remove(ServerLevel level, BlockPos pos) {
-        Gear g = book(level).gear.remove(pos.asLong());
-        if (g == null) return;
-        for (Held h : g.held) {
-            ItemStack fish = FishingService.landedFish(h.species(), h.grams());
-            DecayService.get().stamp(level, fish, FoodState.RAW);
-            net.minecraft.world.Containers.dropItemStack(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, fish);
-        }
-        book(level).setDirty();
-    }
 
     /** Periods end at minute-of-day 360 and 1080; returns the next boundary after {@code minute}. */
     static long nextBoundary(long minute) {
@@ -216,7 +177,7 @@ public final class PassiveGearService {
             case FISH_TRAP -> PassiveGear.weirHourly(q, mSeason, st.fraction());
             case SET_LINE -> {
                 var in = new SliceBite.Inputs(data.species(), data.season(), spotType, true, q, here.spot().map(s -> s.depthM()).orElse(2.0),
-                        here.spot().map(s -> s.radiusM()).orElse(5.0), st.n(), st.k(), g.bait.isEmpty() ? HookBait.NONE : HookBait.fitted(g.bait, 1000, 100000),
+                        here.spot().map(s -> s.radiusM()).orElse(5.0), st.n(), st.k(), HookBait.fitted("fish_chunk", 1000, 100000),
                         doy, BiteModel.TimeBand.DAY, BiteModel.Weather.CLOUDY, 5.0, 0.0, false);
                 yield g.hooks * PassiveGear.setLineHourly(SliceBite.pBite(in));
             }
@@ -231,11 +192,9 @@ public final class PassiveGearService {
             ItemStack fish = FishingService.landedFish(h.species(), h.grams());
             DecayService.get().stamp(level, fish, FoodState.RAW);
             out.add(fish);
-            ItemStack give = fish.copy();
-            if (p != null && !p.getInventory().add(give)) p.drop(give, false);
+            if (p != null && !p.getInventory().add(fish)) p.drop(fish, false);
         }
         g.held.clear();
-        g.bait = "";
         book(level).setDirty();
         return out;
     }
@@ -253,7 +212,6 @@ public final class PassiveGearService {
                 BlockPos pos = BlockPos.of(c.getLong("pos"));
                 Gear g = new Gear(Kind.parse(c.getString("kind")), pos, c.getInt("segments"), c.getInt("hooks"), c.getLong("last"));
                 g.wingM = c.getDouble("wing_m");
-                g.bait = c.getString("bait");
                 for (Tag h : c.getList("held", Tag.TAG_COMPOUND)) {
                     CompoundTag ht = (CompoundTag) h;
                     g.held.add(new Held(ht.getString("species"), ht.getInt("grams")));
@@ -273,7 +231,6 @@ public final class PassiveGearService {
                 c.putInt("segments", g.segments);
                 c.putInt("hooks", g.hooks);
                 c.putDouble("wing_m", g.wingM);
-                if (!g.bait.isEmpty()) c.putString("bait", g.bait); // optional: absent in 0.4.0 saves, so the fixture holds
                 c.putLong("last", g.lastMinute);
                 ListTag held = new ListTag();
                 for (Held h : g.held) {

@@ -49,6 +49,15 @@ public final class ThreatSources {
         for (Player p : level.players()) {
             if (!p.isSpectator() && p.isAlive() && p.position().distanceToSqr(at) <= r2) out.add(p);
         }
+        if (animal instanceof com.yearofice.ecosystem.YoiAnimal prey && !(animal instanceof com.yearofice.ecosystem.species.rig.PredatorEntity)) {
+            // M6: a predator that takes this species is a threat to it (Who hunts whom)
+            String id = prey.speciesId();
+            for (var pr : level.getEntitiesOfClass(com.yearofice.ecosystem.species.rig.PredatorEntity.class,
+                    new net.minecraft.world.phys.AABB(at, at).inflate(range, 16, range), x -> x.isAlive())) {
+                var rule = pr.species().predator();
+                if (rule != null && rule.takes(id) && pr.position().distanceToSqr(at) <= r2 && java.util.Objects.equals(pr.testGroup(), prey.testGroup())) out.add(pr);
+            }
+        }
         synchronized (EXTRA) {
             for (Map.Entry<LivingEntity, Set<Entity>> en : EXTRA.entrySet()) {
                 LivingEntity e = en.getKey();

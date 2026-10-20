@@ -217,30 +217,6 @@
     "yearofice:bandage": {
       "weight_g": 15
     },
-    "yearofice:dolly_varden": {
-      "weight_g": 1100
-    },
-    "yearofice:northern_pike": {
-      "weight_g": 3000
-    },
-    "yearofice:humpback_whitefish": {
-      "weight_g": 1000
-    },
-    "yearofice:burbot": {
-      "weight_g": 2000
-    },
-    "yearofice:lake_trout": {
-      "weight_g": 5000
-    },
-    "yearofice:chinook_salmon": {
-      "weight_g": 12000
-    },
-    "yearofice:chum_salmon": {
-      "weight_g": 4000
-    },
-    "yearofice:coho_salmon": {
-      "weight_g": 3500
-    },
     "yearofice:red_squirrel_meat": {
       "weight_g": 100
     },
@@ -285,6 +261,90 @@
     },
     "yearofice:beaver_pelt": {
       "weight_g": 1500
+    },
+    "yearofice:moose_meat": {
+      "weight_g": 100
+    },
+    "yearofice:caribou_meat": {
+      "weight_g": 100
+    },
+    "yearofice:mule_deer_meat": {
+      "weight_g": 100
+    },
+    "yearofice:black_bear_meat": {
+      "weight_g": 100
+    },
+    "yearofice:grizzly_meat": {
+      "weight_g": 100
+    },
+    "yearofice:wolf_meat": {
+      "weight_g": 100
+    },
+    "yearofice:coyote_meat": {
+      "weight_g": 100
+    },
+    "yearofice:red_fox_meat": {
+      "weight_g": 100
+    },
+    "yearofice:lynx_meat": {
+      "weight_g": 100
+    },
+    "yearofice:wolverine_meat": {
+      "weight_g": 100
+    },
+    "yearofice:moose_hide": {
+      "weight_g": 30000
+    },
+    "yearofice:caribou_hide": {
+      "weight_g": 8000
+    },
+    "yearofice:mule_deer_hide": {
+      "weight_g": 5000
+    },
+    "yearofice:black_bear_hide": {
+      "weight_g": 6000
+    },
+    "yearofice:grizzly_hide": {
+      "weight_g": 10000
+    },
+    "yearofice:wolf_pelt": {
+      "weight_g": 1500
+    },
+    "yearofice:coyote_pelt": {
+      "weight_g": 800
+    },
+    "yearofice:red_fox_pelt": {
+      "weight_g": 400
+    },
+    "yearofice:lynx_pelt": {
+      "weight_g": 800
+    },
+    "yearofice:wolverine_pelt": {
+      "weight_g": 900
+    },
+    "yearofice:animal_fat": {
+      "weight_g": 100
+    },
+    "yearofice:heart": {
+      "weight_g": 100
+    },
+    "yearofice:liver": {
+      "weight_g": 100
+    },
+    "yearofice:kidney": {
+      "weight_g": 100
+    },
+    "yearofice:tongue": {
+      "weight_g": 100
+    },
+    "yearofice:marrow_bone": {
+      "weight_g": 1000
+    },
+    "yearofice:antler": {
+      "weight_g": 3000
+    },
+    "yearofice:claw": {
+      "weight_g": 30
     }
   }
 }

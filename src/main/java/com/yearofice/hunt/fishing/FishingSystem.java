@@ -24,12 +24,6 @@ public final class FishingSystem {
         modBus.addListener((ModConfigEvent.Loading e) -> FishingConfig.invalidate());
         modBus.addListener((ModConfigEvent.Reloading e) -> FishingConfig.invalidate());
         modBus.addListener(FishingSystem::creativeTabs);
-        modBus.addListener((net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent e) -> {
-            for (var t : FishingRegistry.FISH_TYPES.values()) e.put(t.get(), FishEntity.attributes().build());
-        });
-        NeoForge.EVENT_BUS.addListener((LevelTickEvent.Post e) -> {
-            if (e.getLevel() instanceof net.minecraft.server.level.ServerLevel sl && sl.dimension() == net.minecraft.world.level.Level.OVERWORLD) FishSpawner.tick(sl);
-        });
         NeoForge.EVENT_BUS.addListener(FishingCommands::register);
         NeoForge.EVENT_BUS.addListener((LevelTickEvent.Post e) -> FishingClock.afterLevelTick(e.getLevel()));
         NeoForge.EVENT_BUS.addListener((BlockEvent.BreakEvent e) -> WormDigging.onBreak(e));
@@ -40,15 +34,8 @@ public final class FishingSystem {
     private static void creativeTabs(BuildCreativeModeTabContentsEvent e) {
         if (e.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             e.accept(FishingRegistry.ROD.get());
-            e.accept(FishingRegistry.SPOON.get());
-            e.accept(FishingRegistry.FLY.get());
-            e.accept(FishingRegistry.SET_LINE_ITEM.get());
-            e.accept(FishingRegistry.WEIR_BASKET_ITEM.get());
-            e.accept(FishingRegistry.GILL_NET_SEGMENT.get());
         } else if (e.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             e.accept(FishingRegistry.WORM.get());
-            e.accept(FishingRegistry.ROE.get());
-            e.accept(FishingRegistry.FISH_CHUNK.get());
         } else if (e.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             e.accept(FishingService.landedFish(600));
         }

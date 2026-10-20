@@ -1,0 +1,94 @@
+{
+  "species": "yearofice:mule_deer",
+  "poses": {
+    "standing": [
+      {
+        "zone": "heart_lungs",
+        "center_m": [
+          0.0,
+          0.792,
+          0.323
+        ],
+        "radii_m": [
+          0.147,
+          0.132,
+          0.147
+        ],
+        "shoulder_front": 0.3
+      },
+      {
+        "zone": "liver",
+        "center_m": [
+          0.0,
+          0.792,
+          0.117
+        ],
+        "radii_m": [
+          0.088,
+          0.073,
+          0.088
+        ]
+      },
+      {
+        "zone": "spine",
+        "center_m": [
+          0.0,
+          1.174,
+          0.0
+        ],
+        "radii_m": [
+          0.023,
+          0.023,
+          0.646
+        ]
+      },
+      {
+        "zone": "brain",
+        "center_m": [
+          0.0,
+          1.233,
+          0.91
+        ],
+        "radii_m": [
+          0.029,
+          0.029,
+          0.029
+        ]
+      },
+      {
+        "zone": "gut",
+        "center_m": [
+          0.0,
+          0.822,
+          -0.147
+        ],
+        "radii_m": [
+          0.264,
+          0.264,
+          0.411
+        ]
+      },
+      {
+        "zone": "legs",
+        "below_y_m": 0.587
+      }
+    ],
+    "bedded": {
+      "from": "standing",
+      "lower_m": 0.528
+    }
+  },
+  "kill_threshold_j": 20,
+  "bloodshot": {
+    "heart_lungs": [
+      "ribs",
+      "front_left",
+      "front_right"
+    ],
+    "gut": [
+      "loin",
+      "hind_left",
+      "hind_right"
+    ]
+  }
+}

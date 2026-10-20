@@ -10,6 +10,8 @@ import com.yearofice.ecosystem.species.SpeciesDef;
 import com.yearofice.ecosystem.wound.DeathPipeline;
 import com.yearofice.sim.ecosystem.AnimalState;
 import com.yearofice.sim.ecosystem.Awareness;
+import com.yearofice.sim.ecosystem.Dormancy;
+import com.yearofice.sim.ecosystem.Drives;
 import com.yearofice.sim.ecosystem.Gaits;
 import com.yearofice.sim.ecosystem.Posture;
 import com.yearofice.sim.ecosystem.PreyRules;
@@ -89,6 +91,15 @@ public abstract class YoiAnimal extends PathfinderMob implements GeoEntity {
     protected long hideUntilTick;
     // routine
     protected int routineTimer;
+    // drives (M6): the Drives state, when it next steps, and whether the animal is engaged in its act
+    private Drives.State drives;
+    private long nextDriveTick;
+    private boolean engaged;
+    private BlockPos waterAt;
+    private long waterScanTick = -1000;
+    /** Game ticks between drive steps: 6 game minutes. */
+    public static final int DRIVE_TICKS = 100;
+    public static final double DRIVE_DT_H = DRIVE_TICKS / SliceClock.TICKS_PER_MINUTE / 60.0;
 
     protected YoiAnimal(EntityType<? extends YoiAnimal> type, Level level) {
         super(type, level);
@@ -131,6 +142,52 @@ public abstract class YoiAnimal extends PathfinderMob implements GeoEntity {
     public BlockPos home() { return home == null ? blockPosition() : home; }
 
     public boolean scentEnabled() { return scentEnabled; }
+
+    // M6 hooks from hunt: a call answered, and arrow wounds remembered
+    private Vec3 callTarget;
+    private long callUntil;
+    private int aggression;
+    private boolean oldArrowWound;
+    private int woundMeetings;
+
+    /** A call drew this animal: it walks toward the caller for up to two game minutes. */
+    /** A water-draw sample named this species: head for that edge when the animal is in its water act (or a bear at a run). */
+    public void drawnToWater(BlockPos edge) { if (waterAt == null) waterAt = edge; }
+
+    public boolean wantsWater() { return driveState().act == Drives.Act.WATER; }
+
+    public void respondToCall(Vec3 origin, long untilTick) {
+        callTarget = origin;
+        callUntil = untilTick;
+    }
+
+    public boolean answeringCall() { return callTarget != null; }
+
+    /** A wounded animal remembers: aggression up one step (to 3), "an old arrow wound" on first look. */
+    public void noteArrowWound() {
+        oldArrowWound = true;
+        aggression = Math.min(3, aggression + 1);
+    }
+
+    public int aggression() { return aggression; }
+
+    public boolean oldArrowWound() { return oldArrowWound; }
+
+    /** A meeting counts toward Known when the animal carries an old wound. */
+    public int woundMeetings() { return woundMeetings; }
+
+    private Double windOverride;
+    private String testGroup;
+
+    /** GameTests (senses/*) pin the yaw the wind blows toward at this animal; null reads the Environment field. */
+    public Double windTowardOverride() { return windOverride; }
+
+    public void setWindTowardOverride(Double yaw) { windOverride = yaw; }
+
+    /** GameTests run side by side: animals of different test groups are never threats to one another. */
+    public String testGroup() { return testGroup; }
+
+    public void setTestGroup(String g) { testGroup = g; }
 
     /** GameTests pin the wind off so scent never decides a result. */
     public void setScentEnabled(boolean on) { scentEnabled = on; }
@@ -247,8 +304,144 @@ public abstract class YoiAnimal extends PathfinderMob implements GeoEntity {
 
     // ---- Routine ----------------------------------------------------------------------------------------------
 
-    /** Feed and wander inside the home range at walking pace. */
+    /**
+     * The routine: a species with drive rates and a schedule in its file (M6: moose, caribou, bears, predators) scores
+     * hunger, thirst and rest each step and acts on the strongest ({@link Drives}); the rest feed and wander.
+     */
     protected void tickRoutine(ServerLevel level) {
+        if (callTarget != null) {
+            if (level.getGameTime() > callUntil || position().distanceToSqr(callTarget) < 100) {
+                if (position().distanceToSqr(callTarget) < 100) woundMeetings++;
+                callTarget = null;
+            } else {
+                if (getNavigation().isDone()) getNavigation().moveTo(callTarget.x, callTarget.y, callTarget.z, Gaits.input(species().walkMps()));
+                setMove(MOVE_WALK);
+                return;
+            }
+        }
+        if (species().hasDrives()) driveRoutine(level);
+        else tickFeed(level);
+    }
+
+    public Drives.State driveState() {
+        if (drives == null) {
+            drives = new Drives.State();
+            drives.hunger = 0.3 + random.nextDouble() * 0.4;
+            drives.rest = random.nextDouble() * 0.4;
+        }
+        return drives;
+    }
+
+    /** Game hour of day now, fractional. */
+    public static double hourNow(ServerLevel level) {
+        return com.yearofice.sim.time.Calendar.minuteOfDayOfMinute(SliceClock.minute(level)) / 60.0;
+    }
+
+    /** One drive step at a given hour, the animal engaged in its act (GameTests call it with their own day). */
+    public final void stepDrives(double hourOfDay) { stepDrives(hourOfDay, true); }
+
+    final void stepDrives(double hourOfDay, boolean isEngaged) { stepDrives(hourOfDay, DRIVE_DT_H, isEngaged); }
+
+    /** One drive step of {@code dtHours} game hours (GameTests that run a month in a tick). */
+    public final void stepDrives(double hourOfDay, double dtHours) { stepDrives(hourOfDay, dtHours, true); }
+
+    final void stepDrives(double hourOfDay, double dtHours, boolean isEngaged) {
+        SpeciesDef d = species();
+        if (!d.hasDrives()) return;
+        Drives.step(driveState(), d.driveRates(), d.driveWeights(), hourOfDay, dtHours, isEngaged);
+    }
+
+    private Drives.Act pinned;
+
+    /** Holds the animal on one act and stops the drive steps (GameTests that need it hunting or feeding now). */
+    public void pinDriveAct(Drives.Act a) {
+        pinned = a;
+        if (a != null) driveState().act = a;
+    }
+
+    public Drives.Act driveAct() { return driveState().act; }
+
+    /** True when the species is denned for the date (bears, October 20 to April 20): bedded, not moving. */
+    protected boolean denned(ServerLevel level) {
+        return pinned == null && species().denning() && Dormancy.denned(speciesId(), Calendar.dayOfYearOfMinute(SliceClock.minute(level)));
+    }
+
+    protected void driveRoutine(ServerLevel level) {
+        if (denned(level)) {
+            getNavigation().stop();
+            setMove(MOVE_IDLE);
+            return;
+        }
+        long t = level.getGameTime();
+        if (pinned == null && t >= nextDriveTick) {
+            nextDriveTick = t + DRIVE_TICKS;
+            stepDrives(hourNow(level), engaged);
+        }
+        switch (driveState().act) {
+            case BED -> {
+                getNavigation().stop();
+                setMove(MOVE_IDLE);
+                engaged = true;
+            }
+            case WATER -> tickWater(level);
+            default -> {
+                engaged = true;
+                tickFeed(level);
+            }
+        }
+    }
+
+    /** Walk to the nearest water within 48 blocks and drink; with none near, drink at the range's edge (engaged). */
+    protected void tickWater(ServerLevel level) {
+        long t = level.getGameTime();
+        if (waterAt == null && t - waterScanTick > 200) {
+            waterScanTick = t;
+            waterAt = findWater(level, blockPosition(), 48);
+        }
+        if (waterAt == null) {
+            engaged = true;
+            tickFeed(level);
+            return;
+        }
+        double d2 = distanceToSqr(waterAt.getX() + 0.5, getY(), waterAt.getZ() + 0.5);
+        if (d2 < 9) {
+            getNavigation().stop();
+            setMove(MOVE_FEED);
+            engaged = true;
+            return;
+        }
+        engaged = false;
+        if (getNavigation().isDone() && getNavigation().moveTo(waterAt.getX() + 0.5, waterAt.getY(), waterAt.getZ() + 0.5, Gaits.input(species().trotMps()))) setMove(MOVE_WALK);
+        else if (getNavigation().isDone()) waterAt = null;
+    }
+
+    static BlockPos findWater(ServerLevel level, BlockPos from, int r) {
+        BlockPos best = null;
+        double bd = Double.MAX_VALUE;
+        BlockPos.MutableBlockPos m = new BlockPos.MutableBlockPos();
+        for (int dx = -r; dx <= r; dx += 2) {
+            for (int dz = -r; dz <= r; dz += 2) {
+                int x = from.getX() + dx, z = from.getZ() + dz;
+                if (!level.hasChunkAt(m.set(x, from.getY(), z))) continue;
+                int y = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, x, z);
+                for (int dy = -2; dy <= 0; dy++) {
+                    m.set(x, y + dy, z);
+                    if (level.getFluidState(m).is(net.minecraft.tags.FluidTags.WATER)) {
+                        double d = dx * (double) dx + dz * (double) dz;
+                        if (d < bd) {
+                            bd = d;
+                            best = new BlockPos(x, y, z);
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        return best;
+    }
+
+    /** Feed and wander inside the home range at walking pace. */
+    protected void tickFeed(ServerLevel level) {
         if (--routineTimer > 0) {
             if (getNavigation().isDone() && moveHint() == MOVE_WALK) setMove(MOVE_IDLE);
             return;

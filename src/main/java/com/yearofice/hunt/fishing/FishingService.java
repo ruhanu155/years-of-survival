@@ -120,32 +120,30 @@ public final class FishingService {
 
     // ---- cast ---------------------------------------------------------------------------------------------------
 
-    /** Fits bait from the off hand (or, on a bare hook, a worm from the pack) and says so. */
-    static boolean fitBait(ServerPlayer p, ItemStack rod) {
+    /** Fits a worm from the off hand or the pack onto a bare hook. */
+    static boolean fitWorm(ServerPlayer p, ItemStack rod) {
         FishingTuning t = FishingConfig.tuning();
-        ItemStack off = p.getOffhandItem();
-        var offKey = FishBaits.key(off);
-        // Bait in the off hand wins over what is on the hook now; a bare hook falls back to a worm in the pack.
-        if (offKey.isPresent() && !offKey.get().equals(RodItem.bait(rod).bait())) return fit(p, rod, off, offKey.get(), t);
-        if (RodItem.bait(rod).present()) return true;
-        for (int i = 0; i < p.getInventory().getContainerSize(); i++) {
-            ItemStack s = p.getInventory().getItem(i);
-            if (s.is(FishingRegistry.WORM.get())) return fit(p, rod, s, "worm", t);
+        ItemStack worm = p.getOffhandItem().is(FishingRegistry.WORM.get()) ? p.getOffhandItem() : ItemStack.EMPTY;
+        if (worm.isEmpty()) {
+            for (int i = 0; i < p.getInventory().getContainerSize(); i++) {
+                ItemStack s = p.getInventory().getItem(i);
+                if (s.is(FishingRegistry.WORM.get())) {
+                    worm = s;
+                    break;
+                }
+            }
         }
-        return false;
-    }
-
-    private static boolean fit(ServerPlayer p, ItemStack rod, ItemStack from, String key, FishingTuning t) {
-        if (!FishBaits.isLure(key) && !p.getAbilities().instabuild) from.shrink(1);
-        RodItem.setBait(rod, FishBaits.fresh(key, t));
-        say(p, (FishBaits.isLure(key) ? "Fitted the " : "Baited with ") + key.replace('_', ' ') + ".");
+        if (worm.isEmpty()) return false;
+        if (!p.getAbilities().instabuild) worm.shrink(1);
+        RodItem.setBait(rod, HookBait.fitted("worm", t.wormBites(), t.wormMinutes()));
+        say(p, "Worm on the hook.");
         return true;
     }
 
     /** Right mouse released after {@code heldS} seconds. */
     public static void cast(ServerPlayer p, ItemStack rod, double heldS) {
         if (bobberOf(p) != null || rod.isEmpty()) return;
-        if (!fitBait(p, rod) || !RodItem.bait(rod).present()) {
+        if (!RodItem.bait(rod).present() && !fitWorm(p, rod)) {
             say(p, "No bait on the hook. Worms live in the soil by the water.");
             return;
         }
@@ -216,19 +214,15 @@ public final class FishingService {
 
     /** One set of bite inputs per species that can take the bait here, grayling alone off a generated spot. */
     public static java.util.List<SliceBite.Inputs> candidates(BobberEntity b, long minute) {
-        return candidates((ServerLevel) b.level(), b.waterBlock(), b.bait(), minute);
-    }
-
-    /** The same, for any water cell and any bait (the bobber's, a test's, or /yoi fish bait). */
-    public static java.util.List<SliceBite.Inputs> candidates(ServerLevel level, BlockPos at, HookBait bait, long minute) {
+        ServerLevel level = (ServerLevel) b.level();
         FishingTuning t = FishingConfig.tuning();
-        SliceSpots.Spot spot = SliceSpots.at(level, at, t);
+        SliceSpots.Spot spot = SliceSpots.at(level, b.waterBlock(), t);
         long day = FishingClock.day(minute);
         int doy = FishSeason.dayOfYear(day);
         SliceSpots.Stocks stocks = SliceSpots.stocks(level);
-        SpotFish.Here here = SpotFish.at(level, at, doy, t);
+        SpotFish.Here here = SpotFish.at(level, b.waterBlock(), doy, t);
         BiteModel.TimeBand band = FishingClock.band(minute);
-        BiteModel.Weather weather = weather(level, at);
+        BiteModel.Weather weather = weather(level, b.blockPosition());
         double water = waterC(level, minute);
         java.util.List<SliceBite.Inputs> out = new java.util.ArrayList<>();
         if (here.spot().isPresent()) {
@@ -237,14 +231,14 @@ public final class FishingService {
             for (SpotFish.Entry e : here.fish()) {
                 FishStock st = SpotFish.stock(level, spot.key(), day, e);
                 out.add(new SliceBite.Inputs(FishingSpecies.byId(e.id()), FishingSpecies.season(e.id()), sp.type(), true,
-                        sp.quality(), sp.depthM(), sp.radiusM(), st.n(), st.k(), bait, doy, band, weather, water,
+                        sp.quality(), sp.depthM(), sp.radiusM(), st.n(), st.k(), b.bait(), doy, band, weather, water,
                         t.turbidity(), spooked));
             }
             if (!out.isEmpty()) return out;
         }
         FishStock st = stocks.get(spot.key(), day, t);
         out.add(new SliceBite.Inputs(FishingSpecies.grayling(), FishingSpecies.season(FishingSpecies.GRAYLING),
-                SliceSpots.SPOT_TYPE, spot.atSpot(), t.spotQ(), spot.depthM(), t.spotRadiusM(), st.n(), st.k(), bait,
+                SliceSpots.SPOT_TYPE, spot.atSpot(), t.spotQ(), spot.depthM(), t.spotRadiusM(), st.n(), st.k(), b.bait(),
                 doy, band, weather, water, t.turbidity(), stocks.spooked(spot.key(), minute)));
         return out;
     }
@@ -483,7 +477,6 @@ public final class FishingService {
                     if (!o.getInventory().add(fish)) o.drop(fish, false);
                     long minute = FishingClock.minute(o.server);
                     harvest((ServerLevel) b.level(), b.waterBlock(), sid, minute, t);
-                    FishSpawner.removeOne((ServerLevel) b.level(), b.waterBlock(), sid);
                 }
                 line = String.format(Locale.ROOT, "Landed a %s, %.2f kg.", f.params.species().id().replace('_', ' '), grams / 1000.0);
             }

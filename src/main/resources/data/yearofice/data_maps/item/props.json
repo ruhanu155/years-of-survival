@@ -371,54 +371,6 @@
       "category": "medicine",
       "stack_class": "small"
     },
-    "yearofice:dolly_varden": {
-      "category": "food",
-      "stack_class": "single",
-      "floats": true,
-      "scent_level": 2
-    },
-    "yearofice:northern_pike": {
-      "category": "food",
-      "stack_class": "single",
-      "floats": true,
-      "scent_level": 2
-    },
-    "yearofice:humpback_whitefish": {
-      "category": "food",
-      "stack_class": "single",
-      "floats": true,
-      "scent_level": 2
-    },
-    "yearofice:burbot": {
-      "category": "food",
-      "stack_class": "single",
-      "floats": true,
-      "scent_level": 2
-    },
-    "yearofice:lake_trout": {
-      "category": "food",
-      "stack_class": "single",
-      "floats": true,
-      "scent_level": 2
-    },
-    "yearofice:chinook_salmon": {
-      "category": "food",
-      "stack_class": "single",
-      "floats": true,
-      "scent_level": 2
-    },
-    "yearofice:chum_salmon": {
-      "category": "food",
-      "stack_class": "single",
-      "floats": true,
-      "scent_level": 2
-    },
-    "yearofice:coho_salmon": {
-      "category": "food",
-      "stack_class": "single",
-      "floats": true,
-      "scent_level": 2
-    },
     "yearofice:red_squirrel_meat": {
       "category": "food",
       "stack_class": "by_weight",
@@ -493,6 +445,144 @@
       "category": "hide",
       "stack_class": "medium",
       "scent_level": 1
+    },
+    "yearofice:moose_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:caribou_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:mule_deer_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:black_bear_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:grizzly_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:wolf_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:coyote_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:red_fox_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:lynx_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:wolverine_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:moose_hide": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:caribou_hide": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:mule_deer_hide": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:black_bear_hide": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:grizzly_hide": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:wolf_pelt": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:coyote_pelt": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:red_fox_pelt": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:lynx_pelt": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:wolverine_pelt": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:animal_fat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:heart": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:liver": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:kidney": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:tongue": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:marrow_bone": {
+      "category": "material",
+      "stack_class": "medium",
+      "scent_level": 2
+    },
+    "yearofice:antler": {
+      "category": "material",
+      "stack_class": "large"
+    },
+    "yearofice:claw": {
+      "category": "material",
+      "stack_class": "small"
     }
   }
 }

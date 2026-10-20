@@ -1,0 +1,29 @@
+{
+ "parent": "minecraft:block/block",
+ "textures": {
+  "all": "yearofice:block/blood_bright",
+  "particle": "yearofice:block/blood_bright"
+ },
+ "elements": [
+  {
+   "from": [
+    2,
+    0,
+    2
+   ],
+   "to": [
+    14,
+    0.4,
+    14
+   ],
+   "faces": {
+    "up": {
+     "texture": "#all"
+    },
+    "down": {
+     "texture": "#all"
+    }
+   }
+  }
+ ]
+}

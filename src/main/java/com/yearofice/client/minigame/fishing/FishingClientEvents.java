@@ -21,7 +21,6 @@ public final class FishingClientEvents {
     @SubscribeEvent
     public static void renderers(EntityRenderersEvent.RegisterRenderers e) {
         e.registerEntityRenderer(FishingRegistry.BOBBER.get(), BobberRenderer::new);
-        for (var t : FishingRegistry.FISH_TYPES.values()) e.registerEntityRenderer(t.get(), FishRenderer::new);
     }
 
     /** The fight arc is an owner of the one minigame slot; Look registers the layer itself in {@code client.hud}. */

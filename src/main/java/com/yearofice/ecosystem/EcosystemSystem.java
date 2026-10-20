@@ -1,5 +1,6 @@
 package com.yearofice.ecosystem;
 
+import com.yearofice.ecosystem.carcass.BigGameItems;
 import com.yearofice.ecosystem.debug.EcoCommands;
 import com.yearofice.ecosystem.spawn.NoVanillaMobs;
 import com.yearofice.ecosystem.spawn.SlotSpawner;
@@ -35,10 +36,12 @@ public final class EcosystemSystem {
         NeoForge.EVENT_BUS.addListener(SpeciesBook::onAddReloadListeners);
         NeoForge.EVENT_BUS.addListener(EcoCommands::register);
         NeoForge.EVENT_BUS.addListener(TrapCommands::register);
+        NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.debug.BigGameCommands::register);
+        NeoForge.EVENT_BUS.register(com.yearofice.ecosystem.HuntHooks.class);
         NeoForge.EVENT_BUS.addListener(SlotSpawner::onTick);
         NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.theft.TheftService::onTick);
         NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.theft.TheftCommands::register);
-        NeoForge.EVENT_BUS.addListener((ServerStoppedEvent e) -> { SlotSpawner.clear(); com.yearofice.ecosystem.theft.TheftService.clear(); });
+        NeoForge.EVENT_BUS.addListener((ServerStoppedEvent e) -> { SlotSpawner.clear(); com.yearofice.ecosystem.theft.TheftService.clear(); com.yearofice.ecosystem.ai.ScentPoints.clear(); });
         // Belt and braces: our animals never reach vanilla's death, but nothing they could drop survives either.
         NeoForge.EVENT_BUS.addListener((LivingDropsEvent e) -> { if (e.getEntity() instanceof YoiAnimal) e.setCanceled(true); });
         NeoForge.EVENT_BUS.addListener((LivingExperienceDropEvent e) -> { if (e.getEntity() instanceof YoiAnimal) e.setCanceled(true); });
@@ -63,6 +66,16 @@ public final class EcosystemSystem {
         e.put(EcosystemRegistry.SPRUCE_GROUSE.get(), YoiAnimal.attributes(2).build());
         e.put(EcosystemRegistry.RUFFED_GROUSE.get(), YoiAnimal.attributes(2).build());
         e.put(EcosystemRegistry.ROCK_PTARMIGAN.get(), YoiAnimal.attributes(2).build());
+        // M6 lane A: health in half-hearts a hit zone's kill threshold overrides anyway.
+        e.put(EcosystemRegistry.CARIBOU.get(), YoiAnimal.attributes(60).build());
+        e.put(EcosystemRegistry.MULE_DEER.get(), YoiAnimal.attributes(40).build());
+        e.put(EcosystemRegistry.BLACK_BEAR.get(), YoiAnimal.attributes(80).build());
+        e.put(EcosystemRegistry.GRIZZLY.get(), YoiAnimal.attributes(120).build());
+        e.put(EcosystemRegistry.WOLF.get(), YoiAnimal.attributes(40).build());
+        e.put(EcosystemRegistry.COYOTE.get(), YoiAnimal.attributes(10).build());
+        e.put(EcosystemRegistry.RED_FOX.get(), YoiAnimal.attributes(6).build());
+        e.put(EcosystemRegistry.LYNX.get(), YoiAnimal.attributes(10).build());
+        e.put(EcosystemRegistry.WOLVERINE.get(), YoiAnimal.attributes(12).build());
     }
 
     /** Until the studio adds a Year of Ice tab, the slice's game items sit in the vanilla tabs. */
@@ -81,7 +94,12 @@ public final class EcosystemSystem {
             e.accept(EcosystemRegistry.SPRUCE_GROUSE_MEAT.get());
             e.accept(EcosystemRegistry.RUFFED_GROUSE_MEAT.get());
             e.accept(EcosystemRegistry.ROCK_PTARMIGAN_MEAT.get());
+            for (String k : new String[] {"animal_fat", "heart", "liver", "kidney", "tongue"}) e.accept(BigGameItems.ALL.get(k).get());
+            for (String sp : BigGameItems.MEATS) e.accept(BigGameItems.ALL.get(sp + "_meat").get());
         } else if (e.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            for (String k : new String[] {"marrow_bone", "antler", "claw"}) e.accept(BigGameItems.ALL.get(k).get());
+            for (String sp : BigGameItems.HIDES) e.accept(BigGameItems.ALL.get(sp + "_hide").get());
+            for (String sp : BigGameItems.PELTS) e.accept(BigGameItems.ALL.get(sp + "_pelt").get());
             e.accept(EcosystemRegistry.HARE_PELT.get());
             e.accept(EcosystemRegistry.SINEW.get());
             e.accept(EcosystemRegistry.ERMINE_PELT.get());

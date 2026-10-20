@@ -1,0 +1,117 @@
+{
+  "entity": "yearofice:caribou",
+  "rig": "ungulate",
+  "habitat": [
+    "open_shrub",
+    "alpine"
+  ],
+  "population": [
+    1,
+    1
+  ],
+  "home_range_m": 8000,
+  "active": [
+    "dawn",
+    "dusk"
+  ],
+  "gaits": {
+    "walk": 1.5,
+    "trot": 4.5,
+    "run": 18,
+    "swim": 1.6,
+    "step_height_m": 1.0
+  },
+  "senses": {
+    "sight": 150,
+    "hearing": 30,
+    "smell": 100,
+    "fov": 300
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": false,
+    "flee_trigger_m": 60,
+    "flee_m": [
+      500,
+      500
+    ],
+    "flee_gait": "run",
+    "zigzag": false,
+    "hide_min": [
+      2,
+      5
+    ],
+    "charges": false
+  },
+  "huntable": false,
+  "huntable_from": "m6_hunt",
+  "respawn_days": 60,
+  "breath_s": 60,
+  "spawn": {
+    "cell_m": 1024,
+    "group": [
+      4,
+      9
+    ],
+    "density_per_km2": 0.12,
+    "density_group": "big_game"
+  },
+  "drives": {
+    "hunger_up": 0.1,
+    "hunger_down": 0.25,
+    "thirst_up": 0.04,
+    "thirst_down": 1.0,
+    "rest_up": 0.05,
+    "rest_down": 0.2,
+    "weights": {
+      "dawn": [
+        1.4,
+        0.6,
+        0.3
+      ],
+      "midday": [
+        1.1,
+        0.4,
+        0.6
+      ],
+      "dusk": [
+        1.4,
+        0.8,
+        0.3
+      ],
+      "night": [
+        0.4,
+        0.1,
+        1.5
+      ]
+    }
+  },
+  "carcass": {
+    "whole_kg": 110,
+    "class": "large",
+    "body_plan": "cervid",
+    "poses": [
+      "dead_side"
+    ],
+    "steps": {
+      "position": 3,
+      "gut": 25,
+      "organs": 10,
+      "prop": 5,
+      "skin": 30,
+      "quarter": 50,
+      "hang": 15
+    },
+    "parts": {
+      "meat": 44,
+      "cover": {
+        "item": "yearofice:caribou_hide",
+        "kg": 8
+      },
+      "guts_kg": 14
+    }
+  },
+  "butcher_table": "yearofice:butchering/caribou"
+}

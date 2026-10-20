@@ -40,6 +40,15 @@ public final class Sensing {
         public Set<MemoryModuleType<?>> requires() { return Set.of(EcosystemRegistry.THREAT.get(), EcosystemRegistry.LOOK_TARGET.get()); }
     }
 
+    /** What a blind or stand does to this animal's senses of a player (ConcealmentService, installed by hunt). */
+    static com.yearofice.sim.hunt.Blinds.Effect conceal(ServerLevel level, YoiAnimal a, LivingEntity t, boolean inFront) {
+        if (!(t instanceof net.minecraft.server.level.ServerPlayer sp)) return com.yearofice.sim.hunt.Blinds.Effect.NONE;
+        String c = a.species().carcassClass();
+        boolean big = c.equals("large") || c.equals("huge");
+        boolean bear = a.speciesId().endsWith("bear") || a.speciesId().endsWith("grizzly");
+        return com.yearofice.api.hunt.ConcealmentService.get().effectFor(level, sp, t.distanceTo(a), inFront, big, bear);
+    }
+
     /** Sight: range × posture × cover, inside the field of view, with line of sight through blocks. */
     public static final class Sight extends Base {
         public Sight() { super(5); }
@@ -53,7 +62,7 @@ public final class Sensing {
                 if (cover <= 0) continue;
                 if (!Awareness.inView(s.fovDeg(), a.getYHeadRot(), bearing(eye, t.position()))) continue;
                 Posture p = ThreatSources.posture(t, level.getGameTime());
-                double r = Awareness.sightRange(s, p, 1.0, cover);
+                double r = Awareness.sightRange(s, p, 1.0, cover) * conceal(level, a, t, true).sightX();
                 double st = Awareness.stimulus(t.distanceTo(a), r);
                 if (st > 0) a.awareness().sense(t, Awareness.GAIN_SIGHT, st, p, dtS(), level.getGameTime());
             }
@@ -69,7 +78,7 @@ public final class Sensing {
             Senses s = a.species().senses();
             for (LivingEntity t : ThreatSources.near(level, a.position(), s.hearingM() * Posture.RUN.noise, a)) {
                 Posture p = ThreatSources.posture(t, level.getGameTime());
-                double st = Awareness.stimulus(t.distanceTo(a), Awareness.hearingRange(s, p));
+                double st = Awareness.stimulus(t.distanceTo(a), Awareness.hearingRange(s, p) * conceal(level, a, t, false).noiseX());
                 if (st > 0) a.awareness().sense(t, Awareness.GAIN_HEARING, st, p, dtS(), level.getGameTime());
             }
         }
@@ -88,10 +97,12 @@ public final class Sensing {
         protected void doTick(ServerLevel level, YoiAnimal a) {
             if (!a.scentEnabled()) return;
             Senses s = a.species().senses();
-            double wind = windTowardDeg(level, a.blockPosition());
+            double wind = windToward(level, a);
             for (LivingEntity t : ThreatSources.near(level, a.position(), s.smellM(), a)) {
                 double toAnimal = bearing(t.position(), a.position());
                 if (Math.abs(Mth.wrapDegrees(toAnimal - wind)) > CONE_DEG) continue;
+                var fx = conceal(level, a, t, false);
+                if (fx.scentClearM() > 0 && t.distanceTo(a) <= fx.scentClearM()) continue;
                 Posture p = ThreatSources.posture(t, level.getGameTime());
                 double st = Awareness.stimulus(t.distanceTo(a), s.smellM());
                 if (st > 0) a.awareness().smell(t, st, p, dtS(), level.getGameTime());
@@ -106,6 +117,12 @@ public final class Sensing {
      */
     public static double windTowardDeg(ServerLevel level, BlockPos pos) {
         return Mth.wrapDegrees(EnvService.get().wind(level, pos).fromDeg());
+    }
+
+    /** The yaw the wind blows toward at an animal: its test override, else the Environment field's. */
+    public static double windToward(ServerLevel level, YoiAnimal a) {
+        Double fixed = a.windTowardOverride();
+        return fixed != null ? Mth.wrapDegrees(fixed) : windTowardDeg(level, a.blockPosition());
     }
 
     /** Minecraft yaw from one point toward another. */
