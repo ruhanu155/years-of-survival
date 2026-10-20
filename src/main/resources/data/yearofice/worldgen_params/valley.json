@@ -710,5 +710,11 @@
       },
       "min_face_height_m": 4
     }
+  },
+  "placer": {
+    "cell_m": 48,
+    "share": 0.06,
+    "min_start_m": 400,
+    "quantity_kg": 40
   }
 }

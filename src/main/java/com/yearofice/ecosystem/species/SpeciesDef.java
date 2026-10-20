@@ -23,7 +23,17 @@ import java.util.Map;
 public record SpeciesDef(String id, String rig, List<String> habitat, double homeRangeM, double walkMps,
                          double trotMps, double runMps, double flyMps, Senses senses, PreyRules.Behavior behavior,
                          String fleeGait, boolean zigzag, boolean huntable, double respawnDays, double wholeKg,
-                         String carcassClass, Map<String, Double> steps, String butcherTable, List<Part> parts) {
+                         String carcassClass, Map<String, Double> steps, String butcherTable, List<Part> parts,
+                         double gutsKg, Spawn spawn, String entityType) {
+
+    /**
+     * The {@code "spawn"} block of a species file: the fixed-slot spawner's cell size in metres, group size and
+     * density per km² of habitat at the Standard preset (scaled by {@code small_game_density_mult}).
+     */
+    public record Spawn(int cellM, int groupMin, int groupMax, double densityPerKm2) {}
+
+    /** True when the spawner places this species by data. */
+    public boolean spawns() { return spawn != null; }
 
     /** One part from {@code item_family/<species>.json}. */
     public record Part(String item, String kind) {}
@@ -41,7 +51,7 @@ public record SpeciesDef(String id, String rig, List<String> habitat, double hom
 
     public SpeciesDef withParts(List<Part> parts) {
         return new SpeciesDef(id, rig, habitat, homeRangeM, walkMps, trotMps, runMps, flyMps, senses, behavior, fleeGait,
-                zigzag, huntable, respawnDays, wholeKg, carcassClass, steps, butcherTable, List.copyOf(parts));
+                zigzag, huntable, respawnDays, wholeKg, carcassClass, steps, butcherTable, List.copyOf(parts), gutsKg, spawn, entityType);
     }
 
     public static SpeciesDef parse(JsonObject o) {
@@ -64,7 +74,16 @@ public record SpeciesDef(String id, String rig, List<String> habitat, double hom
                 new Senses(num(s, "sight", 20), num(s, "hearing", 15), num(s, "smell", 20), num(s, "fov", 300)), beh,
                 str(b, "flee_gait", "run"), b.has("zigzag") && b.get("zigzag").getAsBoolean(),
                 !o.has("huntable") || o.get("huntable").getAsBoolean(), num(o, "respawn_days", 6),
-                num(c, "whole_kg", 1.5), str(c, "class", "small"), steps, str(o, "butcher_table", ""), List.of());
+                num(c, "whole_kg", 1.5), str(c, "class", "small"), steps, str(o, "butcher_table", ""), List.of(),
+                c.has("parts") && c.getAsJsonObject("parts").has("guts_kg") ? c.getAsJsonObject("parts").get("guts_kg").getAsDouble() : 0,
+                spawn(o), str(o, "entity_type", id));
+    }
+
+    static Spawn spawn(JsonObject o) {
+        if (!o.has("spawn")) return null;
+        JsonObject s = o.getAsJsonObject("spawn");
+        double[] g = range(s, "group", 1, 1);
+        return new Spawn((int) num(s, "cell_m", 128), (int) g[0], (int) g[1], num(s, "density_per_km2", 1));
     }
 
     static JsonObject obj(JsonObject o, String k) { return o.has(k) ? o.getAsJsonObject(k) : new JsonObject(); }

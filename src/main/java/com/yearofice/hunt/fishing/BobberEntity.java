@@ -46,6 +46,8 @@ public final class BobberEntity extends Entity {
     /** Tests hold the per-minute rolls so only the bites they force happen. */
     boolean holdRolls;
     @Nullable FightSession fight;
+    /** The species whose bite is on (set by the bite roll; null off a bite). */
+    public @Nullable String biter;
 
     public BobberEntity(EntityType<? extends BobberEntity> type, Level level) {
         super(type, level);

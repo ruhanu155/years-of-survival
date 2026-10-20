@@ -35,6 +35,13 @@ public final class SpeciesBook {
         return SpeciesDef.parse(o);
     }
 
+    /** Every species file loaded, with its parts. */
+    public static java.util.List<SpeciesDef> all() {
+        java.util.List<SpeciesDef> out = new ArrayList<>();
+        for (String id : SPECIES.keySet()) out.add(get(id));
+        return out;
+    }
+
     public static boolean has(String id) { return SPECIES.containsKey(id); }
 
     public static void onAddReloadListeners(AddReloadListenerEvent e) {

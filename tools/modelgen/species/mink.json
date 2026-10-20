@@ -1,0 +1,74 @@
+{
+ "inherit": "red_squirrel",
+ "scale": 1.4,
+ "id": "mink",
+ "geo_id": "mink",
+ "texture_dir": "mink",
+ "hitbox": [
+  0.3,
+  0.53
+ ],
+ "notes": "Generated. Near-black glossy body, white chin patch, round-tipped tail.",
+ "tail": {
+  "angle": -8,
+  "segments": [
+   {
+    "len": 2,
+    "w": 2,
+    "h": 2
+   },
+   {
+    "len": 2,
+    "w": 2,
+    "h": 2,
+    "bend": -6
+   },
+   {
+    "len": 2,
+    "w": 1,
+    "h": 1,
+    "bend": -6
+   }
+  ]
+ },
+ "paint": {
+  "_replace": true,
+  "tail_*": {
+   "ramp": "fur_black",
+   "step": 1,
+   "noise": 0.2
+  },
+  "leg_*": {
+   "ramp": "fur_black",
+   "step": 1
+  },
+  "ear_*": {
+   "ramp": "fur_black",
+   "step": 1
+  },
+  "muzzle": {
+   "ramp": "fur_black",
+   "step": 3
+  },
+  "head": {
+   "ramp": "fur_black",
+   "step": 2
+  },
+  "*": {
+   "ramp": "fur_black",
+   "step": 2,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": "bottom",
+     "ramp": "fur_black",
+     "step": 3
+    }
+   ]
+  }
+ },
+ "textures": {
+  "_replace": true,
+  "adult_all": {}
+ }
+}

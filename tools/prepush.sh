@@ -3,6 +3,7 @@
 set -e
 cd "$(git rev-parse --show-toplevel)"
 if git status --porcelain --ignored | grep -q ' src/'; then echo "ERROR: ignored files under src/:"; git status --porcelain --ignored | grep ' src/'; exit 1; fi
-./gradlew docInventory contentLint -q
-./gradlew build -q
+OFF=""; [ -d "$HOME/.gradle/caches/modules-2" ] && OFF="--offline"
+./gradlew $OFF docInventory contentLint -q
+./gradlew $OFF build -q
 echo "prepush OK"

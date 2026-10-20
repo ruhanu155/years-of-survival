@@ -14,5 +14,6 @@ if [ -z "$slot" ]; then
   echo "gametest: both slots busy, waiting..."; exec {fd}>"$LOCKDIR/slot1.lock"; flock "$fd"; slot=1
 fi
 echo "gametest: slot $slot"
-./gradlew runGameTestServer "$@" 2>&1 | tee build/gametest.log | grep -E "required tests|failed at|Exception in" | tail -5
+OFF=""; [ -d "$HOME/.gradle/caches/modules-2" ] && OFF="--offline"
+./gradlew $OFF runGameTestServer "$@" 2>&1 | tee build/gametest.log | grep -E "required tests|failed at|Exception in" | tail -5
 grep -q "required tests passed" build/gametest.log

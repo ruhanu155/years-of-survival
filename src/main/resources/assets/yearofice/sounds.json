@@ -15,6 +15,8 @@
       {"name": "minecraft:mob/rabbit/hurt3", "attenuation_distance": 40}
     ]
   },
+  "trap.deadfall": {"subtitle": "subtitles.yearofice.trap.deadfall", "sounds": [{"name": "minecraft:dig/stone1", "pitch": 0.55, "attenuation_distance": 40}, {"name": "minecraft:dig/stone2", "pitch": 0.5, "attenuation_distance": 40}, {"name": "minecraft:dig/stone3", "pitch": 0.6, "attenuation_distance": 40}]},
+  "work.pan_swirl": {"subtitle": "subtitles.yearofice.work.pan_swirl", "sounds": [{"name": "minecraft:dig/gravel1", "pitch": 0.7}, {"name": "minecraft:dig/gravel2", "pitch": 0.75}, {"name": "minecraft:dig/gravel3", "pitch": 0.7}]},
   "tree.chop": {"subtitle": "subtitles.yearofice.tree.chop", "sounds": [{"name": "minecraft:dig/wood1", "pitch": 0.8}, {"name": "minecraft:dig/wood2", "pitch": 0.8}, {"name": "minecraft:dig/wood3", "pitch": 0.8}, {"name": "minecraft:dig/wood4", "pitch": 0.8}]},
   "tree.creak": {"subtitle": "subtitles.yearofice.tree.creak", "sounds": [{"name": "minecraft:random/door_open", "pitch": 0.5, "attenuation_distance": 32}, {"name": "minecraft:random/door_close", "pitch": 0.45, "attenuation_distance": 32}]},
   "tree.fall": {"subtitle": "subtitles.yearofice.tree.fall", "sounds": [{"name": "minecraft:dig/wood1", "pitch": 0.5, "attenuation_distance": 48}, {"name": "minecraft:dig/wood2", "pitch": 0.5, "attenuation_distance": 48}, {"name": "minecraft:dig/wood3", "pitch": 0.5, "attenuation_distance": 48}, {"name": "minecraft:dig/wood4", "pitch": 0.5, "attenuation_distance": 48}]},

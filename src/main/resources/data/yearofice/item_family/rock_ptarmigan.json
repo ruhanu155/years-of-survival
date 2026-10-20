@@ -1,0 +1,11 @@
+{
+  "species": "yearofice:rock_ptarmigan",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    {
+      "item": "yearofice:rock_ptarmigan_meat",
+      "kind": "meat",
+      "unit_g": 100
+    }
+  ]
+}

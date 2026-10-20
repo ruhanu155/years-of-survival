@@ -370,6 +370,129 @@
     "yearofice:bandage": {
       "category": "medicine",
       "stack_class": "small"
+    },
+    "yearofice:dolly_varden": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:northern_pike": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:humpback_whitefish": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:burbot": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:lake_trout": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:chinook_salmon": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:chum_salmon": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:coho_salmon": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:red_squirrel_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 2
+    },
+    "yearofice:marten_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:mink_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:muskrat_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:beaver_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:porcupine_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 2
+    },
+    "yearofice:spruce_grouse_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 2
+    },
+    "yearofice:ruffed_grouse_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 2
+    },
+    "yearofice:rock_ptarmigan_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 2
+    },
+    "yearofice:marten_pelt": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:mink_pelt": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:muskrat_pelt": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:red_squirrel_pelt": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:ermine_pelt": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:beaver_pelt": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
     }
   }
 }

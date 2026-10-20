@@ -1,0 +1,83 @@
+{
+  "entity": "yearofice:marten",
+  "rig": "small_mustelid",
+  "habitat": [
+    "forest"
+  ],
+  "population": [
+    1,
+    6
+  ],
+  "home_range_m": 400,
+  "active": [
+    "dusk",
+    "night",
+    "dawn"
+  ],
+  "gaits": {
+    "walk": 1.0,
+    "trot": 3,
+    "run": 7,
+    "swim": 0.8,
+    "step_height_m": 1.0
+  },
+  "senses": {
+    "sight": 35,
+    "hearing": 30,
+    "smell": 40,
+    "fov": 280
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": false,
+    "flush_m": 6,
+    "flee_m": [
+      20,
+      50
+    ],
+    "flee_gait": "run",
+    "zigzag": false,
+    "hide_min": [
+      10,
+      30
+    ],
+    "charges": false
+  },
+  "huntable": true,
+  "respawn_days": 8,
+  "breath_s": 10,
+  "spawn": {
+    "cell_m": 128,
+    "group": [
+      1,
+      1
+    ],
+    "density_per_km2": 3
+  },
+  "carcass": {
+    "whole_kg": 1.0,
+    "class": "small",
+    "body_plan": "mustelid",
+    "tau_h": 1,
+    "floats": true,
+    "poses": [
+      "dead_side"
+    ],
+    "steps": {
+      "gut": 2,
+      "skin": 4,
+      "joint": 3
+    },
+    "parts": {
+      "meat": 0.4,
+      "cover": {
+        "item": "yearofice:marten_pelt",
+        "kg": 0.25
+      },
+      "guts_kg": 0.1
+    }
+  },
+  "butcher_table": "yearofice:butchering/marten"
+}
