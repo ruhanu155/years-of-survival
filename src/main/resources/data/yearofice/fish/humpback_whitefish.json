@@ -1,0 +1,51 @@
+{
+  "id": "humpback_whitefish",
+  "kg": [
+    0.5,
+    2
+  ],
+  "bite_base": 0.03,
+  "kcal_per_kg": 1500,
+  "run_pull_x": 0.4,
+  "run_every_s": [
+    8,
+    15
+  ],
+  "run_length_s": [
+    1,
+    2
+  ],
+  "jump_chance": 0.0,
+  "special": "none",
+  "special_every_s": null,
+  "special_spike": 1.0,
+  "tire_per_s": 0.1,
+  "bite_through_no_leader": 0,
+  "night_factor": 0.8,
+  "trophy_kg": null,
+  "bait": {
+    "insect": 1.0,
+    "roe": 1.0,
+    "worm": 0.6,
+    "caddis": 1.0
+  },
+  "surface_feeder": true,
+  "season": {
+    "all_year": true
+  },
+  "resident": true,
+  "spawn": {
+    "site": "lake_inlet",
+    "from": "09-01",
+    "to": "10-31"
+  },
+  "parasite": "cyst",
+  "net_c_per_h": 0.15,
+  "mesh": "fine",
+  "capacity": {
+    "lake_inlet": 40,
+    "lake_drop_off": 30,
+    "weed_shelf": 20
+  },
+  "r_per_month": 0.3
+}

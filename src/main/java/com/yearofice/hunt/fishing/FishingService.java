@@ -207,18 +207,40 @@ public final class FishingService {
 
     // ---- wait ---------------------------------------------------------------------------------------------------
 
-    /** What the bite roll reads at the bobber in game minute {@code minute}. */
+    /** What the bite roll reads at the bobber in game minute {@code minute}: the first species there (the grayling off a generated spot). */
     public static SliceBite.Inputs inputs(BobberEntity b, long minute) {
+        return candidates(b, minute).get(0);
+    }
+
+    /** One set of bite inputs per species that can take the bait here, grayling alone off a generated spot. */
+    public static java.util.List<SliceBite.Inputs> candidates(BobberEntity b, long minute) {
         ServerLevel level = (ServerLevel) b.level();
         FishingTuning t = FishingConfig.tuning();
         SliceSpots.Spot spot = SliceSpots.at(level, b.waterBlock(), t);
         long day = FishingClock.day(minute);
+        int doy = FishSeason.dayOfYear(day);
         SliceSpots.Stocks stocks = SliceSpots.stocks(level);
+        SpotFish.Here here = SpotFish.at(level, b.waterBlock(), doy, t);
+        BiteModel.TimeBand band = FishingClock.band(minute);
+        BiteModel.Weather weather = weather(level, b.blockPosition());
+        double water = waterC(level, minute);
+        java.util.List<SliceBite.Inputs> out = new java.util.ArrayList<>();
+        if (here.spot().isPresent()) {
+            var sp = here.spot().get();
+            boolean spooked = stocks.spooked(spot.key(), minute);
+            for (SpotFish.Entry e : here.fish()) {
+                FishStock st = SpotFish.stock(level, spot.key(), day, e);
+                out.add(new SliceBite.Inputs(FishingSpecies.byId(e.id()), FishingSpecies.season(e.id()), sp.type(), true,
+                        sp.quality(), sp.depthM(), sp.radiusM(), st.n(), st.k(), b.bait(), doy, band, weather, water,
+                        t.turbidity(), spooked));
+            }
+            if (!out.isEmpty()) return out;
+        }
         FishStock st = stocks.get(spot.key(), day, t);
-        return new SliceBite.Inputs(FishingSpecies.grayling(), FishingSpecies.season(FishingSpecies.GRAYLING),
+        out.add(new SliceBite.Inputs(FishingSpecies.grayling(), FishingSpecies.season(FishingSpecies.GRAYLING),
                 SliceSpots.SPOT_TYPE, spot.atSpot(), t.spotQ(), spot.depthM(), t.spotRadiusM(), st.n(), st.k(), b.bait(),
-                FishSeason.dayOfYear(day), FishingClock.band(minute), weather(level, b.blockPosition()),
-                waterC(level, minute), t.turbidity(), stocks.spooked(spot.key(), minute));
+                doy, band, weather, water, t.turbidity(), stocks.spooked(spot.key(), minute)));
+        return out;
     }
 
     /**
@@ -280,10 +302,19 @@ public final class FishingService {
         HookBait bait = b.bait();
         if (!bait.present()) return;
         if (b.cue() == StrikeJudge.Cue.NONE) {
-            SliceBite.Inputs in = inputs(b, minute);
+            java.util.List<SliceBite.Inputs> cands = candidates(b, minute);
+            SliceBite.Inputs in = cands.get(0);
             long key = SliceSpots.key(b.waterBlock());
             long seed = biteSeed(level);
-            if (SliceBite.bites(in, seed, key, minute)) {
+            b.biter = null;
+            for (int i = 0; i < cands.size(); i++) {
+                SliceBite.Inputs c = cands.get(i);
+                if (Draws.u(seed, key, minute, i == 0 ? SliceBite.SALT_BITE : 100 + i) < SliceBite.pBite(c)) {
+                    b.biter = c.species().id();
+                    break;
+                }
+            }
+            if (b.biter != null) {
                 double lead = t.leadMinS() + (t.leadMaxS() - t.leadMinS()) * Draws.u(seed, key, minute, SliceBite.SALT_LEAD);
                 b.setCue(StrikeJudge.Cue.TWITCH, (int) Math.max(1, Math.round(lead * 20)));
             } else if (SliceBite.nibbles(in, t.nibbleShare(), seed, key, minute)) {
@@ -356,18 +387,23 @@ public final class FishingService {
     static void startFight(BobberEntity b) { startFight(b, Double.NaN); }
 
     /** Hooks the fish; tests may fix its weight. */
-    static void startFight(BobberEntity b, double kgOverride) {
+    public static void startFight(BobberEntity b, double kgOverride) {
         ServerPlayer owner = b.owner;
         if (owner == null) return;
         ServerLevel level = (ServerLevel) b.level();
         FishingTuning t = FishingConfig.tuning();
         long minute = FishingClock.minute(level.getServer());
         SliceSpots.Spot spot = SliceSpots.at(level, b.waterBlock(), t);
-        FishStock st = SliceSpots.stocks(level).get(spot.key(), FishingClock.day(minute), t);
-        FishSpecies sp = FishingSpecies.grayling();
+        long absDay = FishingClock.day(minute);
+        java.util.List<SliceBite.Inputs> cands = candidates(b, minute);
+        SliceBite.Inputs pick = cands.get(0);
+        for (SliceBite.Inputs c : cands) if (c.species().id().equals(b.biter)) pick = c;
+        FishStock st = new FishStock(pick.stockN(), pick.stockK());
+        FishSpecies sp = b.biter != null && FishingSpecies.has(b.biter) ? FishingSpecies.byId(b.biter) : pick.species();
+        b.biter = sp.id();
         long seed = level.getSeed() ^ Draws.name("fight");
         int id = NEXT_FIGHT.incrementAndGet();
-        double kg = SizeDraw.kg(sp, t.baitDepthM(), st.fraction(), t.spotQ(), Draws.u(seed, id, 0, SliceBite.SALT_SIZE),
+        double kg = SizeDraw.kg(sp, t.baitDepthM(), st.fraction(), pick.spotQ(), Draws.u(seed, id, 0, SliceBite.SALT_SIZE),
                 Draws.u(seed, id, 0, SliceBite.SALT_TROPHY), Draws.u(seed, id, 0, SliceBite.SALT_BAND));
         if (!Double.isNaN(kgOverride)) kg = kgOverride;
         boolean wet = b.minutesInWater >= t.lineWetMin() || EnvService.get().precip(level, b.blockPosition()).liquid();
@@ -434,14 +470,15 @@ public final class FishingService {
             case LANDED -> {
                 grams = (int) Math.round(f.params.kg() * 1000);
                 if (o != null) {
-                    ItemStack fish = landedFish(grams);
+                    String sid = f.params.species().id();
+                    ItemStack fish = landedFish(sid, grams);
                     // A whole, uncleaned fish: raw life 3.6 days at 5 °C (k 0.6), from its food row.
                     DecayService.get().stamp(o.level(), fish, FoodState.RAW);
                     if (!o.getInventory().add(fish)) o.drop(fish, false);
                     long minute = FishingClock.minute(o.server);
-                    SliceSpots.stocks((ServerLevel) b.level()).harvest(SliceSpots.key(b.waterBlock()), FishingClock.day(minute), t, 1);
+                    harvest((ServerLevel) b.level(), b.waterBlock(), sid, minute, t);
                 }
-                line = String.format(Locale.ROOT, "Landed a grayling, %.2f kg.", grams / 1000.0);
+                line = String.format(Locale.ROOT, "Landed a %s, %.2f kg.", f.params.species().id().replace('_', ' '), grams / 1000.0);
             }
             case SNAP -> {
                 if (!rod.isEmpty()) {
@@ -467,8 +504,25 @@ public final class FishingService {
         b.discard();
     }
 
-    public static ItemStack landedFish(int grams) {
-        ItemStack fish = new ItemStack(FishingRegistry.ARCTIC_GRAYLING.get());
+    /** Takes one fish of the species from the spot's stock and stamps the last catch. */
+    static void harvest(ServerLevel level, BlockPos water, String sid, long minute, FishingTuning t) {
+        SliceSpots.Spot spot = SliceSpots.at(level, water, t);
+        long day = FishingClock.day(minute);
+        SliceSpots.Stocks stocks = SliceSpots.stocks(level);
+        SpotFish.Here here = SpotFish.at(level, water, FishSeason.dayOfYear(day), t);
+        for (SpotFish.Entry e : here.fish()) {
+            if (e.id().equals(sid)) {
+                stocks.harvest(SliceSpots.speciesKey(spot.key(), sid), day, e.k(), e.r(), 1, minute);
+                return;
+            }
+        }
+        stocks.harvest(spot.key(), day, t, 1);
+    }
+
+    public static ItemStack landedFish(int grams) { return landedFish(FishingSpecies.GRAYLING, grams); }
+
+    public static ItemStack landedFish(String speciesId, int grams) {
+        ItemStack fish = new ItemStack(FishingRegistry.fishItem(speciesId));
         fish.set(YoiComponents.WEIGHT_G.get(), grams);
         return fish;
     }

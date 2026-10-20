@@ -1779,6 +1779,22 @@
       "ids": [
         "data_only_probe"
       ]
+    },
+    {
+      "basis": "Fishing M5 lane C: the landed fish is the item with the species id (DIRECTOR RULING 101; Waters and fish > Species ledger)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "dolly_varden",
+        "northern_pike",
+        "humpback_whitefish",
+        "burbot",
+        "lake_trout",
+        "chinook_salmon",
+        "chum_salmon",
+        "coho_salmon"
+      ]
     }
   ],
   "expand": {
