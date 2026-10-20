@@ -126,7 +126,7 @@ public final class InjuryService {
                     q.binding(), q.cleanUntil(), q.splint(), q.sling(), q.wrap(), q.cooled(), q.started(), end));
             b.parts = b.parts.withProblems(l);
         }
-        p.serverLevel().playSound(null, p.blockPosition(), InjuryRegistry.BACK_TWINGE.get(), SoundSource.PLAYERS, 1f, 1f);
+        p.serverLevel().playSound(null, p.blockPosition(), com.yearofice.sound.YoiSounds.BACK_TWINGE.get(), SoundSource.PLAYERS, 1f, 1f);
         InjuryMessages.line(p, "back_strained");
         return true;
     }
