@@ -1,0 +1,12 @@
+{
+  "stages": 2,
+  "heal_days": [
+    2,
+    4
+  ],
+  "treat": [
+    "cool_burn",
+    "bandage",
+    "salve"
+  ]
+}

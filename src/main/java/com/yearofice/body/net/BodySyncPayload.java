@@ -26,8 +26,14 @@ public record BodySyncPayload(long minute, float kg, float bmi, float kcalInToda
      * The ten parts for the body figure: {@code hp} and {@code frost} by {@code Part} ordinal, the lost-digit masks
      * (fingers, toes), the crooked-limb bits, the open problem count and whether a wound bleeds.
      */
-    public record Parts(int[] hp, int[] frost, int fingers, int toes, int crooked, int problems, boolean bleeding) {
+    public record Parts(int[] hp, int[] frost, int fingers, int toes, int crooked, int problems, boolean bleeding,
+                       boolean fever) {
         public static final int N = 10;
+
+        public Parts(int[] hp, int[] frost, int fingers, int toes, int crooked, int problems, boolean bleeding) {
+            this(hp, frost, fingers, toes, crooked, problems, bleeding, false);
+        }
+
         public static final Parts HEALTHY = new Parts(fill(100), new int[N], 0, 0, 0, 0, false);
 
         private static int[] fill(int v) {
@@ -38,7 +44,7 @@ public record BodySyncPayload(long minute, float kg, float bmi, float kcalInToda
 
         boolean same(Parts o) {
             return java.util.Arrays.equals(hp, o.hp) && java.util.Arrays.equals(frost, o.frost) && fingers == o.fingers
-                    && toes == o.toes && crooked == o.crooked && problems == o.problems && bleeding == o.bleeding;
+                    && toes == o.toes && crooked == o.crooked && problems == o.problems && bleeding == o.bleeding && fever == o.fever;
         }
     }
 
@@ -98,7 +104,7 @@ public record BodySyncPayload(long minute, float kg, float bmi, float kcalInToda
         b.writeVarInt(q.toes);
         b.writeVarInt(q.crooked);
         b.writeVarInt(q.problems);
-        b.writeBoolean(q.bleeding);
+        b.writeByte((q.bleeding ? 1 : 0) | (q.fever ? 2 : 0));
     }
 
     static BodySyncPayload read(RegistryFriendlyByteBuf b) {
@@ -120,7 +126,10 @@ public record BodySyncPayload(long minute, float kg, float bmi, float kcalInToda
         int[] hp = new int[Parts.N], frost = new int[Parts.N];
         for (int i = 0; i < Parts.N; i++) hp[i] = b.readByte();
         for (int i = 0; i < Parts.N; i++) frost[i] = b.readByte();
-        Parts parts = new Parts(hp, frost, b.readVarInt(), b.readVarInt(), b.readVarInt(), b.readVarInt(), b.readBoolean());
+        Parts parts = new Parts(hp, frost, b.readVarInt(), b.readVarInt(), b.readVarInt(), b.readVarInt(), false, false);
+        int pf = b.readByte();
+        parts = new Parts(parts.hp(), parts.frost(), parts.fingers(), parts.toes(), parts.crooked(), parts.problems(),
+                (pf & 1) != 0, (pf & 2) != 0);
         return new BodySyncPayload(minute, kg, bmi, in, out, bal, energy, cap, warmth, feels, feel, wet, water, stomach,
                 cond, strength, carbs, fat, protein, drunk, gut, sos, activity, air, precip, mmH, wind, roofed, battery, parts);
     }

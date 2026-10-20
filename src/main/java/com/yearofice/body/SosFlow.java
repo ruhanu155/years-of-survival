@@ -231,6 +231,15 @@ public final class SosFlow {
         Inventory inv = p.getInventory();
         for (int i = 0; i < inv.items.size(); i++) take(inv.items, i, out);
         for (int i = 0; i < inv.offhand.size(); i++) take(inv.offhand, i, out);
+        // The Curios back-pack slot and any other neck/back slot (the inner pocket) go into the left pack too.
+        for (String slot : new String[] {com.yearofice.item.inventory.PackSlots.BACK, com.yearofice.item.inventory.PackSlots.NECK}) {
+            for (int i = 0; i < com.yearofice.item.inventory.PackSlots.size(p, slot); i++) {
+                ItemStack st = com.yearofice.item.inventory.PackSlots.get(p, slot, i);
+                if (st.isEmpty() || st.is(MessengerItems.MESSENGER.get())) continue;
+                out.add(st.copy());
+                com.yearofice.item.inventory.PackSlots.set(p, slot, i, ItemStack.EMPTY);
+            }
+        }
         return out;
     }
 

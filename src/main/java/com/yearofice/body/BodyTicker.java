@@ -108,6 +108,7 @@ public final class BodyTicker {
         BodyModel.Inputs in = inputs(p, start, activity, asleep, moving);
         BodyState s = BodyAttachments.of(p);
         BodyModel.Result r = BodyModel.step(s, in, t, start, minutes);
+        com.yearofice.body.injury.InjuryTick.step(s, start, minutes, t);
         after(p, s, r, start + minutes);
         return r;
     }
@@ -117,6 +118,7 @@ public final class BodyTicker {
         BodyModel.Inputs in = inputs(p, start, Activity.REST, false, false);
         BodyState s = BodyAttachments.of(p);
         BodyModel.Result r = plan.run(s, in, t, start, minutes);
+        com.yearofice.body.injury.InjuryTick.step(s, start, minutes, t);
         after(p, s, r, start + minutes);
         return r;
     }
@@ -140,6 +142,10 @@ public final class BodyTicker {
     }
 
     private static void after(ServerPlayer p, BodyState s, BodyModel.Result r, long now) {
+        if (!r.collapsed() && s.condition() <= 0) { // bled out (injury lane)
+            SosFlow.trigger(p, SosFlow.Cause.CONDITION);
+            return;
+        }
         if (r.collapsed()) {
             SosFlow.trigger(p, switch (r.collapse()) {
                 case BMI -> SosFlow.Cause.STARVATION;
@@ -242,7 +248,8 @@ public final class BodyTicker {
         }
         boolean bleeding = r.problems().stream().anyMatch(pr -> pr.bleedPerMinute() > 0);
         int[] d = r.lostDigits();
-        return new BodySyncPayload.Parts(hp, frost, d[0], d[1], r.crooked(), r.problems().size(), bleeding);
+        boolean fever = r.problems().stream().anyMatch(pr -> com.yearofice.sim.body.part.Problems.INFECTION.equals(pr.id()) && pr.stage() >= 2);
+        return new BodySyncPayload.Parts(hp, frost, d[0], d[1], r.crooked(), r.problems().size(), bleeding, fever);
     }
 
     /**

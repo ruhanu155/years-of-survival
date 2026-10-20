@@ -25,6 +25,7 @@ public final class BodySystem {
         BodyService.install(new BodyServiceImpl());
         com.yearofice.body.sleep.Sleep.init();
         LeftPack.register(modBus);
+        com.yearofice.body.injury.InjuryItems.register(modBus);
     }
 
     /**

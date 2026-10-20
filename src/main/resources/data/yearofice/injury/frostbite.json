@@ -1,0 +1,13 @@
+{
+  "stages": 3,
+  "heal_days": [
+    0,
+    7,
+    14
+  ],
+  "treat": [
+    "rewarm_hands",
+    "rewarm_feet",
+    "rewarm_face"
+  ]
+}

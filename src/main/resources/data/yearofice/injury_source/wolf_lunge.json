@@ -1,0 +1,17 @@
+{
+  "condition_loss": 10,
+  "parts": {
+    "legs": 45,
+    "arms": 35,
+    "hands": 10,
+    "torso": 10
+  },
+  "tears_outer": 0.15,
+  "problems": [
+    {
+      "id": "cut",
+      "chance": 0.5,
+      "stage": 1
+    }
+  ]
+}

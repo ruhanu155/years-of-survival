@@ -1,0 +1,15 @@
+{
+  "condition_loss": 2.5,
+  "parts": {
+    "feet": 60,
+    "legs": 40
+  },
+  "damage_type": "yearofice:fire_step",
+  "problems": [
+    {
+      "id": "burn",
+      "chance": 0.5,
+      "stage": 1
+    }
+  ]
+}
