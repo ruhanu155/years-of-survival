@@ -1,0 +1,21 @@
+{
+  "id": "yearofice:blood_poisoning",
+  "engine": "injury",
+  "source": "Blueprint › Health (infection stage 3)",
+  "cause": "Infection reaching day 5",
+  "onset_h": [
+    0,
+    0
+  ],
+  "duration_h": -1,
+  "cure": {
+    "antibiotics_days": 5
+  },
+  "stages": [
+    {
+      "from_h": 0,
+      "cond_daily": 20
+    }
+  ],
+  "note": "Hardcore severe condition after 24 h. Stepped by the injury engine."
+}

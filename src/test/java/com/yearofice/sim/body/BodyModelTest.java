@@ -256,4 +256,96 @@ class BodyModelTest {
         assertEquals(50, Metabolism.strength(100, 20), 1e-9);
         assertEquals(0, Metabolism.strength(100, 17), 1e-9);
     }
+
+    // --- M4 lane B ---------------------------------------------------------------------------------------------
+
+    @Test
+    void bmr_scaling() {
+        assertEquals(1794, Metabolism.bmr(77, 183, 0), 1.0);
+        // 10 per kg, 6.25 per cm, -5 per year of age; sex 1 is 166 lower.
+        assertEquals(10, Metabolism.bmr(78, 183, 0) - Metabolism.bmr(77, 183, 0), 1e-9);
+        assertEquals(6.25, Metabolism.bmr(77, 184, 0) - Metabolism.bmr(77, 183, 0), 1e-9);
+        assertEquals(-166, Metabolism.bmr(77, 183, 1) - Metabolism.bmr(77, 183, 0), 1e-9);
+        // Every activity rate scales with BMR over 1,794 and with the burn slider.
+        for (Activity a : Activity.values()) {
+            double full = Metabolism.burnPerMinute(a, 77, 183, 0, 100, 1.0) * 60;
+            double thin = Metabolism.burnPerMinute(a, 62, 183, 0, 100, 1.0) * 60;
+            assertEquals(Metabolism.kcalPerHour(a), full, 0.2, a.name());
+            assertEquals(full * Metabolism.bmr(62, 183, 0) / Metabolism.bmr(77, 183, 0), thin, 0.2, a.name());
+            assertEquals(full * 1.25, Metabolism.burnPerMinute(a, 77, 183, 0, 100, 1.25) * 60, 0.2, a.name());
+        }
+    }
+
+    @Test
+    void bmi17_window() {
+        double std = starvationDays(BodyTuning.STANDARD);
+        assertTrue(std >= 15 && std <= 21, "Standard: BMI 17 after " + std + " days");
+        double gentle = starvationDays(BodyTuning.GENTLE);
+        // About twice as late: Gentle burns half and moves weight at 3,500 kcal a kg (RECONCILE 135).
+        assertTrue(gentle >= 1.8 * std && gentle <= 3.5 * std, "Gentle " + gentle + " days against Standard " + std);
+        assertTrue(starvationDays(BodyTuning.BRUTAL) < std);
+    }
+
+    /** The first game day (from 0) the scurvy illness shows, feeding enough calories and no vitamin C. */
+    static double scurvyDay(BodyTuning t) {
+        BodyState s = new BodyState();
+        long start = 6 * 60;
+        for (int day = 0; day < 60; day++) {
+            long m = start + day * 1440L;
+            BodyModel.drink(s, m, 3.0, -1);
+            BodyModel.eat(s, t, m, 900, 1500, 0, 0, 0, 0);
+            for (int h = 0; h < 24; h++) {
+                long hm = m + h * 60L;
+                if (h == 6) BodyModel.eat(s, t, hm, 900, 1500, 0, 0, 0, 0);
+                BodyModel.Result r = BodyModel.step(s, rest(MILD).doing(DayPlan.CHORES.at(hm)), t, hm, 60);
+                assertFalse(r.collapsed(), "collapsed on day " + day + ": " + r.collapse());
+                if (IllnessModel.active(s, "scurvy", hm + 60)) return (hm + 60 - start) / 1440.0;
+            }
+        }
+        return Double.NaN;
+    }
+
+    @Test
+    void scurvy_day() {
+        double d = scurvyDay(BodyTuning.STANDARD);
+        assertTrue(d >= 30 && d <= 31, "scurvy showed on day " + d);
+        // Vitamin C food keeps it off.
+        BodyState s = new BodyState();
+        s.vitC = 0.5;
+        IllnessModel.addVitC(s, 3);
+        assertEquals(3.5, s.vitC, 1e-9);
+        assertEquals(30, (IllnessModel.VITC_FULL_DAYS), 0);
+    }
+
+    @Test
+    void order_deterministic() {
+        // The same illnesses added in either order, stepped by minutes or in closed form, end in the same body.
+        BodyTuning t = BodyTuning.STANDARD;
+        BodyState a = new BodyState(), b = new BodyState();
+        IllnessModel.begin(a, "tapeworm", 0, 0.0, WellnessTuning.STANDARD);
+        IllnessModel.begin(a, "botulism", 0, 0.5, WellnessTuning.STANDARD);
+        IllnessModel.begin(a, "trichinella", 0, 1.0, WellnessTuning.STANDARD);
+        IllnessModel.begin(b, "trichinella", 0, 1.0, WellnessTuning.STANDARD);
+        IllnessModel.begin(b, "botulism", 0, 0.5, WellnessTuning.STANDARD);
+        IllnessModel.begin(b, "tapeworm", 0, 0.0, WellnessTuning.STANDARD);
+        assertEquals(a.ill, b.ill);
+        for (BodyState s : new BodyState[] {a, b}) {
+            BodyModel.eat(s, t, 0, 800, 2400, 0, 0, 0, 0);
+            DayPlan.CHORES.run(s, rest(MILD), t, 0, 3 * 1440);
+        }
+        assertEquals(a.kg, b.kg, 0);
+        assertEquals(a.parts.condition(), b.parts.condition(), 0);
+        assertEquals(a.nausea, b.nausea, 0);
+        assertEquals(a.water, b.water, 0);
+        assertEquals(a.energy, b.energy, 0);
+        // A second run from the same start is identical to the first.
+        BodyState c = new BodyState();
+        IllnessModel.begin(c, "tapeworm", 0, 0.0, WellnessTuning.STANDARD);
+        IllnessModel.begin(c, "botulism", 0, 0.5, WellnessTuning.STANDARD);
+        IllnessModel.begin(c, "trichinella", 0, 1.0, WellnessTuning.STANDARD);
+        BodyModel.eat(c, t, 0, 800, 2400, 0, 0, 0, 0);
+        DayPlan.CHORES.run(c, rest(MILD), t, 0, 3 * 1440);
+        assertEquals(a.kg, c.kg, 0);
+        assertEquals(a.parts.condition(), c.parts.condition(), 0);
+    }
 }

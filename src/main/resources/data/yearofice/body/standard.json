@@ -1,0 +1,94 @@
+{
+  "note": "Standard body numbers (Blueprint > Survival tuning). The code reads the same numbers from sim.body.Metabolism; a JUnit test holds the two equal.",
+  "bmr": {
+    "default": 1794,
+    "per_kg": 10,
+    "per_cm": 6.25,
+    "per_year": -5,
+    "male": 5,
+    "female": -161,
+    "age_years": 25,
+    "height_cm": 183,
+    "kg": 77
+  },
+  "activity_kcal_per_h": {
+    "sleep": 60,
+    "rest": 75,
+    "walk": 250,
+    "heavy": 450,
+    "run": 450,
+    "swim": 550
+  },
+  "kcal_per_kg": {
+    "gentle": 3500,
+    "standard": 2400,
+    "brutal": 2400
+  },
+  "bmi": {
+    "sos": 17,
+    "return": 19,
+    "underweight": 18.5,
+    "thin": 20,
+    "heavy": 25,
+    "strength_floor": 17,
+    "strength_span": 6
+  },
+  "healing_condition_per_h": {
+    "asleep_in_bed_fed_warm": 1.0,
+    "awake_resting": 0.3,
+    "working": 0.1,
+    "underweight_mult": 0.5,
+    "scurvy_mult": 0.5,
+    "rest_heal_mult": 2.0,
+    "stops_below_warmth": 30,
+    "fed_balance_above_kcal": -1000,
+    "warm_at": 70
+  },
+  "vitamin_c": {
+    "reserve_days": 30,
+    "falls_daily": 1
+  },
+  "gut": {
+    "absorb": 0.5,
+    "duration_h": 48,
+    "floor_h": 12,
+    "nausea_per_h": 15,
+    "nausea_for_h": 12
+  },
+  "nausea": {
+    "sway": 50,
+    "vomit": 100,
+    "after_vomit": 20,
+    "decay_awake_per_h": 10,
+    "decay_asleep_per_h": 15
+  },
+  "rest_days": {
+    "work_max_min": 60,
+    "away_max_min": 30,
+    "sleep_min": 480,
+    "radius_m": 10
+  },
+  "skin": {
+    "sun_from_doy": 60,
+    "sun_to_doy": 120,
+    "sun_above_deg": 15,
+    "cloud_below_pct": 50,
+    "wind_above_ms": 8,
+    "wind_below_c": -10,
+    "burn_days": 2
+  },
+  "hair": {
+    "stages": [
+      "stubble",
+      "short",
+      "full",
+      "long",
+      "wild"
+    ],
+    "stage_days": 30,
+    "cap_days": 120,
+    "full_from_stage": 2,
+    "ice_min": 60,
+    "thaw_min": 10
+  }
+}

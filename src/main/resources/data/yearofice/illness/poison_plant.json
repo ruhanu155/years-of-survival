@@ -1,0 +1,17 @@
+{
+  "id": "yearofice:poison_plant",
+  "engine": "foraging",
+  "source": "Blueprint › Foraging and plant knowledge; Plants and fungi › Poisonings",
+  "cause": "One of 15 toxic plants or fungi (poison_<plant>)",
+  "onset_h": [
+    0,
+    24
+  ],
+  "duration_h": -1,
+  "cure": {
+    "charcoal_within_min": 30,
+    "vomit_within_h": 2
+  },
+  "note": "One file per plant arrives with M5 foraging.",
+  "stages": []
+}

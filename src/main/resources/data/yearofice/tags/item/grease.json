@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "yearofice:lard",
+      "required": false
+    },
+    {
+      "id": "yearofice:animal_fat",
+      "required": false
+    },
+    {
+      "id": "yearofice:bone_grease",
+      "required": false
+    }
+  ]
+}

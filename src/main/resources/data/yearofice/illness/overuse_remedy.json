@@ -1,0 +1,22 @@
+{
+  "id": "yearofice:overuse_remedy",
+  "engine": "body",
+  "source": "Blueprint › Remedies; Plants and fungi › Remedies and doses",
+  "cause": "Over a daily limit (painkillers over 3; labrador tea over 2; wormwood)",
+  "onset_h": [
+    0,
+    0
+  ],
+  "duration_h": 24,
+  "cure": {
+    "stop": 1
+  },
+  "note": "Painkiller overuse: energy cap 7 for a day. Labrador and wormwood extras go through nausea and the injury path.",
+  "stages": [
+    {
+      "from_h": 0,
+      "cap_bolts": 7,
+      "msg": "ill_overuse_remedy_1"
+    }
+  ]
+}

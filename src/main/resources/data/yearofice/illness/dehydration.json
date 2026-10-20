@@ -1,0 +1,16 @@
+{
+  "id": "yearofice:dehydration",
+  "engine": "water",
+  "source": "Blueprint › Water",
+  "cause": "Water under 60",
+  "onset_h": [
+    0,
+    0
+  ],
+  "duration_h": -1,
+  "cure": {
+    "drink": 1
+  },
+  "note": "Stepped by sim.body.Metabolism.energyCap and the water meter.",
+  "stages": []
+}

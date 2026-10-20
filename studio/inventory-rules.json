@@ -93,6 +93,7 @@
     { "type": "tag", "status": "registered", "basis": "Registered by M2 lane A (worldgen); the Director re-tags on merge", "ids": ["terrain_steps", "diggable_soil", "freezing_soils", "erodible_bank", "valley_biomes"] }
   ],
   "additions": [
+    {"basis": "B13 face grease: items that can be rubbed into the face and gloves (RECONCILE 175); Body tab > Injuries on the body", "milestone": "m4", "owner": "body", "type": "tag", "ids": ["grease"]},
     { "basis": "World and story, M2.5 slice guided first night: story.Onboarding's per-player state machine and warn-once memory (Ready for development M2.5, Story; Blueprint > Start site > The guided first night)", "milestone": "m2_5", "owner": "story", "type": "attachment", "ids": ["onboarding"] },
     {"basis": "M3 lane C (Body/Fire): water, light and the fire kit (Blueprint > Fire, water and light; Items > Containers, light and signals > Light)", "milestone": "m3", "owner": "body", "type": "item", "ids": ["steel_bottle", "cooking_pot", "fire_starter", "headlamp", "birch_bark_torch"]},
     {"basis": "M3 lane C (Body/Fire): water, light and the fire kit (Blueprint > Fire, water and light; Items > Containers, light and signals > Light): the container and light item data maps", "milestone": "m3", "owner": "body", "type": "data_map", "ids": ["container", "light"]},

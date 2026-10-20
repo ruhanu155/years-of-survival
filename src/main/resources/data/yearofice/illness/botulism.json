@@ -1,0 +1,25 @@
+{
+  "id": "yearofice:botulism",
+  "engine": "body",
+  "source": "Decay and time › Sour fish and botulism",
+  "cause": "Sour fish packed in a sealed tin, jar, jerrycan or plastic: 10% a batch",
+  "onset_h": [
+    12,
+    36
+  ],
+  "duration_h": 120,
+  "cure": {
+    "bed_loss_mult": 0.5,
+    "boil_batch_min": 10
+  },
+  "note": "Nausea +60 is read as a floor on the meter (sway, no vomit) while it lasts.",
+  "stages": [
+    {
+      "from_h": 0,
+      "cap_bolts": 3,
+      "cond_daily": 10,
+      "nausea_floor": 60,
+      "msg": "ill_botulism_1"
+    }
+  ]
+}

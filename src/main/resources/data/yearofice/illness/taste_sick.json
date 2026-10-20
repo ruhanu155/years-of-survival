@@ -1,0 +1,20 @@
+{
+  "id": "yearofice:taste_sick",
+  "engine": "body",
+  "source": "Blueprint › Foraging; Plants and fungi › The tasting test",
+  "cause": "A toxic bite or staged step",
+  "onset_h": [
+    1,
+    1
+  ],
+  "duration_h": 24,
+  "cure": {},
+  "note": "The one-time Condition loss (-2 to -25) goes through the injury path; this file is the energy cap of 5 for 24 hours.",
+  "stages": [
+    {
+      "from_h": 0,
+      "cap_bolts": 5,
+      "msg": "ill_taste_sick_1"
+    }
+  ]
+}

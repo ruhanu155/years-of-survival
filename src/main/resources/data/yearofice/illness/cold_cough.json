@@ -1,0 +1,16 @@
+{
+  "id": "yearofice:cold_cough",
+  "engine": "m7",
+  "source": "Plants and fungi › Remedies and doses",
+  "cause": "2 game hours of hard work in air below -30 C",
+  "onset_h": [
+    0,
+    0
+  ],
+  "duration_h": 72,
+  "cure": {
+    "coltsfoot_or_iceland_moss_tea": 1
+  },
+  "note": "M7 (the year).",
+  "stages": []
+}
