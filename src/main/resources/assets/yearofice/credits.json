@@ -6,180 +6,1195 @@
       "asset_id": "tex_alder_round",
       "files": [
         "assets/yearofice/textures/item/alder_round.png",
-        "assets/yearofice/models/item/alder_round.json",
+        "assets/yearofice/models/item/alder_round.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/alder_round.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_alder_split",
+      "files": [
         "assets/yearofice/textures/item/alder_split.png",
-        "assets/yearofice/models/item/alder_split.json",
+        "assets/yearofice/models/item/alder_split.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/alder_split.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_arctic_grayling",
+      "files": [
         "assets/yearofice/textures/item/arctic_grayling.png",
         "assets/yearofice/textures/item/arctic_grayling_cooked.png",
-        "assets/yearofice/textures/item/arctic_grayling_burnt.png",
+        "assets/yearofice/textures/item/arctic_grayling_burnt.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/arctic_grayling.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_aspen_round",
+      "files": [
         "assets/yearofice/textures/item/aspen_round.png",
-        "assets/yearofice/models/item/aspen_round.json",
+        "assets/yearofice/models/item/aspen_round.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/aspen_round.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_aspen_split",
+      "files": [
         "assets/yearofice/textures/item/aspen_split.png",
-        "assets/yearofice/models/item/aspen_split.json",
+        "assets/yearofice/models/item/aspen_split.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/aspen_split.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_birch_bark",
+      "files": [
         "assets/yearofice/textures/item/birch_bark.png",
-        "assets/yearofice/models/item/birch_bark.json",
+        "assets/yearofice/models/item/birch_bark.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512, edited (see recipe)",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/birch_bark.json",
+      "original": "art-src/found/ninja_adventure/Items/Scroll/Scroll.png",
+      "original_sha256": "526a293d206cf37ea2ce56890918b849a4f4070c5538fb216372de7ddc07e8d6",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_birch_round",
+      "files": [
         "assets/yearofice/textures/item/birch_round.png",
-        "assets/yearofice/models/item/birch_round.json",
+        "assets/yearofice/models/item/birch_round.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/birch_round.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_birch_split",
+      "files": [
         "assets/yearofice/textures/item/birch_split.png",
-        "assets/yearofice/models/item/birch_split.json",
+        "assets/yearofice/models/item/birch_split.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/birch_split.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_blueberries",
+      "files": [
         "assets/yearofice/textures/item/blueberries.png",
-        "assets/yearofice/models/item/blueberries.json",
-        "assets/yearofice/textures/entity/bobber.png",
+        "assets/yearofice/models/item/blueberries.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "isaiah658's Pixel Pack #1 (Objects/Food)",
+      "author": "isaiah658",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/isaiah658_pixel_pack.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://opengameart.org/content/isaiah658s-pixel-pack-1",
+      "mirror": "https://opengameart.org/sites/default/files/isaiah658%27s-Pixel-Pack-%231_0.zip",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512, edited (see recipe)",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/blueberries.json",
+      "original": "art-src/found/isaiah658_pixel_pack/Food/cherries.png",
+      "original_sha256": "3ea04697a228f4fa601fff354a82235b3342f109ba6e8be04a775a25a11fbd04",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_bobber",
+      "files": [
+        "assets/yearofice/textures/entity/bobber.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/bobber.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bow_drill",
+      "files": [
         "assets/yearofice/textures/item/bow_drill.png",
-        "assets/yearofice/models/item/bow_drill.json",
+        "assets/yearofice/models/item/bow_drill.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/bow_drill.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bucksaw",
+      "files": [
         "assets/yearofice/textures/item/bucksaw.png",
-        "assets/yearofice/models/item/bucksaw.json",
+        "assets/yearofice/models/item/bucksaw.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/bucksaw.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cast_iron_kettle",
+      "files": [
         "assets/yearofice/textures/item/cast_iron_kettle.png",
-        "assets/yearofice/models/item/cast_iron_kettle.json",
+        "assets/yearofice/models/item/cast_iron_kettle.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/cast_iron_kettle.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cooked_fish_fillet",
+      "files": [
         "assets/yearofice/textures/item/cooked_fish_fillet.png",
-        "assets/yearofice/models/item/cooked_fish_fillet.json",
+        "assets/yearofice/models/item/cooked_fish_fillet.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/cooked_fish_fillet.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cooked_grouse",
+      "files": [
         "assets/yearofice/textures/item/cooked_grouse.png",
         "assets/yearofice/textures/item/cooked_grouse_burnt.png",
-        "assets/yearofice/models/item/cooked_grouse.json",
+        "assets/yearofice/models/item/cooked_grouse.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512, decay variants by ramp remap",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/cooked_grouse.json",
+      "original": "art-src/found/ninja_adventure/Items/Food/Meat.png",
+      "original_sha256": "ef6a6fa6354d3fef7969a4d64e9157048884628a658bece6c3c47a6dcbcf8d8d",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_cooked_hare",
+      "files": [
         "assets/yearofice/textures/item/cooked_hare.png",
         "assets/yearofice/textures/item/cooked_hare_burnt.png",
-        "assets/yearofice/models/item/cooked_hare.json",
+        "assets/yearofice/models/item/cooked_hare.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/cooked_hare.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cooked_moose_meat",
+      "files": [
         "assets/yearofice/textures/item/cooked_moose_meat.png",
-        "assets/yearofice/models/item/cooked_moose_meat.json",
+        "assets/yearofice/models/item/cooked_moose_meat.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/cooked_moose_meat.json",
+      "original": "art-src/found/ninja_adventure/Items/Food/Beaf.png",
+      "original_sha256": "55b45e050566e2cfe2ca537338ff659f3a6157e2c056c74a641f73fb536623fa",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_cooking_pot",
+      "files": [
         "assets/yearofice/textures/item/cooking_pot.png",
-        "assets/yearofice/models/item/cooking_pot.json",
+        "assets/yearofice/models/item/cooking_pot.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/cooking_pot.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cordage",
+      "files": [
         "assets/yearofice/textures/item/cordage.png",
-        "assets/yearofice/models/item/cordage.json",
+        "assets/yearofice/models/item/cordage.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/cordage.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cranberries",
+      "files": [
         "assets/yearofice/textures/item/cranberries.png",
-        "assets/yearofice/models/item/cranberries.json",
+        "assets/yearofice/models/item/cranberries.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "isaiah658's Pixel Pack #1 (Objects/Food)",
+      "author": "isaiah658",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/isaiah658_pixel_pack.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://opengameart.org/content/isaiah658s-pixel-pack-1",
+      "mirror": "https://opengameart.org/sites/default/files/isaiah658%27s-Pixel-Pack-%231_0.zip",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512, edited (see recipe)",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/cranberries.json",
+      "original": "art-src/found/isaiah658_pixel_pack/Food/cherries.png",
+      "original_sha256": "3ea04697a228f4fa601fff354a82235b3342f109ba6e8be04a775a25a11fbd04",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_crate_backpack",
+      "files": [
         "assets/yearofice/textures/item/crate_backpack.png",
-        "assets/yearofice/models/item/crate_backpack.json",
+        "assets/yearofice/models/item/crate_backpack.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_dried_fish",
+      "files": [
         "assets/yearofice/textures/item/dried_fish.png",
-        "assets/yearofice/models/item/dried_fish.json",
+        "assets/yearofice/models/item/dried_fish.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/dried_fish.json",
+      "original": "art-src/found/ninja_adventure/Items/Food/Fish.png",
+      "original_sha256": "d2cbc923cd9886a1e8977ca32c9fe073091ecef62982db80dea9034b69998638",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_drift_round",
+      "files": [
         "assets/yearofice/textures/item/drift_round.png",
-        "assets/yearofice/models/item/drift_round.json",
+        "assets/yearofice/models/item/drift_round.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/drift_round.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_drift_split",
+      "files": [
         "assets/yearofice/textures/item/drift_split.png",
-        "assets/yearofice/models/item/drift_split.json",
+        "assets/yearofice/models/item/drift_split.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/drift_split.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fat",
+      "files": [
         "assets/yearofice/textures/item/fat.png",
-        "assets/yearofice/models/item/fat.json",
+        "assets/yearofice/models/item/fat.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/fat.json",
+      "original": "art-src/found/ninja_adventure/Items/Food/Nut.png",
+      "original_sha256": "7ade4eb61bd899c074d017c764c01d0b6040f54fad0f0cb782ba456ef7c347c5",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_felling_axe",
+      "files": [
         "assets/yearofice/textures/item/felling_axe.png",
-        "assets/yearofice/models/item/felling_axe.json",
-        "assets/yearofice/textures/block/fire_ring_ash.png",
-        "assets/yearofice/textures/block/fire_ring_coals.png",
-        "assets/yearofice/textures/block/fire_ring_flame.png",
-        "assets/yearofice/textures/block/fire_ring_kindling.png",
-        "assets/yearofice/textures/block/fire_ring_log.png",
-        "assets/yearofice/textures/block/fire_ring_stone.png",
-        "assets/yearofice/textures/block/fire_ring_tinder.png",
+        "assets/yearofice/models/item/felling_axe.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/felling_axe.json",
+      "original": "art-src/found/ninja_adventure/Items/Tool/Axe.png",
+      "original_sha256": "d566a1a2a264613c0e982bc839c6d5ad6663aa6a5096faebd828fc6ccd8e00bb",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_fire_ring_ash",
+      "files": [
+        "assets/yearofice/textures/block/fire_ring_ash.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/fire_ring_ash.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fire_ring_coals",
+      "files": [
+        "assets/yearofice/textures/block/fire_ring_coals.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/fire_ring_coals.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fire_ring_flame",
+      "files": [
+        "assets/yearofice/textures/block/fire_ring_flame.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/fire_ring_flame.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fire_ring_kindling",
+      "files": [
+        "assets/yearofice/textures/block/fire_ring_kindling.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/fire_ring_kindling.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fire_ring_log",
+      "files": [
+        "assets/yearofice/textures/block/fire_ring_log.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/fire_ring_log.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fire_ring_stone",
+      "files": [
+        "assets/yearofice/textures/block/fire_ring_stone.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/fire_ring_stone.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fire_ring_tinder",
+      "files": [
+        "assets/yearofice/textures/block/fire_ring_tinder.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/fire_ring_tinder.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fire_starter",
+      "files": [
         "assets/yearofice/textures/item/fire_starter.png",
-        "assets/yearofice/models/item/fire_starter.json",
+        "assets/yearofice/models/item/fire_starter.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/fire_starter.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_firewood_round",
+      "files": [
         "assets/yearofice/textures/item/firewood_round.png",
-        "assets/yearofice/models/item/firewood_round.json",
+        "assets/yearofice/models/item/firewood_round.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/firewood_round.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_firewood_split",
+      "files": [
         "assets/yearofice/textures/item/firewood_split.png",
-        "assets/yearofice/models/item/firewood_split.json",
+        "assets/yearofice/models/item/firewood_split.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/firewood_split.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fishing_rod",
+      "files": [
         "assets/yearofice/textures/item/fishing_rod.png",
-        "assets/yearofice/models/item/fishing_rod.json",
+        "assets/yearofice/models/item/fishing_rod.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/fishing_rod.json",
+      "original": "art-src/found/ninja_adventure/Items/Weapons/Fishing Rod/Sprite.png",
+      "original_sha256": "a9c0f78584c205a08405716f992b61e3e4a208beb32bdfaf8085c591351540e6",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_fixed_blade_knife",
+      "files": [
         "assets/yearofice/textures/item/fixed_blade_knife.png",
-        "assets/yearofice/models/item/fixed_blade_knife.json",
+        "assets/yearofice/models/item/fixed_blade_knife.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/fixed_blade_knife.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_flint_knife",
+      "files": [
         "assets/yearofice/textures/item/flint_knife.png",
-        "assets/yearofice/models/item/flint_knife.json",
+        "assets/yearofice/models/item/flint_knife.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/flint_knife.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_flint_nodule",
+      "files": [
         "assets/yearofice/textures/item/flint_nodule.png",
-        "assets/yearofice/models/item/flint_nodule.json",
+        "assets/yearofice/models/item/flint_nodule.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/flint_nodule.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_hatchet",
+      "files": [
         "assets/yearofice/textures/item/hatchet.png",
-        "assets/yearofice/models/item/hatchet.json",
+        "assets/yearofice/models/item/hatchet.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/hatchet.json",
+      "original": "art-src/found/ninja_adventure/Items/Weapons/AxeTool/Sprite.png",
+      "original_sha256": "bfa9235f2a5d140bf75c8fbd43e0e5c2fbf20b9d50569695a61d9add1a4e6907",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_kindling",
+      "files": [
         "assets/yearofice/textures/item/kindling.png",
-        "assets/yearofice/models/item/kindling.json",
+        "assets/yearofice/models/item/kindling.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/kindling.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_knife",
+      "files": [
         "assets/yearofice/textures/item/knife.png",
-        "assets/yearofice/models/item/knife.json",
+        "assets/yearofice/models/item/knife.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/knife.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_lard",
+      "files": [
         "assets/yearofice/textures/item/lard.png",
-        "assets/yearofice/models/item/lard.json",
+        "assets/yearofice/models/item/lard.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/lard.json",
+      "original": "art-src/found/ninja_adventure/Items/Potion/MilkPot.png",
+      "original_sha256": "c002549e199be052e35d6866874296c74b21bba81f8deb860331242e0d14439e",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_lingonberries",
+      "files": [
         "assets/yearofice/textures/item/lingonberries.png",
-        "assets/yearofice/models/item/lingonberries.json",
+        "assets/yearofice/models/item/lingonberries.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "isaiah658's Pixel Pack #1 (Objects/Food)",
+      "author": "isaiah658",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/isaiah658_pixel_pack.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://opengameart.org/content/isaiah658s-pixel-pack-1",
+      "mirror": "https://opengameart.org/sites/default/files/isaiah658%27s-Pixel-Pack-%231_0.zip",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512, edited (see recipe)",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/lingonberries.json",
+      "original": "art-src/found/isaiah658_pixel_pack/Food/cherries.png",
+      "original_sha256": "3ea04697a228f4fa601fff354a82235b3342f109ba6e8be04a775a25a11fbd04",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_match",
+      "files": [
         "assets/yearofice/textures/item/match.png",
-        "assets/yearofice/models/item/match.json",
+        "assets/yearofice/models/item/match.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/match.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_maul",
+      "files": [
         "assets/yearofice/textures/item/maul.png",
-        "assets/yearofice/models/item/maul.json",
+        "assets/yearofice/models/item/maul.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/maul.json",
+      "original": "art-src/found/ninja_adventure/Items/Tool/Hammer.png",
+      "original_sha256": "3fd9a22235136b8408e46f70cdf68bf7fa99e5866c270930d9b9ce01ab927d71",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_messenger",
+      "files": [
         "assets/yearofice/textures/item/messenger.png",
-        "assets/yearofice/models/item/messenger.json",
-        "assets/yearofice/textures/item/load/moose_quarter.png",
+        "assets/yearofice/models/item/messenger.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/messenger.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_moose_quarter",
+      "files": [
+        "assets/yearofice/textures/item/load/moose_quarter.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/moose_quarter.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_pemmican",
+      "files": [
         "assets/yearofice/textures/item/pemmican.png",
-        "assets/yearofice/models/item/pemmican.json",
+        "assets/yearofice/models/item/pemmican.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/pemmican.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_poplar_round",
+      "files": [
         "assets/yearofice/textures/item/poplar_round.png",
-        "assets/yearofice/models/item/poplar_round.json",
+        "assets/yearofice/models/item/poplar_round.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/poplar_round.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_poplar_split",
+      "files": [
         "assets/yearofice/textures/item/poplar_split.png",
-        "assets/yearofice/models/item/poplar_split.json",
+        "assets/yearofice/models/item/poplar_split.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/poplar_split.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_raw_fish_fillet",
+      "files": [
         "assets/yearofice/textures/item/raw_fish_fillet.png",
         "assets/yearofice/textures/item/raw_fish_fillet_aging.png",
         "assets/yearofice/textures/item/raw_fish_fillet_spoiled.png",
-        "assets/yearofice/models/item/raw_fish_fillet.json",
+        "assets/yearofice/models/item/raw_fish_fillet.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/raw_fish_fillet.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_raw_grouse",
+      "files": [
         "assets/yearofice/textures/item/raw_grouse.png",
         "assets/yearofice/textures/item/raw_grouse_aging.png",
         "assets/yearofice/textures/item/raw_grouse_spoiled.png",
-        "assets/yearofice/models/item/raw_grouse.json",
+        "assets/yearofice/models/item/raw_grouse.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512, decay variants by ramp remap",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/raw_grouse.json",
+      "original": "art-src/found/ninja_adventure/Items/Food/Meat.png",
+      "original_sha256": "ef6a6fa6354d3fef7969a4d64e9157048884628a658bece6c3c47a6dcbcf8d8d",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_raw_hare",
+      "files": [
         "assets/yearofice/textures/item/raw_hare.png",
         "assets/yearofice/textures/item/raw_hare_aging.png",
         "assets/yearofice/textures/item/raw_hare_spoiled.png",
-        "assets/yearofice/models/item/raw_hare.json",
+        "assets/yearofice/models/item/raw_hare.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/raw_hare.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_raw_hide",
+      "files": [
         "assets/yearofice/textures/item/raw_hide.png",
-        "assets/yearofice/models/item/raw_hide.json",
+        "assets/yearofice/models/item/raw_hide.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/raw_hide.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_raw_moose_meat",
+      "files": [
         "assets/yearofice/textures/item/raw_moose_meat.png",
         "assets/yearofice/textures/item/raw_moose_meat_aging.png",
         "assets/yearofice/textures/item/raw_moose_meat_spoiled.png",
-        "assets/yearofice/models/item/raw_moose_meat.json",
+        "assets/yearofice/models/item/raw_moose_meat.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512, decay variants by ramp remap",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/raw_moose_meat.json",
+      "original": "art-src/found/ninja_adventure/Items/Food/Beaf.png",
+      "original_sha256": "55b45e050566e2cfe2ca537338ff659f3a6157e2c056c74a641f73fb536623fa",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_rod",
+      "files": [
         "assets/yearofice/textures/item/rod.png",
-        "assets/yearofice/models/item/rod.json",
+        "assets/yearofice/models/item/rod.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/rod.json",
+      "original": "art-src/found/ninja_adventure/Items/Weapons/Fishing Rod/Sprite.png",
+      "original_sha256": "a9c0f78584c205a08405716f992b61e3e4a208beb32bdfaf8085c591351540e6",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_rose_hips",
+      "files": [
         "assets/yearofice/textures/item/rose_hips.png",
-        "assets/yearofice/models/item/rose_hips.json",
+        "assets/yearofice/models/item/rose_hips.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "isaiah658's Pixel Pack #1 (Objects/Food)",
+      "author": "isaiah658",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/isaiah658_pixel_pack.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://opengameart.org/content/isaiah658s-pixel-pack-1",
+      "mirror": "https://opengameart.org/sites/default/files/isaiah658%27s-Pixel-Pack-%231_0.zip",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512, edited (see recipe)",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/rose_hips.json",
+      "original": "art-src/found/isaiah658_pixel_pack/Food/red-orange-cherries.png",
+      "original_sha256": "c64dca87e8993dc1f9a582ad7e2c8d24b7bbdeb1aab364b3c2cbacd2c791109b",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_rough_stone",
+      "files": [
         "assets/yearofice/textures/item/rough_stone.png",
-        "assets/yearofice/models/item/rough_stone.json",
+        "assets/yearofice/models/item/rough_stone.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/rough_stone.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_sinew",
+      "files": [
         "assets/yearofice/textures/item/sinew.png",
-        "assets/yearofice/models/item/sinew.json",
+        "assets/yearofice/models/item/sinew.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/sinew.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_snare_wire",
+      "files": [
         "assets/yearofice/textures/item/snare_wire.png",
-        "assets/yearofice/models/item/snare_wire.json",
+        "assets/yearofice/models/item/snare_wire.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/snare_wire.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_spruce_bark",
+      "files": [
         "assets/yearofice/textures/item/spruce_bark.png",
-        "assets/yearofice/models/item/spruce_bark.json",
+        "assets/yearofice/models/item/spruce_bark.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/spruce_bark.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_spruce_boughs",
+      "files": [
         "assets/yearofice/textures/item/spruce_boughs.png",
-        "assets/yearofice/models/item/spruce_boughs.json",
+        "assets/yearofice/models/item/spruce_boughs.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/spruce_boughs.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_spruce_round",
+      "files": [
         "assets/yearofice/textures/item/spruce_round.png",
-        "assets/yearofice/models/item/spruce_round.json",
+        "assets/yearofice/models/item/spruce_round.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/spruce_round.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_spruce_split",
+      "files": [
         "assets/yearofice/textures/item/spruce_split.png",
-        "assets/yearofice/models/item/spruce_split.json",
+        "assets/yearofice/models/item/spruce_split.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/spruce_split.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_spruce_tips",
+      "files": [
         "assets/yearofice/textures/item/spruce_tips.png",
-        "assets/yearofice/models/item/spruce_tips.json",
+        "assets/yearofice/models/item/spruce_tips.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/spruce_tips.json",
+      "original": "art-src/found/ninja_adventure/Items/Food/TeaLeaf.png",
+      "original_sha256": "a426c88d0ce48a60c8f15f9f22c042f5deb17a8d5a3c75e1ecc823e26deda283",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_stake",
+      "files": [
         "assets/yearofice/textures/item/stake.png",
-        "assets/yearofice/models/item/stake.json",
+        "assets/yearofice/models/item/stake.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/stake.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tamarack_round",
+      "files": [
         "assets/yearofice/textures/item/tamarack_round.png",
-        "assets/yearofice/models/item/tamarack_round.json",
+        "assets/yearofice/models/item/tamarack_round.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/tamarack_round.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tamarack_split",
+      "files": [
         "assets/yearofice/textures/item/tamarack_split.png",
-        "assets/yearofice/models/item/tamarack_split.json",
+        "assets/yearofice/models/item/tamarack_split.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/tamarack_split.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tinder_bundle",
+      "files": [
         "assets/yearofice/textures/item/tinder_bundle.png",
-        "assets/yearofice/models/item/tinder_bundle.json",
+        "assets/yearofice/models/item/tinder_bundle.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/tinder_bundle.json",
+      "original": "art-src/found/ninja_adventure/Items/Resource/Grass.png",
+      "original_sha256": "1f507bb591e0b2fb4eea40ca7a39c99929ab446e15ab9373dd4e8d89418b9a75",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_tool_handle",
+      "files": [
         "assets/yearofice/textures/item/tool_handle.png",
-        "assets/yearofice/models/item/tool_handle.json",
+        "assets/yearofice/models/item/tool_handle.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/tool_handle.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_willow_round",
+      "files": [
         "assets/yearofice/textures/item/willow_round.png",
-        "assets/yearofice/models/item/willow_round.json",
+        "assets/yearofice/models/item/willow_round.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/willow_round.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_willow_split",
+      "files": [
         "assets/yearofice/textures/item/willow_split.png",
-        "assets/yearofice/models/item/willow_split.json",
+        "assets/yearofice/models/item/willow_split.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/willow_split.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_worm",
+      "files": [
         "assets/yearofice/textures/item/worm.png",
-        "assets/yearofice/models/item/worm.json",
+        "assets/yearofice/models/item/worm.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/worm.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_beaver",
+      "files": [
         "assets/yearofice/geo/entity/beaver.geo.json",
         "assets/yearofice/animations/entity/beaver.animation.json",
-        "assets/yearofice/textures/entity/beaver/adult_all.png",
+        "assets/yearofice/textures/entity/beaver/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/beaver.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_black_bear",
+      "files": [
         "assets/yearofice/geo/entity/black_bear.geo.json",
         "assets/yearofice/animations/entity/black_bear.animation.json",
         "assets/yearofice/textures/entity/black_bear/adult_black.png",
-        "assets/yearofice/textures/entity/black_bear/adult_cinnamon.png",
+        "assets/yearofice/textures/entity/black_bear/adult_cinnamon.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/black_bear.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_black_bear_cub",
+      "files": [
         "assets/yearofice/geo/entity/black_bear_cub.geo.json",
         "assets/yearofice/animations/entity/black_bear_cub.animation.json",
-        "assets/yearofice/textures/entity/black_bear/cub_black.png",
+        "assets/yearofice/textures/entity/black_bear/cub_black.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/black_bear_cub.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_grizzly",
+      "files": [
         "assets/yearofice/geo/entity/grizzly.geo.json",
         "assets/yearofice/animations/entity/grizzly.animation.json",
-        "assets/yearofice/textures/entity/grizzly/adult_summer.png",
+        "assets/yearofice/textures/entity/grizzly/adult_summer.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/grizzly.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_grizzly_cub",
+      "files": [
         "assets/yearofice/geo/entity/grizzly_cub.geo.json",
         "assets/yearofice/animations/entity/grizzly_cub.animation.json",
-        "assets/yearofice/textures/entity/grizzly/cub_summer.png",
+        "assets/yearofice/textures/entity/grizzly/cub_summer.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/grizzly_cub.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_moose",
+      "files": [
         "assets/yearofice/geo/entity/moose.geo.json",
         "assets/yearofice/animations/entity/moose.animation.json",
         "assets/yearofice/textures/entity/moose/bull_summer.png",
-        "assets/yearofice/textures/entity/moose/cow_summer.png",
+        "assets/yearofice/textures/entity/moose/cow_summer.png"
+      ],
+      "source_type": "model_library",
+      "title": "Stag (Ultimate Animated Animal Pack)",
+      "author": "Quaternius",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/quaternius_ultimate_animated_animals.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "mirror": "https://github.com/trebeljahr/quaternius-showcase",
+      "mirror_commit": "722c39e964360beff2728a8ee4d103e2d11d457c",
+      "changes": "Proportion reference only: measured by tools/modelgen/import_glb.py into art-src/found/quaternius_stag/measure.json; the cube model, texture and animations are generated by modelgen from the species file",
+      "release_blocker": false,
+      "species_file": "tools/modelgen/species/moose.json",
+      "original_sha256": "34818768f3e9298c9580ea79bfca2b79854a36877888a5e1e5df374b015f9e89",
+      "generator_version": "modelgen 0.4.0"
+    },
+    {
+      "asset_id": "model_moose_calf",
+      "files": [
         "assets/yearofice/geo/entity/moose_calf.geo.json",
         "assets/yearofice/animations/entity/moose_calf.animation.json",
-        "assets/yearofice/textures/entity/moose/calf_summer.png",
+        "assets/yearofice/textures/entity/moose/calf_summer.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/moose_calf.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_mule_deer",
+      "files": [
         "assets/yearofice/geo/entity/mule_deer.geo.json",
         "assets/yearofice/animations/entity/mule_deer.animation.json",
         "assets/yearofice/textures/entity/mule_deer/buck_summer.png",
@@ -188,18 +1203,76 @@
         "assets/yearofice/textures/entity/mule_deer/doe_summer.png",
         "assets/yearofice/textures/entity/mule_deer/doe_winter.png",
         "assets/yearofice/textures/entity/mule_deer/doe_moult.png",
-        "assets/yearofice/textures/entity/mule_deer/antler_velvet.png",
+        "assets/yearofice/textures/entity/mule_deer/antler_velvet.png"
+      ],
+      "source_type": "model_library",
+      "title": "Deer (Ultimate Animated Animal Pack)",
+      "author": "Quaternius",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/quaternius_ultimate_animated_animals.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "mirror": "https://github.com/trebeljahr/quaternius-showcase",
+      "mirror_commit": "722c39e964360beff2728a8ee4d103e2d11d457c",
+      "changes": "Proportion reference only: measured by tools/modelgen/import_glb.py into art-src/found/quaternius_deer/measure.json; the cube model, texture and animations are generated by modelgen from the species file",
+      "release_blocker": false,
+      "species_file": "tools/modelgen/species/mule_deer.json",
+      "original_sha256": "b6558249bfb225313c35dd1b6c91d832b2031d064039bb6b3600a624a882a174",
+      "generator_version": "modelgen 0.4.0"
+    },
+    {
+      "asset_id": "model_mule_deer_fawn",
+      "files": [
         "assets/yearofice/geo/entity/mule_deer_fawn.geo.json",
         "assets/yearofice/animations/entity/mule_deer_fawn.animation.json",
-        "assets/yearofice/textures/entity/mule_deer/fawn_summer.png",
+        "assets/yearofice/textures/entity/mule_deer/fawn_summer.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/mule_deer_fawn.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_red_fox",
+      "files": [
         "assets/yearofice/geo/entity/red_fox.geo.json",
         "assets/yearofice/animations/entity/red_fox.animation.json",
         "assets/yearofice/textures/entity/red_fox/adult_red.png",
         "assets/yearofice/textures/entity/red_fox/adult_cross.png",
-        "assets/yearofice/textures/entity/red_fox/adult_silver.png",
+        "assets/yearofice/textures/entity/red_fox/adult_silver.png"
+      ],
+      "source_type": "model_library",
+      "title": "Fox (Ultimate Animated Animal Pack)",
+      "author": "Quaternius",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/quaternius_ultimate_animated_animals.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "mirror": "https://github.com/trebeljahr/quaternius-showcase",
+      "mirror_commit": "722c39e964360beff2728a8ee4d103e2d11d457c",
+      "changes": "Proportion reference only: measured by tools/modelgen/import_glb.py into art-src/found/quaternius_fox/measure.json; the cube model, texture and animations are generated by modelgen from the species file",
+      "release_blocker": false,
+      "species_file": "tools/modelgen/species/red_fox.json",
+      "original_sha256": "1785e9ce836107276853a8a8183d7c6fa14e5befbd105d79be1fb7e38de9f446",
+      "generator_version": "modelgen 0.4.0"
+    },
+    {
+      "asset_id": "model_red_squirrel",
+      "files": [
         "assets/yearofice/geo/entity/red_squirrel.geo.json",
         "assets/yearofice/animations/entity/red_squirrel.animation.json",
-        "assets/yearofice/textures/entity/red_squirrel/adult_all.png",
+        "assets/yearofice/textures/entity/red_squirrel/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/red_squirrel.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_sitka_black_tailed_deer",
+      "files": [
         "assets/yearofice/geo/entity/sitka_black_tailed_deer.geo.json",
         "assets/yearofice/animations/entity/sitka_black_tailed_deer.animation.json",
         "assets/yearofice/textures/entity/sitka_black_tailed_deer/buck_summer.png",
@@ -208,28 +1281,106 @@
         "assets/yearofice/textures/entity/sitka_black_tailed_deer/doe_summer.png",
         "assets/yearofice/textures/entity/sitka_black_tailed_deer/doe_winter.png",
         "assets/yearofice/textures/entity/sitka_black_tailed_deer/doe_moult.png",
-        "assets/yearofice/textures/entity/sitka_black_tailed_deer/antler_velvet.png",
+        "assets/yearofice/textures/entity/sitka_black_tailed_deer/antler_velvet.png"
+      ],
+      "source_type": "model_library",
+      "title": "Deer (Ultimate Animated Animal Pack)",
+      "author": "Quaternius",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/quaternius_ultimate_animated_animals.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "mirror": "https://github.com/trebeljahr/quaternius-showcase",
+      "mirror_commit": "722c39e964360beff2728a8ee4d103e2d11d457c",
+      "changes": "Proportion reference only: measured by tools/modelgen/import_glb.py into art-src/found/quaternius_deer/measure.json; the cube model, texture and animations are generated by modelgen from the species file",
+      "release_blocker": false,
+      "species_file": "tools/modelgen/species/sitka_black_tailed_deer.json",
+      "original_sha256": "b6558249bfb225313c35dd1b6c91d832b2031d064039bb6b3600a624a882a174",
+      "generator_version": "modelgen 0.4.0"
+    },
+    {
+      "asset_id": "model_sitka_black_tailed_deer_fawn",
+      "files": [
         "assets/yearofice/geo/entity/sitka_black_tailed_deer_fawn.geo.json",
         "assets/yearofice/animations/entity/sitka_black_tailed_deer_fawn.animation.json",
-        "assets/yearofice/textures/entity/sitka_black_tailed_deer/fawn_summer.png",
+        "assets/yearofice/textures/entity/sitka_black_tailed_deer/fawn_summer.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/sitka_black_tailed_deer_fawn.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_snowshoe_hare",
+      "files": [
         "assets/yearofice/geo/entity/snowshoe_hare.geo.json",
         "assets/yearofice/animations/entity/snowshoe_hare.animation.json",
         "assets/yearofice/textures/entity/snowshoe_hare/adult_summer.png",
         "assets/yearofice/textures/entity/snowshoe_hare/adult_winter.png",
-        "assets/yearofice/textures/entity/snowshoe_hare/adult_mottled.png",
+        "assets/yearofice/textures/entity/snowshoe_hare/adult_mottled.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/snowshoe_hare.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_spruce_grouse",
+      "files": [
         "assets/yearofice/geo/entity/rig_grouse.geo.json",
         "assets/yearofice/animations/entity/rig_grouse.animation.json",
         "assets/yearofice/animations/entity/willow_ptarmigan.animation.json",
         "assets/yearofice/animations/entity/spruce_grouse.animation.json",
         "assets/yearofice/textures/entity/spruce_grouse/male_adult.png",
-        "assets/yearofice/textures/entity/spruce_grouse/female_adult.png",
+        "assets/yearofice/textures/entity/spruce_grouse/female_adult.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/spruce_grouse.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_willow_ptarmigan",
+      "files": [
         "assets/yearofice/textures/entity/willow_ptarmigan/adult_summer.png",
         "assets/yearofice/textures/entity/willow_ptarmigan/adult_winter.png",
-        "assets/yearofice/textures/entity/willow_ptarmigan/adult_moult.png",
+        "assets/yearofice/textures/entity/willow_ptarmigan/adult_moult.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/willow_ptarmigan.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_wolf",
+      "files": [
         "assets/yearofice/geo/entity/wolf.geo.json",
         "assets/yearofice/animations/entity/wolf.animation.json",
         "assets/yearofice/textures/entity/wolf/adult_gray.png",
-        "assets/yearofice/textures/entity/wolf/adult_black.png",
+        "assets/yearofice/textures/entity/wolf/adult_black.png"
+      ],
+      "source_type": "model_library",
+      "title": "Wolf (Ultimate Animated Animal Pack)",
+      "author": "Quaternius",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/quaternius_ultimate_animated_animals.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "mirror": "https://github.com/trebeljahr/quaternius-showcase",
+      "mirror_commit": "722c39e964360beff2728a8ee4d103e2d11d457c",
+      "changes": "Proportion reference only: measured by tools/modelgen/import_glb.py into art-src/found/quaternius_wolf/measure.json; the cube model, texture and animations are generated by modelgen from the species file",
+      "release_blocker": false,
+      "species_file": "tools/modelgen/species/wolf.json",
+      "original_sha256": "8382f3d3b97e2338d2fd26190ddcc095d34d642d0e97105bda807ec87ccfd534",
+      "generator_version": "modelgen 0.4.0"
+    },
+    {
+      "asset_id": "model_fire_ring",
+      "files": [
         "assets/yearofice/blockstates/fire_ring.json",
         "assets/yearofice/models/item/fire_ring.json",
         "assets/yearofice/models/block/fire_ring_base.json",
@@ -242,52 +1393,403 @@
         "assets/yearofice/models/block/fire_ring_flame.json",
         "assets/yearofice/models/block/fire_ring_coals.json",
         "assets/yearofice/models/block/fire_ring_ash.json",
-        "assets/yearofice/textures/block/birch_leaves_all.png",
+        "assets/yearofice/blockstates/flame.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/fire_ring.py",
+      "licence": "project",
+      "generator_version": "fire_ring 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_birch_leaves",
+      "files": [
+        "assets/yearofice/textures/block/birch_leaves_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/birch_leaves.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_birch_log",
+      "files": [
         "assets/yearofice/textures/block/birch_log_side.png",
-        "assets/yearofice/textures/block/birch_log_top.png",
-        "assets/yearofice/textures/block/black_spruce_leaves_all.png",
+        "assets/yearofice/textures/block/birch_log_top.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/birch_log.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_black_spruce_leaves",
+      "files": [
+        "assets/yearofice/textures/block/black_spruce_leaves_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/black_spruce_leaves.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_black_spruce_log",
+      "files": [
         "assets/yearofice/textures/block/black_spruce_log_side.png",
-        "assets/yearofice/textures/block/black_spruce_log_top.png",
+        "assets/yearofice/textures/block/black_spruce_log_top.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/black_spruce_log.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_bough_bed",
+      "files": [
         "assets/yearofice/textures/block/bough_bed_top.png",
-        "assets/yearofice/textures/block/bough_bed_side.png",
+        "assets/yearofice/textures/block/bough_bed_side.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/bough_bed.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_chopping_block",
+      "files": [
         "assets/yearofice/textures/block/chopping_block_side.png",
-        "assets/yearofice/textures/block/chopping_block_top.png",
-        "assets/yearofice/textures/block/clay_bank_all.png",
-        "assets/yearofice/textures/block/coal_seam_all.png",
-        "assets/yearofice/textures/block/deep_ground_all.png",
-        "assets/yearofice/textures/block/deep_rock_all.png",
-        "assets/yearofice/textures/block/face_rock_all.png",
+        "assets/yearofice/textures/block/chopping_block_top.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/chopping_block.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_clay_bank",
+      "files": [
+        "assets/yearofice/textures/block/clay_bank_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/clay_bank.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_coal_seam",
+      "files": [
+        "assets/yearofice/textures/block/coal_seam_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/coal_seam.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_deep_ground",
+      "files": [
+        "assets/yearofice/textures/block/deep_ground_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/deep_ground.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_deep_rock",
+      "files": [
+        "assets/yearofice/textures/block/deep_rock_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/deep_rock.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_face_rock",
+      "files": [
+        "assets/yearofice/textures/block/face_rock_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/face_rock.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_fallen_log",
+      "files": [
         "assets/yearofice/textures/block/fallen_log_side.png",
-        "assets/yearofice/textures/block/fallen_log_top.png",
+        "assets/yearofice/textures/block/fallen_log_top.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/fallen_log.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_forest_duff",
+      "files": [
         "assets/yearofice/textures/block/forest_duff_top.png",
-        "assets/yearofice/textures/block/forest_duff_side.png",
-        "assets/yearofice/textures/block/frozen_soil_all.png",
+        "assets/yearofice/textures/block/forest_duff_side.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/forest_duff.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_frozen_soil",
+      "files": [
+        "assets/yearofice/textures/block/frozen_soil_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/frozen_soil.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_grass_turf",
+      "files": [
         "assets/yearofice/textures/block/grass_turf_top.png",
-        "assets/yearofice/textures/block/grass_turf_side.png",
-        "assets/yearofice/textures/block/gravel_all.png",
-        "assets/yearofice/textures/block/iron_outcrop_all.png",
+        "assets/yearofice/textures/block/grass_turf_side.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/grass_turf.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_gravel",
+      "files": [
+        "assets/yearofice/textures/block/gravel_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/gravel.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_iron_outcrop",
+      "files": [
+        "assets/yearofice/textures/block/iron_outcrop_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/iron_outcrop.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_lichen_mat",
+      "files": [
         "assets/yearofice/textures/block/lichen_mat_top.png",
-        "assets/yearofice/textures/block/lichen_mat_side.png",
-        "assets/yearofice/textures/block/loess_all.png",
+        "assets/yearofice/textures/block/lichen_mat_side.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/lichen_mat.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_loess",
+      "files": [
+        "assets/yearofice/textures/block/loess_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/loess.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_moss_mat",
+      "files": [
         "assets/yearofice/textures/block/moss_mat_top.png",
-        "assets/yearofice/textures/block/moss_mat_side.png",
-        "assets/yearofice/textures/block/peat_all.png",
-        "assets/yearofice/textures/block/riffle_cobble_all.png",
-        "assets/yearofice/textures/block/river_sand_all.png",
-        "assets/yearofice/textures/block/rust_stain_all.png",
-        "assets/yearofice/textures/block/scree_stones_all.png",
-        "assets/yearofice/textures/block/shrub_stem_all.png",
-        "assets/yearofice/textures/block/silt_all.png",
-        "assets/yearofice/textures/block/snow_cover_all.png",
+        "assets/yearofice/textures/block/moss_mat_side.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/moss_mat.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_peat",
+      "files": [
+        "assets/yearofice/textures/block/peat_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/peat.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_riffle_cobble",
+      "files": [
+        "assets/yearofice/textures/block/riffle_cobble_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/riffle_cobble.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_river_sand",
+      "files": [
+        "assets/yearofice/textures/block/river_sand_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/river_sand.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_rust_stain",
+      "files": [
+        "assets/yearofice/textures/block/rust_stain_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/rust_stain.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_scree_stones",
+      "files": [
+        "assets/yearofice/textures/block/scree_stones_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/scree_stones.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_shrub_stem",
+      "files": [
+        "assets/yearofice/textures/block/shrub_stem_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/shrub_stem.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_silt",
+      "files": [
+        "assets/yearofice/textures/block/silt_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/silt.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_snow_cover",
+      "files": [
+        "assets/yearofice/textures/block/snow_cover_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/snow_cover.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_stump",
+      "files": [
         "assets/yearofice/textures/block/stump_side.png",
-        "assets/yearofice/textures/block/stump_top.png",
-        "assets/yearofice/textures/block/till_all.png",
+        "assets/yearofice/textures/block/stump_top.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/stump.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_till",
+      "files": [
+        "assets/yearofice/textures/block/till_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/till.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_tundra_turf",
+      "files": [
         "assets/yearofice/textures/block/tundra_turf_top.png",
-        "assets/yearofice/textures/block/tundra_turf_side.png",
-        "assets/yearofice/textures/block/white_spruce_leaves_all.png",
+        "assets/yearofice/textures/block/tundra_turf_side.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/tundra_turf.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_white_spruce_leaves",
+      "files": [
+        "assets/yearofice/textures/block/white_spruce_leaves_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/white_spruce_leaves.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_white_spruce_log",
+      "files": [
         "assets/yearofice/textures/block/white_spruce_log_side.png",
-        "assets/yearofice/textures/block/white_spruce_log_top.png",
-        "assets/yearofice/textures/block/willow_brush_all.png",
+        "assets/yearofice/textures/block/white_spruce_log_top.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/white_spruce_log.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_block_willow_brush",
+      "files": [
+        "assets/yearofice/textures/block/willow_brush_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/block/willow_brush.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_world_blocks",
+      "files": [
         "assets/yearofice/models/block/deep_ground.json",
         "assets/yearofice/blockstates/deep_ground.json",
         "assets/yearofice/models/block/deep_rock.json",
@@ -358,21 +1860,61 @@
         "assets/yearofice/models/block/snow_cover_6.json",
         "assets/yearofice/models/block/snow_cover_7.json",
         "assets/yearofice/models/block/snow_cover_8.json",
-        "assets/yearofice/blockstates/snow_cover.json",
+        "assets/yearofice/blockstates/snow_cover.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/world_blocks.py",
+      "licence": "project",
+      "generator_version": "world_blocks 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_snare",
+      "files": [
         "assets/yearofice/blockstates/snare.json",
         "assets/yearofice/models/block/snare.json",
         "assets/yearofice/models/block/snare_sprung.json",
         "assets/yearofice/models/item/whole_game.json",
-        "assets/yearofice/models/item/hare_pelt.json",
+        "assets/yearofice/models/item/hare_pelt.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/snare.py",
+      "licence": "project",
+      "generator_version": "snare 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_wood_blocks",
+      "files": [
         "assets/yearofice/blockstates/workbench.json",
         "assets/yearofice/models/block/workbench.json",
         "assets/yearofice/models/item/workbench.json",
         "assets/yearofice/blockstates/chopping_block.json",
         "assets/yearofice/models/block/chopping_block.json",
-        "assets/yearofice/models/item/chopping_block.json",
+        "assets/yearofice/models/item/chopping_block.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/wood_blocks.py",
+      "licence": "project",
+      "generator_version": "wood_blocks 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_bough_bed",
+      "files": [
         "assets/yearofice/blockstates/bough_bed.json",
         "assets/yearofice/models/block/bough_bed_foot.json",
-        "assets/yearofice/models/block/bough_bed_head.json",
+        "assets/yearofice/models/block/bough_bed_head.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/bough_bed.py",
+      "licence": "project",
+      "generator_version": "bough_bed 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_cooking",
+      "files": [
         "assets/yearofice/blockstates/spit.json",
         "assets/yearofice/models/block/spit.json",
         "assets/yearofice/models/item/snowshoe_hare_meat_aging.json",
@@ -389,42 +1931,171 @@
         "assets/yearofice/models/item/arctic_grayling_spoiled.json",
         "assets/yearofice/models/item/arctic_grayling_cooked.json",
         "assets/yearofice/models/item/arctic_grayling_burnt.json",
-        "assets/yearofice/models/item/arctic_grayling.json",
+        "assets/yearofice/models/item/arctic_grayling.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/cooking.py",
+      "licence": "project",
+      "generator_version": "cooking 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gui_messenger_device",
+      "files": [
         "assets/yearofice/textures/gui/messenger/device.png",
-        "assets/yearofice/textures/gui/messenger/corner.png",
+        "assets/yearofice/textures/gui/messenger/corner.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/gui_messenger.py",
+      "licence": "project",
+      "generator_version": "gui_messenger 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gui_hud_vitals_strip",
+      "files": [
         "assets/yearofice/textures/gui/sprites/hud/warmth.png",
         "assets/yearofice/textures/gui/sprites/hud/wet.png",
         "assets/yearofice/textures/gui/sprites/hud/water.png",
         "assets/yearofice/textures/gui/sprites/hud/calories.png",
         "assets/yearofice/textures/gui/sprites/hud/energy.png",
-        "assets/yearofice/textures/gui/sprites/hud/condition.png",
-        "assets/yearofice/sounds/fire/bow_drill1.ogg",
-        "assets/yearofice/sounds/fire/bow_drill2.ogg",
-        "assets/yearofice/sounds/fire/crackle1.ogg",
-        "assets/yearofice/sounds/fire/crackle2.ogg",
-        "assets/yearofice/sounds/fire/crackle3.ogg",
-        "assets/yearofice/textures/item/bark_bucket.png",
-        "assets/yearofice/models/item/bark_bucket.json",
-        "assets/yearofice/textures/item/birch_bark_torch.png",
-        "assets/yearofice/models/item/birch_bark_torch.json",
-        "assets/yearofice/textures/item/headlamp.png",
-        "assets/yearofice/models/item/headlamp.json",
-        "assets/yearofice/textures/item/jerrycan.png",
-        "assets/yearofice/models/item/jerrycan.json",
-        "assets/yearofice/textures/item/pitch_candle.png",
-        "assets/yearofice/models/item/pitch_candle.json",
-        "assets/yearofice/textures/item/pitch_torch.png",
-        "assets/yearofice/models/item/pitch_torch.json",
-        "assets/yearofice/textures/item/steel_bottle.png",
-        "assets/yearofice/models/item/steel_bottle.json",
-        "assets/yearofice/textures/item/tallow_candle.png",
-        "assets/yearofice/models/item/tallow_candle.json",
-        "assets/yearofice/textures/item/tin_can.png",
-        "assets/yearofice/models/item/tin_can.json",
-        "assets/yearofice/blockstates/flame.json"
+        "assets/yearofice/textures/gui/sprites/hud/condition.png"
       ],
       "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/alder_round.json",
+      "recipe": "tools/artgen/gui_messenger.py",
+      "licence": "project",
+      "generator_version": "gui_messenger 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "snd_fire_bow_drill",
+      "files": [
+        "assets/yearofice/sounds/fire/bow_drill1.ogg",
+        "assets/yearofice/sounds/fire/bow_drill2.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/recipes/fire/bow_drill.json",
+      "licence": "project",
+      "generator_version": "soundgen 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "snd_fire_crackle",
+      "files": [
+        "assets/yearofice/sounds/fire/crackle1.ogg",
+        "assets/yearofice/sounds/fire/crackle2.ogg",
+        "assets/yearofice/sounds/fire/crackle3.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/recipes/fire/crackle.json",
+      "licence": "project",
+      "generator_version": "soundgen 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bark_bucket",
+      "files": [
+        "assets/yearofice/textures/item/bark_bucket.png",
+        "assets/yearofice/models/item/bark_bucket.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/bark_bucket.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_birch_bark_torch",
+      "files": [
+        "assets/yearofice/textures/item/birch_bark_torch.png",
+        "assets/yearofice/models/item/birch_bark_torch.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/birch_bark_torch.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_headlamp",
+      "files": [
+        "assets/yearofice/textures/item/headlamp.png",
+        "assets/yearofice/models/item/headlamp.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/headlamp.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_jerrycan",
+      "files": [
+        "assets/yearofice/textures/item/jerrycan.png",
+        "assets/yearofice/models/item/jerrycan.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/jerrycan.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_pitch_candle",
+      "files": [
+        "assets/yearofice/textures/item/pitch_candle.png",
+        "assets/yearofice/models/item/pitch_candle.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/pitch_candle.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_pitch_torch",
+      "files": [
+        "assets/yearofice/textures/item/pitch_torch.png",
+        "assets/yearofice/models/item/pitch_torch.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/pitch_torch.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_steel_bottle",
+      "files": [
+        "assets/yearofice/textures/item/steel_bottle.png",
+        "assets/yearofice/models/item/steel_bottle.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/steel_bottle.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tallow_candle",
+      "files": [
+        "assets/yearofice/textures/item/tallow_candle.png",
+        "assets/yearofice/models/item/tallow_candle.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/tallow_candle.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tin_can",
+      "files": [
+        "assets/yearofice/textures/item/tin_can.png",
+        "assets/yearofice/models/item/tin_can.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/tin_can.json",
       "licence": "project",
       "generator_version": "artgen 0.4.0",
       "release_blocker": false
