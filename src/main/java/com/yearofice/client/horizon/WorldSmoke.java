@@ -180,6 +180,14 @@ public final class WorldSmoke {
         }
         ValleyWorld w = g.world();
         int[] sp = w.spawn();
+        var o = w.outpost();
+        if (o != null) srv.execute(() -> {
+            int[] r = ValleyWorld.rect(o);
+            var t = com.yearofice.worldgen.structure.SetPieceTemplates.load(srv.overworld(), o.template());
+            srv.overworld().getChunk(r[0] >> 4, r[1] >> 4);
+            t.ifPresent(tt -> YearOfIce.LOG.info("Smoke: outpost template coverage {}", com.yearofice.worldgen.structure.SetPieceTemplates.coverage(
+                    srv.overworld(), tt, new net.minecraft.core.BlockPos(r[0], ValleyWorld.padY(o) + 1, r[1]), com.yearofice.worldgen.structure.TemplatePiece.ROTATIONS[o.rotation()])));
+        });
         double[] yaw = {0, 90, 180, 270};
         add("m2_spawn", sp[0] + 0.5, sp[1], sp[2] + 0.5, yaw[sp[3] / 90], 5);
         // Back from the door, looking at the cabin across the pad.

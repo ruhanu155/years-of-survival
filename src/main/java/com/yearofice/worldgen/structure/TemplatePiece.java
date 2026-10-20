@@ -30,7 +30,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 public final class TemplatePiece extends TemplateStructurePiece {
     static final ResourceKey<StructureProcessorList> PROCESSORS =
             ResourceKey.create(Registries.PROCESSOR_LIST, ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, "setpiece"));
-    static final Rotation[] ROTATIONS = {Rotation.NONE, Rotation.CLOCKWISE_90, Rotation.CLOCKWISE_180, Rotation.COUNTERCLOCKWISE_90};
+    public static final Rotation[] ROTATIONS = {Rotation.NONE, Rotation.CLOCKWISE_90, Rotation.CLOCKWISE_180, Rotation.COUNTERCLOCKWISE_90};
 
     private final int rotation;
 

@@ -111,6 +111,8 @@ public final class WorldgenGameTests {
                 BlockPos at = corner.offset(2, 0, 2);
                 SetPieceTemplates.placeWithin(level, t.get(), at, rot);
                 templates++;
+                double cov = SetPieceTemplates.coverage(level, t.get(), at, rot);
+                helper.assertTrue(cov >= 0.8, v.template() + ": only " + Math.round(cov * 100) + "% of its non-air blocks stand after placement");
 
                 // Every non-air block in the area was placed by the template and is masked.
                 List<BlockPos> placed = new ArrayList<>();

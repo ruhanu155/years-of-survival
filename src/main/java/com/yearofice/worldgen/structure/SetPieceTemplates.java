@@ -51,4 +51,28 @@ public final class SetPieceTemplates {
         t.placeInWorld(level, corner, corner, s, RandomSource.create(0L), Block.UPDATE_CLIENTS);
         return t.getSize(rot);
     }
+
+    /**
+     * The share (0 to 1) of a template's non-air blocks that stand in the world with the same block, when the
+     * template's rotated box has its lowest corner on {@code min}. The same placement the structure piece makes.
+     */
+    public static double coverage(net.minecraft.world.level.LevelReader level, StructureTemplate t, BlockPos min, Rotation rot) {
+        StructurePlaceSettings s = new StructurePlaceSettings().setRotation(rot);
+        BoundingBox box = t.getBoundingBox(s, BlockPos.ZERO);
+        BlockPos origin = min.subtract(new Vec3i(box.minX(), box.minY(), box.minZ()));
+        net.minecraft.nbt.CompoundTag tag = t.save(new net.minecraft.nbt.CompoundTag());
+        net.minecraft.nbt.ListTag palette = tag.getList("palette", 10);
+        net.minecraft.nbt.ListTag blocks = tag.getList("blocks", 10);
+        int total = 0, present = 0;
+        for (int i = 0; i < blocks.size(); i++) {
+            net.minecraft.nbt.CompoundTag b = blocks.getCompound(i);
+            String name = palette.getCompound(b.getInt("state")).getString("Name");
+            if (name.equals("minecraft:air")) continue;
+            net.minecraft.nbt.ListTag p = b.getList("pos", 3);
+            BlockPos at = StructureTemplate.calculateRelativePosition(s, new BlockPos(p.getInt(0), p.getInt(1), p.getInt(2))).offset(origin);
+            total++;
+            if (net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(level.getBlockState(at).getBlock()).toString().equals(name)) present++;
+        }
+        return total == 0 ? 1.0 : present / (double) total;
+    }
 }
