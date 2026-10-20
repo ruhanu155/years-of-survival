@@ -258,11 +258,11 @@ public final class WellnessGameTests {
         with(new Fixed(EnvSample.outdoors(-30, 0), List.of()), x -> {
             s.warmth = 100;
             feed(s, 0);
-            BodyTicker.step(p, 0, 20, Activity.REST, false, false, T);
+            BodyTicker.step(p, 0, 20, Activity.REST, false, false, T.withKit(0));
             h.assertTrue(s.parts.partFrost()[hand.ordinal()] > 0 && s.parts.partFrost()[hand.ordinal()] < 300,
                     "20 min at -30: frost building but short of frostnip, got " + s.parts.partFrost()[hand.ordinal()]);
             h.assertTrue(s.exposureMin >= 0, "the exposure number is solved, got " + s.exposureMin);
-            BodyTicker.step(p, 20, 15, Activity.REST, false, false, T);
+            BodyTicker.step(p, 20, 15, Activity.REST, false, false, T.withKit(0));
         });
         int f = s.parts.partFrost()[hand.ordinal()];
         h.assertTrue(com.yearofice.sim.body.FrostModel.stage(f) >= 1, "35 min bare-handed at -30 C: frostnip, got " + f);

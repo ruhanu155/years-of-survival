@@ -24,6 +24,8 @@ import net.neoforged.neoforge.client.event.ClientTickEvent;
 public final class BodySmoke {
     private BodySmoke() {}
 
+    private static int lowShotAt = -1;
+
     private enum Phase { TITLE, CREATE, LOADING, PLAY, SHOT, DONE }
 
     private static Phase phase = Phase.TITLE;
@@ -67,6 +69,9 @@ public final class BodySmoke {
             }
             case PLAY -> {
                 mc.options.pauseOnLostFocus = false;
+                mc.options.tutorialStep = net.minecraft.client.tutorial.TutorialSteps.NONE;
+                mc.getTutorial().stop();
+                mc.getToasts().clear(); // the tutorial toast sits where the strip is
                 if (mc.screen instanceof net.minecraft.client.gui.screens.PauseScreen) mc.setScreen(null);
                 if (ticks == 20) {
                     org.lwjgl.glfw.GLFW.glfwSetWindowSize(mc.getWindow().getWindow(), 1920, 1080);
@@ -74,11 +79,21 @@ public final class BodySmoke {
                     mc.options.hideGui = false;
                     mc.getToasts().clear();
                 }
+                var cb = com.yearofice.client.hud.ClientBody.get();
+                if (lowShotAt < 0 && cb != null && !mc.player.isSleeping() && (com.yearofice.client.hud.ClientBody.warmthWarn(cb) || com.yearofice.client.hud.ClientBody.waterWarn(cb)
+                        || com.yearofice.client.hud.ClientBody.caloriesWarn(cb) || com.yearofice.client.hud.ClientBody.energyWarn(cb)
+                        || com.yearofice.client.hud.ClientBody.conditionWarn(cb))) lowShotAt = ticks + 5;
+                if (lowShotAt >= 0 && ticks == lowShotAt) {
+                    YearOfIce.LOG.info("Smoke strip state: warmth {}, calories {}, energy {}, battery {}", cb == null ? -1 : cb.warmth(),
+                            cb == null ? -1 : cb.balance24h(), cb == null ? -1 : cb.energy(), cb == null ? -1 : cb.battery());
+                    Screenshot.grab(mc.gameDirectory, "body_two_days_vitals.png", mc.getMainRenderTarget(),
+                            msg -> YearOfIce.LOG.info("Smoke screenshot (a vital under its warn line): {}", msg.getString()));
+                }
                 if (TwoDaysDriver.done) { phase = Phase.SHOT; ticks = 0; }
             }
             case SHOT -> {
                 if (ticks == 40) {
-                    Screenshot.grab(mc.gameDirectory, "body_two_days_vitals.png", mc.getMainRenderTarget(),
+                    Screenshot.grab(mc.gameDirectory, "body_two_days_end.png", mc.getMainRenderTarget(),
                             msg -> YearOfIce.LOG.info("Smoke screenshot: {}", msg.getString()));
                 }
                 if (ticks == 80) {

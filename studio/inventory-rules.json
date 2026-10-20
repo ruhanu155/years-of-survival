@@ -1712,6 +1712,24 @@
       "ids": [
         "encounter_clip"
       ]
+    },
+    {
+      "basis": "M4 D2 encounter hand clips",
+      "milestone": "m4",
+      "owner": "look",
+      "type": "gui_layer",
+      "ids": [
+        "encounter_hands"
+      ]
+    },
+    {
+      "basis": "M4 D2 encounter hand clips",
+      "milestone": "m4",
+      "owner": "look",
+      "type": "payload",
+      "ids": [
+        "encounter_clip"
+      ]
     }
   ],
   "expand": {
