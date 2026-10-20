@@ -19,6 +19,9 @@ public final class PackConfig {
             .dial("kcal_loaded", "Calorie factor over 30 kg.", 1.5, 1, 5)
             .dial("strength_low", "Band multiplier at Strength 0 (video 2, A11).", 0.8, 0.1, 2)
             .dial("strength_high", "Band multiplier at Strength 100 (video 2, A11).", 1.15, 0.1, 2)
+            .dial("hauling_bonus", "Extra band multiplier at full Hauling practice (A11).", 0.10, 0, 1)
+            .dial("hauling_reps", "Hauling reps to Practiced (A11).", 300, 1, 10_000)
+            .dial("hauling_rep_ticks", "Ticks of walking under 15 kg or more per Hauling rep.", 400, 1, 100_000)
             .dial("no_pack_kg", "Carry limit with no pack: the belt and pockets (kg).", 5, 0, 100)
             .dial("refuse_over_kg", "A pickup that would pass this total is refused: drag it instead (kg).", 45, 1, 500)
             .dial("default_item_g", "Weight of an item with no weight map entry (g).", 100, 0, 100_000)
@@ -35,6 +38,6 @@ public final class PackConfig {
         return new LoadBands(new double[] {get("band_light_kg"), get("band_heavy_kg"), get("band_loaded_kg")},
                 new double[] {1.0, get("speed_heavy"), get("speed_loaded"), get("speed_overloaded")},
                 new double[] {1.0, get("kcal_heavy"), get("kcal_loaded"), get("kcal_loaded")},
-                get("strength_low"), get("strength_high"));
+                get("strength_low"), get("strength_high"), get("hauling_bonus"), get("hauling_reps"));
     }
 }

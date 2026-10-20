@@ -57,7 +57,8 @@ public final class LoadCalculator implements LoadService {
 
     public static double maxKgOf(Player p) {
         YoiDataMaps.Pack pack = YoiDataMaps.pack(PackSlots.back(p));
-        return pack == null ? PackConfig.get("no_pack_kg") : pack.maxKg();
+        if (pack == null) return PackConfig.get("no_pack_kg");
+        return p instanceof ServerPlayer sp ? LoadBands.usableMaxKg(pack.maxKg(), pack.minStrength(), strength(sp)) : pack.maxKg();
     }
 
     static double strength(ServerPlayer p) {
@@ -68,6 +69,17 @@ public final class LoadCalculator implements LoadService {
         }
     }
 
+    /** The worn pack's {@code min_strength} (0 with none). */
+    public static double minStrengthOf(Player p) {
+        YoiDataMaps.Pack pack = YoiDataMaps.pack(PackSlots.back(p));
+        return pack == null ? 0 : pack.minStrength();
+    }
+
+    /** The band for a carried {@code kg}: Strength, Hauling practice and the worn pack's minimum Strength. */
+    public static LoadBands.Band bandOf(ServerPlayer p, double kg) {
+        return PackConfig.bands().band(kg, strength(p), PackSkill.reps(p), minStrengthOf(p));
+    }
+
     @Override public double kg(Player player) { return kgOf(player); }
 
     @Override public double maxKg(Player player) { return maxKgOf(player); }
@@ -75,7 +87,7 @@ public final class LoadCalculator implements LoadService {
     @Override public int openRows(Player player) { return PackRules.openRows(player); }
 
     @Override
-    public LoadBands.Band band(ServerPlayer player) { return PackConfig.bands().band(kgOf(player), strength(player)); }
+    public LoadBands.Band band(ServerPlayer player) { return bandOf(player, kgOf(player)); }
 
     @Override
     public double kcalFactor(ServerPlayer player) { return PackConfig.bands().kcal(band(player)); }

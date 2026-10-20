@@ -2210,6 +2210,30 @@
       "licence": "project",
       "generator_version": "artgen 0.4.0",
       "release_blocker": true
+    },
+    {
+      "asset_id": "tex_pack_frame",
+      "files": [
+        "assets/yearofice/textures/item/pack_frame.png",
+        "assets/yearofice/models/item/pack_frame.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/pack_frame.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_large_pack_frame",
+      "files": [
+        "assets/yearofice/textures/item/large_pack_frame.png",
+        "assets/yearofice/models/item/large_pack_frame.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/large_pack_frame.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
     }
   ]
 }

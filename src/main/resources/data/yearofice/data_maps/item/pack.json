@@ -5,7 +5,8 @@
       "rows": 2,
       "max_kg": 30,
       "lash_points": 0,
-      "sheds_rain": false
+      "sheds_rain": false,
+      "min_strength": 0
     },
     "yearofice:hide_pack": {
       "neoforge:conditions": [
@@ -17,7 +18,8 @@
       "rows": 3,
       "max_kg": 35,
       "lash_points": 0,
-      "sheds_rain": true
+      "sheds_rain": true,
+      "min_strength": 0
     },
     "yearofice:pack_frame": {
       "neoforge:conditions": [
@@ -29,7 +31,15 @@
       "rows": 3,
       "max_kg": 45,
       "lash_points": 3,
-      "sheds_rain": false
+      "sheds_rain": false,
+      "min_strength": 40
+    },
+    "yearofice:large_pack_frame": {
+      "rows": 3,
+      "max_kg": 55,
+      "lash_points": 3,
+      "sheds_rain": false,
+      "min_strength": 60
     }
   }
 }

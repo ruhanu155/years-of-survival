@@ -48,12 +48,13 @@ public final class YoiDataMaps {
         ).apply(i, Props::new));
     }
 
-    public record Pack(int rows, double maxKg, int lashPoints, boolean shedsRain) {
+    public record Pack(int rows, double maxKg, int lashPoints, boolean shedsRain, double minStrength) {
         public static final Codec<Pack> CODEC = RecordCodecBuilder.create(i -> i.group(
                 Codec.intRange(0, 3).fieldOf("rows").forGetter(Pack::rows),
                 Codec.DOUBLE.fieldOf("max_kg").forGetter(Pack::maxKg),
                 Codec.INT.optionalFieldOf("lash_points", 0).forGetter(Pack::lashPoints),
-                Codec.BOOL.optionalFieldOf("sheds_rain", false).forGetter(Pack::shedsRain)
+                Codec.BOOL.optionalFieldOf("sheds_rain", false).forGetter(Pack::shedsRain),
+                Codec.DOUBLE.optionalFieldOf("min_strength", 0.0).forGetter(Pack::minStrength)
         ).apply(i, Pack::new));
     }
 
