@@ -2300,6 +2300,18 @@
       "release_blocker": false
     },
     {
+      "asset_id": "gear_fish_guts",
+      "files": [
+        "assets/yearofice/models/item/fish_guts.json",
+        "assets/yearofice/textures/item/fish_guts.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art for Year of Ice (M5 lane TUNE), a recoloured fish_chunk, no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
       "asset_id": "gear_fly",
       "files": [
         "assets/yearofice/models/item/fly.json",

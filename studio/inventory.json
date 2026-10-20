@@ -7,12 +7,12 @@
     "Items: the doc's count says 226, its list names 225"
   ],
   "counts": {
-    "total": 1548,
-    "by_type": {"mob": 156, "entity": 22, "block_with_entity": 83, "block": 156, "plant_block": 128, "multiblock": 3, "item": 473, "sound_event": 135, "particle_type": 43, "attachment": 32, "data_component": 31, "payload": 27, "gui_layer": 18, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 14, "loot_function": 8, "loot_condition": 3, "recipe_type": 5, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 81, "biome": 29, "worldgen_hook": 17, "poi_type": 14},
-    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 115, "m4": 51, "m5": 475, "m6": 294, "m7": 141, "m8": 124, "m9": 52, "none": 3},
-    "by_owner": {"body": 312, "building": 192, "ecosystem": 262, "food": 271, "look": 213, "story": 62, "studio": 75, "worldgen": 161},
-    "by_milestone_source": {"doc": 744, "rule": 804},
-    "by_status": {"planned": 1429, "registered": 116, "retired": 3}
+    "total": 1549,
+    "by_type": {"mob": 156, "entity": 22, "block_with_entity": 83, "block": 156, "plant_block": 128, "multiblock": 3, "item": 474, "sound_event": 135, "particle_type": 43, "attachment": 32, "data_component": 31, "payload": 27, "gui_layer": 18, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 14, "loot_function": 8, "loot_condition": 3, "recipe_type": 5, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 81, "biome": 29, "worldgen_hook": 17, "poi_type": 14},
+    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 115, "m4": 51, "m5": 476, "m6": 294, "m7": 141, "m8": 124, "m9": 52, "none": 3},
+    "by_owner": {"body": 312, "building": 192, "ecosystem": 262, "food": 272, "look": 213, "story": 62, "studio": 75, "worldgen": 161},
+    "by_milestone_source": {"doc": 745, "rule": 804},
+    "by_status": {"planned": 1430, "registered": 116, "retired": 3}
   },
   "entries": [
     {"id": "yearofice:alaska_blackfish", "type": "mob", "milestone": "m5", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
@@ -728,6 +728,7 @@
     {"id": "yearofice:fireweed_shoots", "type": "item", "milestone": "m5", "owner": "body", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:fish_chunk", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:fish_decoy", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "rule", "status": "planned"},
+    {"id": "yearofice:fish_guts", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:fish_powder", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:fish_priest", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:fish_record_book", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "rule", "status": "planned"},

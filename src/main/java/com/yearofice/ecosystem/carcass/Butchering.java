@@ -101,6 +101,9 @@ public final class Butchering {
         String table = d.butcherTable().isEmpty() ? YearOfIce.MOD_ID + ":butchering/" + r.path() : d.butcherTable();
         LootTable lt = level.getServer().reloadableRegistries().getLootTable(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.parse(table)));
         List<ItemStack> out = new ArrayList<>(lt.getRandomItems(new LootParams.Builder(level).create(LootContextParamSets.EMPTY)));
+        // guts are bait, one per 0.1 kg up to four (Blueprint: Guts 10% "Bait (one per 0.1 kg)"); the rest stays as the gut pile
+        int guts = Math.min(4, (int) Math.floor(d.gutsKg() / 0.1 + 1e-6));
+        if (guts > 0) out.add(new ItemStack(com.yearofice.hunt.fishing.FishingRegistry.FISH_GUTS.get(), guts));
         double dNow = Freshness.dNow(level);
         List<String> meat = new ArrayList<>();
         for (SpeciesDef.Part part : d.parts()) if (part.kind().equals("meat")) meat.add(part.item());
