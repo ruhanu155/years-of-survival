@@ -114,7 +114,8 @@ public final class WorkService {
     }
 
     static void step(ServerPlayer p, WorkJob job, int tick) {
-        job.work(p, dsPerTick());
+        // A dull edge (under 30) makes a tool job take x1.5 time (Crafting and building in depth › Tool durability).
+        job.work(p, com.yearofice.build.craft.Wear.scaleDs(p.getMainHandItem(), dsPerTick()));
         if (tick % SWING_EVERY == 0) p.swing(InteractionHand.MAIN_HAND, true);
     }
 

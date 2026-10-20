@@ -1,0 +1,84 @@
+{
+ "id": "yearofice:flint_knife",
+ "kind": "icon",
+ "model_parent": "minecraft:item/handheld",
+ "notes": "A knapped flint blade lashed into a short birch grip.",
+ "shapes": [
+  {
+   "kind": "line",
+   "points": [
+    [
+     2,
+     13
+    ],
+    [
+     6,
+     9
+    ]
+   ],
+   "width": 2,
+   "ramp": "wood_cut",
+   "step": 2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     5,
+     8
+    ],
+    [
+     8,
+     11
+    ]
+   ],
+   "width": 1,
+   "ramp": "wood_cut",
+   "step": 2
+  },
+  {
+   "kind": "poly",
+   "points": [
+    [
+     7,
+     8
+    ],
+    [
+     12,
+     2
+    ],
+    [
+     14,
+     3
+    ],
+    [
+     13,
+     5
+    ],
+    [
+     9,
+     10
+    ]
+   ],
+   "ramp": "smoked",
+   "step": 1
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     8,
+     9
+    ],
+    [
+     13,
+     3
+    ]
+   ],
+   "width": 1,
+   "ramp": "rock_schist",
+   "step": 4,
+   "flat": true
+  }
+ ]
+}

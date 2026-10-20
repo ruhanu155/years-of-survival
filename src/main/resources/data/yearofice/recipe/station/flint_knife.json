@@ -1,0 +1,20 @@
+{
+  "type": "yearofice:station",
+  "tier": "bushcraft",
+  "station": "yearofice:hands",
+  "ingredients": [
+    {
+      "item": "yearofice:flint_nodule",
+      "count": 1
+    }
+  ],
+  "tool": "yearofice:rough_stone",
+  "work_min": 10,
+  "effort": "medium",
+  "kcal": 42,
+  "skill": "knapping",
+  "result": {
+    "id": "yearofice:flint_knife",
+    "count": 1
+  }
+}
