@@ -58,6 +58,8 @@ public final class BodyTicker {
         lastMinute = Long.MIN_VALUE;
         LAST_SENT.clear();
         LAST_SENT_MINUTE.clear();
+        LAST_SENT_TICK.clear();
+        PENDING.clear();
         LAST_SAMPLE.clear();
     }
 
@@ -74,6 +76,7 @@ public final class BodyTicker {
     @SubscribeEvent
     public static void onTickPost(ServerTickEvent.Post e) {
         MinecraftServer server = e.getServer();
+        flushPending(server);
         long now = clock.minute(server);
         if (lastMinute == Long.MIN_VALUE || now < lastMinute || now - lastMinute > MAX_STEP_MINUTES) {
             if (lastMinute != Long.MIN_VALUE && now != lastMinute) {
@@ -180,18 +183,64 @@ public final class BodyTicker {
             });
             return;
         }
+        VitalExplainer.check(p, s, now);
         sync(p, now, false);
     }
 
-    /** Sends {@code body_sync} if a shown value moved over 1%, an hour passed, or {@code force}. */
+    /** Real ticks between two unforced {@code body_sync} packets to one player: at most one a second. */
+    public static final int MIN_SYNC_TICKS = 20;
+
+    private static final Map<UUID, Long> LAST_SENT_TICK = new ConcurrentHashMap<>();
+    private static final Map<UUID, Long> PENDING = new ConcurrentHashMap<>();
+    private static final Map<UUID, Integer> SENT = new ConcurrentHashMap<>();
+
+    /** Tests drive the tick count a sync sees. */
+    public static volatile java.util.function.LongSupplier tickSource = null;
+
+    /** {@code body_sync} packets sent to {@code p} since the last {@link #resetSentCount}. */
+    public static int sentCount(ServerPlayer p) { return SENT.getOrDefault(p.getUUID(), 0); }
+
+    public static void resetSentCount(ServerPlayer p) {
+        SENT.remove(p.getUUID());
+        LAST_SENT.remove(p.getUUID());
+        LAST_SENT_MINUTE.remove(p.getUUID());
+        LAST_SENT_TICK.remove(p.getUUID());
+        PENDING.remove(p.getUUID());
+    }
+
+    /**
+     * Sends {@code body_sync} if a shown value moved over 1%, an hour passed, or {@code force}; never more than one
+     * unforced packet per second to a player (a change inside the second waits for it and goes out then).
+     */
     public static void sync(ServerPlayer p, long minute, boolean force) {
         BodySyncPayload payload = payload(p, minute);
         BodySyncPayload last = LAST_SENT.get(p.getUUID());
         Long lastMin = LAST_SENT_MINUTE.get(p.getUUID());
-        if (force || payload.differs(last) || lastMin == null || minute - lastMin >= 60) {
-            LAST_SENT.put(p.getUUID(), payload);
-            LAST_SENT_MINUTE.put(p.getUUID(), minute);
-            BodyNet.sendToOwner(p, payload);
+        if (!(force || payload.differs(last) || lastMin == null || minute - lastMin >= 60)) return;
+        long tick = tickSource != null ? tickSource.getAsLong() : p.server.getTickCount();
+        Long lastTick = LAST_SENT_TICK.get(p.getUUID());
+        if (!force && lastTick != null && tick - lastTick < MIN_SYNC_TICKS) {
+            PENDING.put(p.getUUID(), minute);
+            return;
+        }
+        PENDING.remove(p.getUUID());
+        LAST_SENT.put(p.getUUID(), payload);
+        LAST_SENT_MINUTE.put(p.getUUID(), minute);
+        LAST_SENT_TICK.put(p.getUUID(), tick);
+        SENT.merge(p.getUUID(), 1, Integer::sum);
+        BodyNet.sendToOwner(p, payload);
+    }
+
+    /** Sends what the one-second limit held back. */
+    private static void flushPending(MinecraftServer server) {
+        if (PENDING.isEmpty()) return;
+        long tick = server.getTickCount();
+        for (Map.Entry<UUID, Long> en : PENDING.entrySet()) {
+            Long lt = LAST_SENT_TICK.get(en.getKey());
+            if (lt != null && tick - lt < MIN_SYNC_TICKS) continue;
+            ServerPlayer p = server.getPlayerList().getPlayer(en.getKey());
+            PENDING.remove(en.getKey());
+            if (p != null) sync(p, en.getValue(), false);
         }
     }
 
@@ -215,7 +264,19 @@ public final class BodyTicker {
                 (float) s.drunkMlToday(minute), s.gutIll(minute), s.sos, s.lastActivity.ordinal(),
                 (float) smp.env().airC(), smp.env().precip().ordinal(), (float) smp.env().precipMmH(),
                 (float) smp.env().windMs(), smp.shelter() != com.yearofice.sim.env.ShelterState.NONE,
-                messengerBattery(p));
+                messengerBattery(p), parts(s));
+    }
+
+    static BodySyncPayload.Parts parts(BodyState s) {
+        var r = s.parts;
+        int[] hp = r.partHp(), frost = r.partFrost();
+        for (int i = 0; i < hp.length; i++) {
+            hp[i] = Math.max(0, Math.min(127, hp[i]));
+            frost[i] = Math.max(0, Math.min(127, frost[i]));
+        }
+        boolean bleeding = r.problems().stream().anyMatch(pr -> pr.bleedPerMinute() > 0);
+        int[] d = r.lostDigits();
+        return new BodySyncPayload.Parts(hp, frost, d[0], d[1], r.crooked(), r.problems().size(), bleeding);
     }
 
     /**
@@ -234,6 +295,8 @@ public final class BodyTicker {
         ACTIVITY.forget(e.getEntity().getUUID());
         LAST_SENT.remove(e.getEntity().getUUID());
         LAST_SENT_MINUTE.remove(e.getEntity().getUUID());
+        LAST_SENT_TICK.remove(e.getEntity().getUUID());
+        PENDING.remove(e.getEntity().getUUID());
         LAST_SAMPLE.remove(e.getEntity().getUUID());
     }
 

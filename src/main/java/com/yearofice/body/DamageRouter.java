@@ -85,7 +85,8 @@ public final class DamageRouter {
         } else if (src.is(DamageTypes.LIGHTNING_BOLT)) {
             injure(p, LIGHTNING, "lightning_bolt");
         } else if (src.is(DamageTypes.DROWN)) {
-            // The water clock in the body model decides (M4).
+            // Out of air: the body collapses (the Endless SOS, cause drowning); the left pack goes to the bank.
+            if (p.getAirSupply() <= -20) SosFlow.trigger(p, SosFlow.Cause.DROWNING);
         } else if (src.is(DamageTypes.GENERIC_KILL)) {
             SosFlow.trigger(p, SosFlow.Cause.COMMAND);
         } else if (src.is(DamageTypes.FELL_OUT_OF_WORLD)) {

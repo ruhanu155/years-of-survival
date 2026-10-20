@@ -49,6 +49,9 @@ public final class HudSmoke {
             SHOTS.add(new Shot("full", scale, () -> { HudDebug.set(HudDebug.Mode.FULL); mc.options.hideGui = false; }));
             SHOTS.add(new Shot("battery0", scale, () -> { HudDebug.set(HudDebug.Mode.BATTERY_ZERO); mc.options.hideGui = false; }));
             SHOTS.add(new Shot("f1", scale, () -> { HudDebug.set(HudDebug.Mode.FULL); mc.options.hideGui = true; }));
+            // The vitals strip and the body figure from the sample body: a cold, wet, thin body with a frozen foot, a hurt
+            // hand, a crooked arm and a lost finger (M4).
+            SHOTS.add(new Shot("vitals_strip", scale, () -> { HudDebug.set(HudDebug.Mode.FULL); mc.options.hideGui = false; }));
             SHOTS.add(new Shot("plain", scale, () -> { HudDebug.set(HudDebug.Mode.OFF); mc.options.hideGui = false; }));
         }
     }

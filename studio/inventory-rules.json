@@ -5,7 +5,21 @@
     "file": "docs/blueprint/04-minecraft-development.md",
     "heading": "Master registry inventory"
   },
-  "milestones": ["m0", "m1", "m2", "m2_5", "m3", "m4", "m5", "m6", "m7", "m8", "m9", "m10", "m11"],
+  "milestones": [
+    "m0",
+    "m1",
+    "m2",
+    "m2_5",
+    "m3",
+    "m4",
+    "m5",
+    "m6",
+    "m7",
+    "m8",
+    "m9",
+    "m10",
+    "m11"
+  ],
   "lists": {
     "Mobs": "mob",
     "Other entities": "entity",
@@ -39,174 +53,1724 @@
     "GameTests": "The doc lists GameTests in the tabs that define them, not here; they are not inventory entries yet. Linter check 12 covers them."
   },
   "type_defaults": {
-    "mob": { "owner": "ecosystem", "milestone": "m6" },
-    "entity": { "owner": "ecosystem", "milestone": "m6" },
-    "block_with_entity": { "owner": "building", "milestone": "m8" },
-    "block": { "owner": "worldgen", "milestone": "m2" },
-    "plant_block": { "owner": "body", "milestone": "m5" },
-    "multiblock": { "owner": "building", "milestone": "m8" },
-    "item": { "owner": "studio", "milestone": "m5" },
-    "sound_event": { "owner": "look", "milestone": "m5" },
-    "particle_type": { "owner": "look", "milestone": "m5" },
-    "attachment": { "owner": "studio", "milestone": "m5" },
-    "data_component": { "owner": "studio", "milestone": "m5" },
-    "payload": { "owner": "studio", "milestone": "m5" },
-    "gui_layer": { "owner": "look", "milestone": "m2" },
-    "memory_type": { "owner": "ecosystem", "milestone": "m6" },
-    "sensor_type": { "owner": "ecosystem", "milestone": "m6" },
-    "activity": { "owner": "ecosystem", "milestone": "m6" },
-    "data_map": { "owner": "studio", "milestone": "m2" },
-    "loot_function": { "owner": "studio", "milestone": "m5" },
-    "loot_condition": { "owner": "studio", "milestone": "m5" },
-    "recipe_type": { "owner": "building", "milestone": "m3" },
-    "mob_effect": { "owner": "body", "milestone": "m4" },
-    "attribute_modifier": { "owner": "body", "milestone": "m4" },
-    "curios_slot": { "owner": "look", "milestone": "m0" },
-    "tag": { "owner": "studio", "milestone": "m2" },
-    "biome": { "owner": "worldgen", "milestone": "m2" },
-    "worldgen_hook": { "owner": "worldgen", "milestone": "m2" },
-    "poi_type": { "owner": "worldgen", "milestone": "m1" }
+    "mob": {
+      "owner": "ecosystem",
+      "milestone": "m6"
+    },
+    "entity": {
+      "owner": "ecosystem",
+      "milestone": "m6"
+    },
+    "block_with_entity": {
+      "owner": "building",
+      "milestone": "m8"
+    },
+    "block": {
+      "owner": "worldgen",
+      "milestone": "m2"
+    },
+    "plant_block": {
+      "owner": "body",
+      "milestone": "m5"
+    },
+    "multiblock": {
+      "owner": "building",
+      "milestone": "m8"
+    },
+    "item": {
+      "owner": "studio",
+      "milestone": "m5"
+    },
+    "sound_event": {
+      "owner": "look",
+      "milestone": "m5"
+    },
+    "particle_type": {
+      "owner": "look",
+      "milestone": "m5"
+    },
+    "attachment": {
+      "owner": "studio",
+      "milestone": "m5"
+    },
+    "data_component": {
+      "owner": "studio",
+      "milestone": "m5"
+    },
+    "payload": {
+      "owner": "studio",
+      "milestone": "m5"
+    },
+    "gui_layer": {
+      "owner": "look",
+      "milestone": "m2"
+    },
+    "memory_type": {
+      "owner": "ecosystem",
+      "milestone": "m6"
+    },
+    "sensor_type": {
+      "owner": "ecosystem",
+      "milestone": "m6"
+    },
+    "activity": {
+      "owner": "ecosystem",
+      "milestone": "m6"
+    },
+    "data_map": {
+      "owner": "studio",
+      "milestone": "m2"
+    },
+    "loot_function": {
+      "owner": "studio",
+      "milestone": "m5"
+    },
+    "loot_condition": {
+      "owner": "studio",
+      "milestone": "m5"
+    },
+    "recipe_type": {
+      "owner": "building",
+      "milestone": "m3"
+    },
+    "mob_effect": {
+      "owner": "body",
+      "milestone": "m4"
+    },
+    "attribute_modifier": {
+      "owner": "body",
+      "milestone": "m4"
+    },
+    "curios_slot": {
+      "owner": "look",
+      "milestone": "m0"
+    },
+    "tag": {
+      "owner": "studio",
+      "milestone": "m2"
+    },
+    "biome": {
+      "owner": "worldgen",
+      "milestone": "m2"
+    },
+    "worldgen_hook": {
+      "owner": "worldgen",
+      "milestone": "m2"
+    },
+    "poi_type": {
+      "owner": "worldgen",
+      "milestone": "m1"
+    }
   },
   "extras": [
-    { "type": "gui_layer", "ids": ["headwear", "captions"], "basis": "Master registry inventory, GUI layers: headwear and captions come from Player systems and client, so 15 are registered" },
-    { "type": "curios_slot", "ids": ["sheath", "quiver", "snowshoes"], "basis": "Master registry inventory, Curios slot types: sheath, quiver and snowshoes come from Player systems and client, so 13 are registered" }
+    {
+      "type": "gui_layer",
+      "ids": [
+        "headwear",
+        "captions"
+      ],
+      "basis": "Master registry inventory, GUI layers: headwear and captions come from Player systems and client, so 15 are registered"
+    },
+    {
+      "type": "curios_slot",
+      "ids": [
+        "sheath",
+        "quiver",
+        "snowshoes"
+      ],
+      "basis": "Master registry inventory, Curios slot types: sheath, quiver and snowshoes come from Player systems and client, so 13 are registered"
+    }
   ],
   "status": [
-    { "type": "gui_layer", "status": "registered", "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)", "ids": ["body_figure", "body_fx", "breath_ring", "captions", "carry_slot", "frost", "headwear", "load_meter", "messenger_corner", "messenger_line", "minigame", "pickup_line", "prompt_line", "threat_flash", "vitals_strip", "work_ring"] },
-    { "type": "item", "status": "registered", "basis": "Registered by M3 lane C (Body/Fire: water, light, the fire kit)", "ids": ["steel_bottle", "cooking_pot", "bark_bucket", "tin_can", "jerrycan", "fire_starter", "headlamp", "birch_bark_torch", "pitch_torch", "tallow_candle", "pitch_candle"] },
-    { "type": "block", "status": "registered", "basis": "Registered by M3 lane C (Body/Fire: water, light, the fire kit)", "ids": ["flame"] },
-    { "type": "data_map", "status": "registered", "basis": "Registered by M3 lane C (Body/Fire: water, light, the fire kit)", "ids": ["container", "light"] },
-    { "type": "data_component", "status": "registered", "basis": "Registered by M3 lane C (Body/Fire: water, light, the fire kit)", "ids": ["water", "light_state"] },
-    { "type": "tag", "status": "registered", "basis": "Registered by M3 lane C (Body/Fire: water, light, the fire kit)", "ids": ["burnable"] },
-    { "type": "payload", "status": "registered", "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)", "ids": ["clock_sync", "decay_heads", "env_sync", "hud_line", "pickup"] },
-    { "type": "attachment", "status": "registered", "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)", "ids": ["pack_rules"] },
-    { "type": "attribute_modifier", "status": "registered", "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)", "ids": ["load"] },
-    { "type": "curios_slot", "status": "registered", "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)", "ids": ["back", "neck"] },
-    { "type": "data_map", "status": "registered", "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)", "ids": ["weight", "pack", "props"] },
-    { "type": "item", "status": "registered", "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)", "ids": ["crate_backpack"] },
-    { "type": "tag", "status": "registered", "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)", "ids": ["auto_pickup", "never_expires"] },
-    { "type": "mob_effect", "ids": ["fever", "leeches", "nausea"], "status": "retired", "basis": "Master registry inventory, Mob effects: body states are fields of yearofice:body (RECONCILE 19, 120)" },
-    { "type": "block", "status": "registered", "basis": "Registered by M2 lane A (worldgen); the Director re-tags on merge", "ids": ["birch_leaves", "birch_log", "black_spruce_leaves", "black_spruce_log", "clay_bank", "coal_seam", "deep_ground", "deep_rock", "face_rock", "fallen_log", "forest_duff", "frozen_soil", "grass_turf", "gravel", "iron_outcrop", "lichen_mat", "loess", "moss_mat", "peat", "riffle_cobble", "river_sand", "rust_stain", "scree_stones", "shrub_stem", "silt", "snow_cover", "stump", "till", "tundra_turf", "white_spruce_leaves", "white_spruce_log", "willow_brush"] },
-    { "type": "biome", "status": "registered", "basis": "Registered by M2 lane A (worldgen); the Director re-tags on merge", "ids": ["alpine_range", "alpine_tundra", "birch_aspen_slope", "black_spruce_flats", "burn", "cloudberry_muskeg", "foothill_benches", "gravel_bar", "hot_spring_basin", "icefield", "lake", "lichen_woodland", "muskeg", "open_river", "riparian", "rock_scree", "slough_country", "spruce_taiga", "tailings", "upland_barrens"] },
-    { "type": "worldgen_hook", "status": "registered", "basis": "Registered by M2 lane A (worldgen); the Director re-tags on merge", "ids": ["valley", "year_of_ice", "slice_valley", "layer_trees", "places_layer", "template_piece", "mark_placed", "loot_seed", "setpiece", "slice_test"] },
-    { "type": "attachment", "status": "registered", "basis": "Registered by M2 lane A (worldgen); the Director re-tags on merge", "ids": ["placed_mask"] },
-    { "type": "tag", "status": "registered", "basis": "Registered by M2 lane A (worldgen); the Director re-tags on merge", "ids": ["terrain_steps", "diggable_soil", "freezing_soils", "erodible_bank", "valley_biomes"] }
+    {
+      "type": "gui_layer",
+      "status": "registered",
+      "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)",
+      "ids": [
+        "body_figure",
+        "body_fx",
+        "breath_ring",
+        "captions",
+        "carry_slot",
+        "frost",
+        "headwear",
+        "load_meter",
+        "messenger_corner",
+        "messenger_line",
+        "minigame",
+        "pickup_line",
+        "prompt_line",
+        "threat_flash",
+        "vitals_strip",
+        "work_ring"
+      ]
+    },
+    {
+      "type": "item",
+      "status": "registered",
+      "basis": "Registered by M3 lane C (Body/Fire: water, light, the fire kit)",
+      "ids": [
+        "steel_bottle",
+        "cooking_pot",
+        "bark_bucket",
+        "tin_can",
+        "jerrycan",
+        "fire_starter",
+        "headlamp",
+        "birch_bark_torch",
+        "pitch_torch",
+        "tallow_candle",
+        "pitch_candle"
+      ]
+    },
+    {
+      "type": "block",
+      "status": "registered",
+      "basis": "Registered by M3 lane C (Body/Fire: water, light, the fire kit)",
+      "ids": [
+        "flame"
+      ]
+    },
+    {
+      "type": "data_map",
+      "status": "registered",
+      "basis": "Registered by M3 lane C (Body/Fire: water, light, the fire kit)",
+      "ids": [
+        "container",
+        "light"
+      ]
+    },
+    {
+      "type": "data_component",
+      "status": "registered",
+      "basis": "Registered by M3 lane C (Body/Fire: water, light, the fire kit)",
+      "ids": [
+        "water",
+        "light_state"
+      ]
+    },
+    {
+      "type": "tag",
+      "status": "registered",
+      "basis": "Registered by M3 lane C (Body/Fire: water, light, the fire kit)",
+      "ids": [
+        "burnable"
+      ]
+    },
+    {
+      "type": "payload",
+      "status": "registered",
+      "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)",
+      "ids": [
+        "clock_sync",
+        "decay_heads",
+        "env_sync",
+        "hud_line",
+        "pickup"
+      ]
+    },
+    {
+      "type": "attachment",
+      "status": "registered",
+      "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)",
+      "ids": [
+        "pack_rules"
+      ]
+    },
+    {
+      "type": "attribute_modifier",
+      "status": "registered",
+      "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)",
+      "ids": [
+        "load"
+      ]
+    },
+    {
+      "type": "curios_slot",
+      "status": "registered",
+      "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)",
+      "ids": [
+        "back",
+        "neck"
+      ]
+    },
+    {
+      "type": "data_map",
+      "status": "registered",
+      "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)",
+      "ids": [
+        "weight",
+        "pack",
+        "props"
+      ]
+    },
+    {
+      "type": "item",
+      "status": "registered",
+      "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)",
+      "ids": [
+        "crate_backpack"
+      ]
+    },
+    {
+      "type": "tag",
+      "status": "registered",
+      "basis": "Registered by M2 lane B (PR #16, #21, #23); folded from hand edits into the rules (RECONCILE 181)",
+      "ids": [
+        "auto_pickup",
+        "never_expires"
+      ]
+    },
+    {
+      "type": "mob_effect",
+      "ids": [
+        "fever",
+        "leeches",
+        "nausea"
+      ],
+      "status": "retired",
+      "basis": "Master registry inventory, Mob effects: body states are fields of yearofice:body (RECONCILE 19, 120)"
+    },
+    {
+      "type": "block",
+      "status": "registered",
+      "basis": "Registered by M2 lane A (worldgen); the Director re-tags on merge",
+      "ids": [
+        "birch_leaves",
+        "birch_log",
+        "black_spruce_leaves",
+        "black_spruce_log",
+        "clay_bank",
+        "coal_seam",
+        "deep_ground",
+        "deep_rock",
+        "face_rock",
+        "fallen_log",
+        "forest_duff",
+        "frozen_soil",
+        "grass_turf",
+        "gravel",
+        "iron_outcrop",
+        "lichen_mat",
+        "loess",
+        "moss_mat",
+        "peat",
+        "riffle_cobble",
+        "river_sand",
+        "rust_stain",
+        "scree_stones",
+        "shrub_stem",
+        "silt",
+        "snow_cover",
+        "stump",
+        "till",
+        "tundra_turf",
+        "white_spruce_leaves",
+        "white_spruce_log",
+        "willow_brush"
+      ]
+    },
+    {
+      "type": "biome",
+      "status": "registered",
+      "basis": "Registered by M2 lane A (worldgen); the Director re-tags on merge",
+      "ids": [
+        "alpine_range",
+        "alpine_tundra",
+        "birch_aspen_slope",
+        "black_spruce_flats",
+        "burn",
+        "cloudberry_muskeg",
+        "foothill_benches",
+        "gravel_bar",
+        "hot_spring_basin",
+        "icefield",
+        "lake",
+        "lichen_woodland",
+        "muskeg",
+        "open_river",
+        "riparian",
+        "rock_scree",
+        "slough_country",
+        "spruce_taiga",
+        "tailings",
+        "upland_barrens"
+      ]
+    },
+    {
+      "type": "worldgen_hook",
+      "status": "registered",
+      "basis": "Registered by M2 lane A (worldgen); the Director re-tags on merge",
+      "ids": [
+        "valley",
+        "year_of_ice",
+        "slice_valley",
+        "layer_trees",
+        "places_layer",
+        "template_piece",
+        "mark_placed",
+        "loot_seed",
+        "setpiece",
+        "slice_test"
+      ]
+    },
+    {
+      "type": "attachment",
+      "status": "registered",
+      "basis": "Registered by M2 lane A (worldgen); the Director re-tags on merge",
+      "ids": [
+        "placed_mask"
+      ]
+    },
+    {
+      "type": "tag",
+      "status": "registered",
+      "basis": "Registered by M2 lane A (worldgen); the Director re-tags on merge",
+      "ids": [
+        "terrain_steps",
+        "diggable_soil",
+        "freezing_soils",
+        "erodible_bank",
+        "valley_biomes"
+      ]
+    }
   ],
   "additions": [
-    {"basis": "B13 face grease: items that can be rubbed into the face and gloves (RECONCILE 175); Body tab > Injuries on the body", "milestone": "m4", "owner": "body", "type": "tag", "ids": ["grease"]},
-    { "basis": "World and story, M2.5 slice guided first night: story.Onboarding's per-player state machine and warn-once memory (Ready for development M2.5, Story; Blueprint > Start site > The guided first night)", "milestone": "m2_5", "owner": "story", "type": "attachment", "ids": ["onboarding"] },
-    {"basis": "M3 lane C (Body/Fire): water, light and the fire kit (Blueprint > Fire, water and light; Items > Containers, light and signals > Light)", "milestone": "m3", "owner": "body", "type": "item", "ids": ["steel_bottle", "cooking_pot", "fire_starter", "headlamp", "birch_bark_torch"]},
-    {"basis": "M3 lane C (Body/Fire): water, light and the fire kit (Blueprint > Fire, water and light; Items > Containers, light and signals > Light): the container and light item data maps", "milestone": "m3", "owner": "body", "type": "data_map", "ids": ["container", "light"]},
-    {"basis": "M3 lane C (Body/Fire): water, light and the fire kit (Blueprint > Fire, water and light; Items > Containers, light and signals > Light): what a container holds and whether a light is lit", "milestone": "m3", "owner": "body", "type": "data_component", "ids": ["water", "light_state"]},
-    {"basis": "M3 lane C (Body/Fire): water, light and the fire kit (Blueprint > Fire, water and light; Items > Containers, light and signals > Light): blocks a packed fire can spread to (Fire danger)", "milestone": "m3", "owner": "body", "type": "tag", "ids": ["burnable"]},
-    { "basis": "World and story, M2.5 slice guided first night: the objective beacon's target and the Guide page's step, to the owner (Minecraft engine > The HUD: the beacon is world-space, drawn by client.story)", "milestone": "m2_5", "owner": "story", "type": "payload", "ids": ["onboarding_sync"] },
-    { "basis": "Added in the review round: Trees and firewood (RECONCILE 103); Ready for development M2 ids", "milestone": "m2", "owner": "worldgen", "type": "block", "ids": ["stump", "fallen_log", "chopping_block"] },
-    { "basis": "Added in the review round: Trees and firewood; Ready for development M2 ids (the 16 <wood>_round and <wood>_split items)", "milestone": "m2", "owner": "building", "type": "item", "ids": ["<wood>_round", "<wood>_split", "spruce_bark"] },
-    { "basis": "Added in the review round: Trees and firewood", "milestone": "m2", "owner": "look", "type": "sound_event", "ids": ["tree.chop", "tree.creak", "tree.fall", "tree.split", "tree.hang_creak"] },
-    { "basis": "Added in the review round: Body, injury and sickness (RECONCILE 121), M4", "milestone": "m4", "owner": "body", "type": "tag", "ids": ["body_routed", "systemic", "animal_strike", "burns"] },
-    { "basis": "Added in the review round: Body, injury and sickness (RECONCILE 121), M4", "milestone": "m4", "owner": "body", "type": "attribute_modifier", "ids": ["injury", "injury_jump", "injury_break", "injury_step"] },
-    { "basis": "Added in the review round: Body, injury and sickness (RECONCILE 121), M4", "milestone": "m4", "owner": "body", "type": "data_map", "ids": ["injury_source"] },
-    { "basis": "Minecraft development, the lead's registry additions named in the Master registry inventory (body_public payload); Ready for development M4 ids", "milestone": "m4", "owner": "body", "type": "payload", "ids": ["body_public"] },
-    { "basis": "Added in the review round: Crops and gardens (reviewer B, RECONCILE 130), M5", "milestone": "m5", "owner": "food", "type": "block", "ids": ["potato_crop", "barley_crop", "wheat_crop", "turnip_crop", "cabbage_crop", "seed_tray", "feral_rhubarb"] },
-    { "basis": "Added in the review round: Crops and gardens (RECONCILE 130), M5", "milestone": "m5", "owner": "food", "type": "item", "ids": ["seed_potato", "barley_seed", "wheat_seed", "turnip_seed", "cabbage_seed", "potato", "barley", "wheat", "turnip", "cabbage", "grain_sheaf", "straw", "flail", "hoe", "digging_stick", "shovel", "hand_quern"] },
-    { "basis": "Added in the review round: Crops and gardens (RECONCILE 130), M5", "milestone": "m5", "owner": "food", "type": "data_component", "ids": ["seed_lot"] },
-    { "basis": "Added in the review round: Crops and gardens (RECONCILE 130), M5", "milestone": "m5", "owner": "food", "type": "tag", "ids": ["crops", "tillable_soils"] },
-    { "basis": "Added in the review round: Food and dishes (RECONCILE 137), M5", "milestone": "m5", "owner": "food", "type": "item", "ids": ["dish", "pemmican", "dried_fish", "hen_egg", "goat_milk", "rose_hips", "spruce_tips", "barley_flour", "sauerkraut", "birch_sap", "birch_syrup"] },
-    { "basis": "Added in the review round: Food and dishes (RECONCILE 137), M5", "milestone": "m5", "owner": "food", "type": "data_component", "ids": ["dish_id", "nutrients"] },
-    { "basis": "Added in the review round: Final pass (RECONCILE 146), M8", "milestone": "m8", "owner": "building", "type": "block", "ids": ["slab_floor"] },
-    { "basis": "Added in the review round: Deer (RECONCILE 152, 154, 155), M6, behind the content flag yearofice:deer", "milestone": "m6", "owner": "ecosystem", "type": "mob", "ids": ["mule_deer", "sitka_black_tailed_deer"] },
-    { "basis": "Added in the review round: Deer (RECONCILE 152, 154, 155), M6", "milestone": "m6", "owner": "food", "type": "item", "ids": ["mule_deer_meat", "mule_deer_hide", "sitka_black_tailed_deer_meat", "sitka_black_tailed_deer_hide"] },
-    { "basis": "Added in the review round: Deer (RECONCILE 152, 154, 155), M6", "milestone": "m6", "owner": "look", "type": "sound_event", "ids": ["entity.mule_deer.snort", "entity.mule_deer.stamp", "entity.mule_deer.grunt", "entity.mule_deer.fawn_bleat", "entity.mule_deer.antler_clash", "entity.mule_deer.stott", "entity.sitka_black_tailed_deer.whistle_snort", "entity.sitka_black_tailed_deer.stamp", "entity.sitka_black_tailed_deer.grunt", "entity.sitka_black_tailed_deer.fawn_bleat", "entity.sitka_black_tailed_deer.antler_clash"] },
-    { "basis": "Added in the review round: Deer (RECONCILE 152, 154, 155), M6", "milestone": "m6", "owner": "ecosystem", "type": "activity", "ids": ["look_back"] },
-    { "basis": "Fire team, M2.5 slice fire from parts with the bow drill pulled forward from M3 (Blueprint > Building a campfire; Items > Master items table: tinder_bundle, bow_drill, match; kindling is the campfire's layer 4)", "milestone": "m2_5", "owner": "body", "type": "item", "ids": ["tinder_bundle", "kindling", "bow_drill", "match"] },
-    { "basis": "Fire team, M2.5 slice: fire crackle and bow-drill stroke (Blueprint > Sound: bow-drill stroke; Minecraft development > Sound ids, group fire); registered by the fire package until sound.SoundBus lands", "milestone": "m2_5", "owner": "body", "type": "sound_event", "ids": ["fire.crackle", "fire.bow_drill"] },
-    { "basis": "Fire team, M2.5 slice with the bow drill pulled forward from M3: the bow-drill screen's open payload and the shared minigame_result payload (Minecraft development > Minigames in Minecraft terms; Payloads)", "milestone": "m2_5", "owner": "body", "type": "payload", "ids": ["bow_drill_open", "minigame_result"] },
-    { "basis": "Ecosystem team, M2.5 slice: the trail snare's wire and block entity (Blueprint > Traps; Director's slice brief: snare_wire and the placed yearofice:snare); food.traps is built by Ecosystem for the slice", "milestone": "m2_5", "owner": "food", "type": "item", "ids": ["snare_wire"]},
-    { "basis": "Ecosystem team, M2.5 slice: the placed trail snare (Blueprint > Traps; Minecraft engine > Traps and nets)", "milestone": "m2_5", "owner": "food", "type": "block_with_entity", "ids": ["snare"]},
-    { "basis": "Ecosystem team, M2.5 slice: dressed small game, <species>_meat from item_family/ (Items > Food values, lean meat; Bestiary > Dressing by size class: backstrap sinew at the joint step)", "milestone": "m2_5", "owner": "food", "type": "item", "ids": ["snowshoe_hare_meat", "willow_ptarmigan_meat", "sinew"]},
-    { "basis": "Ecosystem team, M2.5 slice: the data component yearofice:carcass on whole_game (Bestiary > In Minecraft: carcasses)", "milestone": "m2_5", "owner": "ecosystem", "type": "data_component", "ids": ["carcass"]},
-    { "basis": "Ecosystem team, M2.5 slice: the shared state machine's slice states as Brain activities (Minecraft development > Brain: activities; Blueprint > How animals act)", "milestone": "m2_5", "owner": "ecosystem", "type": "activity", "ids": ["routine", "alert", "freeze", "flee"]},
-    { "basis": "Food and hunting, M2.5 slice rod method: the landed grayling is the item with the species id (DIRECTOR RULING 101; Minecraft engine > Fishing > The fight: yearofice:arctic_grayling); the grayling mob stays M5", "milestone": "m2_5", "owner": "food", "type": "item", "ids": ["arctic_grayling"] },
-    { "basis": "Food and hunting, M2.5 slice cooking: the spit over a fire ring that roasts food (Blueprint > Cooking: spit or stick roast, spit over coals; Ready for development M2.5: roast on the fire ring)", "milestone": "m2_5", "owner": "food", "type": "block_with_entity", "ids": ["spit"] },
-    { "basis": "Food and hunting, M2.5 slice cooking: the doneness ring of food taken off a spit, Rare, Done or Burnt (Blueprint > Cooking > Doneness); a Layer 6 component in item.component.YoiComponents", "milestone": "m2_5", "owner": "food", "type": "data_component", "ids": ["doneness"] },
-    { "basis": "Food and hunting, M2.5 slice rod method: the rod carries its tackle as the yearofice:tackle component (Waters and fish > Fishing ids, tackle and keys); in the slice it holds the bait on the hook", "milestone": "m2_5", "owner": "food", "type": "data_component", "ids": ["tackle"] },
-    { "basis": "Food and hunting, M2.5 slice rod method: the lockstep fight's payloads (Blueprint > Fishing methods, Build line: fish_input, fish_state, fish_result; Minecraft development > Minigames in Minecraft terms)", "milestone": "m2_5", "owner": "food", "type": "payload", "ids": ["fish_input", "fish_state", "fish_result"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A1 placed logs never fall: Crafting and building in depth > Placed logs never fall", "milestone": "m2", "owner": "building", "type": "tag", "ids": ["fell_stops"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A4: the lick surface block moves to M2 with the licks (RECONCILE 167); Minecraft development > Registry table: terrain, water, ice and snow", "milestone": "m2", "owner": "worldgen", "type": "block", "ids": ["salt_crust"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A7 lift a full box: Minecraft development > Lift a full box", "milestone": "m3", "owner": "studio", "type": "tag", "ids": ["liftable_containers"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A7 box sounds and A8 card sound", "milestone": "m3", "owner": "look", "type": "sound_event", "ids": ["carry.box_lift", "carry.box_set", "ui.field_note_card"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A8 field-note cards: Creative concepts > Field-note cards; the 16th GUI layer", "milestone": "m3", "owner": "look", "type": "gui_layer", "ids": ["field_note_card"] },
-    { "basis": "Field-note cards (A8): the per-player notebook record of filed and unseen cards", "milestone": "m3", "owner": "look", "type": "attachment", "ids": ["field_notes"] },
-    { "basis": "Music tied to Spirits (Art and audio production): the three G0 pieces for dawn, day and fire", "milestone": "m3", "owner": "look", "type": "sound_event", "ids": ["music.dawn", "music.day", "music.fire"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A11 strength carries more: Minecraft development > Strength carries more", "milestone": "m4", "owner": "studio", "type": "item", "ids": ["large_pack_frame"] },
-    { "basis": "Encounter clips (RECONCILE 171), the player's sounds: Minecraft development > First-person feel and camera; Art and audio production > New sound ids", "milestone": "m4", "owner": "look", "type": "sound_event", "ids": ["body.breath_panic", "body.hit_grunt", "body.bite_crunch", "item.pack_tear"] },
-    { "basis": "The Forge Labs racks (Blueprint > Preserving in detail; The smoker): Structures and buildables > Drying rack and smoke rack; Ready for development M5", "milestone": "m5", "owner": "food", "type": "block_with_entity", "ids": ["drying_rack", "smoke_rack"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A4 salt from the mineral lick (Open world in depth) and A10 black sand in the pan (Crafting and building in depth)", "milestone": "m5", "owner": "building", "type": "item", "ids": ["lick_crust", "lick_salt", "black_sand", "birch_pan"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A4: #yearofice:salt holds lick_salt and rock_salt", "milestone": "m5", "owner": "building", "type": "tag", "ids": ["salt"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A10: the rust-stained gravel of placer reaches, from worldgen_params/valley.json", "milestone": "m5", "owner": "worldgen", "type": "block", "ids": ["placer_gravel"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A4 and A10 work sounds", "milestone": "m5", "owner": "look", "type": "sound_event", "ids": ["work.crust_scrape", "work.pan_swirl"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A2 door left open and A3 thieves at the rack: Structures and buildables", "milestone": "m6", "owner": "ecosystem", "type": "activity", "ids": ["raid_shelter", "rack_raid"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A2 and A3", "milestone": "m6", "owner": "ecosystem", "type": "memory_type", "ids": ["open_door_target", "rack_target"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A3 the fox's cache; A5 and A6 the trophy mount", "milestone": "m6", "owner": "ecosystem", "type": "block_with_entity", "ids": ["theft_cache", "trophy_mount"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A5 game record book: Waters and fish > The game page", "milestone": "m6", "owner": "ecosystem", "type": "data_component", "ids": ["trophy_size"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A6 trophy-wall ambitions: Open world in depth > Trophy wall", "milestone": "m6", "owner": "ecosystem", "type": "item", "ids": ["trophy_plaque"] },
-    { "basis": "Encounter clips (RECONCILE 171), the bears' sounds: Minecraft development > Encounter clips; Art and audio production > New sound ids", "milestone": "m6", "owner": "look", "type": "sound_event", "ids": ["entity.grizzly.jaw_pop", "entity.black_bear.huff", "entity.black_bear.jaw_pop"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A10: the sluice box ships with the bloomery and the Iron tier", "milestone": "m9", "owner": "building", "type": "block_with_entity", "ids": ["sluice_box"] },
-    { "basis": "Video 2 specs (RECONCILE 170), A10 sluice sound", "milestone": "m9", "owner": "look", "type": "sound_event", "ids": ["work.sluice_wash"] },
-    { "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables", "milestone": "m2", "owner": "worldgen", "type": "block", "ids": ["rust_stain", "silt", "loess", "till", "river_sand", "gravel", "peat", "clay_bank", "forest_duff", "moss_mat", "grass_turf", "tundra_turf", "lichen_mat", "scree_stones", "white_spruce_leaves", "black_spruce_leaves", "birch_leaves", "willow_brush"] },
-    { "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables", "milestone": "m2", "owner": "worldgen", "type": "biome", "ids": ["open_river", "lake", "gravel_bar", "riparian", "spruce_taiga", "black_spruce_flats", "muskeg", "birch_aspen_slope", "foothill_benches", "lichen_woodland", "burn", "alpine_tundra", "upland_barrens", "rock_scree", "alpine_range", "icefield", "hot_spring_basin", "tailings"] },
-    { "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables", "milestone": "m2", "owner": "worldgen", "type": "worldgen_hook", "ids": ["slice_valley", "layer_trees", "places_layer", "template_piece", "mark_placed", "loot_seed", "slice_test"] },
-    { "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables", "milestone": "m2", "owner": "worldgen", "type": "tag", "ids": ["valley_biomes", "diggable_soil"] },
-    {"basis": "Research round B (RECONCILE 175), B1 glare-ice skating and B2 Arvid's skis: Open world in depth > Traversal", "milestone": "m7", "owner": "building", "type": "item", "ids": ["skates", "skis", "climbing_skins"], "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"},
-    {"basis": "Research round B (RECONCILE 175), B5 bone grease: Items > Food values", "milestone": "m6", "owner": "food", "type": "item", "ids": ["crushed_bone", "bone_grease"], "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"},
-    {"basis": "Research round B (RECONCILE 175), B6 the sourdough starter: Items > Food values", "milestone": "m9", "owner": "food", "type": "item", "ids": ["sourdough_starter"], "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"},
-    {"basis": "Research round B (RECONCILE 175), B6 the starter's state and last feed", "milestone": "m9", "owner": "food", "type": "data_component", "ids": ["starter"], "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"},
-    {"basis": "Research round B (RECONCILE 175), B11 the hot tent: Structures and buildables > Warmth, water and hygiene", "milestone": "m8", "owner": "building", "type": "item", "ids": ["canvas_wall_tent", "stove_jack", "tent_stove", "can_stove", "spark_screen"], "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"},
-    {"basis": "Research round B (RECONCILE 175), B11 the pitched tent (cover canvas or hide)", "milestone": "m8", "owner": "building", "type": "multiblock", "ids": ["wall_tent"], "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"},
-    {"basis": "Research round B (RECONCILE 175), B12 the caribou lead fence: Land animals in depth > Caribou herds", "milestone": "m9", "owner": "building", "type": "block", "ids": ["lead_fence"], "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"},
-    {"basis": "Research round B (RECONCILE 175), B12 the one caribou snare, with the trap set", "milestone": "m9", "owner": "food", "type": "block_with_entity", "ids": ["caribou_snare"], "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"},
-    {"basis": "Research round B (RECONCILE 175), sounds of B13 and B15: Art and audio production > Every sound group and its source", "milestone": "m4", "owner": "look", "type": "sound_event", "ids": ["body.skin_sting", "body.back_twinge"], "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"},
-    {"basis": "Research round B (RECONCILE 175), sounds of B5 and B7", "milestone": "m6", "owner": "look", "type": "sound_event", "ids": ["work.bone_crush", "body.talk_walk"], "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"},
-    {"basis": "Research round B (RECONCILE 175), sounds of B1 and B2", "milestone": "m7", "owner": "look", "type": "sound_event", "ids": ["step.skate", "ice.blade_ring", "ice.blade_sing", "ice.blade_crackle", "step.ski_glide", "step.ski_squeal"], "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"},
-    {"basis": "Research round B (RECONCILE 175), sounds of B8", "milestone": "m8", "owner": "look", "type": "sound_event", "ids": ["world.frost_drip", "world.icicle_crack"], "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"},
-    {"basis": "Inventory gap (RECONCILE 175): the three packs of Blueprint > Inventory and backpack and Minecraft development > Inventory and slots. data_maps/item/pack.json keys them and the M2 GameTests pack/no_ghost_rows and pack/rows_never_fill use them, so they register with the pack in M2; recipes follow their tiers", "milestone": "m2", "owner": "studio", "type": "item", "ids": ["crate_backpack", "hide_pack", "pack_frame"]},
-    {"basis": "Inventory gap (RECONCILE 175): Station Nine and wreck loot, tools and materials (Items > Found and salvaged items; Items > Milestones and tests: M3)", "milestone": "m3", "owner": "building", "type": "item", "ids": ["aluminum_panel", "control_cable", "plexiglass_window", "seat_cushion", "sewing_kit", "steel_needle", "cotton_thread", "duct_tape", "fencing_wire", "ice_auger"]},
-    {"basis": "Inventory gap (RECONCILE 175): Station Nine and wreck loot, fire, light, water, medicine and comfort items (M3)", "milestone": "m3", "owner": "body", "type": "item", "ids": ["hand_lens", "steel_wool", "avgas", "engine_oil", "tweezers", "lantern_mantle", "jerrycan", "paperback", "tallow_candle"]},
-    {"basis": "Inventory gap (RECONCILE 175): the wreck's tackle (M3)", "milestone": "m3", "owner": "food", "type": "item", "ids": ["hook_tin", "braided_line"]},
-    {"basis": "Inventory gap (RECONCILE 175): Station Nine and wreck instruments, signals, power and the keepsakes in the M3 loot test (M3)", "milestone": "m3", "owner": "story", "type": "item", "ids": ["sectional_chart", "dial_thermometer", "police_whistle", "plane_battery", "toks_bed", "photograph_elin", "jo_note"]},
-    {"basis": "Inventory gap (RECONCILE 175): salvage outputs (Items > Salvaging into parts; Milestones and tests: salvage M5)", "milestone": "m5", "owner": "building", "type": "item", "ids": ["glass_globe", "flat_spring", "tin_strip", "glass_shard", "cloth_scrap"]},
-    {"basis": "Inventory gap (RECONCILE 175): Arvid's cabin and caches. Items > Milestones and tests names no row for them; they ship with salvage and the trapline in M5", "milestone": "m5", "owner": "building", "type": "item", "ids": ["spent_casing", "crooked_knife", "axe_puck", "leghold_trap", "lard_pail", "babiche", "flat_file", "ice_chisel", "drawknife", "bucksaw"]},
-    {"basis": "Inventory gap (RECONCILE 175): Arvid's caches, clothing (M5)", "milestone": "m5", "owner": "body", "type": "item", "ids": ["moose_hide_mitts"]},
-    {"basis": "Inventory gap (RECONCILE 175): rock salt from the roadhouse crock and the caches, in #yearofice:salt with lick_salt (Open world in depth > Salt from the mineral lick, M5)", "milestone": "m5", "owner": "food", "type": "item", "ids": ["rock_salt"]},
-    {"basis": "Inventory gap (RECONCILE 175): the mining camp's gold pan, used by A10 black sand and its M5 GameTest build/black_sand_pan_rates", "milestone": "m5", "owner": "building", "type": "item", "ids": ["gold_pan"]},
-    {"basis": "Inventory gap (RECONCILE 175): drift finds (Items > What the river brings; Milestones and tests: drift M7)", "milestone": "m7", "owner": "food", "type": "item", "ids": ["net_float", "net_tangle"]},
-    {"basis": "Inventory gap (RECONCILE 175): the drift find blue poly barrel (M7)", "milestone": "m7", "owner": "building", "type": "item", "ids": ["poly_barrel"]},
-    {"basis": "Inventory gap (RECONCILE 175): mining camp, lookout and roadhouse tools, materials and comforts (Items > Milestones and tests: M8)", "milestone": "m8", "owner": "building", "type": "item", "ids": ["scrap_iron", "square_nail", "crosscut_saw", "froe", "adze_head", "t_auger", "round_file", "ore_sack", "pick_head", "pulaski", "copper_cable", "bearpaw_snowshoes", "birch_chair"]},
-    {"basis": "Inventory gap (RECONCILE 175): mining camp, lookout and roadhouse light, water and comfort items (M8)", "milestone": "m8", "owner": "body", "type": "item", "ids": ["amber_bottle", "tin_lantern", "wool_blanket"]},
-    {"basis": "Inventory gap (RECONCILE 175): mining camp, lookout and roadhouse food and cooking gear (M8)", "milestone": "m8", "owner": "food", "type": "item", "ids": ["cast_iron_kettle", "dutch_oven", "canned_peaches"]},
-    {"basis": "Inventory gap (RECONCILE 175): lookout instruments and signals (M8)", "milestone": "m8", "owner": "story", "type": "item", "ids": ["aneroid_barometer", "heliograph_mirror", "binoculars"]},
-    {"basis": "Inventory gap (RECONCILE 175): the ring, the breakup board and the shelf keepsakes (Items > Milestones and tests: M9)", "milestone": "m9", "owner": "story", "type": "item", "ids": ["wedding_ring", "breakup_board", "gold_vial", "elin_tin_cup", "wool_mitten"]},
-    {"basis": "M2 lane B (PR #16, #21, #23) registered these and they were hand-edited into studio/inventory.json; folded into the rules (RECONCILE 181)", "milestone": "m2", "owner": "studio", "type": "payload", "ids": ["clock_sync", "hud_line", "pickup"]},
-    {"basis": "M2 lane B (PR #16, #21, #23) registered these and they were hand-edited into studio/inventory.json; folded into the rules (RECONCILE 181)", "milestone": "m2", "owner": "studio", "type": "data_map", "ids": ["pack", "props"]},
-    {"basis": "M2 lane B (PR #16, #21, #23) registered these and they were hand-edited into studio/inventory.json; folded into the rules (RECONCILE 181)", "milestone": "m2", "owner": "studio", "type": "tag", "ids": ["auto_pickup", "never_expires"]},
-    {"basis": "M3 start-site lane: starting-kit placeholder items (Blueprint > Start site > Starting kit); behaviour lands in the crafting, fire and light lanes", "milestone": "m3", "owner": "studio", "type": "item", "ids": ["fixed_blade_knife", "pilot_bread", "medkit", "bear_spray", "cord", "seed_packet", "compass", "plant_guide", "solar_panel_small", "mosquito_head_net"]},
-    {"basis": "M2 building lane (felling, bucking and firewood; Ready for development M2): registered by build.wood and world.attach", "milestone": "m2", "owner": "building", "type": "item", "ids": ["hatchet"]},
-    {"basis": "M2 building lane (felling, bucking and firewood; Ready for development M2): registered by build.wood and world.attach", "milestone": "m2", "owner": "building", "type": "data_map", "ids": ["tool"]},
-    {"basis": "M2 building lane (felling, bucking and firewood; Ready for development M2): registered by build.wood and world.attach", "milestone": "m2", "owner": "building", "type": "data_component", "ids": ["seasoning"]},
-    {"basis": "M2 building lane (felling, bucking and firewood; Ready for development M2): registered by build.wood and world.attach", "milestone": "m2", "owner": "building", "type": "attachment", "ids": ["trees"]},
-    {"basis": "M2 lane B (PR #16, #21, #23) registered these and they were hand-edited into studio/inventory.json; folded into the rules (RECONCILE 181)", "milestone": "m2_5", "owner": "look", "type": "gui_layer", "ids": ["messenger_corner"]},
-    {"basis": "Integration pass (RECONCILE 180): Decay's clock head for the slice clock air:slice (Minecraft development > Layer 5, Sync; the registry table lists it for M5 with body, pocket and container clocks)", "milestone": "m2", "owner": "studio", "type": "payload", "ids": ["decay_heads"]},
-    {"basis": "RECONCILE 181: the bough bed pulled forward from M3 into the M2.5 slice; spruce boughs are its material (Crafting and building in depth > More Start recipes, Cut boughs)", "milestone": "m2_5", "owner": "building", "type": "item", "ids": ["spruce_boughs"]},
-    {"basis": "RECONCILE 181: beds' quality and sleep warmth as a block data map (Blueprint > Sleep, bed factor; Making camp)", "milestone": "m2_5", "owner": "building", "type": "data_map", "ids": ["bed"]},
-    {"basis": "RECONCILE 181: leaf blocks boughs are cut from", "milestone": "m2_5", "owner": "building", "type": "tag", "ids": ["bough_sources"]},
-    {"basis": "RECONCILE 181: what wakes a sleeper (Blueprint > Sleep: a large animal within 30 m, a predator within 60 m)", "milestone": "m2_5", "owner": "body", "type": "tag", "ids": ["large_animals", "predators"]}
+    {
+      "basis": "World and story, M2.5 slice guided first night: story.Onboarding's per-player state machine and warn-once memory (Ready for development M2.5, Story; Blueprint > Start site > The guided first night)",
+      "milestone": "m2_5",
+      "owner": "story",
+      "type": "attachment",
+      "ids": [
+        "onboarding"
+      ]
+    },
+    {
+      "basis": "M3 lane C (Body/Fire): water, light and the fire kit (Blueprint > Fire, water and light; Items > Containers, light and signals > Light)",
+      "milestone": "m3",
+      "owner": "body",
+      "type": "item",
+      "ids": [
+        "steel_bottle",
+        "cooking_pot",
+        "fire_starter",
+        "headlamp",
+        "birch_bark_torch"
+      ]
+    },
+    {
+      "basis": "M3 lane C (Body/Fire): water, light and the fire kit (Blueprint > Fire, water and light; Items > Containers, light and signals > Light): the container and light item data maps",
+      "milestone": "m3",
+      "owner": "body",
+      "type": "data_map",
+      "ids": [
+        "container",
+        "light"
+      ]
+    },
+    {
+      "basis": "M3 lane C (Body/Fire): water, light and the fire kit (Blueprint > Fire, water and light; Items > Containers, light and signals > Light): what a container holds and whether a light is lit",
+      "milestone": "m3",
+      "owner": "body",
+      "type": "data_component",
+      "ids": [
+        "water",
+        "light_state"
+      ]
+    },
+    {
+      "basis": "M3 lane C (Body/Fire): water, light and the fire kit (Blueprint > Fire, water and light; Items > Containers, light and signals > Light): blocks a packed fire can spread to (Fire danger)",
+      "milestone": "m3",
+      "owner": "body",
+      "type": "tag",
+      "ids": [
+        "burnable"
+      ]
+    },
+    {
+      "basis": "World and story, M2.5 slice guided first night: the objective beacon's target and the Guide page's step, to the owner (Minecraft engine > The HUD: the beacon is world-space, drawn by client.story)",
+      "milestone": "m2_5",
+      "owner": "story",
+      "type": "payload",
+      "ids": [
+        "onboarding_sync"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Trees and firewood (RECONCILE 103); Ready for development M2 ids",
+      "milestone": "m2",
+      "owner": "worldgen",
+      "type": "block",
+      "ids": [
+        "stump",
+        "fallen_log",
+        "chopping_block"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Trees and firewood; Ready for development M2 ids (the 16 <wood>_round and <wood>_split items)",
+      "milestone": "m2",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "<wood>_round",
+        "<wood>_split",
+        "spruce_bark"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Trees and firewood",
+      "milestone": "m2",
+      "owner": "look",
+      "type": "sound_event",
+      "ids": [
+        "tree.chop",
+        "tree.creak",
+        "tree.fall",
+        "tree.split",
+        "tree.hang_creak"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Body, injury and sickness (RECONCILE 121), M4",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "tag",
+      "ids": [
+        "body_routed",
+        "systemic",
+        "animal_strike",
+        "burns"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Body, injury and sickness (RECONCILE 121), M4",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "attribute_modifier",
+      "ids": [
+        "injury",
+        "injury_jump",
+        "injury_break",
+        "injury_step"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Body, injury and sickness (RECONCILE 121), M4",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "data_map",
+      "ids": [
+        "injury_source"
+      ]
+    },
+    {
+      "basis": "Minecraft development, the lead's registry additions named in the Master registry inventory (body_public payload); Ready for development M4 ids",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "payload",
+      "ids": [
+        "body_public"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Crops and gardens (reviewer B, RECONCILE 130), M5",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "potato_crop",
+        "barley_crop",
+        "wheat_crop",
+        "turnip_crop",
+        "cabbage_crop",
+        "seed_tray",
+        "feral_rhubarb"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Crops and gardens (RECONCILE 130), M5",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "seed_potato",
+        "barley_seed",
+        "wheat_seed",
+        "turnip_seed",
+        "cabbage_seed",
+        "potato",
+        "barley",
+        "wheat",
+        "turnip",
+        "cabbage",
+        "grain_sheaf",
+        "straw",
+        "flail",
+        "hoe",
+        "digging_stick",
+        "shovel",
+        "hand_quern"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Crops and gardens (RECONCILE 130), M5",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "data_component",
+      "ids": [
+        "seed_lot"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Crops and gardens (RECONCILE 130), M5",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "tag",
+      "ids": [
+        "crops",
+        "tillable_soils"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Food and dishes (RECONCILE 137), M5",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "dish",
+        "pemmican",
+        "dried_fish",
+        "hen_egg",
+        "goat_milk",
+        "rose_hips",
+        "spruce_tips",
+        "barley_flour",
+        "sauerkraut",
+        "birch_sap",
+        "birch_syrup"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Food and dishes (RECONCILE 137), M5",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "data_component",
+      "ids": [
+        "dish_id",
+        "nutrients"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Final pass (RECONCILE 146), M8",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "block",
+      "ids": [
+        "slab_floor"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Deer (RECONCILE 152, 154, 155), M6, behind the content flag yearofice:deer",
+      "milestone": "m6",
+      "owner": "ecosystem",
+      "type": "mob",
+      "ids": [
+        "mule_deer",
+        "sitka_black_tailed_deer"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Deer (RECONCILE 152, 154, 155), M6",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "mule_deer_meat",
+        "mule_deer_hide",
+        "sitka_black_tailed_deer_meat",
+        "sitka_black_tailed_deer_hide"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Deer (RECONCILE 152, 154, 155), M6",
+      "milestone": "m6",
+      "owner": "look",
+      "type": "sound_event",
+      "ids": [
+        "entity.mule_deer.snort",
+        "entity.mule_deer.stamp",
+        "entity.mule_deer.grunt",
+        "entity.mule_deer.fawn_bleat",
+        "entity.mule_deer.antler_clash",
+        "entity.mule_deer.stott",
+        "entity.sitka_black_tailed_deer.whistle_snort",
+        "entity.sitka_black_tailed_deer.stamp",
+        "entity.sitka_black_tailed_deer.grunt",
+        "entity.sitka_black_tailed_deer.fawn_bleat",
+        "entity.sitka_black_tailed_deer.antler_clash"
+      ]
+    },
+    {
+      "basis": "Added in the review round: Deer (RECONCILE 152, 154, 155), M6",
+      "milestone": "m6",
+      "owner": "ecosystem",
+      "type": "activity",
+      "ids": [
+        "look_back"
+      ]
+    },
+    {
+      "basis": "Fire team, M2.5 slice fire from parts with the bow drill pulled forward from M3 (Blueprint > Building a campfire; Items > Master items table: tinder_bundle, bow_drill, match; kindling is the campfire's layer 4)",
+      "milestone": "m2_5",
+      "owner": "body",
+      "type": "item",
+      "ids": [
+        "tinder_bundle",
+        "kindling",
+        "bow_drill",
+        "match"
+      ]
+    },
+    {
+      "basis": "Fire team, M2.5 slice: fire crackle and bow-drill stroke (Blueprint > Sound: bow-drill stroke; Minecraft development > Sound ids, group fire); registered by the fire package until sound.SoundBus lands",
+      "milestone": "m2_5",
+      "owner": "body",
+      "type": "sound_event",
+      "ids": [
+        "fire.crackle",
+        "fire.bow_drill"
+      ]
+    },
+    {
+      "basis": "Fire team, M2.5 slice with the bow drill pulled forward from M3: the bow-drill screen's open payload and the shared minigame_result payload (Minecraft development > Minigames in Minecraft terms; Payloads)",
+      "milestone": "m2_5",
+      "owner": "body",
+      "type": "payload",
+      "ids": [
+        "bow_drill_open",
+        "minigame_result"
+      ]
+    },
+    {
+      "basis": "Ecosystem team, M2.5 slice: the trail snare's wire and block entity (Blueprint > Traps; Director's slice brief: snare_wire and the placed yearofice:snare); food.traps is built by Ecosystem for the slice",
+      "milestone": "m2_5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "snare_wire"
+      ]
+    },
+    {
+      "basis": "Ecosystem team, M2.5 slice: the placed trail snare (Blueprint > Traps; Minecraft engine > Traps and nets)",
+      "milestone": "m2_5",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "snare"
+      ]
+    },
+    {
+      "basis": "Ecosystem team, M2.5 slice: dressed small game, <species>_meat from item_family/ (Items > Food values, lean meat; Bestiary > Dressing by size class: backstrap sinew at the joint step)",
+      "milestone": "m2_5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "snowshoe_hare_meat",
+        "willow_ptarmigan_meat",
+        "sinew"
+      ]
+    },
+    {
+      "basis": "Ecosystem team, M2.5 slice: the data component yearofice:carcass on whole_game (Bestiary > In Minecraft: carcasses)",
+      "milestone": "m2_5",
+      "owner": "ecosystem",
+      "type": "data_component",
+      "ids": [
+        "carcass"
+      ]
+    },
+    {
+      "basis": "Ecosystem team, M2.5 slice: the shared state machine's slice states as Brain activities (Minecraft development > Brain: activities; Blueprint > How animals act)",
+      "milestone": "m2_5",
+      "owner": "ecosystem",
+      "type": "activity",
+      "ids": [
+        "routine",
+        "alert",
+        "freeze",
+        "flee"
+      ]
+    },
+    {
+      "basis": "Food and hunting, M2.5 slice rod method: the landed grayling is the item with the species id (DIRECTOR RULING 101; Minecraft engine > Fishing > The fight: yearofice:arctic_grayling); the grayling mob stays M5",
+      "milestone": "m2_5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "arctic_grayling"
+      ]
+    },
+    {
+      "basis": "Food and hunting, M2.5 slice cooking: the spit over a fire ring that roasts food (Blueprint > Cooking: spit or stick roast, spit over coals; Ready for development M2.5: roast on the fire ring)",
+      "milestone": "m2_5",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "spit"
+      ]
+    },
+    {
+      "basis": "Food and hunting, M2.5 slice cooking: the doneness ring of food taken off a spit, Rare, Done or Burnt (Blueprint > Cooking > Doneness); a Layer 6 component in item.component.YoiComponents",
+      "milestone": "m2_5",
+      "owner": "food",
+      "type": "data_component",
+      "ids": [
+        "doneness"
+      ]
+    },
+    {
+      "basis": "Food and hunting, M2.5 slice rod method: the rod carries its tackle as the yearofice:tackle component (Waters and fish > Fishing ids, tackle and keys); in the slice it holds the bait on the hook",
+      "milestone": "m2_5",
+      "owner": "food",
+      "type": "data_component",
+      "ids": [
+        "tackle"
+      ]
+    },
+    {
+      "basis": "Food and hunting, M2.5 slice rod method: the lockstep fight's payloads (Blueprint > Fishing methods, Build line: fish_input, fish_state, fish_result; Minecraft development > Minigames in Minecraft terms)",
+      "milestone": "m2_5",
+      "owner": "food",
+      "type": "payload",
+      "ids": [
+        "fish_input",
+        "fish_state",
+        "fish_result"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A1 placed logs never fall: Crafting and building in depth > Placed logs never fall",
+      "milestone": "m2",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "fell_stops"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A4: the lick surface block moves to M2 with the licks (RECONCILE 167); Minecraft development > Registry table: terrain, water, ice and snow",
+      "milestone": "m2",
+      "owner": "worldgen",
+      "type": "block",
+      "ids": [
+        "salt_crust"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A7 lift a full box: Minecraft development > Lift a full box",
+      "milestone": "m3",
+      "owner": "studio",
+      "type": "tag",
+      "ids": [
+        "liftable_containers"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A7 box sounds and A8 card sound",
+      "milestone": "m3",
+      "owner": "look",
+      "type": "sound_event",
+      "ids": [
+        "carry.box_lift",
+        "carry.box_set",
+        "ui.field_note_card"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A8 field-note cards: Creative concepts > Field-note cards; the 16th GUI layer",
+      "milestone": "m3",
+      "owner": "look",
+      "type": "gui_layer",
+      "ids": [
+        "field_note_card"
+      ]
+    },
+    {
+      "basis": "Field-note cards (A8): the per-player notebook record of filed and unseen cards",
+      "milestone": "m3",
+      "owner": "look",
+      "type": "attachment",
+      "ids": [
+        "field_notes"
+      ]
+    },
+    {
+      "basis": "Music tied to Spirits (Art and audio production): the three G0 pieces for dawn, day and fire",
+      "milestone": "m3",
+      "owner": "look",
+      "type": "sound_event",
+      "ids": [
+        "music.dawn",
+        "music.day",
+        "music.fire"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A11 strength carries more: Minecraft development > Strength carries more",
+      "milestone": "m4",
+      "owner": "studio",
+      "type": "item",
+      "ids": [
+        "large_pack_frame"
+      ]
+    },
+    {
+      "basis": "Encounter clips (RECONCILE 171), the player's sounds: Minecraft development > First-person feel and camera; Art and audio production > New sound ids",
+      "milestone": "m4",
+      "owner": "look",
+      "type": "sound_event",
+      "ids": [
+        "body.breath_panic",
+        "body.hit_grunt",
+        "body.bite_crunch",
+        "item.pack_tear"
+      ]
+    },
+    {
+      "basis": "The Forge Labs racks (Blueprint > Preserving in detail; The smoker): Structures and buildables > Drying rack and smoke rack; Ready for development M5",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "drying_rack",
+        "smoke_rack"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A4 salt from the mineral lick (Open world in depth) and A10 black sand in the pan (Crafting and building in depth)",
+      "milestone": "m5",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "lick_crust",
+        "lick_salt",
+        "black_sand",
+        "birch_pan"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A4: #yearofice:salt holds lick_salt and rock_salt",
+      "milestone": "m5",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "salt"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A10: the rust-stained gravel of placer reaches, from worldgen_params/valley.json",
+      "milestone": "m5",
+      "owner": "worldgen",
+      "type": "block",
+      "ids": [
+        "placer_gravel"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A4 and A10 work sounds",
+      "milestone": "m5",
+      "owner": "look",
+      "type": "sound_event",
+      "ids": [
+        "work.crust_scrape",
+        "work.pan_swirl"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A2 door left open and A3 thieves at the rack: Structures and buildables",
+      "milestone": "m6",
+      "owner": "ecosystem",
+      "type": "activity",
+      "ids": [
+        "raid_shelter",
+        "rack_raid"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A2 and A3",
+      "milestone": "m6",
+      "owner": "ecosystem",
+      "type": "memory_type",
+      "ids": [
+        "open_door_target",
+        "rack_target"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A3 the fox's cache; A5 and A6 the trophy mount",
+      "milestone": "m6",
+      "owner": "ecosystem",
+      "type": "block_with_entity",
+      "ids": [
+        "theft_cache",
+        "trophy_mount"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A5 game record book: Waters and fish > The game page",
+      "milestone": "m6",
+      "owner": "ecosystem",
+      "type": "data_component",
+      "ids": [
+        "trophy_size"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A6 trophy-wall ambitions: Open world in depth > Trophy wall",
+      "milestone": "m6",
+      "owner": "ecosystem",
+      "type": "item",
+      "ids": [
+        "trophy_plaque"
+      ]
+    },
+    {
+      "basis": "Encounter clips (RECONCILE 171), the bears' sounds: Minecraft development > Encounter clips; Art and audio production > New sound ids",
+      "milestone": "m6",
+      "owner": "look",
+      "type": "sound_event",
+      "ids": [
+        "entity.grizzly.jaw_pop",
+        "entity.black_bear.huff",
+        "entity.black_bear.jaw_pop"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A10: the sluice box ships with the bloomery and the Iron tier",
+      "milestone": "m9",
+      "owner": "building",
+      "type": "block_with_entity",
+      "ids": [
+        "sluice_box"
+      ]
+    },
+    {
+      "basis": "Video 2 specs (RECONCILE 170), A10 sluice sound",
+      "milestone": "m9",
+      "owner": "look",
+      "type": "sound_event",
+      "ids": [
+        "work.sluice_wash"
+      ]
+    },
+    {
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "milestone": "m2",
+      "owner": "worldgen",
+      "type": "block",
+      "ids": [
+        "rust_stain",
+        "silt",
+        "loess",
+        "till",
+        "river_sand",
+        "gravel",
+        "peat",
+        "clay_bank",
+        "forest_duff",
+        "moss_mat",
+        "grass_turf",
+        "tundra_turf",
+        "lichen_mat",
+        "scree_stones",
+        "white_spruce_leaves",
+        "black_spruce_leaves",
+        "birch_leaves",
+        "willow_brush"
+      ]
+    },
+    {
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "milestone": "m2",
+      "owner": "worldgen",
+      "type": "biome",
+      "ids": [
+        "open_river",
+        "lake",
+        "gravel_bar",
+        "riparian",
+        "spruce_taiga",
+        "black_spruce_flats",
+        "muskeg",
+        "birch_aspen_slope",
+        "foothill_benches",
+        "lichen_woodland",
+        "burn",
+        "alpine_tundra",
+        "upland_barrens",
+        "rock_scree",
+        "alpine_range",
+        "icefield",
+        "hot_spring_basin",
+        "tailings"
+      ]
+    },
+    {
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "milestone": "m2",
+      "owner": "worldgen",
+      "type": "worldgen_hook",
+      "ids": [
+        "slice_valley",
+        "layer_trees",
+        "places_layer",
+        "template_piece",
+        "mark_placed",
+        "loot_seed",
+        "slice_test"
+      ]
+    },
+    {
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "milestone": "m2",
+      "owner": "worldgen",
+      "type": "tag",
+      "ids": [
+        "valley_biomes",
+        "diggable_soil"
+      ]
+    },
+    {
+      "basis": "Research round B (RECONCILE 175), B1 glare-ice skating and B2 Arvid's skis: Open world in depth > Traversal",
+      "milestone": "m7",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "skates",
+        "skis",
+        "climbing_skins"
+      ],
+      "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"
+    },
+    {
+      "basis": "Research round B (RECONCILE 175), B5 bone grease: Items > Food values",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "crushed_bone",
+        "bone_grease"
+      ],
+      "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"
+    },
+    {
+      "basis": "Research round B (RECONCILE 175), B6 the sourdough starter: Items > Food values",
+      "milestone": "m9",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "sourdough_starter"
+      ],
+      "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"
+    },
+    {
+      "basis": "Research round B (RECONCILE 175), B6 the starter's state and last feed",
+      "milestone": "m9",
+      "owner": "food",
+      "type": "data_component",
+      "ids": [
+        "starter"
+      ],
+      "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"
+    },
+    {
+      "basis": "Research round B (RECONCILE 175), B11 the hot tent: Structures and buildables > Warmth, water and hygiene",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "canvas_wall_tent",
+        "stove_jack",
+        "tent_stove",
+        "can_stove",
+        "spark_screen"
+      ],
+      "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"
+    },
+    {
+      "basis": "Research round B (RECONCILE 175), B11 the pitched tent (cover canvas or hide)",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "multiblock",
+      "ids": [
+        "wall_tent"
+      ],
+      "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"
+    },
+    {
+      "basis": "Research round B (RECONCILE 175), B12 the caribou lead fence: Land animals in depth > Caribou herds",
+      "milestone": "m9",
+      "owner": "building",
+      "type": "block",
+      "ids": [
+        "lead_fence"
+      ],
+      "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"
+    },
+    {
+      "basis": "Research round B (RECONCILE 175), B12 the one caribou snare, with the trap set",
+      "milestone": "m9",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "caribou_snare"
+      ],
+      "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"
+    },
+    {
+      "basis": "Research round B (RECONCILE 175), sounds of B13 and B15: Art and audio production > Every sound group and its source",
+      "milestone": "m4",
+      "owner": "look",
+      "type": "sound_event",
+      "ids": [
+        "body.skin_sting",
+        "body.back_twinge"
+      ],
+      "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"
+    },
+    {
+      "basis": "Research round B (RECONCILE 175), sounds of B5 and B7",
+      "milestone": "m6",
+      "owner": "look",
+      "type": "sound_event",
+      "ids": [
+        "work.bone_crush",
+        "body.talk_walk"
+      ],
+      "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"
+    },
+    {
+      "basis": "Research round B (RECONCILE 175), sounds of B1 and B2",
+      "milestone": "m7",
+      "owner": "look",
+      "type": "sound_event",
+      "ids": [
+        "step.skate",
+        "ice.blade_ring",
+        "ice.blade_sing",
+        "ice.blade_crackle",
+        "step.ski_glide",
+        "step.ski_squeal"
+      ],
+      "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"
+    },
+    {
+      "basis": "Research round B (RECONCILE 175), sounds of B8",
+      "milestone": "m8",
+      "owner": "look",
+      "type": "sound_event",
+      "ids": [
+        "world.frost_drip",
+        "world.icicle_crack"
+      ],
+      "note": "proposed: research round B (IDEAS3), Ruhan may veto; RECONCILE 175"
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): the three packs of Blueprint > Inventory and backpack and Minecraft development > Inventory and slots. data_maps/item/pack.json keys them and the M2 GameTests pack/no_ghost_rows and pack/rows_never_fill use them, so they register with the pack in M2; recipes follow their tiers",
+      "milestone": "m2",
+      "owner": "studio",
+      "type": "item",
+      "ids": [
+        "crate_backpack",
+        "hide_pack",
+        "pack_frame"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): Station Nine and wreck loot, tools and materials (Items > Found and salvaged items; Items > Milestones and tests: M3)",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "aluminum_panel",
+        "control_cable",
+        "plexiglass_window",
+        "seat_cushion",
+        "sewing_kit",
+        "steel_needle",
+        "cotton_thread",
+        "duct_tape",
+        "fencing_wire",
+        "ice_auger"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): Station Nine and wreck loot, fire, light, water, medicine and comfort items (M3)",
+      "milestone": "m3",
+      "owner": "body",
+      "type": "item",
+      "ids": [
+        "hand_lens",
+        "steel_wool",
+        "avgas",
+        "engine_oil",
+        "tweezers",
+        "lantern_mantle",
+        "jerrycan",
+        "paperback",
+        "tallow_candle"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): the wreck's tackle (M3)",
+      "milestone": "m3",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "hook_tin",
+        "braided_line"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): Station Nine and wreck instruments, signals, power and the keepsakes in the M3 loot test (M3)",
+      "milestone": "m3",
+      "owner": "story",
+      "type": "item",
+      "ids": [
+        "sectional_chart",
+        "dial_thermometer",
+        "police_whistle",
+        "plane_battery",
+        "toks_bed",
+        "photograph_elin",
+        "jo_note"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): salvage outputs (Items > Salvaging into parts; Milestones and tests: salvage M5)",
+      "milestone": "m5",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "glass_globe",
+        "flat_spring",
+        "tin_strip",
+        "glass_shard",
+        "cloth_scrap"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): Arvid's cabin and caches. Items > Milestones and tests names no row for them; they ship with salvage and the trapline in M5",
+      "milestone": "m5",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "spent_casing",
+        "crooked_knife",
+        "axe_puck",
+        "leghold_trap",
+        "lard_pail",
+        "babiche",
+        "flat_file",
+        "ice_chisel",
+        "drawknife",
+        "bucksaw"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): Arvid's caches, clothing (M5)",
+      "milestone": "m5",
+      "owner": "body",
+      "type": "item",
+      "ids": [
+        "moose_hide_mitts"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): rock salt from the roadhouse crock and the caches, in #yearofice:salt with lick_salt (Open world in depth > Salt from the mineral lick, M5)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "rock_salt"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): the mining camp's gold pan, used by A10 black sand and its M5 GameTest build/black_sand_pan_rates",
+      "milestone": "m5",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "gold_pan"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): drift finds (Items > What the river brings; Milestones and tests: drift M7)",
+      "milestone": "m7",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "net_float",
+        "net_tangle"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): the drift find blue poly barrel (M7)",
+      "milestone": "m7",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "poly_barrel"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): mining camp, lookout and roadhouse tools, materials and comforts (Items > Milestones and tests: M8)",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "scrap_iron",
+        "square_nail",
+        "crosscut_saw",
+        "froe",
+        "adze_head",
+        "t_auger",
+        "round_file",
+        "ore_sack",
+        "pick_head",
+        "pulaski",
+        "copper_cable",
+        "bearpaw_snowshoes",
+        "birch_chair"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): mining camp, lookout and roadhouse light, water and comfort items (M8)",
+      "milestone": "m8",
+      "owner": "body",
+      "type": "item",
+      "ids": [
+        "amber_bottle",
+        "tin_lantern",
+        "wool_blanket"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): mining camp, lookout and roadhouse food and cooking gear (M8)",
+      "milestone": "m8",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "cast_iron_kettle",
+        "dutch_oven",
+        "canned_peaches"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): lookout instruments and signals (M8)",
+      "milestone": "m8",
+      "owner": "story",
+      "type": "item",
+      "ids": [
+        "aneroid_barometer",
+        "heliograph_mirror",
+        "binoculars"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): the ring, the breakup board and the shelf keepsakes (Items > Milestones and tests: M9)",
+      "milestone": "m9",
+      "owner": "story",
+      "type": "item",
+      "ids": [
+        "wedding_ring",
+        "breakup_board",
+        "gold_vial",
+        "elin_tin_cup",
+        "wool_mitten"
+      ]
+    },
+    {
+      "basis": "M2 lane B (PR #16, #21, #23) registered these and they were hand-edited into studio/inventory.json; folded into the rules (RECONCILE 181)",
+      "milestone": "m2",
+      "owner": "studio",
+      "type": "payload",
+      "ids": [
+        "clock_sync",
+        "hud_line",
+        "pickup"
+      ]
+    },
+    {
+      "basis": "M2 lane B (PR #16, #21, #23) registered these and they were hand-edited into studio/inventory.json; folded into the rules (RECONCILE 181)",
+      "milestone": "m2",
+      "owner": "studio",
+      "type": "data_map",
+      "ids": [
+        "pack",
+        "props"
+      ]
+    },
+    {
+      "basis": "M2 lane B (PR #16, #21, #23) registered these and they were hand-edited into studio/inventory.json; folded into the rules (RECONCILE 181)",
+      "milestone": "m2",
+      "owner": "studio",
+      "type": "tag",
+      "ids": [
+        "auto_pickup",
+        "never_expires"
+      ]
+    },
+    {
+      "basis": "M3 start-site lane: starting-kit placeholder items (Blueprint > Start site > Starting kit); behaviour lands in the crafting, fire and light lanes",
+      "milestone": "m3",
+      "owner": "studio",
+      "type": "item",
+      "ids": [
+        "fixed_blade_knife",
+        "pilot_bread",
+        "medkit",
+        "bear_spray",
+        "cord",
+        "seed_packet",
+        "compass",
+        "plant_guide",
+        "solar_panel_small",
+        "mosquito_head_net"
+      ]
+    },
+    {
+      "basis": "M2 building lane (felling, bucking and firewood; Ready for development M2): registered by build.wood and world.attach",
+      "milestone": "m2",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "hatchet"
+      ]
+    },
+    {
+      "basis": "M2 building lane (felling, bucking and firewood; Ready for development M2): registered by build.wood and world.attach",
+      "milestone": "m2",
+      "owner": "building",
+      "type": "data_map",
+      "ids": [
+        "tool"
+      ]
+    },
+    {
+      "basis": "M2 building lane (felling, bucking and firewood; Ready for development M2): registered by build.wood and world.attach",
+      "milestone": "m2",
+      "owner": "building",
+      "type": "data_component",
+      "ids": [
+        "seasoning"
+      ]
+    },
+    {
+      "basis": "M2 building lane (felling, bucking and firewood; Ready for development M2): registered by build.wood and world.attach",
+      "milestone": "m2",
+      "owner": "building",
+      "type": "attachment",
+      "ids": [
+        "trees"
+      ]
+    },
+    {
+      "basis": "M2 lane B (PR #16, #21, #23) registered these and they were hand-edited into studio/inventory.json; folded into the rules (RECONCILE 181)",
+      "milestone": "m2_5",
+      "owner": "look",
+      "type": "gui_layer",
+      "ids": [
+        "messenger_corner"
+      ]
+    },
+    {
+      "basis": "Integration pass (RECONCILE 180): Decay's clock head for the slice clock air:slice (Minecraft development > Layer 5, Sync; the registry table lists it for M5 with body, pocket and container clocks)",
+      "milestone": "m2",
+      "owner": "studio",
+      "type": "payload",
+      "ids": [
+        "decay_heads"
+      ]
+    },
+    {
+      "basis": "RECONCILE 181: the bough bed pulled forward from M3 into the M2.5 slice; spruce boughs are its material (Crafting and building in depth > More Start recipes, Cut boughs)",
+      "milestone": "m2_5",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "spruce_boughs"
+      ]
+    },
+    {
+      "basis": "RECONCILE 181: beds' quality and sleep warmth as a block data map (Blueprint > Sleep, bed factor; Making camp)",
+      "milestone": "m2_5",
+      "owner": "building",
+      "type": "data_map",
+      "ids": [
+        "bed"
+      ]
+    },
+    {
+      "basis": "RECONCILE 181: leaf blocks boughs are cut from",
+      "milestone": "m2_5",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "bough_sources"
+      ]
+    },
+    {
+      "basis": "RECONCILE 181: what wakes a sleeper (Blueprint > Sleep: a large animal within 30 m, a predator within 60 m)",
+      "milestone": "m2_5",
+      "owner": "body",
+      "type": "tag",
+      "ids": [
+        "large_animals",
+        "predators"
+      ]
+    },
+    {
+      "basis": "Collapse and SOS step 4",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "block_with_entity",
+      "ids": [
+        "left_pack"
+      ]
+    },
+    {
+      "basis": "ground sleep",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "block",
+      "ids": [
+        "ground_bed"
+      ]
+    },
+    {
+      "basis": "SOS flight screen",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "payload",
+      "ids": [
+        "sos_flight"
+      ]
+    },
+    {
+      "basis": "SOS line",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "payload",
+      "ids": [
+        "sos_line"
+      ]
+    },
+    {
+      "basis": "B13 face grease: items that can be rubbed into the face and gloves (RECONCILE 175); Body tab > Injuries on the body",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "tag",
+      "ids": [
+        "grease"
+      ]
+    }
   ],
   "expand": {
-    "<wood>": ["spruce", "birch", "aspen", "poplar", "tamarack", "willow", "alder", "drift"]
+    "<wood>": [
+      "spruce",
+      "birch",
+      "aspen",
+      "poplar",
+      "tamarack",
+      "willow",
+      "alder",
+      "drift"
+    ]
   },
   "addition_ids_ignored": {
     "note": "Backticked words in the 'Added in the review round' bullets that are not registry ids (block states, data paths, classes, fields, flags, retired ids). The generator fails on any other backticked word there that no addition covers, so a new doc id cannot slip past.",
-    "ids": ["/yoi", "age", "gnawed", "felled_log", "hung", "yearofice:moisture", "action/fell", "limb", "buck", "split", "peel", "build.wood.FellingService", "world.logs.FallingTreeEntity", "world.logs.FelledLogEntity", "body_part/", "injury/", "injury_source/", "illness/", "action/treat_*", "data_maps/damage_type/injury_source.json", "#yearofice:body_routed", "part_hp", "d_sys", "part_frost", "zone_frost", "lost_digits", "crooked", "injury_seq", "BodyService.partHealth", "factor", "canUse", "limp", "body_sync", "yearofice:seed_lot", "#yearofice:crops", "#yearofice:tillable_soils", "forage.ForageCommands", "food.garden.GardenCommands", "env.LandCommands", "droppings", "page", "note", "note_id", "wood", "path", "surface", "gravel", "plank", "build/slab_floor_u", "build/path_speed", "yearofice:deer", "cervid", "heart", "liver", "kidney", "tongue", "antler", "brain", "shed_antler", "mule_deer", "sitka_black_tailed_deer", "species/", "loot_table/butchering/", "hitzone/", "item_family/", "rare_sighting/mule_deer_straggler.json", "flag/deer.json", "DeerGameTests", "entity.sitka_black_tailed_deer.whistle_snort", ".stamp", ".grunt", ".fawn_bleat", ".antler_clash", ".stott", "entity.mule_deer.snort", "body_public", "dish_id", "nutrients"]
+    "ids": [
+      "/yoi",
+      "age",
+      "gnawed",
+      "felled_log",
+      "hung",
+      "yearofice:moisture",
+      "action/fell",
+      "limb",
+      "buck",
+      "split",
+      "peel",
+      "build.wood.FellingService",
+      "world.logs.FallingTreeEntity",
+      "world.logs.FelledLogEntity",
+      "body_part/",
+      "injury/",
+      "injury_source/",
+      "illness/",
+      "action/treat_*",
+      "data_maps/damage_type/injury_source.json",
+      "#yearofice:body_routed",
+      "part_hp",
+      "d_sys",
+      "part_frost",
+      "zone_frost",
+      "lost_digits",
+      "crooked",
+      "injury_seq",
+      "BodyService.partHealth",
+      "factor",
+      "canUse",
+      "limp",
+      "body_sync",
+      "yearofice:seed_lot",
+      "#yearofice:crops",
+      "#yearofice:tillable_soils",
+      "forage.ForageCommands",
+      "food.garden.GardenCommands",
+      "env.LandCommands",
+      "droppings",
+      "page",
+      "note",
+      "note_id",
+      "wood",
+      "path",
+      "surface",
+      "gravel",
+      "plank",
+      "build/slab_floor_u",
+      "build/path_speed",
+      "yearofice:deer",
+      "cervid",
+      "heart",
+      "liver",
+      "kidney",
+      "tongue",
+      "antler",
+      "brain",
+      "shed_antler",
+      "mule_deer",
+      "sitka_black_tailed_deer",
+      "species/",
+      "loot_table/butchering/",
+      "hitzone/",
+      "item_family/",
+      "rare_sighting/mule_deer_straggler.json",
+      "flag/deer.json",
+      "DeerGameTests",
+      "entity.sitka_black_tailed_deer.whistle_snort",
+      ".stamp",
+      ".grunt",
+      ".fawn_bleat",
+      ".antler_clash",
+      ".stott",
+      "entity.mule_deer.snort",
+      "body_public",
+      "dish_id",
+      "nutrients"
+    ]
   },
   "entity_table": {
     "file": "docs/blueprint/04-minecraft-development.md",
@@ -214,196 +1778,1486 @@
     "note": "Rows whose Milestone cell names one milestone decide it for every entity in the row; rows naming several are resolved by the 'ids' rules below, and the generator fails on any that are left."
   },
   "sections": [
-    { "basis": "Ready for development > M2.5 ids (every one tagged m2_5)", "file": "docs/ready-for-development.md", "heading": "M2.5 — Vertical slice", "line_contains": "**Ids and data:**", "until_line_contains": "**Work, in order:**", "milestone": "m2_5", "types": ["mob", "entity", "plant_block", "block_with_entity", "data_component"] },
-    { "basis": "Ready for development > M0 ids", "file": "docs/ready-for-development.md", "heading": "M0 — Seeded world", "line_contains": "**Ids and data:**", "milestone": "m0", "types": ["block", "worldgen_hook"] },
-    { "basis": "Ready for development > M2 ids", "file": "docs/ready-for-development.md", "heading": "M2 — Walkable valley", "line_contains": "**Ids and data:**", "milestone": "m2", "types": ["item", "block", "curios_slot"] },
-    { "basis": "Ready for development > M5 ids", "file": "docs/ready-for-development.md", "heading": "M5 — Food and goals", "line_contains": "**Ids and data:**", "milestone": "m5", "types": ["item", "data_component"] },
-    { "basis": "Ready for development > M8 ids", "file": "docs/ready-for-development.md", "heading": "M8 — Building and outposts", "line_contains": "**Ids and data:**", "milestone": "m8", "types": ["block", "block_with_entity", "data_map"] },
-    { "basis": "Ready for development > M9 ids", "file": "docs/ready-for-development.md", "heading": "M9 — Homestead and beyond", "line_contains": "**Ids and data:**", "milestone": "m9", "types": ["mob"] },
-    { "basis": "Ready for development > M7 ids (27 fungi and aquatic plant blocks); the plants named in Plants and fungi > Fungi", "file": "docs/blueprint/18-plants-and-fungi.md", "heading": "Fungi", "milestone": "m7", "types": ["plant_block"] },
-    { "basis": "Ready for development > M7 ids (27 fungi and aquatic plant blocks, lily pads among them); the plants named in Plants and fungi > Aquatic plants", "file": "docs/blueprint/18-plants-and-fungi.md", "heading": "Aquatic plants", "milestone": "m7", "types": ["plant_block"] }
+    {
+      "basis": "Ready for development > M2.5 ids (every one tagged m2_5)",
+      "file": "docs/ready-for-development.md",
+      "heading": "M2.5 \u2014 Vertical slice",
+      "line_contains": "**Ids and data:**",
+      "until_line_contains": "**Work, in order:**",
+      "milestone": "m2_5",
+      "types": [
+        "mob",
+        "entity",
+        "plant_block",
+        "block_with_entity",
+        "data_component"
+      ]
+    },
+    {
+      "basis": "Ready for development > M0 ids",
+      "file": "docs/ready-for-development.md",
+      "heading": "M0 \u2014 Seeded world",
+      "line_contains": "**Ids and data:**",
+      "milestone": "m0",
+      "types": [
+        "block",
+        "worldgen_hook"
+      ]
+    },
+    {
+      "basis": "Ready for development > M2 ids",
+      "file": "docs/ready-for-development.md",
+      "heading": "M2 \u2014 Walkable valley",
+      "line_contains": "**Ids and data:**",
+      "milestone": "m2",
+      "types": [
+        "item",
+        "block",
+        "curios_slot"
+      ]
+    },
+    {
+      "basis": "Ready for development > M5 ids",
+      "file": "docs/ready-for-development.md",
+      "heading": "M5 \u2014 Food and goals",
+      "line_contains": "**Ids and data:**",
+      "milestone": "m5",
+      "types": [
+        "item",
+        "data_component"
+      ]
+    },
+    {
+      "basis": "Ready for development > M8 ids",
+      "file": "docs/ready-for-development.md",
+      "heading": "M8 \u2014 Building and outposts",
+      "line_contains": "**Ids and data:**",
+      "milestone": "m8",
+      "types": [
+        "block",
+        "block_with_entity",
+        "data_map"
+      ]
+    },
+    {
+      "basis": "Ready for development > M9 ids",
+      "file": "docs/ready-for-development.md",
+      "heading": "M9 \u2014 Homestead and beyond",
+      "line_contains": "**Ids and data:**",
+      "milestone": "m9",
+      "types": [
+        "mob"
+      ]
+    },
+    {
+      "basis": "Ready for development > M7 ids (27 fungi and aquatic plant blocks); the plants named in Plants and fungi > Fungi",
+      "file": "docs/blueprint/18-plants-and-fungi.md",
+      "heading": "Fungi",
+      "milestone": "m7",
+      "types": [
+        "plant_block"
+      ]
+    },
+    {
+      "basis": "Ready for development > M7 ids (27 fungi and aquatic plant blocks, lily pads among them); the plants named in Plants and fungi > Aquatic plants",
+      "file": "docs/blueprint/18-plants-and-fungi.md",
+      "heading": "Aquatic plants",
+      "milestone": "m7",
+      "types": [
+        "plant_block"
+      ]
+    }
   ],
   "ids": [
-    { "basis": "Entity registry: Marten, mink, ermine M5; others M6", "type": "mob", "milestone": "m5", "ids": ["marten", "mink", "ermine"] },
-    { "basis": "Entity registry: Marten, mink, ermine M5; others M6", "type": "mob", "milestone": "m6", "ids": ["wolverine", "fisher", "least_weasel", "river_otter"] },
-    { "basis": "Entity registry: Marmot, woodchuck M5; beaver, muskrat M6", "type": "mob", "milestone": "m5", "ids": ["hoary_marmot", "woodchuck"] },
-    { "basis": "Entity registry: Marmot, woodchuck M5; beaver, muskrat M6", "type": "mob", "milestone": "m6", "ids": ["beaver", "muskrat"] },
-    { "basis": "Entity registry: Red and ground squirrel M5; flying squirrel M6", "type": "mob", "milestone": "m5", "ids": ["red_squirrel", "ground_squirrel"] },
-    { "basis": "Entity registry: Red and ground squirrel M5; flying squirrel M6", "type": "mob", "milestone": "m6", "ids": ["flying_squirrel"] },
-    { "basis": "Entity registry: Voles, shrew, pika M6; lemmings, singing vole M7; jumping-mouse finds M5", "type": "mob", "milestone": "m6", "ids": ["pika", "red_backed_vole", "tundra_vole", "masked_shrew"] },
-    { "basis": "Entity registry: Voles, shrew, pika M6; lemmings, singing vole M7; jumping-mouse finds M5", "type": "mob", "milestone": "m7", "ids": ["brown_lemming", "collared_lemming", "bog_lemming", "singing_vole"] },
-    { "basis": "Entity registry: Voles, shrew, pika M6; lemmings, singing vole M7; jumping-mouse finds M5", "type": "mob", "milestone": "m5", "ids": ["jumping_mouse"] },
-    { "basis": "Entity registry: Frog M5 as bait, chorus M6; toad M7", "type": "mob", "milestone": "m5", "ids": ["wood_frog"] },
-    { "basis": "Entity registry: Frog M5 as bait, chorus M6; toad M7", "type": "mob", "milestone": "m7", "ids": ["boreal_toad"] },
-    { "basis": "Entity registry: songbirds M6; migrants' arrival M7", "type": "mob", "milestone": "m6", "ids": ["black_capped_chickadee", "boreal_chickadee", "common_redpoll", "snow_bunting", "tree_swallow", "cliff_swallow", "bank_swallow", "bohemian_waxwing", "pine_grosbeak", "white_winged_crossbill", "varied_thrush", "hermit_thrush", "swainsons_thrush", "american_robin", "yellow_rumped_warbler", "ruby_crowned_kinglet", "dark_eyed_junco", "fox_sparrow", "white_crowned_sparrow", "lapland_longspur", "horned_lark", "rusty_blackbird", "northern_shrike"] },
-    { "basis": "Entity registry: salmonids, residents M5; sockeye and runs M7", "type": "mob", "milestone": "m5", "ids": ["arctic_grayling", "arctic_char", "dolly_varden", "lake_trout"] },
-    { "basis": "Entity registry: salmonids, residents M5; sockeye and runs M7 (Ready for development M7: four salmon)", "type": "mob", "milestone": "m7", "ids": ["chinook_salmon", "chum_salmon", "coho_salmon", "sockeye_salmon"] },
-    { "basis": "Entity registry: coregonids M5; fall runs, pygmy whitefish M7", "type": "mob", "milestone": "m5", "ids": ["sheefish", "humpback_whitefish", "broad_whitefish", "round_whitefish", "least_cisco", "bering_cisco"] },
-    { "basis": "Entity registry: coregonids M5; fall runs, pygmy whitefish M7", "type": "mob", "milestone": "m7", "ids": ["pygmy_whitefish"] },
-    { "basis": "Entity registry: small fish M5; trout-perch M7", "type": "mob", "milestone": "m5", "ids": ["slimy_sculpin", "lake_chub", "ninespine_stickleback", "alaska_blackfish"] },
-    { "basis": "Entity registry: small fish M5; trout-perch M7", "type": "mob", "milestone": "m7", "ids": ["trout_perch"] },
-    { "basis": "Entity registry: schools M5; tadpoles M6", "type": "entity", "milestone": "m5", "ids": ["fish_school"] },
-    { "basis": "Entity registry: schools M5; tadpoles M6", "type": "entity", "milestone": "m6", "ids": ["tadpole_school"] },
-    { "basis": "Entity registry: wolf spider, mourning cloak, snow fly M7; yellowjacket M5 at racks; beetle M6", "type": "mob", "milestone": "m7", "ids": ["wolf_spider", "mourning_cloak", "snow_fly"] },
-    { "basis": "Entity registry: wolf spider, mourning cloak, snow fly M7; yellowjacket M5 at racks; beetle M6", "type": "mob", "milestone": "m5", "ids": ["yellowjacket"] },
-    { "basis": "Entity registry: wolf spider, mourning cloak, snow fly M7; yellowjacket M5 at racks; beetle M6", "type": "mob", "milestone": "m6", "ids": ["diving_beetle"] },
-    { "basis": "Entity registry: carcasses tiny to medium M5; large, huge M6", "type": "entity", "milestone": "m5", "ids": ["carcass_tiny", "carcass_medium"] },
-    { "basis": "Entity registry: carcasses tiny to medium M5; large, huge M6", "type": "entity", "milestone": "m6", "ids": ["carcass_large", "carcass_huge"] },
-    { "basis": "Entity registry: goat, reindeer M9 (pens M8)", "type": "mob", "milestone": "m9", "ids": ["goat", "reindeer"] },
-    { "basis": "Ready for development M2.5: the slice's entities and plants (overrides the entity registry's later rows)", "type": "mob", "milestone": "m2_5", "ids": ["snowshoe_hare", "willow_ptarmigan", "moose"] },
-    { "basis": "Ready for development M2.5: carcass_small", "type": "entity", "milestone": "m2_5", "ids": ["carcass_small"] },
-    { "basis": "Ready for development M2.5: fire_ring", "type": "block_with_entity", "milestone": "m2_5", "owner": "body", "ids": ["fire_ring"] },
-    { "basis": "Ready for development M2.5: yearofice:fresh, food data map; M2: weight data map", "type": "data_component", "milestone": "m2_5", "ids": ["fresh"] },
-    { "basis": "Ready for development M2.5: data_maps/item/food.json", "type": "data_map", "milestone": "m2_5", "owner": "food", "ids": ["food"] },
-    { "basis": "Ready for development M2: data_maps/item/weight.json", "type": "data_map", "milestone": "m2", "ids": ["weight"] },
-    { "basis": "Ready for development M2: the 15 GUI layers registered", "type": "gui_layer", "milestone": "m2", "ids": ["body_figure", "body_fx", "breath_ring", "carry_slot", "frost", "load_meter", "messenger_line", "minigame", "pickup_line", "prompt_line", "threat_flash", "vitals_strip", "work_ring", "headwear", "captions"] },
-    { "basis": "Ready for development M0: the 10 Curios slot types (Data kinds says M2 for back and neck and M4 for clothing; the earlier M0 list wins)", "type": "curios_slot", "milestone": "m0", "ids": ["belt", "feet_inner", "hands_inner", "hands_outer", "head_inner", "inner_pocket", "legs_inner", "torso_inner"] },
-    { "basis": "Registered in M2 lane B part c (PR #23), as Data kinds says: back and neck are M2 (RECONCILE 179, 181)", "type": "curios_slot", "milestone": "m2", "ids": ["back", "neck"] },
-    { "basis": "Ready for development M0: world preset year_of_ice", "type": "worldgen_hook", "milestone": "m0", "ids": ["year_of_ice"] },
-    { "basis": "Ready for development M1: the POI and spot types", "type": "poi_type", "milestone": "m1", "ids": ["burbot_spawning_ground", "poi_beaver_pond", "poi_bug_refuge", "poi_creek_mouth", "poi_falls_pool", "poi_ford", "poi_lick", "poi_molting_lake", "poi_open_water", "poi_riffle", "poi_still_surface", "poi_wallow", "poi_weed_pond", "sedge_flat"] },
-    { "basis": "Ready for development M1: set pieces", "type": "worldgen_hook", "milestone": "m1", "ids": ["setpiece"] },
-    { "basis": "Ready for development M3: the workbench and the yearofice:station recipe type", "type": "block_with_entity", "milestone": "m3", "ids": ["workbench"] },
-    { "basis": "Ready for development M3: the yearofice:station recipe type", "type": "recipe_type", "milestone": "m3", "ids": ["station"] },
-    { "basis": "Ready for development M6: the arrow projectile; the distant_sound payload", "type": "entity", "milestone": "m6", "owner": "food", "ids": ["arrow"] },
-    { "basis": "Ready for development M6: the distant_sound payload", "type": "payload", "milestone": "m6", "ids": ["distant_sound"] },
-    { "basis": "Ready for development M7: 17 entity types incl. the salmon carcass", "type": "entity", "milestone": "m7", "ids": ["salmon_carcass"] },
-    { "basis": "Ready for development M8: data_maps/block/heat.json, piece.json; multiblock data", "type": "data_map", "milestone": "m8", "owner": "building", "ids": ["heat", "piece"] },
-    { "basis": "Ready for development M7: build/quinzhee is an M7 test", "type": "multiblock", "milestone": "m7", "ids": ["quinzhee"] },
-    { "basis": "Ready for development M2.5: the bobber of the one rod method", "type": "entity", "milestone": "m2_5", "owner": "food", "ids": ["bobber"] },
-    { "basis": "Ready for development M0: data/sync_hash_matches (batch m0)", "type": "payload", "milestone": "m0", "ids": ["data_sync"] },
-    { "basis": "Ready for development M2.5: the body tick's three meters reach the HUD", "type": "payload", "milestone": "m2_5", "owner": "body", "ids": ["body_sync"] },
-    { "basis": "Ready for development M4: the yearofice:body attachment at schema 2", "type": "attachment", "milestone": "m4", "owner": "body", "ids": ["body"] },
-    { "basis": "Ready for development M2.5: field dressing of carcass_small reads the carcass record", "type": "attachment", "milestone": "m2_5", "owner": "ecosystem", "ids": ["carcass"] },
-    { "basis": "Content flags are an M0 data kind (Data kinds)", "type": "loot_condition", "milestone": "m0", "ids": ["flag"] },
-    { "basis": "Content flags are an M0 data kind (Data kinds)", "type": "worldgen_hook", "milestone": "m0", "ids": ["flag"] },
-    { "basis": "Ecosystem M2.5 slice: small game pocketed as whole_game, and the hare pelt from dressing (Bestiary > In Minecraft: carcasses; Parts by species)", "type": "item", "milestone": "m2_5", "ids": ["whole_game", "hare_pelt"]},
-    { "basis": "Ecosystem M2.5 slice: the three senses (Minecraft development > Brain: sensors)", "type": "sensor_type", "milestone": "m2_5", "ids": ["sight", "hearing", "scent"]},
-    { "basis": "Ecosystem M2.5 slice: the threat and look-target memories (Minecraft development > Brain: memories)", "type": "memory_type", "milestone": "m2_5", "ids": ["threat", "look_target"]},
-    { "basis": "Ecosystem M2.5 slice: the snared hare's tell (Every concept from the video > Trap sounds)", "type": "sound_event", "milestone": "m2_5", "ids": ["trap.snare_hare"]},
-    { "basis": "Ecosystem M2.5 slice: the animal and carcass entity tags", "type": "tag", "milestone": "m2_5", "ids": ["animals", "carcasses"]},
-    { "basis": "Ready for development > M2.5: one rod method (hook, line and bobber with worms, the fight overlay) in hunt.fishing; slice work item 6", "type": "item", "milestone": "m2_5", "owner": "food", "ids": ["rod", "worm"] },
-    {"basis": "Inventory gap (RECONCILE 175): Waters and fish ships the measuring stick in M5 for fish measuring (Waters and fish > Registry ids), not M7 as the pattern rule gave", "type": "item", "milestone": "m5", "owner": "food", "ids": ["measuring_stick"]},
-    {"basis": "RECONCILE 181: the bough bed pulled forward from M3 (and the m8 pattern) into the M2.5 slice", "type": "block", "milestone": "m2_5", "owner": "building", "ids": ["bough_bed"]}
+    {
+      "basis": "Entity registry: Marten, mink, ermine M5; others M6",
+      "type": "mob",
+      "milestone": "m5",
+      "ids": [
+        "marten",
+        "mink",
+        "ermine"
+      ]
+    },
+    {
+      "basis": "Entity registry: Marten, mink, ermine M5; others M6",
+      "type": "mob",
+      "milestone": "m6",
+      "ids": [
+        "wolverine",
+        "fisher",
+        "least_weasel",
+        "river_otter"
+      ]
+    },
+    {
+      "basis": "Entity registry: Marmot, woodchuck M5; beaver, muskrat M6",
+      "type": "mob",
+      "milestone": "m5",
+      "ids": [
+        "hoary_marmot",
+        "woodchuck"
+      ]
+    },
+    {
+      "basis": "Entity registry: Marmot, woodchuck M5; beaver, muskrat M6",
+      "type": "mob",
+      "milestone": "m6",
+      "ids": [
+        "beaver",
+        "muskrat"
+      ]
+    },
+    {
+      "basis": "Entity registry: Red and ground squirrel M5; flying squirrel M6",
+      "type": "mob",
+      "milestone": "m5",
+      "ids": [
+        "red_squirrel",
+        "ground_squirrel"
+      ]
+    },
+    {
+      "basis": "Entity registry: Red and ground squirrel M5; flying squirrel M6",
+      "type": "mob",
+      "milestone": "m6",
+      "ids": [
+        "flying_squirrel"
+      ]
+    },
+    {
+      "basis": "Entity registry: Voles, shrew, pika M6; lemmings, singing vole M7; jumping-mouse finds M5",
+      "type": "mob",
+      "milestone": "m6",
+      "ids": [
+        "pika",
+        "red_backed_vole",
+        "tundra_vole",
+        "masked_shrew"
+      ]
+    },
+    {
+      "basis": "Entity registry: Voles, shrew, pika M6; lemmings, singing vole M7; jumping-mouse finds M5",
+      "type": "mob",
+      "milestone": "m7",
+      "ids": [
+        "brown_lemming",
+        "collared_lemming",
+        "bog_lemming",
+        "singing_vole"
+      ]
+    },
+    {
+      "basis": "Entity registry: Voles, shrew, pika M6; lemmings, singing vole M7; jumping-mouse finds M5",
+      "type": "mob",
+      "milestone": "m5",
+      "ids": [
+        "jumping_mouse"
+      ]
+    },
+    {
+      "basis": "Entity registry: Frog M5 as bait, chorus M6; toad M7",
+      "type": "mob",
+      "milestone": "m5",
+      "ids": [
+        "wood_frog"
+      ]
+    },
+    {
+      "basis": "Entity registry: Frog M5 as bait, chorus M6; toad M7",
+      "type": "mob",
+      "milestone": "m7",
+      "ids": [
+        "boreal_toad"
+      ]
+    },
+    {
+      "basis": "Entity registry: songbirds M6; migrants' arrival M7",
+      "type": "mob",
+      "milestone": "m6",
+      "ids": [
+        "black_capped_chickadee",
+        "boreal_chickadee",
+        "common_redpoll",
+        "snow_bunting",
+        "tree_swallow",
+        "cliff_swallow",
+        "bank_swallow",
+        "bohemian_waxwing",
+        "pine_grosbeak",
+        "white_winged_crossbill",
+        "varied_thrush",
+        "hermit_thrush",
+        "swainsons_thrush",
+        "american_robin",
+        "yellow_rumped_warbler",
+        "ruby_crowned_kinglet",
+        "dark_eyed_junco",
+        "fox_sparrow",
+        "white_crowned_sparrow",
+        "lapland_longspur",
+        "horned_lark",
+        "rusty_blackbird",
+        "northern_shrike"
+      ]
+    },
+    {
+      "basis": "Entity registry: salmonids, residents M5; sockeye and runs M7",
+      "type": "mob",
+      "milestone": "m5",
+      "ids": [
+        "arctic_grayling",
+        "arctic_char",
+        "dolly_varden",
+        "lake_trout"
+      ]
+    },
+    {
+      "basis": "Entity registry: salmonids, residents M5; sockeye and runs M7 (Ready for development M7: four salmon)",
+      "type": "mob",
+      "milestone": "m7",
+      "ids": [
+        "chinook_salmon",
+        "chum_salmon",
+        "coho_salmon",
+        "sockeye_salmon"
+      ]
+    },
+    {
+      "basis": "Entity registry: coregonids M5; fall runs, pygmy whitefish M7",
+      "type": "mob",
+      "milestone": "m5",
+      "ids": [
+        "sheefish",
+        "humpback_whitefish",
+        "broad_whitefish",
+        "round_whitefish",
+        "least_cisco",
+        "bering_cisco"
+      ]
+    },
+    {
+      "basis": "Entity registry: coregonids M5; fall runs, pygmy whitefish M7",
+      "type": "mob",
+      "milestone": "m7",
+      "ids": [
+        "pygmy_whitefish"
+      ]
+    },
+    {
+      "basis": "Entity registry: small fish M5; trout-perch M7",
+      "type": "mob",
+      "milestone": "m5",
+      "ids": [
+        "slimy_sculpin",
+        "lake_chub",
+        "ninespine_stickleback",
+        "alaska_blackfish"
+      ]
+    },
+    {
+      "basis": "Entity registry: small fish M5; trout-perch M7",
+      "type": "mob",
+      "milestone": "m7",
+      "ids": [
+        "trout_perch"
+      ]
+    },
+    {
+      "basis": "Entity registry: schools M5; tadpoles M6",
+      "type": "entity",
+      "milestone": "m5",
+      "ids": [
+        "fish_school"
+      ]
+    },
+    {
+      "basis": "Entity registry: schools M5; tadpoles M6",
+      "type": "entity",
+      "milestone": "m6",
+      "ids": [
+        "tadpole_school"
+      ]
+    },
+    {
+      "basis": "Entity registry: wolf spider, mourning cloak, snow fly M7; yellowjacket M5 at racks; beetle M6",
+      "type": "mob",
+      "milestone": "m7",
+      "ids": [
+        "wolf_spider",
+        "mourning_cloak",
+        "snow_fly"
+      ]
+    },
+    {
+      "basis": "Entity registry: wolf spider, mourning cloak, snow fly M7; yellowjacket M5 at racks; beetle M6",
+      "type": "mob",
+      "milestone": "m5",
+      "ids": [
+        "yellowjacket"
+      ]
+    },
+    {
+      "basis": "Entity registry: wolf spider, mourning cloak, snow fly M7; yellowjacket M5 at racks; beetle M6",
+      "type": "mob",
+      "milestone": "m6",
+      "ids": [
+        "diving_beetle"
+      ]
+    },
+    {
+      "basis": "Entity registry: carcasses tiny to medium M5; large, huge M6",
+      "type": "entity",
+      "milestone": "m5",
+      "ids": [
+        "carcass_tiny",
+        "carcass_medium"
+      ]
+    },
+    {
+      "basis": "Entity registry: carcasses tiny to medium M5; large, huge M6",
+      "type": "entity",
+      "milestone": "m6",
+      "ids": [
+        "carcass_large",
+        "carcass_huge"
+      ]
+    },
+    {
+      "basis": "Entity registry: goat, reindeer M9 (pens M8)",
+      "type": "mob",
+      "milestone": "m9",
+      "ids": [
+        "goat",
+        "reindeer"
+      ]
+    },
+    {
+      "basis": "Ready for development M2.5: the slice's entities and plants (overrides the entity registry's later rows)",
+      "type": "mob",
+      "milestone": "m2_5",
+      "ids": [
+        "snowshoe_hare",
+        "willow_ptarmigan",
+        "moose"
+      ]
+    },
+    {
+      "basis": "Ready for development M2.5: carcass_small",
+      "type": "entity",
+      "milestone": "m2_5",
+      "ids": [
+        "carcass_small"
+      ]
+    },
+    {
+      "basis": "Ready for development M2.5: fire_ring",
+      "type": "block_with_entity",
+      "milestone": "m2_5",
+      "owner": "body",
+      "ids": [
+        "fire_ring"
+      ]
+    },
+    {
+      "basis": "Ready for development M2.5: yearofice:fresh, food data map; M2: weight data map",
+      "type": "data_component",
+      "milestone": "m2_5",
+      "ids": [
+        "fresh"
+      ]
+    },
+    {
+      "basis": "Ready for development M2.5: data_maps/item/food.json",
+      "type": "data_map",
+      "milestone": "m2_5",
+      "owner": "food",
+      "ids": [
+        "food"
+      ]
+    },
+    {
+      "basis": "Ready for development M2: data_maps/item/weight.json",
+      "type": "data_map",
+      "milestone": "m2",
+      "ids": [
+        "weight"
+      ]
+    },
+    {
+      "basis": "Ready for development M2: the 15 GUI layers registered",
+      "type": "gui_layer",
+      "milestone": "m2",
+      "ids": [
+        "body_figure",
+        "body_fx",
+        "breath_ring",
+        "carry_slot",
+        "frost",
+        "load_meter",
+        "messenger_line",
+        "minigame",
+        "pickup_line",
+        "prompt_line",
+        "threat_flash",
+        "vitals_strip",
+        "work_ring",
+        "headwear",
+        "captions"
+      ]
+    },
+    {
+      "basis": "Ready for development M0: the 10 Curios slot types (Data kinds says M2 for back and neck and M4 for clothing; the earlier M0 list wins)",
+      "type": "curios_slot",
+      "milestone": "m0",
+      "ids": [
+        "belt",
+        "feet_inner",
+        "hands_inner",
+        "hands_outer",
+        "head_inner",
+        "inner_pocket",
+        "legs_inner",
+        "torso_inner"
+      ]
+    },
+    {
+      "basis": "Registered in M2 lane B part c (PR #23), as Data kinds says: back and neck are M2 (RECONCILE 179, 181)",
+      "type": "curios_slot",
+      "milestone": "m2",
+      "ids": [
+        "back",
+        "neck"
+      ]
+    },
+    {
+      "basis": "Ready for development M0: world preset year_of_ice",
+      "type": "worldgen_hook",
+      "milestone": "m0",
+      "ids": [
+        "year_of_ice"
+      ]
+    },
+    {
+      "basis": "Ready for development M1: the POI and spot types",
+      "type": "poi_type",
+      "milestone": "m1",
+      "ids": [
+        "burbot_spawning_ground",
+        "poi_beaver_pond",
+        "poi_bug_refuge",
+        "poi_creek_mouth",
+        "poi_falls_pool",
+        "poi_ford",
+        "poi_lick",
+        "poi_molting_lake",
+        "poi_open_water",
+        "poi_riffle",
+        "poi_still_surface",
+        "poi_wallow",
+        "poi_weed_pond",
+        "sedge_flat"
+      ]
+    },
+    {
+      "basis": "Ready for development M1: set pieces",
+      "type": "worldgen_hook",
+      "milestone": "m1",
+      "ids": [
+        "setpiece"
+      ]
+    },
+    {
+      "basis": "Ready for development M3: the workbench and the yearofice:station recipe type",
+      "type": "block_with_entity",
+      "milestone": "m3",
+      "ids": [
+        "workbench"
+      ]
+    },
+    {
+      "basis": "Ready for development M3: the yearofice:station recipe type",
+      "type": "recipe_type",
+      "milestone": "m3",
+      "ids": [
+        "station"
+      ]
+    },
+    {
+      "basis": "Ready for development M6: the arrow projectile; the distant_sound payload",
+      "type": "entity",
+      "milestone": "m6",
+      "owner": "food",
+      "ids": [
+        "arrow"
+      ]
+    },
+    {
+      "basis": "Ready for development M6: the distant_sound payload",
+      "type": "payload",
+      "milestone": "m6",
+      "ids": [
+        "distant_sound"
+      ]
+    },
+    {
+      "basis": "Ready for development M7: 17 entity types incl. the salmon carcass",
+      "type": "entity",
+      "milestone": "m7",
+      "ids": [
+        "salmon_carcass"
+      ]
+    },
+    {
+      "basis": "Ready for development M8: data_maps/block/heat.json, piece.json; multiblock data",
+      "type": "data_map",
+      "milestone": "m8",
+      "owner": "building",
+      "ids": [
+        "heat",
+        "piece"
+      ]
+    },
+    {
+      "basis": "Ready for development M7: build/quinzhee is an M7 test",
+      "type": "multiblock",
+      "milestone": "m7",
+      "ids": [
+        "quinzhee"
+      ]
+    },
+    {
+      "basis": "Ready for development M2.5: the bobber of the one rod method",
+      "type": "entity",
+      "milestone": "m2_5",
+      "owner": "food",
+      "ids": [
+        "bobber"
+      ]
+    },
+    {
+      "basis": "Ready for development M0: data/sync_hash_matches (batch m0)",
+      "type": "payload",
+      "milestone": "m0",
+      "ids": [
+        "data_sync"
+      ]
+    },
+    {
+      "basis": "Ready for development M2.5: the body tick's three meters reach the HUD",
+      "type": "payload",
+      "milestone": "m2_5",
+      "owner": "body",
+      "ids": [
+        "body_sync"
+      ]
+    },
+    {
+      "basis": "Ready for development M4: the yearofice:body attachment at schema 2",
+      "type": "attachment",
+      "milestone": "m4",
+      "owner": "body",
+      "ids": [
+        "body"
+      ]
+    },
+    {
+      "basis": "Ready for development M2.5: field dressing of carcass_small reads the carcass record",
+      "type": "attachment",
+      "milestone": "m2_5",
+      "owner": "ecosystem",
+      "ids": [
+        "carcass"
+      ]
+    },
+    {
+      "basis": "Content flags are an M0 data kind (Data kinds)",
+      "type": "loot_condition",
+      "milestone": "m0",
+      "ids": [
+        "flag"
+      ]
+    },
+    {
+      "basis": "Content flags are an M0 data kind (Data kinds)",
+      "type": "worldgen_hook",
+      "milestone": "m0",
+      "ids": [
+        "flag"
+      ]
+    },
+    {
+      "basis": "Ecosystem M2.5 slice: small game pocketed as whole_game, and the hare pelt from dressing (Bestiary > In Minecraft: carcasses; Parts by species)",
+      "type": "item",
+      "milestone": "m2_5",
+      "ids": [
+        "whole_game",
+        "hare_pelt"
+      ]
+    },
+    {
+      "basis": "Ecosystem M2.5 slice: the three senses (Minecraft development > Brain: sensors)",
+      "type": "sensor_type",
+      "milestone": "m2_5",
+      "ids": [
+        "sight",
+        "hearing",
+        "scent"
+      ]
+    },
+    {
+      "basis": "Ecosystem M2.5 slice: the threat and look-target memories (Minecraft development > Brain: memories)",
+      "type": "memory_type",
+      "milestone": "m2_5",
+      "ids": [
+        "threat",
+        "look_target"
+      ]
+    },
+    {
+      "basis": "Ecosystem M2.5 slice: the snared hare's tell (Every concept from the video > Trap sounds)",
+      "type": "sound_event",
+      "milestone": "m2_5",
+      "ids": [
+        "trap.snare_hare"
+      ]
+    },
+    {
+      "basis": "Ecosystem M2.5 slice: the animal and carcass entity tags",
+      "type": "tag",
+      "milestone": "m2_5",
+      "ids": [
+        "animals",
+        "carcasses"
+      ]
+    },
+    {
+      "basis": "Ready for development > M2.5: one rod method (hook, line and bobber with worms, the fight overlay) in hunt.fishing; slice work item 6",
+      "type": "item",
+      "milestone": "m2_5",
+      "owner": "food",
+      "ids": [
+        "rod",
+        "worm"
+      ]
+    },
+    {
+      "basis": "Inventory gap (RECONCILE 175): Waters and fish ships the measuring stick in M5 for fish measuring (Waters and fish > Registry ids), not M7 as the pattern rule gave",
+      "type": "item",
+      "milestone": "m5",
+      "owner": "food",
+      "ids": [
+        "measuring_stick"
+      ]
+    },
+    {
+      "basis": "RECONCILE 181: the bough bed pulled forward from M3 (and the m8 pattern) into the M2.5 slice",
+      "type": "block",
+      "milestone": "m2_5",
+      "owner": "building",
+      "ids": [
+        "bough_bed"
+      ]
+    }
   ],
   "patterns": [
-    { "types": ["entity"], "pattern": "falling_tree|felled_log", "milestone": "m2", "owner": "worldgen" },
-    { "types": ["entity"], "pattern": "drift_log|loose_boulder", "milestone": "m7", "owner": "worldgen" },
-    { "types": ["entity"], "pattern": "sling_stone", "milestone": "m6", "owner": "food" },
-    { "types": ["entity"], "pattern": "hide_drag|travois|toboggan", "milestone": "m6", "owner": "building" },
-    { "types": ["entity"], "pattern": "kayak|moose_skin_boat", "milestone": "m9", "owner": "building" },
-
-    { "types": ["block_with_entity"], "pattern": "ground_fire|hearth_stone|lantern|holdover_fire", "milestone": "m3", "owner": "body" },
-    { "types": ["block_with_entity"], "pattern": "signal_beacon", "milestone": "m4", "owner": "body" },
-    { "types": ["block_with_entity"], "pattern": "blackfish_trap|tip_up|live_crib|fish_pit|smudge_fish_rack", "milestone": "m5", "owner": "food" },
-    { "types": ["block_with_entity"], "pattern": "stone_mortar|wood_mortar", "milestone": "m5", "owner": "food" },
-    { "types": ["block_with_entity"], "pattern": "lamprey_basket|lamprey_fence|dip_net_platform|counting_weir|ice_hole", "milestone": "m7", "owner": "food" },
-    { "types": ["block_with_entity"], "pattern": "box_blind|fleshing_beam", "milestone": "m6", "owner": "food" },
-    { "types": ["block_with_entity"], "pattern": "smokehouse|permafrost_cellar|floor_cellar|ice_house", "milestone": "m8", "owner": "food" },
-    { "types": ["block_with_entity"], "pattern": "yellowjacket_nest", "milestone": "m5", "owner": "ecosystem" },
-    { "types": ["block_with_entity"], "pattern": "bird_nest|den_mound", "milestone": "m6", "owner": "ecosystem" },
-    { "types": ["block_with_entity"], "pattern": "salmon_leftover|redd_gravel", "milestone": "m7", "owner": "ecosystem" },
-    { "types": ["block_with_entity"], "pattern": "sap_tap", "milestone": "m7", "owner": "body" },
-    { "types": ["block_with_entity"], "pattern": "herbarium_cabinet", "milestone": "m5", "owner": "body" },
-    { "types": ["block_with_entity"], "pattern": "dye_vat", "milestone": "m8", "owner": "body" },
-    { "types": ["block_with_entity"], "pattern": "breakup_tripod|station_clock", "milestone": "m7", "owner": "story" },
-    { "types": ["block_with_entity"], "pattern": "radio_desk|antenna_anchor|trail_camera|cirque_camera|lost_gear|name_board", "milestone": "m9", "owner": "story" },
-    { "types": ["block_with_entity"], "pattern": "brooder|feed_trough|water_trough|hay_rack|haystack|dog_pot|wolf_post|nest_box", "milestone": "m9", "owner": "food" },
-    { "types": ["block_with_entity"], "pattern": "smithy|trip_hammer|millstone|water_wheel|well|greenhouse", "milestone": "m9", "owner": "building" },
-    { "types": ["block_with_entity"], "pattern": "cutting_table|grindstone", "milestone": "m3", "owner": "building" },
-
-    { "types": ["block"], "pattern": "flame|smoulder|holdover_fire|clinker|fatwood_stump", "milestone": "m3", "owner": "body" },
-    { "types": ["block"], "pattern": "bear_den|beaver_dam|beaver_feed_bed|bone_pile|cone_midden|muskrat_push_up|pika_haypile|squirrel_larder|shed_antler|frog_spawn|snow_den", "milestone": "m6", "owner": "ecosystem" },
-    { "types": ["block"], "pattern": "gut_pile", "milestone": "m5", "owner": "ecosystem" },
-    { "types": ["block"], "pattern": "mussel_bed", "milestone": "m7", "owner": "food" },
-    { "types": ["block"], "pattern": "spearing_hole", "milestone": "m7", "owner": "food" },
-    { "types": ["block"], "pattern": "anchor_ice|aufeis|bubble_ice|candle_ice|frazil_slush|hoarfrost_layer|pressure_ice|river_ice|shove_ice|skim_ice|pingo_ice|avalanche_debris|slump|slump_mud|debris_bed|log_jam|struck_spruce|foxfire", "milestone": "m7", "owner": "worldgen" },
-    { "types": ["block"], "pattern": "garden_bed", "milestone": "m5", "owner": "food" },
-    { "types": ["block"], "pattern": "bouquet", "milestone": "m8", "owner": "body" },
-    { "types": ["block"], "pattern": "note_spot|old_camp_board|cairn|marker_post|trail_wand", "milestone": "m3", "owner": "story" },
-    { "types": ["block"], "pattern": "awning|bench|boardwalk|bunk|crib_wall|dressed_stone|dressed_stone_wall|log_deck|log_wall|lining|path|prop_post|retaining_wall|riprap|shoring_cap|shoring_post|side_flue|snow_block|snow_fence|sod_dike|tree_stand|wall_hook|water_bar|cache_leg|pot_crane|hearth_throat|darkhouse_cover|dock_crib|nest_box_large|nest_box_small|perch_post|pond_leveler|bough_bed|quinzhee_snow|ice_block|ice_lantern|ice_sculpture|dugout_air|water_marker", "milestone": "m8", "owner": "building" },
-
-    { "types": ["item"], "pattern": "messenger", "milestone": "m2", "owner": "look" },
-    { "types": ["item"], "pattern": "knife|flat_stone|rough_stone|stone_chip|pocket_stone|pebble", "milestone": "m3", "owner": "building" },
-    { "types": ["item"], "pattern": "bark_bucket|enamel_mug|tin_can|iron_water", "milestone": "m3", "owner": "body" },
-    { "types": ["item"], "pattern": "pitch_candle|pitch_torch|coleman_lantern|fatwood_stick|float_coal|charcoal_stick|coal_lump|punk_wood|tinder_conk|amadou", "milestone": "m3", "owner": "body" },
-    { "types": ["item"], "pattern": "note|pencil|field_book|hand_map|story_map", "milestone": "m3", "owner": "story" },
-    { "types": ["item"], "pattern": "walking_stick|carved_staff|arnica_salve|poplar_bud_salve", "milestone": "m4", "owner": "body" },
-    { "types": ["item"], "pattern": "down_vest|hide_coat|squirrel_parka|snow_smock|qiviut_liner|goat_wool_insoles|grass_insoles|shoe_grass|pilot_sunglasses", "milestone": "m4", "owner": "body" },
-    { "types": ["item"], "pattern": "alpine_bearberry|bearberry|bog_blueberry|bog_cranberry|crowberry|nagoonberry|red_currant|soapberry|wild_strawberry|inner_bark|lily_seeds|plant_clump|plant_press|plant_specimen|herbarium_sheet|wild_seed|willow_cutting|berry_rake|soapberry_foam|polypore_strop|mushroom_ink", "milestone": "m5", "owner": "body" },
-    { "types": ["item"], "pattern": "rod|spoon_lure|arvid_hook|perch_snare|dip_net|mesh_scoop|fish_priest|fish_record_book|fish_decoy|grub_bait_paste|worm|leech|leech_pouch|caddis_larva|mayfly_nymph|stonefly_nymph|dragonfly_nymph|scud|sawyer_grub|fairy_shrimp|pond_snail|ant_brood|frozen_wood_frog|live_well_box|canoe_live_well|stocking_bucket|weasel_box", "milestone": "m5", "owner": "food" },
-    { "types": ["item"], "pattern": "animal_fat|lard|cracklings|blood|heart|liver|kidney|tongue|brain|giblets|game_guts|whole_game|marrow_bone|bone_broth|dried_meat|meat_powder|fish_powder|freeze_dried_strips|glazed_fish|sour_fish|berry_leather|rose_hip_meal|dandelion_coffee|wormwood_tea|coltsfoot_salt|bumblebee_honey|fermented_.*|wild_egg|cast_iron_skillet|two_tine_fork|shell_spoon|alaska_hare_pelt|hare_pelt|ermine_pelt|lemming|sleeping_jumping_mouse|grouse_wing|game_feather|feather|down|mussel_meat|mussel_rake|mussel_shell|shell_scraper|freshwater_pearl|yukon_floater|steelyard|pestle", "milestone": "m5", "owner": "food" },
-    { "types": ["item"], "pattern": "arrowhead|bowstring|longbow|sling|clay_shot|pebble_pouch|duck_call|moose_call|squeak_call|goose_flute|spruce_flute|decoy_bark|decoy_mound|decoy_wood|pole_blind|watching_log|camo_.*|.*_pelt|.*_hide|bison_meat|bison_robe|bison_tag|beaver_tail|castor|musk_gland|oil_sac|antler|horn|muskox_horn|claw|talon|canine_tooth|incisor|skull|moose_scapula|stretcher_board|warble_larva|eagle_primary|goose_primary|long_primary|owl_feather|owl_pellet|quills|quill_band", "milestone": "m6", "owner": "food" },
-    { "types": ["item"], "pattern": "lamprey_larva|lamprey_oil|ice_cake|ice_chunk|ice_saw|snow_knife|spile|sap_pan|sap_beer|syrup_preserve|ice_age_bone|dormant_butterfly|paper_nest|pika_hay|suet_feeder|counting_stand|measuring_stick", "milestone": "m7", "owner": "story" },
-    { "types": ["item"], "pattern": "bark_basket|carry_basket|travois|stone_chisel|peeled_stick|seasoned_stave|diamond_willow_stave|pitch|retted_fibre|nettle_twine|sweetgrass_braid|bulrush_mat|dye_bath|ochre|flash_board", "milestone": "m8", "owner": "building" },
-    { "types": ["item"], "pattern": "nursing_bottle", "milestone": "m9", "owner": "food" },
-    { "types": ["item"], "pattern": "goat_wool|qiviut|camcorder|super8_camera|film_cartridge|bead_pouch", "milestone": "m9", "owner": "story" },
-
-    { "types": ["sound_event"], "pattern": "body\\..*", "milestone": "m4" },
-    { "types": ["sound_event"], "pattern": "step\\.stick_.*", "milestone": "m7" },
-    { "types": ["sound_event"], "pattern": "step\\..*|tree\\..*", "milestone": "m2" },
-    { "types": ["sound_event"], "pattern": "fire\\..*", "milestone": "m3" },
-    { "types": ["sound_event"], "pattern": "call\\..*|entity\\..*|ambient\\.mobbing|item\\.sling_.*", "milestone": "m6" },
-    { "types": ["sound_event"], "pattern": "ice\\..*|weather\\..*|world\\..*|plant\\.sap_drip", "milestone": "m7" },
-    { "types": ["sound_event"], "pattern": "build\\..*", "milestone": "m8" },
-
-    { "types": ["particle_type"], "pattern": "boil", "milestone": "m2_5" },
-    { "types": ["particle_type"], "pattern": "mist|river_foam|glint|tool_glint|soil_dust", "milestone": "m2" },
-    { "types": ["particle_type"], "pattern": "breath", "milestone": "m4" },
-    { "types": ["particle_type"], "pattern": "caribou_bot_fly|nose_bot_fly|warble_fly|den_breath|flank_flash", "milestone": "m6" },
-    { "types": ["particle_type"], "pattern": "diamond_dust|halo|light_pillar|sun_dog|snow_bomb|snow_flea|leaf_fall|leaf_litter|rockfall_dust|spider_eyeshine", "milestone": "m7" },
-
-    { "types": ["attachment"], "pattern": "bond|trust|livestock", "milestone": "m9", "owner": "ecosystem" },
-    { "types": ["attachment"], "pattern": "sign|wariness", "milestone": "m6", "owner": "ecosystem" },
-    { "types": ["attachment"], "pattern": "current|placed_mask", "milestone": "m2", "owner": "worldgen" },
-    { "types": ["attachment"], "pattern": "erosion_counters|flood_flags|hazard|ice_lane|stand", "milestone": "m7", "owner": "worldgen" },
-    { "types": ["attachment"], "pattern": "carry|pack_rules|map", "milestone": "m2", "owner": "look" },
-    { "types": ["attachment"], "pattern": "work", "milestone": "m2", "owner": "building" },
-    { "types": ["attachment"], "pattern": "jobs", "milestone": "m8", "owner": "building" },
-    { "types": ["attachment"], "pattern": "journal", "milestone": "m4", "owner": "story" },
-    { "types": ["attachment"], "pattern": "known|patches", "milestone": "m5", "owner": "body" },
-    { "types": ["attachment"], "pattern": "practice|tool_memory", "milestone": "m3", "owner": "studio" },
-    { "types": ["attachment"], "pattern": "microclimate|season_stamp", "milestone": "m7", "owner": "story" },
-    { "types": ["attachment"], "pattern": "legend", "milestone": "m9", "owner": "story" },
-    { "types": ["attachment"], "pattern": "study", "milestone": "m5", "owner": "story" },
-
-    { "types": ["data_component"], "pattern": "weight_g|moisture|battery", "milestone": "m2" },
-    { "types": ["data_component"], "pattern": "edge|quality|note_id|heat_c", "milestone": "m3" },
-    { "types": ["data_component"], "pattern": "wetness", "milestone": "m4" },
-    { "types": ["data_component"], "pattern": "pelt_grade|call_practice|feather_kind", "milestone": "m6" },
-    { "types": ["data_component"], "pattern": "dye", "milestone": "m8" },
-    { "types": ["data_component"], "pattern": "keepsake|shot_day", "milestone": "m9" },
-
-    { "types": ["payload"], "pattern": "env_sync|current_chunk|map_tile|work_start", "milestone": "m2" },
-    { "types": ["payload"], "pattern": "fire_roster|fire_roster_request", "milestone": "m3" },
-    { "types": ["payload"], "pattern": "morning_report", "milestone": "m4" },
-    { "types": ["payload"], "pattern": "call_performed", "milestone": "m6" },
-    { "types": ["payload"], "pattern": "talk|partner_status", "milestone": "m9" },
-
-    { "types": ["data_map"], "pattern": "wear", "milestone": "m4", "owner": "body" },
-    { "types": ["data_map"], "pattern": "fuel", "milestone": "m3", "owner": "body" },
-    { "types": ["data_map"], "pattern": "camo_class", "milestone": "m6", "owner": "food" },
-
-    { "types": ["loot_function"], "pattern": "set_condition|set_quality|set_fuel", "milestone": "m3" },
-    { "types": ["loot_function"], "pattern": "pelt_grade|hide_quality|season_fat", "milestone": "m6" },
-    { "types": ["loot_condition"], "pattern": "world_unique", "milestone": "m3" },
-
-    { "types": ["recipe_type"], "pattern": "pounding", "milestone": "m5" },
-    { "types": ["recipe_type"], "pattern": "rework|salvage", "milestone": "m8" },
-
-    { "types": ["attribute_modifier"], "pattern": "load", "milestone": "m2" },
-
-    { "types": ["curios_slot"], "pattern": "sheath", "milestone": "m3" },
-    { "types": ["curios_slot"], "pattern": "quiver", "milestone": "m6" },
-    { "types": ["curios_slot"], "pattern": "snowshoes", "milestone": "m7" },
-
-    { "types": ["tag"], "pattern": "banned_vanilla|banned_vanilla_items|no_carry|weighed_food", "milestone": "m2", "owner": "studio" },
-    { "types": ["tag"], "pattern": "berry_bushes|rakeable_berries|coppice_plants|transplantable_plants|browse_plants|dyestuffs|mordants|skin_toxic|no_taste_test|goat_toxic|smoke_woods", "milestone": "m5", "owner": "body" },
-    { "types": ["tag"], "pattern": "alarm_callers|animals|birds|camp_thieves|carcasses|cavity_nesters|egg_layers|flock_birds|large_predators|mobbers|mobbing_targets|raptors|waterbirds|wild|wolf_food|cavity_trees|perch_blocks", "milestone": "m6", "owner": "ecosystem" },
-    { "types": ["tag"], "pattern": "bright_outer|drab_outer|brimmed|dressing_floor", "milestone": "m6", "owner": "food" },
-    { "types": ["tag"], "pattern": "climbable_trunks|earth_faces|erodible_bank|freezing_soils|mud_sources|rough_ground|snags|standing_snags|sweepers|terrain_steps|drag_obstacles|slows_boats", "milestone": "m2", "owner": "worldgen" },
-    { "types": ["tag"], "pattern": "funnel_materials|log_walls|markers|pieces|roof_any|room_passable|room_roofs|room_walls|stone_floor|vehicles", "milestone": "m8", "owner": "building" },
-
-    { "types": ["worldgen_hook"], "pattern": "trunk|burrow", "milestone": "m5" },
-    { "types": ["worldgen_hook"], "pattern": "natural_feature", "milestone": "m9" }
+    {
+      "types": [
+        "entity"
+      ],
+      "pattern": "falling_tree|felled_log",
+      "milestone": "m2",
+      "owner": "worldgen"
+    },
+    {
+      "types": [
+        "entity"
+      ],
+      "pattern": "drift_log|loose_boulder",
+      "milestone": "m7",
+      "owner": "worldgen"
+    },
+    {
+      "types": [
+        "entity"
+      ],
+      "pattern": "sling_stone",
+      "milestone": "m6",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "entity"
+      ],
+      "pattern": "hide_drag|travois|toboggan",
+      "milestone": "m6",
+      "owner": "building"
+    },
+    {
+      "types": [
+        "entity"
+      ],
+      "pattern": "kayak|moose_skin_boat",
+      "milestone": "m9",
+      "owner": "building"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "ground_fire|hearth_stone|lantern|holdover_fire",
+      "milestone": "m3",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "signal_beacon",
+      "milestone": "m4",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "blackfish_trap|tip_up|live_crib|fish_pit|smudge_fish_rack",
+      "milestone": "m5",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "stone_mortar|wood_mortar",
+      "milestone": "m5",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "lamprey_basket|lamprey_fence|dip_net_platform|counting_weir|ice_hole",
+      "milestone": "m7",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "box_blind|fleshing_beam",
+      "milestone": "m6",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "smokehouse|permafrost_cellar|floor_cellar|ice_house",
+      "milestone": "m8",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "yellowjacket_nest",
+      "milestone": "m5",
+      "owner": "ecosystem"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "bird_nest|den_mound",
+      "milestone": "m6",
+      "owner": "ecosystem"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "salmon_leftover|redd_gravel",
+      "milestone": "m7",
+      "owner": "ecosystem"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "sap_tap",
+      "milestone": "m7",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "herbarium_cabinet",
+      "milestone": "m5",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "dye_vat",
+      "milestone": "m8",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "breakup_tripod|station_clock",
+      "milestone": "m7",
+      "owner": "story"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "radio_desk|antenna_anchor|trail_camera|cirque_camera|lost_gear|name_board",
+      "milestone": "m9",
+      "owner": "story"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "brooder|feed_trough|water_trough|hay_rack|haystack|dog_pot|wolf_post|nest_box",
+      "milestone": "m9",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "smithy|trip_hammer|millstone|water_wheel|well|greenhouse",
+      "milestone": "m9",
+      "owner": "building"
+    },
+    {
+      "types": [
+        "block_with_entity"
+      ],
+      "pattern": "cutting_table|grindstone",
+      "milestone": "m3",
+      "owner": "building"
+    },
+    {
+      "types": [
+        "block"
+      ],
+      "pattern": "flame|smoulder|holdover_fire|clinker|fatwood_stump",
+      "milestone": "m3",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "block"
+      ],
+      "pattern": "bear_den|beaver_dam|beaver_feed_bed|bone_pile|cone_midden|muskrat_push_up|pika_haypile|squirrel_larder|shed_antler|frog_spawn|snow_den",
+      "milestone": "m6",
+      "owner": "ecosystem"
+    },
+    {
+      "types": [
+        "block"
+      ],
+      "pattern": "gut_pile",
+      "milestone": "m5",
+      "owner": "ecosystem"
+    },
+    {
+      "types": [
+        "block"
+      ],
+      "pattern": "mussel_bed",
+      "milestone": "m7",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "block"
+      ],
+      "pattern": "spearing_hole",
+      "milestone": "m7",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "block"
+      ],
+      "pattern": "anchor_ice|aufeis|bubble_ice|candle_ice|frazil_slush|hoarfrost_layer|pressure_ice|river_ice|shove_ice|skim_ice|pingo_ice|avalanche_debris|slump|slump_mud|debris_bed|log_jam|struck_spruce|foxfire",
+      "milestone": "m7",
+      "owner": "worldgen"
+    },
+    {
+      "types": [
+        "block"
+      ],
+      "pattern": "garden_bed",
+      "milestone": "m5",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "block"
+      ],
+      "pattern": "bouquet",
+      "milestone": "m8",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "block"
+      ],
+      "pattern": "note_spot|old_camp_board|cairn|marker_post|trail_wand",
+      "milestone": "m3",
+      "owner": "story"
+    },
+    {
+      "types": [
+        "block"
+      ],
+      "pattern": "awning|bench|boardwalk|bunk|crib_wall|dressed_stone|dressed_stone_wall|log_deck|log_wall|lining|path|prop_post|retaining_wall|riprap|shoring_cap|shoring_post|side_flue|snow_block|snow_fence|sod_dike|tree_stand|wall_hook|water_bar|cache_leg|pot_crane|hearth_throat|darkhouse_cover|dock_crib|nest_box_large|nest_box_small|perch_post|pond_leveler|bough_bed|quinzhee_snow|ice_block|ice_lantern|ice_sculpture|dugout_air|water_marker",
+      "milestone": "m8",
+      "owner": "building"
+    },
+    {
+      "types": [
+        "item"
+      ],
+      "pattern": "messenger",
+      "milestone": "m2",
+      "owner": "look"
+    },
+    {
+      "types": [
+        "item"
+      ],
+      "pattern": "knife|flat_stone|rough_stone|stone_chip|pocket_stone|pebble",
+      "milestone": "m3",
+      "owner": "building"
+    },
+    {
+      "types": [
+        "item"
+      ],
+      "pattern": "bark_bucket|enamel_mug|tin_can|iron_water",
+      "milestone": "m3",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "item"
+      ],
+      "pattern": "pitch_candle|pitch_torch|coleman_lantern|fatwood_stick|float_coal|charcoal_stick|coal_lump|punk_wood|tinder_conk|amadou",
+      "milestone": "m3",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "item"
+      ],
+      "pattern": "note|pencil|field_book|hand_map|story_map",
+      "milestone": "m3",
+      "owner": "story"
+    },
+    {
+      "types": [
+        "item"
+      ],
+      "pattern": "walking_stick|carved_staff|arnica_salve|poplar_bud_salve",
+      "milestone": "m4",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "item"
+      ],
+      "pattern": "down_vest|hide_coat|squirrel_parka|snow_smock|qiviut_liner|goat_wool_insoles|grass_insoles|shoe_grass|pilot_sunglasses",
+      "milestone": "m4",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "item"
+      ],
+      "pattern": "alpine_bearberry|bearberry|bog_blueberry|bog_cranberry|crowberry|nagoonberry|red_currant|soapberry|wild_strawberry|inner_bark|lily_seeds|plant_clump|plant_press|plant_specimen|herbarium_sheet|wild_seed|willow_cutting|berry_rake|soapberry_foam|polypore_strop|mushroom_ink",
+      "milestone": "m5",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "item"
+      ],
+      "pattern": "rod|spoon_lure|arvid_hook|perch_snare|dip_net|mesh_scoop|fish_priest|fish_record_book|fish_decoy|grub_bait_paste|worm|leech|leech_pouch|caddis_larva|mayfly_nymph|stonefly_nymph|dragonfly_nymph|scud|sawyer_grub|fairy_shrimp|pond_snail|ant_brood|frozen_wood_frog|live_well_box|canoe_live_well|stocking_bucket|weasel_box",
+      "milestone": "m5",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "item"
+      ],
+      "pattern": "animal_fat|lard|cracklings|blood|heart|liver|kidney|tongue|brain|giblets|game_guts|whole_game|marrow_bone|bone_broth|dried_meat|meat_powder|fish_powder|freeze_dried_strips|glazed_fish|sour_fish|berry_leather|rose_hip_meal|dandelion_coffee|wormwood_tea|coltsfoot_salt|bumblebee_honey|fermented_.*|wild_egg|cast_iron_skillet|two_tine_fork|shell_spoon|alaska_hare_pelt|hare_pelt|ermine_pelt|lemming|sleeping_jumping_mouse|grouse_wing|game_feather|feather|down|mussel_meat|mussel_rake|mussel_shell|shell_scraper|freshwater_pearl|yukon_floater|steelyard|pestle",
+      "milestone": "m5",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "item"
+      ],
+      "pattern": "arrowhead|bowstring|longbow|sling|clay_shot|pebble_pouch|duck_call|moose_call|squeak_call|goose_flute|spruce_flute|decoy_bark|decoy_mound|decoy_wood|pole_blind|watching_log|camo_.*|.*_pelt|.*_hide|bison_meat|bison_robe|bison_tag|beaver_tail|castor|musk_gland|oil_sac|antler|horn|muskox_horn|claw|talon|canine_tooth|incisor|skull|moose_scapula|stretcher_board|warble_larva|eagle_primary|goose_primary|long_primary|owl_feather|owl_pellet|quills|quill_band",
+      "milestone": "m6",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "item"
+      ],
+      "pattern": "lamprey_larva|lamprey_oil|ice_cake|ice_chunk|ice_saw|snow_knife|spile|sap_pan|sap_beer|syrup_preserve|ice_age_bone|dormant_butterfly|paper_nest|pika_hay|suet_feeder|counting_stand|measuring_stick",
+      "milestone": "m7",
+      "owner": "story"
+    },
+    {
+      "types": [
+        "item"
+      ],
+      "pattern": "bark_basket|carry_basket|travois|stone_chisel|peeled_stick|seasoned_stave|diamond_willow_stave|pitch|retted_fibre|nettle_twine|sweetgrass_braid|bulrush_mat|dye_bath|ochre|flash_board",
+      "milestone": "m8",
+      "owner": "building"
+    },
+    {
+      "types": [
+        "item"
+      ],
+      "pattern": "nursing_bottle",
+      "milestone": "m9",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "item"
+      ],
+      "pattern": "goat_wool|qiviut|camcorder|super8_camera|film_cartridge|bead_pouch",
+      "milestone": "m9",
+      "owner": "story"
+    },
+    {
+      "types": [
+        "sound_event"
+      ],
+      "pattern": "body\\..*",
+      "milestone": "m4"
+    },
+    {
+      "types": [
+        "sound_event"
+      ],
+      "pattern": "step\\.stick_.*",
+      "milestone": "m7"
+    },
+    {
+      "types": [
+        "sound_event"
+      ],
+      "pattern": "step\\..*|tree\\..*",
+      "milestone": "m2"
+    },
+    {
+      "types": [
+        "sound_event"
+      ],
+      "pattern": "fire\\..*",
+      "milestone": "m3"
+    },
+    {
+      "types": [
+        "sound_event"
+      ],
+      "pattern": "call\\..*|entity\\..*|ambient\\.mobbing|item\\.sling_.*",
+      "milestone": "m6"
+    },
+    {
+      "types": [
+        "sound_event"
+      ],
+      "pattern": "ice\\..*|weather\\..*|world\\..*|plant\\.sap_drip",
+      "milestone": "m7"
+    },
+    {
+      "types": [
+        "sound_event"
+      ],
+      "pattern": "build\\..*",
+      "milestone": "m8"
+    },
+    {
+      "types": [
+        "particle_type"
+      ],
+      "pattern": "boil",
+      "milestone": "m2_5"
+    },
+    {
+      "types": [
+        "particle_type"
+      ],
+      "pattern": "mist|river_foam|glint|tool_glint|soil_dust",
+      "milestone": "m2"
+    },
+    {
+      "types": [
+        "particle_type"
+      ],
+      "pattern": "breath",
+      "milestone": "m4"
+    },
+    {
+      "types": [
+        "particle_type"
+      ],
+      "pattern": "caribou_bot_fly|nose_bot_fly|warble_fly|den_breath|flank_flash",
+      "milestone": "m6"
+    },
+    {
+      "types": [
+        "particle_type"
+      ],
+      "pattern": "diamond_dust|halo|light_pillar|sun_dog|snow_bomb|snow_flea|leaf_fall|leaf_litter|rockfall_dust|spider_eyeshine",
+      "milestone": "m7"
+    },
+    {
+      "types": [
+        "attachment"
+      ],
+      "pattern": "bond|trust|livestock",
+      "milestone": "m9",
+      "owner": "ecosystem"
+    },
+    {
+      "types": [
+        "attachment"
+      ],
+      "pattern": "sign|wariness",
+      "milestone": "m6",
+      "owner": "ecosystem"
+    },
+    {
+      "types": [
+        "attachment"
+      ],
+      "pattern": "current|placed_mask",
+      "milestone": "m2",
+      "owner": "worldgen"
+    },
+    {
+      "types": [
+        "attachment"
+      ],
+      "pattern": "erosion_counters|flood_flags|hazard|ice_lane|stand",
+      "milestone": "m7",
+      "owner": "worldgen"
+    },
+    {
+      "types": [
+        "attachment"
+      ],
+      "pattern": "carry|pack_rules|map",
+      "milestone": "m2",
+      "owner": "look"
+    },
+    {
+      "types": [
+        "attachment"
+      ],
+      "pattern": "work",
+      "milestone": "m2",
+      "owner": "building"
+    },
+    {
+      "types": [
+        "attachment"
+      ],
+      "pattern": "jobs",
+      "milestone": "m8",
+      "owner": "building"
+    },
+    {
+      "types": [
+        "attachment"
+      ],
+      "pattern": "journal",
+      "milestone": "m4",
+      "owner": "story"
+    },
+    {
+      "types": [
+        "attachment"
+      ],
+      "pattern": "known|patches",
+      "milestone": "m5",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "attachment"
+      ],
+      "pattern": "practice|tool_memory",
+      "milestone": "m3",
+      "owner": "studio"
+    },
+    {
+      "types": [
+        "attachment"
+      ],
+      "pattern": "microclimate|season_stamp",
+      "milestone": "m7",
+      "owner": "story"
+    },
+    {
+      "types": [
+        "attachment"
+      ],
+      "pattern": "legend",
+      "milestone": "m9",
+      "owner": "story"
+    },
+    {
+      "types": [
+        "attachment"
+      ],
+      "pattern": "study",
+      "milestone": "m5",
+      "owner": "story"
+    },
+    {
+      "types": [
+        "data_component"
+      ],
+      "pattern": "weight_g|moisture|battery",
+      "milestone": "m2"
+    },
+    {
+      "types": [
+        "data_component"
+      ],
+      "pattern": "edge|quality|note_id|heat_c",
+      "milestone": "m3"
+    },
+    {
+      "types": [
+        "data_component"
+      ],
+      "pattern": "wetness",
+      "milestone": "m4"
+    },
+    {
+      "types": [
+        "data_component"
+      ],
+      "pattern": "pelt_grade|call_practice|feather_kind",
+      "milestone": "m6"
+    },
+    {
+      "types": [
+        "data_component"
+      ],
+      "pattern": "dye",
+      "milestone": "m8"
+    },
+    {
+      "types": [
+        "data_component"
+      ],
+      "pattern": "keepsake|shot_day",
+      "milestone": "m9"
+    },
+    {
+      "types": [
+        "payload"
+      ],
+      "pattern": "env_sync|current_chunk|map_tile|work_start",
+      "milestone": "m2"
+    },
+    {
+      "types": [
+        "payload"
+      ],
+      "pattern": "fire_roster|fire_roster_request",
+      "milestone": "m3"
+    },
+    {
+      "types": [
+        "payload"
+      ],
+      "pattern": "morning_report",
+      "milestone": "m4"
+    },
+    {
+      "types": [
+        "payload"
+      ],
+      "pattern": "call_performed",
+      "milestone": "m6"
+    },
+    {
+      "types": [
+        "payload"
+      ],
+      "pattern": "talk|partner_status",
+      "milestone": "m9"
+    },
+    {
+      "types": [
+        "data_map"
+      ],
+      "pattern": "wear",
+      "milestone": "m4",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "data_map"
+      ],
+      "pattern": "fuel",
+      "milestone": "m3",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "data_map"
+      ],
+      "pattern": "camo_class",
+      "milestone": "m6",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "loot_function"
+      ],
+      "pattern": "set_condition|set_quality|set_fuel",
+      "milestone": "m3"
+    },
+    {
+      "types": [
+        "loot_function"
+      ],
+      "pattern": "pelt_grade|hide_quality|season_fat",
+      "milestone": "m6"
+    },
+    {
+      "types": [
+        "loot_condition"
+      ],
+      "pattern": "world_unique",
+      "milestone": "m3"
+    },
+    {
+      "types": [
+        "recipe_type"
+      ],
+      "pattern": "pounding",
+      "milestone": "m5"
+    },
+    {
+      "types": [
+        "recipe_type"
+      ],
+      "pattern": "rework|salvage",
+      "milestone": "m8"
+    },
+    {
+      "types": [
+        "attribute_modifier"
+      ],
+      "pattern": "load",
+      "milestone": "m2"
+    },
+    {
+      "types": [
+        "curios_slot"
+      ],
+      "pattern": "sheath",
+      "milestone": "m3"
+    },
+    {
+      "types": [
+        "curios_slot"
+      ],
+      "pattern": "quiver",
+      "milestone": "m6"
+    },
+    {
+      "types": [
+        "curios_slot"
+      ],
+      "pattern": "snowshoes",
+      "milestone": "m7"
+    },
+    {
+      "types": [
+        "tag"
+      ],
+      "pattern": "banned_vanilla|banned_vanilla_items|no_carry|weighed_food",
+      "milestone": "m2",
+      "owner": "studio"
+    },
+    {
+      "types": [
+        "tag"
+      ],
+      "pattern": "berry_bushes|rakeable_berries|coppice_plants|transplantable_plants|browse_plants|dyestuffs|mordants|skin_toxic|no_taste_test|goat_toxic|smoke_woods",
+      "milestone": "m5",
+      "owner": "body"
+    },
+    {
+      "types": [
+        "tag"
+      ],
+      "pattern": "alarm_callers|animals|birds|camp_thieves|carcasses|cavity_nesters|egg_layers|flock_birds|large_predators|mobbers|mobbing_targets|raptors|waterbirds|wild|wolf_food|cavity_trees|perch_blocks",
+      "milestone": "m6",
+      "owner": "ecosystem"
+    },
+    {
+      "types": [
+        "tag"
+      ],
+      "pattern": "bright_outer|drab_outer|brimmed|dressing_floor",
+      "milestone": "m6",
+      "owner": "food"
+    },
+    {
+      "types": [
+        "tag"
+      ],
+      "pattern": "climbable_trunks|earth_faces|erodible_bank|freezing_soils|mud_sources|rough_ground|snags|standing_snags|sweepers|terrain_steps|drag_obstacles|slows_boats",
+      "milestone": "m2",
+      "owner": "worldgen"
+    },
+    {
+      "types": [
+        "tag"
+      ],
+      "pattern": "funnel_materials|log_walls|markers|pieces|roof_any|room_passable|room_roofs|room_walls|stone_floor|vehicles",
+      "milestone": "m8",
+      "owner": "building"
+    },
+    {
+      "types": [
+        "worldgen_hook"
+      ],
+      "pattern": "trunk|burrow",
+      "milestone": "m5"
+    },
+    {
+      "types": [
+        "worldgen_hook"
+      ],
+      "pattern": "natural_feature",
+      "milestone": "m9"
+    }
   ]
 }

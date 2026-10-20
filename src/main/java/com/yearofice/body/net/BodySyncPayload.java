@@ -20,7 +20,38 @@ public record BodySyncPayload(long minute, float kg, float bmi, float kcalInToda
                               float wetness, float water, float stomachPct, float condition, float strength,
                               float macroCarbs, float macroFat, float macroProtein, float drunkMlToday, boolean gutIll,
                               int sos, int activity, float airC, int precip, float precipMmH, float windMs,
-                              boolean roofed, int battery) implements CustomPacketPayload {
+                              boolean roofed, int battery, Parts parts) implements CustomPacketPayload {
+
+    /**
+     * The ten parts for the body figure: {@code hp} and {@code frost} by {@code Part} ordinal, the lost-digit masks
+     * (fingers, toes), the crooked-limb bits, the open problem count and whether a wound bleeds.
+     */
+    public record Parts(int[] hp, int[] frost, int fingers, int toes, int crooked, int problems, boolean bleeding) {
+        public static final int N = 10;
+        public static final Parts HEALTHY = new Parts(fill(100), new int[N], 0, 0, 0, 0, false);
+
+        private static int[] fill(int v) {
+            int[] a = new int[N];
+            java.util.Arrays.fill(a, v);
+            return a;
+        }
+
+        boolean same(Parts o) {
+            return java.util.Arrays.equals(hp, o.hp) && java.util.Arrays.equals(frost, o.frost) && fingers == o.fingers
+                    && toes == o.toes && crooked == o.crooked && problems == o.problems && bleeding == o.bleeding;
+        }
+    }
+
+    /** The slice's shape, before the figure: healthy parts. */
+    public BodySyncPayload(long minute, float kg, float bmi, float kcalInToday, float kcalOutToday, float balance24h,
+                           float energy, float energyCap, float warmth, float feelsLikeC, float[] feel, float wetness,
+                           float water, float stomachPct, float condition, float strength, float macroCarbs,
+                           float macroFat, float macroProtein, float drunkMlToday, boolean gutIll, int sos, int activity,
+                           float airC, int precip, float precipMmH, float windMs, boolean roofed, int battery) {
+        this(minute, kg, bmi, kcalInToday, kcalOutToday, balance24h, energy, energyCap, warmth, feelsLikeC, feel, wetness,
+                water, stomachPct, condition, strength, macroCarbs, macroFat, macroProtein, drunkMlToday, gutIll, sos,
+                activity, airC, precip, precipMmH, windMs, roofed, battery, Parts.HEALTHY);
+    }
 
     public static final Type<BodySyncPayload> TYPE =
             new Type<>(ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, "body_sync"));
@@ -60,6 +91,14 @@ public record BodySyncPayload(long minute, float kg, float bmi, float kcalInToda
         b.writeFloat(p.windMs);
         b.writeBoolean(p.roofed);
         b.writeVarInt(p.battery);
+        Parts q = p.parts;
+        for (int i = 0; i < Parts.N; i++) b.writeByte(q.hp[i]);
+        for (int i = 0; i < Parts.N; i++) b.writeByte(q.frost[i]);
+        b.writeVarInt(q.fingers);
+        b.writeVarInt(q.toes);
+        b.writeVarInt(q.crooked);
+        b.writeVarInt(q.problems);
+        b.writeBoolean(q.bleeding);
     }
 
     static BodySyncPayload read(RegistryFriendlyByteBuf b) {
@@ -78,8 +117,12 @@ public record BodySyncPayload(long minute, float kg, float bmi, float kcalInToda
         float mmH = b.readFloat(), wind = b.readFloat();
         boolean roofed = b.readBoolean();
         int battery = b.readVarInt();
+        int[] hp = new int[Parts.N], frost = new int[Parts.N];
+        for (int i = 0; i < Parts.N; i++) hp[i] = b.readByte();
+        for (int i = 0; i < Parts.N; i++) frost[i] = b.readByte();
+        Parts parts = new Parts(hp, frost, b.readVarInt(), b.readVarInt(), b.readVarInt(), b.readVarInt(), b.readBoolean());
         return new BodySyncPayload(minute, kg, bmi, in, out, bal, energy, cap, warmth, feels, feel, wet, water, stomach,
-                cond, strength, carbs, fat, protein, drunk, gut, sos, activity, air, precip, mmH, wind, roofed, battery);
+                cond, strength, carbs, fat, protein, drunk, gut, sos, activity, air, precip, mmH, wind, roofed, battery, parts);
     }
 
     @Override
@@ -94,7 +137,7 @@ public record BodySyncPayload(long minute, float kg, float bmi, float kcalInToda
                 || d(feelsLikeC, last.feelsLikeC, 100) || d(kcalInToday, last.kcalInToday, 3000)
                 || d(kcalOutToday, last.kcalOutToday, 3000) || d(airC, last.airC, 100)
                 || sos != last.sos || gutIll != last.gutIll || precip != last.precip || roofed != last.roofed
-                || battery / 100 != last.battery / 100;
+                || battery / 100 != last.battery / 100 || !parts.same(last.parts);
     }
 
     private static boolean d(float a, float b, float range) { return Math.abs(a - b) > 0.01f * range; }

@@ -25,6 +25,7 @@ public final class BodySystem {
         BodyService.install(new BodyServiceImpl());
         com.yearofice.body.sleep.Sleep.init();
         com.yearofice.sim.body.Wellness.tuningSource = com.yearofice.body.illness.WellnessConfig::current;
+        LeftPack.register(modBus);
     }
 
     /**
