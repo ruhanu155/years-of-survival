@@ -1,0 +1,70 @@
+{
+ "id": "yearofice:birch_bark_torch",
+ "kind": "icon",
+ "notes": "A stick wrapped in birch bark, alight.",
+ "shapes": [
+  {
+   "kind": "line",
+   "points": [
+    [
+     5,
+     14
+    ],
+    [
+     9,
+     6
+    ]
+   ],
+   "width": 2,
+   "ramp": "wood_cut",
+   "step": 2
+  },
+  {
+   "kind": "ellipse",
+   "box": [
+    7,
+    3,
+    12,
+    8
+   ],
+   "ramp": "bark_birch",
+   "step": 2
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     9,
+     2
+    ],
+    [
+     10,
+     2
+    ],
+    [
+     10,
+     1
+    ],
+    [
+     9,
+     3
+    ]
+   ],
+   "ramp": "fire",
+   "step": 3,
+   "flat": true
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     10,
+     3
+    ]
+   ],
+   "ramp": "fire",
+   "step": 4,
+   "flat": true
+  }
+ ]
+}

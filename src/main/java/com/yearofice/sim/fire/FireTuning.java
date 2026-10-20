@@ -39,6 +39,20 @@ package com.yearofice.sim.fire;
  * @param packedHotArmloads  more armloads than this packs a Hot fire too full (2).
  * @param maxArmloads        most armloads a ring holds.
  * @param rainWetsPerHour    moisture points a laid, unlit part gains an hour in uncovered rain (20, Items › Wet).
+ * @param teepeeArmloadMin   a teepee's burn minutes per armload of a x1.0 wood at Steady ("1 h, hot": 60).
+ * @param longArmloadMin     a long fire's ("3 h, steady": 180).
+ * @param dakotaArmloadMin   a Dakota hole's ("2 h, low smoke": 120).
+ * @param ferroCalmPct       slice rule: the ferro rod's success % in calm air (the Blueprint gives flint and steel 85).
+ * @param ferroWindPct       slice rule: the ferro rod's success % in wind (matches 50).
+ * @param spreadLowPct       a packed-too-full fire's chance per game hour to start a flame on a burnable piece within
+ *                           2 m while no player is near, at fire danger Low (Every concept from the video › Fire danger: 2).
+ * @param spreadModeratePct  the same at Moderate (4).
+ * @param spreadHighPct      the same at High (8).
+ * @param spreadExtremePct   the same at Extreme (15).
+ * @param spreadAwayM        a packed fire spreads only while no player is within this many metres (Blueprint: 20).
+ * @param potTipPct          chance a pot set straight on a burning fire tips (10, "Boiling"); on coals it never does.
+ * @param containerSipL      litres one drink from a container takes (0.25, the body sip).
+ * @param flameBurnMin       game minutes a flame burns a piece before it is gone (slice rule).
  */
 public record FireTuning(
         double ringArmloadMin,
@@ -70,7 +84,40 @@ public record FireTuning(
         int packedArmloads,
         int packedHotArmloads,
         int maxArmloads,
-        double rainWetsPerHour) {
+        double rainWetsPerHour,
+        double teepeeArmloadMin,
+        double longArmloadMin,
+        double dakotaArmloadMin,
+        double ferroCalmPct,
+        double ferroWindPct,
+        double spreadLowPct,
+        double spreadModeratePct,
+        double spreadHighPct,
+        double spreadExtremePct,
+        double spreadAwayM,
+        double potTipPct,
+        double containerSipL,
+        double flameBurnMin) {
 
     public static FireTuning standard() { return FirePreset.STANDARD.tuning; }
+
+    /** Burn minutes per armload of a x1.0 wood at Steady for a build. */
+    public double armloadMin(FireBuild build) {
+        return switch (build) {
+            case RING -> ringArmloadMin;
+            case TEEPEE -> teepeeArmloadMin;
+            case LONG -> longArmloadMin;
+            case DAKOTA -> dakotaArmloadMin;
+        };
+    }
+
+    /** The packed-fire spread chance per game hour at a fire danger level, in percent. */
+    public double spreadPct(FireDanger.Level level) {
+        return switch (level) {
+            case LOW -> spreadLowPct;
+            case MODERATE -> spreadModeratePct;
+            case HIGH -> spreadHighPct;
+            case EXTREME -> spreadExtremePct;
+        };
+    }
 }

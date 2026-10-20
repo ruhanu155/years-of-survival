@@ -91,7 +91,8 @@ def blockstate():
 
 def outputs():
     """Every file this script writes, relative to src/main/resources (for credits.json)."""
-    files = ["assets/yearofice/blockstates/fire_ring.json", "assets/yearofice/models/item/fire_ring.json"]
+    files = ["assets/yearofice/blockstates/fire_ring.json", "assets/yearofice/blockstates/flame.json",
+             "assets/yearofice/models/item/fire_ring.json"]
     files += [f"assets/yearofice/models/block/{n}.json" for n in models()]
     return files
 
@@ -104,6 +105,8 @@ def write():
     p = os.path.join(ASSETS, "blockstates", "fire_ring.json")
     os.makedirs(os.path.dirname(p), exist_ok=True)
     json.dump(blockstate(), open(p, "w"), indent=1)
+    # yearofice:flame (spread): fire on a burnable piece, drawn as the ring's full flame planes.
+    json.dump({"variants": {"": {"model": "yearofice:block/fire_ring_flame"}}}, open(os.path.join(ASSETS, "blockstates", "flame.json"), "w"), indent=1)
     json.dump({"parent": "yearofice:block/fire_ring_base"}, open(os.path.join(ASSETS, "models", "item", "fire_ring.json"), "w"), indent=1)
     print(f"{VERSION}: wrote {len(outputs())} files")
 

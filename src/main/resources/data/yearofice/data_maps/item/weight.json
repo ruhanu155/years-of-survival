@@ -64,23 +64,119 @@
     "minecraft:stripped_birch_log": {
       "weight_g": 7500
     },
-    "yearofice:spruce_round": {"weight_g": 3750},
-    "yearofice:spruce_split": {"weight_g": 3750},
-    "yearofice:birch_round": {"weight_g": 3750},
-    "yearofice:birch_split": {"weight_g": 3750},
-    "yearofice:aspen_round": {"weight_g": 3750},
-    "yearofice:aspen_split": {"weight_g": 3750},
-    "yearofice:poplar_round": {"weight_g": 3750},
-    "yearofice:poplar_split": {"weight_g": 3750},
-    "yearofice:tamarack_round": {"weight_g": 3750},
-    "yearofice:tamarack_split": {"weight_g": 3750},
-    "yearofice:willow_round": {"weight_g": 3750},
-    "yearofice:willow_split": {"weight_g": 3750},
-    "yearofice:alder_round": {"weight_g": 3750},
-    "yearofice:alder_split": {"weight_g": 3750},
-    "yearofice:drift_round": {"weight_g": 3750},
-    "yearofice:drift_split": {"weight_g": 3750},
-    "yearofice:hatchet": {"weight_g": 900},
-    "yearofice:chopping_block": {"weight_g": 15000}
+    "yearofice:spruce_round": {
+      "weight_g": 3750
+    },
+    "yearofice:spruce_split": {
+      "weight_g": 3750
+    },
+    "yearofice:birch_round": {
+      "weight_g": 3750
+    },
+    "yearofice:birch_split": {
+      "weight_g": 3750
+    },
+    "yearofice:aspen_round": {
+      "weight_g": 3750
+    },
+    "yearofice:aspen_split": {
+      "weight_g": 3750
+    },
+    "yearofice:poplar_round": {
+      "weight_g": 3750
+    },
+    "yearofice:poplar_split": {
+      "weight_g": 3750
+    },
+    "yearofice:tamarack_round": {
+      "weight_g": 3750
+    },
+    "yearofice:tamarack_split": {
+      "weight_g": 3750
+    },
+    "yearofice:willow_round": {
+      "weight_g": 3750
+    },
+    "yearofice:willow_split": {
+      "weight_g": 3750
+    },
+    "yearofice:alder_round": {
+      "weight_g": 3750
+    },
+    "yearofice:alder_split": {
+      "weight_g": 3750
+    },
+    "yearofice:drift_round": {
+      "weight_g": 3750
+    },
+    "yearofice:drift_split": {
+      "weight_g": 3750
+    },
+    "yearofice:hatchet": {
+      "weight_g": 900
+    },
+    "yearofice:chopping_block": {
+      "weight_g": 15000
+    },
+    "yearofice:knife": {
+      "weight_g": 250
+    },
+    "yearofice:rough_stone": {
+      "weight_g": 600
+    },
+    "yearofice:flint_nodule": {
+      "weight_g": 400
+    },
+    "yearofice:flint_knife": {
+      "weight_g": 120
+    },
+    "yearofice:stake": {
+      "weight_g": 80
+    },
+    "yearofice:tool_handle": {
+      "weight_g": 350
+    },
+    "yearofice:workbench": {
+      "weight_g": 30000
+    },
+    "minecraft:chest": {
+      "weight_g": 12000
+    },
+    "minecraft:barrel": {
+      "weight_g": 8000
+    },
+    "yearofice:steel_bottle": {
+      "weight_g": 180
+    },
+    "yearofice:cooking_pot": {
+      "weight_g": 600
+    },
+    "yearofice:bark_bucket": {
+      "weight_g": 300
+    },
+    "yearofice:tin_can": {
+      "weight_g": 50
+    },
+    "yearofice:jerrycan": {
+      "weight_g": 1200
+    },
+    "yearofice:fire_starter": {
+      "weight_g": 90
+    },
+    "yearofice:birch_bark_torch": {
+      "weight_g": 350
+    },
+    "yearofice:pitch_torch": {
+      "weight_g": 450
+    },
+    "yearofice:tallow_candle": {
+      "weight_g": 80
+    },
+    "yearofice:pitch_candle": {
+      "weight_g": 100
+    },
+    "yearofice:headlamp": {
+      "weight_g": 120
+    }
   }
 }

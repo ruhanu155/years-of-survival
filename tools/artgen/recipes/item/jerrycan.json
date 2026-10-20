@@ -1,0 +1,52 @@
+{
+ "id": "yearofice:jerrycan",
+ "kind": "icon",
+ "notes": "A rust-red jerrycan with a spout and a handle.",
+ "shapes": [
+  {
+   "kind": "rect",
+   "box": [
+    3,
+    4,
+    13,
+    14
+   ],
+   "ramp": "rust",
+   "step": 2
+  },
+  {
+   "kind": "rect",
+   "box": [
+    8,
+    1,
+    12,
+    4
+   ],
+   "ramp": "iron",
+   "step": 2
+  },
+  {
+   "kind": "rect",
+   "box": [
+    4,
+    3,
+    8,
+    4
+   ],
+   "ramp": "iron",
+   "step": 1
+  },
+  {
+   "kind": "rect",
+   "box": [
+    5,
+    7,
+    11,
+    11
+   ],
+   "ramp": "rust",
+   "step": 3,
+   "flat": true
+  }
+ ]
+}

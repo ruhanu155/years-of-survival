@@ -1,0 +1,82 @@
+{
+ "id": "yearofice:bark_bucket",
+ "kind": "icon",
+ "notes": "A birch-bark bucket, 4 L, sewn with root and carried by a bark loop.",
+ "shapes": [
+  {
+   "kind": "line",
+   "points": [
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     2
+    ],
+    [
+     11,
+     2
+    ],
+    [
+     12,
+     4
+    ]
+   ],
+   "width": 1,
+   "ramp": "wood_cut",
+   "step": 1
+  },
+  {
+   "kind": "poly",
+   "points": [
+    [
+     3,
+     5
+    ],
+    [
+     13,
+     5
+    ],
+    [
+     12,
+     14
+    ],
+    [
+     4,
+     14
+    ]
+   ],
+   "ramp": "bark_birch",
+   "step": 3
+  },
+  {
+   "kind": "rect",
+   "box": [
+    3,
+    5,
+    13,
+    6
+   ],
+   "ramp": "bark_birch",
+   "step": 4
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     4,
+     9
+    ],
+    [
+     12,
+     9
+    ]
+   ],
+   "width": 1,
+   "ramp": "wood_cut",
+   "step": 1,
+   "flat": true
+  }
+ ]
+}

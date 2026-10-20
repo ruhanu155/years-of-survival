@@ -52,6 +52,19 @@ public final class FireConfig {
         NOTES.put("packedHotArmloads", "More armloads than this packs a Hot fire too full.");
         NOTES.put("maxArmloads", "Most armloads a fire ring holds.");
         NOTES.put("rainWetsPerHour", "Moisture points an unlit lay gains per game hour in uncovered rain.");
+        NOTES.put("teepeeArmloadMin", "Teepee: game minutes one armload of a x1.0 wood burns at Steady.");
+        NOTES.put("longArmloadMin", "Long fire: game minutes one armload of a x1.0 wood burns at Steady.");
+        NOTES.put("dakotaArmloadMin", "Dakota hole: game minutes one armload of a x1.0 wood burns at Steady.");
+        NOTES.put("ferroCalmPct", "Ferro rod success % in calm air.");
+        NOTES.put("ferroWindPct", "Ferro rod success % in wind.");
+        NOTES.put("spreadLowPct", "Packed-too-full fire: % chance per game hour to start a flame within 2 m, fire danger Low.");
+        NOTES.put("spreadModeratePct", "The same at fire danger Moderate.");
+        NOTES.put("spreadHighPct", "The same at fire danger High.");
+        NOTES.put("spreadExtremePct", "The same at fire danger Extreme.");
+        NOTES.put("spreadAwayM", "A packed fire spreads only while no player is within this many metres.");
+        NOTES.put("potTipPct", "% chance a pot set on a burning fire (not coals) tips and spills.");
+        NOTES.put("containerSipL", "Litres one drink from a water container takes.");
+        NOTES.put("flameBurnMin", "Game minutes a flame burns a piece before it is gone.");
     }
 
     private static final List<RecordComponent> FIELDS = List.of(FireTuning.class.getRecordComponents());

@@ -6,7 +6,18 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
+import com.yearofice.api.body.WaterContent;
+import com.yearofice.api.env.EnvService;
+import com.yearofice.env.light.HeldLights;
+import com.yearofice.env.light.LightField;
 import com.yearofice.fire.BowDrillService;
+import com.yearofice.fire.FireDangerIndex;
+import com.yearofice.fire.light.LightItems;
+import com.yearofice.fire.water.WaterRegistry;
+import com.yearofice.sim.body.WaterPurity;
+import com.yearofice.sim.fire.FireBuild;
+import com.yearofice.sim.fire.FireDanger;
+import com.yearofice.sim.fire.Vessel;
 import com.yearofice.fire.FireBurn;
 import com.yearofice.fire.FireConfig;
 import com.yearofice.fire.FireEnv;
@@ -48,7 +59,16 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
  *   <li>{@code weather <clear|light_rain|heavy_rain|snow|world> [wind_ms]}: override the weather at every fire.</li>
  *   <li>{@code drill [roll]}: an Automatic-assist bow-drill attempt with the held drill (rolls the practice chance).</li>
  *   <li>{@code skill [reps]}: show or set the Fire skill reps.</li>
- *   <li>{@code kit}: the slice fire kit (fire ring, 3 matches as in the crate, bow drill, tinder, kindling).</li>
+ *   <li>{@code kit}: the slice fire kit (fire ring, 3 matches as in the crate, bow drill, tinder, kindling, and the M3
+ *       additions: ferro rod, cooking pot of river water, steel bottle, a lit bark torch).</li>
+ *   <li>{@code build <ring|teepee|long|dakota>}: set the build on a bare ring (a Dakota hole needs a pit).</li>
+ *   <li>{@code danger [low|moderate|high|extreme|world]}: show the fire danger level and its spread chance; with an
+ *       argument pin the level (world unpins).</li>
+ *   <li>{@code spread [roll]}: one spread roll at the current danger level (default roll 0, so it always takes when
+ *       the level has a chance).</li>
+ *   <li>{@code pot}: what is in the pot on the ring: litres, heat, boiled.</li>
+ *   <li>{@code roster}: the fires you built that are lit, within 2 km, with the day's wood.</li>
+ *   <li>{@code held}: the held lights near you: gameplay light at your eye, the carried lights and env.light.</li>
  * </ul>
  * The {@code yoi} root is registered by core; Brigadier merges this subtree into it.
  */
@@ -112,6 +132,18 @@ public final class FireCommands {
                     c.getSource().sendSuccess(() -> Component.literal("Fire skill set to " + FireSkill.reps(p) + " reps"), false);
                     return 1;
                 })))
+                .then(Commands.literal("build").then(Commands.argument("build", StringArgumentType.word())
+                        .suggests((c, b) -> SharedSuggestionProvider.suggest(Arrays.stream(FireBuild.values()).map(FireBuild::id), b))
+                        .executes(FireCommands::build)))
+                .then(Commands.literal("danger").executes(c -> danger(c, null))
+                        .then(Commands.argument("level", StringArgumentType.word())
+                                .suggests((c, b) -> SharedSuggestionProvider.suggest(new String[] {"low", "moderate", "high", "extreme", "world"}, b))
+                                .executes(c -> danger(c, StringArgumentType.getString(c, "level")))))
+                .then(Commands.literal("spread").executes(c -> spread(c, 0))
+                        .then(Commands.argument("roll", DoubleArgumentType.doubleArg(0, 1)).executes(c -> spread(c, DoubleArgumentType.getDouble(c, "roll")))))
+                .then(Commands.literal("pot").executes(FireCommands::pot))
+                .then(Commands.literal("roster").executes(FireCommands::roster))
+                .then(Commands.literal("held").executes(FireCommands::held))
                 .then(Commands.literal("kit").executes(c -> {
                     ServerPlayer p = c.getSource().getPlayerOrException();
                     give(p, new ItemStack(FireRegistry.FIRE_RING_ITEM.get()));
@@ -119,6 +151,16 @@ public final class FireCommands {
                     give(p, new ItemStack(FireRegistry.BOW_DRILL.get()));
                     give(p, new ItemStack(FireRegistry.TINDER_BUNDLE.get(), 4));
                     give(p, new ItemStack(FireRegistry.KINDLING.get(), 8));
+                    give(p, new ItemStack(FireRegistry.FIRE_STARTER.get()));
+                    ItemStack pot = new ItemStack(WaterRegistry.COOKING_POT.get());
+                    WaterContent.write(pot, Vessel.fresh(2, WaterPurity.Source.RIVER));
+                    give(p, pot);
+                    ItemStack bottle = new ItemStack(WaterRegistry.STEEL_BOTTLE.get());
+                    WaterContent.write(bottle, Vessel.fresh(1, WaterPurity.Source.RIVER));
+                    give(p, bottle);
+                    ItemStack torch = new ItemStack(LightItems.BIRCH_BARK_TORCH.get());
+                    com.yearofice.api.env.LightState.set(torch, true, 15);
+                    give(p, torch);
                     c.getSource().sendSuccess(() -> Component.literal("Fire kit given."), false);
                     return 1;
                 }))));
@@ -162,6 +204,82 @@ public final class FireCommands {
                 be.readout(t), f.state().name().toLowerCase(), Fire.word(f.setting()), f.armloads(), f.minutesLeft(t), shown, measured,
                 h.bonusC(), h.kW(), f.hasTinder() ? f.tinderMoisture() + "%" : "none", f.kindling(), f.layInOrder() ? "" : " (out of order)");
         c.getSource().sendSuccess(() -> Component.literal(line), false);
+        return 1;
+    }
+
+    private static int build(CommandContext<CommandSourceStack> c) throws CommandSyntaxException {
+        FireBuild b = FireBuild.byId(StringArgumentType.getString(c, "build"));
+        if (b == null) {
+            c.getSource().sendFailure(Component.literal("Unknown build. Use ring, teepee, long or dakota."));
+            return 0;
+        }
+        FireRingBlockEntity be = ring(c);
+        Fire.Result r = be.setBuild(b);
+        if (!r.ok()) {
+            c.getSource().sendFailure(Component.literal(r.line()));
+            return 0;
+        }
+        return report(c, be);
+    }
+
+    private static int danger(CommandContext<CommandSourceStack> c, String arg) {
+        ServerLevel level = c.getSource().getLevel();
+        if (arg != null) {
+            FireDanger.Level l = null;
+            for (FireDanger.Level v : FireDanger.Level.values()) if (v.name().equalsIgnoreCase(arg)) l = v;
+            if (l == null && !arg.equals("world")) {
+                c.getSource().sendFailure(Component.literal("Use low, moderate, high, extreme or world."));
+                return 0;
+            }
+            FireDangerIndex.pin(level, l);
+        }
+        FireDanger.Level now = FireDangerIndex.level(level);
+        FireTuning t = FireConfig.tuning();
+        c.getSource().sendSuccess(() -> Component.literal("Fire danger " + now.name().toLowerCase() + ": a packed fire sparks "
+                + t.spreadPct(now) + "% an hour."), false);
+        return 1;
+    }
+
+    private static int spread(CommandContext<CommandSourceStack> c, double roll) throws CommandSyntaxException {
+        FireRingBlockEntity be = ring(c);
+        boolean lit = be.rollSpread(roll);
+        c.getSource().sendSuccess(() -> Component.literal(lit ? "A spark took: a flame is burning nearby." : "The spark died (no roll, or nothing burnable within 2 m)."), false);
+        return lit ? 1 : 0;
+    }
+
+    private static int pot(CommandContext<CommandSourceStack> c) throws CommandSyntaxException {
+        FireRingBlockEntity be = ring(c);
+        if (be.pot().isEmpty()) {
+            c.getSource().sendFailure(Component.literal("No pot on the fire."));
+            return 0;
+        }
+        Vessel v = WaterContent.read(be.pot());
+        c.getSource().sendSuccess(() -> Component.literal(String.format("%s: %.2f L of %s water, heat %.0f%%, %.1f min at a boil, %s.",
+                be.pot().getItem().getDescriptionId(), v.litres(), v.source().name().toLowerCase(), v.heat() * 100, v.boilMinutes(),
+                v.boiled() ? "boiled" : "not boiled")), false);
+        return 1;
+    }
+
+    private static int roster(CommandContext<CommandSourceStack> c) throws CommandSyntaxException {
+        ServerPlayer p = c.getSource().getPlayerOrException();
+        java.util.List<com.yearofice.fire.FireRoster.Entry> es = com.yearofice.fire.FireRoster.of(p);
+        c.getSource().sendSuccess(() -> Component.literal(com.yearofice.fire.FireRoster.header(es)), false);
+        for (com.yearofice.fire.FireRoster.Entry e : es) {
+            c.getSource().sendSuccess(() -> Component.literal(String.format("%s (%d m) %s%s", e.pos().toShortString(),
+                    Math.round(e.row().distanceM()), e.readout(), e.row().amber() ? " [amber]" : "")), false);
+        }
+        return es.size();
+    }
+
+    private static int held(CommandContext<CommandSourceStack> c) throws CommandSyntaxException {
+        ServerPlayer p = c.getSource().getPlayerOrException();
+        ServerLevel level = p.serverLevel();
+        HeldLights.refresh(p, EnvService.get().airC(level, p.blockPosition()));
+        int held = LightField.held(level, p.blockPosition().above());
+        int env = EnvService.get().light(level, p.blockPosition().above());
+        int sources = HeldLights.near(level, p.getX(), p.getEyeY(), p.getZ()).size();
+        c.getSource().sendSuccess(() -> Component.literal("Held light at your head: " + held + " from " + sources + " carried light(s); env.light "
+                + env + "."), false);
         return 1;
     }
 

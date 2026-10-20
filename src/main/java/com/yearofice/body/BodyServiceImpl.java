@@ -100,6 +100,11 @@ public final class BodyServiceImpl implements BodyService {
     }
 
     @Override
+    public WaterPurity.Source waterSourceAt(net.minecraft.server.level.ServerLevel level, net.minecraft.core.BlockPos pos) {
+        return com.yearofice.body.intake.Drinking.sourceAt(level, pos);
+    }
+
+    @Override
     public void drink(ServerPlayer p, double litres, WaterPurity.Source source, boolean boiled) {
         BodyState b = s(p);
         long m = now(p);

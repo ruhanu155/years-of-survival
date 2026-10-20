@@ -1,0 +1,41 @@
+{
+ "id": "yearofice:tin_can",
+ "kind": "icon",
+ "notes": "A tin can with its lid cut away, 0.4 L, ready for a wire bail.",
+ "shapes": [
+  {
+   "kind": "rect",
+   "box": [
+    4,
+    4,
+    12,
+    13
+   ],
+   "ramp": "steel",
+   "step": 3
+  },
+  {
+   "kind": "ellipse",
+   "box": [
+    4,
+    3,
+    12,
+    6
+   ],
+   "ramp": "steel",
+   "step": 4
+  },
+  {
+   "kind": "rect",
+   "box": [
+    4,
+    8,
+    12,
+    9
+   ],
+   "ramp": "iron",
+   "step": 1,
+   "flat": true
+  }
+ ]
+}
