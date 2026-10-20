@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:firewood_split"
+  },
+  "fact_key": "field_note.yearofice.firewood_split.fact",
+  "rule_key": "field_note.yearofice.firewood_split.rule",
+  "source": "Forest Products Laboratory, Wood Handbook",
+  "docs_checked": false
+}

@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "block_placed",
+    "id": "yearofice:fire_ring"
+  },
+  "fact_key": "field_note.yearofice.fire_ring_set.fact",
+  "rule_key": "field_note.yearofice.fire_ring_set.rule",
+  "source": "US Forest Service, Campfire safety",
+  "docs_checked": false
+}

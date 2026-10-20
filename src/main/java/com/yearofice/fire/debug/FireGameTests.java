@@ -54,7 +54,7 @@ public final class FireGameTests {
         out.add(test("yearofice:fire/rain_puts_out_low", 200, FireGameTests::rainPutsOutLow));
         out.add(test("yearofice:fire/banked_coals_6h", 200, FireGameTests::bankedCoals6h));
         out.add(test("yearofice:fire/light_by_state", 400, FireGameTests::lightByState));
-        return out;
+        return com.yearofice.gametest.TestFilter.apply(out);
     }
 
     /**

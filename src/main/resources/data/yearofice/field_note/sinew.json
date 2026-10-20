@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:sinew"
+  },
+  "fact_key": "field_note.yearofice.sinew.fact",
+  "rule_key": "field_note.yearofice.sinew.rule",
+  "source": "Hurley 1979, Prehistoric Cordage",
+  "docs_checked": false
+}

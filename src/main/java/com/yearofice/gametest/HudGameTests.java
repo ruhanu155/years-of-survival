@@ -37,7 +37,7 @@ public final class HudGameTests {
         out.add(test("yearofice:hud/close_clock_filter", 100, HudGameTests::closeClockFilter));
         out.add(test("yearofice:hud/battery_zero_to_journal", 40, HudGameTests::batteryZeroToJournal));
         out.add(test("yearofice:hud/dedup_and_channels", 40, HudGameTests::dedupAndChannels));
-        return out;
+        return com.yearofice.gametest.TestFilter.apply(out);
     }
 
     static TestFunction test(String name, int maxTicks, Consumer<GameTestHelper> body) {

@@ -27,6 +27,16 @@ public final class MessengerCornerLayer implements LayeredDraw.Layer {
     /** Texture size and the LCD inside it (gui_messenger.py CORNER). */
     static final int W = 96, H = 80, LCD_X = 9, LCD_Y = 9, LCD_W = 78, LCD_H = 56;
     static final float TEXT_SCALE = 0.75f;
+    /** Rows kept free under the device on the right for the captions and the load meter. */
+    static final int CAPTION_CLEAR = 44;
+
+    /** True when a held messenger sits in the bottom-left corner (the field-note card then stacks above it). */
+    static boolean occupiesLeft(Minecraft mc) {
+        if (mc.player == null) return false;
+        InteractionHand hand = held(mc);
+        if (hand == null) return false;
+        return (hand == InteractionHand.MAIN_HAND) != (mc.options.mainHand().get() == net.minecraft.world.entity.HumanoidArm.RIGHT);
+    }
 
     @Override
     public void render(GuiGraphics g, DeltaTracker delta) {
@@ -37,7 +47,8 @@ public final class MessengerCornerLayer implements LayeredDraw.Layer {
         boolean right = (hand == InteractionHand.MAIN_HAND) == (mc.options.mainHand().get()
                 == net.minecraft.world.entity.HumanoidArm.RIGHT);
         int x = right ? g.guiWidth() - W - 2 : 2;
-        int y = g.guiHeight() - H - 2;
+        // Fix 176: on the right the device sits above the captions (bottom right) and the load meter's row.
+        int y = g.guiHeight() - H - 2 - (right ? CAPTION_CLEAR : 0);
         g.blit(CORNER, x, y, 0, 0, W, H, W, H);
         ItemStack stack = mc.player.getItemInHand(hand);
         BodySyncPayload p = ClientBody.get();

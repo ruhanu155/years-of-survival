@@ -94,7 +94,7 @@ public final class StoryGameTests {
         out.add(test("yearofice:story/dusk_warns_once", StoryGameTests::duskWarnsOnce));
         out.add(test("yearofice:story/onboarding_saves", StoryGameTests::onboardingSaves));
         out.add(test("yearofice:story/fresh_world_wakes_at_noon", StoryGameTests::freshWorldWakesAtNoon));
-        return out;
+        return com.yearofice.gametest.TestFilter.apply(out);
     }
 
     static TestFunction test(String name, Consumer<GameTestHelper> body) {

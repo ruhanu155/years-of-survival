@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:fishing_rod"
+  },
+  "fact_key": "field_note.yearofice.fishing_rod.fact",
+  "rule_key": "field_note.yearofice.fishing_rod.rule",
+  "source": "Standard angling practice",
+  "docs_checked": false
+}

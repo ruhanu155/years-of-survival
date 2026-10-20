@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:tinder_bundle"
+  },
+  "fact_key": "field_note.yearofice.tinder_bundle.fact",
+  "rule_key": "field_note.yearofice.tinder_bundle.rule",
+  "source": "Bushcraft practice; Mears, Outdoor Survival Handbook",
+  "docs_checked": false
+}

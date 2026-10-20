@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:messenger"
+  },
+  "fact_key": "field_note.yearofice.messenger.fact",
+  "rule_key": "field_note.yearofice.messenger.rule",
+  "source": "Battery University, BU-502: Discharging at high and low temperatures",
+  "docs_checked": false
+}

@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:felling_axe"
+  },
+  "fact_key": "field_note.yearofice.felling_axe.fact",
+  "rule_key": "field_note.yearofice.felling_axe.rule",
+  "source": "Forestry Commission, Felling and processing trees",
+  "docs_checked": false
+}

@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:hare_pelt"
+  },
+  "fact_key": "field_note.yearofice.hare_pelt.fact",
+  "rule_key": "field_note.yearofice.hare_pelt.rule",
+  "source": "Mills et al. 2018, Molt phenology of snowshoe hares",
+  "docs_checked": false
+}

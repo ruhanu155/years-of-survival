@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:spruce_tips"
+  },
+  "fact_key": "field_note.yearofice.needle_tea.fact",
+  "rule_key": "field_note.yearofice.needle_tea.rule",
+  "source": "Kuhnlein & Turner 1991, Traditional Plant Foods of Canadian Indigenous Peoples",
+  "docs_checked": false
+}

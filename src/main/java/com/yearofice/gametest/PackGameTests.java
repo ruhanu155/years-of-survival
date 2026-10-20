@@ -56,7 +56,7 @@ public final class PackGameTests {
         out.add(test("yearofice:pack/load_bands", 100, PackGameTests::loadBands));
         out.add(test("yearofice:pack/strength_scales_bands", 100, PackGameTests::strengthScalesBands));
         out.add(test("yearofice:layers/item_expiry", 100, PackGameTests::itemExpiry));
-        return out;
+        return com.yearofice.gametest.TestFilter.apply(out);
     }
 
     static TestFunction test(String name, int maxTicks, Consumer<GameTestHelper> body) {

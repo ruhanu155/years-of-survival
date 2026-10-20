@@ -99,7 +99,7 @@ public final class WoodGameTests {
         out.add(test("yearofice:building/buck_and_split", PLOT, 200, WoodGameTests::buckAndSplit));
         out.add(test("yearofice:trees/felled_never_regrow", EMPTY, 1200, WoodGameTests::felledNeverRegrow));
         out.add(test("yearofice:trees/save_budget_1000", EMPTY, 100, WoodGameTests::saveBudget));
-        return out;
+        return com.yearofice.gametest.TestFilter.apply(out);
     }
 
     static TestFunction test(String name, String template, int maxTicks, Consumer<GameTestHelper> body) {

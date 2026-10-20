@@ -194,8 +194,8 @@
       "category": "tool",
       "stack_class": "single",
       "material": "steel",
-      "max_condition": 5000,
-      "theft": "porcupine"
+      "theft": "porcupine",
+      "max_condition": 5000
     },
     "yearofice:chopping_block": {
       "category": "piece",

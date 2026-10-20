@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:cooking_pot"
+  },
+  "fact_key": "field_note.yearofice.cooking_pot.fact",
+  "rule_key": "field_note.yearofice.cooking_pot.rule",
+  "source": "CDC, Making water safe in an emergency",
+  "docs_checked": false
+}

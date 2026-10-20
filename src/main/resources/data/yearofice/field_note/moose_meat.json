@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:raw_moose_meat"
+  },
+  "fact_key": "field_note.yearofice.moose_meat.fact",
+  "rule_key": "field_note.yearofice.moose_meat.rule",
+  "source": "Alaska Department of Fish and Game, Moose species profile",
+  "docs_checked": false
+}

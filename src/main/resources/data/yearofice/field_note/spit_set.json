@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "block_placed",
+    "id": "yearofice:spit"
+  },
+  "fact_key": "field_note.yearofice.spit_set.fact",
+  "rule_key": "field_note.yearofice.spit_set.rule",
+  "source": "Standard cooking practice",
+  "docs_checked": false
+}
