@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "yearofice:item/orange_cap_bolete_caps"
+  }
+}

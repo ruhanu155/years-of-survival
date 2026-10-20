@@ -1,0 +1,83 @@
+{
+  "id": "yearofice:pineapple_weed",
+  "name": "Pineapple weed",
+  "form": "herb",
+  "tags": [],
+  "habitat": [
+    "trail_edge",
+    "disturbed_soil"
+  ],
+  "phases_dd": {
+    "bud": 0.0,
+    "leaf": 30.0,
+    "flower": 180.0,
+    "fruit": 300.0,
+    "seed": 430.0,
+    "senescent": "first_frost"
+  },
+  "verbs": {
+    "pick": {
+      "part": "yearofice:pineapple_weed_heads",
+      "unit": "handful",
+      "unit_g": 40,
+      "time_min": 2.0,
+      "units_per_clump": 3.0,
+      "phases": [
+        "bud",
+        "leaf",
+        "flower"
+      ],
+      "stripped_weight": 1.0
+    },
+    "cut": {
+      "part": "yearofice:pineapple_weed_heads",
+      "unit": "handful",
+      "unit_g": 40,
+      "time_min": 2.0,
+      "units_per_clump": 3.0,
+      "phases": [
+        "bud",
+        "leaf",
+        "flower"
+      ],
+      "stripped_weight": 0.5
+    },
+    "uproot": {
+      "drops": "minecraft:stick",
+      "empty_years": 1
+    }
+  },
+  "patch": {
+    "clumps": [
+      20,
+      60
+    ],
+    "regrow_days": [
+      5,
+      8
+    ],
+    "flush_mults": [
+      1.0
+    ]
+  },
+  "identify": {
+    "pocket_guide": false,
+    "notes": [],
+    "stages": [
+      "shoot",
+      "flower",
+      "fruit"
+    ]
+  },
+  "inspect": {
+    "look": "green_yellow_cone_heads_feathery_leaves",
+    "smell": "pineapple",
+    "cut": "none"
+  },
+  "food": {
+    "part": "yearofice:pineapple_weed_heads",
+    "kcal_per_100g": 25.0,
+    "vit_c_mg_per_100g": 5.0,
+    "spoil_days_at_5c": 3
+  }
+}

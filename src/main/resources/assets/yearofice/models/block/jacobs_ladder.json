@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/jacobs_ladder"
+  },
+  "render_type": "minecraft:cutout"
+}
