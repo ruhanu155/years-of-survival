@@ -1245,12 +1245,12 @@
     {
       "asset_id": "model_spruce_grouse",
       "files": [
-        "assets/yearofice/geo/entity/rig_grouse.geo.json",
         "assets/yearofice/animations/entity/rig_grouse.animation.json",
-        "assets/yearofice/animations/entity/willow_ptarmigan.animation.json",
         "assets/yearofice/animations/entity/spruce_grouse.animation.json",
-        "assets/yearofice/textures/entity/spruce_grouse/male_adult.png",
-        "assets/yearofice/textures/entity/spruce_grouse/female_adult.png"
+        "assets/yearofice/animations/entity/willow_ptarmigan.animation.json",
+        "assets/yearofice/geo/entity/rig_grouse.geo.json",
+        "assets/yearofice/textures/entity/spruce_grouse/female_adult.png",
+        "assets/yearofice/textures/entity/spruce_grouse/male_adult.png"
       ],
       "source_type": "generated",
       "recipe": "tools/modelgen/species/spruce_grouse.json",
@@ -1948,60 +1948,6 @@
       "recipe": "tools/soundgen/music/music.py",
       "licence": "project",
       "generator_version": "music 0.1.0 (G0 placeholder)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_flint_knife",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/flint_knife.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_flint_nodule",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/flint_nodule.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_knife",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/knife.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_rough_stone",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/rough_stone.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_stake",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/stake.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_tool_handle",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/tool_handle.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
       "release_blocker": false
     },
     {
@@ -5067,19 +5013,6 @@
       "release_blocker": false
     },
     {
-      "asset_id": "model_spruce_grouse",
-      "files": [
-        "assets/yearofice/animations/entity/spruce_grouse.animation.json",
-        "assets/yearofice/textures/entity/spruce_grouse/male_adult.png",
-        "assets/yearofice/textures/entity/spruce_grouse/female_adult.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/spruce_grouse.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
       "asset_id": "model_ermine",
       "files": [
         "assets/yearofice/geo/entity/ermine.geo.json",
@@ -5149,9 +5082,6 @@
     {
       "asset_id": "model_rock_ptarmigan",
       "files": [
-        "assets/yearofice/geo/entity/rig_grouse.geo.json",
-        "assets/yearofice/animations/entity/rig_grouse.animation.json",
-        "assets/yearofice/animations/entity/willow_ptarmigan.animation.json",
         "assets/yearofice/animations/entity/rock_ptarmigan.animation.json",
         "assets/yearofice/textures/entity/rock_ptarmigan/adult_summer.png",
         "assets/yearofice/textures/entity/rock_ptarmigan/adult_winter.png",
@@ -5231,6 +5161,304 @@
       "recipe": "tools/artgen/small_game.py",
       "licence": "project",
       "generator_version": "small_game 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_hen_egg",
+      "files": [
+        "assets/yearofice/models/item/hen_egg.json",
+        "assets/yearofice/textures/item/hen_egg.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_goat_milk",
+      "files": [
+        "assets/yearofice/models/item/goat_milk.json",
+        "assets/yearofice/textures/item/goat_milk.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_barley_flour",
+      "files": [
+        "assets/yearofice/models/item/barley_flour.json",
+        "assets/yearofice/textures/item/barley_flour.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_sauerkraut",
+      "files": [
+        "assets/yearofice/models/item/sauerkraut.json",
+        "assets/yearofice/textures/item/sauerkraut.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_birch_sap",
+      "files": [
+        "assets/yearofice/models/item/birch_sap.json",
+        "assets/yearofice/textures/item/birch_sap.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_birch_syrup",
+      "files": [
+        "assets/yearofice/models/item/birch_syrup.json",
+        "assets/yearofice/textures/item/birch_syrup.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_dish",
+      "files": [
+        "assets/yearofice/models/item/dish.json",
+        "assets/yearofice/textures/item/dish.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_gold_pan",
+      "files": [
+        "assets/yearofice/models/item/gold_pan.json",
+        "assets/yearofice/textures/item/gold_pan.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_birch_pan",
+      "files": [
+        "assets/yearofice/models/item/birch_pan.json",
+        "assets/yearofice/textures/item/birch_pan.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_item_black_sand",
+      "files": [
+        "assets/yearofice/models/item/black_sand.json",
+        "assets/yearofice/textures/item/black_sand.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_drying_rack",
+      "files": [
+        "assets/yearofice/blockstates/drying_rack.json",
+        "assets/yearofice/models/block/drying_rack.json",
+        "assets/yearofice/textures/block/rack_pole_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_smoke_rack",
+      "files": [
+        "assets/yearofice/blockstates/smoke_rack.json",
+        "assets/yearofice/models/block/smoke_rack.json",
+        "assets/yearofice/textures/block/smoke_rack_pole_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_food_cache",
+      "files": [
+        "assets/yearofice/blockstates/food_cache.json",
+        "assets/yearofice/models/block/food_cache.json",
+        "assets/yearofice/textures/block/food_cache_side.png",
+        "assets/yearofice/textures/block/food_cache_top.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_deadfall",
+      "files": [
+        "assets/yearofice/blockstates/deadfall.json",
+        "assets/yearofice/models/block/deadfall.json",
+        "assets/yearofice/models/block/deadfall_sprung.json",
+        "assets/yearofice/models/item/deadfall.json",
+        "assets/yearofice/textures/block/deadfall_stone_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_mouse_deadfall",
+      "files": [
+        "assets/yearofice/blockstates/mouse_deadfall.json",
+        "assets/yearofice/models/block/mouse_deadfall.json",
+        "assets/yearofice/models/block/mouse_deadfall_sprung.json",
+        "assets/yearofice/models/item/mouse_deadfall.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_snare_funnel",
+      "files": [
+        "assets/yearofice/blockstates/snare_funnel.json",
+        "assets/yearofice/models/block/snare_funnel.json",
+        "assets/yearofice/models/item/snare_funnel.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m5look_placer_gravel",
+      "files": [
+        "assets/yearofice/blockstates/placer_gravel.json",
+        "assets/yearofice/models/block/placer_gravel.json",
+        "assets/yearofice/models/item/placer_gravel.json",
+        "assets/yearofice/textures/block/placer_gravel_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m5look.py",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M5 lane ART), palette ramps only, no found assets",
+      "generator_version": "artgen 0.4.0 + m5look",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_flint_knife",
+      "files": [],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/flint_knife.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_flint_nodule",
+      "files": [],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/flint_nodule.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_knife",
+      "files": [],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/knife.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_rough_stone",
+      "files": [],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/rough_stone.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_stake",
+      "files": [],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/stake.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tool_handle",
+      "files": [],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/tool_handle.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_northern_pike",
+      "files": [
+        "assets/yearofice/textures/gui/fish/northern_pike.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
       "release_blocker": false
     }
   ]
