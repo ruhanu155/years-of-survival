@@ -1,0 +1,16 @@
+{
+  "condition_loss": 4,
+  "parts": {
+    "feet": 45,
+    "legs": 25,
+    "hands": 20,
+    "arms": 10
+  },
+  "problems": [
+    {
+      "id": "sprain",
+      "chance": 1.0,
+      "stage": 1
+    }
+  ]
+}

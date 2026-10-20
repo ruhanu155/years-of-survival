@@ -1,0 +1,12 @@
+{
+  "values": [
+    "yearofice:fire_step",
+    "yearofice:boiling_water",
+    "yearofice:hot_object",
+    "yearofice:cauterize",
+    "minecraft:in_fire",
+    "minecraft:on_fire",
+    "minecraft:hot_floor",
+    "minecraft:lightning_bolt"
+  ]
+}

@@ -1668,6 +1668,15 @@
       ]
     },
     {
+      "basis": "Treat flow: medkit bandage (Body tab, Treatments by part)",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "item",
+      "ids": [
+        "bandage"
+      ]
+    },
+    {
       "basis": "B13 face grease: items that can be rubbed into the face and gloves (RECONCILE 175); Body tab > Injuries on the body",
       "milestone": "m4",
       "owner": "body",

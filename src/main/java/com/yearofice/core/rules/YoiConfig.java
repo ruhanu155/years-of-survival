@@ -26,6 +26,7 @@ public final class YoiConfig {
         com.yearofice.body.BodyConfig.define(b);
         com.yearofice.body.illness.WellnessConfig.define(b);
         com.yearofice.body.sleep.SleepConfig.define(b);
+        com.yearofice.body.injury.InjuryConfig.define(b); // lane A (M4): [injury]
         com.yearofice.body.SosConfig.define(b);
         com.yearofice.fire.FireConfig.define(b);
         com.yearofice.hunt.fishing.FishingConfig.define(b);

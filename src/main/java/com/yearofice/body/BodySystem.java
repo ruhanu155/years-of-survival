@@ -26,6 +26,7 @@ public final class BodySystem {
         com.yearofice.body.sleep.Sleep.init();
         com.yearofice.sim.body.Wellness.tuningSource = com.yearofice.body.illness.WellnessConfig::current;
         LeftPack.register(modBus);
+        com.yearofice.body.injury.InjuryItems.register(modBus);
     }
 
     /**
