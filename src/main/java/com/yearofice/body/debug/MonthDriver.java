@@ -80,13 +80,14 @@ public final class MonthDriver {
     private static PrintWriter out;
     private static BlockPos ringPos, snarePos, linePos, rackPos, drinkSpot;
     private static final List<BlockPos> snares = new ArrayList<>();
-    static final int SNARES = Math.max(1, Integer.parseInt(System.getenv().getOrDefault("YEAROFICE_MONTH_SNARES", "1")));
+    static final int SNARES = Math.max(1, Integer.parseInt(System.getenv().getOrDefault("YEAROFICE_MONTH_SNARES", "8")));
     private static FireRingBlockEntity ring;
     private static final Map<String, Double> chores = new LinkedHashMap<>();
     private static final Set<String> did = new java.util.HashSet<>();
     private static double warmMin = 100, kcalAte = 0, litres = 0;
     private static int breadEaten = 0, forageItems = 0, snareCatches = 0, fishCaught = 0, matchesLeft = 3, litToday = 0;
-    private static int lastDay = 0, firstLow = -1;
+    private static int lastDay = 0, firstLow = -1, haresToday = 0, fishToday = 0, haresTotal = 0, rodFishTotal = 0, rodBites = 0, wormsTotal = 0, gutsMade = 0;
+    private static double rodMinutes = 0;
     private static double minBmi = 99;
     private static int minBmiDay = 0;
     private static final List<String> failures = new ArrayList<>();
@@ -211,9 +212,9 @@ public final class MonthDriver {
             level.setBlock(rackPos, PreserveRegistry.DRYING_RACK.get().defaultBlockState(), 3);
             log("camp: fire ring " + ringPos.toShortString() + ", drying rack " + rackPos.toShortString());
         }
-        // snares: the best habitat sites within 40 m, 12 blocks apart
+        // snares: the best sites (game trail x4, cover x1.5, habitat) within 200 m, 12 blocks apart
         List<Object[]> sites = new ArrayList<>();
-        for (BlockPos q : BlockPos.betweenClosed(c.offset(-40, -6, -40), c.offset(40, 6, 40))) {
+        for (BlockPos q : BlockPos.betweenClosed(c.offset(-200, -10, -200), c.offset(200, 10, 200))) {
             if (!solidTop(level, q) || level.getBlockState(q.below()).is(Blocks.WATER)) continue;
             if (Math.abs(q.getX() - c.getX()) % 5 != 0 || Math.abs(q.getZ() - c.getZ()) % 5 != 0) continue;
             var rd = SnareSite.read(level, q, Direction.NORTH);
@@ -255,21 +256,45 @@ public final class MonthDriver {
         }
         log("water for the set line: " + (linePos == null ? "NONE within 140 m" : linePos.toShortString() + " (" + fmt(Math.sqrt(linePos.distSqr(c))) + " m away)"));
         if (linePos != null) {
+            // stake it on the nearest solid bank cell beside the water
+            BlockPos bank = null;
+            for (int r = 1; r <= 4 && bank == null; r++) {
+                for (int dz = -r; dz <= r && bank == null; dz++) for (int dx = -r; dx <= r && bank == null; dx++) {
+                    if (Math.max(Math.abs(dx), Math.abs(dz)) != r) continue;
+                    for (int dy = -1; dy <= 1; dy++) {
+                        BlockPos q = linePos.offset(dx, dy, dz);
+                        if (level.getFluidState(q).isEmpty() && level.getFluidState(q.above()).isEmpty() && level.getBlockState(q.above()).isAir()
+                                && level.getBlockState(q).isFaceSturdy(level, q, Direction.UP)) { bank = q.immutable(); break; }
+                    }
+                }
+            }
+            if (bank == null) bank = linePos;
             ItemStack item = new ItemStack(FishingRegistry.SET_LINE_ITEM.get());
             ItemStack held = p.getMainHandItem().copy();
             p.setItemInHand(InteractionHand.MAIN_HAND, item);
-            item.useOn(new UseOnContext(level, p, InteractionHand.MAIN_HAND, item, new BlockHitResult(Vec3.atCenterOf(linePos), Direction.UP, linePos, false)));
+            item.useOn(new UseOnContext(level, p, InteractionHand.MAIN_HAND, item, new BlockHitResult(Vec3.atCenterOf(bank), Direction.UP, bank, false)));
             p.setItemInHand(InteractionHand.MAIN_HAND, held);
-            var g = PassiveGearService.at(level, linePos.above());
-            if (g == null) g = PassiveGearService.at(level, linePos);
+            gearPos = bank.above();
+            var g = lineGear(level);
             if (g == null) {
-                PassiveGearService.place(level, PassiveGearService.Kind.SET_LINE, linePos, 5, FishBaitsClock.minute(level));
-                log("set line recorded directly at " + linePos.toShortString() + " (item click found no place)");
-            } else log("set line placed at " + g.pos.toShortString() + " hooks " + g.hooks);
+                gearPos = bank.above();
+                PassiveGearService.place(level, PassiveGearService.Kind.SET_LINE, gearPos, 5, FishBaitsClock.minute(level));
+                log("set line recorded directly at " + gearPos.toShortString() + " (item click found no place)");
+            } else log("set line staked on the bank at " + g.pos.toShortString() + " (" + fmt(Math.sqrt(g.pos.distSqr(linePos))) + " m from the water) hooks " + g.hooks);
             chore("water", 0);
             chore("fish", 12);
         } else log("NO WATER FOR THE SET LINE within 60 m");
         drinkSpot = linePos;
+    }
+
+    private static BlockPos gearPos;
+
+    /** The set line's gear record: it is staked on the bank beside the water, not placed in it (water would wash the block out). */
+    private static PassiveGearService.Gear lineGear(ServerLevel level) {
+        if (gearPos != null) { var g = PassiveGearService.at(level, gearPos); if (g != null) return g; }
+        if (linePos == null) return null;
+        var g = PassiveGearService.at(level, linePos.above());
+        return g != null ? g : PassiveGearService.at(level, linePos);
     }
 
     /** Minute helper kept apart so the driver reads the same clock the gear settles on. */
@@ -336,9 +361,11 @@ public final class MonthDriver {
             if (h >= 7.0 && once("boil1", m)) boilAndDrink(p, level, 2.0);
             if (h >= 13.0 && once("boil2", m)) boilAndDrink(p, level, 2.0);
             if (h >= 7.5 && once("forage", m)) forage(p, level);
-            if (h >= 8.0 && once("check1", m)) checkTraps(p, level, m);
-            if (h >= 18.5 && once("check2", m)) checkTraps(p, level, m);
-            if (h >= 8.5 && once("worms", m)) rebait(p, level);
+            if (h >= 8.0 && once("check1", m)) checkTraps(p, level, m, true);
+            if (h >= 18.5 && once("check2", m)) checkTraps(p, level, m, false);
+            if (h >= 8.5 && once("worms", m)) digWorms(p, level);
+            if (h >= 9.5 && day >= 2 && once("rod", m)) rodFish(p, level, m); // day 1 is the set-up half day: snares, line, fire
+            if (h >= 19.5 && once("baitline", m)) baitSetLine(p, level);
             if (h >= 7.2 && once("meal1", m)) meal(p, level, "breakfast");
             if (h >= 12.5 && once("meal2", m)) meal(p, level, "lunch");
             if (h >= 18.8 && once("meal3", m)) { cookEvening(p, level); meal(p, level, "dinner"); }
@@ -357,6 +384,8 @@ public final class MonthDriver {
         if (lastDay > 0) closeDay(lastDay);
         lastDay = day;
         chores.clear();
+        haresToday = 0;
+        fishToday = 0;
         warmMin = 100;
         kcalAte = 0;
         litToday = 0;
@@ -380,8 +409,8 @@ public final class MonthDriver {
         if (bmi <= 19 && firstLow < 0) { firstLow = day; failures.add("BMI " + fmt(bmi) + " on day " + day); }
         if (hands + wait > 0.7 * waking) failures.add("chores " + fmt((hands + wait) / waking * 100) + "% of waking time on day " + day);
         log(String.format(java.util.Locale.ROOT,
-                "DAY %2d kcal_in %.0f kcal_out %.0f net %.0f kg %.2f bmi %.2f warmth_min %.1f water %.0f energy %.1f cond %.0f | water_L %.1f ate bread %d forage %d snare %d fish %d | chores hands %.0f wait %.0f of %.0f waking (%.0f%% / %.0f%%) %s",
-                day, in, outK, in - outK, s.kg, bmi, warmMin, s.water, s.energy, s.condition(), litres, breadEaten, forageItems, snareCatches, fishCaught,
+                "DAY %2d hares %d fish %d kcal_in %.0f kcal_out %.0f net %.0f kg %.2f bmi %.2f warmth_min %.1f water %.0f energy %.1f cond %.0f | water_L %.1f ate bread %d forage %d snare %d fish %d | chores hands %.0f wait %.0f of %.0f waking (%.0f%% / %.0f%%) %s",
+                day, haresToday, fishToday, in, outK, in - outK, s.kg, bmi, warmMin, s.water, s.energy, s.condition(), litres, breadEaten, forageItems, snareCatches, fishCaught,
                 hands, wait, waking, hands / waking * 100, (hands + wait) / waking * 100, chores));
         litres = 0;
     }
@@ -445,47 +474,91 @@ public final class MonthDriver {
         if (got == 0) { scanPlants(p, level); }
     }
 
-    private static void rebait(ServerPlayer p, ServerLevel level) {
+    /** Hand-digging worms in soil near the water or under trees (Fishing in depth: 2-6 per 10 min); they go in the pack. */
+    private static void digWorms(ServerPlayer p, ServerLevel level) {
         if (linePos == null) return;
         var t = com.yearofice.hunt.fishing.FishingConfig.tuning();
         if (wormSpots.isEmpty()) {
             BlockPos c = linePos;
             for (BlockPos q : BlockPos.betweenClosed(c.offset(-40, -12, -40), c.offset(40, 12, 40))) {
-                if (!level.getBlockState(q).is(net.minecraft.tags.BlockTags.DIRT) || !level.getBlockState(q.above()).isAir()) continue;
-                boolean wet = false;
-                int r = t.wormDigRange();
-                for (BlockPos w : BlockPos.betweenClosed(q.offset(-r, -2, -r), q.offset(r, 1, r))) if (level.getFluidState(w).is(net.minecraft.tags.FluidTags.WATER)) { wet = true; break; }
-                if (wet) wormSpots.add(q.immutable());
+                if (!com.yearofice.hunt.fishing.WormDigging.isSoil(level.getBlockState(q)) || !level.getBlockState(q.above()).isAir()) continue;
+                if (!com.yearofice.hunt.fishing.WormDigging.diggable(level, q, level.getBlockState(q), t)) continue;
+                wormSpots.add(q.immutable());
             }
-            Map<String, Integer> tops = new LinkedHashMap<>();
-            for (BlockPos q : BlockPos.betweenClosed(c.offset(-40, -12, -40), c.offset(40, 12, 40))) {
-                if (level.getBlockState(q.above()).isAir() && !level.getBlockState(q).isAir())
-                    tops.merge(BuiltInRegistries.BLOCK.getKey(level.getBlockState(q).getBlock()).toString(), 1, Integer::sum);
-            }
-            log("ground blocks near the set line: " + tops);
-            log("riparian soil for worms within 40 m of the set line: " + wormSpots.size());
+            log("soil to dig for worms within 40 m of the set line: " + wormSpots.size());
         }
         int worms = 0, tries = 0;
-        while (worms < 3 && tries < 14 && !wormSpots.isEmpty()) {
+        while (worms < 6 && tries < 12 && !wormSpots.isEmpty()) {
             BlockPos q = wormSpots.get(wormCursor++ % wormSpots.size());
             tries++;
-            chore("fish", 2.5);
-            if (tries == 1) chore("fish", 20); // the walk to the spot and back
+            chore("fish", 1.7);
             worms += com.yearofice.hunt.fishing.WormDigging.wormsAt(level, q, level.getBlockState(q), t);
         }
-        var g = PassiveGearService.at(level, linePos.above());
-        if (g == null) g = PassiveGearService.at(level, linePos);
+        if (tries > 0) chore("fish", 20); // the walk to the soil and back
+        wormsTotal += worms;
+        if (worms > 0) give(p, new ItemStack(FishingRegistry.WORM.get(), worms));
         log("  [d" + lastDay + "] worms dug " + worms + " in " + tries + " tries");
-        if (g != null && worms > 0) { g.bait = "worm"; chore("fish", 3); }
     }
 
-    private static void checkTraps(ServerPlayer p, ServerLevel level, long m) {
-        for (BlockPos sp : snares) {
+    /** The set line is baited for the night from the pack: worm, else guts, else fish chunk. */
+    private static void baitSetLine(ServerPlayer p, ServerLevel level) {
+        if (linePos == null) return;
+        var g = lineGear(level);
+        if (g == null) { log("  [d" + lastDay + "] NO SET LINE RECORD"); return; }
+        for (var want : List.of(FishingRegistry.WORM.get(), FishingRegistry.FISH_GUTS.get(), FishingRegistry.FISH_CHUNK.get())) {
+            for (int i = 0; i < p.getInventory().getContainerSize(); i++) {
+                ItemStack st = p.getInventory().getItem(i);
+                if (st.is(want)) {
+                    g.bait = FishBaits.key(st).orElse("worm");
+                    st.shrink(1);
+                    chore("fish", 3);
+                    return;
+                }
+            }
+        }
+        log("  [d" + lastDay + "] no bait for the set line");
+    }
+
+    /** One to two hours of rod fishing at the nearest spot, with bait from the pack. */
+    private static void rodFish(ServerPlayer p, ServerLevel level, long m) {
+        if (linePos == null) return;
+        double dist = Math.sqrt(linePos.distSqr(ringPos));
+        var r = com.yearofice.hunt.fishing.RodSession.run(level, p, linePos, m, 90, 0.7);
+        chore("fish", 90 + 2 * dist / 70.0);
+        rodMinutes += r.minutes();
+        rodBites += r.bites();
+        for (ItemStack f : r.fish()) {
+            foodTally.merge(BuiltInRegistries.ITEM.getKey(f.getItem()).getPath(), 1, Integer::sum);
+            give(p, new ItemStack(FishingRegistry.FISH_GUTS.get(), 1)); // cleaned at the water
+            gutsMade++;
+        }
+        fishToday += r.landed();
+        rodFishTotal += r.landed();
+        fishCaught += r.landed();
+        log(String.format(java.util.Locale.ROOT, "[d%d %s] ROD %d min, %d bites, %d landed, %d baits used%s", lastDay, clock(m), r.minutes(), r.bites(), r.landed(), r.baitUsed(),
+                r.ranOutOfBait() ? ", RAN OUT OF BAIT" : ""));
+    }
+
+    /** Guts or a fish chunk from the pack on the loop: x1.5 (Blueprint: "fish guts on a snare raise its catch chance by 50%"). */
+    private static void baitSnare(ServerPlayer p, SnareBlockEntity be) {
+        for (var want : List.of(FishingRegistry.FISH_GUTS.get(), FishingRegistry.FISH_CHUNK.get())) {
+            for (int i = 0; i < p.getInventory().getContainerSize(); i++) {
+                ItemStack st = p.getInventory().getItem(i);
+                if (st.is(want) && be.bait(st, true)) { chore("snare", 1); return; }
+            }
+        }
+    }
+
+    private static void checkTraps(ServerPlayer p, ServerLevel level, long m, boolean snaresToo) {
+        // snares are walked once a day: checking within 5 m more than once a day is human scent, x0.5 (Blueprint › Traps)
+        for (BlockPos sp : snaresToo ? snares : List.<BlockPos>of()) {
             if (!(level.getBlockEntity(sp) instanceof SnareBlockEntity be)) continue;
-            chore("snare", 8);
+            chore("snare", 8 + 1.2 * Math.sqrt(sp.distSqr(ringPos)) / 70.0); // the check, and the walk out and back at 70 m/min
             CarcassRecord r = be.collect();
+            baitSnare(p, be);
             if (r != null) {
                 snareCatches++;
+                if (r.species().contains("hare")) { haresToday++; haresTotal++; }
                 chore("snare", Butchering.minutes(r));
                 for (ItemStack part : Butchering.parts(level, r)) {
                     foodTally.merge(BuiltInRegistries.ITEM.getKey(part.getItem()).getPath(), part.getCount(), Integer::sum);
@@ -496,12 +569,16 @@ public final class MonthDriver {
             }
         }
         if (linePos != null) {
-            var g = PassiveGearService.at(level, linePos.above());
-            if (g == null) g = PassiveGearService.at(level, linePos);
+            var g = lineGear(level);
+            if (g == null) log("  [d" + lastDay + "] NO SET LINE RECORD");
             if (g != null) {
                 chore("fish", 8);
+                String baitWas = g.bait;
+                var st = PassiveGearService.settle(level, g, FishBaitsClock.minute(level));
+                log("  [d" + lastDay + "] set line settled: bait '" + baitWas + "' caught " + st.caught() + " escaped " + st.escaped() + " stolen " + st.stolen() + " held " + g.held.size());
                 var got = PassiveGearService.check(level, p, g, FishBaitsClock.minute(level));
                 fishCaught += got.size();
+                fishToday += got.size();
                 for (ItemStack f : got) foodTally.merge(BuiltInRegistries.ITEM.getKey(f.getItem()).getPath(), 1, Integer::sum);
                 if (!got.isEmpty()) log("[d" + lastDay + " " + clock(m) + "] SET LINE " + got.size() + " fish");
             }
@@ -614,6 +691,8 @@ public final class MonthDriver {
         if (lastDay > 0 && lastDay <= DAYS && failure.isEmpty()) closeDay(lastDay);
         verdict = failures.isEmpty() ? "PASS" : "FAIL " + failures;
         log("RESULT " + verdict + " | min BMI " + fmt(minBmi) + " on day " + minBmiDay + " | food tally " + foodTally);
+        log(String.format(java.util.Locale.ROOT, "SUMMARY per day: hares %.2f (snares %d), fish %.2f (rod %.2f from %d bites in %.0f min; set line + rod %d), worms dug %d, guts made %d",
+                haresTotal / (double) DAYS, SNARES, fishCaught / (double) DAYS, rodFishTotal / (double) DAYS, rodBites, rodMinutes, fishCaught, wormsTotal, gutsMade));
         out.close();
         done = true;
     }

@@ -40,6 +40,7 @@ package com.yearofice.sim.fishing;
  * @param assist              1 turns on the fishing assist (on by default in Gentle, The fight, as built › Assist)
  * @param wormDigMax          worms one broken riparian soil block may give, 0 to this (stand-in for the dig job)
  * @param wormDigRange        soil within this many blocks of water counts as riparian
+ * @param wormForestMax      worms one broken soil block under trees may give away from water, 0 to this (forest floor)
  * @param turbidity           turbidity until {@code env.water} lands (0 clear to 1 muddy)
  */
 public record FishingTuning(double spotQ, double spotMinDepthM, int spotMinWidth, double spotRadiusM,
@@ -49,7 +50,7 @@ public record FishingTuning(double spotQ, double spotMinDepthM, int spotMinWidth
                             double missBaitLossPct, double spookMin, double nibbleShare, double leadMinS,
                             double leadMaxS, double nibbleS, double lineWearPct, double snapWearPct,
                             double lineWetMin, int inputTimeoutTicks, int assist,
-                            int wormDigMax, int wormDigRange, double turbidity) {
+                            int wormDigMax, int wormDigRange, double turbidity, int wormForestMax) {
 
     public static FishingTuning standard() { return FishingPreset.STANDARD.tuning; }
 

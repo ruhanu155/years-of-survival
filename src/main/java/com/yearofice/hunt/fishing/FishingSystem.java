@@ -49,6 +49,7 @@ public final class FishingSystem {
             e.accept(FishingRegistry.WORM.get());
             e.accept(FishingRegistry.ROE.get());
             e.accept(FishingRegistry.FISH_CHUNK.get());
+            e.accept(FishingRegistry.FISH_GUTS.get());
         } else if (e.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             e.accept(FishingService.landedFish(600));
         }

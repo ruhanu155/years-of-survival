@@ -23,6 +23,9 @@ public final class FishBaits {
         if (i == FishingRegistry.WORM.get()) return Optional.of("worm");
         if (i == FishingRegistry.ROE.get()) return Optional.of("roe");
         if (i == FishingRegistry.FISH_CHUNK.get()) return Optional.of("fish_chunk");
+        if (i == FishingRegistry.FISH_GUTS.get()) return Optional.of("guts");
+        // a whole fish cut up on the hook is fish_chunk bait (Waters and fish: "cut from any fish")
+        if (FishingRegistry.FISH.values().stream().anyMatch(d -> d.get() == i)) return Optional.of("fish_chunk");
         if (i == FishingRegistry.SPOON.get()) return Optional.of("spoon");
         if (i == FishingRegistry.FLY.get()) return Optional.of("fly");
         return Optional.empty();

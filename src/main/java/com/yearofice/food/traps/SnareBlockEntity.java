@@ -70,6 +70,9 @@ public class SnareBlockEntity extends BlockEntity implements GeoBlockEntity {
     private Long clockOverride;
     private Double haresOverride;
     private boolean silent;
+    /** Minute the snare was baited, or MIN_VALUE: bait lasts 4 days on land (Blueprint › Traps: "Bait runs out") and is eaten by a catch. */
+    private long baitedAt = Long.MIN_VALUE;
+    static final long BAIT_MINUTES = 4L * 1440;
     // client
     private boolean clientCatch;
     private int clientCoat;
@@ -113,6 +116,24 @@ public class SnareBlockEntity extends BlockEntity implements GeoBlockEntity {
 
     public Snare.SetQuality quality() { return quality; }
 
+    private Snare.SetQuality unbaited() {
+        return quality.baited() ? new Snare.SetQuality(quality.onTrail(), quality.besideCover(), quality.funnel(), false, quality.scent(), quality.weather()) : quality;
+    }
+
+    /** True while the bait still draws (4 days on land). */
+    public boolean baited() { return quality.baited() && (baitedAt == Long.MIN_VALUE || now() - baitedAt < BAIT_MINUTES); }
+
+    /** Right mouse with guts or a fish chunk in hand: x1.5 on every roll until it runs out or a catch eats it. Uses one up. */
+    public boolean bait(ItemStack hand, boolean consume) {
+        if (state == null || quality.baited() && baited() || !(hand.is(com.yearofice.hunt.fishing.FishingRegistry.FISH_GUTS.get())
+                || hand.is(com.yearofice.hunt.fishing.FishingRegistry.FISH_CHUNK.get()))) return false;
+        quality = new Snare.SetQuality(quality.onTrail(), quality.besideCover(), quality.funnel(), true, quality.scent(), quality.weather());
+        baitedAt = now();
+        if (consume) hand.shrink(1);
+        setChanged();
+        return true;
+    }
+
     public double habitatShare() { return habitatShare; }
 
     public boolean broken() { return state != null && state.status() == Snare.Status.BROKEN; }
@@ -135,7 +156,7 @@ public class SnareBlockEntity extends BlockEntity implements GeoBlockEntity {
                 long minute = rolls.minute(roll);
                 return Density.coveringPoint(density, hare.homeRangeM(), habitatShare, SlotSpawner.hareMultiplier(sl, minute));
             }
-            public Snare.SetQuality quality() { return quality; }
+            public Snare.SetQuality quality() { return baited() ? quality : unbaited(); }
             public TrapTuning tuning() { return t; }
             public Snare.Rolls rolls() { return rolls; }
         };
@@ -245,12 +266,17 @@ public class SnareBlockEntity extends BlockEntity implements GeoBlockEntity {
             if (!player.getInventory().add(whole)) player.drop(whole, false);
             state = Snare.check(state, now, TrapConfig.tuning());
             announced = false;
+            baitedAt = Long.MIN_VALUE;
             afterCheck(sl, player, "snare_taken_hare");
             return InteractionResult.CONSUME;
         }
         if (state.status() == Snare.Status.TAKEN) {
             state = Snare.check(state, now, TrapConfig.tuning());
             afterCheck(sl, player, "snare_taken");
+            return InteractionResult.CONSUME;
+        }
+        if (bait(player.getMainHandItem(), !player.getAbilities().instabuild)) {
+            checkLine(player, "snare_empty");
             return InteractionResult.CONSUME;
         }
         if (player.isShiftKeyDown() && player.getMainHandItem().isEmpty()) {
@@ -290,6 +316,7 @@ public class SnareBlockEntity extends BlockEntity implements GeoBlockEntity {
         Snare.Catch v = state == null ? null : state.visible(now());
         if (state != null) state = Snare.check(state, now(), TrapConfig.tuning());
         announced = false;
+        if (v != null) baitedAt = Long.MIN_VALUE;
         setChanged();
         return v == null ? null : record(v);
     }
@@ -318,6 +345,7 @@ public class SnareBlockEntity extends BlockEntity implements GeoBlockEntity {
         tag.putBoolean("beside_cover", quality.besideCover());
         tag.putBoolean("funnel", quality.funnel());
         tag.putBoolean("baited", quality.baited());
+        tag.putLong("baited_at", baitedAt);
         tag.putDouble("habitat_share", habitatShare);
         tag.putBoolean("announced", announced);
         tag.putLong("harvested_roll", harvestedRoll);
@@ -341,6 +369,7 @@ public class SnareBlockEntity extends BlockEntity implements GeoBlockEntity {
                     tag.getBoolean("baited"), 1, 1);
             habitatShare = tag.getDouble("habitat_share");
             announced = tag.getBoolean("announced");
+            baitedAt = tag.contains("baited_at") ? tag.getLong("baited_at") : Long.MIN_VALUE;
             harvestedRoll = tag.contains("harvested_roll") ? tag.getLong("harvested_roll") : Long.MIN_VALUE;
         }
         if (tag.contains("client_catch")) {

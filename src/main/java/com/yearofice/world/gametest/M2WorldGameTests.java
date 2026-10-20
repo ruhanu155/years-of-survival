@@ -552,4 +552,24 @@ public final class M2WorldGameTests {
 
         BlockState state(int x, int y, int z) { return get(x >> 4, z >> 4).getBlockState(new BlockPos(x, y, z)); }
     }
+
+    /**
+     * {@code worldgen/fish_spot_near_start}: through the service Food reads, the slice's spot lies within 60 m of the
+     * spawn, is the nearest thing {@code spotsNear} reports there, and has stock to fish.
+     */
+    @GameTest(template = "gametest/empty3", batch = "m2", timeoutTicks = 600)
+    public static void worldgen_fish_spot_near_start(GameTestHelper h) {
+        ServerLevel l = slice(h);
+        ValleyWorld w = world(l);
+        int[] s = w.spawn();
+        var spot = FishSpotService.get().sliceSpot(l);
+        h.assertTrue(spot.isPresent(), "the slice has no fishing spot");
+        BlockPos c = spot.get().centre();
+        double d = Math.hypot(c.getX() + 0.5 - (s[0] + 0.5), c.getZ() + 0.5 - (s[2] + 0.5));
+        h.assertTrue(d <= ValleyWorld.SPOT_NEAR_START_M, "the spot is " + Math.round(d) + " m from the spawn");
+        var near = FishSpotService.get().spotsNear(l, new BlockPos(s[0], s[1], s[2]), ValleyWorld.SPOT_NEAR_START_M);
+        h.assertTrue(near.stream().anyMatch(x -> x.centre().equals(c)), "spotsNear(60 m) does not list the slice spot");
+        h.assertTrue(!spot.get().species().isEmpty() && spot.get().stock().stream().mapToInt(Integer::intValue).sum() > 0, "the spot holds no fish");
+        h.succeed();
+    }
 }

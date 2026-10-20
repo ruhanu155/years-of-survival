@@ -67,6 +67,8 @@ public final class FishingRegistry {
     /** M5 lane C2 baits and lures: roe and fish_chunk are used up on the hook, the spoon and fly stay on the line. */
     public static final DeferredItem<Item> ROE = ITEMS.registerItem("roe", Item::new, new Item.Properties().stacksTo(64));
     public static final DeferredItem<Item> FISH_CHUNK = ITEMS.registerItem("fish_chunk", Item::new, new Item.Properties().stacksTo(64));
+    /** Guts of a dressed hare or fish: bait, one per 0.1 kg (Blueprint › Food systems › Butchering, Guts 10%). */
+    public static final DeferredItem<Item> FISH_GUTS = ITEMS.registerItem("fish_guts", Item::new, new Item.Properties().stacksTo(64));
     public static final DeferredItem<Item> SPOON = ITEMS.registerItem("spoon", Item::new, new Item.Properties().stacksTo(16));
     public static final DeferredItem<Item> FLY = ITEMS.registerItem("fly", Item::new, new Item.Properties().stacksTo(16));
 
