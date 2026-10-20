@@ -24,6 +24,7 @@ public final class BodySystem {
         MessengerItems.register(modBus);
         BodyService.install(new BodyServiceImpl());
         com.yearofice.body.sleep.Sleep.init();
+        LeftPack.register(modBus);
     }
 
     /**

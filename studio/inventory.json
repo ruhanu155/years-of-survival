@@ -7,12 +7,12 @@
     "Items: the doc's count says 226, its list names 225"
   ],
   "counts": {
-    "total": 1426,
-    "by_type": {"mob": 154, "entity": 21, "block_with_entity": 79, "block": 151, "plant_block": 107, "multiblock": 3, "item": 396, "sound_event": 135, "particle_type": 43, "attachment": 31, "data_component": 31, "payload": 24, "gui_layer": 17, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 14, "loot_function": 8, "loot_condition": 3, "recipe_type": 5, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 75, "biome": 29, "worldgen_hook": 16, "poi_type": 14},
-    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 115, "m4": 43, "m5": 361, "m6": 294, "m7": 141, "m8": 124, "m9": 52, "none": 3},
-    "by_owner": {"body": 235, "building": 192, "ecosystem": 255, "food": 235, "look": 211, "story": 62, "studio": 75, "worldgen": 161},
-    "by_milestone_source": {"doc": 621, "rule": 805},
-    "by_status": {"planned": 1307, "registered": 116, "retired": 3}
+    "total": 1430,
+    "by_type": {"mob": 154, "entity": 21, "block_with_entity": 80, "block": 152, "plant_block": 107, "multiblock": 3, "item": 396, "sound_event": 135, "particle_type": 43, "attachment": 31, "data_component": 31, "payload": 26, "gui_layer": 17, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 14, "loot_function": 8, "loot_condition": 3, "recipe_type": 5, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 75, "biome": 29, "worldgen_hook": 16, "poi_type": 14},
+    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 115, "m4": 47, "m5": 361, "m6": 294, "m7": 141, "m8": 124, "m9": 52, "none": 3},
+    "by_owner": {"body": 239, "building": 192, "ecosystem": 255, "food": 235, "look": 211, "story": 62, "studio": 75, "worldgen": 161},
+    "by_milestone_source": {"doc": 625, "rule": 805},
+    "by_status": {"planned": 1311, "registered": 116, "retired": 3}
   },
   "entries": [
     {"id": "yearofice:alaska_blackfish", "type": "mob", "milestone": "m5", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
@@ -228,6 +228,7 @@
     {"id": "yearofice:lamprey_basket", "type": "block_with_entity", "milestone": "m7", "owner": "food", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:lamprey_fence", "type": "block_with_entity", "milestone": "m7", "owner": "food", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:lantern", "type": "block_with_entity", "milestone": "m3", "owner": "body", "milestone_source": "rule", "status": "planned"},
+    {"id": "yearofice:left_pack", "type": "block_with_entity", "milestone": "m4", "owner": "body", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:live_crib", "type": "block_with_entity", "milestone": "m5", "owner": "food", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:lost_gear", "type": "block_with_entity", "milestone": "m9", "owner": "story", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:millstone", "type": "block_with_entity", "milestone": "m9", "owner": "building", "milestone_source": "rule", "status": "planned"},
@@ -326,6 +327,7 @@
     {"id": "yearofice:garden_bed", "type": "block", "milestone": "m5", "owner": "food", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:grass_turf", "type": "block", "milestone": "m2", "owner": "worldgen", "milestone_source": "doc", "status": "registered"},
     {"id": "yearofice:gravel", "type": "block", "milestone": "m2", "owner": "worldgen", "milestone_source": "doc", "status": "registered"},
+    {"id": "yearofice:ground_bed", "type": "block", "milestone": "m4", "owner": "body", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:ground_ice", "type": "block", "milestone": "m2", "owner": "worldgen", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:gut_pile", "type": "block", "milestone": "m5", "owner": "ecosystem", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:hearth_throat", "type": "block", "milestone": "m8", "owner": "building", "milestone_source": "rule", "status": "planned"},
@@ -1188,6 +1190,8 @@
     {"id": "yearofice:onboarding_sync", "type": "payload", "milestone": "m2_5", "owner": "story", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:partner_status", "type": "payload", "milestone": "m9", "owner": "studio", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:pickup", "type": "payload", "milestone": "m2", "owner": "studio", "milestone_source": "doc", "status": "registered"},
+    {"id": "yearofice:sos_flight", "type": "payload", "milestone": "m4", "owner": "body", "milestone_source": "doc", "status": "planned"},
+    {"id": "yearofice:sos_line", "type": "payload", "milestone": "m4", "owner": "body", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:talk", "type": "payload", "milestone": "m9", "owner": "studio", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:work_start", "type": "payload", "milestone": "m2", "owner": "studio", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:body_figure", "type": "gui_layer", "milestone": "m2", "owner": "look", "milestone_source": "doc", "status": "registered"},

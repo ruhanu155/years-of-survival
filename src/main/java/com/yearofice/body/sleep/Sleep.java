@@ -82,6 +82,7 @@ public final class Sleep implements SleepService {
     record Lie(long startMinute, boolean night, BlockPos bed) {}
 
     private static final Map<UUID, Lie> LIES = new ConcurrentHashMap<>();
+    private static final Map<UUID, BlockPos> GROUND = new ConcurrentHashMap<>();
     private static final Map<UUID, Boolean> DANGER = new ConcurrentHashMap<>();
 
     public static void init() { SleepService.install(INSTANCE); }
@@ -107,6 +108,35 @@ public final class Sleep implements SleepService {
         LIES.remove(p.getUUID());
         DANGER.remove(p.getUUID());
         return Refusal.NONE;
+    }
+
+    /**
+     * Lies down on bare ground (no bed): a one-night {@code ground_bed} marker goes under the sleeper, quality 0.70,
+     * and comes up again on waking ({@link #onWake}). Same tiredness rule as a bed.
+     */
+    public Refusal lieOnGround(ServerPlayer p, long minute) {
+        if (p.isSleeping() || p.isPassenger() || !p.isAlive() || p.isSpectator()) return Refusal.BUSY;
+        Level level = p.level();
+        BlockPos at = p.blockPosition();
+        if (!level.getBlockState(at).canBeReplaced()) return Refusal.OBSTRUCTED;
+        int mod = (int) Math.floorMod(minute, 1440L);
+        if (!SleepRules.mayLieDown(BodyService.get().energy(p), mod, SleepConfig.tuning())) return Refusal.NOT_TIRED;
+        level.setBlock(at, com.yearofice.body.LeftPack.GROUND_BED.get().defaultBlockState(), 3);
+        p.startSleeping(at);
+        GROUND.put(p.getUUID(), at);
+        LIES.remove(p.getUUID());
+        DANGER.remove(p.getUUID());
+        return Refusal.NONE;
+    }
+
+    /** Takes the ground marker up when its sleeper wakes. */
+    @SubscribeEvent
+    public static void onWake(net.neoforged.neoforge.event.entity.player.PlayerWakeUpEvent e) {
+        Player pl = e.getEntity();
+        BlockPos pos = GROUND.remove(pl.getUUID());
+        if (pos != null && pl.level().getBlockState(pos).is(com.yearofice.body.LeftPack.GROUND_BED.get())) {
+            pl.level().removeBlock(pos, false);
+        }
     }
 
     @Override
@@ -194,7 +224,8 @@ public final class Sleep implements SleepService {
     public static void onContinue(CanContinueSleepingEvent e) {
         if (e.getProblem() != Player.BedSleepingProblem.NOT_POSSIBLE_NOW) return;
         BlockPos pos = e.getEntity().getSleepingPos().orElse(null);
-        if (pos != null && e.getEntity().level().isLoaded(pos) && isOurBed(e.getEntity().level().getBlockState(pos))) {
+        if (pos != null && e.getEntity().level().isLoaded(pos) && (isOurBed(e.getEntity().level().getBlockState(pos))
+                || e.getEntity().level().getBlockState(pos).is(com.yearofice.body.LeftPack.GROUND_BED.get()))) {
             e.setContinueSleeping(true);
         }
     }
