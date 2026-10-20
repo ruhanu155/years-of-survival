@@ -1,0 +1,12 @@
+{
+  "problems": [
+    "cut",
+    "burn",
+    "infection"
+  ],
+  "parts": [
+    "any"
+  ],
+  "uses_per_part_per_application": 1,
+  "bruise_heal_speedup": 0
+}

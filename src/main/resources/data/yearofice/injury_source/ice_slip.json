@@ -1,0 +1,17 @@
+{
+  "condition_loss": 3,
+  "parts": {
+    "torso": 25,
+    "hands": 25,
+    "legs": 20,
+    "arms": 15,
+    "head": 15
+  },
+  "problems": [
+    {
+      "id": "sprain",
+      "chance": 0.1,
+      "stage": 1
+    }
+  ]
+}

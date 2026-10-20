@@ -213,6 +213,9 @@
     },
     "yearofice:large_pack_frame": {
       "weight_g": 3000
+    },
+    "yearofice:bandage": {
+      "weight_g": 15
     }
   }
 }

@@ -1667,6 +1667,15 @@
       "ids": [
         "sos_line"
       ]
+    },
+    {
+      "basis": "Treat flow: medkit bandage (Body tab, Treatments by part)",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "item",
+      "ids": [
+        "bandage"
+      ]
     }
   ],
   "expand": {

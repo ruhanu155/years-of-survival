@@ -1,0 +1,8 @@
+{
+  "condition_loss": 1,
+  "parts": {
+    "hands": 60,
+    "feet": 40
+  },
+  "problems": []
+}

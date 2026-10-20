@@ -1,0 +1,15 @@
+{
+  "game_min": 0,
+  "hold_s": 3,
+  "items": [
+    "yearofice:bandage"
+  ],
+  "problems": [
+    "cut",
+    "burn",
+    "blisters",
+    "bruise"
+  ],
+  "allowed_while_bleeding": true,
+  "note": "arm/leg/off hand 3 s; head or chest 4; main hand 5; back 6"
+}
