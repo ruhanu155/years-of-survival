@@ -178,7 +178,8 @@ public final class FishingCommands {
             return 0;
         }
         int n = com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(c, "count");
-        PassiveGearService.place(p.serverLevel(), k, p.blockPosition(), n, FishingClock.minute(p.server));
+        PassiveGearService.Gear placed = PassiveGearService.place(p.serverLevel(), k, p.blockPosition(), n, FishingClock.minute(p.server));
+        if (k == PassiveGearService.Kind.SET_LINE) placed.bait = "fish_chunk";
         c.getSource().sendSuccess(() -> Component.literal("Placed " + k.name().toLowerCase(Locale.ROOT) + " (" + n + ") here."
                 + (k == PassiveGearService.Kind.GILL_NET && n < com.yearofice.sim.fishing.PassiveGear.NET_MIN_SEGMENTS ? " Under 4 joined segments it never catches." : "")), false);
         return 1;
