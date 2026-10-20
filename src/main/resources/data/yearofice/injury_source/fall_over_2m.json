@@ -1,0 +1,14 @@
+{
+  "condition_loss": 0,
+  "parts": {
+    "feet": 60,
+    "legs": 25,
+    "hands": 15
+  },
+  "problems": [
+    {
+      "id": "bruise",
+      "chance": 0.3
+    }
+  ]
+}

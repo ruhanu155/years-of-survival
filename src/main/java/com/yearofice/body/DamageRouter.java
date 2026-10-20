@@ -2,6 +2,7 @@ package com.yearofice.body;
 
 import com.yearofice.api.body.BodyService;
 import com.yearofice.api.body.InjurySpec;
+import com.yearofice.body.injury.InjuryData;
 import com.yearofice.core.YearOfIce;
 import com.yearofice.sim.body.part.InjurySource;
 import com.yearofice.sim.body.part.Problems;
@@ -71,28 +72,41 @@ public final class DamageRouter {
         route(p, e.getSource(), e.getAmount());
     }
 
-    /** Routes one vanilla damage event into the body. Public for tests. */
+    /** The data source {@code id} ({@code injury_source/<id>.json}), or the built-in fallback when data is not loaded. */
+    private static InjurySource src(String id, InjurySource fallback) { return InjuryData.source(id, fallback); }
+
+    /**
+     * Routes one vanilla or mod damage event into the body. Public for tests. Falls go by height; everything else
+     * goes by {@code body/damage_routes.json}: a source id, {@code #systemic} (collapse), or {@code #none}.
+     */
     public static void route(ServerPlayer p, DamageSource src, float amount) {
+        String key = key(src);
+        String target = InjuryData.route(key);
         if (src.is(DamageTypes.FALL)) {
             double h = fallHeight(amount);
             if (h > 20) SosFlow.trigger(p, SosFlow.Cause.FELL);
-            else if (h > 12) injure(p, FALL_OVER_12M, "fall");
-            else if (h > 6) injure(p, FALL_OVER_6M, "fall");
-            else if (h > 3) injure(p, FALL_OVER_3M, "fall");
-        } else if (src.is(DamageTypes.IN_FIRE) || src.is(DamageTypes.ON_FIRE) || src.is(DamageTypes.HOT_FLOOR)) {
-            if (src.is(DamageTypes.ON_FIRE)) p.clearFire();
-            injure(p, FIRE_STEP, key(src));
-        } else if (src.is(DamageTypes.LIGHTNING_BOLT)) {
-            injure(p, LIGHTNING, "lightning_bolt");
-        } else if (src.is(DamageTypes.DROWN)) {
-            // The water clock in the body model decides (M4).
-        } else if (src.is(DamageTypes.GENERIC_KILL)) {
-            SosFlow.trigger(p, SosFlow.Cause.COMMAND);
+            else if (h > 12) injure(p, src("fall_over_12m", FALL_OVER_12M), "fall");
+            else if (h > 6) injure(p, src("fall_over_6m", FALL_OVER_6M), "fall");
+            else if (h > 3) injure(p, src("fall_over_3m", FALL_OVER_3M), "fall");
         } else if (src.is(DamageTypes.FELL_OUT_OF_WORLD)) {
             SosFlow.trigger(p, SosFlow.Cause.FELL);
-        } else {
-            String id = key(src);
-            if (WARNED.add(id)) YearOfIce.LOG.warn("DamageRouter: unrouted damage type {} ignored", id);
+        } else if (src.is(DamageTypes.GENERIC_KILL)) {
+            SosFlow.trigger(p, SosFlow.Cause.COMMAND);
+        } else if (src.is(DamageTypes.DROWN) || "#none".equals(target)) {
+            // The water clock in the body model decides.
+        } else if ("#systemic".equals(target)) {
+            SosFlow.trigger(p, SosFlow.Cause.CONDITION);
+        } else if (src.is(DamageTypes.LIGHTNING_BOLT)) {
+            injure(p, src("lightning", LIGHTNING), "lightning_bolt");
+        } else if (src.is(DamageTypes.IN_FIRE) || src.is(DamageTypes.ON_FIRE) || src.is(DamageTypes.HOT_FLOOR)) {
+            if (src.is(DamageTypes.ON_FIRE)) p.clearFire();
+            injure(p, src("fire_step", FIRE_STEP), key);
+        } else if (target != null && !target.startsWith("#")) {
+            InjurySource s = InjuryData.source(target);
+            if (s != null) injure(p, s, key);
+            else if (WARNED.add(key)) YearOfIce.LOG.warn("DamageRouter: {} routes to missing source {}", key, target);
+        } else if (WARNED.add(key)) {
+            YearOfIce.LOG.warn("DamageRouter: unrouted damage type {} ignored", key);
         }
     }
 

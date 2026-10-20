@@ -1,0 +1,13 @@
+{
+  "game_min": 20,
+  "hold_s": 4,
+  "items": [],
+  "problems": [
+    "frostbite"
+  ],
+  "parts": [
+    "left_foot",
+    "right_foot"
+  ],
+  "needs": "warm_place"
+}
