@@ -2015,6 +2015,15 @@
       "ids": [
         "weir_basket"
       ]
+    },
+    {
+      "basis": "M5 lane B2: vegetation placement feature",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "worldgen_hook",
+      "ids": [
+        "layer_plants"
+      ]
     }
   ],
   "expand": {

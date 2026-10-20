@@ -21,6 +21,7 @@ public final class CropEvents {
         BlockPos pos = e.getPos();
         var block = level.getBlockState(pos).getBlock();
         if (block instanceof CropBlock) {
+            if (level.getBlockEntity(pos) instanceof CropBlockEntity be) Garden.catchUp(level, pos, be);
             ItemStack got = Garden.harvest(level, pos, p);
             Inspect.say(p, got.isEmpty() ? Garden.card(level, pos.below(), null) : "Harvested " + got.getHoverName().getString() + ".");
             e.setCanceled(true);
@@ -42,9 +43,19 @@ public final class CropEvents {
             BlockPos c = p.blockPosition();
             for (BlockPos q : BlockPos.betweenClosed(c.offset(-24, -6, -24), c.offset(24, 6, 24))) {
                 if (level.isLoaded(q) && level.getBlockState(q).getBlock() instanceof CropBlock && level.getBlockEntity(q) instanceof CropBlockEntity be) {
-                    Garden.dayTick(level, q.immutable(), be, e.absDay() - 1);
+                    Garden.catchUp(level, q.immutable(), be);
                 }
             }
         }
+    }
+
+    /** Right mouse in the air or on a block with a hand quern or a flail in the main hand: grind or thresh the off-hand stack. */
+    public static void onUseItem(PlayerInteractEvent.RightClickItem e) {
+        if (e.getHand() != InteractionHand.MAIN_HAND || !(e.getEntity() instanceof ServerPlayer p) || !(p.level() instanceof ServerLevel)) return;
+        String msg = Grain.use(p);
+        if (msg == null) return;
+        Inspect.say(p, msg);
+        e.setCanceled(true);
+        e.setCancellationResult(InteractionResult.SUCCESS);
     }
 }

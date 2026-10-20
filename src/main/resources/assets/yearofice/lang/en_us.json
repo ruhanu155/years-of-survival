@@ -637,5 +637,6 @@
   "item.yearofice.gill_net_segment": "Gill Net Segment",
   "block.yearofice.set_line": "Set Line",
   "block.yearofice.gill_net": "Gill Net",
-  "block.yearofice.weir_basket": "Weir Basket"
+  "block.yearofice.weir_basket": "Weir Basket",
+  "messenger.yearofice.warn.plant_poison": "That was %s, and it is poison. You will feel it soon."
 }

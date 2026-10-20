@@ -73,6 +73,9 @@ public interface BodyService {
     /** Ends sleep or waiting at once and says why. */
     void wake(ServerPlayer player, String cause);
 
+    /** Starts an illness register file ({@code taste_sick}, {@code poison_plant}, ...), rolling its onset; false for an unknown id. */
+    boolean beginIllness(ServerPlayer player, String illnessId);
+
     static BodyService get() {
         BodyService s = Holder.service;
         if (s == null) throw new IllegalStateException("BodyService not installed yet");

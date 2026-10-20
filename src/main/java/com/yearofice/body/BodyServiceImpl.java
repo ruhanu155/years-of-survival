@@ -54,6 +54,9 @@ public final class BodyServiceImpl implements BodyService {
     }
 
     @Override
+    public boolean beginIllness(ServerPlayer p, String illnessId) { return com.yearofice.body.illness.Illnesses.begin(p, illnessId); }
+
+    @Override
     public boolean isSafeToStage(ServerPlayer p) {
         BodyState b = s(p);
         return b.condition() > 30 && b.warmth > 30 && !p.isInWater();

@@ -77,5 +77,5 @@ def item(name,col,shape='blob'):
 for n,c,s in [('hoe',(150,150,150),'tool'),('digging_stick',(170,140,100),'tool'),('shovel',(160,160,170),'tool'),('hand_quern',(150,148,140),'quern'),
   ('seed_potato',(190,160,100),'blob'),('barley_seed',(210,190,110),'blob'),('wheat_seed',(222,190,100),'blob'),('turnip_seed',(120,90,70),'blob'),('cabbage_seed',(140,120,90),'blob'),
   ('potato',(190,150,90),'blob'),('barley',(215,195,115),'blob'),('wheat',(225,195,105),'blob'),('turnip',(200,140,190),'blob'),('cabbage',(130,190,110),'blob'),
-  ('grain_sheaf',(215,185,95),'blob'),('straw',(220,200,120),'blob'),('lick_crust',(235,235,228),'blob'),('lick_salt',(245,245,245),'blob')]:
+  ('grain_sheaf',(215,185,95),'blob'),('straw',(220,200,120),'blob'),('lick_crust',(235,235,228),'blob'),('lick_salt',(245,245,245),'blob'),('flail',(150,120,80),'tool'),('barley_flour',(236,228,205),'blob')]:
     item(n,c,s)

@@ -1245,6 +1245,9 @@
     {
       "asset_id": "model_spruce_grouse",
       "files": [
+        "assets/yearofice/geo/entity/rig_grouse.geo.json",
+        "assets/yearofice/animations/entity/rig_grouse.animation.json",
+        "assets/yearofice/animations/entity/willow_ptarmigan.animation.json",
         "assets/yearofice/animations/entity/spruce_grouse.animation.json",
         "assets/yearofice/textures/entity/spruce_grouse/male_adult.png",
         "assets/yearofice/textures/entity/spruce_grouse/female_adult.png"
@@ -1948,60 +1951,6 @@
       "release_blocker": false
     },
     {
-      "asset_id": "tex_flint_knife",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/flint_knife.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_flint_nodule",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/flint_nodule.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_knife",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/knife.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_rough_stone",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/rough_stone.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_stake",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/stake.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_tool_handle",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/tool_handle.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
       "asset_id": "tex_bark_bucket",
       "files": [
         "assets/yearofice/textures/item/bark_bucket.png",
@@ -2265,489 +2214,6 @@
       "recipe": "hand-written original (no borrowed assets)",
       "licence": "project",
       "generator_version": "hand",
-      "release_blocker": false
-    },
-    {
-      "files": [
-        "assets/yearofice/models/item/dolly_varden.json",
-        "assets/yearofice/models/item/northern_pike.json",
-        "assets/yearofice/models/item/humpback_whitefish.json",
-        "assets/yearofice/models/item/burbot.json",
-        "assets/yearofice/models/item/lake_trout.json",
-        "assets/yearofice/models/item/chinook_salmon.json",
-        "assets/yearofice/models/item/chum_salmon.json",
-        "assets/yearofice/models/item/coho_salmon.json"
-      ],
-      "source_type": "generated",
-      "recipe": "hand-written original (placeholder models reusing the project's own grayling texture until the fish art pass)",
-      "licence": "project",
-      "generator_version": "hand",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "rig_fish",
-      "files": [
-        "assets/yearofice/animations/entity/fish.animation.json",
-        "assets/yearofice/geo/entity/rig_fish_resident.geo.json",
-        "assets/yearofice/geo/entity/rig_fish_school.geo.json"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "gear_gill_net",
-      "files": [
-        "assets/yearofice/blockstates/gill_net.json",
-        "assets/yearofice/models/block/gill_net.json",
-        "assets/yearofice/textures/block/gill_net.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "gear_set_line",
-      "files": [
-        "assets/yearofice/blockstates/set_line.json",
-        "assets/yearofice/models/block/set_line.json",
-        "assets/yearofice/models/item/set_line.json",
-        "assets/yearofice/textures/block/set_line.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "gear_weir_basket",
-      "files": [
-        "assets/yearofice/blockstates/weir_basket.json",
-        "assets/yearofice/models/block/weir_basket.json",
-        "assets/yearofice/models/item/weir_basket.json",
-        "assets/yearofice/textures/block/weir_basket.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "gear_fish_chunk",
-      "files": [
-        "assets/yearofice/models/item/fish_chunk.json",
-        "assets/yearofice/textures/item/fish_chunk.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "gear_fly",
-      "files": [
-        "assets/yearofice/models/item/fly.json",
-        "assets/yearofice/textures/item/fly.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "gear_gill_net_segment",
-      "files": [
-        "assets/yearofice/models/item/gill_net_segment.json",
-        "assets/yearofice/textures/item/gill_net_segment.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "gear_roe",
-      "files": [
-        "assets/yearofice/models/item/roe.json",
-        "assets/yearofice/textures/item/roe.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "gear_spoon",
-      "files": [
-        "assets/yearofice/models/item/spoon.json",
-        "assets/yearofice/textures/item/spoon.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_skin_arctic_grayling",
-      "files": [
-        "assets/yearofice/textures/entity/fish/arctic_grayling.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_skin_burbot",
-      "files": [
-        "assets/yearofice/textures/entity/fish/burbot.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_skin_chinook_salmon",
-      "files": [
-        "assets/yearofice/textures/entity/fish/chinook_salmon.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_skin_chum_salmon",
-      "files": [
-        "assets/yearofice/textures/entity/fish/chum_salmon.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_skin_coho_salmon",
-      "files": [
-        "assets/yearofice/textures/entity/fish/coho_salmon.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_skin_dolly_varden",
-      "files": [
-        "assets/yearofice/textures/entity/fish/dolly_varden.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_skin_humpback_whitefish",
-      "files": [
-        "assets/yearofice/textures/entity/fish/humpback_whitefish.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_skin_lake_trout",
-      "files": [
-        "assets/yearofice/textures/entity/fish/lake_trout.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_skin_northern_pike",
-      "files": [
-        "assets/yearofice/textures/entity/fish/northern_pike.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_card_arctic_grayling",
-      "files": [
-        "assets/yearofice/textures/gui/fish/arctic_grayling.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_card_burbot",
-      "files": [
-        "assets/yearofice/textures/gui/fish/burbot.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_card_chinook_salmon",
-      "files": [
-        "assets/yearofice/textures/gui/fish/chinook_salmon.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_card_chum_salmon",
-      "files": [
-        "assets/yearofice/textures/gui/fish/chum_salmon.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_card_coho_salmon",
-      "files": [
-        "assets/yearofice/textures/gui/fish/coho_salmon.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_card_dolly_varden",
-      "files": [
-        "assets/yearofice/textures/gui/fish/dolly_varden.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_card_humpback_whitefish",
-      "files": [
-        "assets/yearofice/textures/gui/fish/humpback_whitefish.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_card_lake_trout",
-      "files": [
-        "assets/yearofice/textures/gui/fish/lake_trout.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "fish_card_northern_pike",
-      "files": [
-        "assets/yearofice/textures/gui/fish/northern_pike.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
-      "generator_version": "hand script (PIL)",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_ermine",
-      "files": [
-        "assets/yearofice/geo/entity/ermine.geo.json",
-        "assets/yearofice/animations/entity/ermine.animation.json",
-        "assets/yearofice/textures/entity/ermine/adult_summer.png",
-        "assets/yearofice/textures/entity/ermine/adult_winter.png",
-        "assets/yearofice/textures/entity/ermine/adult_mottled.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/ermine.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_marten",
-      "files": [
-        "assets/yearofice/geo/entity/marten.geo.json",
-        "assets/yearofice/animations/entity/marten.animation.json",
-        "assets/yearofice/textures/entity/marten/adult_all.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/marten.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_mink",
-      "files": [
-        "assets/yearofice/geo/entity/mink.geo.json",
-        "assets/yearofice/animations/entity/mink.animation.json",
-        "assets/yearofice/textures/entity/mink/adult_all.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/mink.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_muskrat",
-      "files": [
-        "assets/yearofice/geo/entity/muskrat.geo.json",
-        "assets/yearofice/animations/entity/muskrat.animation.json",
-        "assets/yearofice/textures/entity/muskrat/adult_all.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/muskrat.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_porcupine",
-      "files": [
-        "assets/yearofice/geo/entity/porcupine.geo.json",
-        "assets/yearofice/animations/entity/porcupine.animation.json",
-        "assets/yearofice/textures/entity/porcupine/adult_all.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/porcupine.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_rock_ptarmigan",
-      "files": [
-        "assets/yearofice/geo/entity/rig_grouse.geo.json",
-        "assets/yearofice/animations/entity/rig_grouse.animation.json",
-        "assets/yearofice/animations/entity/willow_ptarmigan.animation.json",
-        "assets/yearofice/animations/entity/rock_ptarmigan.animation.json",
-        "assets/yearofice/textures/entity/rock_ptarmigan/adult_summer.png",
-        "assets/yearofice/textures/entity/rock_ptarmigan/adult_winter.png",
-        "assets/yearofice/textures/entity/rock_ptarmigan/adult_moult.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/rock_ptarmigan.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_ruffed_grouse",
-      "files": [
-        "assets/yearofice/animations/entity/ruffed_grouse.animation.json",
-        "assets/yearofice/textures/entity/ruffed_grouse/male_adult.png",
-        "assets/yearofice/textures/entity/ruffed_grouse/female_adult.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/ruffed_grouse.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_wood_frog",
-      "files": [
-        "assets/yearofice/geo/entity/wood_frog.geo.json",
-        "assets/yearofice/animations/entity/wood_frog.animation.json",
-        "assets/yearofice/textures/entity/wood_frog/adult_all.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/wood_frog.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_yellowjacket",
-      "files": [
-        "assets/yearofice/geo/entity/yellowjacket.geo.json",
-        "assets/yearofice/animations/entity/yellowjacket.animation.json",
-        "assets/yearofice/textures/entity/yellowjacket/adult_all.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/yellowjacket.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_small_game",
-      "files": [
-        "assets/yearofice/blockstates/gut_pile.json",
-        "assets/yearofice/models/block/gut_pile_0.json",
-        "assets/yearofice/models/block/gut_pile_1.json",
-        "assets/yearofice/models/block/gut_pile_2.json",
-        "assets/yearofice/models/block/gut_pile_3.json",
-        "assets/yearofice/models/item/beaver_meat.json",
-        "assets/yearofice/models/item/beaver_pelt.json",
-        "assets/yearofice/models/item/ermine_pelt.json",
-        "assets/yearofice/models/item/marten_meat.json",
-        "assets/yearofice/models/item/marten_pelt.json",
-        "assets/yearofice/models/item/mink_meat.json",
-        "assets/yearofice/models/item/mink_pelt.json",
-        "assets/yearofice/models/item/muskrat_meat.json",
-        "assets/yearofice/models/item/muskrat_pelt.json",
-        "assets/yearofice/models/item/porcupine_meat.json",
-        "assets/yearofice/models/item/red_squirrel_meat.json",
-        "assets/yearofice/models/item/red_squirrel_pelt.json",
-        "assets/yearofice/models/item/rock_ptarmigan_meat.json",
-        "assets/yearofice/models/item/ruffed_grouse_meat.json",
-        "assets/yearofice/models/item/spruce_grouse_meat.json",
-        "assets/yearofice/textures/block/gut_pile.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/small_game.py",
-      "licence": "project",
-      "generator_version": "small_game 0.1.0",
       "release_blocker": false
     },
     {
@@ -5225,6 +4691,510 @@
       "recipe": "tools/artgen/plants/gen.py",
       "licence": "project",
       "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_flail",
+      "files": [
+        "assets/yearofice/models/item/flail.json",
+        "assets/yearofice/textures/item/flail.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen2.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_barley_flour",
+      "files": [
+        "assets/yearofice/models/item/barley_flour.json",
+        "assets/yearofice/textures/item/barley_flour.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen2.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "files": [
+        "assets/yearofice/models/item/dolly_varden.json",
+        "assets/yearofice/models/item/northern_pike.json",
+        "assets/yearofice/models/item/humpback_whitefish.json",
+        "assets/yearofice/models/item/burbot.json",
+        "assets/yearofice/models/item/lake_trout.json",
+        "assets/yearofice/models/item/chinook_salmon.json",
+        "assets/yearofice/models/item/chum_salmon.json",
+        "assets/yearofice/models/item/coho_salmon.json"
+      ],
+      "source_type": "generated",
+      "recipe": "hand-written original (placeholder models reusing the project's own grayling texture until the fish art pass)",
+      "licence": "project",
+      "generator_version": "hand",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "rig_fish",
+      "files": [
+        "assets/yearofice/animations/entity/fish.animation.json",
+        "assets/yearofice/geo/entity/rig_fish_resident.geo.json",
+        "assets/yearofice/geo/entity/rig_fish_school.geo.json"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_gill_net",
+      "files": [
+        "assets/yearofice/blockstates/gill_net.json",
+        "assets/yearofice/models/block/gill_net.json",
+        "assets/yearofice/textures/block/gill_net.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_set_line",
+      "files": [
+        "assets/yearofice/blockstates/set_line.json",
+        "assets/yearofice/models/block/set_line.json",
+        "assets/yearofice/models/item/set_line.json",
+        "assets/yearofice/textures/block/set_line.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_weir_basket",
+      "files": [
+        "assets/yearofice/blockstates/weir_basket.json",
+        "assets/yearofice/models/block/weir_basket.json",
+        "assets/yearofice/models/item/weir_basket.json",
+        "assets/yearofice/textures/block/weir_basket.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_fish_chunk",
+      "files": [
+        "assets/yearofice/models/item/fish_chunk.json",
+        "assets/yearofice/textures/item/fish_chunk.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_fly",
+      "files": [
+        "assets/yearofice/models/item/fly.json",
+        "assets/yearofice/textures/item/fly.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_gill_net_segment",
+      "files": [
+        "assets/yearofice/models/item/gill_net_segment.json",
+        "assets/yearofice/textures/item/gill_net_segment.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_roe",
+      "files": [
+        "assets/yearofice/models/item/roe.json",
+        "assets/yearofice/textures/item/roe.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "gear_spoon",
+      "files": [
+        "assets/yearofice/models/item/spoon.json",
+        "assets/yearofice/textures/item/spoon.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_arctic_grayling",
+      "files": [
+        "assets/yearofice/textures/entity/fish/arctic_grayling.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_burbot",
+      "files": [
+        "assets/yearofice/textures/entity/fish/burbot.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_chinook_salmon",
+      "files": [
+        "assets/yearofice/textures/entity/fish/chinook_salmon.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_chum_salmon",
+      "files": [
+        "assets/yearofice/textures/entity/fish/chum_salmon.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_coho_salmon",
+      "files": [
+        "assets/yearofice/textures/entity/fish/coho_salmon.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_dolly_varden",
+      "files": [
+        "assets/yearofice/textures/entity/fish/dolly_varden.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_humpback_whitefish",
+      "files": [
+        "assets/yearofice/textures/entity/fish/humpback_whitefish.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_lake_trout",
+      "files": [
+        "assets/yearofice/textures/entity/fish/lake_trout.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_skin_northern_pike",
+      "files": [
+        "assets/yearofice/textures/entity/fish/northern_pike.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_arctic_grayling",
+      "files": [
+        "assets/yearofice/textures/gui/fish/arctic_grayling.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_burbot",
+      "files": [
+        "assets/yearofice/textures/gui/fish/burbot.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_chinook_salmon",
+      "files": [
+        "assets/yearofice/textures/gui/fish/chinook_salmon.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_chum_salmon",
+      "files": [
+        "assets/yearofice/textures/gui/fish/chum_salmon.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_coho_salmon",
+      "files": [
+        "assets/yearofice/textures/gui/fish/coho_salmon.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_dolly_varden",
+      "files": [
+        "assets/yearofice/textures/gui/fish/dolly_varden.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_humpback_whitefish",
+      "files": [
+        "assets/yearofice/textures/gui/fish/humpback_whitefish.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_lake_trout",
+      "files": [
+        "assets/yearofice/textures/gui/fish/lake_trout.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "fish_card_northern_pike",
+      "files": [
+        "assets/yearofice/textures/gui/fish/northern_pike.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original low-poly/pixel art drawn for Year of Ice (M5 lane C2), no found assets",
+      "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_ermine",
+      "files": [
+        "assets/yearofice/geo/entity/ermine.geo.json",
+        "assets/yearofice/animations/entity/ermine.animation.json",
+        "assets/yearofice/textures/entity/ermine/adult_summer.png",
+        "assets/yearofice/textures/entity/ermine/adult_winter.png",
+        "assets/yearofice/textures/entity/ermine/adult_mottled.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/ermine.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_marten",
+      "files": [
+        "assets/yearofice/geo/entity/marten.geo.json",
+        "assets/yearofice/animations/entity/marten.animation.json",
+        "assets/yearofice/textures/entity/marten/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/marten.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_mink",
+      "files": [
+        "assets/yearofice/geo/entity/mink.geo.json",
+        "assets/yearofice/animations/entity/mink.animation.json",
+        "assets/yearofice/textures/entity/mink/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/mink.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_muskrat",
+      "files": [
+        "assets/yearofice/geo/entity/muskrat.geo.json",
+        "assets/yearofice/animations/entity/muskrat.animation.json",
+        "assets/yearofice/textures/entity/muskrat/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/muskrat.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_porcupine",
+      "files": [
+        "assets/yearofice/geo/entity/porcupine.geo.json",
+        "assets/yearofice/animations/entity/porcupine.animation.json",
+        "assets/yearofice/textures/entity/porcupine/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/porcupine.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_rock_ptarmigan",
+      "files": [
+        "assets/yearofice/animations/entity/rock_ptarmigan.animation.json",
+        "assets/yearofice/textures/entity/rock_ptarmigan/adult_summer.png",
+        "assets/yearofice/textures/entity/rock_ptarmigan/adult_winter.png",
+        "assets/yearofice/textures/entity/rock_ptarmigan/adult_moult.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/rock_ptarmigan.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_ruffed_grouse",
+      "files": [
+        "assets/yearofice/animations/entity/ruffed_grouse.animation.json",
+        "assets/yearofice/textures/entity/ruffed_grouse/male_adult.png",
+        "assets/yearofice/textures/entity/ruffed_grouse/female_adult.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/ruffed_grouse.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_wood_frog",
+      "files": [
+        "assets/yearofice/geo/entity/wood_frog.geo.json",
+        "assets/yearofice/animations/entity/wood_frog.animation.json",
+        "assets/yearofice/textures/entity/wood_frog/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/wood_frog.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_yellowjacket",
+      "files": [
+        "assets/yearofice/geo/entity/yellowjacket.geo.json",
+        "assets/yearofice/animations/entity/yellowjacket.animation.json",
+        "assets/yearofice/textures/entity/yellowjacket/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/yellowjacket.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_small_game",
+      "files": [
+        "assets/yearofice/blockstates/gut_pile.json",
+        "assets/yearofice/models/block/gut_pile_0.json",
+        "assets/yearofice/models/block/gut_pile_1.json",
+        "assets/yearofice/models/block/gut_pile_2.json",
+        "assets/yearofice/models/block/gut_pile_3.json",
+        "assets/yearofice/models/item/beaver_meat.json",
+        "assets/yearofice/models/item/beaver_pelt.json",
+        "assets/yearofice/models/item/ermine_pelt.json",
+        "assets/yearofice/models/item/marten_meat.json",
+        "assets/yearofice/models/item/marten_pelt.json",
+        "assets/yearofice/models/item/mink_meat.json",
+        "assets/yearofice/models/item/mink_pelt.json",
+        "assets/yearofice/models/item/muskrat_meat.json",
+        "assets/yearofice/models/item/muskrat_pelt.json",
+        "assets/yearofice/models/item/porcupine_meat.json",
+        "assets/yearofice/models/item/red_squirrel_meat.json",
+        "assets/yearofice/models/item/red_squirrel_pelt.json",
+        "assets/yearofice/models/item/rock_ptarmigan_meat.json",
+        "assets/yearofice/models/item/ruffed_grouse_meat.json",
+        "assets/yearofice/models/item/spruce_grouse_meat.json",
+        "assets/yearofice/textures/block/gut_pile.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/small_game.py",
+      "licence": "project",
+      "generator_version": "small_game 0.1.0",
       "release_blocker": false
     }
   ]

@@ -21,6 +21,7 @@ public final class ForageConfig {
         NOTES.put("sapScale", "x litres a tap a day.");
         NOTES.put("spoilScale", "x spoil_days_at_5c of plant food.");
         NOTES.put("lickRegrowKgPerWeek", "kg of crust a mineral lick regrows a week.");
+        NOTES.put("patchDensity", "Share of 24 m cells that hold a plant patch at world generation.");
     }
 
     public static final PresetConfig<ForageTuning> FORAGE = new PresetConfig<>(ForageTuning.class, p -> switch (p) {

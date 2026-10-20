@@ -18,6 +18,12 @@ public final class CropRegistry {
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(YearOfIce.MOD_ID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(YearOfIce.MOD_ID);
+    public static final DeferredRegister.DataComponents COMPONENTS =
+            DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, YearOfIce.MOD_ID);
+    /** {@code yearofice:seed_lot}: the game year a seed or grain lot was harvested; older lots germinate worse. */
+    public static final DeferredHolder<net.minecraft.core.component.DataComponentType<?>, net.minecraft.core.component.DataComponentType<Integer>> SEED_LOT =
+            COMPONENTS.registerComponentType("seed_lot", b -> b.persistent(com.mojang.serialization.Codec.intRange(0, 100000))
+                    .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.VAR_INT));
     public static final DeferredRegister<BlockEntityType<?>> BE_TYPES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, YearOfIce.MOD_ID);
 
     public static final DeferredBlock<GardenBedBlock> GARDEN_BED = BLOCKS.registerBlock("garden_bed", GardenBedBlock::new, GardenBedBlock.props());
@@ -48,6 +54,8 @@ public final class CropRegistry {
     public static final DeferredItem<Item> TURNIP = ITEMS.registerItem("turnip", YoiFoodItem::new, new Item.Properties().stacksTo(64));
     public static final DeferredItem<Item> CABBAGE = ITEMS.registerItem("cabbage", YoiFoodItem::new, new Item.Properties().stacksTo(16));
     public static final DeferredItem<Item> GRAIN_SHEAF = ITEMS.registerItem("grain_sheaf", Item::new, new Item.Properties().stacksTo(16));
+    public static final DeferredItem<Item> FLAIL = ITEMS.registerItem("flail", Item::new, new Item.Properties().stacksTo(1).durability(150));
+    public static final DeferredItem<YoiFoodItem> BARLEY_FLOUR = com.yearofice.food.FoodItems.BARLEY_FLOUR; // registered once, by the food lane (merge of #50 and #52)
     public static final DeferredItem<Item> STRAW = ITEMS.registerItem("straw", Item::new, new Item.Properties().stacksTo(64));
 
     public static Block cropBlock(String crop) {
@@ -64,5 +72,6 @@ public final class CropRegistry {
         BLOCKS.register(modBus);
         ITEMS.register(modBus);
         BE_TYPES.register(modBus);
+        COMPONENTS.register(modBus);
     }
 }
