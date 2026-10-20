@@ -5397,60 +5397,6 @@
       "release_blocker": false
     },
     {
-      "asset_id": "tex_flint_knife",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/flint_knife.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_flint_nodule",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/flint_nodule.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_knife",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/knife.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_rough_stone",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/rough_stone.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_stake",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/stake.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_tool_handle",
-      "files": [],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/tool_handle.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
       "asset_id": "fish_card_northern_pike",
       "files": [
         "assets/yearofice/textures/gui/fish/northern_pike.png"
