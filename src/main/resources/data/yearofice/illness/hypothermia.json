@@ -1,0 +1,19 @@
+{
+  "id": "yearofice:hypothermia",
+  "engine": "warmth",
+  "source": "Blueprint › Warmth",
+  "cause": "Feels-like under 10 C",
+  "onset_h": [
+    0,
+    0
+  ],
+  "duration_h": -1,
+  "cure": {
+    "fire": 1,
+    "warm_room": 1,
+    "dry_layers": 1,
+    "hot_drink_warmth": 5
+  },
+  "note": "Stepped by sim.body.Hypothermia and Warmth.",
+  "stages": []
+}

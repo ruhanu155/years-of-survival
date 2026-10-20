@@ -39,6 +39,7 @@ public final class MessengerClient {
     public static void setup(FMLClientSetupEvent e) {
         TrailMessengerItem.openScreen = MessengerClient::open;
         BodyNet.clientSink = ClientBody::accept;
+        BodyNet.sosSink = pl -> Minecraft.getInstance().execute(() -> Minecraft.getInstance().setScreen(new com.yearofice.client.body.SosFlightScreen(pl)));
     }
 
     public static void open() {

@@ -1,0 +1,38 @@
+{
+  "id": "yearofice:sunburn",
+  "source": "Body tab > Injuries on the body, B13 face grease against glare and wind",
+  "parts": [
+    "head"
+  ],
+  "sub": "face",
+  "stages": [
+    {
+      "stage": 1,
+      "name": "Sunburned",
+      "condition_loss": 0,
+      "effects": {
+        "spirits_daily": -2,
+        "face_safe_to_c": 5,
+        "face_safe_days": 2
+      }
+    }
+  ],
+  "cause": {
+    "from_doy": 60,
+    "to_doy": 120,
+    "on_snow": true,
+    "cloud_below_pct": 50,
+    "sun_above_deg": 15,
+    "bare_h": 3,
+    "ruffed_hood_mult": 0.5
+  },
+  "duration_days": 2,
+  "protect": {
+    "action": "yearofice:grease_face",
+    "duration_h": 8
+  },
+  "timer_owner": "sim.body.Skin",
+  "sound": "yearofice:body.skin_sting",
+  "treatment": null,
+  "morning_line": "Face sunburned. Grease it before the snow."
+}

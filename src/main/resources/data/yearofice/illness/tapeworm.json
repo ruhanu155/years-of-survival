@@ -1,0 +1,21 @@
+{
+  "id": "yearofice:tapeworm",
+  "engine": "body",
+  "source": "Blueprint › Health; Decay and time › Chances by food and stage",
+  "cause": "Raw fish: 2% fresh, x2 Aging; 0% after 7 days below -20 C; raw game 5% (C4)",
+  "onset_h": [
+    72,
+    120
+  ],
+  "duration_h": -1,
+  "cure": {
+    "supply_drop_medicine": 1
+  },
+  "stages": [
+    {
+      "from_h": 0,
+      "absorb": 0.85,
+      "msg": "ill_tapeworm_1"
+    }
+  ]
+}

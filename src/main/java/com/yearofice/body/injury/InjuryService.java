@@ -95,6 +95,21 @@ public final class InjuryService {
         return stumble(p, p.getRandom().nextDouble(), p.getRandom().nextDouble());
     }
 
+    /** A walking stick in either hand: the stumble roll's pole flag, and the limp reads one band better (Gait). */
+    public static boolean holdsWalkingStick(ServerPlayer p) {
+        return isStick(p.getMainHandItem()) || isStick(p.getOffhandItem());
+    }
+
+    private static boolean isStick(ItemStack st) {
+        return !st.isEmpty() && net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(st.getItem())
+                .equals(net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, "walking_stick"));
+    }
+
+    /** B15 practice hook: Hauling (A11) at Practiced halves the strain chance; the carry system passes this into the Lift. */
+    public static boolean haulingPracticed(ServerPlayer p) {
+        return com.yearofice.item.inventory.PackSkill.reps(p) >= com.yearofice.item.inventory.PackConfig.get("hauling_reps");
+    }
+
     // --- Back strain (B15) ------------------------------------------------------------------------------------
 
     /** Chance for this lift, with the preset's dials; 0 on Gentle. */
@@ -133,6 +148,38 @@ public final class InjuryService {
 
     // --- Treatment --------------------------------------------------------------------------------------------
 
+    /** Index of the most urgent problem treatment {@code id} fits on {@code part} (any part when null), or −1. */
+    public static int findProblem(List<Problem> ps, String id, @Nullable Part part) {
+        var action = InjuryData.action(id);
+        if (action == null || !action.has("problems")) return -1;
+        if (action.has("parts") && part != null) {
+            boolean ok = false;
+            for (var el : action.getAsJsonArray("parts")) ok |= el.getAsString().equals(part.id());
+            if (!ok) return -1;
+        }
+        for (var el : action.getAsJsonArray("problems")) {
+            for (int k = 0; k < ps.size(); k++) {
+                Problem q = ps.get(k);
+                if (!q.id().equals(el.getAsString()) || (part != null && q.part() != part)) continue;
+                if (action.has("parts")) {
+                    boolean ok = false;
+                    for (var pe : action.getAsJsonArray("parts")) ok |= pe.getAsString().equals(q.part().id());
+                    if (!ok) continue;
+                }
+                if (id.equals("cauterize") && (q.stage() < 2 || q.dressed())) continue;
+                if ((id.equals("bandage") || id.equals("clean_redress") || id.equals("salve")) && q.dressed()
+                        && !(id.equals("clean_redress") && q.id().equals("infection") && !q.dressed())) continue;
+                if (id.equals("splint") && q.isSplinted()) continue;
+                if (id.equals("rib_wrap") && (q.part() != Part.TORSO || q.isSplinted())) continue;
+                if (id.equals("sling") && (!q.isSplinted() || q.sling())) continue;
+                if (id.equals("sprain_wrap") && q.wrap() >= 0) continue;
+                if (id.equals("cool_burn") && q.cooled()) continue;
+                return k;
+            }
+        }
+        return -1;
+    }
+
     /**
      * Runs treatment action {@code id} ({@code action/treat_<id>.json}) on the most urgent fitting problem of
      * {@code part} (any part when null). Items and the hold belong to the use handler, which is not built yet;
@@ -140,26 +187,9 @@ public final class InjuryService {
      */
     public static boolean treat(ServerPlayer p, String id, @Nullable Part part) {
         BodyState b = BodyAttachments.of(p);
-        var action = InjuryData.action(id);
-        if (action == null) return false;
         long now = now(p);
         List<Problem> ps = b.parts.problems();
-        int i = -1;
-        if (action.has("problems")) {
-            for (var el : action.getAsJsonArray("problems")) {
-                for (int k = 0; k < ps.size(); k++) {
-                    Problem q = ps.get(k);
-                    if (!q.id().equals(el.getAsString()) || (part != null && q.part() != part)) continue;
-                    if (id.equals("cauterize") && (q.stage() < 2 || q.dressed())) continue;
-                    if (id.equals("bandage") && q.dressed()) continue;
-                    if (id.equals("splint") && q.isSplinted()) continue;
-                    if (id.equals("rib_wrap") && q.part() != Part.TORSO) continue;
-                    if (id.equals("sling") && (!q.isSplinted() || q.sling())) continue;
-                    if (i < 0) i = k;
-                }
-                if (i >= 0) break;
-            }
-        }
+        int i = findProblem(ps, id, part);
         if (i < 0) {
             InjuryMessages.line(p, "nothing_to_treat", id.replace('_', ' '));
             return false;

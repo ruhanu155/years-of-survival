@@ -23,6 +23,8 @@ public final class ProblemClock {
             case Problems.BURN -> age >= (p.stage() >= 2 ? 4 : 2) * DAY / (p.cooled() ? 2 : 1);
             case Problems.SPRAIN -> p.wrap() >= 0 && now - p.wrap() >= (p.stage() >= 2 ? 5 : 2) * DAY;
             case Problems.BROKEN_BONE -> p.isSplinted() && now - p.splint() >= 30 * DAY;
+            case Problems.INFECTION -> p.stage() <= 1 && p.dressed() && p.cleanUntil() >= 0
+                    && now - (p.cleanUntil() - 12 * 60) >= 3 * DAY; // cleaned, redressed and salved: heals in 3 days
             case Problems.BLISTERS -> p.dressed() && age >= DAY;
             default -> false;
         };

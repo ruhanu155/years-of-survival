@@ -1,0 +1,21 @@
+{
+  "id": "yearofice:coal_air",
+  "engine": "fire",
+  "source": "Every concept from the video › Coal seams",
+  "cause": "Coal fire in a closed room, no chimney",
+  "onset_h": [
+    2,
+    2
+  ],
+  "duration_h": -1,
+  "cure": {
+    "fresh_air": 1
+  },
+  "note": "Belongs to the fire lane (room smoke).",
+  "stages": [
+    {
+      "from_h": 2,
+      "cond_daily": 120
+    }
+  ]
+}

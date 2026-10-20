@@ -2236,6 +2236,29 @@
       "release_blocker": false
     },
     {
+      "asset_id": "model_bandage",
+      "files": [
+        "assets/yearofice/models/item/bandage.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "gui_hud_vitals_strip_injury",
+      "files": [
+        "assets/yearofice/textures/gui/sprites/hud/bleeding.png",
+        "assets/yearofice/textures/gui/sprites/hud/fever.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/gui_messenger.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
       "asset_id": "model_encounter_hands",
       "files": [
         "assets/yearofice/geo/hands.geo.json",

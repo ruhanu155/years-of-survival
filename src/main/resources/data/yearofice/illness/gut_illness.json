@@ -1,0 +1,33 @@
+{
+  "id": "yearofice:gut_illness",
+  "engine": "body_gut",
+  "source": "Blueprint › Health, medicine and nutrition; Decay and time › Eating decayed food; Ideas from viewers › Sick stomach",
+  "cause": "Unboiled water (15/30/40% by preset); the decay ladder; mouse droppings; false chanterelle, false morel",
+  "onset_h": [
+    24,
+    72
+  ],
+  "duration_h": 48,
+  "cure": {
+    "bed_h": -12,
+    "extra_l_h": -4,
+    "extra_l_max_h": -12,
+    "geranium_h": -12,
+    "buckbean_h": -6,
+    "floor_h": 12,
+    "low_water_extra_h": 24,
+    "weak_extra_h": 12,
+    "broth_absorb": 1.0
+  },
+  "note": "Stepped by the legacy gut clock (gut_onset, gut_until): absorbed x0.5, +1 L water a day and the energy cap of 7 live in sim.body.Metabolism and BodyModel; nausea and fever come from here.",
+  "stages": [
+    {
+      "from_h": 0,
+      "absorb": 0.5,
+      "cap_bolts": 7,
+      "nausea_per_h": 15,
+      "nausea_for_h": 12,
+      "msg": "ill_gut_illness_1"
+    }
+  ]
+}

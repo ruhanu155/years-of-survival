@@ -1,0 +1,27 @@
+{
+  "id": "yearofice:infection",
+  "engine": "injury",
+  "source": "Blueprint › Health › Stages of each problem",
+  "cause": "A cut undressed 12 game hours; a dirty dressing; a blister left 2 days; a bad burn",
+  "onset_h": [
+    12,
+    12
+  ],
+  "duration_h": -1,
+  "cure": {
+    "clean_redress_min": 5,
+    "salve_days": 3,
+    "antibiotics_days": 5
+  },
+  "stages": [
+    {
+      "from_h": 0,
+      "cond_daily": 10
+    },
+    {
+      "from_h": 24,
+      "cond_daily": 0
+    }
+  ],
+  "note": "Stepped by the injury engine (lane A) as problems."
+}

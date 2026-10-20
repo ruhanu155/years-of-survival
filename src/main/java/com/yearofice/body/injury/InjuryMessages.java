@@ -15,6 +15,12 @@ public final class InjuryMessages {
 
     public static String partWord(Part p) { return p.id().replace('_', ' '); }
 
+    /** "right shin" for a problem with a sub-part, else the part word. */
+    public static String where(com.yearofice.sim.body.part.Problem q) {
+        String side = q.part().id().startsWith("left_") ? "left " : q.part().id().startsWith("right_") ? "right " : "";
+        return q.sub().isEmpty() ? partWord(q.part()) : side + q.sub().replace('_', ' ');
+    }
+
     public static String causeWord(String cause) {
         String c = cause.contains(":") ? cause.substring(cause.indexOf(':') + 1) : cause;
         return c.replace('_', ' ');

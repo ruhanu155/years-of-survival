@@ -92,7 +92,10 @@ public final class DamageRouter {
             SosFlow.trigger(p, SosFlow.Cause.FELL);
         } else if (src.is(DamageTypes.GENERIC_KILL)) {
             SosFlow.trigger(p, SosFlow.Cause.COMMAND);
-        } else if (src.is(DamageTypes.DROWN) || "#none".equals(target)) {
+        } else if (src.is(DamageTypes.DROWN)) {
+            // Out of air: the body collapses (the Endless SOS, cause drowning); the left pack goes to the bank.
+            if (p.getAirSupply() <= -20) SosFlow.trigger(p, SosFlow.Cause.DROWNING);
+        } else if ("#none".equals(target)) {
             // The water clock in the body model decides.
         } else if ("#systemic".equals(target)) {
             SosFlow.trigger(p, SosFlow.Cause.CONDITION);

@@ -34,6 +34,7 @@ public final class InjuryTick {
     public static void step(BodyState s, long start, int minutes, BodyTuning t) {
         long end = start + minutes;
         s.parts = ProblemClock.expire(s.parts, end);
+        s.parts = com.yearofice.sim.body.injury.Infection.advance(s.parts, start, minutes, t.bleedScale());
         s.parts = Treatments.bleed(s.parts, minutes, t.bleedScale(), end);
     }
 
@@ -63,7 +64,8 @@ public final class InjuryTick {
             // no load service yet
         }
         boolean dark = p.level().getMaxLocalRawBrightness(p.blockPosition()) < 5;
-        InjuryService.walk100m(p, new Stumble.Factors(p.isSprinting(), wet, loaded, b.energy <= 3, dark, false,
-                InjuryService.injuredFactor(b.parts, now, false), false));
+        boolean stick = InjuryService.holdsWalkingStick(p);
+        InjuryService.walk100m(p, new Stumble.Factors(p.isSprinting(), wet, loaded, b.energy <= 3, dark, stick,
+                InjuryService.injuredFactor(b.parts, now, stick), false));
     }
 }

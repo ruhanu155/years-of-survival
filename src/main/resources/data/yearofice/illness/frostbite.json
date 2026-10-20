@@ -1,0 +1,17 @@
+{
+  "id": "yearofice:frostbite",
+  "engine": "injury",
+  "source": "Blueprint › Health; Body tab › per part",
+  "cause": "A part below its safe-to limit",
+  "onset_h": [
+    0,
+    0
+  ],
+  "duration_h": -1,
+  "cure": {
+    "slow_rewarm": 1,
+    "fire_min_m": 1
+  },
+  "note": "Stepped by the per-part frost counter (lane A).",
+  "stages": []
+}

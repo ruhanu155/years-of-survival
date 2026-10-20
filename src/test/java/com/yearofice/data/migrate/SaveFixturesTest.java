@@ -76,6 +76,7 @@ class SaveFixturesTest {
                 com.yearofice.world.attach.PlacedMaskData.class, "read", null, in)));
         ATTACHMENTS.put("trees", in -> TreeMarksData.load(in).saveTag());
         SAVED_DATA.put("yearofice_clock", saved(com.yearofice.story.clock.ClockData.class));
+        SAVED_DATA.put("yearofice_run", saved(com.yearofice.body.RunState.class));
         SAVED_DATA.put("yearofice_story", saved(com.yearofice.story.DayOne.Data.class));
         SAVED_DATA.put("yearofice_slots", saved(com.yearofice.ecosystem.spawn.SlotData.class));
         SAVED_DATA.put("yearofice_fish_stocks", saved(com.yearofice.hunt.fishing.SliceSpots.Stocks.class));

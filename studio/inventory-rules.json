@@ -1632,6 +1632,60 @@
       ]
     },
     {
+      "basis": "Collapse and SOS step 4",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "block_with_entity",
+      "ids": [
+        "left_pack"
+      ]
+    },
+    {
+      "basis": "ground sleep",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "block",
+      "ids": [
+        "ground_bed"
+      ]
+    },
+    {
+      "basis": "SOS flight screen",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "payload",
+      "ids": [
+        "sos_flight"
+      ]
+    },
+    {
+      "basis": "SOS line",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "payload",
+      "ids": [
+        "sos_line"
+      ]
+    },
+    {
+      "basis": "Treat flow: medkit bandage (Body tab, Treatments by part)",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "item",
+      "ids": [
+        "bandage"
+      ]
+    },
+    {
+      "basis": "B13 face grease: items that can be rubbed into the face and gloves (RECONCILE 175); Body tab > Injuries on the body",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "tag",
+      "ids": [
+        "grease"
+      ]
+    },
+    {
       "basis": "M4 D2 encounter hand clips",
       "milestone": "m4",
       "owner": "look",

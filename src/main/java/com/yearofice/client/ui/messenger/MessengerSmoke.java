@@ -59,6 +59,8 @@ public final class MessengerSmoke {
         float[] feel = {-6f, 3.2f, 6.5f, 0f, 3f, 0f, 3f, -1f};
         return new BodySyncPayload(142 * 1440 + 19 * 60 + 40, 62.4f, 18.6f, 820f, 2410f, -1590f, 3.6f, 8f, 46f,
                 -10.7f, feel, 0.65f, 52f, 0.22f, 100f, 27f, 0.41f, 0.18f, 0.66f, 750f, false, 0,
-                Activity.WALK.ordinal(), -6f, Precip.SNOW.ordinal(), 2.5f, 4f, false, 7400);
+                Activity.WALK.ordinal(), -6f, Precip.SNOW.ordinal(), 2.5f, 4f, false, 7400,
+                new BodySyncPayload.Parts(new int[] {100, 92, 100, 70, 100, 55, 100, 100, 100, 35},
+                        new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 2}, 0b100, 0, 1 << 3, 2, true));
     }
 }

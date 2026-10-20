@@ -70,6 +70,10 @@ public final class BodyServiceImpl implements BodyService {
         Injuries.Result r = Injuries.apply(injury.source(), b.parts, rng, ctx);
         b.parts = r.record();
         com.yearofice.body.injury.InjuryMessages.injured(p, injury.source().id(), cause, r);
+        if (r.tearZone() != null && r.tear() > 0 && !r.hitPack()) {
+            net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new com.yearofice.api.event.GarmentTearEvent(p,
+                    r.tearZone().name().toLowerCase(java.util.Locale.ROOT), r.tear(), injury.source().id()));
+        }
         com.yearofice.core.YearOfIce.LOG.debug("Injury {} ({}) on {}: parts {}, Condition {}", injury.source().id(),
                 cause, p.getGameProfile().getName(), r.partsHit(), b.condition());
         if (b.condition() <= 0) {

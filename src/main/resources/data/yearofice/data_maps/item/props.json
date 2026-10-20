@@ -366,6 +366,10 @@
       "floats": true,
       "material": "wood",
       "max_condition": 200
+    },
+    "yearofice:bandage": {
+      "category": "medicine",
+      "stack_class": "small"
     }
   }
 }
