@@ -34,6 +34,12 @@ public final class FishingOverlay implements LayeredDraw.Layer {
         boolean spike = s.spikeLeftS() > 0;
         int color = slack ? GREY : spike ? FLASH : share < 0.7 ? WHITE : share < FightModel.RED_ABOVE ? AMBER : RED;
 
+        // The fish on the line, drawn per species (original art), shaking on each spike.
+        var art = net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(com.yearofice.core.YearOfIce.MOD_ID,
+                "textures/gui/fish/" + p.species().id() + ".png");
+        int shake = spike ? (int) ((Minecraft.getInstance().level == null ? 0 : Minecraft.getInstance().level.getGameTime()) % 2) * 2 - 1 : 0;
+        g.blit(art, cx - 24 + shake, cy - RADIUS - 30, 0, 0, 48, 24, 48, 24);
+
         arc(g, cx, cy, 0, 1, TRACK);
         if (p.assist()) {
             double lo = Math.min(0.7, FightModel.RECOVER_PRESSURE_BELOW * p.fullPull() / p.sEff());

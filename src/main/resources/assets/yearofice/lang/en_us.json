@@ -559,5 +559,13 @@
   "item.yearofice.lake_trout": "Lake Trout",
   "item.yearofice.chinook_salmon": "Chinook Salmon",
   "item.yearofice.chum_salmon": "Chum Salmon",
-  "item.yearofice.coho_salmon": "Coho Salmon"
+  "item.yearofice.coho_salmon": "Coho Salmon",
+  "item.yearofice.roe": "Roe",
+  "item.yearofice.fish_chunk": "Fish Chunk",
+  "item.yearofice.spoon": "Spoon",
+  "item.yearofice.fly": "Fly",
+  "item.yearofice.gill_net_segment": "Gill Net Segment",
+  "block.yearofice.set_line": "Set Line",
+  "block.yearofice.gill_net": "Gill Net",
+  "block.yearofice.weir_basket": "Weir Basket"
 }
