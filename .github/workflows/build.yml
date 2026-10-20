@@ -6,6 +6,7 @@ name: build
 
 on:
   pull_request:
+    paths-ignore: ['docs/**', '*.md']
   push:
     branches: [main]
 
@@ -19,6 +20,7 @@ concurrency:
 jobs:
   smoke:
     name: smoke
+    needs: changes
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -35,6 +37,7 @@ jobs:
         run: ./gradlew build --stacktrace
 
       - name: GameTest server
+        if: github.event_name == 'push' || needs.changes.outputs.game == 'true'
         timeout-minutes: 20
         run: |
           set -o pipefail
@@ -42,6 +45,7 @@ jobs:
           timeout 18m ./gradlew runGameTestServer --stacktrace 2>&1 | tee build/gametest.log
 
       - name: Check the GameTest log
+        if: github.event_name == 'push' || needs.changes.outputs.game == 'true'
         run: |
           if ! grep -E "All [0-9]+ required tests passed" build/gametest.log; then
             echo "::error::GameTest log lacks 'All N required tests passed'"
@@ -94,8 +98,35 @@ jobs:
           path: build/debugmap/
           if-no-files-found: ignore
 
+  # Golden hashes only move when the generator moves: run the cross-OS jobs just for worldgen changes and main.
+  changes:
+    name: changed paths
+    runs-on: ubuntu-latest
+    outputs:
+      worldgen: ${{ steps.f.outputs.worldgen }}
+      game: ${{ steps.f.outputs.game }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: f
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            echo "game=true" >> "$GITHUB_OUTPUT"; echo "worldgen=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          base="${{ github.event.pull_request.base.sha }}"
+          files=$(git diff --name-only "$base"...HEAD)
+          echo "$files"
+          game=false; worldgen=false
+          echo "$files" | grep -Eq '^(src/|build\.gradle|gradle\.properties|studio/)' && game=true
+          echo "$files" | grep -Eq '^(src/main/java/com/yearofice/worldgen/|src/main/java/com/yearofice/core/hash/|src/test/java/com/yearofice/worldgen/|src/main/resources/data/yearofice/worldgen_params/|src/main/resources/data/yearofice/archetype/|gradle\.properties)' && worldgen=true
+          echo "game=$game" >> "$GITHUB_OUTPUT"; echo "worldgen=$worldgen" >> "$GITHUB_OUTPUT"
+
   hashes:
     name: hashes (${{ matrix.os }})
+    needs: changes
+    if: github.event_name == 'push' || needs.changes.outputs.worldgen == 'true'
     strategy:
       fail-fast: false
       matrix:
