@@ -436,7 +436,15 @@
     }
   ],
   "additions": [
-    {"basis": "B13 face grease: items that can be rubbed into the face and gloves (RECONCILE 175); Body tab > Injuries on the body", "milestone": "m4", "owner": "body", "type": "tag", "ids": ["grease"]},
+    {
+      "basis": "B13 face grease: items that can be rubbed into the face and gloves (RECONCILE 175); Body tab > Injuries on the body",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "tag",
+      "ids": [
+        "grease"
+      ]
+    },
     {
       "basis": "World and story, M2.5 slice guided first night: story.Onboarding's per-player state machine and warn-once memory (Ready for development M2.5, Story; Blueprint > Start site > The guided first night)",
       "milestone": "m2_5",
@@ -1693,6 +1701,105 @@
       "type": "payload",
       "ids": [
         "encounter_clip"
+      ]
+    },
+    {
+      "basis": "M3 lane B: gates attachment",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "attachment",
+      "ids": [
+        "gates"
+      ]
+    },
+    {
+      "basis": "M3 lane B: box_stamp attachment",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "attachment",
+      "ids": [
+        "box_stamp"
+      ]
+    },
+    {
+      "basis": "M3 crafting tag chip_tools",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "chip_tools"
+      ]
+    },
+    {
+      "basis": "M3 crafting tag gate_hide_and_bone",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "gate_hide_and_bone"
+      ]
+    },
+    {
+      "basis": "M3 crafting tag gate_iron",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "gate_iron"
+      ]
+    },
+    {
+      "basis": "M3 crafting tag knives",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "knives"
+      ]
+    },
+    {
+      "basis": "M3 crafting tag split_wood",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "split_wood"
+      ]
+    },
+    {
+      "basis": "M3 crafting item flint_knife",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "flint_knife"
+      ]
+    },
+    {
+      "basis": "M3 crafting item flint_nodule",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "flint_nodule"
+      ]
+    },
+    {
+      "basis": "M3 crafting item stake",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "stake"
+      ]
+    },
+    {
+      "basis": "M3 crafting item tool_handle",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "tool_handle"
       ]
     }
   ],

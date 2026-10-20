@@ -1,0 +1,56 @@
+{
+ "id": "yearofice:tool_handle",
+ "kind": "icon",
+ "model_parent": "minecraft:item/handheld",
+ "notes": "A carved birch tool handle, a straight grip with a socket end.",
+ "shapes": [
+  {
+   "kind": "line",
+   "points": [
+    [
+     3,
+     13
+    ],
+    [
+     12,
+     4
+    ]
+   ],
+   "width": 3,
+   "ramp": "bark_birch",
+   "step": 2
+  },
+  {
+   "kind": "line",
+   "points": [
+    [
+     11,
+     5
+    ],
+    [
+     13,
+     3
+    ]
+   ],
+   "width": 2,
+   "ramp": "wood_cut",
+   "step": 3
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     12,
+     3
+    ],
+    [
+     13,
+     4
+    ]
+   ],
+   "ramp": "wood_cut",
+   "step": 1,
+   "flat": true
+  }
+ ]
+}

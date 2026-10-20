@@ -1,0 +1,90 @@
+{
+ "id": "yearofice:flint_nodule",
+ "kind": "icon",
+ "notes": "A dark flint nodule, knobbly, with a pale cortex.",
+ "shapes": [
+  {
+   "kind": "poly",
+   "points": [
+    [
+     3,
+     9
+    ],
+    [
+     5,
+     4
+    ],
+    [
+     10,
+     3
+    ],
+    [
+     13,
+     7
+    ],
+    [
+     12,
+     12
+    ],
+    [
+     7,
+     13
+    ],
+    [
+     4,
+     12
+    ]
+   ],
+   "ramp": "rock_schist",
+   "step": 1,
+   "noise": 0.2
+  },
+  {
+   "kind": "poly",
+   "points": [
+    [
+     5,
+     8
+    ],
+    [
+     7,
+     5
+    ],
+    [
+     10,
+     5
+    ],
+    [
+     11,
+     8
+    ],
+    [
+     9,
+     11
+    ],
+    [
+     6,
+     11
+    ]
+   ],
+   "ramp": "smoked",
+   "step": 1
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     8,
+     6
+    ],
+    [
+     7,
+     8
+    ]
+   ],
+   "ramp": "rock_schist",
+   "step": 4,
+   "flat": true
+  }
+ ]
+}

@@ -1,22 +1,38 @@
 package com.yearofice.item.inventory;
 
+import com.yearofice.api.practice.PracticeService;
+import com.yearofice.sim.build.Skill;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
 /**
  * The Practice skill {@code hauling} (video 2, A11): a rep for every {@code hauling_rep_ticks} spent walking with
- * 15 kg or more. Reps live in the player's persistent data under {@code yearofice_hauling} until the shared
- * {@code yearofice:practice} attachment exists; the band edges read them through {@link LoadCalculator#hauling}.
+ * 15 kg or more. Reps live in the shared {@code yearofice:practice} attachment (Skill.HAULING); the old
+ * persistent-data stand-in under {@code yearofice_hauling} is moved over once. The band edges read them through {@link LoadCalculator#hauling}.
  */
 public final class PackSkill {
     private PackSkill() {}
 
     private static final String KEY = "yearofice_hauling";
 
-    public static double reps(Player p) { return p.getPersistentData().getDouble(KEY); }
+    public static double reps(Player p) {
+        migrate(p);
+        return PracticeService.installed() ? PracticeService.get().reps(p, Skill.HAULING) : 0;
+    }
 
-    public static void setReps(Player p, double reps) { p.getPersistentData().putDouble(KEY, Math.max(0, reps)); }
+    public static void setReps(Player p, double reps) {
+        if (PracticeService.installed()) PracticeService.get().set(p, Skill.HAULING, Math.max(0, reps));
+    }
+
+    /** Moves the stand-in's reps into the attachment, once. */
+    private static void migrate(Player p) {
+        CompoundTag root = p.getPersistentData();
+        if (!root.contains(KEY) || !PracticeService.installed()) return;
+        double old = root.getDouble(KEY);
+        root.remove(KEY);
+        if (old > PracticeService.get().reps(p, Skill.HAULING)) PracticeService.get().set(p, Skill.HAULING, old);
+    }
 
     /** Called each player tick; counts walking time under a real load and awards a rep per interval. */
     public static void tick(ServerPlayer p) {
@@ -26,7 +42,8 @@ public final class PackSkill {
         int t = root.getInt(KEY + "_t") + 1;
         if (t >= PackConfig.get("hauling_rep_ticks")) {
             t = 0;
-            setReps(p, Math.min(reps(p) + 1, PackConfig.get("hauling_reps")));
+            if (PracticeService.installed() && reps(p) < PackConfig.get("hauling_reps"))
+                PracticeService.get().add(p, Skill.HAULING, 1);
         }
         root.putInt(KEY + "_t", t);
     }

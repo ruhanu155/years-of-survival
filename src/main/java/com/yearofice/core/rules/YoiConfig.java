@@ -36,6 +36,7 @@ public final class YoiConfig {
         com.yearofice.story.StoryConfig.define(b);
         com.yearofice.build.wood.WoodConfig.define(b);
         com.yearofice.build.BuildConfig.define(b);
+        com.yearofice.build.craft.CraftConfig.define(b);
         SPEC = b.build();
     }
 

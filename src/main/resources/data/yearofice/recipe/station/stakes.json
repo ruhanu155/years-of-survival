@@ -1,0 +1,20 @@
+{
+  "type": "yearofice:station",
+  "tier": "start",
+  "station": "yearofice:hands",
+  "ingredients": [
+    {
+      "item": "minecraft:stick",
+      "count": 1
+    }
+  ],
+  "tool": "#yearofice:knives",
+  "work_min": 2,
+  "effort": "light",
+  "kcal": 3,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:stake",
+    "count": 2
+  }
+}

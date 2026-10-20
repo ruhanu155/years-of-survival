@@ -1792,7 +1792,10 @@
       "files": [
         "assets/yearofice/blockstates/chopping_block.json",
         "assets/yearofice/models/block/chopping_block.json",
-        "assets/yearofice/models/item/chopping_block.json"
+        "assets/yearofice/models/item/chopping_block.json",
+        "assets/yearofice/blockstates/workbench.json",
+        "assets/yearofice/models/block/workbench.json",
+        "assets/yearofice/models/item/workbench.json"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/wood_blocks.py",
@@ -1952,7 +1955,10 @@
     },
     {
       "asset_id": "tex_flint_knife",
-      "files": [],
+      "files": [
+        "assets/yearofice/textures/item/flint_knife.png",
+        "assets/yearofice/models/item/flint_knife.json"
+      ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/flint_knife.json",
       "licence": "project",
@@ -1961,7 +1967,10 @@
     },
     {
       "asset_id": "tex_flint_nodule",
-      "files": [],
+      "files": [
+        "assets/yearofice/textures/item/flint_nodule.png",
+        "assets/yearofice/models/item/flint_nodule.json"
+      ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/flint_nodule.json",
       "licence": "project",
@@ -1970,7 +1979,10 @@
     },
     {
       "asset_id": "tex_knife",
-      "files": [],
+      "files": [
+        "assets/yearofice/textures/item/knife.png",
+        "assets/yearofice/models/item/knife.json"
+      ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/knife.json",
       "licence": "project",
@@ -1979,7 +1991,10 @@
     },
     {
       "asset_id": "tex_rough_stone",
-      "files": [],
+      "files": [
+        "assets/yearofice/textures/item/rough_stone.png",
+        "assets/yearofice/models/item/rough_stone.json"
+      ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/rough_stone.json",
       "licence": "project",
@@ -1988,7 +2003,10 @@
     },
     {
       "asset_id": "tex_stake",
-      "files": [],
+      "files": [
+        "assets/yearofice/textures/item/stake.png",
+        "assets/yearofice/models/item/stake.json"
+      ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/stake.json",
       "licence": "project",
@@ -1997,7 +2015,10 @@
     },
     {
       "asset_id": "tex_tool_handle",
-      "files": [],
+      "files": [
+        "assets/yearofice/textures/item/tool_handle.png",
+        "assets/yearofice/models/item/tool_handle.json"
+      ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/tool_handle.json",
       "licence": "project",
