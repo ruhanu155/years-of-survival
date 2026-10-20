@@ -552,7 +552,12 @@
   "messenger.yearofice.body.frost_superficial": "Frostbite: blisters are forming. Get out of the cold and rewarm slowly.",
   "messenger.yearofice.body.frost_deep": "Deep frostbite. The skin is black. Rewarm it now.",
   "messenger.yearofice.body.frost_digit_lost": "The frostbite took a finger or toe for good.",
-<<<<<<< HEAD
+  "messenger.yearofice.look.plant_card": "%s",
+  "block.yearofice.salt_crust": "Salt crust",
+  "item.yearofice.lick_crust": "Lick crust",
+  "item.yearofice.lick_salt": "Lick salt",
+  "item.yearofice.plant_material": "Plant material",
+  "subtitles.yearofice.work.crust_scrape": "Crust scraped",
   "subtitles.yearofice.trap.deadfall": "A thud",
   "subtitles.yearofice.work.pan_swirl": "Gravel swirling in a pan",
   "item.yearofice.pemmican": "Pemmican",
@@ -583,8 +588,7 @@
   "messenger.yearofice.pickup.deadfall_mouse": "A mouse under the stone. Marten bait.",
   "messenger.yearofice.pickup.deadfall_taken_hare": "A hare under the rock, stiff and cold.",
   "messenger.yearofice.pickup.pan_black_sand": "Black grains left in the pan: iron.",
-  "messenger.yearofice.pickup.pan_nothing": "Only grit and water."
-=======
+  "messenger.yearofice.pickup.pan_nothing": "Only grit and water.",
   "entity.yearofice.red_squirrel": "Red Squirrel",
   "entity.yearofice.marten": "Marten",
   "entity.yearofice.ermine": "Ermine",
@@ -618,5 +622,4 @@
   "item.yearofice.beaver_pelt": "Beaver Pelt",
   "block.yearofice.gut_pile": "Gut Pile",
   "ecosystem.yearofice.gut_pile_left": "Guts left on the ground."
->>>>>>> pr47
 }

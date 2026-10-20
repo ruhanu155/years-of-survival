@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/sweet_coltsfoot"
+  },
+  "render_type": "minecraft:cutout"
+}

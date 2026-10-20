@@ -1,0 +1,20 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "taken": "0|1"
+      },
+      "apply": {
+        "model": "yearofice:block/soapberry_bush"
+      }
+    },
+    {
+      "when": {
+        "taken": "2|3"
+      },
+      "apply": {
+        "model": "yearofice:block/soapberry_bush_bare"
+      }
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "id": "yearofice:barley",
+  "block": "yearofice:barley_crop",
+  "seed": {
+    "item": "yearofice:barley_seed",
+    "weight_g": 20,
+    "base_germination": 0.6,
+    "saved_germination": 0.8,
+    "seeds_per_block": 20
+  },
+  "sow_window": [
+    "05-20",
+    "06-10"
+  ],
+  "units": {
+    "sprout": 40,
+    "ripe": 950,
+    "frost_sensitive": [
+      700,
+      950
+    ]
+  },
+  "frost": {
+    "seedling_min_c": -3,
+    "head_min_c": -2,
+    "head_yield_mult": 0.2,
+    "hard_freeze_c": -5
+  },
+  "yield": {
+    "item": "yearofice:barley",
+    "kg_per_block": 0.3,
+    "straw_kg": 0.5,
+    "stand_formula": "tiller"
+  },
+  "pests": {
+    "hare_loss_pct": 2,
+    "grouse_loss_pct": 1,
+    "moose_visit_pct": 10,
+    "moose_take_pct": 10
+  },
+  "work_min": {
+    "sow": 1,
+    "weed": 1,
+    "cut": 2,
+    "thresh": 10,
+    "winnow_per_kg": 5
+  }
+}

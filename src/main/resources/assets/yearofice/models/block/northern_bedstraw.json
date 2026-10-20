@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/northern_bedstraw"
+  },
+  "render_type": "minecraft:cutout"
+}

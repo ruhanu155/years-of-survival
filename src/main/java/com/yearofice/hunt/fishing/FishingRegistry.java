@@ -67,6 +67,22 @@ public final class FishingRegistry {
     /** A whole fish is a single item (Items › Food values: "Single, weight_g"). */
     public static final DeferredItem<Item> ARCTIC_GRAYLING = ITEMS.register("arctic_grayling", () -> new YoiFoodItem(new Item.Properties().stacksTo(1)));
 
+    /** The other species' landed-fish items, same shape as the grayling (item and entity share the species id). */
+    public static final java.util.Map<String, DeferredItem<Item>> FISH = new java.util.TreeMap<>();
+
+    static {
+        FISH.put(FishingSpecies.GRAYLING, ARCTIC_GRAYLING);
+        for (String id : FishingSpecies.IDS) {
+            if (!FISH.containsKey(id)) FISH.put(id, ITEMS.register(id, () -> new YoiFoodItem(new Item.Properties().stacksTo(1))));
+        }
+    }
+
+    public static Item fishItem(String speciesId) {
+        DeferredItem<Item> i = FISH.get(speciesId);
+        if (i == null) throw new IllegalArgumentException("no fish item for " + speciesId);
+        return i.get();
+    }
+
     public static final DeferredHolder<EntityType<?>, EntityType<BobberEntity>> BOBBER = ENTITIES.register("bobber",
             () -> EntityType.Builder.<BobberEntity>of(BobberEntity::new, MobCategory.MISC)
                     .sized(0.25f, 0.25f).noSave().noSummon().clientTrackingRange(5).updateInterval(2).build("bobber"));
