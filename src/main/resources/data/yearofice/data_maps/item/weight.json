@@ -265,7 +265,6 @@
     "yearofice:beaver_pelt": {
       "weight_g": 1500
     },
-<<<<<<< HEAD
     "yearofice:moose_meat": {
       "weight_g": 100
     },
@@ -349,7 +348,7 @@
     },
     "yearofice:claw": {
       "weight_g": 30
-=======
+    },
     "yearofice:bird_meat": {
       "weight_g": 100
     },
@@ -394,7 +393,6 @@
     },
     "yearofice:kit_rod": {
       "weight_g": 450
->>>>>>> origin/main
     }
   }
 }

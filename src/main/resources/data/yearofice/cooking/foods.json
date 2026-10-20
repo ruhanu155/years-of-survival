@@ -49,7 +49,6 @@
       "spit": "per_kg",
       "family": "game_meat"
     },
-<<<<<<< HEAD
     "yearofice:dolly_varden": {
       "spit": "whole_fish",
       "family": "fish"
@@ -121,7 +120,7 @@
     "yearofice:wolverine_meat": {
       "spit": "whole_hare",
       "family": "game_meat"
-=======
+    },
     "yearofice:bird_meat": {
       "spit": "per_kg",
       "family": "game_meat"
@@ -177,7 +176,6 @@
     "yearofice:arctic_lamprey": {
       "spit": "whole_fish",
       "family": "fish"
->>>>>>> origin/main
     }
   }
 }

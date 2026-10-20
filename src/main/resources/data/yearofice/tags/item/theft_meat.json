@@ -11,7 +11,7 @@
     "yearofice:spruce_grouse_meat",
     "yearofice:ruffed_grouse_meat",
     "yearofice:rock_ptarmigan_meat",
-<<<<<<< HEAD
+    "yearofice:bird_meat",
     "yearofice:moose_meat",
     "yearofice:caribou_meat",
     "yearofice:mule_deer_meat",
@@ -22,8 +22,5 @@
     "yearofice:red_fox_meat",
     "yearofice:lynx_meat",
     "yearofice:wolverine_meat"
-=======
-    "yearofice:bird_meat"
->>>>>>> origin/main
   ]
 }
