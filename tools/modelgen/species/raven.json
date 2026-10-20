@@ -1,0 +1,19 @@
+{
+ "inherit": "willow_ptarmigan",
+ "id": "raven",
+ "texture_dir": "raven",
+ "anim_copies": [
+  "willow_ptarmigan",
+  "raven"
+ ],
+ "notes": "Glossy black corvid on the grouse rig. Same rig (grouse), recoloured; the renderer scales it (M6 lane C).",
+ "textures": {
+  "_replace": true,
+  "adult_all": {
+   "remap": {
+    "feather_ptarmigan_summer": "fur_black",
+    "comb_red": "fur_black"
+   }
+  }
+ }
+}

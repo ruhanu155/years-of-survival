@@ -1,0 +1,21 @@
+{
+ "inherit": "willow_ptarmigan",
+ "id": "mallard",
+ "texture_dir": "mallard",
+ "anim_copies": [
+  "willow_ptarmigan",
+  "mallard"
+ ],
+ "notes": "Brown-grey body, green head. Same rig (grouse), recoloured; the renderer scales it (M6 lane C).",
+ "textures": {
+  "_replace": true,
+  "adult_all": {
+   "remap": {
+    "feather_ptarmigan_summer": "feather_grouse_female",
+    "comb_red": "leaf_green",
+    "fur_black": "feather_grouse_female",
+    "fur_white": "feather_grouse_female"
+   }
+  }
+ }
+}

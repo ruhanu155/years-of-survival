@@ -1,0 +1,11 @@
+{
+  "species": "yearofice:stellers_jay",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    {
+      "item": "yearofice:bird_meat",
+      "kind": "meat",
+      "unit_g": 100
+    }
+  ]
+}

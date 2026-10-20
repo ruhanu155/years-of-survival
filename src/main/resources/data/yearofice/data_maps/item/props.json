@@ -493,6 +493,96 @@
       "category": "hide",
       "stack_class": "medium",
       "scent_level": 1
+    },
+    "yearofice:bird_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 2
+    },
+    "yearofice:sockeye_salmon": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:arctic_char": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:broad_whitefish": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:round_whitefish": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:least_cisco": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:bering_cisco": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:sheefish": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:longnose_sucker": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:slimy_sculpin": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:lake_chub": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:ninespine_stickleback": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:alaska_blackfish": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:arctic_lamprey": {
+      "category": "food",
+      "stack_class": "single",
+      "floats": true,
+      "scent_level": 2
+    },
+    "yearofice:kit_rod": {
+      "category": "tool",
+      "stack_class": "single",
+      "floats": true,
+      "material": "wood",
+      "max_condition": 100
     }
   }
 }

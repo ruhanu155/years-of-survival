@@ -5587,6 +5587,178 @@
       "generator_version": "hand script (PIL)",
       "recipe": "tools/artgen/hunt_placeholders.py",
       "release_blocker": false
+    },
+    {
+      "asset_id": "model_m6_waters",
+      "files": [
+        "assets/yearofice/blockstates/fish_wheel.json",
+        "assets/yearofice/blockstates/tip_up.json",
+        "assets/yearofice/blockstates/weir_stake.json",
+        "assets/yearofice/models/block/fish_wheel.json",
+        "assets/yearofice/models/block/tip_up.json",
+        "assets/yearofice/models/block/weir_stake.json",
+        "assets/yearofice/models/item/alaska_blackfish.json",
+        "assets/yearofice/models/item/arctic_char.json",
+        "assets/yearofice/models/item/arctic_lamprey.json",
+        "assets/yearofice/models/item/bering_cisco.json",
+        "assets/yearofice/models/item/bird_meat.json",
+        "assets/yearofice/models/item/broad_whitefish.json",
+        "assets/yearofice/models/item/fish_wheel.json",
+        "assets/yearofice/models/item/kit_rod.json",
+        "assets/yearofice/models/item/lake_chub.json",
+        "assets/yearofice/models/item/least_cisco.json",
+        "assets/yearofice/models/item/longnose_sucker.json",
+        "assets/yearofice/models/item/ninespine_stickleback.json",
+        "assets/yearofice/models/item/round_whitefish.json",
+        "assets/yearofice/models/item/sheefish.json",
+        "assets/yearofice/models/item/slimy_sculpin.json",
+        "assets/yearofice/models/item/sockeye_salmon.json",
+        "assets/yearofice/models/item/tip_up.json",
+        "assets/yearofice/models/item/weir_stake.json",
+        "assets/yearofice/textures/block/fish_wheel.png",
+        "assets/yearofice/textures/block/tip_up.png",
+        "assets/yearofice/textures/block/weir_stake.png",
+        "assets/yearofice/textures/entity/fish/alaska_blackfish.png",
+        "assets/yearofice/textures/entity/fish/arctic_char.png",
+        "assets/yearofice/textures/entity/fish/arctic_lamprey.png",
+        "assets/yearofice/textures/entity/fish/bering_cisco.png",
+        "assets/yearofice/textures/entity/fish/broad_whitefish.png",
+        "assets/yearofice/textures/entity/fish/lake_chub.png",
+        "assets/yearofice/textures/entity/fish/least_cisco.png",
+        "assets/yearofice/textures/entity/fish/longnose_sucker.png",
+        "assets/yearofice/textures/entity/fish/ninespine_stickleback.png",
+        "assets/yearofice/textures/entity/fish/round_whitefish.png",
+        "assets/yearofice/textures/entity/fish/sheefish.png",
+        "assets/yearofice/textures/entity/fish/slimy_sculpin.png",
+        "assets/yearofice/textures/entity/fish/sockeye_salmon.png",
+        "assets/yearofice/textures/gui/fish/alaska_blackfish.png",
+        "assets/yearofice/textures/gui/fish/arctic_char.png",
+        "assets/yearofice/textures/gui/fish/arctic_lamprey.png",
+        "assets/yearofice/textures/gui/fish/bering_cisco.png",
+        "assets/yearofice/textures/gui/fish/broad_whitefish.png",
+        "assets/yearofice/textures/gui/fish/lake_chub.png",
+        "assets/yearofice/textures/gui/fish/least_cisco.png",
+        "assets/yearofice/textures/gui/fish/longnose_sucker.png",
+        "assets/yearofice/textures/gui/fish/ninespine_stickleback.png",
+        "assets/yearofice/textures/gui/fish/round_whitefish.png",
+        "assets/yearofice/textures/gui/fish/sheefish.png",
+        "assets/yearofice/textures/gui/fish/slimy_sculpin.png",
+        "assets/yearofice/textures/gui/fish/sockeye_salmon.png",
+        "assets/yearofice/textures/item/kit_rod.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m6_waters.py",
+      "licence": "project",
+      "generator_version": "m6_waters 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_raven",
+      "files": [
+        "assets/yearofice/animations/entity/raven.animation.json",
+        "assets/yearofice/textures/entity/raven/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/raven.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_gray_jay",
+      "files": [
+        "assets/yearofice/animations/entity/gray_jay.animation.json",
+        "assets/yearofice/textures/entity/gray_jay/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/gray_jay.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_stellers_jay",
+      "files": [
+        "assets/yearofice/animations/entity/stellers_jay.animation.json",
+        "assets/yearofice/textures/entity/stellers_jay/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/stellers_jay.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_bald_eagle",
+      "files": [
+        "assets/yearofice/animations/entity/bald_eagle.animation.json",
+        "assets/yearofice/textures/entity/bald_eagle/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/bald_eagle.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_great_horned_owl",
+      "files": [
+        "assets/yearofice/animations/entity/great_horned_owl.animation.json",
+        "assets/yearofice/textures/entity/great_horned_owl/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/great_horned_owl.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_mallard",
+      "files": [
+        "assets/yearofice/animations/entity/mallard.animation.json",
+        "assets/yearofice/textures/entity/mallard/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/mallard.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_northern_pintail",
+      "files": [
+        "assets/yearofice/animations/entity/northern_pintail.animation.json",
+        "assets/yearofice/textures/entity/northern_pintail/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/northern_pintail.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_common_loon",
+      "files": [
+        "assets/yearofice/animations/entity/common_loon.animation.json",
+        "assets/yearofice/textures/entity/common_loon/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/common_loon.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_mew_gull",
+      "files": [
+        "assets/yearofice/animations/entity/mew_gull.animation.json",
+        "assets/yearofice/textures/entity/mew_gull/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/mew_gull.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
     }
   ]
 }

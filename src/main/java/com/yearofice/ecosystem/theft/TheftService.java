@@ -140,4 +140,44 @@ public final class TheftService {
             hour(level, pos, c, minute / 60, context(level, pos, minute)).ifPresent(msg -> YearOfIce.LOG.info("theft at {}: {}", pos.toShortString(), msg));
         }
     }
+
+    // ---- M6 lane C: live thieves (jays and ravens in the air) -------------------------------------------------------
+
+    /** The watched stores in this level within {@code r} blocks of {@code pos}. */
+    public static List<BlockPos> storesNear(ServerLevel level, BlockPos pos, double r) {
+        List<BlockPos> out = new ArrayList<>();
+        synchronized (WATCHED) {
+            for (var en : WATCHED.entrySet()) {
+                if (en.getValue() == level && en.getKey().distSqr(pos) <= r * r) out.add(en.getKey());
+            }
+        }
+        return out;
+    }
+
+    /** This thief's chance per game hour at this store, as the hourly roll would use it (0 when the toggle is off). */
+    public static double chancePerHour(ServerLevel level, BlockPos at, Theft.Thief thief) {
+        if (!enabled()) return 0;
+        long minute = SliceClock.minute(level);
+        return Theft.chance(thief, context(level, at, minute), EcoConfig.tuning().theftMult());
+    }
+
+    /**
+     * A live bird reached the store and takes what it can carry. Unlike {@link #hour} this is not a roll: the
+     * bird's own visit chance ({@link #chancePerHour}) already decided it came. Returns what it took, if anything.
+     */
+    public static Optional<String> birdVisit(ServerLevel level, BlockPos at, Theft.Thief thief) {
+        if (!enabled() || !(level.getBlockEntity(at) instanceof Container store)) return Optional.empty();
+        for (int i = 0; i < store.getContainerSize(); i++) {
+            Theft.Stack st = classify(store.getItem(i));
+            if (st == null || !Theft.takes(thief, st)) continue;
+            ItemStack s = store.getItem(i);
+            int units = Math.min(s.getCount(), Theft.unitsTaken(thief, st));
+            String name = BuiltInRegistries.ITEM.getKey(s.getItem()).getPath();
+            s.shrink(units);
+            store.setChanged();
+            thefts++;
+            return Optional.of(thief.name().toLowerCase() + " took " + units + " " + name);
+        }
+        return Optional.empty();
+    }
 }

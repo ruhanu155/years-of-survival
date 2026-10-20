@@ -1,0 +1,76 @@
+{
+  "species": "yearofice:common_loon",
+  "poses": {
+    "standing": [
+      {
+        "zone": "heart_lungs",
+        "center_m": [
+          0.0,
+          0.289,
+          0.068
+        ],
+        "radii_m": [
+          0.068,
+          0.068,
+          0.085
+        ]
+      },
+      {
+        "zone": "brain",
+        "center_m": [
+          0.0,
+          0.527,
+          0.187
+        ],
+        "radii_m": [
+          0.0255,
+          0.0255,
+          0.0255
+        ]
+      },
+      {
+        "zone": "gut",
+        "center_m": [
+          0.0,
+          0.221,
+          -0.085
+        ],
+        "radii_m": [
+          0.085,
+          0.085,
+          0.102
+        ]
+      },
+      {
+        "zone": "wings",
+        "center_m": [
+          0.0,
+          0.323,
+          0.0
+        ],
+        "radii_m": [
+          0.187,
+          0.068,
+          0.153
+        ]
+      },
+      {
+        "zone": "legs",
+        "below_y_m": 0.06
+      }
+    ],
+    "flying": {
+      "from": "standing",
+      "lower_m": 0.0
+    }
+  },
+  "kill_threshold_j": 8,
+  "bloodshot": {
+    "heart_lungs": [
+      "ribs"
+    ],
+    "gut": [
+      "loin"
+    ]
+  }
+}

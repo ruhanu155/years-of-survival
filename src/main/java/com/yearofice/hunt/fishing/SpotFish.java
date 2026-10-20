@@ -36,7 +36,8 @@ public final class SpotFish {
             FishData d = FishingSpecies.data(id);
             int init = i < s.stock().size() ? s.stock().get(i) : 0;
             if (init <= 0) continue;
-            out.add(new Entry(id, init * t.stockX(), d.rPerMonth() <= 0 ? 0.3 : d.rPerMonth()));
+            double runX = RunLedger.strengthNow(level, id, FishingClock.day(FishingClock.minute(level.getServer())));
+            out.add(new Entry(id, init * t.stockX() * runX, d.rPerMonth() <= 0 ? 0.3 : d.rPerMonth()));
         }
         return new Here(sp, out);
     }
@@ -49,5 +50,11 @@ public final class SpotFish {
     /** Stock of one species at a water cell. */
     public static FishStock stock(ServerLevel level, long cellKey, long absDay, Entry e) {
         return SliceSpots.stocks(level).get(SliceSpots.speciesKey(cellKey, e.id()), absDay, e.k(), e.r());
+    }
+
+    /** As {@link #stock(ServerLevel, long, long, Entry)} for a spot of a known type: no migration into a tarn or pond. */
+    public static FishStock stock(ServerLevel level, long cellKey, long absDay, Entry e, String spotType) {
+        double mig = com.yearofice.sim.fishing.SpotMigration.migrates(spotType) ? FishingConfig.tuning().spotMigrationPerDay() : 0;
+        return SliceSpots.stocks(level).get(SliceSpots.speciesKey(cellKey, e.id()), absDay, e.k(), e.r(), mig);
     }
 }

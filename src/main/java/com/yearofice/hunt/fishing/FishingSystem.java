@@ -31,6 +31,11 @@ public final class FishingSystem {
             if (e.getLevel() instanceof net.minecraft.server.level.ServerLevel sl && sl.dimension() == net.minecraft.world.level.Level.OVERWORLD) FishSpawner.tick(sl);
         });
         NeoForge.EVENT_BUS.addListener(FishingCommands::register);
+        NeoForge.EVENT_BUS.addListener(com.yearofice.hunt.fishing.debug.WatersCommands::register);
+        NeoForge.EVENT_BUS.addListener((LevelTickEvent.Post e) -> {
+            if (e.getLevel() instanceof net.minecraft.server.level.ServerLevel sl && sl.dimension() == net.minecraft.world.level.Level.OVERWORLD) WaterDrawService.tick(sl);
+        });
+        NeoForge.EVENT_BUS.addListener(FishCutting::onUse);
         NeoForge.EVENT_BUS.addListener((LevelTickEvent.Post e) -> FishingClock.afterLevelTick(e.getLevel()));
         NeoForge.EVENT_BUS.addListener((BlockEvent.BreakEvent e) -> WormDigging.onBreak(e));
         NeoForge.EVENT_BUS.addListener((ServerStoppedEvent e) -> FishingService.clear());
@@ -44,6 +49,10 @@ public final class FishingSystem {
             e.accept(FishingRegistry.FLY.get());
             e.accept(FishingRegistry.SET_LINE_ITEM.get());
             e.accept(FishingRegistry.WEIR_BASKET_ITEM.get());
+            e.accept(FishingRegistry.KIT_ROD.get());
+            e.accept(FishingRegistry.WEIR_STAKE_ITEM.get());
+            e.accept(FishingRegistry.FISH_WHEEL_ITEM.get());
+            e.accept(FishingRegistry.TIP_UP_ITEM.get());
             e.accept(FishingRegistry.GILL_NET_SEGMENT.get());
         } else if (e.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             e.accept(FishingRegistry.WORM.get());
