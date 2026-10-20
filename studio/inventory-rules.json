@@ -125,6 +125,7 @@
     { "basis": "Video 2 specs (RECONCILE 170), A4: the lick surface block moves to M2 with the licks (RECONCILE 167); Minecraft development > Registry table: terrain, water, ice and snow", "milestone": "m2", "owner": "worldgen", "type": "block", "ids": ["salt_crust"] },
     { "basis": "Video 2 specs (RECONCILE 170), A7 lift a full box: Minecraft development > Lift a full box", "milestone": "m3", "owner": "studio", "type": "tag", "ids": ["liftable_containers"] },
     { "basis": "Video 2 specs (RECONCILE 170), A7 box sounds and A8 card sound", "milestone": "m3", "owner": "look", "type": "sound_event", "ids": ["carry.box_lift", "carry.box_set", "ui.field_note_card"] },
+    { "basis": "A8 field-note cards (RECONCILE 170, 198): filed cards per player", "milestone": "m3", "owner": "look", "type": "attachment", "ids": ["field_notes"] },
     { "basis": "Video 2 specs (RECONCILE 170), A8 field-note cards: Creative concepts > Field-note cards; the 16th GUI layer", "milestone": "m3", "owner": "look", "type": "gui_layer", "ids": ["field_note_card"] },
     { "basis": "Field-note cards (A8): the per-player notebook record of filed and unseen cards", "milestone": "m3", "owner": "look", "type": "attachment", "ids": ["field_notes"] },
     { "basis": "Music tied to Spirits (Art and audio production): the three G0 pieces for dawn, day and fire", "milestone": "m3", "owner": "look", "type": "sound_event", "ids": ["music.dawn", "music.day", "music.fire"] },
