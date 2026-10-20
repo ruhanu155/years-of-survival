@@ -33,9 +33,33 @@ public final class InjuryTick {
     /** Called from {@code BodyTicker.step}/{@code stepPlan} after the model: ends old problems, then bleeds. */
     public static void step(BodyState s, long start, int minutes, BodyTuning t) {
         long end = start + minutes;
+        if (s.restActive) s.parts = restRates(s.parts, minutes, com.yearofice.sim.body.Wellness.tuning(t));
         s.parts = ProblemClock.expire(s.parts, end);
         s.parts = com.yearofice.sim.body.injury.Infection.advance(s.parts, start, minutes, t.bleedScale());
         s.parts = Treatments.bleed(s.parts, minutes, t.bleedScale(), end);
+    }
+
+    /**
+     * Rest-day healing rates on problem timers (RECONCILE 213): a sprain's wrap clock and a broken bone's splint
+     * clock run {@link com.yearofice.sim.body.RestDay#problemRate} times faster, by moving their start earlier.
+     */
+    public static com.yearofice.sim.body.part.BodyRecord restRates(com.yearofice.sim.body.part.BodyRecord r, int minutes,
+                                                                 com.yearofice.sim.body.WellnessTuning w) {
+        java.util.List<com.yearofice.sim.body.part.Problem> out = new java.util.ArrayList<>();
+        boolean changed = false;
+        for (var q : r.problems()) {
+            double rate = com.yearofice.sim.body.RestDay.problemRate(q.id(), w);
+            long extra = Math.round((rate - 1) * minutes);
+            if (extra > 0 && q.wrap() >= 0 && q.id().equals(com.yearofice.sim.body.part.Problems.SPRAIN)) {
+                q = q.wrapped(Math.max(0, q.wrap() - extra));
+                changed = true;
+            } else if (extra > 0 && q.splint() >= 0 && q.id().equals(com.yearofice.sim.body.part.Problems.BROKEN_BONE)) {
+                q = q.splinted(Math.max(0, q.splint() - extra));
+                changed = true;
+            }
+            out.add(q);
+        }
+        return changed ? r.withProblems(out) : r;
     }
 
     private static final Map<UUID, double[]> WALKED = new ConcurrentHashMap<>();

@@ -85,6 +85,10 @@ public final class BodyState {
 
     // Derived each step, never saved.
     public transient FeelsLike lastFeel = null;
+    /** "Outside like this: about N min" (ExposureSolver.shown): 0 now, -1 hours or never. */
+    public transient int exposureMin = -1;
+    /** True while the last step was on an unbroken Rest day near warmth. */
+    public transient boolean restActive = false;
     public transient double lastEnergyCap = 10;
     public transient Activity lastActivity = Activity.REST;
     public transient double lastAirC = 10;

@@ -20,7 +20,7 @@ public record BodySyncPayload(long minute, float kg, float bmi, float kcalInToda
                               float wetness, float water, float stomachPct, float condition, float strength,
                               float macroCarbs, float macroFat, float macroProtein, float drunkMlToday, boolean gutIll,
                               int sos, int activity, float airC, int precip, float precipMmH, float windMs,
-                              boolean roofed, int battery, Parts parts) implements CustomPacketPayload {
+                              boolean roofed, int battery, Parts parts, int exposureMin) implements CustomPacketPayload {
 
     /**
      * The ten parts for the body figure: {@code hp} and {@code frost} by {@code Part} ordinal, the lost-digit masks
@@ -56,7 +56,18 @@ public record BodySyncPayload(long minute, float kg, float bmi, float kcalInToda
                            float airC, int precip, float precipMmH, float windMs, boolean roofed, int battery) {
         this(minute, kg, bmi, kcalInToday, kcalOutToday, balance24h, energy, energyCap, warmth, feelsLikeC, feel, wetness,
                 water, stomachPct, condition, strength, macroCarbs, macroFat, macroProtein, drunkMlToday, gutIll, sos,
-                activity, airC, precip, precipMmH, windMs, roofed, battery, Parts.HEALTHY);
+                activity, airC, precip, precipMmH, windMs, roofed, battery, Parts.HEALTHY, -1);
+    }
+
+    /** Without the exposure number ({@code -1}: hours or never). */
+    public BodySyncPayload(long minute, float kg, float bmi, float kcalInToday, float kcalOutToday, float balance24h,
+                           float energy, float energyCap, float warmth, float feelsLikeC, float[] feel, float wetness,
+                           float water, float stomachPct, float condition, float strength, float macroCarbs,
+                           float macroFat, float macroProtein, float drunkMlToday, boolean gutIll, int sos, int activity,
+                           float airC, int precip, float precipMmH, float windMs, boolean roofed, int battery, Parts parts) {
+        this(minute, kg, bmi, kcalInToday, kcalOutToday, balance24h, energy, energyCap, warmth, feelsLikeC, feel, wetness,
+                water, stomachPct, condition, strength, macroCarbs, macroFat, macroProtein, drunkMlToday, gutIll, sos,
+                activity, airC, precip, precipMmH, windMs, roofed, battery, parts, -1);
     }
 
     public static final Type<BodySyncPayload> TYPE =
@@ -105,6 +116,7 @@ public record BodySyncPayload(long minute, float kg, float bmi, float kcalInToda
         b.writeVarInt(q.crooked);
         b.writeVarInt(q.problems);
         b.writeByte((q.bleeding ? 1 : 0) | (q.fever ? 2 : 0));
+        b.writeVarInt(p.exposureMin + 1);
     }
 
     static BodySyncPayload read(RegistryFriendlyByteBuf b) {
@@ -131,7 +143,8 @@ public record BodySyncPayload(long minute, float kg, float bmi, float kcalInToda
         parts = new Parts(parts.hp(), parts.frost(), parts.fingers(), parts.toes(), parts.crooked(), parts.problems(),
                 (pf & 1) != 0, (pf & 2) != 0);
         return new BodySyncPayload(minute, kg, bmi, in, out, bal, energy, cap, warmth, feels, feel, wet, water, stomach,
-                cond, strength, carbs, fat, protein, drunk, gut, sos, activity, air, precip, mmH, wind, roofed, battery, parts);
+                cond, strength, carbs, fat, protein, drunk, gut, sos, activity, air, precip, mmH, wind, roofed, battery, parts,
+                b.readVarInt() - 1);
     }
 
     @Override
@@ -146,7 +159,7 @@ public record BodySyncPayload(long minute, float kg, float bmi, float kcalInToda
                 || d(feelsLikeC, last.feelsLikeC, 100) || d(kcalInToday, last.kcalInToday, 3000)
                 || d(kcalOutToday, last.kcalOutToday, 3000) || d(airC, last.airC, 100)
                 || sos != last.sos || gutIll != last.gutIll || precip != last.precip || roofed != last.roofed
-                || battery / 100 != last.battery / 100 || !parts.same(last.parts);
+                || battery / 100 != last.battery / 100 || exposureMin != last.exposureMin || !parts.same(last.parts);
     }
 
     private static boolean d(float a, float b, float range) { return Math.abs(a - b) > 0.01f * range; }

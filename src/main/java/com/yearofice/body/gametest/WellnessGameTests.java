@@ -61,6 +61,8 @@ public final class WellnessGameTests {
         out.add(test("yearofice:body/beard_stages", WellnessGameTests::beardStages));
         out.add(test("yearofice:body/fever_sleep_slow", WellnessGameTests::feverSleepSlow));
         out.add(test("yearofice:body/rest_day_part_rates", WellnessGameTests::restDayPartRates));
+        out.add(test("yearofice:body/frostbite_live", WellnessGameTests::frostbiteLive));
+        out.add(test("yearofice:body/ground_bed_camera_direction", WellnessGameTests::groundBedDirection));
         out.add(test("yearofice:data/migrate_schema3", WellnessGameTests::migrateSchema3));
         return TestFilter.apply(out);
     }
@@ -219,6 +221,66 @@ public final class WellnessGameTests {
         double normal = Healing.rate(s, in, com.yearofice.sim.body.IllnessModel.Effects.NONE, false, W);
         double rest = Healing.rate(s, in, com.yearofice.sim.body.IllnessModel.Effects.NONE, true, W);
         h.assertTrue(Math.abs(rest - 2 * normal) < 1e-9, "Condition doubles on a Rest day: " + rest + " vs " + normal);
+        // End to end: a wrapped sprain (2 days) is over inside 25 hours of rest by a fire, not away from one; a splint's
+        // clock is moved 1.5x as fast.
+        ServerPlayer atFire = BodyGameTests.player(h), away = BodyGameTests.player(h);
+        for (ServerPlayer q : new ServerPlayer[] {atFire, away}) {
+            BodyState qs = BodyAttachments.of(q);
+            qs.parts = com.yearofice.sim.body.injury.Treatments.add(qs.parts,
+                    com.yearofice.sim.body.part.Problem.fresh("sprain", com.yearofice.sim.body.part.Part.LEFT_LEG, "", 1, 5000).wrapped(5000));
+        }
+        for (ServerPlayer q : new ServerPlayer[] {atFire, away}) {
+            List<HeatSource> heat = q == atFire ? List.of(HeatSource.openFire(FireSetting.STEADY, 1.0)) : List.of();
+            with(new Fixed(EnvSample.outdoors(15, 0), heat), x -> {
+                BodyState qs = BodyAttachments.of(q);
+                for (int hr = 0; hr < 25; hr++) {
+                    qs.warmth = 100;
+                    feed(qs, 5000 + hr * 60L);
+                    BodyTicker.step(q, 5000 + hr * 60L, 60, Activity.REST, false, false, T);
+                }
+            });
+        }
+        h.assertTrue(BodyAttachments.of(atFire).parts.problems().isEmpty(), "the sprain healed in 25 h on a Rest day");
+        h.assertTrue(BodyAttachments.of(away).parts.problems().size() == 1, "and is still there away from a fire");
+        var bone = com.yearofice.sim.body.part.Problem.fresh("broken_bone", com.yearofice.sim.body.part.Part.LEFT_LEG, "", 1, 0).splinted(1000);
+        var shifted = com.yearofice.body.injury.InjuryTick.restRates(
+                com.yearofice.sim.body.part.BodyRecord.healthy().withProblems(List.of(bone)), 600, W);
+        h.assertTrue(shifted.problems().get(0).splint() == 1000 - 300, "a splint runs 1.5x: moved 300 earlier over 600 min, got "
+                + shifted.problems().get(0).splint());
+        h.succeed();
+    }
+
+    /** Bare hands at -30 C: frostnip at 30 min through the live tick, a frostbite problem, an exposure number. */
+    static void frostbiteLive(GameTestHelper h) {
+        ServerPlayer p = BodyGameTests.player(h);
+        BodyState s = BodyAttachments.of(p);
+        com.yearofice.sim.body.part.Part hand = com.yearofice.sim.body.part.Part.LEFT_HAND;
+        with(new Fixed(EnvSample.outdoors(-30, 0), List.of()), x -> {
+            s.warmth = 100;
+            feed(s, 0);
+            BodyTicker.step(p, 0, 20, Activity.REST, false, false, T);
+            h.assertTrue(s.parts.partFrost()[hand.ordinal()] > 0 && s.parts.partFrost()[hand.ordinal()] < 300,
+                    "20 min at -30: frost building but short of frostnip, got " + s.parts.partFrost()[hand.ordinal()]);
+            h.assertTrue(s.exposureMin >= 0, "the exposure number is solved, got " + s.exposureMin);
+            BodyTicker.step(p, 20, 15, Activity.REST, false, false, T);
+        });
+        int f = s.parts.partFrost()[hand.ordinal()];
+        h.assertTrue(com.yearofice.sim.body.FrostModel.stage(f) >= 1, "35 min bare-handed at -30 C: frostnip, got " + f);
+        h.assertTrue(s.parts.problems().stream().anyMatch(q -> q.id().equals("frostbite") && q.part() == hand),
+                "a frostbite problem is on the hand");
+        // Warmed up, frostnip clears.
+        with(new Fixed(EnvSample.outdoors(15, 0), List.of()), x -> {
+            for (int k = 0; k < 2; k++) { s.warmth = 100; feed(s, 35 + k * 60L); BodyTicker.step(p, 35 + k * 60L, 60, Activity.REST, false, false, T); }
+        });
+        h.assertTrue(s.parts.partFrost()[hand.ordinal()] == 0, "frostnip clears within an hour of rewarming");
+        h.succeed();
+    }
+
+    /** A sleeper's camera asks the bed for its direction; the ground marker has no facing and used to crash the client. */
+    static void groundBedDirection(GameTestHelper h) {
+        var st = com.yearofice.body.LeftPack.GROUND_BED.get().defaultBlockState();
+        net.minecraft.core.Direction d = st.getBedDirection(h.getLevel(), h.absolutePos(new net.minecraft.core.BlockPos(1, 2, 1)));
+        h.assertTrue(d != null, "the ground bed answers a bed direction");
         h.succeed();
     }
 
@@ -248,6 +310,8 @@ public final class WellnessGameTests {
         // Back to Full (day 60), for the cold test.
         Skin.trim(s, 2, W);
         h.assertTrue(Skin.beardStage(s, W) == 2 && Skin.faceBonusC(s, 0, W) == 2.0, "Full beard: safe 2 C colder");
+        h.assertTrue(new com.yearofice.body.net.BodyPublicPayload(1, com.yearofice.body.injury.BodyPublic.flags(s)).beard() == 2,
+                "body_public carries the beard stage");
         long t0 = 200_000;
         with(new Fixed(EnvSample.outdoors(-30, 0), List.of()), x -> {
             s.warmth = 100;

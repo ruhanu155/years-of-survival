@@ -148,6 +148,7 @@ public final class BodyModel {
                 break;
             }
         }
+        FrostStep.tick(s, in.env(), in.heat(), ctx, clothing, t.coldScale(), Wellness.tuning(t), m, done);
         double[] wet = clothing.wetCopy();
         System.arraycopy(wet, 0, s.slotWet, 0, wet.length);
 
