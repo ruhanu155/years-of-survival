@@ -1,0 +1,13 @@
+{
+  "id": "yearofice:grease_gloves",
+  "source": "Body tab > Injuries on the body, B13 face grease against glare and wind",
+  "item_tag": "yearofice:grease",
+  "amount_g": 5,
+  "hold_game_min": 1,
+  "part": "hands",
+  "needs": "leather gloves or mittens worn",
+  "effect": {
+    "glove_grease_days": 3,
+    "wet_mult": 0.7
+  }
+}

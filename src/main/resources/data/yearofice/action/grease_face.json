@@ -1,0 +1,18 @@
+{
+  "id": "yearofice:grease_face",
+  "source": "Body tab > Injuries on the body, B13 face grease against glare and wind",
+  "item_tag": "yearofice:grease",
+  "amount_g": 10,
+  "hold_game_min": 1,
+  "part": "head",
+  "effect": {
+    "face_grease_h": 8,
+    "face_safe_c": 2,
+    "protects": [
+      "yearofice:sunburn",
+      "yearofice:windburn"
+    ]
+  },
+  "kcal_cost_daily": 90,
+  "line": "face_greased"
+}

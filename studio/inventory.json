@@ -7,12 +7,12 @@
     "Items: the doc's count says 226, its list names 225"
   ],
   "counts": {
-    "total": 1431,
-    "by_type": {"mob": 154, "entity": 21, "block_with_entity": 80, "block": 152, "plant_block": 107, "multiblock": 3, "item": 397, "sound_event": 135, "particle_type": 43, "attachment": 31, "data_component": 31, "payload": 26, "gui_layer": 17, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 14, "loot_function": 8, "loot_condition": 3, "recipe_type": 5, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 75, "biome": 29, "worldgen_hook": 16, "poi_type": 14},
-    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 115, "m4": 48, "m5": 361, "m6": 294, "m7": 141, "m8": 124, "m9": 52, "none": 3},
-    "by_owner": {"body": 240, "building": 192, "ecosystem": 255, "food": 235, "look": 211, "story": 62, "studio": 75, "worldgen": 161},
-    "by_milestone_source": {"doc": 626, "rule": 805},
-    "by_status": {"planned": 1312, "registered": 116, "retired": 3}
+    "total": 1432,
+    "by_type": {"mob": 154, "entity": 21, "block_with_entity": 80, "block": 152, "plant_block": 107, "multiblock": 3, "item": 397, "sound_event": 135, "particle_type": 43, "attachment": 31, "data_component": 31, "payload": 26, "gui_layer": 17, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 14, "loot_function": 8, "loot_condition": 3, "recipe_type": 5, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 76, "biome": 29, "worldgen_hook": 16, "poi_type": 14},
+    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 115, "m4": 49, "m5": 361, "m6": 294, "m7": 141, "m8": 124, "m9": 52, "none": 3},
+    "by_owner": {"body": 241, "building": 192, "ecosystem": 255, "food": 235, "look": 211, "story": 62, "studio": 75, "worldgen": 161},
+    "by_milestone_source": {"doc": 627, "rule": 805},
+    "by_status": {"planned": 1313, "registered": 116, "retired": 3}
   },
   "entries": [
     {"id": "yearofice:alaska_blackfish", "type": "mob", "milestone": "m5", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
@@ -1347,6 +1347,7 @@
     {"id": "yearofice:freezing_soils", "type": "tag", "milestone": "m2", "owner": "worldgen", "milestone_source": "rule", "status": "registered"},
     {"id": "yearofice:funnel_materials", "type": "tag", "milestone": "m8", "owner": "building", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:goat_toxic", "type": "tag", "milestone": "m5", "owner": "body", "milestone_source": "rule", "status": "planned"},
+    {"id": "yearofice:grease", "type": "tag", "milestone": "m4", "owner": "body", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:large_animals", "type": "tag", "milestone": "m2_5", "owner": "body", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:large_predators", "type": "tag", "milestone": "m6", "owner": "ecosystem", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:liftable_containers", "type": "tag", "milestone": "m3", "owner": "studio", "milestone_source": "doc", "status": "planned"},

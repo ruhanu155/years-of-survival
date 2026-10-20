@@ -16,7 +16,7 @@ import java.util.List;
  * The versioned codec of {@code yearofice:body} (Minecraft development › The body attachment; Body tab › The body
  * record, extended). Keys are the snake_case field names of the record table. Every field has a default, so a
  * schema 1 save (no {@code part_hp}) loads, and the upgrade then sets every part to 100 and moves the old
- * Condition loss into {@code d_sys}. The codec always writes schema 2.
+ * Condition loss into {@code d_sys}. The codec always writes the current schema (3: illness, vitamin C, Rest days, skin and hair).
  *
  * <p>The record is flat in the save, as the Blueprint's JSON shows it; three map codecs (vitals, bins, parts)
  * share one object because a record codec takes at most 16 fields.
@@ -136,11 +136,43 @@ public final class BodyCodec {
             PROBLEM.listOf().optionalFieldOf("problems", List.of()).forGetter(Parts::problems)
     ).apply(i, Parts::new));
 
+    // --- illness, rest, skin and hair (schema 3, lane B) ----------------------------------------------------
+    record Ill(String id, long start, long until) {}
+
+    static final Codec<Ill> ILL = RecordCodecBuilder.create(i -> i.group(
+            Codec.STRING.fieldOf("id").forGetter(Ill::id),
+            Codec.LONG.fieldOf("start").forGetter(Ill::start),
+            Codec.LONG.optionalFieldOf("until", -1L).forGetter(Ill::until)
+    ).apply(i, Ill::new));
+
+    record Wellness(float vitC, float nausea, List<Ill> ill, int restRun, float restWork, int restAway, int restSleep,
+                    long restDay, float hairDays, boolean facialHair, long faceGrease, long gloveGrease, float sunMin,
+                    float windMin, float iceMin) {}
+
+    static final MapCodec<Wellness> WELLNESS = RecordCodecBuilder.mapCodec(i -> i.group(
+            Codec.FLOAT.optionalFieldOf("vit_c", 30f).forGetter(Wellness::vitC),
+            Codec.FLOAT.optionalFieldOf("nausea", 0f).forGetter(Wellness::nausea),
+            ILL.listOf().optionalFieldOf("ill", List.of()).forGetter(Wellness::ill),
+            Codec.INT.optionalFieldOf("rest_run", 0).forGetter(Wellness::restRun),
+            Codec.FLOAT.optionalFieldOf("rest_work_min", 0f).forGetter(Wellness::restWork),
+            Codec.INT.optionalFieldOf("rest_away_min", 0).forGetter(Wellness::restAway),
+            Codec.INT.optionalFieldOf("rest_sleep_min", 0).forGetter(Wellness::restSleep),
+            Codec.LONG.optionalFieldOf("rest_day", -1L).forGetter(Wellness::restDay),
+            Codec.FLOAT.optionalFieldOf("hair_days", 0f).forGetter(Wellness::hairDays),
+            Codec.BOOL.optionalFieldOf("facial_hair", true).forGetter(Wellness::facialHair),
+            Codec.LONG.optionalFieldOf("face_grease_until", -1L).forGetter(Wellness::faceGrease),
+            Codec.LONG.optionalFieldOf("glove_grease_until", -1L).forGetter(Wellness::gloveGrease),
+            Codec.FLOAT.optionalFieldOf("sun_min", 0f).forGetter(Wellness::sunMin),
+            Codec.FLOAT.optionalFieldOf("wind_min", 0f).forGetter(Wellness::windMin),
+            Codec.FLOAT.optionalFieldOf("ice_min", 0f).forGetter(Wellness::iceMin)
+    ).apply(i, Wellness::new));
+
     // --- the whole record ----------------------------------------------------------------------------------
     public static final Codec<BodyState> CODEC = RecordCodecBuilder.create(i -> i.group(
             VITALS.forGetter(BodyCodec::vitals),
             BINS.forGetter(BodyCodec::bins),
-            PARTS.forGetter(BodyCodec::parts)
+            PARTS.forGetter(BodyCodec::parts),
+            WELLNESS.forGetter(BodyCodec::wellness)
     ).apply(i, BodyCodec::assemble));
 
     static Vitals vitals(BodyState s) {
@@ -162,7 +194,15 @@ public final class BodyCodec {
                 toInts(r.lostDigits()), r.crooked(), r.injurySeq(), r.problems());
     }
 
-    static BodyState assemble(Vitals v, Bins b, Parts p) {
+    static Wellness wellness(BodyState s) {
+        List<Ill> ill = new ArrayList<>();
+        for (var a : s.ill) ill.add(new Ill(a.id(), a.start(), a.until()));
+        return new Wellness((float) s.vitC, (float) s.nausea, ill, s.restRun, (float) s.restWorkMin, s.restAwayMin,
+                s.restSleepMin, s.restDay, (float) s.hairDays, s.facialHair, s.faceGreaseUntil, s.gloveGreaseUntil,
+                (float) s.sunMin, (float) s.windMin, (float) s.iceMin);
+    }
+
+    static BodyState assemble(Vitals v, Bins b, Parts p, Wellness w) {
         BodyState s = new BodyState();
         s.heightCm = v.heightCm();
         s.sex = v.sex();
@@ -199,11 +239,28 @@ public final class BodyCodec {
                     intArray(p.partFrost(), Part.COUNT, 0), intArray(p.lostDigits(), 2, 0), p.crooked(),
                     p.injurySeq(), probs);
         }
+        // Schema 2 → 3: every new field takes its codec default (full vitamin C, no illness, hair at 0).
+        s.vitC = w.vitC();
+        s.nausea = w.nausea();
+        for (Ill a : w.ill()) s.ill.add(new com.yearofice.sim.body.IllnessModel.Active(a.id(), a.start(), a.until()));
+        s.restRun = w.restRun();
+        s.restWorkMin = w.restWork();
+        s.restAwayMin = w.restAway();
+        s.restSleepMin = w.restSleep();
+        s.restDay = w.restDay();
+        s.hairDays = w.hairDays();
+        s.facialHair = w.facialHair();
+        s.faceGreaseUntil = w.faceGrease();
+        s.gloveGreaseUntil = w.gloveGrease();
+        s.sunMin = w.sunMin();
+        s.windMin = w.windMin();
+        s.iceMin = w.iceMin();
         return s;
     }
 
     /** Field-by-field equality of two records as saved (floats at save precision). */
     public static boolean sameAsSaved(BodyState a, BodyState b) {
-        return vitals(a).equals(vitals(b)) && bins(a).equals(bins(b)) && parts(a).equals(parts(b));
+        return vitals(a).equals(vitals(b)) && bins(a).equals(bins(b)) && parts(a).equals(parts(b))
+                && wellness(a).equals(wellness(b));
     }
 }

@@ -1675,6 +1675,15 @@
       "ids": [
         "bandage"
       ]
+    },
+    {
+      "basis": "B13 face grease: items that can be rubbed into the face and gloves (RECONCILE 175); Body tab > Injuries on the body",
+      "milestone": "m4",
+      "owner": "body",
+      "type": "tag",
+      "ids": [
+        "grease"
+      ]
     }
   ],
   "expand": {

@@ -1,0 +1,28 @@
+{
+  "id": "yearofice:lean_meat",
+  "engine": "body",
+  "source": "Blueprint › Macros and strength",
+  "cause": "Fat under 30% and protein over 45% of calories for 3 days",
+  "onset_h": [
+    0,
+    0
+  ],
+  "duration_h": -1,
+  "cure": {
+    "fat_share": 0.6,
+    "days": 2
+  },
+  "stages": [
+    {
+      "from_h": 0,
+      "cap_bolts": 6,
+      "msg": "ill_lean_meat_1"
+    },
+    {
+      "from_h": 120,
+      "cap_bolts": 6,
+      "absorb": 0.8,
+      "msg": "ill_lean_meat_2"
+    }
+  ]
+}

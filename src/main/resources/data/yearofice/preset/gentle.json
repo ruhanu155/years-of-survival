@@ -1,0 +1,26 @@
+{
+  "id": "yearofice:gentle",
+  "body": {
+    "calorie_burn": 0.5,
+    "kcal_per_kg": 3500,
+    "cold": 0.5,
+    "water_need": 0.75,
+    "unboiled_illness": 0.15,
+    "bleed_scale": 0.5,
+    "infection_scale": 0.5,
+    "digit_loss": false
+  },
+  "wellness": {
+    "illness_scale": 0.75,
+    "rest_heal": 2,
+    "sunburn_h": 3,
+    "windburn_h": 2,
+    "face_grease_h": 8,
+    "glove_grease_days": 3,
+    "glove_grease_wet_mult": 0.7,
+    "beard_stage_days": 30,
+    "beard_face_bonus_c": 2,
+    "beard_ice_temp_c": -25,
+    "grease_face_bonus_c": 2
+  }
+}

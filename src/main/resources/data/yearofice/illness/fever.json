@@ -1,0 +1,22 @@
+{
+  "id": "yearofice:fever",
+  "engine": "body",
+  "source": "Ideas from viewers › Sick stomach",
+  "cause": "Infection stage 2; gut illness, day 1",
+  "onset_h": [
+    0,
+    0
+  ],
+  "duration_h": 24,
+  "cure": {
+    "willow_bark_tea_h": 8
+  },
+  "note": "A 3-hour cycle: hot 2 h, chills 1 h at feels-like -6 C. The extra litre of water a day belongs to the cause (gut illness already adds it). Started by the gut illness onset.",
+  "stages": [
+    {
+      "from_h": 0,
+      "chill_c": -6,
+      "msg": "ill_fever_1"
+    }
+  ]
+}

@@ -344,7 +344,7 @@ public final class BodyGameTests {
         BodyState back = BodyCodec.CODEC.parse(JsonOps.INSTANCE, json).getOrThrow();
         h.assertTrue(BodyCodec.sameAsSaved(s, back), "round trip differs: " + json);
         h.assertTrue(back.parts.hp(Part.LEFT_ARM) == 76, "left arm " + back.parts.hp(Part.LEFT_ARM));
-        h.assertTrue(json.getAsJsonObject().get("schema").getAsInt() == 2, "writes schema 2");
+        h.assertTrue(json.getAsJsonObject().get("schema").getAsInt() == BodyState.SCHEMA, "writes the current schema (3)");
 
         String v1 = "{\"schema\":1,\"kg\":71.4,\"water\":58,\"warmth\":74,\"energy\":6.2,\"condition\":88,"
                 + "\"kcal_in\":[0,0,0,0,0,0,0,650,0,0,0,0,450,0,0,0,0,0,1000,0,0,0,0,0],"

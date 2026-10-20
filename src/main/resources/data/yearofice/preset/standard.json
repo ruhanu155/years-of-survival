@@ -1,0 +1,26 @@
+{
+  "id": "yearofice:standard",
+  "body": {
+    "calorie_burn": 1.0,
+    "kcal_per_kg": 2400,
+    "cold": 1.0,
+    "water_need": 1.0,
+    "unboiled_illness": 0.3,
+    "bleed_scale": 1.0,
+    "infection_scale": 1.0,
+    "digit_loss": true
+  },
+  "wellness": {
+    "illness_scale": 1.0,
+    "rest_heal": 2,
+    "sunburn_h": 3,
+    "windburn_h": 2,
+    "face_grease_h": 8,
+    "glove_grease_days": 3,
+    "glove_grease_wet_mult": 0.7,
+    "beard_stage_days": 30,
+    "beard_face_bonus_c": 2,
+    "beard_ice_temp_c": -25,
+    "grease_face_bonus_c": 2
+  }
+}
