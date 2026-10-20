@@ -10,6 +10,9 @@ import net.minecraft.world.phys.Vec3;
 
 /** Reads the blocks around a player into a {@link Blinds.Effect} for the animals (the {@link ConcealmentService} {@code hunt} installs). */
 public final class HuntConcealment implements ConcealmentService {
+    /** GameTest hook: the world clock starts in deep winter, so a blind test pins the snow it stands in. */
+    public static volatile Double snowOverrideCm;
+
     @Override
     public Blinds.Effect effectFor(ServerLevel level, ServerPlayer p, double animalDistM, boolean inFront, boolean bigPrey, boolean bear) {
         Blinds.Kind kind = Blinds.Kind.NONE;
@@ -29,7 +32,8 @@ public final class HuntConcealment implements ConcealmentService {
         boolean still = v.horizontalDistanceSqr() < 1e-4;
         boolean drawing = p.isUsingItem() && p.getUseItem().getItem() instanceof com.yearofice.hunt.BowItem;
         double snow = 0;
-        try { snow = EnvService.get().snowCm(level, at); } catch (IllegalStateException ignored) { /* env not installed */ }
+        if (snowOverrideCm != null) snow = snowOverrideCm;
+        else try { snow = EnvService.get().snowCm(level, at); } catch (IllegalStateException ignored) { /* env not installed */ }
         return Blinds.effect(kind, still, drawing, animalDistM, inFront, fresh ? 0.5 : 2.0, bigPrey, bear, snow, HuntConfig.tuning());
     }
 }
