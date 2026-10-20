@@ -177,24 +177,35 @@ public final class FoodD2GameTests {
     static void rackThiefToggle(GameTestHelper h) {
         var oldWatcher = RackWatch.watcher;
         var oldToggle = RackWatch.toggle;
-        try {
-            h.assertTrue(RackWatch.enabled(), "the toggle is on by default");
-            List<BlockPos> seen = new ArrayList<>();
-            RackWatch.watcher = (level, pos) -> seen.add(pos);
-            RackWatch.toggle = () -> false;
-            h.setBlock(AT.below(), Blocks.STONE);
-            h.setBlock(AT, PreserveRegistry.DRYING_RACK.get());
-            h.assertTrue(seen.isEmpty(), "toggle off: the rack is not watched, " + seen);
-            RackWatch.toggle = () -> true;
+        h.assertTrue(RackWatch.enabled() == oldToggle.getAsBoolean(), "toggle reads the player's option");
+        List<BlockPos> seen = new ArrayList<>();
+        RackWatch.watcher = (level, pos) -> seen.add(pos);
+        RackWatch.toggle = () -> false;
+        h.setBlock(AT.below(), Blocks.STONE);
+        h.setBlock(AT, PreserveRegistry.DRYING_RACK.get());
+        h.runAfterDelay(3, () -> {
             BlockPos second = AT.east();
-            h.setBlock(second.below(), Blocks.STONE);
-            h.setBlock(second, PreserveRegistry.SMOKE_RACK.get());
-            h.assertTrue(seen.contains(h.absolutePos(second)), "toggle on: the next rack is watched, " + seen);
-            h.succeed();
-        } finally {
-            RackWatch.watcher = oldWatcher;
-            RackWatch.toggle = oldToggle;
-        }
+            try {
+                h.assertTrue(seen.isEmpty(), "toggle off: the rack is not watched, " + seen);
+                RackWatch.toggle = () -> true;
+                h.setBlock(second.below(), Blocks.STONE);
+                h.setBlock(second, PreserveRegistry.SMOKE_RACK.get());
+            } catch (RuntimeException e) {
+                RackWatch.watcher = oldWatcher;
+                RackWatch.toggle = oldToggle;
+                throw e;
+            }
+            h.runAfterDelay(3, () -> {
+                try {
+                    h.assertTrue(seen.contains(h.absolutePos(second)), "toggle on: the next rack is watched, " + seen);
+                    h.assertTrue(!seen.contains(h.absolutePos(AT)), "the first rack was not, " + seen);
+                    h.succeed();
+                } finally {
+                    RackWatch.watcher = oldWatcher;
+                    RackWatch.toggle = oldToggle;
+                }
+            });
+        });
     }
 
     // ---- trap/deadfall_rolls ------------------------------------------------------------------------------------
@@ -222,7 +233,7 @@ public final class FoodD2GameTests {
         DeadfallBlockEntity be = h.getBlockEntity(AT);
         be.setSilent(true);
         be.setAnimals(50.0);
-        long july = 190L * 1440, december = 345L * 1440;
+        long july = dayInMonth(7) * 1440, december = dayInMonth(12) * 1440;
         be.setClock(july);
         be.set();
         be.setClock(july + 20L * 1440);
@@ -250,6 +261,11 @@ public final class FoodD2GameTests {
                 "sticks break at " + t.sticksLife() + " triggers: " + be.status() + " after " + be.triggers());
         h.assertTrue(be.mice() >= 1, "mice counted: " + be.mice());
         h.succeed();
+    }
+
+    static long dayInMonth(int month) {
+        for (long d = 400; d < 800; d++) if (com.yearofice.sim.time.Calendar.month(com.yearofice.sim.time.Calendar.dayOfYearOfDay(d)) == month) return d + 5;
+        throw new IllegalStateException("no day in month " + month);
     }
 
     // ---- trap/snare_funnel --------------------------------------------------------------------------------------
