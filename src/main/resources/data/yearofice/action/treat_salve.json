@@ -1,0 +1,13 @@
+{
+  "game_min": 1,
+  "hold_s": 1,
+  "items": [
+    "#yearofice:salve"
+  ],
+  "problems": [
+    "cut",
+    "burn",
+    "bruise",
+    "infection"
+  ]
+}

@@ -29,6 +29,10 @@ public final class ClientBody {
 
     public static boolean energyWarn(BodySyncPayload p) { return p.energy() < 5; }
 
+    public static boolean bleedingWarn(BodySyncPayload p) { return p.parts() != null && p.parts().bleeding(); }
+
+    public static boolean feverWarn(BodySyncPayload p) { return p.parts() != null && p.parts().fever(); }
+
     public static boolean conditionWarn(BodySyncPayload p) { return p.condition() < 60; }
 
     /** "You need more food.": the 24 h balance below −1,000 kcal or BMI under 18.5. */

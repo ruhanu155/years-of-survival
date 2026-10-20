@@ -1,0 +1,17 @@
+{
+  "condition_loss": 10,
+  "parts": {
+    "off_leg": 50,
+    "main_leg": 20,
+    "off_foot": 15,
+    "main_foot": 10,
+    "off_hand": 5
+  },
+  "problems": [
+    {
+      "id": "cut",
+      "chance": 0.02,
+      "stage": 2
+    }
+  ]
+}

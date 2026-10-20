@@ -22,7 +22,7 @@ public final class VitalsStripLayer implements LayeredDraw.Layer {
     }
 
     static final ResourceLocation WARMTH = sprite("warmth"), WET = sprite("wet"), WATER = sprite("water"),
-            CALORIES = sprite("calories"), ENERGY = sprite("energy"), CONDITION = sprite("condition");
+            CALORIES = sprite("calories"), BLEEDING = sprite("bleeding"), FEVER = sprite("fever"), ENERGY = sprite("energy"), CONDITION = sprite("condition");
 
     /** Pixels between icons and from the screen edge. */
     static final int SIZE = 9, GAP = 3, EDGE = 4;
@@ -41,7 +41,9 @@ public final class VitalsStripLayer implements LayeredDraw.Layer {
         x = icon(g, x, y, ClientBody.waterWarn(p), WATER, Math.round(p.water()), numbers);
         x = icon(g, x, y, ClientBody.caloriesWarn(p), CALORIES, Math.round(p.balance24h()), numbers);
         x = icon(g, x, y, ClientBody.energyWarn(p), ENERGY, Math.round(p.energy()), numbers);
-        icon(g, x, y, ClientBody.conditionWarn(p), CONDITION, Math.round(p.condition()), numbers);
+        x = icon(g, x, y, ClientBody.conditionWarn(p), CONDITION, Math.round(p.condition()), numbers);
+        x = icon(g, x, y, ClientBody.bleedingWarn(p), BLEEDING, 0, false); // a drop: the one cue that never needs a number
+        icon(g, x, y, ClientBody.feverWarn(p), FEVER, 0, false);
     }
 
     private static int icon(GuiGraphics g, int x, int y, boolean show, ResourceLocation s, long value, boolean numbers) {

@@ -1,0 +1,35 @@
+{
+  "condition_loss": 20,
+  "parts": {
+    "torso": 40,
+    "legs": 25,
+    "arms": 20,
+    "head": 15
+  },
+  "posture": {
+    "face_down": {
+      "parts": {
+        "torso": 50,
+        "legs": 30,
+        "arms": 20,
+        "head": 0
+      }
+    },
+    "curled": {
+      "parts": {
+        "torso": 50,
+        "arms": 30,
+        "legs": 20,
+        "head": 0
+      }
+    }
+  },
+  "tears_outer": 0.15,
+  "problems": [
+    {
+      "id": "broken_bone",
+      "chance": 0.4,
+      "stage": 1
+    }
+  ]
+}

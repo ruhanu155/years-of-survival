@@ -175,7 +175,7 @@ public final class BodySosGameTests {
     }
 
     private static void ownBodySos(GameTestHelper h) {
-        int[][] bodies = {{183, 0, 77, 18}, {160, 1, 55, 15}, {195, 0, 95, 24}};
+        int[][] bodies = {{183, 0, 77, 18}, {160, 1, 55, 14}, {195, 0, 95, 24}};
         for (int[] b : bodies) {
             ServerPlayer p = bot(h);
             try {
@@ -193,9 +193,8 @@ public final class BodySosGameTests {
                 }
                 h.assertTrue(r.collapse() == BodyModel.Collapse.BMI, b[0] + " cm: expected a BMI collapse, got " + r.collapse());
                 double days = (r.minute() - start) / 1440.0;
-                // The table says "about 15" for the 160 cm body; the model's own formula (burn = rate x BMR / 1,794, 7,700 kcal
-                // a kg) gives 13.75, so that row is held to 1.5 days. Flagged in the PR for the blueprint owner.
-                double tol = b[0] == 160 ? 1.5 : 1.0;
+                // RECONCILE 212: the 160 cm female row expects 14 +-1; the model's own formula gives 13.75.
+                double tol = 1.0;
                 h.assertTrue(Math.abs(days - b[3]) <= tol, b[0] + " cm " + b[2] + " kg: SOS after " + days + " days, wanted " + b[3] + " +-1");
             } finally {
                 BodyTicker.VANILLA_ENV.override(p, null);

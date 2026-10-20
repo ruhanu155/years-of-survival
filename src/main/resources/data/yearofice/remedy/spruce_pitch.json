@@ -1,0 +1,11 @@
+{
+  "problems": [
+    "cut",
+    "burn"
+  ],
+  "parts": [
+    "any"
+  ],
+  "uses_per_part_per_application": 1,
+  "bruise_heal_speedup": 0
+}

@@ -1,0 +1,13 @@
+{
+  "stages": 1,
+  "heal_days": [
+    30
+  ],
+  "unsplinted_part_loss_days": 5,
+  "crooked_after_days": 3,
+  "treat": [
+    "splint",
+    "sling",
+    "rib_wrap"
+  ]
+}
