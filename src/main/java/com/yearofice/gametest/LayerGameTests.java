@@ -57,7 +57,7 @@ public final class LayerGameTests {
         out.add(test(ENV, "yearofice:env/one_answer", 100, LayerGameTests::oneAnswer));
         out.add(test(ENV, "yearofice:env/override_drives_vanilla", 100, LayerGameTests::overrideDrivesVanilla));
         out.add(test(ENV, "yearofice:env/lapse_and_water", 100, LayerGameTests::lapseAndWater));
-        return out;
+        return com.yearofice.gametest.TestFilter.apply(out);
     }
 
     static TestFunction test(String batch, String name, int maxTicks, Consumer<GameTestHelper> body) {

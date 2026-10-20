@@ -72,7 +72,7 @@ public final class EcoGameTests {
         out.add(test("yearofice:ecosystem/slice_moose_flees", 900, EcoGameTests::mooseFlees));
         out.add(test("yearofice:ecosystem/no_monsters_full_night", 400, EcoGameTests::noMonstersFullNight));
         out.add(test("yearofice:ecosystem/butcher_hare_yields", 100, EcoGameTests::butcherHare));
-        return out;
+        return com.yearofice.gametest.TestFilter.apply(out);
     }
 
     static TestFunction test(String name, int maxTicks, Consumer<GameTestHelper> body) {

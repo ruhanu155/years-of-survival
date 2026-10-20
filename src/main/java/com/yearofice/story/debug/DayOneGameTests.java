@@ -43,8 +43,8 @@ public final class DayOneGameTests {
 
     @GameTestGenerator
     public static List<TestFunction> dayOneTests() {
-        return List.of(new TestFunction(BATCH, "yearofice:clock/day1_half_speed_until_fire", TEMPLATE, 200, 0, true,
-                DayOneGameTests::halfSpeedUntilFire));
+        return com.yearofice.gametest.TestFilter.apply(List.of(new TestFunction(BATCH, "yearofice:clock/day1_half_speed_until_fire", TEMPLATE, 200, 0, true,
+                DayOneGameTests::halfSpeedUntilFire)));
     }
 
     @AfterBatch(batch = BATCH)

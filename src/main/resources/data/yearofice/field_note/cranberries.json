@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:cranberries"
+  },
+  "fact_key": "field_note.yearofice.cranberries.fact",
+  "rule_key": "field_note.yearofice.cranberries.rule",
+  "source": "USDA FoodData Central, cranberries",
+  "docs_checked": false
+}

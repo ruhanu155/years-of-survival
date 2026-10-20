@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:rose_hips"
+  },
+  "fact_key": "field_note.yearofice.rose_hips.fact",
+  "rule_key": "field_note.yearofice.rose_hips.rule",
+  "source": "USDA FoodData Central, rose hips, wild",
+  "docs_checked": false
+}

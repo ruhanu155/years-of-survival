@@ -130,10 +130,6 @@ public final class ClientWork {
         if (!(h instanceof BlockHitResult bh) || h.getType() != HitResult.Type.BLOCK) return null;
         BlockPos pos = bh.getBlockPos();
         BlockState s = p.level().getBlockState(pos);
-        if (boxHold(p, s, hand)) {
-            return new WorkStartPayload(true, pos, -1, (byte) bh.getDirection().get3DDataValue(),
-                    (float) bh.getLocation().x, (float) bh.getLocation().y, (float) bh.getLocation().z);
-        }
         boolean ok;
         if (WoodItems.isRound(hand) && p.isShiftKeyDown() && bh.getDirection() == Direction.UP) {
             ok = p.level().getBlockState(pos.above()).canBeReplaced() && s.isFaceSturdy(p.level(), pos, Direction.UP);
@@ -147,14 +143,6 @@ public final class ClientWork {
         if (!ok) return null;
         return new WorkStartPayload(true, pos, -1, (byte) bh.getDirection().get3DDataValue(),
                 (float) bh.getLocation().x, (float) bh.getLocation().y, (float) bh.getLocation().z);
-    }
-
-    /** A Shift + use hold that lifts, chips or sets down a box (A7): the server decides which, and whether it can. */
-    static boolean boxHold(LocalPlayer p, BlockState s, ItemStack hand) {
-        if (!p.isShiftKeyDown()) return false;
-        if (com.yearofice.item.inventory.BoxCarry.carrying(p)) return true;
-        return s.is(com.yearofice.item.inventory.BoxCarry.LIFTABLE)
-                && (hand.isEmpty() || hand.is(com.yearofice.item.inventory.BoxCarry.CHIP_TOOLS));
     }
 
     /** The prompt row before the hold: "Hold RMB  Fell white spruce: 24 cm, 6 swings, 24 min, 180 kcal". */

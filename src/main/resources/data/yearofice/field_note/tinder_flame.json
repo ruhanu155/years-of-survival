@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "fire_state",
+    "id": "tinder"
+  },
+  "fact_key": "field_note.yearofice.tinder_flame.fact",
+  "rule_key": "field_note.yearofice.tinder_flame.rule",
+  "source": "NFPA, The fire triangle",
+  "docs_checked": false
+}

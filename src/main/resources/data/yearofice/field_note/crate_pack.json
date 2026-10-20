@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:crate_backpack"
+  },
+  "fact_key": "field_note.yearofice.crate_pack.fact",
+  "rule_key": "field_note.yearofice.crate_pack.rule",
+  "source": "Knapik et al. 2004, Soldier load carriage",
+  "docs_checked": false
+}

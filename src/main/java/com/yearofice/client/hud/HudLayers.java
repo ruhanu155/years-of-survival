@@ -13,13 +13,13 @@ import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
 /**
- * {@code client.hud.HudLayers} (Layer 8; The HUD layer stack): registers the 15 layers of {@link HudStack} in order,
+ * {@code client.hud.HudLayers} (Layer 8; The HUD layer stack): registers the 16 layers of {@link HudStack} in order,
  * bottom to top, and cancels the vanilla layers they replace.
  *
  * <ul>
  *   <li>Layers 1–3 (headwear, frost, body fx) are the view: they sit just above vanilla's camera overlays, under
  *       the hotbar and crosshair, and still draw with F1.</li>
- *   <li>Layers 4–15 sit together above vanilla's selected item name, in order.</li>
+ *   <li>Layers 4–16 sit together above vanilla's selected item name, in order.</li>
  *   <li>{@code yearofice:messenger_corner} (the Trail Messenger held in a hand, from the body slice) is the device
  *       itself, not a HUD layer: it sits just under the headwear, so the garment and frost draw over it.</li>
  *   <li>Cancelled: health, food, armor, air, experience bar and level, vehicle health, effects and vanilla's
@@ -55,6 +55,7 @@ public final class HudLayers {
             case "breath_ring" -> new StackLayers.BreathRing();
             case "captions" -> new StackLayers.Captions();
             case "minigame" -> new StackLayers.Minigame();
+            case "field_note_card" -> new FieldNoteCardLayer();
             default -> throw new IllegalArgumentException(id);
         };
     }

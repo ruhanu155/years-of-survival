@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "fire_state",
+    "id": "coals"
+  },
+  "fact_key": "field_note.yearofice.coals.fact",
+  "rule_key": "field_note.yearofice.coals.rule",
+  "source": "US Forest Service, Campfire cooking",
+  "docs_checked": false
+}

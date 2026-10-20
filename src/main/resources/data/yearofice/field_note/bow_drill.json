@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_crafted",
+    "id": "yearofice:bow_drill"
+  },
+  "fact_key": "field_note.yearofice.bow_drill.fact",
+  "rule_key": "field_note.yearofice.bow_drill.rule",
+  "source": "Hough 1890, Fire-making apparatus in the U.S. National Museum",
+  "docs_checked": false
+}

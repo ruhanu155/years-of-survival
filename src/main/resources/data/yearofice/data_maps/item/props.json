@@ -110,14 +110,7 @@
     "yearofice:alder_split": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
     "yearofice:drift_round": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
     "yearofice:drift_split": {"category": "fuel", "stack_class": "by_weight", "floats": true, "material": "wood"},
-    "yearofice:hatchet": {"category": "tool", "stack_class": "single", "material": "steel", "max_condition": 5000, "theft": "porcupine"},
-    "yearofice:chopping_block": {"category": "piece", "stack_class": "single", "material": "wood"},
-    "yearofice:knife": {"category": "tool", "stack_class": "single", "material": "steel", "max_condition": 6000, "theft": "porcupine"},
-    "yearofice:flint_knife": {"category": "tool", "stack_class": "single", "material": "stone", "max_condition": 300},
-    "yearofice:rough_stone": {"category": "material", "stack_class": "medium", "material": "stone"},
-    "yearofice:flint_nodule": {"category": "material", "stack_class": "medium", "material": "stone"},
-    "yearofice:stake": {"category": "material", "stack_class": "small", "floats": true, "material": "wood"},
-    "yearofice:tool_handle": {"category": "material", "stack_class": "medium", "floats": true, "material": "wood"},
-    "yearofice:workbench": {"category": "piece", "stack_class": "single", "material": "wood"}
+    "yearofice:hatchet": {"category": "tool", "stack_class": "single", "material": "steel", "theft": "porcupine"},
+    "yearofice:chopping_block": {"category": "piece", "stack_class": "single", "material": "wood"}
   }
 }

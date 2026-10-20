@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:dried_fish"
+  },
+  "fact_key": "field_note.yearofice.dried_fish.fact",
+  "rule_key": "field_note.yearofice.dried_fish.rule",
+  "source": "Torry Research Station, Drying fish",
+  "docs_checked": false
+}

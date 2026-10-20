@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:fat"
+  },
+  "fact_key": "field_note.yearofice.fat_energy.fact",
+  "rule_key": "field_note.yearofice.fat_energy.rule",
+  "source": "FAO 2003, Food energy: methods of analysis and conversion factors",
+  "docs_checked": false
+}

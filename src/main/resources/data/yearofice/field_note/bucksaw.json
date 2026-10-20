@@ -1,0 +1,10 @@
+{
+  "trigger": {
+    "type": "item_pickup",
+    "id": "yearofice:bucksaw"
+  },
+  "fact_key": "field_note.yearofice.bucksaw.fact",
+  "rule_key": "field_note.yearofice.bucksaw.rule",
+  "source": "Standard forestry practice",
+  "docs_checked": false
+}

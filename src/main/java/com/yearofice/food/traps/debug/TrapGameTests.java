@@ -37,7 +37,7 @@ public final class TrapGameTests {
         List<TestFunction> out = new ArrayList<>();
         out.add(test("yearofice:food/slice_snare_hare", 100, TrapGameTests::sliceSnareHare));
         out.add(test("yearofice:food/snare_catchup_equals_live", 400, TrapGameTests::catchUpEqualsLive));
-        return out;
+        return com.yearofice.gametest.TestFilter.apply(out);
     }
 
     static TestFunction test(String name, int maxTicks, Consumer<GameTestHelper> body) {
