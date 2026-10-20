@@ -178,6 +178,7 @@ public final class BodyCommands {
             b.append("\nProblems ").append(s.parts.problems().size()).append(", SOS state ").append(s.sos)
                     .append(", flights out ").append(SosFlow.flightsOut(p)).append(", activity ")
                     .append(s.lastActivity.name().toLowerCase(Locale.ROOT));
+            b.append('\n').append(com.yearofice.body.illness.IllnessCommands.wellnessLines(s, m));
             String text = b.toString();
             c.getSource().sendSuccess(() -> Component.literal(text), false);
         }

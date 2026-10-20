@@ -16,7 +16,7 @@ import java.util.Arrays;
  * components take over and this field is retired with a codec default.
  */
 public final class BodyState {
-    public static final int SCHEMA = 2;
+    public static final int SCHEMA = 3;
     public static final int MACRO_HOURS = 72;
 
     public int heightCm = Metabolism.DEFAULT_HEIGHT_CM;
@@ -54,6 +54,35 @@ public final class BodyState {
     /** Per-part health, Condition, frost and problems (the Body tab's schema-2 fields). */
     public BodyRecord parts = BodyRecord.healthy();
 
+    // --- Schema 3 (M4 lane B): illness, metabolism extras, rest days, skin and hair ---------------------------
+    /** Vitamin C reserve in days, 0–30; falls 1 a day (Blueprint › Health, Vitamin C). */
+    public double vitC = 30;
+    /** The nausea meter, 0–100. */
+    public double nausea = 0;
+    /** Active and pending illnesses, sorted by start then id. */
+    public final java.util.List<IllnessModel.Active> ill = new java.util.ArrayList<>();
+    /** Rest days: the run of finished Rest days and today's work, away and sleep minutes. */
+    public int restRun = 0, restAwayMin = 0, restSleepMin = 0;
+    public double restWorkMin = 0;
+    /** The absolute day the Rest counters belong to; −1 before the first step. */
+    public long restDay = -1;
+    /** Hair and beard: game days since the last trim; per-player {@code facial_hair} setting. */
+    public double hairDays = 0;
+    public boolean facialHair = true;
+    /** Game minute face grease and glove grease wear off, or −1. */
+    public long faceGreaseUntil = -1, gloveGreaseUntil = -1;
+    /** Minutes of sun on snow, wind and cold breath accrued toward sunburn, windburn and an iced beard. */
+    public double sunMin = 0, windMin = 0, iceMin = 0;
+    public boolean beardIced = false;
+
+    // Adapter inputs for the skin rules, set before a step (NaN or −1: not known, the rule is off).
+    public transient double ctxSunDeg = Double.NaN;
+    public transient int ctxDayOfYear = -1;
+    /** 0 bare face, 1 ruffed hood, 2 fully covered. */
+    public transient int ctxFace = 0;
+    /** Messenger line ids the last steps raised; the ticker drains it. */
+    public final transient java.util.List<String> events = new java.util.ArrayList<>();
+
     // Derived each step, never saved.
     public transient FeelsLike lastFeel = null;
     public transient double lastEnergyCap = 10;
@@ -65,6 +94,8 @@ public final class BodyState {
     public double bmr() { return Metabolism.bmr(kg, heightCm, sex); }
 
     public double condition() { return parts.condition(); }
+
+    public int beardStage() { return Skin.beardStage(this); }
 
     public boolean gutIll(long minute) { return gutUntil >= 0 && minute < gutUntil; }
 
@@ -125,6 +156,10 @@ public final class BodyState {
         c.warmth = warmth; c.energy = energy; c.awakeMin = awakeMin; c.asleep = asleep; c.sleepRun = sleepRun;
         c.sleepQ = sleepQ; c.sos = sos; c.pendingKcal = pendingKcal; c.binHour = binHour;
         c.gutOnset = gutOnset; c.gutUntil = gutUntil; c.parts = parts;
+        c.vitC = vitC; c.nausea = nausea; c.ill.addAll(ill); c.restRun = restRun; c.restWorkMin = restWorkMin;
+        c.restAwayMin = restAwayMin; c.restSleepMin = restSleepMin; c.restDay = restDay; c.hairDays = hairDays;
+        c.facialHair = facialHair; c.faceGreaseUntil = faceGreaseUntil; c.gloveGreaseUntil = gloveGreaseUntil;
+        c.sunMin = sunMin; c.windMin = windMin; c.iceMin = iceMin; c.beardIced = beardIced;
         System.arraycopy(kcalIn, 0, c.kcalIn, 0, 24);
         System.arraycopy(kcalOut, 0, c.kcalOut, 0, 24);
         System.arraycopy(drunkMl, 0, c.drunkMl, 0, 24);

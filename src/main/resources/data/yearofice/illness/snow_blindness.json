@@ -1,0 +1,17 @@
+{
+  "id": "yearofice:snow_blindness",
+  "engine": "m7",
+  "source": "Blueprint › Health › Two problems the table did not list",
+  "cause": "Over 3 game hours on snow under clear sun above 15 degrees, March to mid-May",
+  "onset_h": [
+    0,
+    0
+  ],
+  "duration_h": 36,
+  "cure": {
+    "slit_goggles": 1,
+    "rest_indoors_mult": 0.5
+  },
+  "note": "M7 (the year).",
+  "stages": []
+}

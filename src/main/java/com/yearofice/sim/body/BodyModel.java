@@ -127,12 +127,14 @@ public final class BodyModel {
                         heatNear(in))
                 .in(in.depth());
         WarmthContext ctx = new WarmthContext(in.shelter(), a,
-                Metabolism.bmiWarmthC(s.bmi()) + (in.asleep() ? Metabolism.SLEEP_FEEL_C + in.bedC() : 0));
+                Metabolism.bmiWarmthC(s.bmi()) + (in.asleep() ? Metabolism.SLEEP_FEEL_C + in.bedC() : 0)
+                        + Wellness.chillC(s, m));
+        double gloveMult = Skin.gloveWetMult(s, m, Wellness.tuning(t));
         double shiver = 0;
         Collapse collapse = Collapse.NONE;
         int done = 0;
         for (int k = 0; k < n; k++) {
-            clothing = WetnessModel.stepMinute(clothing, exposure);
+            clothing = WetnessModel.stepMinute(clothing, exposure, gloveMult);
             FeelsLike feel = Warmth.feelsLike(in.env(), clothing, in.heat(), ctx);
             Warmth.Step ws = Warmth.Step.of(feel, clothing, in.env(), in.heat() == null ? List.of() : in.heat(),
                     t.coldScale());
@@ -149,9 +151,13 @@ public final class BodyModel {
         double[] wet = clothing.wetCopy();
         System.arraycopy(wet, 0, s.slotWet, 0, wet.length);
 
+        // 8–9, 11 (lane B). Illness, vitamin C, Rest day, skin and hair, healing.
+        Wellness.Result wr = Wellness.tick(s, in, t, m, done, heatNear(in));
+        IllnessModel.Effects ill = wr.effects();
+
         // 2–4. Burn, absorb, weight.
         double burned = Metabolism.kcalPerHour(a) / 60.0 * s.bmr() / Metabolism.DEFAULT_BMR * t.calorieBurn() * done
-                * in.burnFactor() + shiver;
+                * in.burnFactor() * ill.burn() + shiver + wr.extraKcal();
         double absorbed = s.pendingKcal;
         s.pendingKcal = 0;
         s.kg += (absorbed - burned) / t.kcalPerKg();
@@ -160,21 +166,29 @@ public final class BodyModel {
 
         // 5. Water.
         boolean gut = s.gutIll(m);
-        s.water = clamp(s.water - Metabolism.waterDrainPerMinute(a, in.env().airC(), gut) * t.waterNeed() * done, 0, 100);
+        s.water = clamp(s.water - (Metabolism.waterDrainPerMinute(a, in.env().airC(), gut)
+                + ill.waterLDay() * 1000 / Metabolism.ML_PER_POINT / 1440) * t.waterNeed() * done, 0, 100);
 
         // 10 (part). The cap, before energy reads it.
         if (s.gutOnset >= 0 && m + done >= s.gutOnset) {
             s.gutUntil = s.gutOnset + Metabolism.GUT_ILL_MINUTES;
+            // Fever on day 1 of a gut illness: a 3-hour cycle, chills in the last hour.
+            IllnessModel.start(s, "fever", s.gutOnset, s.gutOnset + 1440);
             s.gutOnset = -1;
+            IllnessModel.event(s, "ill_gut_illness_1");
         }
-        if (s.gutUntil >= 0 && m + done >= s.gutUntil) s.gutUntil = -1;
+        if (s.gutUntil >= 0 && m + done >= s.gutUntil) {
+            s.gutUntil = -1;
+            IllnessModel.event(s, "ill_gut_illness_end");
+        }
         double cap = Metabolism.energyCap(s.balance24h(), s.bmi(), s.water, s.awakeMin, s.gutIll(m));
+        cap = Math.min(cap, ill.energyCap());
         s.lastEnergyCap = cap;
 
         // 7. Energy and sleep debt.
         if (in.asleep()) {
             if (s.energy < cap) {
-                s.energy = Math.min(cap, s.energy + Metabolism.SLEEP_BOLTS_PER_H * in.sleepQuality() / 60.0 * done);
+                s.energy = Math.min(cap, s.energy + Metabolism.SLEEP_BOLTS_PER_H * in.sleepQuality() * SleepRules.feverFactor(s, m, Wellness.tuning(t)) / 60.0 * done);
             }
             s.sleepRun += done;
             if (s.sleepRun >= 240) s.awakeMin = 0;
@@ -208,7 +222,7 @@ public final class BodyModel {
                               double fatG, double proteinG, double waterPoints) {
         if (s.stomachKg >= t.stomachKg()) return false;
         s.advanceBins(minute);
-        double gut = s.gutIll(minute) ? Metabolism.GUT_ILL_FACTOR : 1.0;
+        double gut = IllnessModel.absorb(s, minute);
         s.stomachKg = Math.min(t.stomachKg() * 1.05, s.stomachKg + grams / 1000.0);
         double absorbed = kcal * gut;
         s.pendingKcal += absorbed;
@@ -260,6 +274,9 @@ public final class BodyModel {
         s.asleep = false;
         s.gutOnset = -1;
         s.gutUntil = -1;
+        s.ill.clear();
+        s.nausea = 0;
+        s.vitC = IllnessModel.VITC_FULL_DAYS;
         s.sos = 0;
         java.util.Arrays.fill(s.slotWet, 0);
     }

@@ -1,0 +1,23 @@
+{
+  "id": "yearofice:trichinella",
+  "engine": "body",
+  "source": "Blueprint › Health; Decay and time",
+  "cause": "Raw bear meat 25%; freezing never helps; Done at twice the time or stewing prevents",
+  "onset_h": [
+    72,
+    120
+  ],
+  "duration_h": -1,
+  "cure": {
+    "supply_drop_medicine": 1,
+    "wormwood_tea_days": 7
+  },
+  "stages": [
+    {
+      "from_h": 0,
+      "absorb": 0.85,
+      "cond_cap": 90,
+      "msg": "ill_trichinella_1"
+    }
+  ]
+}

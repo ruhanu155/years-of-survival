@@ -103,7 +103,25 @@ public final class WetnessModel {
     }
 
     /** One game minute of wetting and drying. */
-    public static ClothingState stepMinute(ClothingState s, Exposure e) {
+    public static ClothingState stepMinute(ClothingState s, Exposure e) { return stepMinute(s, e, 1.0); }
+
+    /**
+     * As above, with {@code handsMult} on what the hand slots gain from rain and sweat (greased gloves, B13). A
+     * dunk in water soaks them whatever the grease.
+     */
+    public static ClothingState stepMinute(ClothingState s, Exposure e, double handsMult) {
+        if (handsMult == 1.0 || e.depth() != ColdWater.Depth.NONE) return stepMinute0(s, e);
+        ClothingState c = stepMinute0(s, e);
+        double[] w = c.wetCopy();
+        for (Layer l : Layer.values()) {
+            int i = Layer.slot(Zone.HANDS, l);
+            double gain = w[i] - s.wet(i);
+            if (gain > 0) w[i] = s.wet(i) + gain * handsMult;
+        }
+        return c.withWet(w);
+    }
+
+    private static ClothingState stepMinute0(ClothingState s, Exposure e) {
         double[] w = s.wetCopy();
         boolean[] gained = new boolean[Layer.SLOTS];
 

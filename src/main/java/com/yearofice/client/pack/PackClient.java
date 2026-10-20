@@ -52,10 +52,21 @@ public final class PackClient {
 
     @SubscribeEvent
     public static void setup(FMLClientSetupEvent e) {
+        com.yearofice.net.payload.PackReadoutPayload.sink = r -> readout = r;
         LoadMeterLayer.reading = () -> {
             LocalPlayer p = Minecraft.getInstance().player;
             return p == null || p.isSpectator() ? null : new LoadMeterLayer.Reading(LoadCalculator.kgOf(p), LoadCalculator.maxKgOf(p));
         };
+    }
+
+    /** The server's last pack readout: Strength-scaled band edges and the cap. */
+    static volatile @Nullable com.yearofice.net.payload.PackReadoutPayload readout;
+
+    /** The line the pack screen shows: "Light to 12 kg, heavy to 24, loaded to 36 · cap 25 kg". */
+    public static Component bandLine(com.yearofice.net.payload.PackReadoutPayload r) {
+        return Component.translatable("pack.yearofice.bands", Units.fixed(Math.round(r.edge0() * 100), "kg"),
+                Units.fixed(Math.round(r.edge1() * 100), "kg"), Units.fixed(Math.round(r.edge2() * 100), "kg"),
+                Units.fixed(Math.round(r.capKg() * 100), "kg"));
     }
 
     @SubscribeEvent
@@ -104,8 +115,13 @@ public final class PackClient {
         LocalPlayer p = Minecraft.getInstance().player;
         if (p == null) return;
         int rows = PackRules.openRows(p);
-        if (rows >= 3) return;
         GuiGraphics g = e.getGuiGraphics();
+        var ro = readout;
+        if (ro != null && s instanceof InventoryScreen) {
+            var font = Minecraft.getInstance().font;
+            g.drawString(font, bandLine(ro), s.getGuiLeft() + 8, s.getGuiTop() + s.getYSize() + 3, 0xFFDDDDDD, true);
+        }
+        if (rows >= 3) return;
         g.pose().pushPose();
         g.pose().translate(0, 0, 350);
         for (net.minecraft.world.inventory.Slot slot : s.getMenu().slots) {

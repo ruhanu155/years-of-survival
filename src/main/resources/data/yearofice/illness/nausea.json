@@ -1,0 +1,28 @@
+{
+  "id": "yearofice:nausea",
+  "engine": "body_meter",
+  "source": "Ideas from viewers › Sick stomach; Decay and time",
+  "cause": "Gut illness, poison plants, fermented berries, refeeding, tea and painkiller overuse, Turning or Spoiled raw meat, rancid fat, botulism",
+  "onset_h": [
+    0,
+    0
+  ],
+  "duration_h": -1,
+  "gauge": {
+    "sway": 50,
+    "vomit": 100,
+    "after_vomit": 20,
+    "decay_awake_per_h": 10,
+    "decay_asleep_per_h": 15,
+    "vomit_kcal_lost": 0.5,
+    "vomit_water_l": 0.5,
+    "vomit_window_h": 3,
+    "spirits": -2
+  },
+  "cure": {
+    "tea_or_broth": -5,
+    "mint_tea": -30,
+    "buckbean_tea": -20
+  },
+  "stages": []
+}

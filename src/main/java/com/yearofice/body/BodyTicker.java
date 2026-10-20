@@ -124,6 +124,7 @@ public final class BodyTicker {
     public static BodyModel.Inputs inputs(ServerPlayer p, long minute, Activity activity, boolean asleep, boolean moving) {
         EnvSampler.Sample smp = env.sample(p, minute);
         LAST_SAMPLE.put(p.getUUID(), smp);
+        skinContext(BodyAttachments.of(p));
         // Sleep quality and the bed's insulation from the bed under the sleeper (bare ground 0.70, +0 °C).
         com.yearofice.api.body.SleepService.Spot bed = asleep ? com.yearofice.body.sleep.Sleep.spotFor(p) : null;
         return new BodyModel.Inputs(activity, asleep, bed == null ? 0 : bed.quality(), smp.env(), smp.heat(), smp.shelter(),
@@ -139,7 +140,40 @@ public final class BodyTicker {
         }
     }
 
+    /** The date and the sun for the skin rules (B13): the body model has no clock of its own. */
+    /** Tests stand in for the clock: set after the real context is read, cleared when done. */
+    public static volatile java.util.function.Consumer<BodyState> skinHook = null;
+
+    private static void skinContext(BodyState s) {
+        try {
+            com.yearofice.api.clock.ClockService c = com.yearofice.api.clock.ClockService.get();
+            s.ctxDayOfYear = c.dayOfYear();
+            s.ctxSunDeg = c.sunElevation();
+        } catch (IllegalStateException notInstalled) {
+            s.ctxDayOfYear = -1;
+            s.ctxSunDeg = Double.NaN;
+        }
+        java.util.function.Consumer<BodyState> hook = skinHook;
+        if (hook != null) hook.accept(s);
+    }
+
+    /** Posts the lines the illness, rest, skin and hair rules raised: one messenger line per cause (every vital change explained). */
+    public static void drainEvents(ServerPlayer p, BodyState s) {
+        if (s.events.isEmpty()) return;
+        java.util.List<String> lines = new java.util.ArrayList<>(new java.util.LinkedHashSet<>(s.events));
+        s.events.clear();
+        for (String id : lines) {
+            com.yearofice.api.hud.HudBus.get().post(p, com.yearofice.api.hud.HudLine.of(
+                    com.yearofice.api.hud.HudLineType.BODY, id, "body"));
+            if (id.equals("face_sunburn") || id.equals("face_windburn")) {
+                p.level().playSound(null, p.blockPosition(), com.yearofice.sound.YoiSounds.SKIN_STING.get(),
+                        net.minecraft.sounds.SoundSource.PLAYERS, 0.6f, 1.0f);
+            }
+        }
+    }
+
     private static void after(ServerPlayer p, BodyState s, BodyModel.Result r, long now) {
+        drainEvents(p, s);
         if (r.collapsed()) {
             SosFlow.trigger(p, switch (r.collapse()) {
                 case BMI -> SosFlow.Cause.STARVATION;

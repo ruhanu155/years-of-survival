@@ -1,0 +1,46 @@
+{
+  "id": "yearofice:scurvy",
+  "engine": "body",
+  "source": "Blueprint › Health; Every concept from the video › Scurvy's cost",
+  "cause": "Vitamin C reserve at 0 (30 days from full)",
+  "onset_h": [
+    0,
+    0
+  ],
+  "duration_h": -1,
+  "recovery_h": 168,
+  "cure": {
+    "rose_hips_150g_days": 3,
+    "berries_150g_days": [
+      0.5,
+      2.5
+    ],
+    "spruce_tip_tea_days": 1,
+    "raw_liver_days": 1,
+    "raw_or_frozen_fish_days": 0.5
+  },
+  "note": "Started by the model when the reserve reaches 0. Stage 1 days 1-10, Weakness days 11-30, Slowness day 31 on (Hardcore severe condition). Burn and slowness end the day the reserve is above 0; the caps and slow healing end 7 days after.",
+  "stages": [
+    {
+      "from_h": 0,
+      "cap_bolts": 8,
+      "heal": 0.5,
+      "msg": "ill_scurvy_1"
+    },
+    {
+      "from_h": 240,
+      "cap_bolts": 6,
+      "heal": 0.5,
+      "burn": 1.1,
+      "msg": "ill_scurvy_2"
+    },
+    {
+      "from_h": 720,
+      "cap_bolts": 6,
+      "heal": 0.5,
+      "burn": 1.2,
+      "walk": 0.7,
+      "msg": "ill_scurvy_3"
+    }
+  ]
+}
