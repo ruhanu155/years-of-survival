@@ -2024,6 +2024,15 @@
       "ids": [
         "layer_plants"
       ]
+    },
+    {
+      "basis": "M5 lane TUNE bait from hare/fish guts (Blueprint: Guts 10% bait one per 0.1 kg)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "fish_guts"
+      ]
     }
   ],
   "expand": {

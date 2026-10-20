@@ -128,9 +128,11 @@ public final class FishingService {
         // Bait in the off hand wins over what is on the hook now; a bare hook falls back to a worm in the pack.
         if (offKey.isPresent() && !offKey.get().equals(RodItem.bait(rod).bait())) return fit(p, rod, off, offKey.get(), t);
         if (RodItem.bait(rod).present()) return true;
-        for (int i = 0; i < p.getInventory().getContainerSize(); i++) {
-            ItemStack s = p.getInventory().getItem(i);
-            if (s.is(FishingRegistry.WORM.get())) return fit(p, rod, s, "worm", t);
+        for (var want : java.util.List.of(FishingRegistry.WORM.get(), FishingRegistry.FISH_GUTS.get(), FishingRegistry.FISH_CHUNK.get())) {
+            for (int i = 0; i < p.getInventory().getContainerSize(); i++) {
+                ItemStack s = p.getInventory().getItem(i);
+                if (s.is(want)) return fit(p, rod, s, FishBaits.key(s).orElse("worm"), t);
+            }
         }
         return false;
     }

@@ -1528,7 +1528,8 @@
       "fat_g_per_100g": 8.9,
       "vit_c_mg_per_100g": 0,
       "curve": "dry_goods",
-      "spoil_days_at_5c": {}
+      "spoil_days_at_5c": {},
+      "weight_g": 25
     },
     "yearofice:canned_peaches": {
       "neoforge:conditions": [
