@@ -3,6 +3,7 @@ package com.yearofice.net;
 import com.yearofice.core.YearOfIce;
 import com.yearofice.net.payload.ClockSyncPayload;
 import com.yearofice.net.payload.DecayHeadsPayload;
+import com.yearofice.net.payload.EncounterClipPayload;
 import com.yearofice.net.payload.EnvSyncPayload;
 import com.yearofice.net.payload.HudLinePayload;
 import com.yearofice.net.payload.PickupPayload;
@@ -29,6 +30,8 @@ public final class YoiNet {
     /** Decay's clock heads; common code (the decay package installs it), since tooltips read freshness on both sides. */
     public static volatile Consumer<DecayHeadsPayload> decaySink = p -> { };
 
+    public static volatile Consumer<EncounterClipPayload> encounterSink = p -> { };
+
     @SubscribeEvent
     public static void register(RegisterPayloadHandlersEvent e) {
         PayloadRegistrar r = e.registrar("1");
@@ -39,6 +42,7 @@ public final class YoiNet {
         r.playToClient(com.yearofice.net.payload.PackReadoutPayload.TYPE,
                 com.yearofice.net.payload.PackReadoutPayload.STREAM_CODEC,
                 (p, ctx) -> com.yearofice.net.payload.PackReadoutPayload.sink.accept(p));
+        r.playToClient(EncounterClipPayload.TYPE, EncounterClipPayload.STREAM_CODEC, (p, ctx) -> encounterSink.accept(p));
         r.playToServer(PickupPayload.TYPE, PickupPayload.STREAM_CODEC, (p, ctx) -> {
             if (ctx.player() instanceof ServerPlayer sp) com.yearofice.item.inventory.Pickup.request(sp, p.entityId());
         });
