@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/beauverd_spirea"
+  },
+  "render_type": "minecraft:cutout"
+}

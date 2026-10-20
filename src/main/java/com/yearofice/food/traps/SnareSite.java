@@ -44,7 +44,7 @@ public final class SnareSite {
 
     static boolean wall(ServerLevel level, BlockPos p) {
         BlockState s = level.getBlockState(p);
-        return Habitats.isCover(s) || s.is(Blocks.COBBLESTONE) || s.is(Blocks.STONE) || s.is(Blocks.MOSSY_COBBLESTONE);
+        return Habitats.isCover(s) || s.is(TrapRegistry.FUNNEL_MATERIALS) || s.is(Blocks.COBBLESTONE) || s.is(Blocks.STONE) || s.is(Blocks.MOSSY_COBBLESTONE);
     }
 
     static boolean coverNear(ServerLevel level, BlockPos p) {

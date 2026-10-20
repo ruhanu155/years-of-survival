@@ -7,6 +7,8 @@ import com.yearofice.api.hud.HudBus;
 import com.yearofice.api.hud.HudLine;
 import com.yearofice.api.hud.HudLineType;
 import com.yearofice.body.intake.FoodMap;
+import com.yearofice.sim.food.Dishes;
+import com.yearofice.sim.food.Nutrients;
 import com.yearofice.core.YearOfIce;
 import com.yearofice.food.cooking.CookingData;
 import com.yearofice.item.component.YoiComponents;
@@ -83,7 +85,21 @@ public final class Meals {
             return new Bite(false, o, grams, 0, stage);
         }
         double booked = grams * o.kcalShare();
-        if (!BodyService.get().eat(p, stack, booked)) return new Bite(false, o, grams, 0, stage);
+        Nutrients carried = stack.get(YoiComponents.NUTRIENTS.get());
+        double cDays;
+        if (carried != null) {
+            // a dish or a dried stack: the nutrients it carries (summed or kept from the fresh food) reach the body
+            double k = o.kcalShare();
+            if (!BodyService.get().eatNutrients(p, booked, carried.kcal() * k, carried.proteinG() * k, carried.fatG() * k, carried.waterMl())) {
+                return new Bite(false, o, grams, 0, stage);
+            }
+            cDays = carried.cDays();
+        } else {
+            if (!BodyService.get().eat(p, stack, booked)) return new Bite(false, o, grams, 0, stage);
+            cDays = FoodMap.values(stack).cDays(grams) * (state == FoodState.COOKED ? Dishes.Method.STONE_FRY.vitCKept : 1.0);
+        }
+        // vitamin C reaches the scurvy clock whole bites at a time (Blueprint › Cooking › Vitamin C in food)
+        if (cDays > 0) BodyService.get().addVitaminC(p, cDays);
         if (o.gutIllness() > 0 || o.nauseaNow() > 0 || o.parasites() > 0 || o.spirits() != 0) {
             YearOfIce.LOG.info("[food] {} ate {} ({}, {}, {}): gut illness {}% rolled {}, nausea +{}, parasites {}%, Spirits {}"
                             + " (logged only: BodyService has no illness, nausea, parasite or Spirits hook for food yet)",

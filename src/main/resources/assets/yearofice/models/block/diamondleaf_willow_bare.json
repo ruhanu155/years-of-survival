@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/diamondleaf_willow_bare"
+  },
+  "render_type": "minecraft:cutout"
+}

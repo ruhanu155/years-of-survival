@@ -17,17 +17,21 @@ package com.yearofice.sim.ecosystem;
  * @param activeCap              at most this many of our animals are bodies in one level (40)
  * @param workMinPerS            the Work time-lapse rate (5 game minutes a real second)
  * @param minWorkEnergy          hold-to-work stops below this many energy bolts (2)
+ * @param smallGameDensityMult   multiplies every species-file density of the data-driven roster (squirrel to grouse;
+ *                               M5 lane A), Gentle 1.5, Standard 1, Brutal 0.6
+ * @param theftMult              multiplies the hourly theft chances at the camp (marten, jay, raven, fox), Gentle 0.5,
+ *                               Standard 1, Brutal 1.5
  */
 public record EcoTuning(double hareDensityPerKm2, double ptarmiganGroupsPerKm2, double mooseDensityPerKm2,
                         double activeRadiusM, double demoteRadiusM, int activeCap,
-                        double workMinPerS, double minWorkEnergy) {
+                        double workMinPerS, double minWorkEnergy, double smallGameDensityMult, double theftMult) {
 
     public static EcoTuning standard() { return Preset.STANDARD.tuning; }
 
     public enum Preset {
-        GENTLE(new EcoTuning(55, 12, 1.5, 128, 160, 40, 5, 1)),
-        STANDARD(new EcoTuning(40, 8, 1.0, 128, 160, 40, 5, 2)),
-        BRUTAL(new EcoTuning(28, 5, 0.6, 128, 160, 40, 5, 2));
+        GENTLE(new EcoTuning(55, 12, 1.5, 128, 160, 40, 5, 1, 1.5, 0.5)),
+        STANDARD(new EcoTuning(40, 8, 1.0, 128, 160, 40, 5, 2, 1.0, 1.0)),
+        BRUTAL(new EcoTuning(28, 5, 0.6, 128, 160, 40, 5, 2, 0.6, 1.5));
 
         public final EcoTuning tuning;
 

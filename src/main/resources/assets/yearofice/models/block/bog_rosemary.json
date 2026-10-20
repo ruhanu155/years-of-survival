@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/bog_rosemary"
+  },
+  "render_type": "minecraft:cutout"
+}

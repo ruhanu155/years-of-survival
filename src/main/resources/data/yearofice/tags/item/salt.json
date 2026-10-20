@@ -1,0 +1,9 @@
+{
+  "values": [
+    "yearofice:lick_salt",
+    {
+      "id": "yearofice:rock_salt",
+      "required": false
+    }
+  ]
+}

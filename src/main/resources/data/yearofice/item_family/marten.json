@@ -1,0 +1,15 @@
+{
+  "species": "yearofice:marten",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    {
+      "item": "yearofice:marten_meat",
+      "kind": "meat",
+      "unit_g": 100
+    },
+    {
+      "item": "yearofice:marten_pelt",
+      "kind": "cover"
+    }
+  ]
+}

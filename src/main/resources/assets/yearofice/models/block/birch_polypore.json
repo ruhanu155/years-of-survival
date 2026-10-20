@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/birch_polypore"
+  },
+  "render_type": "minecraft:cutout"
+}

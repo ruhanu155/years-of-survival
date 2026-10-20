@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/pineapple_weed"
+  },
+  "render_type": "minecraft:cutout"
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/rock_tripe"
+  },
+  "render_type": "minecraft:cutout"
+}
