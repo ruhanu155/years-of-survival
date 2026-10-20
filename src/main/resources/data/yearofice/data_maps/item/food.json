@@ -605,6 +605,30 @@
     "minecraft:bread": {"kcal_per_100g": 345, "protein_g_per_100g": 11, "fat_g_per_100g": 2.0, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"cooked": 10}, "weight_g": 200},
     "minecraft:honey_bottle": {"kcal_per_100g": 300, "protein_g_per_100g": 0.3, "fat_g_per_100g": 0, "vit_c_mg_per_100g": 0, "curve": "never", "spoil_days_at_5c": {}, "weight_g": 100},
     "yearofice:snowshoe_hare_meat": {"neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:snowshoe_hare_meat" }], "kcal_per_100g": 115, "protein_g_per_100g": 27, "fat_g_per_100g": 0.8, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"raw": 6, "cooked": 9, "smoked": 30, "dried": 60}, "weight_g": 100},
-    "yearofice:willow_ptarmigan_meat": {"neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:willow_ptarmigan_meat" }], "kcal_per_100g": 115, "protein_g_per_100g": 27, "fat_g_per_100g": 0.8, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"raw": 6, "cooked": 9, "smoked": 30, "dried": 60}, "weight_g": 100}
+    "yearofice:willow_ptarmigan_meat": {"neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:willow_ptarmigan_meat" }], "kcal_per_100g": 115, "protein_g_per_100g": 27, "fat_g_per_100g": 0.8, "vit_c_mg_per_100g": 0, "curve": "living_rot", "spoil_days_at_5c": {"raw": 6, "cooked": 9, "smoked": 30, "dried": 60}, "weight_g": 100},
+    "yearofice:dolly_varden": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:dolly_varden" }],
+      "kcal_per_100g": 140.0,
+      "protein_g_per_100g": 20.0,
+      "fat_g_per_100g": 1.0,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      }
+    },
+    "yearofice:chinook_salmon": {
+      "neoforge:conditions": [{ "type": "neoforge:item_exists", "item": "yearofice:chinook_salmon" }],
+      "kcal_per_100g": 160.0,
+      "protein_g_per_100g": 20.0,
+      "fat_g_per_100g": 1.0,
+      "vit_c_mg_per_100g": 2.0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 3.6,
+        "cooked": 9
+      }
+    }
   }
 }

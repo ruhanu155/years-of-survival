@@ -2269,6 +2269,23 @@
       "licence": "project",
       "generator_version": "hand",
       "release_blocker": false
+    },
+    {
+      "files": [
+        "assets/yearofice/models/item/dolly_varden.json",
+        "assets/yearofice/models/item/northern_pike.json",
+        "assets/yearofice/models/item/humpback_whitefish.json",
+        "assets/yearofice/models/item/burbot.json",
+        "assets/yearofice/models/item/lake_trout.json",
+        "assets/yearofice/models/item/chinook_salmon.json",
+        "assets/yearofice/models/item/chum_salmon.json",
+        "assets/yearofice/models/item/coho_salmon.json"
+      ],
+      "source_type": "generated",
+      "recipe": "hand-written original (placeholder models reusing the project's own grayling texture until the fish art pass)",
+      "licence": "project",
+      "generator_version": "hand",
+      "release_blocker": false
     }
   ]
 }

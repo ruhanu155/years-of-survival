@@ -551,5 +551,13 @@
   "messenger.yearofice.body.frost_nip": "Frostnip on your hands, feet or face: white and numb. Warm it up.",
   "messenger.yearofice.body.frost_superficial": "Frostbite: blisters are forming. Get out of the cold and rewarm slowly.",
   "messenger.yearofice.body.frost_deep": "Deep frostbite. The skin is black. Rewarm it now.",
-  "messenger.yearofice.body.frost_digit_lost": "The frostbite took a finger or toe for good."
+  "messenger.yearofice.body.frost_digit_lost": "The frostbite took a finger or toe for good.",
+  "item.yearofice.dolly_varden": "Dolly Varden",
+  "item.yearofice.northern_pike": "Northern Pike",
+  "item.yearofice.humpback_whitefish": "Humpback Whitefish",
+  "item.yearofice.burbot": "Burbot",
+  "item.yearofice.lake_trout": "Lake Trout",
+  "item.yearofice.chinook_salmon": "Chinook Salmon",
+  "item.yearofice.chum_salmon": "Chum Salmon",
+  "item.yearofice.coho_salmon": "Coho Salmon"
 }

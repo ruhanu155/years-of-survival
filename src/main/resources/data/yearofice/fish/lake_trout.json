@@ -1,0 +1,44 @@
+{
+  "id": "lake_trout",
+  "kg": [
+    2,
+    10
+  ],
+  "bite_base": 0.01,
+  "kcal_per_kg": 1600,
+  "run_pull_x": 0.45,
+  "run_every_s": [
+    8,
+    15
+  ],
+  "run_length_s": [
+    2,
+    5
+  ],
+  "jump_chance": 0.0,
+  "special": "dive",
+  "special_every_s": null,
+  "special_spike": 1.0,
+  "tire_per_s": 0.025,
+  "bite_through_no_leader": 0.05,
+  "night_factor": 0.8,
+  "trophy_kg": null,
+  "bait": {
+    "jig": 1.0,
+    "fish_chunk": 1.0,
+    "live_sculpin": 0.6
+  },
+  "surface_feeder": false,
+  "season": {
+    "all_year": true
+  },
+  "resident": true,
+  "spawn": null,
+  "parasite": "cyst",
+  "net_c_per_h": 0.03,
+  "mesh": "coarse",
+  "capacity": {
+    "lake_drop_off": 12
+  },
+  "r_per_month": 0.1
+}

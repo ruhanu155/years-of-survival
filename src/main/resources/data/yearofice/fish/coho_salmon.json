@@ -1,0 +1,46 @@
+{
+  "id": "coho_salmon",
+  "kg": [
+    3,
+    5
+  ],
+  "bite_base": 0.04,
+  "kcal_per_kg": 2000,
+  "run_pull_x": 0.6,
+  "run_every_s": [
+    4,
+    8
+  ],
+  "run_length_s": [
+    1.5,
+    3
+  ],
+  "jump_chance": 0.4,
+  "special": "none",
+  "special_every_s": null,
+  "special_spike": 1.0,
+  "tire_per_s": 0.022222,
+  "bite_through_no_leader": 0,
+  "night_factor": 0.8,
+  "trophy_kg": null,
+  "bait": {
+    "spinner": 1.2,
+    "roe": 1.0,
+    "spoon": 0.6
+  },
+  "surface_feeder": false,
+  "season": {
+    "from": "08-10",
+    "to": "09-30"
+  },
+  "resident": false,
+  "spawn": null,
+  "parasite": "plain",
+  "net_c_per_h": 0.08,
+  "mesh": "coarse",
+  "capacity": {
+    "creek_mouth": 12,
+    "pool_below_falls": 8
+  },
+  "r_per_month": 0.0
+}

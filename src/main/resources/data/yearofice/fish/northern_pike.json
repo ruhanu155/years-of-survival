@@ -1,0 +1,58 @@
+{
+  "id": "northern_pike",
+  "kg": [
+    1,
+    10
+  ],
+  "bite_base": 0.015,
+  "kcal_per_kg": 1500,
+  "run_pull_x": 0.6,
+  "run_every_s": [
+    4,
+    9
+  ],
+  "run_length_s": [
+    1.5,
+    3
+  ],
+  "jump_chance": 0.05,
+  "special": "head_shake",
+  "special_every_s": [
+    2,
+    5
+  ],
+  "special_spike": 1.4,
+  "tire_per_s": 0.04,
+  "bite_through_no_leader": 0.5,
+  "night_factor": 0.8,
+  "trophy_kg": [
+    10,
+    15
+  ],
+  "bait": {
+    "live_minnow": 2.0,
+    "spoon": 1.2,
+    "fish_chunk": 1.0,
+    "live_chub": 2.0,
+    "shell_spoon": 0.85
+  },
+  "surface_feeder": false,
+  "season": {
+    "all_year": true
+  },
+  "resident": true,
+  "spawn": {
+    "site": "weed_shelf",
+    "from": "04-25",
+    "to": "05-31"
+  },
+  "parasite": "cyst",
+  "net_c_per_h": 0.1,
+  "mesh": "coarse",
+  "capacity": {
+    "weed_shelf": 14,
+    "lake_inlet": 6,
+    "beaver_pond": 8
+  },
+  "r_per_month": 0.4
+}
