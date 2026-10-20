@@ -26,11 +26,11 @@ public final class PackSystem {
         PackAttachments.register(modBus);
         modBus.addListener((RegisterDataMapTypesEvent e) -> YoiDataMaps.register(e));
         modBus.addListener((BuildCreativeModeTabContentsEvent e) -> {
-            if (e.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) e.accept(PackItems.CRATE_BACKPACK.get());
+            if (e.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) { e.accept(PackItems.CRATE_BACKPACK.get()); e.accept(PackItems.PACK_FRAME.get()); e.accept(PackItems.LARGE_PACK_FRAME.get()); }
         });
         LoadService.install(LOAD);
         NeoForge.EVENT_BUS.addListener((PlayerTickEvent.Post e) -> {
-            if (e.getEntity() instanceof ServerPlayer p && !p.isSpectator()) PackSync.tick(p);
+            if (e.getEntity() instanceof ServerPlayer p && !p.isSpectator()) { PackSync.tick(p); PackSkill.tick(p); }
         });
         NeoForge.EVENT_BUS.addListener(Pickup::onPickupPre);
         NeoForge.EVENT_BUS.addListener(ItemExpiry::onJoin);

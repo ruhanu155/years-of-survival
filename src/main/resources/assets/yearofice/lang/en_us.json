@@ -225,6 +225,8 @@
   "generator.yearofice.year_of_ice": "Year of Ice: home valley",
   "generator.yearofice.slice_valley": "Year of Ice: slice valley",
   "item.yearofice.crate_backpack": "Crate backpack",
+  "item.yearofice.pack_frame": "Pack frame",
+  "item.yearofice.large_pack_frame": "Large pack frame",
   "messenger.yearofice.pickup.got": "+%s %s",
   "messenger.yearofice.pickup.left": "Pack full: %s left on the ground",
   "messenger.yearofice.pickup.pack_full_kg": "Pack full: over %s",
@@ -449,5 +451,12 @@
   "key.yearofice.dismiss_card": "Close field-note card",
   "credits.yearofice.title": "Credits",
   "credits.yearofice.count": "%s entries",
-  "credits.yearofice.button": "Credits"
+  "credits.yearofice.button": "Credits",
+  "subtitles.yearofice.body.breath_panic": "Panicked breathing",
+  "subtitles.yearofice.body.hit_grunt": "Grunt",
+  "subtitles.yearofice.body.bite_crunch": "Bite crunch",
+  "subtitles.yearofice.item.pack_tear": "Pack tears",
+  "subtitles.yearofice.body.back_twinge": "Back twinge",
+  "subtitles.yearofice.body.skin_sting": "Skin sting",
+  "messenger.yearofice.encounter.stay_down": "Stay down. Moving now draws it back."
 }

@@ -352,6 +352,20 @@
       "category": "bait",
       "stack_class": "small",
       "scent_level": 1
+    },
+    "yearofice:pack_frame": {
+      "category": "pack",
+      "stack_class": "single",
+      "floats": true,
+      "material": "wood",
+      "max_condition": 200
+    },
+    "yearofice:large_pack_frame": {
+      "category": "pack",
+      "stack_class": "single",
+      "floats": true,
+      "material": "wood",
+      "max_condition": 200
     }
   }
 }
