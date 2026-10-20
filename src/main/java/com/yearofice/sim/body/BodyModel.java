@@ -122,7 +122,7 @@ public final class BodyModel {
         s.lastAirC = in.env().airC();
 
         // 6. Warmth and wetness, minute by minute (the soaked rule and the clamps are not linear).
-        ClothingState clothing = s.clothing();
+        ClothingState clothing = StartKit.wear(s.clothing(), t.kitWarmthC());
         WetnessModel.Exposure exposure = WetnessModel.Exposure.of(in.env(), in.shelter().rainFactor(), a, in.moving(),
                         heatNear(in))
                 .in(in.depth());

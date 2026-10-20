@@ -39,8 +39,12 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 public final class TwoDaysDriver {
     private TwoDaysDriver() {}
 
-    public static final boolean ON = "body".equals(System.getenv("YEAROFICE_SMOKE"));
+    /** {@code body}: lays and keeps a fire; {@code body_nofire}: the fireless variant (RECONCILE 225). */
+    public static final boolean FIRE = "body".equals(System.getenv("YEAROFICE_SMOKE"));
+    public static final boolean ON = FIRE || "body_nofire".equals(System.getenv("YEAROFICE_SMOKE"));
     public static volatile boolean done = false;
+    /** Set at the first sample with any vital under its warn line, so the client can shoot the strip then. */
+    public static volatile boolean vitalsLow = false;
     public static volatile String verdict = "";
 
     static final long DAYS = 2 * 1440L;
@@ -57,6 +61,8 @@ public final class TwoDaysDriver {
     private static final java.util.Map<HudLine, Boolean> SEEN = new java.util.IdentityHashMap<>();
     private static final List<HudLine> EXTRA = new ArrayList<>();
     private static boolean indoors = false;
+    private static com.yearofice.fire.FireRingBlockEntity ring;
+    private static boolean ringLit;
 
     @SubscribeEvent
     public static void onTick(ServerTickEvent.Post e) {
@@ -77,7 +83,7 @@ public final class TwoDaysDriver {
 
     private static void begin(ServerPlayer p, Path dir) {
         try {
-            Path f = dir.resolve("smoke/body_two_days.log");
+            Path f = dir.resolve(FIRE ? "smoke/body_two_days.log" : "smoke/body_nofire_two_days.log");
             Files.createDirectories(f.getParent());
             out = new PrintWriter(Files.newBufferedWriter(f));
         } catch (IOException ex) {
@@ -159,7 +165,7 @@ public final class TwoDaysDriver {
             nextMeal = m + 330;
         }
         // At dusk the survivor goes under the cabin roof.
-        if (h >= 21 && !indoors && !p.isSleeping()) {
+        if (h >= (FIRE ? 20.5 : 21) && h < 22 && !indoors && !p.isSleeping()) {
             indoors = true;
             BlockPos c = p.blockPosition();
             for (BlockPos q : BlockPos.betweenClosed(c.offset(-14, -2, -14), c.offset(14, 4, 14))) {
@@ -167,16 +173,28 @@ public final class TwoDaysDriver {
                         && !p.level().canSeeSky(q) && !p.level().canSeeSky(q.above())) {
                     p.teleportTo(q.getX() + 0.5, q.getY(), q.getZ() + 0.5);
                     log("[" + clock(m) + "] goes under a roof at " + q.toShortString());
+                    if (FIRE) layFire(p, q, m);
                     break;
                 }
             }
             if (indoors) log("[" + clock(m) + "] (roof search done)");
         }
-        if (h >= 6 && h < 21) indoors = false;
+        if (h >= 6 && h < 20) indoors = false;
         if (!p.isSleeping() && m / 120 > drinks + start / 120 && h >= 7 && h < 22) {
             drinks = (int) (m / 120 - start / 120);
             body.drink(p, 0.5, WaterPurity.Source.CREEK, true);
             log("[" + clock(m) + "] drank 0.5 L of boiled creek water");
+        }
+
+        // The fire is fed through the ring's own api whenever it runs low (the survivor wakes to tend it).
+        if (FIRE && ring != null && ringLit && !ring.isRemoved() && tick % 20 == 0 && ring.fire().armloads() < 1.0) {
+            var ft = com.yearofice.fire.FireConfig.tuning();
+            int fed = 0;
+            for (int i = 0; i < 4; i++) if (ring.addPart(new ItemStack(net.minecraft.world.item.Items.SPRUCE_LOG), ft, p).ok()) fed++;
+            if (fed > 0) {
+                if (p.isSleeping()) body.wake(p, "tends the fire");
+                log("[" + clock(m) + "] feeds the fire " + fed + " logs, fire " + ring.fire().state());
+            }
         }
 
         // Sample the vitals every 10 game minutes; a vital that turned on needs its line.
@@ -201,6 +219,7 @@ public final class TwoDaysDriver {
                 }
             }
             was = now;
+            for (boolean b : now) if (b) vitalsLow = true;
             int frost = 0, hpMin = 100;
             for (Part q : Part.values()) { frost = Math.max(frost, s.parts.partFrost()[q.ordinal()]); hpMin = Math.min(hpMin, s.parts.hp(q)); }
             if (Math.floorMod(t, 60) < 10) {
@@ -210,6 +229,31 @@ public final class TwoDaysDriver {
                         p.isSleeping() ? "asleep" : "awake"));
             }
         }
+    }
+
+    /** Lays the fire ring beside the sleeping spot, tinder, kindling and logs in order, and lights it with a match. */
+    private static void layFire(ServerPlayer p, BlockPos q, long m) {
+        var level = p.level();
+        for (int[] o : new int[][] {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}) {
+            BlockPos r = q.offset(o[0], 0, o[1]);
+            if (level.getBlockState(r).isAir() && level.getBlockState(r.above()).isAir() && level.getBlockState(r.below()).isSolid()) {
+                level.setBlock(r, com.yearofice.fire.FireRegistry.FIRE_RING.get().defaultBlockState(), 3);
+                if (!(level.getBlockEntity(r) instanceof com.yearofice.fire.FireRingBlockEntity be)) continue;
+                var t = com.yearofice.fire.FireConfig.tuning();
+                be.addPart(new ItemStack(com.yearofice.fire.FireRegistry.TINDER_BUNDLE.get()), t, p);
+                be.addPart(new ItemStack(com.yearofice.fire.FireRegistry.KINDLING.get()), t, p);
+                be.addPart(new ItemStack(com.yearofice.fire.FireRegistry.KINDLING.get()), t, p);
+                for (int i = 0; i < 4; i++) be.addPart(new ItemStack(net.minecraft.world.item.Items.SPRUCE_LOG), t, p);
+                var lit = be.strikeMatch(p, new ItemStack(com.yearofice.fire.FireRegistry.MATCH.get()), 0.0);
+                be.puff();
+                be.puff();
+                ring = be;
+                ringLit = lit.ok();
+                log("[" + clock(m) + "] lays and lights the fire at " + r.toShortString() + ": " + lit.line() + " (" + be.fire().state() + ")");
+                return;
+            }
+        }
+        log("[" + clock(m) + "] no spot for a fire ring");
     }
 
     static String clock(long m) { long d = Math.floorMod(m, 1440L); return String.format("%02d:%02d", d / 60, d % 60); }
