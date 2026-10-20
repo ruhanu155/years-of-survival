@@ -12,6 +12,8 @@ import com.yearofice.sim.body.BodyTuning;
 import com.yearofice.sim.body.ColdWater;
 import com.yearofice.sim.body.IllnessModel;
 import com.yearofice.sim.body.Skin;
+import com.yearofice.sim.body.Healing;
+import com.yearofice.sim.body.RestDay;
 import com.yearofice.sim.body.WellnessTuning;
 import com.yearofice.sim.body.part.PartModel;
 import com.yearofice.sim.env.EnvSample;
@@ -57,6 +59,8 @@ public final class WellnessGameTests {
         out.add(test("yearofice:body/rest_heals_double", WellnessGameTests::restHealsDouble));
         out.add(test("yearofice:body/face_grease_prevents_sunburn", WellnessGameTests::faceGrease));
         out.add(test("yearofice:body/beard_stages", WellnessGameTests::beardStages));
+        out.add(test("yearofice:body/fever_sleep_slow", WellnessGameTests::feverSleepSlow));
+        out.add(test("yearofice:body/rest_day_part_rates", WellnessGameTests::restDayPartRates));
         out.add(test("yearofice:data/migrate_schema3", WellnessGameTests::migrateSchema3));
         return TestFilter.apply(out);
     }
@@ -183,6 +187,38 @@ public final class WellnessGameTests {
         });
         h.assertTrue(burned(sb), "a bare face should be Sunburned after 4 h on April snow");
         h.assertTrue(!burned(sg), "a greased face should not be");
+        h.succeed();
+    }
+
+    /** Fever slows sleep recovery to x0.7 (RECONCILE 213): the same hour in bed restores 0.7 as many bolts. */
+    static void feverSleepSlow(GameTestHelper h) {
+        ServerPlayer well = BodyGameTests.player(h), sick = BodyGameTests.player(h);
+        BodyState sw = BodyAttachments.of(well), ss = BodyAttachments.of(sick);
+        with(new Fixed(EnvSample.outdoors(15, 0), List.of()), x -> {
+            for (BodyState s : new BodyState[] {sw, ss}) { s.energy = 2; s.warmth = 100; s.water = 100; feed(s, 0); }
+            com.yearofice.sim.body.IllnessModel.start(ss, "fever", 0, 1440);
+            BodyTicker.step(well, 0, 60, Activity.SLEEP, true, false, T);
+            BodyTicker.step(sick, 0, 60, Activity.SLEEP, true, false, T);
+        });
+        double gw = sw.energy - 2, gs = ss.energy - 2;
+        h.assertTrue(gw > 0.5, "a well sleeper restores energy: " + gw);
+        h.assertTrue(Math.abs(gs / gw - W.feverSleepMult()) < 0.02, "fever restores x0.7: " + gs + " / " + gw);
+        h.succeed();
+    }
+
+    /** Rest-day rates by part: sprain x2, broken bone x1.5, the rest x1; Condition doubles on an unbroken Rest day. */
+    static void restDayPartRates(GameTestHelper h) {
+        h.assertTrue(RestDay.problemRate("sprain", W) == 2.0, "sprain x2");
+        h.assertTrue(RestDay.problemRate("broken_bone", W) == 1.5, "break x1.5");
+        h.assertTrue(RestDay.problemRate("cut", W) == 1.0, "other problems x1");
+        ServerPlayer p = BodyGameTests.player(h);
+        BodyState s = BodyAttachments.of(p);
+        s.warmth = 100;
+        var in = new com.yearofice.sim.body.BodyModel.Inputs(Activity.REST, false, 1, EnvSample.outdoors(15, 0), List.of(),
+                com.yearofice.sim.env.ShelterState.NONE, com.yearofice.sim.body.ColdWater.Depth.NONE, false);
+        double normal = Healing.rate(s, in, com.yearofice.sim.body.IllnessModel.Effects.NONE, false, W);
+        double rest = Healing.rate(s, in, com.yearofice.sim.body.IllnessModel.Effects.NONE, true, W);
+        h.assertTrue(Math.abs(rest - 2 * normal) < 1e-9, "Condition doubles on a Rest day: " + rest + " vs " + normal);
         h.succeed();
     }
 

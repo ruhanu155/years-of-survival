@@ -82,6 +82,12 @@ public record LoadBands(double[] edgesKg, double[] speed, double[] kcal, double 
 
     public double kcal(Band b) { return kcal[b.ordinal()]; }
 
+    /** The three upper band edges (Light, Heavy, Loaded) in kg at this Strength and Hauling practice. */
+    public double[] edgesKg(double strength, double haulingReps) {
+        double m = multiplier(strength, haulingReps);
+        return new double[] {edgesKg[0] * m, edgesKg[1] * m, edgesKg[2] * m};
+    }
+
     /** The band edge above which {@code b} starts, in kg at this Strength (0 for the first band). */
     public double from(Band b, double strength) { return b == Band.LIGHT ? 0 : edgesKg[b.ordinal() - 1] * multiplier(strength); }
 }

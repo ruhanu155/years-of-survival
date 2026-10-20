@@ -43,6 +43,7 @@ public final class PackSync {
         int changed = Integer.MIN_VALUE;
         int sinceLoad;
         LoadBands.Band band = LoadBands.Band.LIGHT;
+        com.yearofice.net.payload.PackReadoutPayload readout;
 
         State() { java.util.Arrays.fill(written, ItemStack.EMPTY); }
     }
@@ -145,6 +146,7 @@ public final class PackSync {
     static void applyLoad(ServerPlayer p, State s) {
         LoadBands bands = PackConfig.bands();
         s.band = LoadCalculator.bandOf(p, LoadCalculator.kgOf(p));
+        sendReadout(p, s, bands);
         AttributeInstance speed = p.getAttribute(Attributes.MOVEMENT_SPEED);
         if (speed == null) return;
         double f = bands.speed(s.band) - 1;
@@ -153,6 +155,20 @@ public final class PackSync {
         speed.removeModifier(LOAD);
         if (f != 0) speed.addTransientModifier(new AttributeModifier(LOAD, f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
     }
+
+    /** Strength-scaled band edges and the cap, sent to the pack screen when they change. */
+    static void sendReadout(ServerPlayer p, State s, LoadBands bands) {
+        double strength = LoadCalculator.strength(p), reps = PackSkill.reps(p);
+        double[] e = bands.edgesKg(strength, reps);
+        var r = new com.yearofice.net.payload.PackReadoutPayload((float) strength, (float) reps, (float) e[0],
+                (float) e[1], (float) e[2], (float) LoadCalculator.maxKgOf(p), s.band.ordinal());
+        if (r.equals(s.readout)) return;
+        s.readout = r;
+        com.yearofice.net.YoiNet.send(p, r);
+    }
+
+    /** What the pack screen was last told (tests). */
+    public static com.yearofice.net.payload.PackReadoutPayload readout(ServerPlayer p) { return state(p).readout; }
 
     /** The band the last load check found (tests and {@code /yoi pack}). */
     public static LoadBands.Band band(ServerPlayer p) { return state(p).band; }

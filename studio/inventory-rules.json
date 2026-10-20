@@ -436,6 +436,7 @@
     }
   ],
   "additions": [
+    {"basis": "B13 face grease: items that can be rubbed into the face and gloves (RECONCILE 175); Body tab > Injuries on the body", "milestone": "m4", "owner": "body", "type": "tag", "ids": ["grease"]},
     {
       "basis": "World and story, M2.5 slice guided first night: story.Onboarding's per-player state machine and warn-once memory (Ready for development M2.5, Story; Blueprint > Start site > The guided first night)",
       "milestone": "m2_5",
@@ -1674,15 +1675,6 @@
       "type": "item",
       "ids": [
         "bandage"
-      ]
-    },
-    {
-      "basis": "B13 face grease: items that can be rubbed into the face and gloves (RECONCILE 175); Body tab > Injuries on the body",
-      "milestone": "m4",
-      "owner": "body",
-      "type": "tag",
-      "ids": [
-        "grease"
       ]
     },
     {
