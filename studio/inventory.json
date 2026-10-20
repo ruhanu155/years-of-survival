@@ -7,12 +7,12 @@
     "Items: the doc's count says 226, its list names 225"
   ],
   "counts": {
-    "total": 1405,
-    "by_type": {"mob": 154, "entity": 21, "block_with_entity": 79, "block": 151, "plant_block": 107, "multiblock": 3, "item": 381, "sound_event": 135, "particle_type": 43, "attachment": 30, "data_component": 29, "payload": 24, "gui_layer": 17, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 12, "loot_function": 8, "loot_condition": 3, "recipe_type": 5, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 74, "biome": 29, "worldgen_hook": 16, "poi_type": 14},
-    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 94, "m4": 43, "m5": 361, "m6": 294, "m7": 141, "m8": 124, "m9": 52, "none": 3},
-    "by_owner": {"body": 225, "building": 192, "ecosystem": 255, "food": 235, "look": 210, "story": 62, "studio": 65, "worldgen": 161},
-    "by_milestone_source": {"doc": 600, "rule": 805},
-    "by_status": {"planned": 1303, "registered": 99, "retired": 3}
+    "total": 1406,
+    "by_type": {"mob": 154, "entity": 21, "block_with_entity": 79, "block": 151, "plant_block": 107, "multiblock": 3, "item": 381, "sound_event": 135, "particle_type": 43, "attachment": 31, "data_component": 29, "payload": 24, "gui_layer": 17, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 12, "loot_function": 8, "loot_condition": 3, "recipe_type": 5, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 74, "biome": 29, "worldgen_hook": 16, "poi_type": 14},
+    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 95, "m4": 43, "m5": 361, "m6": 294, "m7": 141, "m8": 124, "m9": 52, "none": 3},
+    "by_owner": {"body": 225, "building": 192, "ecosystem": 255, "food": 235, "look": 211, "story": 62, "studio": 65, "worldgen": 161},
+    "by_milestone_source": {"doc": 601, "rule": 805},
+    "by_status": {"planned": 1304, "registered": 99, "retired": 3}
   },
   "entries": [
     {"id": "yearofice:alaska_blackfish", "type": "mob", "milestone": "m5", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
@@ -1095,6 +1095,7 @@
     {"id": "yearofice:carry", "type": "attachment", "milestone": "m2", "owner": "look", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:current", "type": "attachment", "milestone": "m2", "owner": "worldgen", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:erosion_counters", "type": "attachment", "milestone": "m7", "owner": "worldgen", "milestone_source": "rule", "status": "planned"},
+    {"id": "yearofice:field_notes", "type": "attachment", "milestone": "m3", "owner": "look", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:flood_flags", "type": "attachment", "milestone": "m7", "owner": "worldgen", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:hazard", "type": "attachment", "milestone": "m7", "owner": "worldgen", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:ice_lane", "type": "attachment", "milestone": "m7", "owner": "worldgen", "milestone_source": "rule", "status": "planned"},
