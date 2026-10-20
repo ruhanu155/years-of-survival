@@ -45,7 +45,7 @@ public final class HudLayers {
             case "body_fx" -> new StackLayers.BodyFx();
             case "threat_flash" -> new StackLayers.ThreatFlash();
             case "vitals_strip" -> new VitalsStripLayer();
-            case "body_figure" -> new StackLayers.BodyFigure();
+            case "body_figure" -> new BodyFigureLayer();
             case "load_meter" -> new LoadMeterLayer();
             case "carry_slot" -> new StackLayers.CarrySlot();
             case "pickup_line" -> new StackLayers.PickupLine();

@@ -66,6 +66,11 @@ public final class BodyCommands {
                         .then(Commands.literal("show").executes(c -> show(c, List.of(c.getSource().getPlayerOrException())))
                                 .then(Commands.argument("player", EntityArgument.players())
                                         .executes(c -> show(c, EntityArgument.getPlayers(c, "player")))))
+                        .then(Commands.literal("part")
+                                .then(Commands.argument("part", com.mojang.brigadier.arguments.StringArgumentType.word())
+                                        .suggests((c, b) -> net.minecraft.commands.SharedSuggestionProvider.suggest(
+                                                Arrays.stream(Part.values()).map(x -> x.name().toLowerCase(Locale.ROOT)), b))
+                                        .executes(c -> part(c, com.mojang.brigadier.arguments.StringArgumentType.getString(c, "part")))))
                         .then(env()))
                 .then(Commands.literal("time")
                         // /yoi time day <n> is the clock's (story.clock.ClockCommands).
@@ -121,6 +126,27 @@ public final class BodyCommands {
         int h = s.binHour < 0 ? 0 : (int) Math.floorMod(s.binHour, 24);
         if (v >= 0) s.kcalIn[h] = v;
         else s.kcalOut[h] = -v;
+    }
+
+    // --- /yoi body part --------------------------------------------------------------------------------------
+    private static int part(CommandContext<CommandSourceStack> c, String name) throws CommandSyntaxException {
+        Part part;
+        try {
+            part = Part.valueOf(name.toUpperCase(Locale.ROOT));
+        } catch (IllegalArgumentException ex) {
+            c.getSource().sendFailure(Component.literal("No such part: " + name));
+            return 0;
+        }
+        ServerPlayer p = c.getSource().getPlayerOrException();
+        BodyState s = BodyAttachments.of(p);
+        StringBuilder b = new StringBuilder();
+        b.append(String.format(Locale.ROOT, "%s: hp %d (%s), frost %d, crooked %s, digits lost %d/%d", name, s.parts.hp(part),
+                s.parts.band(part), s.parts.frost(part), s.parts.isCrooked(part), Integer.bitCount(s.parts.lostDigits()[0]),
+                Integer.bitCount(s.parts.lostDigits()[1])));
+        for (var pr : s.parts.problems()) if (pr.part() == part) b.append("\n  ").append(pr.id()).append(" stage ").append(pr.stage());
+        String text = b.toString();
+        c.getSource().sendSuccess(() -> Component.literal(text), false);
+        return 1;
     }
 
     // --- /yoi body show --------------------------------------------------------------------------------------

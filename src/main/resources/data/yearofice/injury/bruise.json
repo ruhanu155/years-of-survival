@@ -1,8 +1,0 @@
-{
-  "stages": 1,
-  "heal_h": 12,
-  "treat": [
-    "bandage",
-    "salve"
-  ]
-}

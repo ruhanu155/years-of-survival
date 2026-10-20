@@ -1,9 +1,0 @@
-{
-  "stages": 1,
-  "heal_days": [
-    1
-  ],
-  "treat": [
-    "bandage"
-  ]
-}
