@@ -53,6 +53,8 @@ public final class TheftService {
 
     public static void watch(ServerLevel level, BlockPos pos) { synchronized (WATCHED) { WATCHED.put(pos.immutable(), level); } }
 
+    public static void unwatch(ServerLevel level, BlockPos pos) { synchronized (WATCHED) { WATCHED.remove(pos); } }
+
     public static void clear() {
         synchronized (WATCHED) { WATCHED.clear(); }
         override = null;

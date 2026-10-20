@@ -32,6 +32,11 @@ public final class PlantRegistry {
         }
         Set<String> food = new HashSet<>(Arrays.asList(PlantCatalog.FOOD_PARTS));
         for (String id : PlantCatalog.PARTS) {
+            if (id.equals("rose_hips")) { // the named food (food package) owns this id; one registration only
+                @SuppressWarnings({"unchecked", "rawtypes"}) DeferredItem<Item> named = (DeferredItem) com.yearofice.food.FoodItems.ROSE_HIPS;
+                PARTS.put(id, named);
+                continue;
+            }
             PARTS.put(id, food.contains(id)
                     ? ITEMS.registerItem(id, YoiFoodItem::new, new Item.Properties().stacksTo(64))
                     : ITEMS.registerItem(id, Item::new, new Item.Properties().stacksTo(64)));

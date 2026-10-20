@@ -23,6 +23,7 @@ public class FoodCacheBlockEntity extends StoreBlockEntity {
 
     private int deadfallOverride = -1;
     private long lastWeek = Long.MIN_VALUE;
+    private boolean droppings;
 
     public FoodCacheBlockEntity(BlockPos pos, BlockState state) { super(PreserveRegistry.CACHE_ENTITY.get(), pos, state); }
 
@@ -31,6 +32,12 @@ public class FoodCacheBlockEntity extends StoreBlockEntity {
 
     /** GameTests (and {@code /yoi}) pin the ring count; -1 counts the real blocks. */
     public void pinDeadfalls(int n) { deadfallOverride = n; }
+
+    /** Mice have been at the cache: droppings lie in it (the field note {@code mice_in_cache}; they cause food poisoning). */
+    public boolean droppings() { return droppings; }
+
+    /** Sweeping the cache out clears the droppings. */
+    public void clean() { droppings = false; setChanged(); }
 
     public int deadfallsWithin3() {
         if (deadfallOverride >= 0) return deadfallOverride;
@@ -64,37 +71,51 @@ public class FoodCacheBlockEntity extends StoreBlockEntity {
             }
         }
         items.removeIf(ItemStack::isEmpty);
-        if (total > 0) changed();
+        if (total > 0) {
+            droppings = true;
+            changed();
+        }
         return total;
     }
 
     @Override
     public void onLoad() {
         super.onLoad();
-        if (level != null && !level.isClientSide) PreserveClock.add(level, worldPosition);
+        if (level != null && !level.isClientSide) {
+            PreserveClock.add(level, worldPosition);
+            if (level instanceof net.minecraft.server.level.ServerLevel sl) RackWatch.watch(sl, worldPosition);
+        }
     }
 
     @Override
     public void setRemoved() {
         super.setRemoved();
-        if (level != null && !level.isClientSide) PreserveClock.remove(level, worldPosition);
+        if (level != null && !level.isClientSide) {
+            PreserveClock.remove(level, worldPosition);
+            if (level instanceof net.minecraft.server.level.ServerLevel sl) RackWatch.unwatch(sl, worldPosition);
+        }
     }
 
     @Override
     public void onChunkUnloaded() {
         super.onChunkUnloaded();
-        if (level != null && !level.isClientSide) PreserveClock.remove(level, worldPosition);
+        if (level != null && !level.isClientSide) {
+            PreserveClock.remove(level, worldPosition);
+            if (level instanceof net.minecraft.server.level.ServerLevel sl) RackWatch.unwatch(sl, worldPosition);
+        }
     }
 
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider regs) {
         super.saveAdditional(tag, regs);
         tag.putLong("last_week", lastWeek);
+        tag.putBoolean("droppings", droppings);
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider regs) {
         super.loadAdditional(tag, regs);
         lastWeek = tag.contains("last_week") ? tag.getLong("last_week") : Long.MIN_VALUE;
+        droppings = tag.getBoolean("droppings");
     }
 }

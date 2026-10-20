@@ -1898,6 +1898,33 @@
       "ids": [
         "toxic_plants"
       ]
+    },
+    {
+      "basis": "M5 lane D2",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "deadfall"
+      ]
+    },
+    {
+      "basis": "M5 lane D2",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "mouse_deadfall"
+      ]
+    },
+    {
+      "basis": "M5 lane D2",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "snare_funnel"
+      ]
     }
   ],
   "expand": {

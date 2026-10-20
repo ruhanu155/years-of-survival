@@ -217,29 +217,50 @@
     "yearofice:bandage": {
       "weight_g": 15
     },
-    "yearofice:dolly_varden": {
-      "weight_g": 1100
+    "yearofice:red_squirrel_meat": {
+      "weight_g": 100
     },
-    "yearofice:northern_pike": {
-      "weight_g": 3000
+    "yearofice:marten_meat": {
+      "weight_g": 100
     },
-    "yearofice:humpback_whitefish": {
-      "weight_g": 1000
+    "yearofice:mink_meat": {
+      "weight_g": 100
     },
-    "yearofice:burbot": {
-      "weight_g": 2000
+    "yearofice:muskrat_meat": {
+      "weight_g": 100
     },
-    "yearofice:lake_trout": {
-      "weight_g": 5000
+    "yearofice:beaver_meat": {
+      "weight_g": 100
     },
-    "yearofice:chinook_salmon": {
-      "weight_g": 12000
+    "yearofice:porcupine_meat": {
+      "weight_g": 100
     },
-    "yearofice:chum_salmon": {
-      "weight_g": 4000
+    "yearofice:spruce_grouse_meat": {
+      "weight_g": 100
     },
-    "yearofice:coho_salmon": {
-      "weight_g": 3500
+    "yearofice:ruffed_grouse_meat": {
+      "weight_g": 100
+    },
+    "yearofice:rock_ptarmigan_meat": {
+      "weight_g": 100
+    },
+    "yearofice:marten_pelt": {
+      "weight_g": 250
+    },
+    "yearofice:mink_pelt": {
+      "weight_g": 100
+    },
+    "yearofice:muskrat_pelt": {
+      "weight_g": 150
+    },
+    "yearofice:red_squirrel_pelt": {
+      "weight_g": 40
+    },
+    "yearofice:ermine_pelt": {
+      "weight_g": 50
+    },
+    "yearofice:beaver_pelt": {
+      "weight_g": 1500
     }
   }
 }
