@@ -18,6 +18,10 @@ public final class ValleyWorlds {
     /** Level seed to the layers its dimension of ours uses, for structure placement (which sees only the seed). */
     private static final Map<Long, ValleyWorld> BY_LEVEL_SEED = new ConcurrentHashMap<>();
     private static volatile Pipeline pipeline;
+    /** Where the winning attempt per seed is remembered: {@code <world>/yearofice/layer_cache}, set when the server is about to start. */
+    private static volatile java.nio.file.Path cacheDir;
+
+    public static void setCacheDir(java.nio.file.Path dir) { cacheDir = dir; }
 
     static Pipeline pipeline() {
         Pipeline p = pipeline;
@@ -27,7 +31,7 @@ public final class ValleyWorlds {
 
     public static ValleyWorld get(long layerSeed) {
         return BY_SEED.computeIfAbsent(layerSeed, s -> {
-            ValleyWorld w = ValleyWorld.build(pipeline(), s);
+            ValleyWorld w = ValleyWorld.build(pipeline(), s, cacheDir);
             YearOfIce.LOG.info("Year of Ice layers for seed {} bound ({}, attempt {})", s, w.seed.archetype(), w.seed.attempt());
             return w;
         });

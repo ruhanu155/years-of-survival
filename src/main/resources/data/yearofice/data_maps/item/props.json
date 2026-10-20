@@ -121,17 +121,6 @@
       "category": "tool",
       "stack_class": "single"
     },
-    "yearofice:flint_knife": {
-      "category": "tool",
-      "stack_class": "single",
-      "material": "stone",
-      "max_condition": 300
-    },
-    "yearofice:flint_nodule": {
-      "category": "material",
-      "stack_class": "medium",
-      "material": "stone"
-    },
     "yearofice:hare_pelt": {
       "category": "hide",
       "stack_class": "medium",
@@ -162,13 +151,6 @@
       "stack_class": "medium",
       "floats": true,
       "material": "wood"
-    },
-    "yearofice:knife": {
-      "category": "tool",
-      "stack_class": "single",
-      "material": "steel",
-      "max_condition": 6000,
-      "theft": "porcupine"
     },
     "yearofice:match": {
       "category": "fire",
@@ -227,11 +209,6 @@
       "material": "wood",
       "max_condition": 100
     },
-    "yearofice:rough_stone": {
-      "category": "material",
-      "stack_class": "medium",
-      "material": "stone"
-    },
     "yearofice:seed_packet": {
       "category": "seed",
       "stack_class": "small"
@@ -273,12 +250,6 @@
       "floats": true,
       "material": "wood"
     },
-    "yearofice:stake": {
-      "category": "material",
-      "stack_class": "small",
-      "floats": true,
-      "material": "wood"
-    },
     "yearofice:steel_bottle": {
       "category": "container",
       "stack_class": "single",
@@ -315,12 +286,6 @@
       "stack_class": "medium",
       "floats": true
     },
-    "yearofice:tool_handle": {
-      "category": "material",
-      "stack_class": "medium",
-      "floats": true,
-      "material": "wood"
-    },
     "yearofice:whole_game": {
       "category": "food",
       "stack_class": "single",
@@ -341,11 +306,6 @@
       "category": "fuel",
       "stack_class": "by_weight",
       "floats": true,
-      "material": "wood"
-    },
-    "yearofice:workbench": {
-      "category": "piece",
-      "stack_class": "single",
       "material": "wood"
     },
     "yearofice:worm": {

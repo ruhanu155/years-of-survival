@@ -81,7 +81,7 @@ public final class StartSite {
     /** What {@link #search} found: the layers of the winning attempt, the placements with the outpost, every attempt's report. */
     public record Outcome(Pipeline.Result result, Cover.Layers cover, List<SetPieces.Placement> placements, Site site,
                           List<Report> reports) {
-        public int rerolls() { return reports.size() - 1; }
+        public int rerolls() { return result.attempt(); }
 
         public List<String> lines() {
             List<String> out = new ArrayList<>();
@@ -95,11 +95,14 @@ public final class StartSite {
     // ------------------------------------------------------------------------------------------------ search
 
     /** Runs attempts until the layers and the start site both pass; fails after {@code seed.max_attempts}. */
-    public static Outcome search(Pipeline pipe, long levelSeed, StartSiteParams sp) {
+    public static Outcome search(Pipeline pipe, long levelSeed, StartSiteParams sp) { return search(pipe, levelSeed, sp, 0); }
+
+    /** As {@link #search(Pipeline, long, StartSiteParams)}, starting at {@code firstAttempt} (a cached winner skips the failed ones). */
+    public static Outcome search(Pipeline pipe, long levelSeed, StartSiteParams sp, int firstAttempt) {
         List<Report> reports = new ArrayList<>();
         int max = pipe.params().seed().maxAttempts();
         SetPieceDef def = outpostDef(pipe.setPieces());
-        for (int k = 0; k < max; k++) {
+        for (int k = firstAttempt; k < max; k++) {
             Pipeline.Result r = pipe.attempt(levelSeed, k);
             if (!r.passed()) {
                 reports.add(new Report(k, r.failures(), 0, List.of(), null, null));

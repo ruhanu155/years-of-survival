@@ -196,8 +196,20 @@ public final class ValleyWorld {
      * Runs stages 1–6 and the start-site search for a level seed and binds the result: attempt k + 1 on any failed
      * check in stages 1–7, up to {@code seed.max_attempts}. About 5 s; call it off the main thread where it can be.
      */
-    public static ValleyWorld build(Pipeline pipe, long levelSeed) {
-        StartSite.Outcome o = StartSite.search(pipe, levelSeed, StartSiteParams.load());
+    public static ValleyWorld build(Pipeline pipe, long levelSeed) { return build(pipe, levelSeed, null); }
+
+    /** As {@link #build(Pipeline, long)}, reading and writing the winning attempt in {@code cacheDir} (null: no cache). */
+    public static ValleyWorld build(Pipeline pipe, long levelSeed, java.nio.file.Path cacheDir) {
+        int first = LayerCache.load(cacheDir, levelSeed);
+        StartSite.Outcome o;
+        try {
+            o = StartSite.search(pipe, levelSeed, StartSiteParams.load(), Math.max(0, first));
+        } catch (IllegalStateException e) {
+            if (first <= 0) throw e;
+            o = StartSite.search(pipe, levelSeed, StartSiteParams.load());
+            first = -1;
+        }
+        if (first != o.result().attempt()) LayerCache.store(cacheDir, levelSeed, o.result().attempt());
         ValleyWorld w = new ValleyWorld(pipe.params(), o.result(), o.cover(), pipe.setPieces(), o.placements(), true);
         w.startOutcome = o;
         return w;
