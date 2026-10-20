@@ -3,6 +3,8 @@
   {id:"yearofice:whole_game",count:1,components:{"yearofice:carcass":{cause:"snare",coat:2,death_minute:5400L,fresh:{clock:1,due_dh:36.5d,life_dh:120.0d,state:"raw"},sex:1,species:"yearofice:snowshoe_hare",weight_g:1700}}},
   {id:"yearofice:messenger",count:1,components:{"yearofice:battery":7250}},
   {id:"yearofice:rod",count:1,components:{"yearofice:tackle":{bait:"yearofice:worm",bites_left:2,minutes_left:90}}},
+  {id:"yearofice:cooking_pot",count:1,components:{"yearofice:water":{litres:1.5d,source:"river",boiled:1b,heat:0.6d,boil_min:7.0d}}},
+  {id:"yearofice:birch_bark_torch",count:1,components:{"yearofice:light_state":{lit:1b,left:9}}},
   {id:"yearofice:willow_ptarmigan_meat",count:2,components:{"yearofice:doneness":"done"}},
   {id:"yearofice:tinder_bundle",count:5,components:{"yearofice:moisture":35}},
   {id:"yearofice:spruce_round",count:1,components:{"yearofice:seasoning":{moisture_pct:22.5d,day:140L}}}

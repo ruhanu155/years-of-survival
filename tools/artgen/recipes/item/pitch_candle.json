@@ -1,0 +1,58 @@
+{
+ "id": "yearofice:pitch_candle",
+ "kind": "icon",
+ "notes": "A pitch candle in a folded bark cup: smoky, dark and cheap.",
+ "shapes": [
+  {
+   "kind": "rect",
+   "box": [
+    6,
+    6,
+    10,
+    14
+   ],
+   "ramp": "bark_tamarack",
+   "step": 3
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     8,
+     5
+    ]
+   ],
+   "ramp": "wood_cut",
+   "step": 0,
+   "flat": true
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     8,
+     3
+    ],
+    [
+     8,
+     4
+    ]
+   ],
+   "ramp": "fire",
+   "step": 3,
+   "flat": true
+  },
+  {
+   "kind": "pixels",
+   "points": [
+    [
+     8,
+     2
+    ]
+   ],
+   "ramp": "fire",
+   "step": 4,
+   "flat": true
+  }
+ ]
+}

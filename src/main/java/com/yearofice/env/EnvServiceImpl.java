@@ -25,7 +25,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
  *   <li>Air: the lapse from the valley floor (y 150), or the winter inversion on clear calm nights.</li>
  *   <li>Wind: ridge exposure by height, and ×0.3 under a canopy (leaves above the position in the column).</li>
  *   <li>Water: creek, river or lake from the 5-day mean air.</li>
- *   <li>Light: vanilla sky and block light at the position (held light is {@code env.light}, M3).</li>
+ *   <li>Light: vanilla sky and block light at the position, raised by carried lights ({@code env.light}, M3).</li>
  * </ul>
  *
  * Nothing is ticked: a sample is a few lookups into the cached year table, so it costs well under a microsecond
@@ -86,6 +86,7 @@ public final class EnvServiceImpl implements EnvService {
         double wind = overrideWind ? h.windMs() : h.windMs() * factor;
         double gust = overrideWind ? h.gustMs() : h.gustMs() * factor;
         int light = blocks != null && level.isLoaded(blocks) ? level.getMaxLocalRawBrightness(blocks) : sun > 0 ? 15 : 0;
+        if (blocks != null) light = com.yearofice.env.light.LightField.at(level, blocks, light);
         return new EnvSample(air, EnvSample.envFeelsLike(air, wind), m.groundC(doy), m.creekC(day), 30, h.windDirDeg(),
                 wind, gust, h.snowDepthCm(), false, 0, h.precip(), h.precipMmH(), h.visibilityM(), light, 0, 0, 0,
                 h.cloudPct(), h.pressureHpa(), 0, h.humidityPct(), "", 0, 0, 0);

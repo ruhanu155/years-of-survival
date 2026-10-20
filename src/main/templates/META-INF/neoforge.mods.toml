@@ -13,9 +13,13 @@ description='''${mod_description}'''
 [[accessTransformers]]
 file="META-INF/accesstransformer.cfg"
 
-# One mixin config (Minecraft engine › Inventory and packs: the one Inventory mixin for locked pack rows).
+# The common mixin config (Minecraft engine › Inventory and packs: the Inventory mixin for locked pack rows) and the
+# client-only one (Held light: LevelRenderer and EntityRenderer light lifts; loads on the client side only).
 [[mixins]]
 config="${mod_id}.mixins.json"
+
+[[mixins]]
+config="${mod_id}.client.mixins.json"
 
 [[dependencies.${mod_id}]]
 modId="neoforge"

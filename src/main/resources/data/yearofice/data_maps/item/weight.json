@@ -81,6 +81,17 @@
     "yearofice:drift_round": {"weight_g": 3750},
     "yearofice:drift_split": {"weight_g": 3750},
     "yearofice:hatchet": {"weight_g": 900},
-    "yearofice:chopping_block": {"weight_g": 15000}
+    "yearofice:chopping_block": {"weight_g": 15000},
+    "yearofice:steel_bottle": {"weight_g": 180},
+    "yearofice:cooking_pot": {"weight_g": 600},
+    "yearofice:bark_bucket": {"weight_g": 300},
+    "yearofice:tin_can": {"weight_g": 50},
+    "yearofice:jerrycan": {"weight_g": 1200},
+    "yearofice:fire_starter": {"weight_g": 90},
+    "yearofice:birch_bark_torch": {"weight_g": 350},
+    "yearofice:pitch_torch": {"weight_g": 450},
+    "yearofice:tallow_candle": {"weight_g": 80},
+    "yearofice:pitch_candle": {"weight_g": 100},
+    "yearofice:headlamp": {"weight_g": 120}
   }
 }

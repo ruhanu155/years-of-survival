@@ -19,6 +19,10 @@ public final class FireSystem {
 
     public static void init(IEventBus modBus) {
         FireRegistry.register(modBus);
+        com.yearofice.fire.water.WaterRegistry.register(modBus);
+        com.yearofice.fire.light.LightItems.ITEMS.register(modBus);
+        com.yearofice.env.light.LightSystem.init(modBus);
+        com.yearofice.fire.light.LightBurn.init();
         modBus.addListener(FireParts::registerDataMaps);
         modBus.addListener(FireNetwork::register);
         modBus.addListener((ModConfigEvent.Loading e) -> FireConfig.invalidate());
@@ -29,9 +33,14 @@ public final class FireSystem {
             FireIndex.INSTANCE.clear();
             FireEnv.clear();
             BowDrillService.clear();
+            FlameBlockEntity.clear();
+            FireDangerIndex.clear();
+            FireLook.clear();
+            FireRosterWatch.clear();
         });
         FireHeatLookup.INSTANCE.set(FireIndex.INSTANCE);
         FireClock.init();
+        FireLook.init();
     }
 
     /** Until the studio adds a Year of Ice tab, the fire kit sits in the vanilla tabs. */
@@ -39,6 +48,17 @@ public final class FireSystem {
         if (e.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             e.accept(FireRegistry.BOW_DRILL.get());
             e.accept(FireRegistry.MATCH.get());
+            e.accept(FireRegistry.FIRE_STARTER.get());
+            e.accept(com.yearofice.fire.water.WaterRegistry.STEEL_BOTTLE.get());
+            e.accept(com.yearofice.fire.water.WaterRegistry.COOKING_POT.get());
+            e.accept(com.yearofice.fire.water.WaterRegistry.BARK_BUCKET.get());
+            e.accept(com.yearofice.fire.water.WaterRegistry.TIN_CAN.get());
+            e.accept(com.yearofice.fire.water.WaterRegistry.JERRYCAN.get());
+            e.accept(com.yearofice.fire.light.LightItems.BIRCH_BARK_TORCH.get());
+            e.accept(com.yearofice.fire.light.LightItems.PITCH_TORCH.get());
+            e.accept(com.yearofice.fire.light.LightItems.TALLOW_CANDLE.get());
+            e.accept(com.yearofice.fire.light.LightItems.PITCH_CANDLE.get());
+            e.accept(com.yearofice.fire.light.LightItems.HEADLAMP.get());
         } else if (e.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             e.accept(FireRegistry.TINDER_BUNDLE.get());
             e.accept(FireRegistry.KINDLING.get());

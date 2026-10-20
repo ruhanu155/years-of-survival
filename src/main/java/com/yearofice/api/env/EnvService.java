@@ -62,7 +62,7 @@ public interface EnvService {
 
     double visibilityM(ServerLevel level, BlockPos pos);
 
-    /** Gameplay light 0–15: the larger of sky and block light (held lights arrive with {@code env.light}, M3). */
+    /** Gameplay light 0–15: the largest of sky light, block light and the lights players carry nearby ({@code env.light}). */
     int light(ServerLevel level, BlockPos pos);
 
     /** The valley floor's hour now: the drawn state, air, wind and precipitation before place rules. */

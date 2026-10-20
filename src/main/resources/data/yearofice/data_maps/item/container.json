@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": {
+    "yearofice:steel_bottle": { "capacity_l": 1.0, "heat": "coals" },
+    "yearofice:cooking_pot": { "capacity_l": 2.0, "heat": "fire" },
+    "yearofice:bark_bucket": { "capacity_l": 4.0, "heat": "never" },
+    "yearofice:tin_can": { "capacity_l": 0.4, "heat": "coals" },
+    "yearofice:jerrycan": { "capacity_l": 15.0, "heat": "never" }
+  }
+}

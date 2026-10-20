@@ -45,15 +45,25 @@ public final class FireRegistry {
             BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(0.6f).sound(SoundType.STONE).noOcclusion()
                     .pushReaction(PushReaction.DESTROY).lightLevel(s -> s.getValue(FireRingBlock.BURN).light));
 
+    /** Fire jumped to a burnable piece (spread); not obtainable. */
+    public static final DeferredBlock<FlameBlock> FLAME = BLOCKS.registerBlock("flame", FlameBlock::new,
+            BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).noCollission().noOcclusion().instabreak().lightLevel(s -> 15)
+                    .pushReaction(PushReaction.DESTROY).noLootTable());
+
     public static final DeferredItem<BlockItem> FIRE_RING_ITEM = ITEMS.registerSimpleBlockItem("fire_ring", FIRE_RING, new Item.Properties());
     public static final DeferredItem<Item> TINDER_BUNDLE = ITEMS.registerItem("tinder_bundle", Item::new, new Item.Properties().stacksTo(20));
     public static final DeferredItem<Item> KINDLING = ITEMS.registerItem("kindling", Item::new, new Item.Properties().stacksTo(20));
     /** A fireboard holds 8 notches: 8 attempts, then the worn part is replaced (Crafting › Tool durability). */
     public static final DeferredItem<Item> BOW_DRILL = ITEMS.registerItem("bow_drill", Item::new, new Item.Properties().durability(8));
+    /** The ferro rod in its grip with its striker: lights a laid fire, wears a little each strike (Crafting › Tool durability). */
+    public static final DeferredItem<Item> FIRE_STARTER = ITEMS.registerItem("fire_starter", Item::new, new Item.Properties().durability(200));
     public static final DeferredItem<Item> MATCH = ITEMS.registerItem("match", Item::new, new Item.Properties().stacksTo(50));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FireRingBlockEntity>> FIRE_RING_ENTITY =
             BLOCK_ENTITIES.register("fire_ring", () -> BlockEntityType.Builder.of(FireRingBlockEntity::new, FIRE_RING.get()).build(null));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FlameBlockEntity>> FLAME_ENTITY =
+            BLOCK_ENTITIES.register("flame", () -> BlockEntityType.Builder.of(FlameBlockEntity::new, FLAME.get()).build(null));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> CRACKLE = SOUNDS.register("fire.crackle",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, "fire.crackle")));

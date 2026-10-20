@@ -38,6 +38,7 @@ public final class Fire {
 
     private FireState state = FireState.OUT;
     private FireSetting setting = FireSetting.STEADY;
+    private FireBuild build = FireBuild.RING;
     private int minutesInState;
     private int catchMinutes;
     private double rainMinutes;
@@ -58,6 +59,7 @@ public final class Fire {
 
     public FireState state() { return state; }
     public FireSetting setting() { return setting; }
+    public FireBuild build() { return build; }
     public int minutesInState() { return minutesInState; }
     public boolean hasTinder() { return tinderMoisture >= 0; }
     public int tinderMoisture() { return (int) Math.ceil(Math.max(0, tinderMoisture)); }
@@ -115,13 +117,22 @@ public final class Fire {
             case BANKED -> 0.3;
             case FIRE -> {
                 Armload a = burning();
-                double perHour = 60 * FireRules.fuelUse(setting) / (t.ringArmloadMin() * a.wood.burnFactor);
+                double perHour = 60 * FireRules.fuelUse(setting) / (t.armloadMin(build) * a.wood.burnFactor);
                 yield perHour * FireRules.KWH_PER_ARMLOAD * a.wood.heatFactor * FireRules.moistureHeat(a.moisturePct);
             }
         };
     }
 
-    public int smoke() { return FireRules.smoke(state, burning()); }
+    /**
+     * Armloads a day this fire burns at its setting (Fire time and the fire roster: {@code 1440 * u / (t_armload * k)}),
+     * 0 for any state that is not a burning fire: coals and banked fires count nothing.
+     */
+    public double armloadsPerDay(FireTuning t) {
+        Armload a = burning();
+        return a == null ? 0 : 1440 * FireRules.fuelUse(setting) / (t.armloadMin(build) * a.wood.burnFactor);
+    }
+
+    public int smoke() { return build.smoke(FireRules.smoke(state, burning())); }
 
     /** Game minutes until this state ends on its own: fuel left for a fire, the timer for the others. */
     public double minutesLeft(FireTuning t) {
@@ -133,11 +144,25 @@ public final class Fire {
             case BANKED -> Math.max(0, t.bankedMin() - minutesInState);
             case FIRE -> {
                 double m = 0;
-                for (Armload a : fuel) m += a.amount() * t.ringArmloadMin() * a.wood.burnFactor / FireRules.fuelUse(setting);
+                for (Armload a : fuel) m += a.amount() * t.armloadMin(build) * a.wood.burnFactor / FireRules.fuelUse(setting);
                 yield m;
             }
         };
     }
+
+    /**
+     * Game minutes until rain puts out an uncovered burning fire if it keeps raining (one state per interval:
+     * Hot, Steady, Low, out), or -1 when no rain reaches it.
+     */
+    public int rainOutMinutes(FireWeather w, FireTuning t) {
+        if (!state.burning() || !w.rainOnFire()) return -1;
+        int step = w.heavy() ? t.heavyRainStepMin() : t.lightRainStepMin();
+        int steps = state == FireState.FIRE ? (setting == FireSetting.HOT ? 3 : setting == FireSetting.STEADY ? 2 : 1) : 1;
+        return Math.max(1, (int) Math.ceil(steps * step - rainMinutes));
+    }
+
+    /** True when snowfall will put this fire out: a Low fire under snow. */
+    public boolean snowWillPutOut(FireWeather w) { return state == FireState.FIRE && setting == FireSetting.LOW && w.snowOnFire(); }
 
     /** True when the fire holds more than it should: more than 3 armloads, or Hot with more than 2. */
     public boolean packed(FireTuning t) {
@@ -168,6 +193,8 @@ public final class Fire {
             }
             case FUEL -> {
                 if (wood == null || amount <= 0) return Result.no("That will not burn.");
+                String shape = build.rejects(amount);
+                if (shape != null) return Result.no(shape);
                 if (armloads() + amount > t.maxArmloads() + 1e-9) return Result.no("The ring is full.");
                 Armload last = fuel.isEmpty() ? null : fuel.get(fuel.size() - 1);
                 if (last != null && last.sameKind(wood, moisturePct) && last != burning()) last.add(amount);
@@ -254,14 +281,65 @@ public final class Fire {
     public Result strikeMatch(double roll, int matchMoisture, FireWeather w, boolean sheltered, FireTuning t) {
         String why = cannotLight(t);
         if (why != null) return Result.no(why);
-        double p = matchChance(w.windMs(), matchMoisture, t);
+        double wind = build.shelteredFromWind() ? 0 : w.windMs();
+        double p = matchChance(wind, matchMoisture, t);
         if (matchMoisture > t.matchMaxMoisture()) return Result.no("The match is damp. It will not strike.");
-        if (roll >= p) return Result.no(w.windMs() >= t.matchWindMs() ? "The wind took the match." : "The match broke.");
+        if (roll >= p) return Result.no(wind >= t.matchWindMs() ? "The wind took the match." : "The match broke.");
         if (state == FireState.BANKED) return relight();
         enter(FireState.EMBER);
         puffsNeeded = 2;
-        emberTicks = emberLifeTicks(w.windMs(), sheltered, t);
+        emberTicks = emberLifeTicks(wind, sheltered, t);
         return Result.ok("The tinder smoulders. Blow on it.");
+    }
+
+    /** The chance a ferro rod's spark takes: 90% in calm air, 60% in wind (a Dakota hole is always calm). */
+    public double ferroChance(double windMs, FireTuning t) {
+        double wind = build.shelteredFromWind() ? 0 : windMs;
+        return (wind >= t.matchWindMs() ? t.ferroWindPct() : t.ferroCalmPct()) / 100.0;
+    }
+
+    /**
+     * Strikes the ferro rod on the lay: the spark makes the same ember a match does and needs the same two puffs. The
+     * rod is not spent here; the caller wears it. {@code roll} is a uniform draw in [0, 1).
+     */
+    public Result strikeFerro(double roll, FireWeather w, boolean sheltered, FireTuning t) {
+        String why = cannotLight(t);
+        if (why != null) return Result.no(why);
+        double wind = build.shelteredFromWind() ? 0 : w.windMs();
+        if (roll >= ferroChance(w.windMs(), t)) return Result.no(wind >= t.matchWindMs() ? "The wind took the spark." : "The spark missed the tinder.");
+        if (state == FireState.BANKED) return relight();
+        enter(FireState.EMBER);
+        puffsNeeded = 2;
+        emberTicks = emberLifeTicks(wind, sheltered, t);
+        return Result.ok("The spark takes. Blow on it.");
+    }
+
+    /** True when the ring is bare: nothing laid, nothing burning, so a build may be chosen. */
+    public boolean bare() { return state == FireState.OUT && lay.isEmpty() && fuel.isEmpty(); }
+
+    /** Chooses the build on a bare ring; refused once anything is laid or burning. */
+    public Result setBuild(FireBuild b) {
+        if (!bare()) return Result.no("The build is chosen on a bare ring.");
+        build = b;
+        return Result.ok(switch (b) {
+            case RING -> "Plain ring.";
+            case TEEPEE -> "Teepee: lean split wood together.";
+            case LONG -> "Long fire: lay two whole logs side by side.";
+            case DAKOTA -> "Dakota hole: low smoke, out of the wind.";
+        });
+    }
+
+    /**
+     * Water on the fire (a pot poured on it): any burning state goes out, including banked coals. The lay and the
+     * remaining fuel are soaked and lost, as a smothered fire leaves wet charcoal.
+     */
+    public Result smother() {
+        if (state == FireState.OUT) return Result.no("There is no fire to put out.");
+        FireState from = state;
+        enter(FireState.OUT);
+        consumeLay();
+        fuel.clear();
+        return Result.ok(from == FireState.COALS || from == FireState.BANKED ? "The coals hiss out." : "You put the fire out.");
     }
 
     /** A bow-drill ember, already blown to a flame in the minigame: the tinder catches. */
@@ -383,9 +461,9 @@ public final class Fire {
                 }
             }
             case FIRE -> {
-                double rate = FireRules.fuelUse(setting) / t.ringArmloadMin();
+                double rate = FireRules.fuelUse(setting) / t.armloadMin(build);
                 if (w.snowOnFire()) rate *= t.snowBurnFactor();
-                if (!w.covered() && w.windMs() > t.windBurnMs()) rate *= t.windBurnFactor();
+                if (!w.covered() && !build.shelteredFromWind() && w.windMs() > t.windBurnMs()) rate *= t.windBurnFactor();
                 double left = 1.0; // one minute of burning
                 while (left > 1e-9 && !fuel.isEmpty()) {
                     Armload a = fuel.get(0);
@@ -460,19 +538,20 @@ public final class Fire {
     public record Snapshot(FireState state, FireSetting setting, int minutesInState, int catchMinutes, double rainMinutes,
                            int snowMinutes, int puffsNeeded, int emberTicks, double burnedArmloads, boolean packedWarned,
                            boolean coalBed, double tinderMoisture, int kindling, double kindlingMoisture, List<LayEntry> lay,
-                           List<Armload> fuel) {}
+                           List<Armload> fuel, FireBuild build) {}
 
     public Snapshot snapshot() {
         List<Armload> f = new ArrayList<>();
         for (Armload a : fuel) f.add(new Armload(a.wood, a.moisturePct, a.amount()));
         return new Snapshot(state, setting, minutesInState, catchMinutes, rainMinutes, snowMinutes, puffsNeeded, emberTicks,
-                burnedArmloads, packedWarned, coalBed, tinderMoisture, kindling, kindlingMoisture, List.copyOf(lay), f);
+                burnedArmloads, packedWarned, coalBed, tinderMoisture, kindling, kindlingMoisture, List.copyOf(lay), f, build);
     }
 
     public static Fire restore(Snapshot s) {
         Fire f = new Fire();
         f.state = s.state();
         f.setting = s.setting();
+        f.build = s.build() == null ? FireBuild.RING : s.build();
         f.minutesInState = s.minutesInState();
         f.catchMinutes = s.catchMinutes();
         f.rainMinutes = s.rainMinutes();
