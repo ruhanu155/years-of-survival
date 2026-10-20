@@ -170,6 +170,13 @@ public final class EcosystemRegistry {
     public static final DeferredHolder<Activity, Activity> ALERT = ACTIVITIES.register("alert", () -> new Activity("yearofice:alert"));
     public static final DeferredHolder<Activity, Activity> FREEZE = ACTIVITIES.register("freeze", () -> new Activity("yearofice:freeze"));
     public static final DeferredHolder<Activity, Activity> FLEE = ACTIVITIES.register("flee", () -> new Activity("yearofice:flee"));
+    // M6 lane D: the raid activities and their memories (A2 door entry, A3 rack thieves). The visit itself is resolved by roll.
+    public static final DeferredHolder<Activity, Activity> RAID_SHELTER = ACTIVITIES.register("raid_shelter", () -> new Activity("yearofice:raid_shelter"));
+    public static final DeferredHolder<Activity, Activity> RACK_RAID = ACTIVITIES.register("rack_raid", () -> new Activity("yearofice:rack_raid"));
+    public static final DeferredHolder<MemoryModuleType<?>, MemoryModuleType<net.minecraft.core.GlobalPos>> OPEN_DOOR_TARGET =
+            MEMORIES.register("open_door_target", () -> new MemoryModuleType<>(Optional.empty()));
+    public static final DeferredHolder<MemoryModuleType<?>, MemoryModuleType<net.minecraft.core.GlobalPos>> RACK_TARGET =
+            MEMORIES.register("rack_target", () -> new MemoryModuleType<>(Optional.empty()));
 
     static void register(IEventBus modBus) {
         com.yearofice.ecosystem.carcass.BigGameItems.init();

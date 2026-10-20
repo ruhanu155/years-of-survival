@@ -42,6 +42,14 @@ public final class CropModel {
     /** Soil temperature: the air mean plus the bed offset (tilled bare bed +1 C). */
     public static double soilC(double airMeanC, double bedOffsetC) { return airMeanC + bedOffsetC; }
 
+    /** Soil temperature as the running mean of the last days' air means (a week, newest included) plus the bed offset. */
+    public static double soilMeanC(double[] dayMeansC, double bedOffsetC) {
+        if (dayMeansC.length == 0) return bedOffsetC;
+        double sum = 0;
+        for (double d : dayMeansC) sum += d;
+        return sum / dayMeansC.length + bedOffsetC;
+    }
+
     /** A day's growth units: mean air above 5 C, x1.2 in June and July for the midnight sun (months 6 and 7). */
     public static double growthUnits(double meanAirC, int month, double warmth) {
         double u = Math.max(0.0, meanAirC - 5.0) * warmth;

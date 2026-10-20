@@ -35,7 +35,10 @@ public final class PlantEvents {
     public static void onEaten(LivingEntityUseItemEvent.Finish e) {
         if (!(e.getEntity() instanceof ServerPlayer p)) return;
         PlantSpec spec = PlantData.ofPart(BuiltInRegistries.ITEM.getKey(e.getItem().getItem()).toString());
-        if (spec != null) Knowledge.identify(p, spec.id);
+        if (spec == null) return;
+        boolean known = Knowledge.identified(p, spec);
+        Knowledge.identify(p, spec.id);
+        PlantPoison.eaten(p, spec, known);
     }
 
     public static void onDay(ClockEvent.Day e) {

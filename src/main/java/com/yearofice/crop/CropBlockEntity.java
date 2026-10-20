@@ -19,10 +19,16 @@ public final class CropBlockEntity extends BlockEntity {
     boolean dead = false;
     boolean frosted = false;
     double soilCAtSowing = 0;
+    /** The last finished absolute day whose growth and frost have been applied (catch-up resumes after it). */
+    int lastDone = Integer.MIN_VALUE;
 
     public CropBlockEntity(BlockPos pos, BlockState state) { super(CropRegistry.CROP_BE.get(), pos, state); }
 
     public int seeds() { return seeds; }
+
+    public int lastDone() { return lastDone == Integer.MIN_VALUE ? sownDay - 1 : lastDone; }
+
+    public void setLastDone(int d) { lastDone = d; setChanged(); }
 
     public int up() { return up; }
 
@@ -51,6 +57,7 @@ public final class CropBlockEntity extends BlockEntity {
         this.dead = false;
         this.frosted = false;
         this.soilCAtSowing = soilC;
+        this.lastDone = sownDay - 1;
         restage();
     }
 
@@ -103,6 +110,7 @@ public final class CropBlockEntity extends BlockEntity {
         tag.putBoolean("dead", dead);
         tag.putBoolean("frosted", frosted);
         tag.putDouble("soil_c_at_sowing", soilCAtSowing);
+        if (lastDone != Integer.MIN_VALUE) tag.putInt("last_done", lastDone);
     }
 
     @Override
@@ -117,5 +125,6 @@ public final class CropBlockEntity extends BlockEntity {
         dead = tag.getBoolean("dead");
         frosted = tag.getBoolean("frosted");
         soilCAtSowing = tag.getDouble("soil_c_at_sowing");
+        lastDone = tag.contains("last_done") ? tag.getInt("last_done") : Integer.MIN_VALUE;
     }
 }

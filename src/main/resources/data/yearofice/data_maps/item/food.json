@@ -1528,7 +1528,8 @@
       "fat_g_per_100g": 8.9,
       "vit_c_mg_per_100g": 0,
       "curve": "dry_goods",
-      "spoil_days_at_5c": {}
+      "spoil_days_at_5c": {},
+      "weight_g": 25
     },
     "yearofice:canned_peaches": {
       "neoforge:conditions": [
@@ -2310,6 +2311,40 @@
         "dried": 60
       },
       "weight_g": 100
+    },
+    "yearofice:crushed_bone": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:crushed_bone"
+        }
+      ],
+      "kcal_per_100g": 30,
+      "protein_g_per_100g": 0,
+      "fat_g_per_100g": 3.3,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 18
+      },
+      "weight_g": 1000
+    },
+    "yearofice:bone_grease": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:bone_grease"
+        }
+      ],
+      "kcal_per_100g": 900,
+      "protein_g_per_100g": 0,
+      "fat_g_per_100g": 100,
+      "vit_c_mg_per_100g": 0,
+      "curve": "lard",
+      "spoil_days_at_5c": {
+        "cooked": 365
+      },
+      "weight_g": 50
     }
   }
 }

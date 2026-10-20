@@ -7,6 +7,7 @@ import com.yearofice.crop.CropBlockEntity;
 import com.yearofice.crop.CropData;
 import com.yearofice.crop.CropRegistry;
 import com.yearofice.crop.Garden;
+import com.yearofice.crop.Grain;
 import com.yearofice.fire.FireRegistry;
 import com.yearofice.fire.FireRingBlockEntity;
 import com.yearofice.core.YearOfIce;
@@ -62,6 +63,11 @@ public final class PlantGameTests {
         out.add(test("yearofice:crop/germinates_by_soil_temp", PlantGameTests::germinatesBySoilTemp));
         out.add(test("yearofice:forage/lick_salt_yield", PlantGameTests::lickSaltYield));
         out.add(test("yearofice:forage/lick_regrowth", PlantGameTests::lickRegrowth));
+        out.add(test("yearofice:plant/poison_posts_line", PlantGameTests::poisonPostsLine));
+        out.add(new TestFunction(BATCH, "yearofice:crop/garden_caught_up", TEMPLATE, 200, 0, true, PlantGameTests::gardenCaughtUp));
+        out.add(test("yearofice:build/quern_mills", PlantGameTests::quernMills));
+        out.add(test("yearofice:build/station_recipe_mills", PlantGameTests::stationRecipeMills));
+        out.add(new TestFunction(BATCH, "yearofice:worldgen/plants_placed_by_habitat", TEMPLATE, 2400, 0, true, PlantWorldGameTests::plantsPlacedByHabitat));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
 
@@ -150,6 +156,140 @@ public final class PlantGameTests {
         Knowledge.Taste t = Knowledge.taste(p, camas);
         h.assertTrue(t.allowed() && t.toxic() && t.conditionLoss() > 0 && Knowledge.identified(p, camas), "a toxic taste costs Condition and identifies");
         h.succeed();
+    }
+
+    // ---- plant/poison_posts_line ---------------------------------------------------------------------------------
+
+    /**
+     * Eating an unknown poison plant posts the Messenger line and starts poison_plant; the Condition loss waits for the
+     * onset. A toxic taste starts taste_sick and its Condition loss lands only after the one-hour timer.
+     */
+    static void poisonPostsLine(GameTestHelper h) {
+        ServerPlayer p = player(h);
+        PlantSpec camas = PlantData.get("yearofice:death_camas");
+        h.assertTrue(camas != null && camas.toxic != null && !Knowledge.identified(p, camas), "death camas is toxic and unknown");
+        double before = com.yearofice.api.body.BodyService.get().condition(p);
+        PlantPoison.eaten(p, camas, false);
+        boolean line = com.yearofice.api.hud.HudBus.get().journal(p).stream().anyMatch(l -> l.key().endsWith(".warn.plant_poison"))
+                || com.yearofice.api.hud.HudBus.get().sent(p).stream().anyMatch(l -> l.key().endsWith(".warn.plant_poison"))
+                || com.yearofice.api.hud.HudBus.get().held(p).stream().anyMatch(l -> l.key().endsWith(".warn.plant_poison"));
+        h.assertTrue(line, "the poison line was posted");
+        h.assertTrue(PlantPoison.pendingMinutes(p) >= 60, "the loss waits for the onset: " + PlantPoison.pendingMinutes(p));
+        h.assertTrue(com.yearofice.api.body.BodyService.get().condition(p) == before, "no Condition lost yet");
+        PlantPoison.flush(p, PlantPoison.nowMinute() + 600);
+        h.assertTrue(com.yearofice.api.body.BodyService.get().condition(p) < before, "the poison costs Condition at onset");
+
+        PlantSpec lupine = PlantData.get("yearofice:death_camas");
+        double c1 = com.yearofice.api.body.BodyService.get().condition(p);
+        PlantPoison.tasted(p, lupine, 5);
+        PlantPoison.flush(p, PlantPoison.nowMinute() + 59);
+        h.assertTrue(com.yearofice.api.body.BodyService.get().condition(p) == c1, "the taste timer holds for the hour");
+        PlantPoison.flush(p, PlantPoison.nowMinute() + 60);
+        h.assertTrue(com.yearofice.api.body.BodyService.get().condition(p) < c1, "and lands after it");
+        h.succeed();
+    }
+
+    // ---- crop/garden_caught_up -----------------------------------------------------------------------------------
+
+    /** A barley bed left alone for 20 June days grows on the first look back: same units as day-by-day passes, once only. */
+    static void gardenCaughtUp(GameTestHelper h) {
+        long saved = ClockService.get().nowDs();
+        try {
+            ClockService.get().setNow(com.yearofice.sim.time.Calendar.DS_PER_DAY * 40 + 12 * 600 * 60);
+            ServerLevel level = h.getLevel();
+            BlockPos a = h.absolutePos(AT), b = a.east(2);
+            for (BlockPos x : new BlockPos[] {a, b}) {
+                level.setBlock(x.below(), CropRegistry.GARDEN_BED.get().defaultBlockState(), 3);
+                level.setBlock(x, net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), 3);
+                Garden.sow(level, x.below(), CropData.get("yearofice:barley"), 14.0);
+            }
+            var bea = (CropBlockEntity) level.getBlockEntity(a);
+            var beb = (CropBlockEntity) level.getBlockEntity(b);
+            h.assertTrue(bea != null && beb != null, "both crops have block entities");
+            ClockService.get().setNow(com.yearofice.sim.time.Calendar.DS_PER_DAY * 60 + 12 * 600 * 60);
+            long today = ClockService.get().absDay();
+            h.assertTrue(bea.units() == 0 && bea.lastDone() == today - 21, "untouched while away: " + bea.units());
+            int days = Garden.catchUp(level, a, bea);
+            h.assertTrue(days == 20, "caught up 20 finished days, ran " + days);
+            for (long d = today - 20; d <= today - 1; d++) Garden.dayTick(level, b, beb, d);
+            h.assertTrue(bea.units() > 20 && Math.abs(bea.units() - beb.units()) < 1e-9, "same as the daily passes: " + bea.units() + " vs " + beb.units());
+            double u = bea.units();
+            h.assertTrue(Garden.catchUp(level, a, bea) == 0 && bea.units() == u, "a second look back adds nothing");
+            h.succeed();
+        } finally {
+            ClockService.get().setNow(saved);
+        }
+    }
+
+    // ---- build/quern_mills ---------------------------------------------------------------------------------------
+
+    /** A flail threshes 2 kg of sheaf into 800 g of grain and 1.2 kg of straw in 12 min; the hand quern mills 2 kg of grain in 2 hours; a 2-year-old lot ages. */
+    static void quernMills(GameTestHelper h) {
+        long saved = ClockService.get().nowDs();
+        try {
+            ServerPlayer p = player(h);
+            var inv = p.getInventory();
+            ItemStack sheaf = new ItemStack(CropRegistry.GRAIN_SHEAF.get());
+            sheaf.set(YoiComponents.WEIGHT_G.get(), 2000);
+            p.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new ItemStack(CropRegistry.FLAIL.get()));
+            p.setItemInHand(net.minecraft.world.InteractionHand.OFF_HAND, sheaf);
+            long t0 = ClockService.get().nowDs();
+            String m1 = Grain.use(p);
+            h.assertTrue(ClockService.get().nowDs() - t0 == 12L * 600, "threshing 2 kg takes 12 min: " + (ClockService.get().nowDs() - t0) / 600 + " (" + m1 + ")");
+            ItemStack grain = ItemStack.EMPTY, straw = ItemStack.EMPTY;
+            for (int i = 0; i < inv.getContainerSize(); i++) {
+                ItemStack s = inv.getItem(i);
+                if (s.is(CropRegistry.BARLEY.get())) grain = s;
+                if (s.is(CropRegistry.STRAW.get())) straw = s;
+            }
+            h.assertTrue(!grain.isEmpty() && grain.get(YoiComponents.WEIGHT_G.get()) == 800, "800 g of grain");
+            h.assertTrue(!straw.isEmpty() && straw.get(YoiComponents.WEIGHT_G.get()) == 1200, "1200 g of straw");
+            h.assertTrue(grain.get(CropRegistry.SEED_LOT.get()) != null && Grain.lotYears(grain) == 0, "the grain is a fresh seed lot");
+            grain.set(YoiComponents.WEIGHT_G.get(), 2000);
+            p.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new ItemStack(CropRegistry.HAND_QUERN.get()));
+            p.setItemInHand(net.minecraft.world.InteractionHand.OFF_HAND, grain.copy());
+            inv.removeItem(grain);
+            long t1 = ClockService.get().nowDs();
+            Grain.use(p);
+            h.assertTrue(ClockService.get().nowDs() - t1 == 120L * 600, "1 kg an hour: 2 kg takes 2 h");
+            ItemStack flour = ItemStack.EMPTY;
+            for (int i = 0; i < inv.getContainerSize(); i++) if (inv.getItem(i).is(CropRegistry.BARLEY_FLOUR.get())) flour = inv.getItem(i);
+            h.assertTrue(!flour.isEmpty() && flour.get(YoiComponents.WEIGHT_G.get()) == 2000, "2000 g of flour");
+            h.assertTrue(p.getOffhandItem().isEmpty(), "the grain is used up");
+            ItemStack old = new ItemStack(CropRegistry.BARLEY_SEED.get());
+            old.set(CropRegistry.SEED_LOT.get(), ClockService.get().year() - 2);
+            h.assertTrue(Grain.lotYears(old) == 2 && com.yearofice.sim.crop.CropModel.ageFactor(2, false) < com.yearofice.sim.crop.CropModel.ageFactor(0, false), "a 2-year-old lot germinates worse");
+            h.succeed();
+        } finally {
+            ClockService.get().setNow(saved);
+        }
+    }
+
+    /** The yearofice:station recipe type is registered, the quern recipe loads from data, and milling 1 kg goes through it (60 min, 1 kg of flour). */
+    static void stationRecipeMills(GameTestHelper h) {
+        long saved = ClockService.get().nowDs();
+        try {
+            ServerPlayer p = player(h);
+            ItemStack grain = new ItemStack(CropRegistry.WHEAT.get());
+            grain.set(YoiComponents.WEIGHT_G.get(), 1000);
+            var r = com.yearofice.crop.StationRecipe.find(h.getLevel(), "yearofice:hand_quern", grain);
+            h.assertTrue(r != null, "a yearofice:station recipe for the hand quern loads from data");
+            h.assertTrue(r.workMinPerKg() == 60 && r.resultItem() == CropRegistry.BARLEY_FLOUR.get(), "recipe numbers");
+            p.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new ItemStack(CropRegistry.HAND_QUERN.get()));
+            p.setItemInHand(net.minecraft.world.InteractionHand.OFF_HAND, grain);
+            long t0 = ClockService.get().nowDs();
+            Grain.use(p);
+            h.assertTrue(ClockService.get().nowDs() - t0 == 60L * 600, "1 kg takes 60 min");
+            boolean got = false;
+            for (int i = 0; i < p.getInventory().getContainerSize(); i++) {
+                ItemStack s = p.getInventory().getItem(i);
+                if (s.is(CropRegistry.BARLEY_FLOUR.get()) && s.get(YoiComponents.WEIGHT_G.get()) == 1000) got = true;
+            }
+            h.assertTrue(got, "1000 g of flour");
+            h.succeed();
+        } finally {
+            ClockService.get().setNow(saved);
+        }
     }
 
     // ---- crop/germinates_by_soil_temp ----------------------------------------------------------------------------

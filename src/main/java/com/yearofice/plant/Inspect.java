@@ -50,7 +50,8 @@ public final class Inspect {
         if (Knowledge.identified(p, spec)) return "You know " + spec.name + " already.";
         Knowledge.Taste t = Knowledge.taste(p, spec);
         if (!t.allowed()) return "Never taste a fungus.";
-        return t.toxic() ? "Bitter and wrong. It was " + spec.name + "; it will cost you " + Math.round(t.conditionLoss()) + " Condition."
+        if (t.toxic()) PlantPoison.tasted(p, spec, t.conditionLoss());
+        return t.toxic() ? "Bitter and wrong. It was " + spec.name + "; you will feel it in an hour."
                 : "A small bite, and it is safe. It was " + spec.name + ".";
     }
 }

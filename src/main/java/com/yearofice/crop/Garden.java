@@ -34,17 +34,37 @@ public final class Garden {
         };
     }
 
-    /** Soil temperature: the air at the bed plus a tilled bare bed's +1 C (the 7-day mean arrives with the env history). */
+    /** Days in the soil's running mean of the air. */
+    public static final int SOIL_DAYS = 7;
+
+    /**
+     * Soil temperature: the 7-day running mean of the air (the six finished days and today's air at the bed) plus a
+     * tilled bare bed's +1 C. A pinned air ({@code /yoi env set}, GameTests) holds for the whole week.
+     */
     public static double soilC(ServerLevel level, BlockPos pos) {
-        return CropModel.soilC(EnvService.get().airC(level, pos), 1.0);
+        double now = EnvService.get().airC(level, pos);
+        var ov = EnvService.get().override(level);
+        double[] means = new double[SOIL_DAYS];
+        means[0] = now;
+        long today = ClockService.get().absDay();
+        boolean pinned = ov != null && !Double.isNaN(ov.airC());
+        for (int i = 1; i < SOIL_DAYS; i++) {
+            means[i] = pinned || today - i < 0 ? now : EnvService.get().day(level, today - i).meanC();
+        }
+        return CropModel.soilMeanC(means, 1.0);
     }
 
     /** Sows one block on a bed: rolls each seed once and places the crop. {@code soilOverrideC} NaN reads the air. */
     public static @Nullable Sow sow(ServerLevel level, BlockPos bed, CropSpec spec, double soilOverrideC) {
+        return sow(level, bed, spec, soilOverrideC, 0);
+    }
+
+    /** As {@link #sow(ServerLevel, BlockPos, CropSpec, double)} with seed that is {@code yearsOld} years old. */
+    public static @Nullable Sow sow(ServerLevel level, BlockPos bed, CropSpec spec, double soilOverrideC, int yearsOld) {
         BlockState bs = level.getBlockState(bed);
         if (!(bs.getBlock() instanceof GardenBedBlock) || !level.getBlockState(bed.above()).isAir()) return null;
         double soilC = Double.isNaN(soilOverrideC) ? soilC(level, bed) : soilOverrideC;
-        double p = CropModel.germination(spec.baseGermination, soilC, bs.getValue(GardenBedBlock.MOISTURE), CropModel.Depth.RIGHT, 0, false,
+        double p = CropModel.germination(spec.baseGermination, soilC, bs.getValue(GardenBedBlock.MOISTURE), CropModel.Depth.RIGHT, yearsOld, false,
                 GardenConfig.tuning().germinationScale());
         int up = 0;
         for (int i = 0; i < spec.seedsPerBlock; i++) if (level.random.nextDouble() < p) up++;
@@ -103,6 +123,8 @@ public final class Garden {
 
     /** One finished day over a crop and its bed: rain and moisture, dry days, growth units and the night's frost. */
     public static void dayTick(ServerLevel level, BlockPos cropPos, CropBlockEntity be, long endedDay) {
+        if (endedDay <= be.lastDone()) return;
+        be.setLastDone((int) endedDay);
         CropSpec s = be.spec();
         if (s == null || be.dead()) return;
         WeatherModel.Day day = EnvService.get().day(level, endedDay);
@@ -124,6 +146,24 @@ public final class Garden {
         nightFrost(be, s, low);
     }
 
+    /** Most days a returning player's garden catches up at once (a year). */
+    public static final int CATCH_UP_MAX_DAYS = 365;
+
+    /**
+     * The garden's catch-up: runs every finished day since the crop was last worked through the same daily pass, from the
+     * drawn weather of those days, so a garden left alone grows, dries and freezes as if watched. Returns the days run.
+     */
+    public static int catchUp(ServerLevel level, BlockPos cropPos, CropBlockEntity be) {
+        long today = ClockService.get().absDay();
+        long from = Math.max(be.lastDone() + 1L, today - CATCH_UP_MAX_DAYS);
+        int n = 0;
+        for (long d = from; d <= today - 1; d++) {
+            dayTick(level, cropPos, be, d);
+            n++;
+        }
+        return n;
+    }
+
     /** Expected grams of the main harvest at the crop's present numbers. */
     public static int yieldGrams(CropBlockEntity be, CropSpec s, double soilYield) {
         double f = s.grain() ? CropModel.standYield(be.stand(), s.baseGermination) : (be.up() > 0 ? 1.0 : 0.0);
@@ -140,6 +180,7 @@ public final class Garden {
         int g = yieldGrams(be, s, soilYield);
         ItemStack out = new ItemStack(BuiltInRegistries.ITEM.get(net.minecraft.resources.ResourceLocation.parse(s.yieldItem)));
         out.set(YoiComponents.WEIGHT_G.get(), Math.max(1, g));
+        if (s.grain()) out.set(CropRegistry.SEED_LOT.get(), ClockService.get().year());
         level.setBlock(cropPos, net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), 3);
         if (p != null && g > 0 && !p.getInventory().add(out.copy())) p.drop(out.copy(), false);
         if (p != null && s.strawKg > 0) {

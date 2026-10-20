@@ -12,6 +12,7 @@ public final class CropSystem {
         NeoForge.EVENT_BUS.addListener(CropData::onAddReloadListeners);
         NeoForge.EVENT_BUS.addListener(CropEvents::onRightClick);
         NeoForge.EVENT_BUS.addListener(CropEvents::onDay);
+        NeoForge.EVENT_BUS.addListener(CropEvents::onUseItem);
         NeoForge.EVENT_BUS.addListener(CropCommands::register);
     }
 }

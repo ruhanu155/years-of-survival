@@ -1,0 +1,103 @@
+{
+ "parent": "minecraft:block/block",
+ "textures": {
+  "particle": "yearofice:block/food_cache_side",
+  "s": "yearofice:block/food_cache_side",
+  "t": "yearofice:block/food_cache_top"
+ },
+ "elements": [
+  {
+   "from": [
+    1,
+    0,
+    2
+   ],
+   "to": [
+    15,
+    9,
+    14
+   ],
+   "faces": {
+    "north": {
+     "texture": "#s"
+    },
+    "south": {
+     "texture": "#s"
+    },
+    "east": {
+     "texture": "#s"
+    },
+    "west": {
+     "texture": "#s"
+    },
+    "up": {
+     "texture": "#t"
+    },
+    "down": {
+     "texture": "#t"
+    }
+   }
+  },
+  {
+   "from": [
+    0,
+    9,
+    1
+   ],
+   "to": [
+    16,
+    11,
+    15
+   ],
+   "faces": {
+    "north": {
+     "texture": "#s"
+    },
+    "south": {
+     "texture": "#s"
+    },
+    "east": {
+     "texture": "#s"
+    },
+    "west": {
+     "texture": "#s"
+    },
+    "up": {
+     "texture": "#t"
+    },
+    "down": {
+     "texture": "#t"
+    }
+   }
+  },
+  {
+   "from": [
+    4,
+    11,
+    6
+   ],
+   "to": [
+    12,
+    12,
+    10
+   ],
+   "faces": {
+    "north": {
+     "texture": "#s"
+    },
+    "south": {
+     "texture": "#s"
+    },
+    "east": {
+     "texture": "#s"
+    },
+    "west": {
+     "texture": "#s"
+    },
+    "up": {
+     "texture": "#s"
+    }
+   }
+  }
+ ]
+}

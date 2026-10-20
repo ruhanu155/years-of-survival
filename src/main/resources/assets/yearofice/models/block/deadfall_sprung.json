@@ -1,0 +1,106 @@
+{
+ "parent": "minecraft:block/block",
+ "textures": {
+  "particle": "yearofice:block/deadfall_stone_all",
+  "st": "yearofice:block/deadfall_stone_all",
+  "k": "yearofice:block/fallen_log_side"
+ },
+ "elements": [
+  {
+   "from": [
+    1.0,
+    0,
+    1.0
+   ],
+   "to": [
+    15.0,
+    3.0,
+    15.0
+   ],
+   "faces": {
+    "north": {
+     "texture": "#st"
+    },
+    "south": {
+     "texture": "#st"
+    },
+    "east": {
+     "texture": "#st"
+    },
+    "west": {
+     "texture": "#st"
+    },
+    "up": {
+     "texture": "#st"
+    },
+    "down": {
+     "texture": "#st"
+    }
+   }
+  },
+  {
+   "from": [
+    7.5,
+    0,
+    3
+   ],
+   "to": [
+    8.5,
+    1,
+    5
+   ],
+   "faces": {
+    "north": {
+     "texture": "#k"
+    },
+    "south": {
+     "texture": "#k"
+    },
+    "east": {
+     "texture": "#k"
+    },
+    "west": {
+     "texture": "#k"
+    },
+    "up": {
+     "texture": "#k"
+    },
+    "down": {
+     "texture": "#k"
+    }
+   }
+  },
+  {
+   "from": [
+    7.5,
+    0,
+    11
+   ],
+   "to": [
+    8.5,
+    1,
+    13
+   ],
+   "faces": {
+    "north": {
+     "texture": "#k"
+    },
+    "south": {
+     "texture": "#k"
+    },
+    "east": {
+     "texture": "#k"
+    },
+    "west": {
+     "texture": "#k"
+    },
+    "up": {
+     "texture": "#k"
+    },
+    "down": {
+     "texture": "#k"
+    }
+   }
+  }
+ ]
+}

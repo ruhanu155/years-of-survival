@@ -1,0 +1,70 @@
+{
+  "_note": "Item data-map rows for items the M3 crafting lane (dev/building/m3-crafting) registers. Removed from data_maps/item so main boots without DataMapLoader errors; the crafting lane copies them back into props.json/weight.json in the PR that registers the items (data/datamap_keys_registered fails on any key without an item).",
+  "maps": {
+    "props": {
+      "yearofice:flint_knife": {
+        "category": "tool",
+        "stack_class": "single",
+        "material": "stone",
+        "max_condition": 300
+      },
+      "yearofice:flint_nodule": {
+        "category": "material",
+        "stack_class": "medium",
+        "material": "stone"
+      },
+      "yearofice:knife": {
+        "category": "tool",
+        "stack_class": "single",
+        "material": "steel",
+        "max_condition": 6000,
+        "theft": "porcupine"
+      },
+      "yearofice:rough_stone": {
+        "category": "material",
+        "stack_class": "medium",
+        "material": "stone"
+      },
+      "yearofice:stake": {
+        "category": "material",
+        "stack_class": "small",
+        "floats": true,
+        "material": "wood"
+      },
+      "yearofice:tool_handle": {
+        "category": "material",
+        "stack_class": "medium",
+        "floats": true,
+        "material": "wood"
+      },
+      "yearofice:workbench": {
+        "category": "piece",
+        "stack_class": "single",
+        "material": "wood"
+      }
+    },
+    "weight": {
+      "yearofice:flint_knife": {
+        "weight_g": 120
+      },
+      "yearofice:flint_nodule": {
+        "weight_g": 400
+      },
+      "yearofice:knife": {
+        "weight_g": 250
+      },
+      "yearofice:rough_stone": {
+        "weight_g": 600
+      },
+      "yearofice:stake": {
+        "weight_g": 80
+      },
+      "yearofice:tool_handle": {
+        "weight_g": 350
+      },
+      "yearofice:workbench": {
+        "weight_g": 30000
+      }
+    }
+  }
+}

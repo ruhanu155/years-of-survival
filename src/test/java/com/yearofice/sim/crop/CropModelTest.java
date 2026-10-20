@@ -54,4 +54,12 @@ class CropModelTest {
         assertEquals(0.2, CropModel.headFrostMult(-2, 800, 700, 950, -2, 0.2), 1e-9);
         assertEquals(1.0, CropModel.headFrostMult(-2, 300, 700, 950, -2, 0.2), 1e-9);
     }
+
+    @Test
+    void soilIsTheWeekMeanPlusOne() {
+        assertEquals(6.0, CropModel.soilMeanC(new double[] {10, 8, 6, 4, 2, 0, 5}, 1.0), 1e-9);
+        assertEquals(1.0, CropModel.soilMeanC(new double[0], 1.0), 1e-9);
+        // a warm day after a cold week barely moves the soil
+        assertTrue(CropModel.soilMeanC(new double[] {15, 0, 0, 0, 0, 0, 0}, 1.0) < 4.0);
+    }
 }

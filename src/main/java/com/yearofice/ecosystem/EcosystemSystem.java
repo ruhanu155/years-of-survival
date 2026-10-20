@@ -29,6 +29,7 @@ public final class EcosystemSystem {
     public static void init(IEventBus modBus) {
         EcosystemRegistry.register(modBus);
         TrapRegistry.register(modBus);
+        com.yearofice.ecosystem.raid.RaidRegistry.register(modBus);
         modBus.addListener(EcosystemSystem::attributes);
         modBus.addListener((ModConfigEvent.Loading e) -> EcoConfig.invalidate());
         modBus.addListener((ModConfigEvent.Reloading e) -> EcoConfig.invalidate());
@@ -45,6 +46,11 @@ public final class EcosystemSystem {
         // Belt and braces: our animals never reach vanilla's death, but nothing they could drop survives either.
         NeoForge.EVENT_BUS.addListener((LivingDropsEvent e) -> { if (e.getEntity() instanceof YoiAnimal) e.setCanceled(true); });
         NeoForge.EVENT_BUS.addListener((LivingExperienceDropEvent e) -> { if (e.getEntity() instanceof YoiAnimal) e.setCanceled(true); });
+        // M6 lane D: door entry, rack raids, talk as you walk.
+        NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.raid.ShelterEntry::onTick);
+        NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.raid.ShelterEntry::onUse);
+        NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.raid.RaidCommands::register);
+        NeoForge.EVENT_BUS.addListener((ServerStoppedEvent e) -> { com.yearofice.ecosystem.raid.ShelterEntry.clear(); com.yearofice.ecosystem.encounter.TalkWalk.clear(); });
         NoVanillaMobs.register();
     }
 
