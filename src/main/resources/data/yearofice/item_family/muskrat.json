@@ -1,0 +1,15 @@
+{
+  "species": "yearofice:muskrat",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    {
+      "item": "yearofice:muskrat_meat",
+      "kind": "meat",
+      "unit_g": 100
+    },
+    {
+      "item": "yearofice:muskrat_pelt",
+      "kind": "cover"
+    }
+  ]
+}

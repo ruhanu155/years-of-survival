@@ -3,6 +3,15 @@
   "foods": {
     "yearofice:snowshoe_hare_meat": { "spit": "whole_hare", "family": "game_meat" },
     "yearofice:willow_ptarmigan_meat": { "spit": "per_kg", "family": "game_meat" },
-    "yearofice:arctic_grayling": { "spit": "whole_fish", "family": "fish" }
+    "yearofice:arctic_grayling": { "spit": "whole_fish", "family": "fish" },
+    "yearofice:red_squirrel_meat": { "spit": "whole_hare", "family": "game_meat" },
+    "yearofice:marten_meat": { "spit": "whole_hare", "family": "game_meat" },
+    "yearofice:mink_meat": { "spit": "whole_hare", "family": "game_meat" },
+    "yearofice:muskrat_meat": { "spit": "whole_hare", "family": "game_meat" },
+    "yearofice:beaver_meat": { "spit": "per_kg", "family": "game_meat" },
+    "yearofice:porcupine_meat": { "spit": "per_kg", "family": "game_meat" },
+    "yearofice:spruce_grouse_meat": { "spit": "per_kg", "family": "game_meat" },
+    "yearofice:ruffed_grouse_meat": { "spit": "per_kg", "family": "game_meat" },
+    "yearofice:rock_ptarmigan_meat": { "spit": "per_kg", "family": "game_meat" }
   }
 }

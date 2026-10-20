@@ -1,1 +1,7 @@
-{ "values": ["yearofice:carcass_small"] }
+{
+  "values": [
+    "yearofice:carcass_tiny",
+    "yearofice:carcass_small",
+    "yearofice:carcass_medium"
+  ]
+}

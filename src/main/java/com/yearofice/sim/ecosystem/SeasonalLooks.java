@@ -53,6 +53,17 @@ public final class SeasonalLooks {
         return Coat.SUMMER;
     }
 
+    static final int ERMINE_TURN_START = Calendar.dayOfYear(10, 5), ERMINE_WHITE = Calendar.dayOfYear(10, 15),
+            ERMINE_WHITE_END = Calendar.dayOfYear(4, 15), ERMINE_BROWN_END = Calendar.dayOfYear(4, 25);
+
+    /** Ermine: white Oct 15 – Apr 15 (Bestiary), mottled for 10 days either side. */
+    public static Coat ermine(int doy) {
+        if (Calendar.within(doy, ERMINE_WHITE, ERMINE_WHITE_END)) return Coat.WINTER;
+        if (Calendar.within(doy, ERMINE_TURN_START, ERMINE_WHITE - 1)) return Coat.MOTTLED;
+        if (Calendar.within(doy, ERMINE_WHITE_END + 1, ERMINE_BROWN_END)) return Coat.MOTTLED;
+        return Coat.SUMMER;
+    }
+
     static final int ANTLER_REGROW = Calendar.dayOfYear(4, 15), ANTLER_FULL = Calendar.dayOfYear(8, 25),
             ANTLER_SHED = Calendar.dayOfYear(12, 15);
 

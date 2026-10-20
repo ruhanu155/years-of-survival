@@ -1,0 +1,37 @@
+{
+ "inherit": "beaver",
+ "scale": 0.4,
+ "id": "muskrat",
+ "geo_id": "muskrat",
+ "texture_dir": "muskrat",
+ "hitbox": [
+  0.35,
+  0.3
+ ],
+ "tier": "medium",
+ "notes": "Generated from the large-rodent rig, scaled.",
+ "paint": {
+  "_replace": true,
+  "leg_*": {
+   "ramp": "fur_beaver",
+   "step": 1
+  },
+  "ear_*": {
+   "ramp": "fur_beaver",
+   "step": 1
+  },
+  "head": {
+   "ramp": "fur_beaver",
+   "step": 2
+  },
+  "*": {
+   "ramp": "fur_beaver",
+   "step": 2,
+   "noise": 0.25
+  }
+ },
+ "textures": {
+  "_replace": true,
+  "adult_all": {}
+ }
+}

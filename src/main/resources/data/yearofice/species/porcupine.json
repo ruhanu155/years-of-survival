@@ -1,0 +1,78 @@
+{
+  "entity": "yearofice:porcupine",
+  "rig": "large_rodent",
+  "habitat": [
+    "forest"
+  ],
+  "population": [
+    1,
+    2
+  ],
+  "home_range_m": 300,
+  "active": [
+    "dusk",
+    "night"
+  ],
+  "gaits": {
+    "walk": 0.5,
+    "trot": 1.0,
+    "run": 1.5,
+    "swim": 0.6,
+    "step_height_m": 0.8
+  },
+  "senses": {
+    "sight": 15,
+    "hearing": 20,
+    "smell": 40,
+    "fov": 280
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": true,
+    "flush_m": 2,
+    "flee_m": [
+      3,
+      8
+    ],
+    "flee_gait": "trot",
+    "zigzag": false,
+    "hide_min": [
+      5,
+      10
+    ],
+    "charges": false
+  },
+  "huntable": true,
+  "respawn_days": 14,
+  "breath_s": 10,
+  "spawn": {
+    "cell_m": 192,
+    "group": [
+      1,
+      1
+    ],
+    "density_per_km2": 1.2
+  },
+  "carcass": {
+    "whole_kg": 7,
+    "class": "medium",
+    "body_plan": "rodent",
+    "tau_h": 2,
+    "floats": true,
+    "poses": [
+      "dead_side"
+    ],
+    "steps": {
+      "gut": 6,
+      "skin": 12,
+      "joint": 10
+    },
+    "parts": {
+      "meat": 2.5,
+      "guts_kg": 1.0
+    }
+  },
+  "butcher_table": "yearofice:butchering/porcupine"
+}

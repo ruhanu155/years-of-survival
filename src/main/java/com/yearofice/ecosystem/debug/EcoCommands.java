@@ -36,10 +36,12 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
  * {@code /yoi spawn} and {@code /yoi eco}: the ecosystem's debug commands.
  *
  * <ul>
- *   <li>{@code spawn <hare|snowshoe_hare|ptarmigan|willow_ptarmigan|moose> [count]}: bodies 3 m in front of the
+ *   <li>{@code spawn <species> [count]} (any species the spawner places: the roster is data, so the suggestions come
+ *       from the species files; {@code hare} and {@code ptarmigan} stay as short names): bodies 3 m in front of the
  *       source, through the slot spawner (so they are counted), as {@code debug:} slots.</li>
  *   <li>{@code eco density}: the hare cycle's year and multiplier, densities, the hare habitat share within 32 m and
  *       the hares whose home ranges cover this point; slots, empty slots and bodies by species within 128 m.</li>
+ *   <li>{@code animal} (the same as {@code eco info}) and {@code animal list} (animals within 64 m by species).</li>
  *   <li>{@code eco info}: the nearest animal within 32 m: state, awareness, threat and flee progress.</li>
  * </ul>
  * The {@code yoi} root is registered by core; Brigadier merges this subtree into it.
@@ -47,33 +49,41 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 public final class EcoCommands {
     private EcoCommands() {}
 
-    static final String[] NAMES = {"hare", "snowshoe_hare", "ptarmigan", "willow_ptarmigan", "moose"};
+    /** Short names kept from the slice: {@code hare} and {@code ptarmigan}. */
+    static final java.util.Map<String, String> ALIASES = java.util.Map.of("hare", "snowshoe_hare", "ptarmigan", "willow_ptarmigan");
+
+    static List<String> names() {
+        List<String> out = new java.util.ArrayList<>(ALIASES.keySet());
+        for (String id : SlotSpawner.speciesIds()) out.add(id.substring(id.indexOf(':') + 1));
+        return out;
+    }
     private static final SimpleCommandExceptionType UNKNOWN = new SimpleCommandExceptionType(Component.literal("Unknown species."));
 
     public static void register(RegisterCommandsEvent event) {
         CommandDispatcher<CommandSourceStack> d = event.getDispatcher();
         d.register(Commands.literal("yoi").requires(s -> s.hasPermission(2))
                 .then(Commands.literal("spawn").then(Commands.argument("species", StringArgumentType.word())
-                        .suggests((c, b) -> SharedSuggestionProvider.suggest(NAMES, b))
+                        .suggests((c, b) -> SharedSuggestionProvider.suggest(names(), b))
                         .executes(c -> spawn(c, 1))
                         .then(Commands.argument("count", IntegerArgumentType.integer(1, 20)).executes(c -> spawn(c, IntegerArgumentType.getInteger(c, "count"))))))
+                .then(Commands.literal("animal")
+                        .executes(EcoCommands::info)
+                        .then(Commands.literal("list").executes(EcoCommands::list)))
                 .then(Commands.literal("eco")
                         .then(Commands.literal("density").executes(EcoCommands::density))
                         .then(Commands.literal("info").executes(EcoCommands::info))));
     }
 
-    public static EntityType<? extends YoiAnimal> type(String name) {
-        return switch (name) {
-            case "hare", "snowshoe_hare" -> EcosystemRegistry.SNOWSHOE_HARE.get();
-            case "ptarmigan", "willow_ptarmigan" -> EcosystemRegistry.WILLOW_PTARMIGAN.get();
-            case "moose" -> EcosystemRegistry.MOOSE.get();
-            default -> null;
-        };
+    /** The species id for a command name: a short alias, a bare path or a full id; null when unknown. */
+    public static String speciesId(String name) {
+        String path = ALIASES.getOrDefault(name, name.substring(name.indexOf(':') + 1));
+        for (String id : SlotSpawner.speciesIds()) if (id.equals("yearofice:" + path)) return id;
+        return null;
     }
 
     static int spawn(CommandContext<CommandSourceStack> c, int count) throws CommandSyntaxException {
-        EntityType<? extends YoiAnimal> t = type(StringArgumentType.getString(c, "species"));
-        if (t == null) throw UNKNOWN.create();
+        String id = speciesId(StringArgumentType.getString(c, "species"));
+        if (id == null) throw UNKNOWN.create();
         CommandSourceStack src = c.getSource();
         ServerLevel level = src.getLevel();
         Vec3 look = Vec3.directionFromRotation(0, src.getRotation().y);
@@ -81,11 +91,28 @@ public final class EcoCommands {
         for (int i = 0; i < count; i++) {
             Vec3 at = src.getPosition().add(look.scale(3 + i * 0.8));
             BlockPos ground = Habitats.surface(level, (int) Math.floor(at.x), (int) Math.floor(at.z));
-            if (SlotSpawner.spawn(level, t, ground, "debug:" + UUID.randomUUID()) != null) made++;
+            if (SlotSpawner.spawnSpecies(level, id, ground, "debug:" + UUID.randomUUID()) != null) made++;
         }
         int n = made;
-        src.sendSuccess(() -> Component.literal("Spawned " + n + " " + EntityType.getKey(t).getPath() + "."), true);
+        src.sendSuccess(() -> Component.literal("Spawned " + n + " " + id.substring(id.indexOf(':') + 1) + "."), true);
         return n;
+    }
+
+    /** {@code /yoi animal list}: the animals within 64 m by species, with how many are awake (not routine). */
+    static int list(CommandContext<CommandSourceStack> c) {
+        CommandSourceStack src = c.getSource();
+        Vec3 p = src.getPosition();
+        java.util.Map<String, int[]> by = new java.util.TreeMap<>();
+        for (YoiAnimal a : src.getLevel().getEntitiesOfClass(YoiAnimal.class, new AABB(p, p).inflate(64))) {
+            int[] v = by.computeIfAbsent(a.speciesPath(), k -> new int[2]);
+            v[0]++;
+            if (a.state() != com.yearofice.sim.ecosystem.AnimalState.ROUTINE) v[1]++;
+        }
+        StringBuilder sb = new StringBuilder("Animals within 64 m:");
+        if (by.isEmpty()) sb.append(" none");
+        by.forEach((k, v) -> sb.append(String.format("%n%s: %d (%d alert or fleeing)", k, v[0], v[1])));
+        src.sendSuccess(() -> Component.literal(sb.toString()), false);
+        return by.size();
     }
 
     static int density(CommandContext<CommandSourceStack> c) {
