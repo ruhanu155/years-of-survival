@@ -60,7 +60,7 @@ class StartSiteTest {
 
     @Test
     void paramsAreStrictAndCarryTheBlueprintNumbers() {
-        assertEquals(60, SP.waterMaxM());
+        assertEquals(40, SP.waterMaxM());
         assertEquals(8, SP.flatMaxSlopeDeg());
         assertEquals(40, SP.treesMin());
         assertEquals(2, SP.deadwoodMin());
@@ -216,7 +216,7 @@ class StartSiteTest {
         // A start the 12 checks can never meet (no site within 1 mm of water) fails all twenty and says why.
         String txt = new String(StartSiteParams.class.getClassLoader().getResourceAsStream(StartSiteParams.RESOURCE).readAllBytes(),
                 java.nio.charset.StandardCharsets.UTF_8);
-        StartSiteParams impossible = StartSiteParams.from(GenJson.parse(txt.replace("\"water\": { \"max_dist_m\": 60 }",
+        StartSiteParams impossible = StartSiteParams.from(GenJson.parse(txt.replace("\"water\": { \"max_dist_m\": 40 }",
                 "\"water\": { \"max_dist_m\": 0.001 }"), "impossible"));
         Pipeline pipe = Fixture.PIPE;
         SetPieceDef def = StartSite.outpostDef(pipe.setPieces());

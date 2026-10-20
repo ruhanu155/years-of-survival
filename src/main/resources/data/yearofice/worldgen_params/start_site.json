@@ -6,7 +6,7 @@
     "pad_clearance_m": 6
   },
   "checks": {
-    "water": { "max_dist_m": 60 },
+    "water": { "max_dist_m": 40 },
     "flat": { "area_m": 20, "max_slope_deg": 8 },
     "shelter": { "face_min_height_m": 6, "within_m": 350 },
     "firewood": { "radius_m": 80, "trees_min": 40, "deadwood_min": 2 },
@@ -18,6 +18,16 @@
     "set_piece": { "within_m": 1500 },
     "bear": { "den_clear_m": 500, "min_overlapping_ranges": 1 },
     "moose": { "within_m": 1200, "min_ranges": 1 }
+  },
+  "site": {
+    "bar_classes": ["gravel_bar", "bar_edge"],
+    "pad_margin_m": 3,
+    "ring_m": 40,
+    "bar_ring_max": 0.2,
+    "above_river_min_m": 1,
+    "above_river_max_m": 10,
+    "wood_within_m": 50,
+    "wood_min": 6
   },
   "score": {
     "trees_cap": 80,

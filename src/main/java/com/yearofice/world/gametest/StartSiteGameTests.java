@@ -52,6 +52,12 @@ public final class StartSiteGameTests {
             M2WorldGameTests.placeSetPiece(l, w, o);
         }
 
+        var tpl = com.yearofice.worldgen.structure.SetPieceTemplates.load(l, o.template());
+        h.assertTrue(tpl.isPresent(), "the outpost template " + o.template() + " does not load");
+        double cov = com.yearofice.worldgen.structure.SetPieceTemplates.coverage(l, tpl.get(), new BlockPos(r[0], ValleyWorld.padY(o) + 1, r[1]),
+                com.yearofice.worldgen.structure.TemplatePiece.ROTATIONS[o.rotation()]);
+        h.assertTrue(cov >= 0.8, "only " + Math.round(cov * 100) + "% of Station Nine's blocks stand after placement");
+
         // The spawn: free to stand in, one block out of a shut spruce door (the door is behind the player's facing).
         BlockPos spawn = new BlockPos(s[0], s[1], s[2]);
         double yaw = Math.toRadians(s[3]);

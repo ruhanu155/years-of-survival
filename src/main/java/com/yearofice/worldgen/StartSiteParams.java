@@ -21,7 +21,7 @@ public record StartSiteParams(
         double setPieceWithinM,
         double denClearM, int bearRangesMin,
         double mooseWithinM, int mooseRangesMin,
-        Score score, SosReturn sosReturn, Life life) {
+        Score score, SosReturn sosReturn, Life life, Site site) {
 
     public static final String RESOURCE = "data/yearofice/worldgen_params/start_site.json";
 
@@ -30,6 +30,14 @@ public record StartSiteParams(
                         double weightAspect, double weightView, double floodLowMinM, double floodLowMaxM,
                         double floodHighMaxM, double floodHighValue, double viewTowerValue, double viewOtherValue,
                         double towerMinElevationDeg, String towerSource) {}
+
+    /**
+     * Where the outpost may stand (Blueprint › Start site): never on bar cover (a bar class under the pad, or more
+     * than {@code barRingMax} of the ring around it, scores 0 and is skipped), a dry bank {@code aboveRiverMinM} to
+     * {@code aboveRiverMaxM} over the water, and at least {@code woodMin} live spruce or birch within {@code woodWithinM}.
+     */
+    public record Site(List<String> barClasses, double padMarginM, double ringM, double barRingMax, double aboveRiverMinM,
+                       double aboveRiverMaxM, double woodWithinM, int woodMin) {}
 
     /** The gravel-bar block the Endless SOS flight returns to (Registry: {@code yearofice_world.params.sos_return}). */
     public record SosReturn(double searchM, double aboveWaterMinM, double floodYearRiseM) {}
@@ -65,7 +73,7 @@ public record StartSiteParams(
                 sp.num("within_m"),
                 bear.num("den_clear_m"), bear.integer("min_overlapping_ranges"),
                 moose.num("within_m"), moose.integer("min_ranges"),
-                score(j.obj("score")), sos(j.obj("sos_return")), life(j.obj("life")));
+                score(j.obj("score")), sos(j.obj("sos_return")), life(j.obj("life")), site(j.obj("site")));
         for (GenJson o : List.of(water, flat, shelter, fire, tinder, fish, trail, iron, lm, sp, bear, moose, c)) o.done();
         j.done();
         return p;
@@ -76,6 +84,13 @@ public record StartSiteParams(
                 s.num("coef_flood"), s.num("coef_aspect"), s.num("coef_view"), s.num("flood_low_min_m"),
                 s.num("flood_low_max_m"), s.num("flood_high_max_m"), s.num("flood_high_value"), s.num("view_tower_value"),
                 s.num("view_other_value"), s.num("tower_min_elevation_deg"), s.str("tower_source"));
+        s.done();
+        return r;
+    }
+
+    private static Site site(GenJson s) {
+        Site r = new Site(s.strings("bar_classes"), s.num("pad_margin_m"), s.num("ring_m"), s.num("bar_ring_max"), s.num("above_river_min_m"),
+                s.num("above_river_max_m"), s.num("wood_within_m"), s.integer("wood_min"));
         s.done();
         return r;
     }

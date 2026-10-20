@@ -122,7 +122,7 @@ public final class StartSite {
             return new Outcome(r, cover, List.copyOf(all), rep.site(), List.copyOf(reports));
         }
         StringBuilder b = new StringBuilder("World generation failed after " + max + " attempts (level seed " + levelSeed + ")");
-        for (Report r : reports) b.append("\n  attempt ").append(r.attempt()).append(": ").append(r.blocker());
+        for (Report r : reports) b.append("\n  attempt ").append(r.attempt()).append(": ").append(r.blocker()).append(r.funnel().isEmpty() ? "" : " " + r.candidates() + " candidates " + r.funnel());
         throw new IllegalStateException(b.toString());
     }
 
@@ -190,18 +190,18 @@ public final class StartSite {
                     a[i * 4] = t.x();
                     a[i * 4 + 1] = t.z();
                     a[i * 4 + 2] = t.kind() == TreePlan.Kind.LIVE ? 0 : 1;
-                    a[i * 4 + 3] = t.species() == Cover.BIRCH && t.kind() == TreePlan.Kind.LIVE ? 1 : 0;
+                    a[i * 4 + 3] = (t.species() == Cover.BIRCH ? 1 : 0) | (t.kind() == TreePlan.Kind.LIVE && t.species() != Cover.WILLOW ? 2 : 0) | (t.kind() == TreePlan.Kind.LIVE && t.species() == Cover.BIRCH ? 4 : 0);
                 }
                 return a;
             });
         }
 
         /** {live trees within rTrees, deadwood within rTrees, live birch within rBirch}, ignoring the pad rectangle. */
-        int[] count(double cx, double cz, double rTrees, double rBirch, int[] pad) {
-            double rMax = Math.max(rTrees, rBirch);
+        int[] count(double cx, double cz, double rTrees, double rBirch, double rWood, int[] pad) {
+            double rMax = Math.max(Math.max(rTrees, rBirch), rWood);
             int b0x = Math.floorDiv((int) Math.floor(cx - rMax), BLOCK), b1x = Math.floorDiv((int) Math.floor(cx + rMax), BLOCK);
             int b0z = Math.floorDiv((int) Math.floor(cz - rMax), BLOCK), b1z = Math.floorDiv((int) Math.floor(cz + rMax), BLOCK);
-            int live = 0, dead = 0, birch = 0;
+            int live = 0, dead = 0, birch = 0, wood = 0;
             for (int bz = b0z; bz <= b1z; bz++) for (int bx = b0x; bx <= b1x; bx++) {
                 int[] a = block(bx, bz);
                 for (int i = 0; i < a.length; i += 4) {
@@ -209,10 +209,11 @@ public final class StartSite {
                     if (x >= pad[0] && z >= pad[1] && x < pad[2] && z < pad[3]) continue;
                     double dx = x + 0.5 - cx, dz = z + 0.5 - cz, d2 = dx * dx + dz * dz;
                     if (d2 <= rTrees * rTrees) { if (a[i + 2] == 0) live++; else dead++; }
-                    if (a[i + 3] == 1 && d2 <= rBirch * rBirch) birch++;
+                    if ((a[i + 3] & 4) != 0 && d2 <= rBirch * rBirch) birch++;
+                    if ((a[i + 3] & 2) != 0 && d2 <= rWood * rWood) wood++;
                 }
             }
-            return new int[] {live, dead, birch};
+            return new int[] {live, dead, birch, wood};
         }
     }
 
@@ -250,6 +251,8 @@ public final class StartSite {
         int margin = (int) Math.ceil(sp.edgeMarginM() / g.cell);
         double skirt = p.terrain().footprintSkirtM() + 1;
 
+        boolean[] isBar = new boolean[vw.p.cover().classes().size()];
+        for (int q = 0; q < isBar.length; q++) isBar[q] = sp.site().barClasses().contains(vw.classDef(q).id());
         int nc = CHECKS.size();
         int[] reached = new int[nc], passed = new int[nc], alone = new int[nc];
         int candidates = 0;
@@ -260,22 +263,24 @@ public final class StartSite {
             if (wet[c] || dWater[c] < minWater) continue;
             double x = g.worldX(c), z = g.worldZ(c);
             if (!placeable(vw, def, g, c, x, z, fx, fz, slopeTan, padCap, level)) continue;
+            if (!barClear(vw, g, c, fx, fz, sp.site(), isBar)) continue;
             candidates++;
             boolean[] ok = new boolean[nc];
             String[] m = new String[nc];
             int px = (int) Math.floor(x - fx / 2.0), pz = (int) Math.floor(z - fz / 2.0);
             int[] pad = {(int) Math.ceil(px - skirt), (int) Math.ceil(pz - skirt), (int) Math.ceil(px + fx + skirt), (int) Math.ceil(pz + fz + skirt)};
 
-            ok[0] = dWater[c] <= sp.waterMaxM();
-            m[0] = String.format(Locale.ROOT, "water %.0f m", dWater[c]);
+            double bankM = Float.isNaN(level[c]) ? Double.NaN : vw.ground[c] - level[c];
+            ok[0] = dWater[c] <= sp.waterMaxM() && !Double.isNaN(bankM) && bankM >= sp.site().aboveRiverMinM() && bankM <= sp.site().aboveRiverMaxM();
+            m[0] = String.format(Locale.ROOT, "water %.0f m, bank %.1f m up", dWater[c], bankM);
             ok[1] = flatMax[c] < flatCap;
             m[1] = String.format(Locale.ROOT, "steepest %.1f deg in %.0f m", CoreGrid.deg(flatMax[c]), sp.flatAreaM());
             double face = dFace[c];
             ok[2] = face <= sp.faceWithinM();
             m[2] = String.format(Locale.ROOT, "face %.0f m", face);
-            int[] tc = trees.count(x, z, sp.firewoodRadiusM(), sp.tinderRadiusM(), pad);
-            ok[3] = tc[0] >= sp.treesMin() && tc[1] >= sp.deadwoodMin();
-            m[3] = tc[0] + " trees, " + tc[1] + " deadwood";
+            int[] tc = trees.count(x, z, sp.firewoodRadiusM(), sp.tinderRadiusM(), sp.site().woodWithinM(), pad);
+            ok[3] = tc[0] >= sp.treesMin() && tc[1] >= sp.deadwoodMin() && tc[3] >= sp.site().woodMin();
+            m[3] = tc[0] + " trees, " + tc[1] + " deadwood, " + tc[3] + " spruce or birch in " + (int) sp.site().woodWithinM() + " m";
             ok[4] = tc[2] >= sp.birchMin();
             m[4] = tc[2] + " birch";
             double nearGood = Double.MAX_VALUE, nearBest = Double.MAX_VALUE;
@@ -422,6 +427,23 @@ public final class StartSite {
             }
         }
         return true;
+    }
+
+    /** Bar cover scores 0: none under the pad (plus its margin), and no more than the ring's share of it around. */
+    static boolean barClear(ValleyWorld vw, CoreGrid g, int c, int fx, int fz, StartSiteParams.Site st, boolean[] isBar) {
+        int ci = g.col(c), ck = g.row(c);
+        int padR = (int) Math.ceil((Math.max(fx, fz) / 2.0 + st.padMarginM()) / g.cell);
+        int ringR = (int) Math.ceil(st.ringM() / g.cell);
+        int bar = 0, all = 0;
+        for (int k = Math.max(0, ck - ringR); k <= Math.min(g.n - 1, ck + ringR); k++) for (int i = Math.max(0, ci - ringR); i <= Math.min(g.n - 1, ci + ringR); i++) {
+            boolean b = isBar[vw.cover.classAt(g.idx(i, k))];
+            if (b && Math.abs(i - ci) <= padR && Math.abs(k - ck) <= padR) return false;
+            int di = i - ci, dk = k - ck;
+            if (di * di + dk * dk > ringR * ringR) continue;
+            all++;
+            if (b) bar++;
+        }
+        return all == 0 || bar <= st.barRingMax() * all;
     }
 
     /** Dry pad, within the outpost's mean slope and the stage-5 cap, above the river and spaced from the other set pieces. */
