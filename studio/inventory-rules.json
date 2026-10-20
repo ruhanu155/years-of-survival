@@ -2033,6 +2033,69 @@
       "ids": [
         "fish_guts"
       ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "self_bow"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "kit_bow"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "spear"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "arrow"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "pole_blind"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "blood_trail"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "tree_stand"
+      ]
     }
   ],
   "expand": {

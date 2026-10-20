@@ -639,5 +639,17 @@
   "item.yearofice.ermine_pelt": "Ermine Pelt",
   "item.yearofice.beaver_pelt": "Beaver Pelt",
   "block.yearofice.gut_pile": "Gut Pile",
-  "ecosystem.yearofice.gut_pile_left": "Guts left on the ground."
+  "ecosystem.yearofice.gut_pile_left": "Guts left on the ground.",
+  "item.yearofice.self_bow": "Self Bow",
+  "item.yearofice.kit_bow": "Kit Bow",
+  "item.yearofice.longbow": "Longbow",
+  "item.yearofice.spear": "Spear",
+  "item.yearofice.arrow": "Arrow",
+  "item.yearofice.arrowhead": "Arrowhead",
+  "item.yearofice.moose_call": "Moose Call",
+  "item.yearofice.squeak_call": "Squeak Call",
+  "block.yearofice.pole_blind": "Pole Blind",
+  "block.yearofice.tree_stand": "Tree Stand",
+  "block.yearofice.blood_trail": "Blood",
+  "entity.yearofice.arrow": "Arrow"
 }
