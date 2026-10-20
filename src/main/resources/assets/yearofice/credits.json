@@ -2283,6 +2283,160 @@
       "licence": "project",
       "generator_version": "hand",
       "release_blocker": false
+    },
+    {
+      "asset_id": "model_ermine",
+      "files": [
+        "assets/yearofice/geo/entity/ermine.geo.json",
+        "assets/yearofice/animations/entity/ermine.animation.json",
+        "assets/yearofice/textures/entity/ermine/adult_summer.png",
+        "assets/yearofice/textures/entity/ermine/adult_winter.png",
+        "assets/yearofice/textures/entity/ermine/adult_mottled.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/ermine.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_marten",
+      "files": [
+        "assets/yearofice/geo/entity/marten.geo.json",
+        "assets/yearofice/animations/entity/marten.animation.json",
+        "assets/yearofice/textures/entity/marten/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/marten.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_mink",
+      "files": [
+        "assets/yearofice/geo/entity/mink.geo.json",
+        "assets/yearofice/animations/entity/mink.animation.json",
+        "assets/yearofice/textures/entity/mink/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/mink.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_muskrat",
+      "files": [
+        "assets/yearofice/geo/entity/muskrat.geo.json",
+        "assets/yearofice/animations/entity/muskrat.animation.json",
+        "assets/yearofice/textures/entity/muskrat/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/muskrat.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_porcupine",
+      "files": [
+        "assets/yearofice/geo/entity/porcupine.geo.json",
+        "assets/yearofice/animations/entity/porcupine.animation.json",
+        "assets/yearofice/textures/entity/porcupine/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/porcupine.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_rock_ptarmigan",
+      "files": [
+        "assets/yearofice/geo/entity/rig_grouse.geo.json",
+        "assets/yearofice/animations/entity/rig_grouse.animation.json",
+        "assets/yearofice/animations/entity/willow_ptarmigan.animation.json",
+        "assets/yearofice/animations/entity/rock_ptarmigan.animation.json",
+        "assets/yearofice/textures/entity/rock_ptarmigan/adult_summer.png",
+        "assets/yearofice/textures/entity/rock_ptarmigan/adult_winter.png",
+        "assets/yearofice/textures/entity/rock_ptarmigan/adult_moult.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/rock_ptarmigan.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_ruffed_grouse",
+      "files": [
+        "assets/yearofice/animations/entity/ruffed_grouse.animation.json",
+        "assets/yearofice/textures/entity/ruffed_grouse/male_adult.png",
+        "assets/yearofice/textures/entity/ruffed_grouse/female_adult.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/ruffed_grouse.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_wood_frog",
+      "files": [
+        "assets/yearofice/geo/entity/wood_frog.geo.json",
+        "assets/yearofice/animations/entity/wood_frog.animation.json",
+        "assets/yearofice/textures/entity/wood_frog/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/wood_frog.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_yellowjacket",
+      "files": [
+        "assets/yearofice/geo/entity/yellowjacket.geo.json",
+        "assets/yearofice/animations/entity/yellowjacket.animation.json",
+        "assets/yearofice/textures/entity/yellowjacket/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/yellowjacket.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_small_game",
+      "files": [
+        "assets/yearofice/blockstates/gut_pile.json",
+        "assets/yearofice/models/block/gut_pile_0.json",
+        "assets/yearofice/models/block/gut_pile_1.json",
+        "assets/yearofice/models/block/gut_pile_2.json",
+        "assets/yearofice/models/block/gut_pile_3.json",
+        "assets/yearofice/models/item/beaver_meat.json",
+        "assets/yearofice/models/item/beaver_pelt.json",
+        "assets/yearofice/models/item/ermine_pelt.json",
+        "assets/yearofice/models/item/marten_meat.json",
+        "assets/yearofice/models/item/marten_pelt.json",
+        "assets/yearofice/models/item/mink_meat.json",
+        "assets/yearofice/models/item/mink_pelt.json",
+        "assets/yearofice/models/item/muskrat_meat.json",
+        "assets/yearofice/models/item/muskrat_pelt.json",
+        "assets/yearofice/models/item/porcupine_meat.json",
+        "assets/yearofice/models/item/red_squirrel_meat.json",
+        "assets/yearofice/models/item/red_squirrel_pelt.json",
+        "assets/yearofice/models/item/rock_ptarmigan_meat.json",
+        "assets/yearofice/models/item/ruffed_grouse_meat.json",
+        "assets/yearofice/models/item/spruce_grouse_meat.json",
+        "assets/yearofice/textures/block/gut_pile.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/small_game.py",
+      "licence": "project",
+      "generator_version": "small_game 0.1.0",
+      "release_blocker": false
     }
   ]
 }
