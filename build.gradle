@@ -30,6 +30,8 @@ neoForge {
         }
         gameTestServer {
             type = 'gameTestServer'
+            // Cap the test server so four parallel agents fit in 8 GB (RECONCILE 199).
+            jvmArgument '-Xmx1536m'
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
             // data/migrate_fixtures: the GameTest reads the fixture saves from the project (not shipped in the jar).
             systemProperty 'yearofice.fixtures', file('src/test/resources/saves').absolutePath
