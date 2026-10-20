@@ -4746,6 +4746,30 @@
       "licence": "project",
       "generator_version": "plants 1.0",
       "release_blocker": false
+    },
+    {
+      "asset_id": "tex_flail",
+      "files": [
+        "assets/yearofice/models/item/flail.json",
+        "assets/yearofice/textures/item/flail.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen2.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_barley_flour",
+      "files": [
+        "assets/yearofice/models/item/barley_flour.json",
+        "assets/yearofice/textures/item/barley_flour.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen2.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
     }
   ]
 }

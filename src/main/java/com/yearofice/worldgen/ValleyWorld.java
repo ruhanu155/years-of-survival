@@ -38,7 +38,10 @@ public final class ValleyWorld {
     public final TerrainPalette palette = new TerrainPalette();
     final int[] classSoil, classSurface, classBed;
     final int clayBank, riverSand, rockClass;
-    final int detailSeed, treeSeed;
+    final int detailSeed, treeSeed, plantSeed;
+
+    /** The seed of the vegetation pass ({@link PlantPlan}). */
+    public int plantSeed() { return plantSeed; }
     public final int m1Hash, coverHash;
     public final SliceCut.Window slice;
     /** The slice valley's fishing spot: the best one in the cut nearest the start, dug to a 2-block pool. */
@@ -81,6 +84,7 @@ public final class ValleyWorld {
         this.notes = new ArrayList<>(r.water().notes());
         this.detailSeed = SeedStage.stageSeed(r.seed().attemptSeed(), "terrain:detail");
         this.treeSeed = SeedStage.stageSeed(r.seed().attemptSeed(), "cover:trees");
+        this.plantSeed = SeedStage.stageSeed(r.seed().attemptSeed(), "cover:plants");
 
         Cover.Params cp = p.cover();
         int k = cp.classes().size();

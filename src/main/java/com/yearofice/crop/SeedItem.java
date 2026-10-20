@@ -27,7 +27,7 @@ public class SeedItem extends Item {
             com.yearofice.plant.Inspect.say(cp, Garden.card(level, pos, spec));
             return InteractionResult.CONSUME;
         }
-        Garden.Sow s = Garden.sow(level, pos, spec, Double.NaN);
+        Garden.Sow s = Garden.sow(level, pos, spec, Double.NaN, Grain.lotYears(ctx.getItemInHand()));
         if (s == null) return InteractionResult.PASS;
         if (ctx.getPlayer() instanceof ServerPlayer sp) {
             com.yearofice.plant.Inspect.say(sp, spec.name() + " sown: " + s.up() + " of " + s.seeds() + " came up (soil " + Math.round(s.soilC()) + " C"

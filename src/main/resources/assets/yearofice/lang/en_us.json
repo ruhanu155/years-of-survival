@@ -119,6 +119,7 @@
   "messenger.yearofice.pickup.ate": "+%s kcal (stomach %s%%)",
   "messenger.yearofice.pickup.drank": "+%s mL water (water %s)",
   "messenger.yearofice.warn.stomach_full": "Stomach full.",
+  "messenger.yearofice.warn.plant_poison": "That was %s, and it is poison. You will feel it soon.",
   "messenger.yearofice.warn.no_messenger": "No Trail Messenger on you.",
   "messenger.yearofice.warn.sos_sent": "SOS sent %s, day %s. %s.",
   "messenger.yearofice.warn.fire_low": "%s: %s min of fuel. Pot on it.",

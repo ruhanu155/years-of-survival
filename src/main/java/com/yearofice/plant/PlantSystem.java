@@ -15,6 +15,7 @@ public final class PlantSystem {
         NeoForge.EVENT_BUS.addListener(PlantEvents::onRightClick);
         NeoForge.EVENT_BUS.addListener(PlantEvents::onEaten);
         NeoForge.EVENT_BUS.addListener(PlantEvents::onDay);
+        NeoForge.EVENT_BUS.addListener(PlantPoison::onMinute);
         NeoForge.EVENT_BUS.addListener(PlantCommands::register);
         NeoForge.EVENT_BUS.addListener(LickCrust::onRightClick);
         NeoForge.EVENT_BUS.addListener(LickCrust::onDay);
