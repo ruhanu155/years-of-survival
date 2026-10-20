@@ -73,5 +73,9 @@ public final class YoiComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<String>> DISH_ID =
             COMPONENTS.registerComponentType("dish_id", b -> b.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8));
 
+    /** {@code yearofice:trophy_size}: measure, value, z-score and class of a big-game kill (M6 lane D, A5). */
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<TrophySize>> TROPHY_SIZE =
+            COMPONENTS.registerComponentType("trophy_size", b -> b.persistent(TrophySize.CODEC).networkSynchronized(TrophySize.STREAM));
+
     public static void register(IEventBus modBus) { COMPONENTS.register(modBus); }
 }
