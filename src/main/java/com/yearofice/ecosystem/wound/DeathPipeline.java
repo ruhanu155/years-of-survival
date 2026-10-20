@@ -31,7 +31,8 @@ import net.neoforged.neoforge.common.CommonHooks;
  *   <li>Counts: the animal's slot waits out its respawn days.</li>
  * </ol>
  * Vanilla's {@code die} never runs, so loot tables, {@code doMobLoot} and experience never come into it. Medium to
- * huge carcasses land in M5–M6; until then a moose death (only by command) leaves no body.
+ * huge carcasses land in M6; until then a moose death (only by command) leaves no body. Tiny, small and medium
+ * carcasses (M5) are one entity class in three sizes; a class "none" (an insect) leaves nothing.
  */
 public final class DeathPipeline {
     private DeathPipeline() {}
@@ -41,20 +42,31 @@ public final class DeathPipeline {
         if (CommonHooks.onLivingDeath(animal, source)) return;
         SpeciesDef d = animal.species();
         double minute = SliceClock.minuteD(level);
-        if (d.carcassClass().equals("small")) {
+        net.minecraft.world.entity.EntityType<CarcassEntity> carcassType = carcassType(d.carcassClass());
+        if (carcassType != null) {
             CarcassRecord r = record(animal, d, cause, minute);
-            CarcassEntity c = EcosystemRegistry.CARCASS_SMALL.get().create(level);
+            CarcassEntity c = carcassType.create(level);
             if (c != null) {
                 c.moveTo(animal.getX(), animal.getY(), animal.getZ(), animal.getYRot(), 0);
                 c.setRecord(r);
                 level.addFreshEntity(c);
             }
         } else {
-            YearOfIce.LOG.info("{} died ({}): {} carcasses arrive with big game in M6", d.id(), cause, d.carcassClass());
+            YearOfIce.LOG.info("{} died ({}): a {} carcass ({} arrive with big game in M6)", d.id(), cause, d.carcassClass(), "large and huge");
         }
         Entity killer = source.getEntity();
         SlotSpawner.reportDeath(level, animal, killer != null);
         animal.remove(Entity.RemovalReason.KILLED);
+    }
+
+    /** The carcass entity for a size class (Bestiary › Carcass classes); null for a class with no body yet. */
+    public static net.minecraft.world.entity.EntityType<CarcassEntity> carcassType(String cls) {
+        return switch (cls) {
+            case "tiny" -> EcosystemRegistry.CARCASS_TINY.get();
+            case "small" -> EcosystemRegistry.CARCASS_SMALL.get();
+            case "medium" -> EcosystemRegistry.CARCASS_MEDIUM.get();
+            default -> null;
+        };
     }
 
     public static CarcassRecord record(YoiAnimal a, SpeciesDef d, String cause, double minute) {
