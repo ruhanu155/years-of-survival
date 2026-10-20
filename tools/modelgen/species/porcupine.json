@@ -1,0 +1,37 @@
+{
+ "inherit": "beaver",
+ "scale": 0.55,
+ "id": "porcupine",
+ "geo_id": "porcupine",
+ "texture_dir": "porcupine",
+ "hitbox": [
+  0.5,
+  0.4
+ ],
+ "tier": "medium",
+ "notes": "Generated from the large-rodent rig, scaled.",
+ "paint": {
+  "_replace": true,
+  "leg_*": {
+   "ramp": "fur_black",
+   "step": 1
+  },
+  "ear_*": {
+   "ramp": "fur_black",
+   "step": 1
+  },
+  "head": {
+   "ramp": "fur_black",
+   "step": 2
+  },
+  "*": {
+   "ramp": "needle_gold",
+   "step": 2,
+   "noise": 0.25
+  }
+ },
+ "textures": {
+  "_replace": true,
+  "adult_all": {}
+ }
+}

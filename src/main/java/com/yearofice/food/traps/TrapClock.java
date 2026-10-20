@@ -48,7 +48,10 @@ public final class TrapClock {
             if (s == null || s.isEmpty()) continue;
             for (BlockPos pos : List.copyOf(s)) {
                 if (!level.shouldTickBlocksAt(pos)) continue;
-                if (level.getBlockEntity(pos) instanceof SnareBlockEntity be && !be.isRemoved()) be.settle(true);
+                var be = level.getBlockEntity(pos);
+                if (be == null || be.isRemoved()) continue;
+                if (be instanceof SnareBlockEntity sn) sn.settle(true);
+                else if (be instanceof DeadfallBlockEntity d) d.settle(true);
             }
         }
     }

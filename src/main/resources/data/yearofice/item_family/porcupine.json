@@ -1,0 +1,11 @@
+{
+  "species": "yearofice:porcupine",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    {
+      "item": "yearofice:porcupine_meat",
+      "kind": "meat",
+      "unit_g": 100
+    }
+  ]
+}

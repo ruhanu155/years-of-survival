@@ -1,0 +1,91 @@
+{
+ "inherit": "red_squirrel",
+ "scale": 0.8,
+ "id": "ermine",
+ "geo_id": "ermine",
+ "texture_dir": "ermine",
+ "hitbox": [
+  0.2,
+  0.28
+ ],
+ "notes": "Generated. Brown above and white below in summer, all white in winter; black tail tip.",
+ "tail": {
+  "angle": -8,
+  "segments": [
+   {
+    "len": 2,
+    "w": 2,
+    "h": 2
+   },
+   {
+    "len": 2,
+    "w": 2,
+    "h": 2,
+    "bend": -6
+   },
+   {
+    "len": 2,
+    "w": 1,
+    "h": 1,
+    "bend": -6
+   }
+  ]
+ },
+ "paint": {
+  "_replace": true,
+  "tail_*": {
+   "ramp": "fur_cinnamon",
+   "step": 1,
+   "noise": 0.2
+  },
+  "leg_*": {
+   "ramp": "fur_cinnamon",
+   "step": 1
+  },
+  "ear_*": {
+   "ramp": "fur_cinnamon",
+   "step": 1
+  },
+  "muzzle": {
+   "ramp": "fur_cinnamon",
+   "step": 3
+  },
+  "head": {
+   "ramp": "fur_cinnamon",
+   "step": 2
+  },
+  "*": {
+   "ramp": "fur_cinnamon",
+   "step": 2,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": "bottom",
+     "ramp": "fur_white",
+     "step": 3
+    }
+   ]
+  }
+ },
+ "textures": {
+  "_replace": true,
+  "adult_summer": {},
+  "adult_winter": {
+   "remap": {
+    "fur_cinnamon": "fur_white",
+    "fur_tan": "fur_white"
+   }
+  },
+  "adult_mottled": {
+   "remap": {
+    "fur_cinnamon": "fur_tan"
+   },
+   "mottle": {
+    "remap": {
+     "fur_tan": "fur_white"
+    },
+    "share": 0.5
+   }
+  }
+ }
+}

@@ -1,0 +1,52 @@
+{
+ "inherit": "red_squirrel",
+ "scale": 0.35,
+ "id": "wood_frog",
+ "geo_id": "wood_frog",
+ "texture_dir": "wood_frog",
+ "hitbox": [
+  0.15,
+  0.16
+ ],
+ "notes": "Generated. Tan-brown frog with dark eye mask.",
+ "paint": {
+  "_replace": true,
+  "tail_*": {
+   "ramp": "fur_tan",
+   "step": 1,
+   "noise": 0.2
+  },
+  "leg_*": {
+   "ramp": "fur_tan",
+   "step": 1
+  },
+  "ear_*": {
+   "ramp": "fur_tan",
+   "step": 1
+  },
+  "muzzle": {
+   "ramp": "fur_tan",
+   "step": 3
+  },
+  "head": {
+   "ramp": "fur_tan",
+   "step": 2
+  },
+  "*": {
+   "ramp": "fur_tan",
+   "step": 2,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": "bottom",
+     "ramp": "fur_white",
+     "step": 3
+    }
+   ]
+  }
+ },
+ "textures": {
+  "_replace": true,
+  "adult_all": {}
+ }
+}

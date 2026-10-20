@@ -1,0 +1,83 @@
+{
+  "entity": "yearofice:beaver",
+  "rig": "large_rodent",
+  "habitat": [
+    "bank"
+  ],
+  "population": [
+    1,
+    3
+  ],
+  "home_range_m": 100,
+  "active": [
+    "dusk",
+    "night",
+    "dawn"
+  ],
+  "gaits": {
+    "walk": 0.6,
+    "trot": 1.0,
+    "run": 1.6,
+    "swim": 1.6,
+    "step_height_m": 0.8
+  },
+  "senses": {
+    "sight": 20,
+    "hearing": 35,
+    "smell": 40,
+    "fov": 280
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": true,
+    "flush_m": 10,
+    "flee_m": [
+      20,
+      60
+    ],
+    "flee_gait": "run",
+    "zigzag": false,
+    "hide_min": [
+      30,
+      60
+    ],
+    "charges": false
+  },
+  "huntable": true,
+  "respawn_days": 14,
+  "breath_s": 10,
+  "spawn": {
+    "cell_m": 256,
+    "group": [
+      1,
+      1
+    ],
+    "density_per_km2": 1.5
+  },
+  "carcass": {
+    "whole_kg": 18,
+    "class": "medium",
+    "body_plan": "rodent",
+    "tau_h": 2,
+    "floats": true,
+    "poses": [
+      "dead_side"
+    ],
+    "steps": {
+      "gut": 10,
+      "skin": 25,
+      "joint": 20
+    },
+    "parts": {
+      "meat": 6.5,
+      "cover": {
+        "item": "yearofice:beaver_pelt",
+        "kg": 1.5
+      },
+      "guts_kg": 2.0
+    }
+  },
+  "butcher_table": "yearofice:butchering/beaver"
+}

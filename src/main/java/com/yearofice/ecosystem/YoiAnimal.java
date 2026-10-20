@@ -178,6 +178,9 @@ public abstract class YoiAnimal extends PathfinderMob implements GeoEntity {
         }
     }
 
+    /** Sets the looks for a day of the year now (the debug command and GameTests use it; the tick uses the clock). */
+    public final void refreshLooks(int doy) { updateLooks(doy); }
+
     /** Coat, plumage and antlers from the date (Land animals in depth › Seasonal looks). */
     protected void updateLooks(int doy) {}
 
@@ -439,7 +442,7 @@ public abstract class YoiAnimal extends PathfinderMob implements GeoEntity {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "base", 4,
-                st -> st.setAndContinue(loop("animation." + speciesPath() + "." + animKey(syncedState(), moveHint())))));
+                st -> st.setAndContinue(loop("animation." + com.yearofice.ecosystem.species.SpeciesArt.animSpecies(speciesPath()) + "." + animKey(syncedState(), moveHint())))));
     }
 
     @Override

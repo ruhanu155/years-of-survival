@@ -240,6 +240,51 @@
     },
     "yearofice:coho_salmon": {
       "weight_g": 3500
+    },
+    "yearofice:red_squirrel_meat": {
+      "weight_g": 100
+    },
+    "yearofice:marten_meat": {
+      "weight_g": 100
+    },
+    "yearofice:mink_meat": {
+      "weight_g": 100
+    },
+    "yearofice:muskrat_meat": {
+      "weight_g": 100
+    },
+    "yearofice:beaver_meat": {
+      "weight_g": 100
+    },
+    "yearofice:porcupine_meat": {
+      "weight_g": 100
+    },
+    "yearofice:spruce_grouse_meat": {
+      "weight_g": 100
+    },
+    "yearofice:ruffed_grouse_meat": {
+      "weight_g": 100
+    },
+    "yearofice:rock_ptarmigan_meat": {
+      "weight_g": 100
+    },
+    "yearofice:marten_pelt": {
+      "weight_g": 250
+    },
+    "yearofice:mink_pelt": {
+      "weight_g": 100
+    },
+    "yearofice:muskrat_pelt": {
+      "weight_g": 150
+    },
+    "yearofice:red_squirrel_pelt": {
+      "weight_g": 40
+    },
+    "yearofice:ermine_pelt": {
+      "weight_g": 50
+    },
+    "yearofice:beaver_pelt": {
+      "weight_g": 1500
     }
   }
 }
