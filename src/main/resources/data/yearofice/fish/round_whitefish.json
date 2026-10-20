@@ -1,0 +1,47 @@
+{
+  "id": "round_whitefish",
+  "kg": [
+    0.2,
+    1
+  ],
+  "bite_base": 0.05,
+  "kcal_per_kg": 1400,
+  "run_pull_x": 0.5,
+  "run_every_s": [
+    6,
+    10
+  ],
+  "run_length_s": [
+    1,
+    1.5
+  ],
+  "jump_chance": 0.0,
+  "special": "NONE",
+  "special_every_s": null,
+  "special_spike": 1.0,
+  "tire_per_s": 0.125,
+  "bite_through_no_leader": 0,
+  "night_factor": 0.8,
+  "trophy_kg": null,
+  "bait": {
+    "caddis": 1.5,
+    "stonefly": 1.2,
+    "roe": 1.0,
+    "worm": 0.5
+  },
+  "surface_feeder": false,
+  "season": {
+    "all_year": true
+  },
+  "resident": true,
+  "spawn": null,
+  "parasite": "plain",
+  "net_c_per_h": 0.04,
+  "mesh": "fine",
+  "capacity": {
+    "pool_below_falls": 10,
+    "outside_bend": 20,
+    "deep_river_hole": 20
+  },
+  "r_per_month": 0.35
+}

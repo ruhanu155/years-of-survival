@@ -63,6 +63,8 @@ public final class FishingRegistry {
 
     /** Line condition 0–100 % is the rod's durability (Tackle › Lines: plant fiber −3% a fight, −9% in the red). */
     public static final DeferredItem<RodItem> ROD = ITEMS.registerItem("rod", RodItem::new, new Item.Properties().durability(RodItem.LINE_MAX));
+    /** The kit rod: a longer cast and a sinew reel; the willow pole above stays the bushcraft rod (M6 lane C). */
+    public static final DeferredItem<RodItem> KIT_ROD = ITEMS.registerItem("kit_rod", p -> new RodItem(p, true), new Item.Properties().durability(RodItem.LINE_MAX));
     public static final DeferredItem<Item> WORM = ITEMS.registerItem("worm", Item::new, new Item.Properties().stacksTo(64));
     /** M5 lane C2 baits and lures: roe and fish_chunk are used up on the hook, the spoon and fly stay on the line. */
     public static final DeferredItem<Item> ROE = ITEMS.registerItem("roe", Item::new, new Item.Properties().stacksTo(64));
@@ -84,6 +86,19 @@ public final class FishingRegistry {
             BLOCKS.registerBlock("gill_net", GearBlocks.GillNet::new, GEAR_PROPS.noCollission());
     public static final net.neoforged.neoforge.registries.DeferredBlock<GearBlocks.WeirBasket> WEIR_BASKET =
             BLOCKS.registerBlock("weir_basket", GearBlocks.WeirBasket::new, GEAR_PROPS);
+    /** M6 lane C: the fish weir's stakes, the fish wheel and the tip-up. */
+    public static final net.neoforged.neoforge.registries.DeferredBlock<GearBlocks.WeirStake> WEIR_STAKE =
+            BLOCKS.registerBlock("weir_stake", GearBlocks.WeirStake::new, GEAR_PROPS);
+    public static final net.neoforged.neoforge.registries.DeferredBlock<GearBlocks.FishWheel> FISH_WHEEL =
+            BLOCKS.registerBlock("fish_wheel", GearBlocks.FishWheel::new, GEAR_PROPS);
+    public static final net.neoforged.neoforge.registries.DeferredBlock<GearBlocks.TipUp> TIP_UP =
+            BLOCKS.registerBlock("tip_up", GearBlocks.TipUp::new, GEAR_PROPS);
+    public static final DeferredItem<net.minecraft.world.item.BlockItem> WEIR_STAKE_ITEM =
+            ITEMS.registerSimpleBlockItem("weir_stake", WEIR_STAKE, new Item.Properties());
+    public static final DeferredItem<net.minecraft.world.item.BlockItem> FISH_WHEEL_ITEM =
+            ITEMS.registerSimpleBlockItem("fish_wheel", FISH_WHEEL, new Item.Properties());
+    public static final DeferredItem<net.minecraft.world.item.BlockItem> TIP_UP_ITEM =
+            ITEMS.registerSimpleBlockItem("tip_up", TIP_UP, new Item.Properties());
     public static final DeferredItem<net.minecraft.world.item.BlockItem> SET_LINE_ITEM =
             ITEMS.registerSimpleBlockItem("set_line", SET_LINE, new Item.Properties());
     public static final DeferredItem<net.minecraft.world.item.BlockItem> WEIR_BASKET_ITEM =

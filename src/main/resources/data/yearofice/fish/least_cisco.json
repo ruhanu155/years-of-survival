@@ -1,0 +1,46 @@
+{
+  "id": "least_cisco",
+  "kg": [
+    0.08,
+    0.3
+  ],
+  "bite_base": 0.1,
+  "kcal_per_kg": 1800,
+  "run_pull_x": 1.0,
+  "run_every_s": [
+    2,
+    4
+  ],
+  "run_length_s": [
+    0.5,
+    1
+  ],
+  "jump_chance": 0.1,
+  "special": "NONE",
+  "special_every_s": null,
+  "special_spike": 1.0,
+  "tire_per_s": 0.25,
+  "bite_through_no_leader": 0,
+  "night_factor": 0.8,
+  "trophy_kg": null,
+  "bait": {
+    "fly": 1.0,
+    "insect": 1.0,
+    "worm": 0.5
+  },
+  "surface_feeder": false,
+  "season": {
+    "all_year": true
+  },
+  "resident": true,
+  "spawn": null,
+  "parasite": "plain",
+  "net_c_per_h": 0.25,
+  "mesh": "fine",
+  "capacity": {
+    "lake_inlet": 200,
+    "lake_drop_off": 300,
+    "weed_shelf": 100
+  },
+  "r_per_month": 0.6
+}

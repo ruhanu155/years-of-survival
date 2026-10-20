@@ -39,7 +39,7 @@ public final class PassiveGearService {
     private PassiveGearService() {}
 
     public enum Kind {
-        SET_LINE(PassiveGear.Kind.SET_LINE), GILL_NET(PassiveGear.Kind.GILL_NET), FISH_TRAP(PassiveGear.Kind.WEIR);
+        SET_LINE(PassiveGear.Kind.SET_LINE), GILL_NET(PassiveGear.Kind.GILL_NET), FISH_TRAP(PassiveGear.Kind.WEIR), FISH_WHEEL(PassiveGear.Kind.FISH_WHEEL), TIP_UP(PassiveGear.Kind.SET_LINE);
 
         final PassiveGear.Kind sim;
 
@@ -75,6 +75,8 @@ public final class PassiveGearService {
                 case SET_LINE -> Math.max(1, hooks) * PassiveGear.HOLDS_HOOK;
                 case GILL_NET -> Math.max(1, segments) * PassiveGear.HOLDS_NET_SEGMENT;
                 case FISH_TRAP -> PassiveGear.HOLDS_WEIR;
+                case FISH_WHEEL -> PassiveGear.HOLDS_WHEEL;
+                case TIP_UP -> PassiveGear.HOLDS_HOOK;
             };
         }
     }
@@ -87,7 +89,7 @@ public final class PassiveGearService {
     }
 
     public static Gear place(ServerLevel level, Kind kind, BlockPos pos, int segmentsOrHooks, long nowMinute) {
-        Gear g = new Gear(kind, pos.immutable(), kind == Kind.GILL_NET ? segmentsOrHooks : 0, kind == Kind.SET_LINE ? segmentsOrHooks : 0, nowMinute);
+        Gear g = new Gear(kind, pos.immutable(), kind == Kind.GILL_NET ? segmentsOrHooks : 0, (kind == Kind.SET_LINE || kind == Kind.TIP_UP) ? segmentsOrHooks : 0, nowMinute);
         book(level).gear.put(pos.asLong(), g);
         book(level).setDirty();
         return g;
@@ -167,7 +169,7 @@ public final class PassiveGearService {
                 double[] frac = new double[fish.size()];
                 for (int i = 0; i < mean.length; i++) {
                     SpotFish.Entry e = fish.get(i);
-                    FishStock st = SpotFish.stock(level, SliceSpots.key(g.pos), day, e);
+                    FishStock st = SpotFish.stock(level, SliceSpots.key(g.pos), day, e, type);
                     frac[i] = st.fraction();
                     mean[i] = hourly(g, e, q, type, FishSeason.dayOfYear(day), st, here, level);
                 }
@@ -185,6 +187,7 @@ public final class PassiveGearService {
                             double kg = SizeDraw.kg(FishingSpecies.byId(e.id()), 1.0, frac[c.species()], q, u, 1.0, 0.5);
                             g.held.add(new Held(e.id(), (int) Math.round(kg * 1000)));
                             SliceSpots.stocks(level).harvest(SliceSpots.speciesKey(SliceSpots.key(g.pos), e.id()), day, e.k(), e.r(), 1, start + hours * 30L);
+                            RunLedger.get(level).record(e.id(), RunLedger.yearOf(day), 1);
                             caught++;
                         }
                         case ESCAPED -> escaped++;
@@ -213,12 +216,18 @@ public final class PassiveGearService {
                 double cov = PassiveGear.netCoverage(g.segments, g.wingM, width, lake);
                 yield PassiveGear.netHourly(data.netCPerHour(), q, cov, mSeason, st.fraction());
             }
-            case FISH_TRAP -> PassiveGear.weirHourly(q, mSeason, st.fraction());
-            case SET_LINE -> {
+            case FISH_TRAP -> PassiveGear.weirHourly(q, mSeason, st.fraction())
+                    * com.yearofice.sim.fishing.WeirFence.multiplier(WeirFences.stakes(level, g.pos), here.spot().map(s -> Math.max(4.0, s.radiusM() * 2)).orElse(12.0));
+            case FISH_WHEEL -> {
+                if (!com.yearofice.sim.fishing.SalmonRun.isRun(e.id()) || data.season().resident()) yield 0.0;
+                boolean fall = e.id().equals("bering_cisco") || e.id().equals("broad_whitefish");
+                yield PassiveGear.wheelHourly(q, com.yearofice.sim.fishing.SalmonRun.strength(e.id(), doy), 1.0) * st.fraction() * (fall ? 0.5 : 1.0);
+            }
+            case SET_LINE, TIP_UP -> {
                 var in = new SliceBite.Inputs(data.species(), data.season(), spotType, true, q, here.spot().map(s -> s.depthM()).orElse(2.0),
                         here.spot().map(s -> s.radiusM()).orElse(5.0), st.n(), st.k(), g.bait.isEmpty() ? HookBait.NONE : HookBait.fitted(g.bait, 1000, 100000),
                         doy, BiteModel.TimeBand.DAY, BiteModel.Weather.CLOUDY, 5.0, 0.0, false);
-                yield g.hooks * PassiveGear.setLineHourly(SliceBite.pBite(in));
+                yield g.hooks * PassiveGear.setLineHourly(SliceBite.pBite(in)) * (g.kind == Kind.TIP_UP ? 0.8 : 1.0);
             }
         };
     }

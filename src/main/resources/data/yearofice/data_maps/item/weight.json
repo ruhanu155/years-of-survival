@@ -264,6 +264,51 @@
     },
     "yearofice:beaver_pelt": {
       "weight_g": 1500
+    },
+    "yearofice:bird_meat": {
+      "weight_g": 100
+    },
+    "yearofice:sockeye_salmon": {
+      "weight_g": 3000
+    },
+    "yearofice:arctic_char": {
+      "weight_g": 1750
+    },
+    "yearofice:broad_whitefish": {
+      "weight_g": 3250
+    },
+    "yearofice:round_whitefish": {
+      "weight_g": 600
+    },
+    "yearofice:least_cisco": {
+      "weight_g": 190
+    },
+    "yearofice:bering_cisco": {
+      "weight_g": 800
+    },
+    "yearofice:sheefish": {
+      "weight_g": 9000
+    },
+    "yearofice:longnose_sucker": {
+      "weight_g": 1000
+    },
+    "yearofice:slimy_sculpin": {
+      "weight_g": 30
+    },
+    "yearofice:lake_chub": {
+      "weight_g": 35
+    },
+    "yearofice:ninespine_stickleback": {
+      "weight_g": 5
+    },
+    "yearofice:alaska_blackfish": {
+      "weight_g": 115
+    },
+    "yearofice:arctic_lamprey": {
+      "weight_g": 200
+    },
+    "yearofice:kit_rod": {
+      "weight_g": 450
     }
   }
 }

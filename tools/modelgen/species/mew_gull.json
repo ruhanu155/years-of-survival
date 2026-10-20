@@ -1,0 +1,19 @@
+{
+ "inherit": "willow_ptarmigan",
+ "id": "mew_gull",
+ "texture_dir": "mew_gull",
+ "anim_copies": [
+  "willow_ptarmigan",
+  "mew_gull"
+ ],
+ "notes": "White body, grey back. Same rig (grouse), recoloured; the renderer scales it (M6 lane C).",
+ "textures": {
+  "_replace": true,
+  "adult_all": {
+   "remap": {
+    "feather_ptarmigan_summer": "fur_white",
+    "comb_red": "fur_wolf_pale"
+   }
+  }
+ }
+}

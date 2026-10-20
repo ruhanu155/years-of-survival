@@ -5,8 +5,8 @@
     {
       "asset_id": "tex_alder_round",
       "files": [
-        "assets/yearofice/textures/item/alder_round.png",
-        "assets/yearofice/models/item/alder_round.json"
+        "assets/yearofice/models/item/alder_round.json",
+        "assets/yearofice/textures/item/alder_round.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/alder_round.json",
@@ -17,8 +17,8 @@
     {
       "asset_id": "tex_alder_split",
       "files": [
-        "assets/yearofice/textures/item/alder_split.png",
-        "assets/yearofice/models/item/alder_split.json"
+        "assets/yearofice/models/item/alder_split.json",
+        "assets/yearofice/textures/item/alder_split.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/alder_split.json",
@@ -30,8 +30,8 @@
       "asset_id": "tex_arctic_grayling",
       "files": [
         "assets/yearofice/textures/item/arctic_grayling.png",
-        "assets/yearofice/textures/item/arctic_grayling_cooked.png",
-        "assets/yearofice/textures/item/arctic_grayling_burnt.png"
+        "assets/yearofice/textures/item/arctic_grayling_burnt.png",
+        "assets/yearofice/textures/item/arctic_grayling_cooked.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/arctic_grayling.json",
@@ -42,8 +42,8 @@
     {
       "asset_id": "tex_aspen_round",
       "files": [
-        "assets/yearofice/textures/item/aspen_round.png",
-        "assets/yearofice/models/item/aspen_round.json"
+        "assets/yearofice/models/item/aspen_round.json",
+        "assets/yearofice/textures/item/aspen_round.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/aspen_round.json",
@@ -54,8 +54,8 @@
     {
       "asset_id": "tex_aspen_split",
       "files": [
-        "assets/yearofice/textures/item/aspen_split.png",
-        "assets/yearofice/models/item/aspen_split.json"
+        "assets/yearofice/models/item/aspen_split.json",
+        "assets/yearofice/textures/item/aspen_split.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/aspen_split.json",
@@ -66,8 +66,8 @@
     {
       "asset_id": "tex_birch_bark",
       "files": [
-        "assets/yearofice/textures/item/birch_bark.png",
-        "assets/yearofice/models/item/birch_bark.json"
+        "assets/yearofice/models/item/birch_bark.json",
+        "assets/yearofice/textures/item/birch_bark.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -88,8 +88,8 @@
     {
       "asset_id": "tex_birch_round",
       "files": [
-        "assets/yearofice/textures/item/birch_round.png",
-        "assets/yearofice/models/item/birch_round.json"
+        "assets/yearofice/models/item/birch_round.json",
+        "assets/yearofice/textures/item/birch_round.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/birch_round.json",
@@ -100,8 +100,8 @@
     {
       "asset_id": "tex_birch_split",
       "files": [
-        "assets/yearofice/textures/item/birch_split.png",
-        "assets/yearofice/models/item/birch_split.json"
+        "assets/yearofice/models/item/birch_split.json",
+        "assets/yearofice/textures/item/birch_split.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/birch_split.json",
@@ -112,8 +112,8 @@
     {
       "asset_id": "tex_blueberries",
       "files": [
-        "assets/yearofice/textures/item/blueberries.png",
-        "assets/yearofice/models/item/blueberries.json"
+        "assets/yearofice/models/item/blueberries.json",
+        "assets/yearofice/textures/item/blueberries.png"
       ],
       "source_type": "game_asset_collection",
       "title": "isaiah658's Pixel Pack #1 (Objects/Food)",
@@ -144,8 +144,8 @@
     {
       "asset_id": "tex_bow_drill",
       "files": [
-        "assets/yearofice/textures/item/bow_drill.png",
-        "assets/yearofice/models/item/bow_drill.json"
+        "assets/yearofice/models/item/bow_drill.json",
+        "assets/yearofice/textures/item/bow_drill.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/bow_drill.json",
@@ -156,8 +156,8 @@
     {
       "asset_id": "tex_bucksaw",
       "files": [
-        "assets/yearofice/textures/item/bucksaw.png",
-        "assets/yearofice/models/item/bucksaw.json"
+        "assets/yearofice/models/item/bucksaw.json",
+        "assets/yearofice/textures/item/bucksaw.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/bucksaw.json",
@@ -168,8 +168,8 @@
     {
       "asset_id": "tex_cast_iron_kettle",
       "files": [
-        "assets/yearofice/textures/item/cast_iron_kettle.png",
-        "assets/yearofice/models/item/cast_iron_kettle.json"
+        "assets/yearofice/models/item/cast_iron_kettle.json",
+        "assets/yearofice/textures/item/cast_iron_kettle.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/cast_iron_kettle.json",
@@ -180,8 +180,8 @@
     {
       "asset_id": "tex_cooked_fish_fillet",
       "files": [
-        "assets/yearofice/textures/item/cooked_fish_fillet.png",
-        "assets/yearofice/models/item/cooked_fish_fillet.json"
+        "assets/yearofice/models/item/cooked_fish_fillet.json",
+        "assets/yearofice/textures/item/cooked_fish_fillet.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/cooked_fish_fillet.json",
@@ -192,9 +192,9 @@
     {
       "asset_id": "tex_cooked_grouse",
       "files": [
+        "assets/yearofice/models/item/cooked_grouse.json",
         "assets/yearofice/textures/item/cooked_grouse.png",
-        "assets/yearofice/textures/item/cooked_grouse_burnt.png",
-        "assets/yearofice/models/item/cooked_grouse.json"
+        "assets/yearofice/textures/item/cooked_grouse_burnt.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -215,9 +215,9 @@
     {
       "asset_id": "tex_cooked_hare",
       "files": [
+        "assets/yearofice/models/item/cooked_hare.json",
         "assets/yearofice/textures/item/cooked_hare.png",
-        "assets/yearofice/textures/item/cooked_hare_burnt.png",
-        "assets/yearofice/models/item/cooked_hare.json"
+        "assets/yearofice/textures/item/cooked_hare_burnt.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/cooked_hare.json",
@@ -228,8 +228,8 @@
     {
       "asset_id": "tex_cooked_moose_meat",
       "files": [
-        "assets/yearofice/textures/item/cooked_moose_meat.png",
-        "assets/yearofice/models/item/cooked_moose_meat.json"
+        "assets/yearofice/models/item/cooked_moose_meat.json",
+        "assets/yearofice/textures/item/cooked_moose_meat.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -250,8 +250,8 @@
     {
       "asset_id": "tex_cooking_pot",
       "files": [
-        "assets/yearofice/textures/item/cooking_pot.png",
-        "assets/yearofice/models/item/cooking_pot.json"
+        "assets/yearofice/models/item/cooking_pot.json",
+        "assets/yearofice/textures/item/cooking_pot.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/cooking_pot.json",
@@ -262,8 +262,8 @@
     {
       "asset_id": "tex_cordage",
       "files": [
-        "assets/yearofice/textures/item/cordage.png",
-        "assets/yearofice/models/item/cordage.json"
+        "assets/yearofice/models/item/cordage.json",
+        "assets/yearofice/textures/item/cordage.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/cordage.json",
@@ -274,8 +274,8 @@
     {
       "asset_id": "tex_cranberries",
       "files": [
-        "assets/yearofice/textures/item/cranberries.png",
-        "assets/yearofice/models/item/cranberries.json"
+        "assets/yearofice/models/item/cranberries.json",
+        "assets/yearofice/textures/item/cranberries.png"
       ],
       "source_type": "game_asset_collection",
       "title": "isaiah658's Pixel Pack #1 (Objects/Food)",
@@ -295,8 +295,8 @@
     {
       "asset_id": "tex_crate_backpack",
       "files": [
-        "assets/yearofice/textures/item/crate_backpack.png",
-        "assets/yearofice/models/item/crate_backpack.json"
+        "assets/yearofice/models/item/crate_backpack.json",
+        "assets/yearofice/textures/item/crate_backpack.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/crate_backpack.json",
@@ -307,8 +307,8 @@
     {
       "asset_id": "tex_dried_fish",
       "files": [
-        "assets/yearofice/textures/item/dried_fish.png",
-        "assets/yearofice/models/item/dried_fish.json"
+        "assets/yearofice/models/item/dried_fish.json",
+        "assets/yearofice/textures/item/dried_fish.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -329,8 +329,8 @@
     {
       "asset_id": "tex_drift_round",
       "files": [
-        "assets/yearofice/textures/item/drift_round.png",
-        "assets/yearofice/models/item/drift_round.json"
+        "assets/yearofice/models/item/drift_round.json",
+        "assets/yearofice/textures/item/drift_round.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/drift_round.json",
@@ -341,8 +341,8 @@
     {
       "asset_id": "tex_drift_split",
       "files": [
-        "assets/yearofice/textures/item/drift_split.png",
-        "assets/yearofice/models/item/drift_split.json"
+        "assets/yearofice/models/item/drift_split.json",
+        "assets/yearofice/textures/item/drift_split.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/drift_split.json",
@@ -353,8 +353,8 @@
     {
       "asset_id": "tex_fat",
       "files": [
-        "assets/yearofice/textures/item/fat.png",
-        "assets/yearofice/models/item/fat.json"
+        "assets/yearofice/models/item/fat.json",
+        "assets/yearofice/textures/item/fat.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -375,8 +375,8 @@
     {
       "asset_id": "tex_felling_axe",
       "files": [
-        "assets/yearofice/textures/item/felling_axe.png",
-        "assets/yearofice/models/item/felling_axe.json"
+        "assets/yearofice/models/item/felling_axe.json",
+        "assets/yearofice/textures/item/felling_axe.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -474,8 +474,8 @@
     {
       "asset_id": "tex_fire_starter",
       "files": [
-        "assets/yearofice/textures/item/fire_starter.png",
-        "assets/yearofice/models/item/fire_starter.json"
+        "assets/yearofice/models/item/fire_starter.json",
+        "assets/yearofice/textures/item/fire_starter.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/fire_starter.json",
@@ -486,8 +486,8 @@
     {
       "asset_id": "tex_firewood_round",
       "files": [
-        "assets/yearofice/textures/item/firewood_round.png",
-        "assets/yearofice/models/item/firewood_round.json"
+        "assets/yearofice/models/item/firewood_round.json",
+        "assets/yearofice/textures/item/firewood_round.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/firewood_round.json",
@@ -498,8 +498,8 @@
     {
       "asset_id": "tex_firewood_split",
       "files": [
-        "assets/yearofice/textures/item/firewood_split.png",
-        "assets/yearofice/models/item/firewood_split.json"
+        "assets/yearofice/models/item/firewood_split.json",
+        "assets/yearofice/textures/item/firewood_split.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/firewood_split.json",
@@ -510,8 +510,8 @@
     {
       "asset_id": "tex_fishing_rod",
       "files": [
-        "assets/yearofice/textures/item/fishing_rod.png",
-        "assets/yearofice/models/item/fishing_rod.json"
+        "assets/yearofice/models/item/fishing_rod.json",
+        "assets/yearofice/textures/item/fishing_rod.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -532,8 +532,8 @@
     {
       "asset_id": "tex_fixed_blade_knife",
       "files": [
-        "assets/yearofice/textures/item/fixed_blade_knife.png",
-        "assets/yearofice/models/item/fixed_blade_knife.json"
+        "assets/yearofice/models/item/fixed_blade_knife.json",
+        "assets/yearofice/textures/item/fixed_blade_knife.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/fixed_blade_knife.json",
@@ -544,8 +544,8 @@
     {
       "asset_id": "tex_hatchet",
       "files": [
-        "assets/yearofice/textures/item/hatchet.png",
-        "assets/yearofice/models/item/hatchet.json"
+        "assets/yearofice/models/item/hatchet.json",
+        "assets/yearofice/textures/item/hatchet.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -566,8 +566,8 @@
     {
       "asset_id": "tex_kindling",
       "files": [
-        "assets/yearofice/textures/item/kindling.png",
-        "assets/yearofice/models/item/kindling.json"
+        "assets/yearofice/models/item/kindling.json",
+        "assets/yearofice/textures/item/kindling.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/kindling.json",
@@ -578,8 +578,8 @@
     {
       "asset_id": "tex_lard",
       "files": [
-        "assets/yearofice/textures/item/lard.png",
-        "assets/yearofice/models/item/lard.json"
+        "assets/yearofice/models/item/lard.json",
+        "assets/yearofice/textures/item/lard.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -600,8 +600,8 @@
     {
       "asset_id": "tex_lingonberries",
       "files": [
-        "assets/yearofice/textures/item/lingonberries.png",
-        "assets/yearofice/models/item/lingonberries.json"
+        "assets/yearofice/models/item/lingonberries.json",
+        "assets/yearofice/textures/item/lingonberries.png"
       ],
       "source_type": "game_asset_collection",
       "title": "isaiah658's Pixel Pack #1 (Objects/Food)",
@@ -621,8 +621,8 @@
     {
       "asset_id": "tex_match",
       "files": [
-        "assets/yearofice/textures/item/match.png",
-        "assets/yearofice/models/item/match.json"
+        "assets/yearofice/models/item/match.json",
+        "assets/yearofice/textures/item/match.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/match.json",
@@ -633,8 +633,8 @@
     {
       "asset_id": "tex_maul",
       "files": [
-        "assets/yearofice/textures/item/maul.png",
-        "assets/yearofice/models/item/maul.json"
+        "assets/yearofice/models/item/maul.json",
+        "assets/yearofice/textures/item/maul.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -655,8 +655,8 @@
     {
       "asset_id": "tex_messenger",
       "files": [
-        "assets/yearofice/textures/item/messenger.png",
-        "assets/yearofice/models/item/messenger.json"
+        "assets/yearofice/models/item/messenger.json",
+        "assets/yearofice/textures/item/messenger.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/messenger.json",
@@ -678,8 +678,8 @@
     {
       "asset_id": "tex_pemmican",
       "files": [
-        "assets/yearofice/textures/item/pemmican.png",
-        "assets/yearofice/models/item/pemmican.json"
+        "assets/yearofice/models/item/pemmican.json",
+        "assets/yearofice/textures/item/pemmican.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/pemmican.json",
@@ -690,8 +690,8 @@
     {
       "asset_id": "tex_poplar_round",
       "files": [
-        "assets/yearofice/textures/item/poplar_round.png",
-        "assets/yearofice/models/item/poplar_round.json"
+        "assets/yearofice/models/item/poplar_round.json",
+        "assets/yearofice/textures/item/poplar_round.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/poplar_round.json",
@@ -702,8 +702,8 @@
     {
       "asset_id": "tex_poplar_split",
       "files": [
-        "assets/yearofice/textures/item/poplar_split.png",
-        "assets/yearofice/models/item/poplar_split.json"
+        "assets/yearofice/models/item/poplar_split.json",
+        "assets/yearofice/textures/item/poplar_split.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/poplar_split.json",
@@ -714,10 +714,10 @@
     {
       "asset_id": "tex_raw_fish_fillet",
       "files": [
+        "assets/yearofice/models/item/raw_fish_fillet.json",
         "assets/yearofice/textures/item/raw_fish_fillet.png",
         "assets/yearofice/textures/item/raw_fish_fillet_aging.png",
-        "assets/yearofice/textures/item/raw_fish_fillet_spoiled.png",
-        "assets/yearofice/models/item/raw_fish_fillet.json"
+        "assets/yearofice/textures/item/raw_fish_fillet_spoiled.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/raw_fish_fillet.json",
@@ -728,10 +728,10 @@
     {
       "asset_id": "tex_raw_grouse",
       "files": [
+        "assets/yearofice/models/item/raw_grouse.json",
         "assets/yearofice/textures/item/raw_grouse.png",
         "assets/yearofice/textures/item/raw_grouse_aging.png",
-        "assets/yearofice/textures/item/raw_grouse_spoiled.png",
-        "assets/yearofice/models/item/raw_grouse.json"
+        "assets/yearofice/textures/item/raw_grouse_spoiled.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -752,10 +752,10 @@
     {
       "asset_id": "tex_raw_hare",
       "files": [
+        "assets/yearofice/models/item/raw_hare.json",
         "assets/yearofice/textures/item/raw_hare.png",
         "assets/yearofice/textures/item/raw_hare_aging.png",
-        "assets/yearofice/textures/item/raw_hare_spoiled.png",
-        "assets/yearofice/models/item/raw_hare.json"
+        "assets/yearofice/textures/item/raw_hare_spoiled.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/raw_hare.json",
@@ -766,8 +766,8 @@
     {
       "asset_id": "tex_raw_hide",
       "files": [
-        "assets/yearofice/textures/item/raw_hide.png",
-        "assets/yearofice/models/item/raw_hide.json"
+        "assets/yearofice/models/item/raw_hide.json",
+        "assets/yearofice/textures/item/raw_hide.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/raw_hide.json",
@@ -778,10 +778,10 @@
     {
       "asset_id": "tex_raw_moose_meat",
       "files": [
+        "assets/yearofice/models/item/raw_moose_meat.json",
         "assets/yearofice/textures/item/raw_moose_meat.png",
         "assets/yearofice/textures/item/raw_moose_meat_aging.png",
-        "assets/yearofice/textures/item/raw_moose_meat_spoiled.png",
-        "assets/yearofice/models/item/raw_moose_meat.json"
+        "assets/yearofice/textures/item/raw_moose_meat_spoiled.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -802,8 +802,8 @@
     {
       "asset_id": "tex_rod",
       "files": [
-        "assets/yearofice/textures/item/rod.png",
-        "assets/yearofice/models/item/rod.json"
+        "assets/yearofice/models/item/rod.json",
+        "assets/yearofice/textures/item/rod.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -824,8 +824,8 @@
     {
       "asset_id": "tex_rose_hips",
       "files": [
-        "assets/yearofice/textures/item/rose_hips.png",
-        "assets/yearofice/models/item/rose_hips.json"
+        "assets/yearofice/models/item/rose_hips.json",
+        "assets/yearofice/textures/item/rose_hips.png"
       ],
       "source_type": "game_asset_collection",
       "title": "isaiah658's Pixel Pack #1 (Objects/Food)",
@@ -845,8 +845,8 @@
     {
       "asset_id": "tex_sinew",
       "files": [
-        "assets/yearofice/textures/item/sinew.png",
-        "assets/yearofice/models/item/sinew.json"
+        "assets/yearofice/models/item/sinew.json",
+        "assets/yearofice/textures/item/sinew.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/sinew.json",
@@ -857,8 +857,8 @@
     {
       "asset_id": "tex_snare_wire",
       "files": [
-        "assets/yearofice/textures/item/snare_wire.png",
-        "assets/yearofice/models/item/snare_wire.json"
+        "assets/yearofice/models/item/snare_wire.json",
+        "assets/yearofice/textures/item/snare_wire.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/snare_wire.json",
@@ -869,8 +869,8 @@
     {
       "asset_id": "tex_spruce_bark",
       "files": [
-        "assets/yearofice/textures/item/spruce_bark.png",
-        "assets/yearofice/models/item/spruce_bark.json"
+        "assets/yearofice/models/item/spruce_bark.json",
+        "assets/yearofice/textures/item/spruce_bark.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/spruce_bark.json",
@@ -881,8 +881,8 @@
     {
       "asset_id": "tex_spruce_round",
       "files": [
-        "assets/yearofice/textures/item/spruce_round.png",
-        "assets/yearofice/models/item/spruce_round.json"
+        "assets/yearofice/models/item/spruce_round.json",
+        "assets/yearofice/textures/item/spruce_round.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/spruce_round.json",
@@ -893,8 +893,8 @@
     {
       "asset_id": "tex_spruce_split",
       "files": [
-        "assets/yearofice/textures/item/spruce_split.png",
-        "assets/yearofice/models/item/spruce_split.json"
+        "assets/yearofice/models/item/spruce_split.json",
+        "assets/yearofice/textures/item/spruce_split.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/spruce_split.json",
@@ -905,8 +905,8 @@
     {
       "asset_id": "tex_spruce_tips",
       "files": [
-        "assets/yearofice/textures/item/spruce_tips.png",
-        "assets/yearofice/models/item/spruce_tips.json"
+        "assets/yearofice/models/item/spruce_tips.json",
+        "assets/yearofice/textures/item/spruce_tips.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -927,8 +927,8 @@
     {
       "asset_id": "tex_tamarack_round",
       "files": [
-        "assets/yearofice/textures/item/tamarack_round.png",
-        "assets/yearofice/models/item/tamarack_round.json"
+        "assets/yearofice/models/item/tamarack_round.json",
+        "assets/yearofice/textures/item/tamarack_round.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/tamarack_round.json",
@@ -939,8 +939,8 @@
     {
       "asset_id": "tex_tamarack_split",
       "files": [
-        "assets/yearofice/textures/item/tamarack_split.png",
-        "assets/yearofice/models/item/tamarack_split.json"
+        "assets/yearofice/models/item/tamarack_split.json",
+        "assets/yearofice/textures/item/tamarack_split.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/tamarack_split.json",
@@ -951,8 +951,8 @@
     {
       "asset_id": "tex_tinder_bundle",
       "files": [
-        "assets/yearofice/textures/item/tinder_bundle.png",
-        "assets/yearofice/models/item/tinder_bundle.json"
+        "assets/yearofice/models/item/tinder_bundle.json",
+        "assets/yearofice/textures/item/tinder_bundle.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -973,8 +973,8 @@
     {
       "asset_id": "tex_willow_round",
       "files": [
-        "assets/yearofice/textures/item/willow_round.png",
-        "assets/yearofice/models/item/willow_round.json"
+        "assets/yearofice/models/item/willow_round.json",
+        "assets/yearofice/textures/item/willow_round.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/willow_round.json",
@@ -985,8 +985,8 @@
     {
       "asset_id": "tex_willow_split",
       "files": [
-        "assets/yearofice/textures/item/willow_split.png",
-        "assets/yearofice/models/item/willow_split.json"
+        "assets/yearofice/models/item/willow_split.json",
+        "assets/yearofice/textures/item/willow_split.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/willow_split.json",
@@ -997,8 +997,8 @@
     {
       "asset_id": "tex_worm",
       "files": [
-        "assets/yearofice/textures/item/worm.png",
-        "assets/yearofice/models/item/worm.json"
+        "assets/yearofice/models/item/worm.json",
+        "assets/yearofice/textures/item/worm.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/worm.json",
@@ -1009,8 +1009,8 @@
     {
       "asset_id": "model_beaver",
       "files": [
-        "assets/yearofice/geo/entity/beaver.geo.json",
         "assets/yearofice/animations/entity/beaver.animation.json",
+        "assets/yearofice/geo/entity/beaver.geo.json",
         "assets/yearofice/textures/entity/beaver/adult_all.png"
       ],
       "source_type": "generated",
@@ -1022,8 +1022,8 @@
     {
       "asset_id": "model_black_bear",
       "files": [
-        "assets/yearofice/geo/entity/black_bear.geo.json",
         "assets/yearofice/animations/entity/black_bear.animation.json",
+        "assets/yearofice/geo/entity/black_bear.geo.json",
         "assets/yearofice/textures/entity/black_bear/adult_black.png",
         "assets/yearofice/textures/entity/black_bear/adult_cinnamon.png"
       ],
@@ -1036,8 +1036,8 @@
     {
       "asset_id": "model_black_bear_cub",
       "files": [
-        "assets/yearofice/geo/entity/black_bear_cub.geo.json",
         "assets/yearofice/animations/entity/black_bear_cub.animation.json",
+        "assets/yearofice/geo/entity/black_bear_cub.geo.json",
         "assets/yearofice/textures/entity/black_bear/cub_black.png"
       ],
       "source_type": "generated",
@@ -1049,8 +1049,8 @@
     {
       "asset_id": "model_grizzly",
       "files": [
-        "assets/yearofice/geo/entity/grizzly.geo.json",
         "assets/yearofice/animations/entity/grizzly.animation.json",
+        "assets/yearofice/geo/entity/grizzly.geo.json",
         "assets/yearofice/textures/entity/grizzly/adult_summer.png"
       ],
       "source_type": "generated",
@@ -1062,8 +1062,8 @@
     {
       "asset_id": "model_grizzly_cub",
       "files": [
-        "assets/yearofice/geo/entity/grizzly_cub.geo.json",
         "assets/yearofice/animations/entity/grizzly_cub.animation.json",
+        "assets/yearofice/geo/entity/grizzly_cub.geo.json",
         "assets/yearofice/textures/entity/grizzly/cub_summer.png"
       ],
       "source_type": "generated",
@@ -1075,8 +1075,8 @@
     {
       "asset_id": "model_moose",
       "files": [
-        "assets/yearofice/geo/entity/moose.geo.json",
         "assets/yearofice/animations/entity/moose.animation.json",
+        "assets/yearofice/geo/entity/moose.geo.json",
         "assets/yearofice/textures/entity/moose/bull_summer.png",
         "assets/yearofice/textures/entity/moose/cow_summer.png"
       ],
@@ -1098,8 +1098,8 @@
     {
       "asset_id": "model_moose_calf",
       "files": [
-        "assets/yearofice/geo/entity/moose_calf.geo.json",
         "assets/yearofice/animations/entity/moose_calf.animation.json",
+        "assets/yearofice/geo/entity/moose_calf.geo.json",
         "assets/yearofice/textures/entity/moose/calf_summer.png"
       ],
       "source_type": "generated",
@@ -1111,15 +1111,15 @@
     {
       "asset_id": "model_mule_deer",
       "files": [
-        "assets/yearofice/geo/entity/mule_deer.geo.json",
         "assets/yearofice/animations/entity/mule_deer.animation.json",
+        "assets/yearofice/geo/entity/mule_deer.geo.json",
+        "assets/yearofice/textures/entity/mule_deer/antler_velvet.png",
+        "assets/yearofice/textures/entity/mule_deer/buck_moult.png",
         "assets/yearofice/textures/entity/mule_deer/buck_summer.png",
         "assets/yearofice/textures/entity/mule_deer/buck_winter.png",
-        "assets/yearofice/textures/entity/mule_deer/buck_moult.png",
-        "assets/yearofice/textures/entity/mule_deer/doe_summer.png",
-        "assets/yearofice/textures/entity/mule_deer/doe_winter.png",
         "assets/yearofice/textures/entity/mule_deer/doe_moult.png",
-        "assets/yearofice/textures/entity/mule_deer/antler_velvet.png"
+        "assets/yearofice/textures/entity/mule_deer/doe_summer.png",
+        "assets/yearofice/textures/entity/mule_deer/doe_winter.png"
       ],
       "source_type": "model_library",
       "title": "Deer (Ultimate Animated Animal Pack)",
@@ -1139,8 +1139,8 @@
     {
       "asset_id": "model_mule_deer_fawn",
       "files": [
-        "assets/yearofice/geo/entity/mule_deer_fawn.geo.json",
         "assets/yearofice/animations/entity/mule_deer_fawn.animation.json",
+        "assets/yearofice/geo/entity/mule_deer_fawn.geo.json",
         "assets/yearofice/textures/entity/mule_deer/fawn_summer.png"
       ],
       "source_type": "generated",
@@ -1152,10 +1152,10 @@
     {
       "asset_id": "model_red_fox",
       "files": [
-        "assets/yearofice/geo/entity/red_fox.geo.json",
         "assets/yearofice/animations/entity/red_fox.animation.json",
-        "assets/yearofice/textures/entity/red_fox/adult_red.png",
+        "assets/yearofice/geo/entity/red_fox.geo.json",
         "assets/yearofice/textures/entity/red_fox/adult_cross.png",
+        "assets/yearofice/textures/entity/red_fox/adult_red.png",
         "assets/yearofice/textures/entity/red_fox/adult_silver.png"
       ],
       "source_type": "model_library",
@@ -1176,8 +1176,8 @@
     {
       "asset_id": "model_red_squirrel",
       "files": [
-        "assets/yearofice/geo/entity/red_squirrel.geo.json",
         "assets/yearofice/animations/entity/red_squirrel.animation.json",
+        "assets/yearofice/geo/entity/red_squirrel.geo.json",
         "assets/yearofice/textures/entity/red_squirrel/adult_all.png"
       ],
       "source_type": "generated",
@@ -1189,15 +1189,15 @@
     {
       "asset_id": "model_sitka_black_tailed_deer",
       "files": [
-        "assets/yearofice/geo/entity/sitka_black_tailed_deer.geo.json",
         "assets/yearofice/animations/entity/sitka_black_tailed_deer.animation.json",
+        "assets/yearofice/geo/entity/sitka_black_tailed_deer.geo.json",
+        "assets/yearofice/textures/entity/sitka_black_tailed_deer/antler_velvet.png",
+        "assets/yearofice/textures/entity/sitka_black_tailed_deer/buck_moult.png",
         "assets/yearofice/textures/entity/sitka_black_tailed_deer/buck_summer.png",
         "assets/yearofice/textures/entity/sitka_black_tailed_deer/buck_winter.png",
-        "assets/yearofice/textures/entity/sitka_black_tailed_deer/buck_moult.png",
-        "assets/yearofice/textures/entity/sitka_black_tailed_deer/doe_summer.png",
-        "assets/yearofice/textures/entity/sitka_black_tailed_deer/doe_winter.png",
         "assets/yearofice/textures/entity/sitka_black_tailed_deer/doe_moult.png",
-        "assets/yearofice/textures/entity/sitka_black_tailed_deer/antler_velvet.png"
+        "assets/yearofice/textures/entity/sitka_black_tailed_deer/doe_summer.png",
+        "assets/yearofice/textures/entity/sitka_black_tailed_deer/doe_winter.png"
       ],
       "source_type": "model_library",
       "title": "Deer (Ultimate Animated Animal Pack)",
@@ -1217,8 +1217,8 @@
     {
       "asset_id": "model_sitka_black_tailed_deer_fawn",
       "files": [
-        "assets/yearofice/geo/entity/sitka_black_tailed_deer_fawn.geo.json",
         "assets/yearofice/animations/entity/sitka_black_tailed_deer_fawn.animation.json",
+        "assets/yearofice/geo/entity/sitka_black_tailed_deer_fawn.geo.json",
         "assets/yearofice/textures/entity/sitka_black_tailed_deer/fawn_summer.png"
       ],
       "source_type": "generated",
@@ -1230,11 +1230,11 @@
     {
       "asset_id": "model_snowshoe_hare",
       "files": [
-        "assets/yearofice/geo/entity/snowshoe_hare.geo.json",
         "assets/yearofice/animations/entity/snowshoe_hare.animation.json",
+        "assets/yearofice/geo/entity/snowshoe_hare.geo.json",
+        "assets/yearofice/textures/entity/snowshoe_hare/adult_mottled.png",
         "assets/yearofice/textures/entity/snowshoe_hare/adult_summer.png",
-        "assets/yearofice/textures/entity/snowshoe_hare/adult_winter.png",
-        "assets/yearofice/textures/entity/snowshoe_hare/adult_mottled.png"
+        "assets/yearofice/textures/entity/snowshoe_hare/adult_winter.png"
       ],
       "source_type": "generated",
       "recipe": "tools/modelgen/species/snowshoe_hare.json",
@@ -1245,12 +1245,12 @@
     {
       "asset_id": "model_spruce_grouse",
       "files": [
-        "assets/yearofice/geo/entity/rig_grouse.geo.json",
         "assets/yearofice/animations/entity/rig_grouse.animation.json",
-        "assets/yearofice/animations/entity/willow_ptarmigan.animation.json",
         "assets/yearofice/animations/entity/spruce_grouse.animation.json",
-        "assets/yearofice/textures/entity/spruce_grouse/male_adult.png",
-        "assets/yearofice/textures/entity/spruce_grouse/female_adult.png"
+        "assets/yearofice/animations/entity/willow_ptarmigan.animation.json",
+        "assets/yearofice/geo/entity/rig_grouse.geo.json",
+        "assets/yearofice/textures/entity/spruce_grouse/female_adult.png",
+        "assets/yearofice/textures/entity/spruce_grouse/male_adult.png"
       ],
       "source_type": "generated",
       "recipe": "tools/modelgen/species/spruce_grouse.json",
@@ -1261,9 +1261,9 @@
     {
       "asset_id": "model_willow_ptarmigan",
       "files": [
+        "assets/yearofice/textures/entity/willow_ptarmigan/adult_moult.png",
         "assets/yearofice/textures/entity/willow_ptarmigan/adult_summer.png",
-        "assets/yearofice/textures/entity/willow_ptarmigan/adult_winter.png",
-        "assets/yearofice/textures/entity/willow_ptarmigan/adult_moult.png"
+        "assets/yearofice/textures/entity/willow_ptarmigan/adult_winter.png"
       ],
       "source_type": "generated",
       "recipe": "tools/modelgen/species/willow_ptarmigan.json",
@@ -1274,10 +1274,10 @@
     {
       "asset_id": "model_wolf",
       "files": [
-        "assets/yearofice/geo/entity/wolf.geo.json",
         "assets/yearofice/animations/entity/wolf.animation.json",
-        "assets/yearofice/textures/entity/wolf/adult_gray.png",
-        "assets/yearofice/textures/entity/wolf/adult_black.png"
+        "assets/yearofice/geo/entity/wolf.geo.json",
+        "assets/yearofice/textures/entity/wolf/adult_black.png",
+        "assets/yearofice/textures/entity/wolf/adult_gray.png"
       ],
       "source_type": "model_library",
       "title": "Wolf (Ultimate Animated Animal Pack)",
@@ -1298,18 +1298,18 @@
       "asset_id": "model_fire_ring",
       "files": [
         "assets/yearofice/blockstates/fire_ring.json",
-        "assets/yearofice/models/item/fire_ring.json",
-        "assets/yearofice/models/block/fire_ring_base.json",
-        "assets/yearofice/models/block/fire_ring_tinder.json",
-        "assets/yearofice/models/block/fire_ring_kindling.json",
-        "assets/yearofice/models/block/fire_ring_fuel.json",
-        "assets/yearofice/models/block/fire_ring_ember.json",
-        "assets/yearofice/models/block/fire_ring_flame_tiny.json",
-        "assets/yearofice/models/block/fire_ring_flame_small.json",
-        "assets/yearofice/models/block/fire_ring_flame.json",
-        "assets/yearofice/models/block/fire_ring_coals.json",
+        "assets/yearofice/blockstates/flame.json",
         "assets/yearofice/models/block/fire_ring_ash.json",
-        "assets/yearofice/blockstates/flame.json"
+        "assets/yearofice/models/block/fire_ring_base.json",
+        "assets/yearofice/models/block/fire_ring_coals.json",
+        "assets/yearofice/models/block/fire_ring_ember.json",
+        "assets/yearofice/models/block/fire_ring_flame.json",
+        "assets/yearofice/models/block/fire_ring_flame_small.json",
+        "assets/yearofice/models/block/fire_ring_flame_tiny.json",
+        "assets/yearofice/models/block/fire_ring_fuel.json",
+        "assets/yearofice/models/block/fire_ring_kindling.json",
+        "assets/yearofice/models/block/fire_ring_tinder.json",
+        "assets/yearofice/models/item/fire_ring.json"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/fire_ring.py",
@@ -1445,8 +1445,8 @@
     {
       "asset_id": "tex_block_forest_duff",
       "files": [
-        "assets/yearofice/textures/block/forest_duff_top.png",
-        "assets/yearofice/textures/block/forest_duff_side.png"
+        "assets/yearofice/textures/block/forest_duff_side.png",
+        "assets/yearofice/textures/block/forest_duff_top.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/block/forest_duff.json",
@@ -1468,8 +1468,8 @@
     {
       "asset_id": "tex_block_grass_turf",
       "files": [
-        "assets/yearofice/textures/block/grass_turf_top.png",
-        "assets/yearofice/textures/block/grass_turf_side.png"
+        "assets/yearofice/textures/block/grass_turf_side.png",
+        "assets/yearofice/textures/block/grass_turf_top.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/block/grass_turf.json",
@@ -1502,8 +1502,8 @@
     {
       "asset_id": "tex_block_lichen_mat",
       "files": [
-        "assets/yearofice/textures/block/lichen_mat_top.png",
-        "assets/yearofice/textures/block/lichen_mat_side.png"
+        "assets/yearofice/textures/block/lichen_mat_side.png",
+        "assets/yearofice/textures/block/lichen_mat_top.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/block/lichen_mat.json",
@@ -1525,8 +1525,8 @@
     {
       "asset_id": "tex_block_moss_mat",
       "files": [
-        "assets/yearofice/textures/block/moss_mat_top.png",
-        "assets/yearofice/textures/block/moss_mat_side.png"
+        "assets/yearofice/textures/block/moss_mat_side.png",
+        "assets/yearofice/textures/block/moss_mat_top.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/block/moss_mat.json",
@@ -1648,8 +1648,8 @@
     {
       "asset_id": "tex_block_tundra_turf",
       "files": [
-        "assets/yearofice/textures/block/tundra_turf_top.png",
-        "assets/yearofice/textures/block/tundra_turf_side.png"
+        "assets/yearofice/textures/block/tundra_turf_side.png",
+        "assets/yearofice/textures/block/tundra_turf_top.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/block/tundra_turf.json",
@@ -1694,68 +1694,63 @@
     {
       "asset_id": "model_world_blocks",
       "files": [
-        "assets/yearofice/models/block/deep_ground.json",
-        "assets/yearofice/blockstates/deep_ground.json",
-        "assets/yearofice/models/block/deep_rock.json",
-        "assets/yearofice/blockstates/deep_rock.json",
-        "assets/yearofice/models/block/face_rock.json",
-        "assets/yearofice/blockstates/face_rock.json",
-        "assets/yearofice/models/block/iron_outcrop.json",
-        "assets/yearofice/blockstates/iron_outcrop.json",
-        "assets/yearofice/models/block/coal_seam.json",
-        "assets/yearofice/blockstates/coal_seam.json",
-        "assets/yearofice/models/block/rust_stain.json",
-        "assets/yearofice/blockstates/rust_stain.json",
-        "assets/yearofice/models/block/silt.json",
-        "assets/yearofice/blockstates/silt.json",
-        "assets/yearofice/models/block/loess.json",
-        "assets/yearofice/blockstates/loess.json",
-        "assets/yearofice/models/block/till.json",
-        "assets/yearofice/blockstates/till.json",
-        "assets/yearofice/models/block/river_sand.json",
-        "assets/yearofice/blockstates/river_sand.json",
-        "assets/yearofice/models/block/gravel.json",
-        "assets/yearofice/blockstates/gravel.json",
-        "assets/yearofice/models/block/peat.json",
-        "assets/yearofice/blockstates/peat.json",
-        "assets/yearofice/models/block/clay_bank.json",
-        "assets/yearofice/blockstates/clay_bank.json",
-        "assets/yearofice/models/block/frozen_soil.json",
-        "assets/yearofice/blockstates/frozen_soil.json",
-        "assets/yearofice/models/block/scree_stones.json",
-        "assets/yearofice/blockstates/scree_stones.json",
-        "assets/yearofice/models/block/forest_duff.json",
-        "assets/yearofice/blockstates/forest_duff.json",
-        "assets/yearofice/models/block/moss_mat.json",
-        "assets/yearofice/blockstates/moss_mat.json",
-        "assets/yearofice/models/block/grass_turf.json",
-        "assets/yearofice/blockstates/grass_turf.json",
-        "assets/yearofice/models/block/tundra_turf.json",
-        "assets/yearofice/blockstates/tundra_turf.json",
-        "assets/yearofice/models/block/lichen_mat.json",
-        "assets/yearofice/blockstates/lichen_mat.json",
-        "assets/yearofice/models/block/white_spruce_log.json",
-        "assets/yearofice/blockstates/white_spruce_log.json",
-        "assets/yearofice/models/block/black_spruce_log.json",
-        "assets/yearofice/blockstates/black_spruce_log.json",
-        "assets/yearofice/models/block/birch_log.json",
-        "assets/yearofice/blockstates/birch_log.json",
-        "assets/yearofice/models/block/fallen_log.json",
-        "assets/yearofice/blockstates/fallen_log.json",
-        "assets/yearofice/models/block/white_spruce_leaves.json",
-        "assets/yearofice/blockstates/white_spruce_leaves.json",
-        "assets/yearofice/models/block/black_spruce_leaves.json",
-        "assets/yearofice/blockstates/black_spruce_leaves.json",
-        "assets/yearofice/models/block/birch_leaves.json",
         "assets/yearofice/blockstates/birch_leaves.json",
-        "assets/yearofice/models/block/willow_brush.json",
-        "assets/yearofice/blockstates/willow_brush.json",
-        "assets/yearofice/models/block/riffle_cobble.json",
+        "assets/yearofice/blockstates/birch_log.json",
+        "assets/yearofice/blockstates/black_spruce_leaves.json",
+        "assets/yearofice/blockstates/black_spruce_log.json",
+        "assets/yearofice/blockstates/clay_bank.json",
+        "assets/yearofice/blockstates/coal_seam.json",
+        "assets/yearofice/blockstates/deep_ground.json",
+        "assets/yearofice/blockstates/deep_rock.json",
+        "assets/yearofice/blockstates/face_rock.json",
+        "assets/yearofice/blockstates/fallen_log.json",
+        "assets/yearofice/blockstates/forest_duff.json",
+        "assets/yearofice/blockstates/frozen_soil.json",
+        "assets/yearofice/blockstates/grass_turf.json",
+        "assets/yearofice/blockstates/gravel.json",
+        "assets/yearofice/blockstates/iron_outcrop.json",
+        "assets/yearofice/blockstates/lichen_mat.json",
+        "assets/yearofice/blockstates/loess.json",
+        "assets/yearofice/blockstates/moss_mat.json",
+        "assets/yearofice/blockstates/peat.json",
         "assets/yearofice/blockstates/riffle_cobble.json",
-        "assets/yearofice/models/block/shrub_stem.json",
+        "assets/yearofice/blockstates/river_sand.json",
+        "assets/yearofice/blockstates/rust_stain.json",
+        "assets/yearofice/blockstates/scree_stones.json",
         "assets/yearofice/blockstates/shrub_stem.json",
-        "assets/yearofice/models/block/stump.json",
+        "assets/yearofice/blockstates/silt.json",
+        "assets/yearofice/blockstates/snow_cover.json",
         "assets/yearofice/blockstates/stump.json",
+        "assets/yearofice/blockstates/till.json",
+        "assets/yearofice/blockstates/tundra_turf.json",
+        "assets/yearofice/blockstates/white_spruce_leaves.json",
+        "assets/yearofice/blockstates/white_spruce_log.json",
+        "assets/yearofice/blockstates/willow_brush.json",
+        "assets/yearofice/models/block/birch_leaves.json",
+        "assets/yearofice/models/block/birch_log.json",
+        "assets/yearofice/models/block/black_spruce_leaves.json",
+        "assets/yearofice/models/block/black_spruce_log.json",
+        "assets/yearofice/models/block/clay_bank.json",
+        "assets/yearofice/models/block/coal_seam.json",
+        "assets/yearofice/models/block/deep_ground.json",
+        "assets/yearofice/models/block/deep_rock.json",
+        "assets/yearofice/models/block/face_rock.json",
+        "assets/yearofice/models/block/fallen_log.json",
+        "assets/yearofice/models/block/forest_duff.json",
+        "assets/yearofice/models/block/frozen_soil.json",
+        "assets/yearofice/models/block/grass_turf.json",
+        "assets/yearofice/models/block/gravel.json",
+        "assets/yearofice/models/block/iron_outcrop.json",
+        "assets/yearofice/models/block/lichen_mat.json",
+        "assets/yearofice/models/block/loess.json",
+        "assets/yearofice/models/block/moss_mat.json",
+        "assets/yearofice/models/block/peat.json",
+        "assets/yearofice/models/block/riffle_cobble.json",
+        "assets/yearofice/models/block/river_sand.json",
+        "assets/yearofice/models/block/rust_stain.json",
+        "assets/yearofice/models/block/scree_stones.json",
+        "assets/yearofice/models/block/shrub_stem.json",
+        "assets/yearofice/models/block/silt.json",
         "assets/yearofice/models/block/snow_cover_1.json",
         "assets/yearofice/models/block/snow_cover_2.json",
         "assets/yearofice/models/block/snow_cover_3.json",
@@ -1764,7 +1759,12 @@
         "assets/yearofice/models/block/snow_cover_6.json",
         "assets/yearofice/models/block/snow_cover_7.json",
         "assets/yearofice/models/block/snow_cover_8.json",
-        "assets/yearofice/blockstates/snow_cover.json"
+        "assets/yearofice/models/block/stump.json",
+        "assets/yearofice/models/block/till.json",
+        "assets/yearofice/models/block/tundra_turf.json",
+        "assets/yearofice/models/block/white_spruce_leaves.json",
+        "assets/yearofice/models/block/white_spruce_log.json",
+        "assets/yearofice/models/block/willow_brush.json"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/world_blocks.py",
@@ -1778,8 +1778,8 @@
         "assets/yearofice/blockstates/snare.json",
         "assets/yearofice/models/block/snare.json",
         "assets/yearofice/models/block/snare_sprung.json",
-        "assets/yearofice/models/item/whole_game.json",
-        "assets/yearofice/models/item/hare_pelt.json"
+        "assets/yearofice/models/item/hare_pelt.json",
+        "assets/yearofice/models/item/whole_game.json"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/snare.py",
@@ -1805,21 +1805,21 @@
       "files": [
         "assets/yearofice/blockstates/spit.json",
         "assets/yearofice/models/block/spit.json",
-        "assets/yearofice/models/item/snowshoe_hare_meat_aging.json",
-        "assets/yearofice/models/item/snowshoe_hare_meat_spoiled.json",
-        "assets/yearofice/models/item/snowshoe_hare_meat_cooked.json",
-        "assets/yearofice/models/item/snowshoe_hare_meat_burnt.json",
-        "assets/yearofice/models/item/snowshoe_hare_meat.json",
-        "assets/yearofice/models/item/willow_ptarmigan_meat_aging.json",
-        "assets/yearofice/models/item/willow_ptarmigan_meat_spoiled.json",
-        "assets/yearofice/models/item/willow_ptarmigan_meat_cooked.json",
-        "assets/yearofice/models/item/willow_ptarmigan_meat_burnt.json",
-        "assets/yearofice/models/item/willow_ptarmigan_meat.json",
+        "assets/yearofice/models/item/arctic_grayling.json",
         "assets/yearofice/models/item/arctic_grayling_aging.json",
-        "assets/yearofice/models/item/arctic_grayling_spoiled.json",
-        "assets/yearofice/models/item/arctic_grayling_cooked.json",
         "assets/yearofice/models/item/arctic_grayling_burnt.json",
-        "assets/yearofice/models/item/arctic_grayling.json"
+        "assets/yearofice/models/item/arctic_grayling_cooked.json",
+        "assets/yearofice/models/item/arctic_grayling_spoiled.json",
+        "assets/yearofice/models/item/snowshoe_hare_meat.json",
+        "assets/yearofice/models/item/snowshoe_hare_meat_aging.json",
+        "assets/yearofice/models/item/snowshoe_hare_meat_burnt.json",
+        "assets/yearofice/models/item/snowshoe_hare_meat_cooked.json",
+        "assets/yearofice/models/item/snowshoe_hare_meat_spoiled.json",
+        "assets/yearofice/models/item/willow_ptarmigan_meat.json",
+        "assets/yearofice/models/item/willow_ptarmigan_meat_aging.json",
+        "assets/yearofice/models/item/willow_ptarmigan_meat_burnt.json",
+        "assets/yearofice/models/item/willow_ptarmigan_meat_cooked.json",
+        "assets/yearofice/models/item/willow_ptarmigan_meat_spoiled.json"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/cooking.py",
@@ -1830,8 +1830,8 @@
     {
       "asset_id": "gui_messenger_device",
       "files": [
-        "assets/yearofice/textures/gui/messenger/device.png",
-        "assets/yearofice/textures/gui/messenger/corner.png"
+        "assets/yearofice/textures/gui/messenger/corner.png",
+        "assets/yearofice/textures/gui/messenger/device.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/gui_messenger.py",
@@ -1842,12 +1842,12 @@
     {
       "asset_id": "gui_hud_vitals_strip",
       "files": [
-        "assets/yearofice/textures/gui/sprites/hud/warmth.png",
-        "assets/yearofice/textures/gui/sprites/hud/wet.png",
-        "assets/yearofice/textures/gui/sprites/hud/water.png",
         "assets/yearofice/textures/gui/sprites/hud/calories.png",
+        "assets/yearofice/textures/gui/sprites/hud/condition.png",
         "assets/yearofice/textures/gui/sprites/hud/energy.png",
-        "assets/yearofice/textures/gui/sprites/hud/condition.png"
+        "assets/yearofice/textures/gui/sprites/hud/warmth.png",
+        "assets/yearofice/textures/gui/sprites/hud/water.png",
+        "assets/yearofice/textures/gui/sprites/hud/wet.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/gui_messenger.py",
@@ -1883,8 +1883,8 @@
     {
       "asset_id": "tex_spruce_boughs",
       "files": [
-        "assets/yearofice/textures/item/spruce_boughs.png",
-        "assets/yearofice/models/item/spruce_boughs.json"
+        "assets/yearofice/models/item/spruce_boughs.json",
+        "assets/yearofice/textures/item/spruce_boughs.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/spruce_boughs.json",
@@ -1895,8 +1895,8 @@
     {
       "asset_id": "tex_block_bough_bed",
       "files": [
-        "assets/yearofice/textures/block/bough_bed_top.png",
-        "assets/yearofice/textures/block/bough_bed_side.png"
+        "assets/yearofice/textures/block/bough_bed_side.png",
+        "assets/yearofice/textures/block/bough_bed_top.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/block/bough_bed.json",
@@ -1953,8 +1953,8 @@
     {
       "asset_id": "tex_bark_bucket",
       "files": [
-        "assets/yearofice/textures/item/bark_bucket.png",
-        "assets/yearofice/models/item/bark_bucket.json"
+        "assets/yearofice/models/item/bark_bucket.json",
+        "assets/yearofice/textures/item/bark_bucket.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/bark_bucket.json",
@@ -1965,8 +1965,8 @@
     {
       "asset_id": "tex_birch_bark_torch",
       "files": [
-        "assets/yearofice/textures/item/birch_bark_torch.png",
-        "assets/yearofice/models/item/birch_bark_torch.json"
+        "assets/yearofice/models/item/birch_bark_torch.json",
+        "assets/yearofice/textures/item/birch_bark_torch.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/birch_bark_torch.json",
@@ -1977,8 +1977,8 @@
     {
       "asset_id": "tex_headlamp",
       "files": [
-        "assets/yearofice/textures/item/headlamp.png",
-        "assets/yearofice/models/item/headlamp.json"
+        "assets/yearofice/models/item/headlamp.json",
+        "assets/yearofice/textures/item/headlamp.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/headlamp.json",
@@ -1989,8 +1989,8 @@
     {
       "asset_id": "tex_jerrycan",
       "files": [
-        "assets/yearofice/textures/item/jerrycan.png",
-        "assets/yearofice/models/item/jerrycan.json"
+        "assets/yearofice/models/item/jerrycan.json",
+        "assets/yearofice/textures/item/jerrycan.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/jerrycan.json",
@@ -2001,8 +2001,8 @@
     {
       "asset_id": "tex_pitch_candle",
       "files": [
-        "assets/yearofice/textures/item/pitch_candle.png",
-        "assets/yearofice/models/item/pitch_candle.json"
+        "assets/yearofice/models/item/pitch_candle.json",
+        "assets/yearofice/textures/item/pitch_candle.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/pitch_candle.json",
@@ -2013,8 +2013,8 @@
     {
       "asset_id": "tex_pitch_torch",
       "files": [
-        "assets/yearofice/textures/item/pitch_torch.png",
-        "assets/yearofice/models/item/pitch_torch.json"
+        "assets/yearofice/models/item/pitch_torch.json",
+        "assets/yearofice/textures/item/pitch_torch.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/pitch_torch.json",
@@ -2025,8 +2025,8 @@
     {
       "asset_id": "tex_steel_bottle",
       "files": [
-        "assets/yearofice/textures/item/steel_bottle.png",
-        "assets/yearofice/models/item/steel_bottle.json"
+        "assets/yearofice/models/item/steel_bottle.json",
+        "assets/yearofice/textures/item/steel_bottle.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/steel_bottle.json",
@@ -2037,8 +2037,8 @@
     {
       "asset_id": "tex_tallow_candle",
       "files": [
-        "assets/yearofice/textures/item/tallow_candle.png",
-        "assets/yearofice/models/item/tallow_candle.json"
+        "assets/yearofice/models/item/tallow_candle.json",
+        "assets/yearofice/textures/item/tallow_candle.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/tallow_candle.json",
@@ -2049,8 +2049,8 @@
     {
       "asset_id": "tex_tin_can",
       "files": [
-        "assets/yearofice/textures/item/tin_can.png",
-        "assets/yearofice/models/item/tin_can.json"
+        "assets/yearofice/models/item/tin_can.json",
+        "assets/yearofice/textures/item/tin_can.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/tin_can.json",
@@ -2160,8 +2160,8 @@
     {
       "asset_id": "tex_pack_frame",
       "files": [
-        "assets/yearofice/textures/item/pack_frame.png",
-        "assets/yearofice/models/item/pack_frame.json"
+        "assets/yearofice/models/item/pack_frame.json",
+        "assets/yearofice/textures/item/pack_frame.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/pack_frame.json",
@@ -2172,8 +2172,8 @@
     {
       "asset_id": "tex_large_pack_frame",
       "files": [
-        "assets/yearofice/textures/item/large_pack_frame.png",
-        "assets/yearofice/models/item/large_pack_frame.json"
+        "assets/yearofice/models/item/large_pack_frame.json",
+        "assets/yearofice/textures/item/large_pack_frame.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/large_pack_frame.json",
@@ -2207,8 +2207,8 @@
     {
       "asset_id": "model_encounter_hands",
       "files": [
-        "assets/yearofice/geo/hands.geo.json",
-        "assets/yearofice/animations/hands.animation.json"
+        "assets/yearofice/animations/hands.animation.json",
+        "assets/yearofice/geo/hands.geo.json"
       ],
       "source_type": "generated",
       "recipe": "hand-written original (no borrowed assets)",
@@ -4719,14 +4719,14 @@
     },
     {
       "files": [
-        "assets/yearofice/models/item/dolly_varden.json",
-        "assets/yearofice/models/item/northern_pike.json",
-        "assets/yearofice/models/item/humpback_whitefish.json",
         "assets/yearofice/models/item/burbot.json",
-        "assets/yearofice/models/item/lake_trout.json",
         "assets/yearofice/models/item/chinook_salmon.json",
         "assets/yearofice/models/item/chum_salmon.json",
-        "assets/yearofice/models/item/coho_salmon.json"
+        "assets/yearofice/models/item/coho_salmon.json",
+        "assets/yearofice/models/item/dolly_varden.json",
+        "assets/yearofice/models/item/humpback_whitefish.json",
+        "assets/yearofice/models/item/lake_trout.json",
+        "assets/yearofice/models/item/northern_pike.json"
       ],
       "source_type": "generated",
       "recipe": "hand-written original (placeholder models reusing the project's own grayling texture until the fish art pass)",
@@ -5049,11 +5049,11 @@
     {
       "asset_id": "model_ermine",
       "files": [
-        "assets/yearofice/geo/entity/ermine.geo.json",
         "assets/yearofice/animations/entity/ermine.animation.json",
+        "assets/yearofice/geo/entity/ermine.geo.json",
+        "assets/yearofice/textures/entity/ermine/adult_mottled.png",
         "assets/yearofice/textures/entity/ermine/adult_summer.png",
-        "assets/yearofice/textures/entity/ermine/adult_winter.png",
-        "assets/yearofice/textures/entity/ermine/adult_mottled.png"
+        "assets/yearofice/textures/entity/ermine/adult_winter.png"
       ],
       "source_type": "generated",
       "recipe": "tools/modelgen/species/ermine.json",
@@ -5064,8 +5064,8 @@
     {
       "asset_id": "model_marten",
       "files": [
-        "assets/yearofice/geo/entity/marten.geo.json",
         "assets/yearofice/animations/entity/marten.animation.json",
+        "assets/yearofice/geo/entity/marten.geo.json",
         "assets/yearofice/textures/entity/marten/adult_all.png"
       ],
       "source_type": "generated",
@@ -5077,8 +5077,8 @@
     {
       "asset_id": "model_mink",
       "files": [
-        "assets/yearofice/geo/entity/mink.geo.json",
         "assets/yearofice/animations/entity/mink.animation.json",
+        "assets/yearofice/geo/entity/mink.geo.json",
         "assets/yearofice/textures/entity/mink/adult_all.png"
       ],
       "source_type": "generated",
@@ -5090,8 +5090,8 @@
     {
       "asset_id": "model_muskrat",
       "files": [
-        "assets/yearofice/geo/entity/muskrat.geo.json",
         "assets/yearofice/animations/entity/muskrat.animation.json",
+        "assets/yearofice/geo/entity/muskrat.geo.json",
         "assets/yearofice/textures/entity/muskrat/adult_all.png"
       ],
       "source_type": "generated",
@@ -5103,8 +5103,8 @@
     {
       "asset_id": "model_porcupine",
       "files": [
-        "assets/yearofice/geo/entity/porcupine.geo.json",
         "assets/yearofice/animations/entity/porcupine.animation.json",
+        "assets/yearofice/geo/entity/porcupine.geo.json",
         "assets/yearofice/textures/entity/porcupine/adult_all.png"
       ],
       "source_type": "generated",
@@ -5117,9 +5117,9 @@
       "asset_id": "model_rock_ptarmigan",
       "files": [
         "assets/yearofice/animations/entity/rock_ptarmigan.animation.json",
+        "assets/yearofice/textures/entity/rock_ptarmigan/adult_moult.png",
         "assets/yearofice/textures/entity/rock_ptarmigan/adult_summer.png",
-        "assets/yearofice/textures/entity/rock_ptarmigan/adult_winter.png",
-        "assets/yearofice/textures/entity/rock_ptarmigan/adult_moult.png"
+        "assets/yearofice/textures/entity/rock_ptarmigan/adult_winter.png"
       ],
       "source_type": "generated",
       "recipe": "tools/modelgen/species/rock_ptarmigan.json",
@@ -5131,8 +5131,8 @@
       "asset_id": "model_ruffed_grouse",
       "files": [
         "assets/yearofice/animations/entity/ruffed_grouse.animation.json",
-        "assets/yearofice/textures/entity/ruffed_grouse/male_adult.png",
-        "assets/yearofice/textures/entity/ruffed_grouse/female_adult.png"
+        "assets/yearofice/textures/entity/ruffed_grouse/female_adult.png",
+        "assets/yearofice/textures/entity/ruffed_grouse/male_adult.png"
       ],
       "source_type": "generated",
       "recipe": "tools/modelgen/species/ruffed_grouse.json",
@@ -5143,8 +5143,8 @@
     {
       "asset_id": "model_wood_frog",
       "files": [
-        "assets/yearofice/geo/entity/wood_frog.geo.json",
         "assets/yearofice/animations/entity/wood_frog.animation.json",
+        "assets/yearofice/geo/entity/wood_frog.geo.json",
         "assets/yearofice/textures/entity/wood_frog/adult_all.png"
       ],
       "source_type": "generated",
@@ -5156,8 +5156,8 @@
     {
       "asset_id": "model_yellowjacket",
       "files": [
-        "assets/yearofice/geo/entity/yellowjacket.geo.json",
         "assets/yearofice/animations/entity/yellowjacket.animation.json",
+        "assets/yearofice/geo/entity/yellowjacket.geo.json",
         "assets/yearofice/textures/entity/yellowjacket/adult_all.png"
       ],
       "source_type": "generated",
@@ -5432,8 +5432,8 @@
     {
       "asset_id": "tex_self_bow",
       "files": [
-        "assets/yearofice/textures/item/self_bow.png",
-        "assets/yearofice/models/item/self_bow.json"
+        "assets/yearofice/models/item/self_bow.json",
+        "assets/yearofice/textures/item/self_bow.png"
       ],
       "source_type": "generated",
       "licence": "project",
@@ -5445,8 +5445,8 @@
     {
       "asset_id": "tex_kit_bow",
       "files": [
-        "assets/yearofice/textures/item/kit_bow.png",
-        "assets/yearofice/models/item/kit_bow.json"
+        "assets/yearofice/models/item/kit_bow.json",
+        "assets/yearofice/textures/item/kit_bow.png"
       ],
       "source_type": "generated",
       "licence": "project",
@@ -5458,8 +5458,8 @@
     {
       "asset_id": "tex_longbow",
       "files": [
-        "assets/yearofice/textures/item/longbow.png",
-        "assets/yearofice/models/item/longbow.json"
+        "assets/yearofice/models/item/longbow.json",
+        "assets/yearofice/textures/item/longbow.png"
       ],
       "source_type": "generated",
       "licence": "project",
@@ -5471,8 +5471,8 @@
     {
       "asset_id": "tex_spear",
       "files": [
-        "assets/yearofice/textures/item/spear.png",
-        "assets/yearofice/models/item/spear.json"
+        "assets/yearofice/models/item/spear.json",
+        "assets/yearofice/textures/item/spear.png"
       ],
       "source_type": "generated",
       "licence": "project",
@@ -5484,8 +5484,8 @@
     {
       "asset_id": "tex_arrow",
       "files": [
-        "assets/yearofice/textures/item/arrow.png",
-        "assets/yearofice/models/item/arrow.json"
+        "assets/yearofice/models/item/arrow.json",
+        "assets/yearofice/textures/item/arrow.png"
       ],
       "source_type": "generated",
       "licence": "project",
@@ -5497,8 +5497,8 @@
     {
       "asset_id": "tex_arrowhead",
       "files": [
-        "assets/yearofice/textures/item/arrowhead.png",
-        "assets/yearofice/models/item/arrowhead.json"
+        "assets/yearofice/models/item/arrowhead.json",
+        "assets/yearofice/textures/item/arrowhead.png"
       ],
       "source_type": "generated",
       "licence": "project",
@@ -5510,8 +5510,8 @@
     {
       "asset_id": "tex_moose_call",
       "files": [
-        "assets/yearofice/textures/item/moose_call.png",
-        "assets/yearofice/models/item/moose_call.json"
+        "assets/yearofice/models/item/moose_call.json",
+        "assets/yearofice/textures/item/moose_call.png"
       ],
       "source_type": "generated",
       "licence": "project",
@@ -5523,8 +5523,8 @@
     {
       "asset_id": "tex_squeak_call",
       "files": [
-        "assets/yearofice/textures/item/squeak_call.png",
-        "assets/yearofice/models/item/squeak_call.json"
+        "assets/yearofice/models/item/squeak_call.json",
+        "assets/yearofice/textures/item/squeak_call.png"
       ],
       "source_type": "generated",
       "licence": "project",
@@ -5536,10 +5536,10 @@
     {
       "asset_id": "tex_pole_blind",
       "files": [
-        "assets/yearofice/textures/block/pole_blind.png",
+        "assets/yearofice/blockstates/pole_blind.json",
         "assets/yearofice/models/block/pole_blind.json",
         "assets/yearofice/models/item/pole_blind.json",
-        "assets/yearofice/blockstates/pole_blind.json"
+        "assets/yearofice/textures/block/pole_blind.png"
       ],
       "source_type": "generated",
       "licence": "project",
@@ -5551,10 +5551,10 @@
     {
       "asset_id": "tex_tree_stand",
       "files": [
-        "assets/yearofice/textures/block/tree_stand.png",
+        "assets/yearofice/blockstates/tree_stand.json",
         "assets/yearofice/models/block/tree_stand.json",
         "assets/yearofice/models/item/tree_stand.json",
-        "assets/yearofice/blockstates/tree_stand.json"
+        "assets/yearofice/textures/block/tree_stand.png"
       ],
       "source_type": "generated",
       "licence": "project",
@@ -5566,20 +5566,20 @@
     {
       "asset_id": "tex_blood_trail",
       "files": [
-        "assets/yearofice/textures/block/blood_bright.png",
+        "assets/yearofice/blockstates/blood_trail.json",
         "assets/yearofice/models/block/blood_bright_1.json",
         "assets/yearofice/models/block/blood_bright_2.json",
         "assets/yearofice/models/block/blood_bright_3.json",
-        "assets/yearofice/textures/block/blood_dark.png",
         "assets/yearofice/models/block/blood_dark_1.json",
         "assets/yearofice/models/block/blood_dark_2.json",
         "assets/yearofice/models/block/blood_dark_3.json",
-        "assets/yearofice/textures/block/blood_gut.png",
         "assets/yearofice/models/block/blood_gut_1.json",
         "assets/yearofice/models/block/blood_gut_2.json",
         "assets/yearofice/models/block/blood_gut_3.json",
-        "assets/yearofice/blockstates/blood_trail.json",
-        "assets/yearofice/models/item/blood_trail.json"
+        "assets/yearofice/models/item/blood_trail.json",
+        "assets/yearofice/textures/block/blood_bright.png",
+        "assets/yearofice/textures/block/blood_dark.png",
+        "assets/yearofice/textures/block/blood_gut.png"
       ],
       "source_type": "generated",
       "licence": "project",
@@ -5656,6 +5656,178 @@
       "recipe": "hand-written block model reusing credited textures",
       "licence": "project",
       "generator_version": "hand",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_m6_waters",
+      "files": [
+        "assets/yearofice/blockstates/fish_wheel.json",
+        "assets/yearofice/blockstates/tip_up.json",
+        "assets/yearofice/blockstates/weir_stake.json",
+        "assets/yearofice/models/block/fish_wheel.json",
+        "assets/yearofice/models/block/tip_up.json",
+        "assets/yearofice/models/block/weir_stake.json",
+        "assets/yearofice/models/item/alaska_blackfish.json",
+        "assets/yearofice/models/item/arctic_char.json",
+        "assets/yearofice/models/item/arctic_lamprey.json",
+        "assets/yearofice/models/item/bering_cisco.json",
+        "assets/yearofice/models/item/bird_meat.json",
+        "assets/yearofice/models/item/broad_whitefish.json",
+        "assets/yearofice/models/item/fish_wheel.json",
+        "assets/yearofice/models/item/kit_rod.json",
+        "assets/yearofice/models/item/lake_chub.json",
+        "assets/yearofice/models/item/least_cisco.json",
+        "assets/yearofice/models/item/longnose_sucker.json",
+        "assets/yearofice/models/item/ninespine_stickleback.json",
+        "assets/yearofice/models/item/round_whitefish.json",
+        "assets/yearofice/models/item/sheefish.json",
+        "assets/yearofice/models/item/slimy_sculpin.json",
+        "assets/yearofice/models/item/sockeye_salmon.json",
+        "assets/yearofice/models/item/tip_up.json",
+        "assets/yearofice/models/item/weir_stake.json",
+        "assets/yearofice/textures/block/fish_wheel.png",
+        "assets/yearofice/textures/block/tip_up.png",
+        "assets/yearofice/textures/block/weir_stake.png",
+        "assets/yearofice/textures/entity/fish/alaska_blackfish.png",
+        "assets/yearofice/textures/entity/fish/arctic_char.png",
+        "assets/yearofice/textures/entity/fish/arctic_lamprey.png",
+        "assets/yearofice/textures/entity/fish/bering_cisco.png",
+        "assets/yearofice/textures/entity/fish/broad_whitefish.png",
+        "assets/yearofice/textures/entity/fish/lake_chub.png",
+        "assets/yearofice/textures/entity/fish/least_cisco.png",
+        "assets/yearofice/textures/entity/fish/longnose_sucker.png",
+        "assets/yearofice/textures/entity/fish/ninespine_stickleback.png",
+        "assets/yearofice/textures/entity/fish/round_whitefish.png",
+        "assets/yearofice/textures/entity/fish/sheefish.png",
+        "assets/yearofice/textures/entity/fish/slimy_sculpin.png",
+        "assets/yearofice/textures/entity/fish/sockeye_salmon.png",
+        "assets/yearofice/textures/gui/fish/alaska_blackfish.png",
+        "assets/yearofice/textures/gui/fish/arctic_char.png",
+        "assets/yearofice/textures/gui/fish/arctic_lamprey.png",
+        "assets/yearofice/textures/gui/fish/bering_cisco.png",
+        "assets/yearofice/textures/gui/fish/broad_whitefish.png",
+        "assets/yearofice/textures/gui/fish/lake_chub.png",
+        "assets/yearofice/textures/gui/fish/least_cisco.png",
+        "assets/yearofice/textures/gui/fish/longnose_sucker.png",
+        "assets/yearofice/textures/gui/fish/ninespine_stickleback.png",
+        "assets/yearofice/textures/gui/fish/round_whitefish.png",
+        "assets/yearofice/textures/gui/fish/sheefish.png",
+        "assets/yearofice/textures/gui/fish/slimy_sculpin.png",
+        "assets/yearofice/textures/gui/fish/sockeye_salmon.png",
+        "assets/yearofice/textures/item/kit_rod.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m6_waters.py",
+      "licence": "project",
+      "generator_version": "m6_waters 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_raven",
+      "files": [
+        "assets/yearofice/animations/entity/raven.animation.json",
+        "assets/yearofice/textures/entity/raven/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/raven.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_gray_jay",
+      "files": [
+        "assets/yearofice/animations/entity/gray_jay.animation.json",
+        "assets/yearofice/textures/entity/gray_jay/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/gray_jay.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_stellers_jay",
+      "files": [
+        "assets/yearofice/animations/entity/stellers_jay.animation.json",
+        "assets/yearofice/textures/entity/stellers_jay/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/stellers_jay.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_bald_eagle",
+      "files": [
+        "assets/yearofice/animations/entity/bald_eagle.animation.json",
+        "assets/yearofice/textures/entity/bald_eagle/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/bald_eagle.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_great_horned_owl",
+      "files": [
+        "assets/yearofice/animations/entity/great_horned_owl.animation.json",
+        "assets/yearofice/textures/entity/great_horned_owl/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/great_horned_owl.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_mallard",
+      "files": [
+        "assets/yearofice/animations/entity/mallard.animation.json",
+        "assets/yearofice/textures/entity/mallard/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/mallard.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_northern_pintail",
+      "files": [
+        "assets/yearofice/animations/entity/northern_pintail.animation.json",
+        "assets/yearofice/textures/entity/northern_pintail/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/northern_pintail.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_common_loon",
+      "files": [
+        "assets/yearofice/animations/entity/common_loon.animation.json",
+        "assets/yearofice/textures/entity/common_loon/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/common_loon.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_mew_gull",
+      "files": [
+        "assets/yearofice/animations/entity/mew_gull.animation.json",
+        "assets/yearofice/textures/entity/mew_gull/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/mew_gull.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
       "release_blocker": false
     }
   ]

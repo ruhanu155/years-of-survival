@@ -57,6 +57,8 @@ public final class GearBlocks {
             case SET_LINE -> "Set line";
             case GILL_NET -> "Net (" + g.segments + " segments)";
             case FISH_TRAP -> "Fish trap";
+            case FISH_WHEEL -> "Fish wheel";
+            case TIP_UP -> "Tip-up";
         };
         sp.displayClientMessage(Component.literal(out.isEmpty() ? what + ": empty." : what + ": " + out.size() + " fish."
                 + (s.stolen() + s.eaten() > 0 ? " Some were taken." : "")), true);
@@ -140,6 +142,53 @@ public final class GearBlocks {
         @Override
         protected InteractionResult useWithoutItem(BlockState s, Level level, BlockPos pos, Player player, BlockHitResult hit) {
             return checkAt(level, pos, player, PassiveGearService.Kind.GILL_NET);
+        }
+    }
+
+    /** One stake of the fish weir's fence; a line of them either side of a basket makes the multiblock ({@link WeirFences}). */
+    public static class WeirStake extends Block {
+        private static final VoxelShape SHAPE = Block.box(6, 0, 6, 10, 16, 10);
+
+        public WeirStake(Properties p) { super(p); }
+
+        @Override
+        protected VoxelShape getShape(BlockState s, BlockGetter l, BlockPos p, CollisionContext c) { return SHAPE; }
+    }
+
+    /** The fish wheel: turns on its own in a salmon run's current and fills a box of up to 30 fish; emptied by hand. */
+    public static class FishWheel extends Block {
+        private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 16, 16);
+
+        public FishWheel(Properties p) { super(p); }
+
+        @Override
+        protected VoxelShape getShape(BlockState s, BlockGetter l, BlockPos p, CollisionContext c) { return SHAPE; }
+
+        @Override
+        protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState old, boolean moved) {
+            if (level instanceof ServerLevel sl && !old.is(this) && PassiveGearService.at(sl, pos) == null)
+                PassiveGearService.place(sl, PassiveGearService.Kind.FISH_WHEEL, pos, 0, now(sl));
+        }
+
+        @Override
+        protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState nw, boolean moved) {
+            if (level instanceof ServerLevel sl && !state.is(nw.getBlock())) PassiveGearService.remove(sl, pos);
+        }
+
+        @Override
+        protected InteractionResult useWithoutItem(BlockState s, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+            return checkAt(level, pos, player, PassiveGearService.Kind.FISH_WHEEL);
+        }
+    }
+
+    /** A tip-up over a hole: one baited hook that fishes each minute as the rod does, x0.8 (ice itself arrives in M7). */
+    public static class TipUp extends SetLine {
+        public TipUp(Properties p) { super(p); }
+
+        @Override
+        protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState old, boolean moved) {
+            if (level instanceof ServerLevel sl && !old.is(this) && PassiveGearService.at(sl, pos) == null)
+                PassiveGearService.place(sl, PassiveGearService.Kind.TIP_UP, pos, 1, now(sl));
         }
     }
 

@@ -1,0 +1,76 @@
+{
+  "species": "yearofice:great_horned_owl",
+  "poses": {
+    "standing": [
+      {
+        "zone": "heart_lungs",
+        "center_m": [
+          0.0,
+          0.238,
+          0.056
+        ],
+        "radii_m": [
+          0.056,
+          0.056,
+          0.07
+        ]
+      },
+      {
+        "zone": "brain",
+        "center_m": [
+          0.0,
+          0.434,
+          0.154
+        ],
+        "radii_m": [
+          0.021,
+          0.021,
+          0.021
+        ]
+      },
+      {
+        "zone": "gut",
+        "center_m": [
+          0.0,
+          0.182,
+          -0.07
+        ],
+        "radii_m": [
+          0.07,
+          0.07,
+          0.084
+        ]
+      },
+      {
+        "zone": "wings",
+        "center_m": [
+          0.0,
+          0.266,
+          0.0
+        ],
+        "radii_m": [
+          0.154,
+          0.056,
+          0.126
+        ]
+      },
+      {
+        "zone": "legs",
+        "below_y_m": 0.06
+      }
+    ],
+    "flying": {
+      "from": "standing",
+      "lower_m": 0.0
+    }
+  },
+  "kill_threshold_j": 5,
+  "bloodshot": {
+    "heart_lungs": [
+      "ribs"
+    ],
+    "gut": [
+      "loin"
+    ]
+  }
+}

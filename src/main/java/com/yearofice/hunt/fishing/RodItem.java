@@ -24,9 +24,20 @@ public final class RodItem extends Item {
     /** Line condition in % is the rod's damage counted down from this. */
     public static final int LINE_MAX = 100;
 
-    public RodItem(Properties p) {
+    /** The kit rod's cast is this much longer than the willow pole's (M6 lane C: willow pole vs kit rod). */
+    public static final double KIT_CAST_X = 1.6;
+
+    private final boolean kit;
+
+    public RodItem(Properties p) { this(p, false); }
+
+    /** {@code kit}: the kit rod ({@code yearofice:kit_rod}) with a sinew reel; false is the willow pole ({@code yearofice:rod}). */
+    public RodItem(Properties p, boolean kit) {
         super(p.component(FishingRegistry.TACKLE.get(), HookBait.NONE));
+        this.kit = kit;
     }
+
+    public boolean isKit() { return kit; }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
@@ -75,6 +86,6 @@ public final class RodItem extends Item {
         lines.add(Component.literal(b.present()
                 ? String.format(Locale.ROOT, "Bait: %s (%d bites, %d min)", b.bait(), b.bitesLeft(), b.minutesLeft())
                 : "Bait: none").withStyle(net.minecraft.ChatFormatting.GRAY));
-        lines.add(Component.literal("Line: plant fiber, " + lineCondition(stack) + "%").withStyle(net.minecraft.ChatFormatting.GRAY));
+        lines.add(Component.literal(kit ? "Line: sinew on a reel, " : "Line: plant fiber, " + lineCondition(stack) + "%").withStyle(net.minecraft.ChatFormatting.GRAY));
     }
 }

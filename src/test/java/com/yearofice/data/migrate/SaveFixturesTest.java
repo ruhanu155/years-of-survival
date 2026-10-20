@@ -83,6 +83,7 @@ class SaveFixturesTest {
         SAVED_DATA.put("yearofice_slots", saved(com.yearofice.ecosystem.spawn.SlotData.class));
         SAVED_DATA.put("yearofice_fish_stocks", saved(com.yearofice.hunt.fishing.SliceSpots.Stocks.class));
         SAVED_DATA.put("yearofice_fish_gear", saved(com.yearofice.hunt.fishing.PassiveGearService.Book.class));
+        SAVED_DATA.put("yearofice_run_ledger", saved(com.yearofice.hunt.fishing.RunLedger.class));
     }
 
     static String latest() {

@@ -1,0 +1,76 @@
+{
+  "species": "yearofice:bald_eagle",
+  "poses": {
+    "standing": [
+      {
+        "zone": "heart_lungs",
+        "center_m": [
+          0.0,
+          0.34,
+          0.08
+        ],
+        "radii_m": [
+          0.08,
+          0.08,
+          0.1
+        ]
+      },
+      {
+        "zone": "brain",
+        "center_m": [
+          0.0,
+          0.62,
+          0.22
+        ],
+        "radii_m": [
+          0.03,
+          0.03,
+          0.03
+        ]
+      },
+      {
+        "zone": "gut",
+        "center_m": [
+          0.0,
+          0.26,
+          -0.1
+        ],
+        "radii_m": [
+          0.1,
+          0.1,
+          0.12
+        ]
+      },
+      {
+        "zone": "wings",
+        "center_m": [
+          0.0,
+          0.38,
+          0.0
+        ],
+        "radii_m": [
+          0.22,
+          0.08,
+          0.18
+        ]
+      },
+      {
+        "zone": "legs",
+        "below_y_m": 0.06
+      }
+    ],
+    "flying": {
+      "from": "standing",
+      "lower_m": 0.0
+    }
+  },
+  "kill_threshold_j": 8,
+  "bloodshot": {
+    "heart_lungs": [
+      "ribs"
+    ],
+    "gut": [
+      "loin"
+    ]
+  }
+}

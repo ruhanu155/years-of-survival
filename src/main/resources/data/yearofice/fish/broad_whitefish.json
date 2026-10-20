@@ -1,0 +1,47 @@
+{
+  "id": "broad_whitefish",
+  "kg": [
+    1.5,
+    5
+  ],
+  "bite_base": 0.008,
+  "kcal_per_kg": 1700,
+  "run_pull_x": 0.5,
+  "run_every_s": [
+    8,
+    14
+  ],
+  "run_length_s": [
+    2,
+    3
+  ],
+  "jump_chance": 0.0,
+  "special": "BORE",
+  "special_every_s": null,
+  "special_spike": 1.0,
+  "tire_per_s": 0.04,
+  "bite_through_no_leader": 0,
+  "night_factor": 0.8,
+  "trophy_kg": null,
+  "bait": {
+    "mussel_meat": 1.0,
+    "snail": 1.0,
+    "caddis": 0.6,
+    "worm": 0.4
+  },
+  "surface_feeder": false,
+  "season": {
+    "from": "06-01",
+    "to": "10-31"
+  },
+  "resident": true,
+  "spawn": null,
+  "parasite": "plain",
+  "net_c_per_h": 0.08,
+  "mesh": "coarse",
+  "capacity": {
+    "weed_shelf": 15,
+    "outside_bend": 10
+  },
+  "r_per_month": 0.15
+}

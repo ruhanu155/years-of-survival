@@ -1,0 +1,73 @@
+{
+  "entity": "yearofice:great_horned_owl",
+  "rig": "owl",
+  "habitat": [
+    "forest"
+  ],
+  "population": [
+    1,
+    4
+  ],
+  "home_range_m": 500,
+  "active": [
+    "night"
+  ],
+  "gaits": {
+    "walk": 1.0,
+    "trot": 2.5,
+    "run": 4,
+    "fly": 12
+  },
+  "senses": {
+    "sight": 60,
+    "hearing": 80,
+    "smell": 0,
+    "fov": 300
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": false,
+    "flush_m": 0,
+    "flee_m": [
+      40,
+      100
+    ],
+    "flee_gait": "fly",
+    "zigzag": false,
+    "hide_min": [
+      5,
+      15
+    ],
+    "charges": false
+  },
+  "huntable": true,
+  "respawn_days": 10,
+  "carcass": {
+    "whole_kg": 1.5,
+    "class": "small",
+    "body_plan": "bird",
+    "tau_h": 1,
+    "floats": true,
+    "poses": [
+      "dead_wings"
+    ],
+    "steps": {
+      "gut": 2,
+      "pluck": 4
+    },
+    "parts": {
+      "meat": 0.8,
+      "organs": {
+        "giblets": 0.04
+      },
+      "cover": {
+        "feathers": 20,
+        "kind": "feathers"
+      },
+      "guts_kg": 0.105
+    }
+  },
+  "butcher_table": "yearofice:butchering/great_horned_owl"
+}

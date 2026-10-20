@@ -1,0 +1,76 @@
+{
+  "species": "yearofice:northern_pintail",
+  "poses": {
+    "standing": [
+      {
+        "zone": "heart_lungs",
+        "center_m": [
+          0.0,
+          0.221,
+          0.052
+        ],
+        "radii_m": [
+          0.052,
+          0.052,
+          0.065
+        ]
+      },
+      {
+        "zone": "brain",
+        "center_m": [
+          0.0,
+          0.403,
+          0.143
+        ],
+        "radii_m": [
+          0.0195,
+          0.0195,
+          0.0195
+        ]
+      },
+      {
+        "zone": "gut",
+        "center_m": [
+          0.0,
+          0.169,
+          -0.065
+        ],
+        "radii_m": [
+          0.065,
+          0.065,
+          0.078
+        ]
+      },
+      {
+        "zone": "wings",
+        "center_m": [
+          0.0,
+          0.247,
+          0.0
+        ],
+        "radii_m": [
+          0.143,
+          0.052,
+          0.117
+        ]
+      },
+      {
+        "zone": "legs",
+        "below_y_m": 0.06
+      }
+    ],
+    "flying": {
+      "from": "standing",
+      "lower_m": 0.0
+    }
+  },
+  "kill_threshold_j": 4,
+  "bloodshot": {
+    "heart_lungs": [
+      "ribs"
+    ],
+    "gut": [
+      "loin"
+    ]
+  }
+}
