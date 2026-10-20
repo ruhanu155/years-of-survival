@@ -5,5 +5,6 @@
   {id:"yearofice:rod",count:1,components:{"yearofice:tackle":{bait:"yearofice:worm",bites_left:2,minutes_left:90}}},
   {id:"yearofice:willow_ptarmigan_meat",count:2,components:{"yearofice:doneness":"done"}},
   {id:"yearofice:tinder_bundle",count:5,components:{"yearofice:moisture":35}},
-  {id:"yearofice:spruce_round",count:1,components:{"yearofice:seasoning":{moisture_pct:22.5d,day:140L}}}
+  {id:"yearofice:spruce_round",count:1,components:{"yearofice:seasoning":{moisture_pct:22.5d,day:140L}}},
+  {id:"yearofice:flint_knife",count:1,components:{"minecraft:damage":40,"yearofice:edge":62.5d}}
 ]

@@ -81,6 +81,15 @@
     "yearofice:drift_round": {"weight_g": 3750},
     "yearofice:drift_split": {"weight_g": 3750},
     "yearofice:hatchet": {"weight_g": 900},
-    "yearofice:chopping_block": {"weight_g": 15000}
+    "yearofice:chopping_block": {"weight_g": 15000},
+    "yearofice:knife": {"weight_g": 250},
+    "yearofice:rough_stone": {"weight_g": 600},
+    "yearofice:flint_nodule": {"weight_g": 400},
+    "yearofice:flint_knife": {"weight_g": 120},
+    "yearofice:stake": {"weight_g": 80},
+    "yearofice:tool_handle": {"weight_g": 350},
+    "yearofice:workbench": {"weight_g": 30000},
+    "minecraft:chest": {"weight_g": 12000},
+    "minecraft:barrel": {"weight_g": 8000}
   }
 }

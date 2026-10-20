@@ -23,13 +23,18 @@ public final class PackSystem {
     public static void init(IEventBus modBus) {
         PackItems.register(modBus);
         PackAttachments.register(modBus);
+        CarryRegistry.register(modBus);
+        BoxCarry.wire();
         modBus.addListener((RegisterDataMapTypesEvent e) -> YoiDataMaps.register(e));
         modBus.addListener((BuildCreativeModeTabContentsEvent e) -> {
             if (e.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) e.accept(PackItems.CRATE_BACKPACK.get());
         });
         LoadService.install(LOAD);
         NeoForge.EVENT_BUS.addListener((PlayerTickEvent.Post e) -> {
-            if (e.getEntity() instanceof ServerPlayer p && !p.isSpectator()) PackSync.tick(p);
+            if (e.getEntity() instanceof ServerPlayer p && !p.isSpectator()) {
+                PackSync.tick(p);
+                BoxCarry.tickPrompt(p);
+            }
         });
         NeoForge.EVENT_BUS.addListener(Pickup::onPickupPre);
         NeoForge.EVENT_BUS.addListener(ItemExpiry::onJoin);

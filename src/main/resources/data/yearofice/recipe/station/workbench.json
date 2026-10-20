@@ -1,0 +1,24 @@
+{
+  "type": "yearofice:station",
+  "tier": "bushcraft",
+  "station": "yearofice:hands",
+  "ingredients": [
+    {
+      "tag": "yearofice:split_wood",
+      "count": 2
+    },
+    {
+      "item": "yearofice:stake",
+      "count": 4
+    }
+  ],
+  "tool": "yearofice:hatchet",
+  "work_min": 60,
+  "effort": "high",
+  "kcal": 450,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:workbench",
+    "count": 1
+  }
+}
