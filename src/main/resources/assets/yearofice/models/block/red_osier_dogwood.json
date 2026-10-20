@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/red_osier_dogwood"
+  },
+  "render_type": "minecraft:cutout"
+}

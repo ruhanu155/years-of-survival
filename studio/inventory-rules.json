@@ -1795,6 +1795,109 @@
         "chum_salmon",
         "coho_salmon"
       ]
+    },
+    {
+      "basis": "M5 lane B: the blueprint foraging species the master list lacks (Plants and fungi, Foraging and plant knowledge: blueberry, lingonberry, cloudberry, highbush cranberry, wild rose, fireweed and the lookalike pairs)",
+      "milestone": "m5",
+      "owner": "body",
+      "type": "plant_block",
+      "ids": [
+        "blueberry_bush",
+        "lingonberry_bush",
+        "cloudberry_bush",
+        "highbush_cranberry_bush",
+        "wild_rose",
+        "fireweed",
+        "labrador_tea",
+        "water_hemlock",
+        "death_camas",
+        "wild_chives",
+        "wild_celery",
+        "cow_parsnip",
+        "morel",
+        "false_morel",
+        "baneberry",
+        "fly_agaric",
+        "chaga",
+        "nettle",
+        "yarrow",
+        "cattail",
+        "usnea"
+      ]
+    },
+    {
+      "basis": "M5 lane B: part items named after their species (Plants and fungi, Registry ids) and plant_material for non-food parts",
+      "milestone": "m5",
+      "owner": "body",
+      "type": "item",
+      "ids": [
+        "birch_bolete_caps",
+        "bistort_bulbils",
+        "bistort_root",
+        "black_currant",
+        "bluebell_flowers",
+        "blueberries",
+        "bulrush_root",
+        "bunchberries",
+        "cattail_roots",
+        "celery_stems",
+        "chaga_conk",
+        "chickweed_greens",
+        "chives",
+        "cloudberries",
+        "coltsfoot_leaves",
+        "cranberries",
+        "dandelion_greens",
+        "dogwood_shoots",
+        "dwarf_fireweed_leaves",
+        "fern_root",
+        "fiddleheads",
+        "fireweed_shoots",
+        "foxtail_seed",
+        "iceland_moss_pieces",
+        "juniper_berries",
+        "labrador_tea_leaves",
+        "lambsquarters_leaves",
+        "lingonberries",
+        "mint_leaves",
+        "morels",
+        "nettle_tops",
+        "orange_cap_bolete_caps",
+        "parsnip_shoots",
+        "pineapple_weed_heads",
+        "plantain_leaves",
+        "raspberry",
+        "rhubarb_stems",
+        "rock_tripe_pieces",
+        "roseroot_leaves",
+        "shaggy_mane_caps",
+        "skunk_currant",
+        "sorrel_leaves",
+        "sourdock_leaves",
+        "sweet_pea_roots",
+        "usnea_strands",
+        "wild_potato_root",
+        "yarrow_leaves",
+        "plant_material"
+      ]
+    },
+    {
+      "basis": "M5 lane B: the player plant notebook (Foraging and plant knowledge, Knowing a plant)",
+      "milestone": "m5",
+      "owner": "body",
+      "type": "attachment",
+      "ids": [
+        "plant_notes"
+      ]
+    },
+    {
+      "basis": "M5 lane B: plants flagged for the body lane (Plants and fungi, Poisonings)",
+      "milestone": "m5",
+      "owner": "body",
+      "type": "tag",
+      "ids": [
+        "toxic_plants"
+      ]
     }
   ],
   "expand": {
@@ -2577,6 +2680,15 @@
       "owner": "building",
       "ids": [
         "bough_bed"
+      ]
+    },
+    {
+      "basis": "M5 lane B: patches is the plants lane's chunk attachment",
+      "milestone": "m5",
+      "owner": "body",
+      "type": "attachment",
+      "ids": [
+        "patches"
       ]
     }
   ],

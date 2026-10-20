@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/lady_fern"
+  },
+  "render_type": "minecraft:cutout"
+}

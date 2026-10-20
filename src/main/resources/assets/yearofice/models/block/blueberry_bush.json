@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/blueberry_bush"
+  },
+  "render_type": "minecraft:cutout"
+}
