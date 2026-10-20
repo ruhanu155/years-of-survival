@@ -27,6 +27,9 @@ import net.neoforged.neoforge.common.NeoForge;
  * 30 uses). The server posts a {@link CallSoundedEvent}; ecosystem rolls the answers.
  */
 public class CallItem extends Item {
+    /** GameTest hook: {wind to x, wind to z, m/s} replaces the world wind so a call's range is deterministic. */
+    public static volatile double[] windOverride;
+
     private final String callId;
 
     public CallItem(Properties p, String callId) {
@@ -75,7 +78,8 @@ public class CallItem extends Item {
             base.put(en.getKey(), bp);
         }
         double wx = 0, wz = 0, wms = 0;
-        try {
+        if (windOverride != null) { wx = windOverride[0]; wz = windOverride[1]; wms = windOverride[2]; }
+        else try {
             var w = EnvService.get().wind(sl, p.blockPosition());
             double r = Math.toRadians(w.fromDeg());
             wx = -Math.sin(r);
