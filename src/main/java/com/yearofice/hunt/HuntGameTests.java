@@ -205,6 +205,11 @@ public final class HuntGameTests {
     // ---- hunt/call_raises_approach ------------------------------------------------------------------------------
 
     static void callRaisesApproach(GameTestHelper h) {
+        CallItem.windOverride = new double[] {0, 0, 0}; // calm: the world's random wind would move R_eff
+        try { callBody(h); } finally { CallItem.windOverride = null; }
+    }
+
+    static void callBody(GameTestHelper h) {
         ServerLevel level = h.getLevel();
         ServerPlayer p = com.yearofice.ecosystem.debug.EcoGameTests.player(h);
         p.moveTo(h.absoluteVec(new Vec3(1.5, 1, 1.5)));
