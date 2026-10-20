@@ -5587,6 +5587,76 @@
       "generator_version": "hand script (PIL)",
       "recipe": "tools/artgen/hunt_placeholders.py",
       "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bone_grease",
+      "files": [
+        "assets/yearofice/textures/item/bone_grease.png",
+        "assets/yearofice/models/item/bone_grease.json"
+      ],
+      "source_type": "game_asset_collection",
+      "title": "Ninja Adventure - Asset Pack (Items)",
+      "author": "Pixel-boy and AAA",
+      "licence": "CC0-1.0",
+      "licence_file": "art-src/licences/ninja_adventure.txt",
+      "retrieved": "2026-10-19",
+      "source": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "mirror": "https://github.com/rinn7e/ninja-adventure-indigo",
+      "mirror_commit": "83268adcfc06ddf12f6a115577f533a3432539c7",
+      "changes": "Recoloured colour by colour onto palette ramp steps, re-outlined in #1a1512",
+      "release_blocker": false,
+      "recipe": "tools/artgen/recipes/item/bone_grease.json",
+      "original": "art-src/found/ninja_adventure/Items/Food/Nut.png",
+      "original_sha256": "7ade4eb61bd899c074d017c764c01d0b6040f54fad0f0cb782ba456ef7c347c5",
+      "generator_version": "artgen 0.4.0"
+    },
+    {
+      "asset_id": "tex_crushed_bone",
+      "files": [
+        "assets/yearofice/textures/item/crushed_bone.png",
+        "assets/yearofice/models/item/crushed_bone.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crushed_bone.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_trophy_plaque",
+      "files": [
+        "assets/yearofice/textures/item/trophy_plaque.png",
+        "assets/yearofice/models/item/trophy_plaque.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/trophy_plaque.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_theft_cache",
+      "files": [
+        "assets/yearofice/blockstates/theft_cache.json",
+        "assets/yearofice/models/block/theft_cache.json"
+      ],
+      "source_type": "generated",
+      "recipe": "hand-written block model reusing credited textures",
+      "licence": "project",
+      "generator_version": "hand",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_trophy_mount",
+      "files": [
+        "assets/yearofice/blockstates/trophy_mount.json",
+        "assets/yearofice/models/block/trophy_mount.json"
+      ],
+      "source_type": "generated",
+      "recipe": "hand-written block model reusing credited textures",
+      "licence": "project",
+      "generator_version": "hand",
+      "release_blocker": false
     }
   ]
 }

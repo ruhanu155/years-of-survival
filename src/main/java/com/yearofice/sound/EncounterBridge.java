@@ -29,6 +29,51 @@ public final class EncounterBridge {
         };
     }
 
+    /** The hand clip for a species' contact beat (RECONCILE 171); {@code ""} when that beat has none. */
+    public static String clipForOutcome(String species, String outcome) {
+        return switch (species) {
+            case "grizzly" -> switch (outcome) {
+                case "warn" -> "still_hands";
+                case "bluff_charge" -> "hold_ground";
+                case "contact" -> "cover_neck";
+                case "retreat" -> "back_away";
+                default -> "";
+            };
+            case "black_bear" -> switch (outcome) {
+                case "warn", "bluff_charge" -> "raise_arms";
+                case "contact" -> "fend_off";
+                case "retreat" -> "back_away";
+                default -> "";
+            };
+            case "moose" -> switch (outcome) {
+                case "warn" -> "still_hands";
+                case "bluff_charge" -> "brace";
+                case "contact" -> "shield_face";
+                case "retreat" -> "back_away";
+                default -> "";
+            };
+            case "wolf" -> switch (outcome) {
+                case "warn" -> "hold_ground";
+                case "contact" -> "fend_off";
+                case "retreat" -> "back_away";
+                default -> "";
+            };
+            case "coyote" -> switch (outcome) {
+                case "warn" -> "raise_arms";
+                case "contact" -> "fend_off";
+                case "retreat" -> "back_away";
+                default -> "";
+            };
+            default -> "";
+        };
+    }
+
+    @SubscribeEvent
+    public static void onOutcome(com.yearofice.api.event.EncounterOutcomeEvent e) {
+        String c = clipForOutcome(e.species(), e.outcome());
+        if (!c.isEmpty()) send(e.player(), c);
+    }
+
     @SubscribeEvent
     public static void onStagger(StaggerEvent e) {
         for (String c : clipsForStagger(e.outcome())) send(e.player(), c);

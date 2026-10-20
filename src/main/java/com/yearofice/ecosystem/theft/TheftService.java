@@ -41,6 +41,11 @@ public final class TheftService {
     private static final Map<BlockPos, ServerLevel> WATCHED = new HashMap<>();
     /** Thefts since the server started, for {@code /yoi theft status}. */
     private static int thefts;
+    /** The last theft {@link #hour} made, for the caller that wants to write the cache (RackRaid). */
+    public record Taken(com.yearofice.sim.ecosystem.Theft.Thief thief, ItemStack taken, long hourIndex) {}
+    private static Taken last;
+
+    public static Taken lastTheft() { Taken t = last; last = null; return t; }
 
     static TagKey<Item> tag(String name) { return TagKey.create(net.minecraft.core.registries.Registries.ITEM, ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, name)); }
 
@@ -62,7 +67,7 @@ public final class TheftService {
     }
 
     /** What a stack is to a thief, or null when no thief wants it. */
-    static Theft.Stack classify(ItemStack s) {
+    public static Theft.Stack classify(ItemStack s) {
         if (s.isEmpty()) return null;
         Theft.Kind kind = s.is(MEAT) ? Theft.Kind.MEAT : s.is(FISH) ? Theft.Kind.FISH : s.is(HIDE) ? Theft.Kind.HIDE : s.is(BERRY_SEED) ? Theft.Kind.BERRY_SEED : null;
         if (kind == null) return null;
@@ -93,6 +98,7 @@ public final class TheftService {
         Theft.Hit h = hit.get();
         ItemStack s = store.getItem(slot[h.stack()]);
         String name = BuiltInRegistries.ITEM.getKey(s.getItem()).getPath();
+        last = new Taken(h.thief(), s.copyWithCount(h.units()), hourIndex);
         s.shrink(h.units());
         store.setChanged();
         thefts++;
@@ -138,6 +144,7 @@ public final class TheftService {
             }
             long minute = SliceClock.minute(level);
             hour(level, pos, c, minute / 60, context(level, pos, minute)).ifPresent(msg -> YearOfIce.LOG.info("theft at {}: {}", pos.toShortString(), msg));
+            com.yearofice.ecosystem.raid.RackRaid.afterTheft(level, pos, lastTheft());
         }
     }
 }

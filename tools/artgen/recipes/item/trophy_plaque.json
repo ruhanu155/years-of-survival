@@ -1,0 +1,30 @@
+{
+ "id": "yearofice:trophy_plaque",
+ "kind": "icon",
+ "notes": "A small spruce plaque with a burnt edge, to hang under a trophy.",
+ "shapes": [
+  {
+   "kind": "rect",
+   "box": [
+    2,
+    4,
+    13,
+    11
+   ],
+   "ramp": "wood_cut",
+   "step": 2,
+   "noise": 0.15
+  },
+  {
+   "kind": "rect",
+   "box": [
+    4,
+    7,
+    9,
+    8
+   ],
+   "ramp": "gravel",
+   "step": 0
+  }
+ ]
+}
