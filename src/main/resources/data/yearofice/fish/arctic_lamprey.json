@@ -4,7 +4,7 @@
     0.1,
     0.3
   ],
-  "bite_base": 0.0,
+  "bite_base": 0.02,
   "kcal_per_kg": 3300,
   "run_pull_x": 0.2,
   "run_every_s": [
