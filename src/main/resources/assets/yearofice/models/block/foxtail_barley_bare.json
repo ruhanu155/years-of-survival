@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/foxtail_barley_bare"
+  },
+  "render_type": "minecraft:cutout"
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/red_currant_bush"
+  },
+  "render_type": "minecraft:cutout"
+}
