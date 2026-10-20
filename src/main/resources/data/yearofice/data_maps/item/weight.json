@@ -196,6 +196,30 @@
     "yearofice:bandage": {
       "weight_g": 15
     },
+    "yearofice:dolly_varden": {
+      "weight_g": 1100
+    },
+    "yearofice:northern_pike": {
+      "weight_g": 3000
+    },
+    "yearofice:humpback_whitefish": {
+      "weight_g": 1000
+    },
+    "yearofice:burbot": {
+      "weight_g": 2000
+    },
+    "yearofice:lake_trout": {
+      "weight_g": 5000
+    },
+    "yearofice:chinook_salmon": {
+      "weight_g": 12000
+    },
+    "yearofice:chum_salmon": {
+      "weight_g": 4000
+    },
+    "yearofice:coho_salmon": {
+      "weight_g": 3500
+    },
     "yearofice:red_squirrel_meat": {
       "weight_g": 100
     },

@@ -2034,66 +2034,93 @@
       ]
     },
     {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
       "owner": "food",
       "type": "item",
       "ids": [
-        "self_bow"
+        "roe"
       ]
     },
     {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
       "owner": "food",
       "type": "item",
       "ids": [
-        "kit_bow"
+        "fish_chunk"
       ]
     },
     {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
       "owner": "food",
       "type": "item",
       "ids": [
-        "spear"
+        "spoon"
       ]
     },
     {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
       "owner": "food",
       "type": "item",
       "ids": [
-        "arrow"
+        "fly"
       ]
     },
     {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "gill_net_segment"
+      ]
+    },
+    {
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "set_line"
+      ]
+    },
+    {
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "weir_basket"
+      ]
+    },
+    {
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
       "owner": "food",
       "type": "block",
       "ids": [
-        "pole_blind"
+        "set_line"
       ]
     },
     {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
       "owner": "food",
       "type": "block",
       "ids": [
-        "blood_trail"
+        "gill_net"
       ]
     },
     {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
       "owner": "food",
-      "type": "item",
+      "type": "block",
       "ids": [
-        "tree_stand"
+        "weir_basket"
       ]
     }
   ],
