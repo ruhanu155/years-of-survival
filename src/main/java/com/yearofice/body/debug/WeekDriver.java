@@ -151,7 +151,7 @@ public final class WeekDriver {
             }
         }
         // GRANT: the M4-M7 winter kit has no crate source in the slice; a player would craft or find it. Logged, never hidden.
-        String[][] grants = {{"fur_mittens", "1"}, {"parka", "1"}, {"mukluks", "1"}, {"pemmican", "30"}, {"dried_fish", "20"}, {"pilot_bread", "12"}, {"match", "12"}};
+        String[][] grants = {{"fur_mittens", "1"}, {"fur_hat", "1"}, {"dried_meat", "20"}, {"parka", "1"}, {"mukluks", "1"}, {"pemmican", "30"}, {"dried_fish", "20"}, {"pilot_bread", "12"}, {"match", "12"}};
         for (String[] g : grants) {
             Item it = item(g[0]);
             if (it == net.minecraft.world.item.Items.AIR) { log("GRANT-MISSING " + g[0] + " is not a registered item"); continue; }
@@ -171,7 +171,7 @@ public final class WeekDriver {
             ItemStack st = p.getInventory().getItem(i);
             if (!st.isEmpty()) log("  kit: " + BuiltInRegistries.ITEM.getKey(st.getItem()) + " x" + st.getCount());
         }
-        for (String id : new String[] {"parka", "mukluks", "fur_mittens"}) {
+        for (String id : new String[] {"parka", "mukluks", "fur_mittens", "fur_hat"}) {
             ItemStack st = ItemStack.EMPTY;
             for (int i = 0; i < p.getInventory().getContainerSize(); i++) if (BuiltInRegistries.ITEM.getKey(p.getInventory().getItem(i).getItem()).getPath().equals(id)) { st = p.getInventory().getItem(i); break; }
             if (st.isEmpty()) { log("EQUIP " + id + " not in pack"); continue; }
@@ -384,9 +384,9 @@ public final class WeekDriver {
             }
         }
         if (did.add("sample" + (m / 60))) {
-            log(String.format(java.util.Locale.ROOT, "  [d%d %s] air %.1f warmth %.0f water %.0f energy %.1f kg %.1f kcal24 %.0f %s fire %s handsFrost %d/%d", day, clock(m),
+            log(String.format(java.util.Locale.ROOT, "  [d%d %s] air %.1f warmth %.0f water %.0f energy %.1f kg %.1f kcal24 %.0f %s fire %s handsFrost %d/%d cap %.1f", day, clock(m),
                     EnvService.get().airC(p.serverLevel(), p.blockPosition()), s.warmth, s.water, s.energy, s.kg, s.balance24h(), p.isSleeping() ? "asleep" : "awake",
-                    ring == null ? "-" : ring.fire().state().name() + " " + fmt(ring.fire().armloads()), s.parts.frost(Part.LEFT_HAND), s.parts.frost(Part.RIGHT_HAND)));
+                    ring == null ? "-" : ring.fire().state().name() + " " + fmt(ring.fire().armloads()), s.parts.frost(Part.LEFT_HAND), s.parts.frost(Part.RIGHT_HAND), s.lastEnergyCap));
         }
     }
 
@@ -463,7 +463,7 @@ public final class WeekDriver {
                 ItemStack st = p.getInventory().getItem(i);
                 if (st.isEmpty()) continue;
                 String id = BuiltInRegistries.ITEM.getKey(st.getItem()).getPath();
-                if (!(pass == 0 ? (id.equals("pemmican") || id.equals("dried_fish")) : id.equals("pilot_bread"))) continue;
+                if (!(pass == 0 ? (id.equals("pemmican") || id.equals("dried_meat") || id.equals("dried_fish")) : id.equals("pilot_bread"))) continue;
                 while (!st.isEmpty() && bites < 40) {
                     if (s.balance24h() + s.pendingKcal >= 0) break;
                     var b = Meals.eat(p, st);
