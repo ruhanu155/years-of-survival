@@ -60,4 +60,14 @@ class HeatTest {
         double first = Stamp.firstBuildMin(pieces);
         assertTrue(Stamp.stampMin(pieces, 0.05, 5) < 0.1 * first);
     }
+
+    /** The proxy's 30 m3 cabin (about 72 W/C) on an 8 kW STEADY tin stove at -30 C reads +25..+35 C once the chimney draw counts; it read +86 C without. */
+    @Test
+    void steadyTinStoveCabinReadsTwentyFiveToThirtyFive() {
+        var faces = List.of(new Heat.Face(Heat.Part.WALL, 66, 0.9, 0), new Heat.Face(Heat.Part.FLOOR, 10, 0.8, 0));
+        double without = Heat.solve(faces, 0, 0, 8091, -30, -5, 0).insideC();
+        double with = Heat.solve(faces, 0, 0, 8091, 8091, -30, -5, 0).insideC();
+        assertTrue(without > 60, "no draw: " + without);
+        assertTrue(with >= 25 && with <= 35, "with the draw: " + with);
+    }
 }

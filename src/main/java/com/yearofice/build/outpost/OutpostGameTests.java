@@ -50,7 +50,9 @@ public final class OutpostGameTests {
         h.assertTrue(l.getBlockState(wall.pos()).is(wall.state().getBlock()), "with the materials it is rebuilt");
         h.assertTrue(p.getInventory().items.stream().noneMatch(st -> !st.isEmpty() && RepairJob.cost(wall).stream().anyMatch(m -> net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(st.getItem()).equals(m.item()))), "and the materials are spent");
         l.setBlock(wall.pos(), net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), 3);
-        double min = WorkService.runFor(p, new RepairJob(l, miss), 5000);
+        // the priced wall sits on a floor cell the decay roll may or may not have taken (it hashes absolutePos, so it
+        // moves with the batch layout): audit again rather than reuse the list taken before the wall went in
+        double min = WorkService.runFor(p, new RepairJob(l, Outposts.missing(l, origin, def)), 5000);
         h.assertTrue(min > 0, "the repair job finished");
         h.assertTrue(Outposts.missing(l, origin, def).isEmpty(), "every piece is back");
         h.succeed();

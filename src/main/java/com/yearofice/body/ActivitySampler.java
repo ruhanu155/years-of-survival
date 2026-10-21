@@ -19,6 +19,8 @@ public final class ActivitySampler {
     private static final class Window {
         Activity max = null;
         boolean slept = false;
+        int ticks = 0, sleepTicks = 0;
+        Activity awakeMax = null;
         boolean moved = false;
         Vec3 lastPos = null;
     }
@@ -45,6 +47,7 @@ public final class ActivitySampler {
         Activity a;
         if (p.isSleeping()) {
             w.slept = true;
+            w.sleepTicks++;
             a = Activity.SLEEP;
         } else if (p.isSprinting()) {
             a = Activity.RUN;
@@ -57,19 +60,27 @@ public final class ActivitySampler {
         } else {
             a = Activity.REST;
         }
+        w.ticks++;
+        if (a != Activity.SLEEP && (w.awakeMax == null || rank(a) > rank(w.awakeMax))) w.awakeMax = a;
         if (dxz > 0.02) w.moved = true;
         if (w.max == null || rank(a) > rank(w.max)) w.max = a;
     }
 
     /** The window's result, and a fresh window. */
-    public record Result(Activity activity, boolean asleep, boolean moving) {}
+    public record Result(Activity activity, boolean asleep, boolean moving, int sleepTicks, int ticks, Activity awakeActivity) {
+        public Result(Activity activity, boolean asleep, boolean moving) { this(activity, asleep, moving, asleep ? 1 : 0, 1, Activity.REST); }
+    }
 
     public Result take(ServerPlayer p) {
         Window w = windows.get(p.getUUID());
         if (w == null || w.max == null) return new Result(p.isSleeping() ? Activity.SLEEP : Activity.REST, p.isSleeping(), false);
         Activity a = w.max;
         boolean asleep = w.slept && rank(a) <= rank(Activity.REST);
-        Result r = new Result(asleep ? Activity.SLEEP : (a == Activity.SLEEP ? Activity.REST : a), asleep, w.moved);
+        Result r = new Result(asleep ? Activity.SLEEP : (a == Activity.SLEEP ? Activity.REST : a), asleep, w.moved,
+                w.sleepTicks, w.ticks, w.awakeMax == null ? Activity.REST : w.awakeMax);
+        w.ticks = 0;
+        w.sleepTicks = 0;
+        w.awakeMax = null;
         w.max = null;
         w.slept = false;
         w.moved = false;

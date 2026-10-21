@@ -42,6 +42,7 @@ public final class PoolGameTests {
         List<TestFunction> out = new ArrayList<>();
         out.add(test("yearofice:eco/scent_pulls_bear_from_valley", 100, PoolGameTests::scentPulls));
         out.add(test("yearofice:eco/offscreen_pool_conserves", 300, PoolGameTests::conserves));
+        out.add(test("yearofice:eco/pool_far_pile_reached_abstractly", 100, PoolGameTests::farPile));
         out.add(test("yearofice:eco/pool_seeds_by_density", 100, PoolGameTests::seedsByDensity));
         out.add(test("yearofice:encounter/bear_contact_sequence", 700, PoolGameTests::contactSequence));
         return com.yearofice.gametest.TestFilter.apply(out);
@@ -139,6 +140,50 @@ public final class PoolGameTests {
             if (d < bd) { bd = d; best = a; }
         }
         return best;
+    }
+
+    /** A pile beyond the demote radius of the viewer is reached by the abstract walk: no body is made to be demoted on the way. */
+    static void farPile(GameTestHelper h) {
+        ServerLevel l = h.getLevel();
+        ValleyPool prevPool = ValleyPool.testPool;
+        double[] prevWind = ValleyPool.windOverride;
+        ValleyPool pool = new ValleyPool();
+        ValleyPool.testPool = pool;
+        pool.reset(List.of(area(EcoGameTests.FAR_POOL_FAR_PILE, 6_000)), 3);
+        pool.ensureSeeded(l);
+        BlockPos pile = new BlockPos(3000, 70, EcoGameTests.FAR_POOL_FAR_PILE + 3000);
+        Vec3 c = Vec3.atCenterOf(pile);
+        EcoGameTests.force(h, c, 1, true);
+        Vec3 edge = c.add(392, 0, 0); // where the approach first crosses the viewer's 142 m entry radius: loaded, so a body could be made
+        EcoGameTests.force(h, edge, 1, true);
+        l.setBlock(pile.below(), Blocks.STONE.defaultBlockState(), 3);
+        l.setBlock(pile, EcosystemRegistry.GUT_PILE.get().defaultBlockState(), 3);
+        try {
+            // the viewer stands 250 m east of the pile; the bear comes from the east, straight through the viewer's radius
+            pool.anchors = List.of(new double[] {pile.getX() + 250, pile.getZ()});
+            var bear = nearestBear(pool, pile.getX(), pile.getZ());
+            h.assertTrue(bear != null, "the valley holds a bear");
+            ValleyPool.windOverride = new double[] {PoolModel.bearing(pile.getX(), pile.getZ(), bear.homeX, bear.homeZ), 3.0};
+            bear.hunger = 1.0;
+            bear.x = pile.getX() + 600;
+            bear.z = pile.getZ();
+            bear.tx = pile.getX();
+            bear.tz = pile.getZ();
+            bear.mode = PoolModel.Mode.APPROACHING;
+            bear.sourceKey = pile.asLong();
+            pool.advance(l, SEP_20, 3600, null);
+            h.assertTrue(pool.instantiated() == 0 && bear.live == 0, "no body for a pile outside the viewer's live range: out " + pool.instantiated());
+            h.assertTrue(ValleyPool.REACHED.stream().anyMatch(r -> r.source().getX() == pile.getX() && r.source().getZ() == pile.getZ()), "the walk reached the pile");
+            h.succeed();
+        } finally {
+            ScentPoints.remove(l, pile);
+            l.setBlock(pile, Blocks.AIR.defaultBlockState(), 3);
+            l.setBlock(pile.below(), Blocks.AIR.defaultBlockState(), 3);
+            EcoGameTests.force(h, c, 1, false);
+            EcoGameTests.force(h, edge, 1, false);
+            ValleyPool.testPool = prevPool;
+            ValleyPool.windOverride = prevWind;
+        }
     }
 
     // ---- conservation -------------------------------------------------------------------------------------------

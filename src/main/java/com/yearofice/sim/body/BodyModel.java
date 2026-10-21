@@ -185,6 +185,7 @@ public final class BodyModel {
         double cap = Metabolism.energyCap(s.balance24h(), s.bmi(), s.water, s.awakeMin, s.gutIll(m));
         cap = Math.min(cap, ill.energyCap());
         s.lastEnergyCap = cap;
+        s.lastCapCause = Metabolism.capCause(s.balance24h(), s.bmi(), s.water, s.awakeMin, s.gutIll(m), ill.energyCap());
 
         // 7. Energy and sleep debt.
         if (in.asleep()) {
@@ -196,6 +197,10 @@ public final class BodyModel {
             // (the continuous run resets on every wake) still clears the day; 4 h unbroken clears it outright.
             s.awakeMin = Math.max(0, s.awakeMin - 3 * done);
             if (s.sleepRun >= 240) s.awakeMin = 0;
+            // 7 h of sleep inside a 10 h window clears the clock, however the night is broken by wakes.
+            if (m - s.sleepWinStart >= 600) { s.sleepWinStart = m; s.sleepWin = 0; }
+            s.sleepWin += done;
+            if (s.sleepWin >= 420) s.awakeMin = 0;
             s.asleep = true;
             s.sleepQ = in.sleepQuality();
         } else {

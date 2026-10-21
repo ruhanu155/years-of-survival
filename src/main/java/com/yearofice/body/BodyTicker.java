@@ -93,7 +93,12 @@ public final class BodyTicker {
         for (ServerPlayer p : server.getPlayerList().getPlayers()) {
             if (!stepped(p)) continue;
             ActivitySampler.Result a = ACTIVITY.take(p);
-            step(p, start, minutes, a.activity(), a.asleep(), a.moving(), t);
+            // A window holding both sleeping and awake ticks (a wake to tend the fire) is split, not classed whole.
+            int sleepMin = a.ticks() > 0 && a.sleepTicks() < a.ticks() ? com.yearofice.sim.body.SleepSplit.sleepMinutes(minutes, a.sleepTicks(), a.ticks()) : 0;
+            if (sleepMin > 0 && sleepMin < minutes) {
+                step(p, start, sleepMin, Activity.SLEEP, true, false, t);
+                step(p, start + sleepMin, minutes - sleepMin, a.awakeActivity(), false, a.moving(), t);
+            } else step(p, start, minutes, a.activity(), a.asleep(), a.moving(), t);
         }
     }
 
@@ -269,7 +274,7 @@ public final class BodyTicker {
                 (float) s.drunkMlToday(minute), s.gutIll(minute), s.sos, s.lastActivity.ordinal(),
                 (float) smp.env().airC(), smp.env().precip().ordinal(), (float) smp.env().precipMmH(),
                 (float) smp.env().windMs(), smp.shelter() != com.yearofice.sim.env.ShelterState.NONE,
-                messengerBattery(p), parts(s), s.exposureMin);
+                messengerBattery(p), parts(s), s.exposureMin, s.lastCapCause);
     }
 
     static BodySyncPayload.Parts parts(BodyState s) {

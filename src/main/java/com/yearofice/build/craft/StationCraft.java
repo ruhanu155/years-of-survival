@@ -234,12 +234,44 @@ public final class StationCraft {
 
     public static synchronized @Nullable Job current(ServerPlayer p) { return JOBS.get(p.getUUID()); }
 
+    private static final Map<UUID, String> REFUSED = new HashMap<>();
+
+    /** Why the player's last craft was refused, in words (or null): the same text goes to the log and to {@code /yoi craft start}. */
+    public static synchronized @Nullable String lastRefusal(ServerPlayer p) { return REFUSED.get(p.getUUID()); }
+
+    /** The refusal in words: which gate, station, tool or input is the one that is missing. */
+    public static String why(ServerPlayer p, Plan plan, Set<ResourceLocation> stations) {
+        StationRecipe r = plan.recipe();
+        String head = plan.holder().id() + " refused: " + plan.problem();
+        return switch (plan.problem()) {
+            case NONE -> plan.holder().id() + " ok";
+            case GATE -> head + " (tier " + r.tier().id() + " is not open; gate mask " + GateService.get().mask(p) + ")";
+            case TAUGHT -> head + " (taught by a page not yet read)";
+            case STATION -> head + " (needs " + r.station() + "; here: " + stations + ")";
+            case INPUTS -> {
+                StringBuilder sb = new StringBuilder(head + " (short of");
+                for (SizedIngredient need : r.ingredients()) if (!has(p.getInventory(), need)) sb.append(' ').append(need.ingredient().getItems().length == 0 ? "?" : BuiltInRegistries.ITEM.getKey(need.ingredient().getItems()[0].getItem())).append(" x").append(need.count()).append(" (have ").append(count(p.getInventory(), need)).append(')');
+                yield sb.append(')').toString();
+            }
+            case TOOL -> head + " (needs " + r.tool().map(ToolReq::text).orElse("?") + ")";
+        };
+    }
+
+    private static synchronized void refuse(ServerPlayer p, Plan plan, Set<ResourceLocation> stations) {
+        String why = why(p, plan, stations);
+        REFUSED.put(p.getUUID(), why);
+        com.mojang.logging.LogUtils.getLogger().info("YOI craft {} -> {}", p.getGameProfile().getName(), why);
+    }
+
     /** Starts a craft, or says why not and returns null. A job already running is replaced. */
     public static synchronized @Nullable Job start(ServerPlayer p, ResourceLocation recipeId, @Nullable BlockPos bench) {
         RecipeHolder<StationRecipe> h = byId(p.level(), recipeId);
         if (h == null) return null;
-        Plan plan = plan(p, h, stations(p, bench));
+        Set<ResourceLocation> here = stations(p, bench);
+        Plan plan = plan(p, h, here);
+        if (plan.problem() == Problem.NONE) REFUSED.remove(p.getUUID());
         if (plan.problem() != Problem.NONE) {
+            refuse(p, plan, here);
             say(p, "craft_" + plan.problem().name().toLowerCase(java.util.Locale.ROOT), HudArg.text(name(h.value())));
             return null;
         }
@@ -322,6 +354,7 @@ public final class StationCraft {
         Set<ResourceLocation> st = stations(p, j.bench);
         Plan plan = plan(p, h, st);
         if (plan.problem() != Problem.NONE) {
+            refuse(p, plan, st);
             say(p, "craft_" + plan.problem().name().toLowerCase(java.util.Locale.ROOT), HudArg.text(name(r)));
             return;
         }
