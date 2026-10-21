@@ -1,0 +1,54 @@
+{
+  "kind": "bird_wave",
+  "from": "05-15",
+  "to": "06-05",
+  "line": "Swallows back over the pond.",
+  "spirits": 2,
+  "arrivals": [
+    {
+      "species": "tree_swallow",
+      "date": "05-15"
+    },
+    {
+      "species": "spotted_sandpiper",
+      "date": "05-15"
+    },
+    {
+      "species": "american_golden_plover",
+      "date": "05-15"
+    },
+    {
+      "species": "harlequin_duck",
+      "date": "05-15"
+    },
+    {
+      "species": "arctic_tern",
+      "date": "05-20"
+    },
+    {
+      "species": "bank_swallow",
+      "date": "05-20"
+    },
+    {
+      "species": "swainsons_thrush",
+      "date": "05-20"
+    },
+    {
+      "species": "red_necked_phalarope",
+      "date": "05-25"
+    },
+    {
+      "species": "cliff_swallow",
+      "date": "06-01"
+    }
+  ],
+  "sound": "the full chorus; thrushes at dusk",
+  "present": [
+    {
+      "species": "mew_gull",
+      "from": "05-10",
+      "to": "09-10"
+    }
+  ],
+  "id": "yearofice:wave_4_late_ones"
+}

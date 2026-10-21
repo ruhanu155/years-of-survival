@@ -1,0 +1,71 @@
+{
+  "kind": "bird_wave",
+  "from": "04-10",
+  "to": "04-30",
+  "shifts": true,
+  "line": "A robin on the bare ground.",
+  "spirits": 2,
+  "arrivals": [
+    {
+      "species": "common_goldeneye",
+      "date": "04-10"
+    },
+    {
+      "species": "horned_lark",
+      "date": "04-15"
+    },
+    {
+      "species": "rough_legged_hawk",
+      "date": "04-15"
+    },
+    {
+      "species": "dark_eyed_junco",
+      "date": "04-20"
+    },
+    {
+      "species": "lapland_longspur",
+      "date": "04-20"
+    },
+    {
+      "species": "common_merganser",
+      "date": "04-20"
+    },
+    {
+      "species": "northern_pintail",
+      "date": "04-25"
+    },
+    {
+      "species": "american_robin",
+      "date": "04-25"
+    },
+    {
+      "species": "varied_thrush",
+      "date": "04-25"
+    },
+    {
+      "species": "rusty_blackbird",
+      "date": "04-25"
+    },
+    {
+      "species": "peregrine_falcon",
+      "date": "04-25"
+    },
+    {
+      "species": "sandhill_crane",
+      "date": "04-25"
+    },
+    {
+      "species": "tundra_swan",
+      "date": "04-25"
+    }
+  ],
+  "sound": "wing whistles over the leads, crane bugles, the first robin",
+  "present": [
+    {
+      "species": "northern_pintail",
+      "from": "04-25",
+      "to": "09-25"
+    }
+  ],
+  "id": "yearofice:wave_2_open_water"
+}

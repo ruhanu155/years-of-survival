@@ -1,0 +1,65 @@
+{
+ "inherit": "red_squirrel",
+ "scale": 0.25,
+ "id": "collared_lemming",
+ "geo_id": "collared_lemming",
+ "texture_dir": "collared_lemming",
+ "hitbox": [
+  0.15,
+  0.12
+ ],
+ "notes": "Generated. Grey-brown lemming that turns white in winter.",
+ "paint": {
+  "_replace": true,
+  "tail_*": {
+   "ramp": "fur_tan",
+   "step": 1,
+   "noise": 0.2
+  },
+  "leg_*": {
+   "ramp": "fur_tan",
+   "step": 1
+  },
+  "ear_*": {
+   "ramp": "fur_tan",
+   "step": 1
+  },
+  "muzzle": {
+   "ramp": "fur_tan",
+   "step": 3
+  },
+  "head": {
+   "ramp": "fur_tan",
+   "step": 2
+  },
+  "*": {
+   "ramp": "fur_tan",
+   "step": 2,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": "bottom",
+     "ramp": "fur_white",
+     "step": 3
+    }
+   ]
+  }
+ },
+ "textures": {
+  "_replace": true,
+  "adult_summer": {},
+  "adult_winter": {
+   "remap": {
+    "fur_tan": "fur_white"
+   }
+  },
+  "adult_mottled": {
+   "mottle": {
+    "remap": {
+     "fur_tan": "fur_white"
+    },
+    "share": 0.5
+   }
+  }
+ }
+}

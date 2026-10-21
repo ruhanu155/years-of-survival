@@ -1,0 +1,11 @@
+{
+  "kind": "lamprey_run",
+  "from": "11-20",
+  "to": "12-15",
+  "nights": [
+    5,
+    10
+  ],
+  "line": "The radio says the lamprey are running.",
+  "id": "yearofice:run_arctic_lamprey"
+}

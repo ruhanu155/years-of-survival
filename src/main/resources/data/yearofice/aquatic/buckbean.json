@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:buckbean",
+  "kind": "aquatic",
+  "window": {
+    "from": "05-25",
+    "peak": "06-15",
+    "to": "08-31"
+  },
+  "outside": "dormant"
+}

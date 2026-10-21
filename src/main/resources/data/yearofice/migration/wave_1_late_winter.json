@@ -1,0 +1,30 @@
+{
+  "kind": "bird_wave",
+  "from": "03-01",
+  "to": "03-31",
+  "line": "Snow buntings on the gravel bar: spring is coming.",
+  "spirits": 5,
+  "arrivals": [
+    {
+      "species": "golden_eagle",
+      "date": "03-01"
+    },
+    {
+      "species": "snow_bunting",
+      "date": "03-10"
+    },
+    {
+      "species": "snow_bunting",
+      "date": "03-25"
+    }
+  ],
+  "sound": "woodpecker drums, boreal owl staccato, bunting twitter",
+  "present": [
+    {
+      "species": "bald_eagle",
+      "from": "03-01",
+      "to": "11-30"
+    }
+  ],
+  "id": "yearofice:wave_1_late_winter"
+}

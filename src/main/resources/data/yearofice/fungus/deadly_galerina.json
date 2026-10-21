@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:deadly_galerina",
+  "kind": "fungus",
+  "window": {
+    "from": "07-15",
+    "peak": "09-01",
+    "to": "10-10"
+  },
+  "outside": "leaf"
+}
