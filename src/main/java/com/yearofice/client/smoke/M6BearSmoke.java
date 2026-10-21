@@ -266,6 +266,9 @@ public final class M6BearSmoke {
                 }
             }
         }
+        for (var r : com.yearofice.ecosystem.pool.ValleyPool.REACHED) if (r.species().endsWith("bear") || r.species().endsWith("grizzly")) {
+            if (!bearReached) { bearReached = true; reachMin = used; note += "ValleyPool.REACHED " + r + "; "; }
+        }
         if (bearShot && !encShot && shotName == null) {
             linesAfter = HudBus.get().sent(p).size();
             if (linesAfter > linesBefore || encounterEvents > 0) { encShot = true; shotName = "m6bear_encounter_line_s" + seedIx; shotWait = 20; }
