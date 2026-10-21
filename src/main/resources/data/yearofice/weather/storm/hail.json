@@ -1,0 +1,1 @@
+{"id": "hail", "kind": "hail", "precip_kind": "hail", "duration_h": [1, 1], "intensity": [0.4, 1.0], "wind_ms": [6, 14], "precip_mm_h": [10, 40], "visibility_m": [3000, 800], "daily_start_pct": [0, 0, 0, 0, 0, 0.65, 0.65, 0.65, 0, 0, 0, 0], "start_h": [14, 20], "gate_air_c": [8, 40]}

@@ -332,5 +332,46 @@
         "volume": 0.6
       }
     ]
+  },
+  "ambient.dawn_chorus_sparse": {
+    "subtitle": "subtitles.yearofice.ambient.dawn_chorus_sparse",
+    "sounds": [
+      {
+        "name": "yearofice:ambient/dawn_chorus_sparse",
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "ambient.dawn_chorus_full": {
+    "subtitle": "subtitles.yearofice.ambient.dawn_chorus_full",
+    "sounds": [
+      {
+        "name": "yearofice:ambient/dawn_chorus_full",
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "ambient.dawn_chorus_white_night": {
+    "subtitle": "subtitles.yearofice.ambient.dawn_chorus_white_night",
+    "sounds": [
+      {
+        "name": "yearofice:ambient/dawn_chorus_white_night",
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "weather.strike": {
+    "subtitle": "subtitles.yearofice.weather.strike",
+    "sounds": [
+      "yearofice:weather/strike1",
+      "yearofice:weather/strike2"
+    ]
+  },
+  "weather.thunder": {
+    "subtitle": "subtitles.yearofice.weather.thunder",
+    "sounds": [
+      "yearofice:weather/thunder1",
+      "yearofice:weather/thunder2"
+    ]
   }
 }

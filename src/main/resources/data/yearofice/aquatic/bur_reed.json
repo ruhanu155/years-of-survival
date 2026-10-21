@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:bur_reed",
+  "kind": "aquatic",
+  "window": {
+    "from": "06-01",
+    "peak": "07-20",
+    "to": "09-30"
+  },
+  "outside": "dormant"
+}

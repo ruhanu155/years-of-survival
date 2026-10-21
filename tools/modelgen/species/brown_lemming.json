@@ -1,0 +1,52 @@
+{
+ "inherit": "red_squirrel",
+ "scale": 0.25,
+ "id": "brown_lemming",
+ "geo_id": "brown_lemming",
+ "texture_dir": "brown_lemming",
+ "hitbox": [
+  0.15,
+  0.12
+ ],
+ "notes": "Generated. Stout buff-brown lemming, pale belly, stub tail.",
+ "paint": {
+  "_replace": true,
+  "tail_*": {
+   "ramp": "fur_tan",
+   "step": 1,
+   "noise": 0.2
+  },
+  "leg_*": {
+   "ramp": "fur_tan",
+   "step": 1
+  },
+  "ear_*": {
+   "ramp": "fur_tan",
+   "step": 1
+  },
+  "muzzle": {
+   "ramp": "fur_tan",
+   "step": 3
+  },
+  "head": {
+   "ramp": "fur_tan",
+   "step": 2
+  },
+  "*": {
+   "ramp": "fur_tan",
+   "step": 2,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": "bottom",
+     "ramp": "fur_white",
+     "step": 3
+    }
+   ]
+  }
+ },
+ "textures": {
+  "_replace": true,
+  "adult_all": {}
+ }
+}

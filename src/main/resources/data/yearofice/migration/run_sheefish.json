@@ -1,0 +1,9 @@
+{
+  "kind": "fish_run",
+  "run": "sheefish",
+  "from": "09-15",
+  "peak": "09-28",
+  "to": "10-10",
+  "line": "Fish rolling at dusk in the eddies.",
+  "id": "yearofice:run_sheefish"
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/king_bolete"
+  },
+  "render_type": "minecraft:cutout"
+}

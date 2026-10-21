@@ -2274,6 +2274,60 @@
       "ids": [
         "craft_station"
       ]
+    },
+    {
+      "basis": "M7 lane A: Weather and storms (Blocks, ops and passes; State, sync and events)",
+      "milestone": "m7",
+      "owner": "story",
+      "type": "block",
+      "ids": [
+        "glaze_layer"
+      ]
+    },
+    {
+      "basis": "M7 lane A: Weather and storms (Blocks, ops and passes; State, sync and events)",
+      "milestone": "m7",
+      "owner": "story",
+      "type": "block",
+      "ids": [
+        "hail_layer"
+      ]
+    },
+    {
+      "basis": "M7 lane A: Weather and storms (Blocks, ops and passes; State, sync and events)",
+      "milestone": "m7",
+      "owner": "story",
+      "type": "block",
+      "ids": [
+        "fallen_limb"
+      ]
+    },
+    {
+      "basis": "M7 lane A: Weather and storms (Blocks, ops and passes; State, sync and events)",
+      "milestone": "m7",
+      "owner": "story",
+      "type": "payload",
+      "ids": [
+        "strike"
+      ]
+    },
+    {
+      "basis": "M7 lane A: Weather and storms (Blocks, ops and passes; State, sync and events)",
+      "milestone": "m7",
+      "owner": "story",
+      "type": "sound_event",
+      "ids": [
+        "weather.strike"
+      ]
+    },
+    {
+      "basis": "M7 lane A: Weather and storms (Blocks, ops and passes; State, sync and events)",
+      "milestone": "m7",
+      "owner": "story",
+      "type": "sound_event",
+      "ids": [
+        "weather.thunder"
+      ]
     }
   ],
   "expand": {

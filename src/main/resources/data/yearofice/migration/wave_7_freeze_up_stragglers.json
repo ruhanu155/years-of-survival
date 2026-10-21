@@ -1,0 +1,43 @@
+{
+  "kind": "bird_wave",
+  "from": "10-01",
+  "to": "11-10",
+  "line": "Swans leaving the oxbows.",
+  "spirits": 0,
+  "arrivals": [
+    {
+      "species": "common_redpoll",
+      "date": "10-01"
+    },
+    {
+      "species": "northern_shrike",
+      "date": "10-01"
+    },
+    {
+      "species": "gyrfalcon",
+      "date": "10-01"
+    },
+    {
+      "species": "greater_scaup",
+      "date": "10-05"
+    },
+    {
+      "species": "common_goldeneye",
+      "date": "10-15"
+    },
+    {
+      "species": "bufflehead",
+      "date": "10-15"
+    },
+    {
+      "species": "tundra_swan",
+      "date": "10-20"
+    },
+    {
+      "species": "common_merganser",
+      "date": "11-10"
+    }
+  ],
+  "sound": "swans calling at dusk, redpoll flocks, then silence",
+  "id": "yearofice:wave_7_freeze_up_stragglers"
+}

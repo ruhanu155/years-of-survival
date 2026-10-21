@@ -3,6 +3,7 @@ package com.yearofice.client.render.entity;
 import com.yearofice.core.YearOfIce;
 import com.yearofice.ecosystem.EcosystemRegistry;
 import com.yearofice.ecosystem.carcass.Butchering;
+import com.yearofice.ecosystem.small.SmallLifeRegistry;
 import com.yearofice.food.traps.TrapRegistry;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
@@ -32,6 +33,13 @@ public final class EcoRenderers {
             e.registerEntityRenderer(t.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.25f));
         e.registerEntityRenderer(EcosystemRegistry.CARCASS_TINY.get(), CarcassRenderer::new);
         e.registerEntityRenderer(EcosystemRegistry.CARCASS_MEDIUM.get(), CarcassRenderer::new);
+        // M7 lane C
+        for (var t : java.util.List.of(SmallLifeRegistry.BROWN_LEMMING, SmallLifeRegistry.COLLARED_LEMMING, SmallLifeRegistry.BOG_LEMMING,
+                SmallLifeRegistry.SINGING_VOLE, SmallLifeRegistry.LITTLE_BROWN_BAT, SmallLifeRegistry.BOREAL_TOAD))
+            e.registerEntityRenderer(t.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.12f));
+        for (var t : java.util.List.of(SmallLifeRegistry.MOSQUITO, SmallLifeRegistry.BLACK_FLY, SmallLifeRegistry.NO_SEE_UM))
+            e.registerEntityRenderer(t.get(), net.minecraft.client.renderer.entity.NoopRenderer::new);
+        e.registerEntityRenderer(SmallLifeRegistry.SALMON_CARCASS.get(), CarcassRenderer::new);
         e.registerBlockEntityRenderer(TrapRegistry.SNARE_ENTITY.get(), ctx -> new SnareRenderer());
     }
 

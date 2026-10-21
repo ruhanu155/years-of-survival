@@ -5666,8 +5666,8 @@
     {
       "asset_id": "tex_bone_grease",
       "files": [
-        "assets/yearofice/textures/item/bone_grease.png",
-        "assets/yearofice/models/item/bone_grease.json"
+        "assets/yearofice/models/item/bone_grease.json",
+        "assets/yearofice/textures/item/bone_grease.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -5688,8 +5688,8 @@
     {
       "asset_id": "tex_crushed_bone",
       "files": [
-        "assets/yearofice/textures/item/crushed_bone.png",
-        "assets/yearofice/models/item/crushed_bone.json"
+        "assets/yearofice/models/item/crushed_bone.json",
+        "assets/yearofice/textures/item/crushed_bone.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/crushed_bone.json",
@@ -5700,8 +5700,8 @@
     {
       "asset_id": "tex_trophy_plaque",
       "files": [
-        "assets/yearofice/textures/item/trophy_plaque.png",
-        "assets/yearofice/models/item/trophy_plaque.json"
+        "assets/yearofice/models/item/trophy_plaque.json",
+        "assets/yearofice/textures/item/trophy_plaque.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/trophy_plaque.json",
@@ -5906,6 +5906,49 @@
       "release_blocker": false
     },
     {
+      "asset_id": "snd_weather_strike",
+      "files": [
+        "assets/yearofice/sounds/weather/strike1.ogg",
+        "assets/yearofice/sounds/weather/strike2.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/recipes/weather/strike.json",
+      "licence": "project",
+      "generator_version": "soundgen 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "snd_weather_thunder",
+      "files": [
+        "assets/yearofice/sounds/weather/thunder1.ogg",
+        "assets/yearofice/sounds/weather/thunder2.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/recipes/weather/thunder.json",
+      "licence": "project",
+      "generator_version": "soundgen 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_m7_weather",
+      "files": [
+        "assets/yearofice/blockstates/glaze_layer.json",
+        "assets/yearofice/blockstates/hail_layer.json",
+        "assets/yearofice/blockstates/fallen_limb.json",
+        "assets/yearofice/models/block/glaze_layer_1.json",
+        "assets/yearofice/models/block/glaze_layer_2.json",
+        "assets/yearofice/models/block/glaze_layer_3.json",
+        "assets/yearofice/models/block/hail_layer_1.json",
+        "assets/yearofice/models/block/hail_layer_2.json",
+        "assets/yearofice/models/block/fallen_limb.json"
+      ],
+      "source_type": "generated",
+      "recipe": "src/main/java/com/yearofice/env/weather/WeatherRegistry.java",
+      "licence": "project",
+      "generator_version": "hand 0.1.0",
+      "release_blocker": false
+    },
+    {
       "asset_id": "tex_model_ice_blocks",
       "files": [
         "assets/yearofice/textures/block/skim_ice_all.png",
@@ -5926,6 +5969,546 @@
       "recipe": "tools/artgen/ice_blocks.py",
       "licence": "project",
       "generator_version": "ice_blocks 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_brown_lemming",
+      "files": [
+        "assets/yearofice/animations/entity/brown_lemming.animation.json",
+        "assets/yearofice/geo/entity/brown_lemming.geo.json",
+        "assets/yearofice/textures/entity/brown_lemming/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/brown_lemming.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_collared_lemming",
+      "files": [
+        "assets/yearofice/animations/entity/collared_lemming.animation.json",
+        "assets/yearofice/geo/entity/collared_lemming.geo.json",
+        "assets/yearofice/textures/entity/collared_lemming/adult_mottled.png",
+        "assets/yearofice/textures/entity/collared_lemming/adult_summer.png",
+        "assets/yearofice/textures/entity/collared_lemming/adult_winter.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/collared_lemming.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_bog_lemming",
+      "files": [
+        "assets/yearofice/animations/entity/bog_lemming.animation.json",
+        "assets/yearofice/geo/entity/bog_lemming.geo.json",
+        "assets/yearofice/textures/entity/bog_lemming/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/bog_lemming.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_singing_vole",
+      "files": [
+        "assets/yearofice/animations/entity/singing_vole.animation.json",
+        "assets/yearofice/geo/entity/singing_vole.geo.json",
+        "assets/yearofice/textures/entity/singing_vole/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/singing_vole.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_little_brown_bat",
+      "files": [
+        "assets/yearofice/animations/entity/little_brown_bat.animation.json",
+        "assets/yearofice/geo/entity/little_brown_bat.geo.json",
+        "assets/yearofice/textures/entity/little_brown_bat/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/little_brown_bat.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_boreal_toad",
+      "files": [
+        "assets/yearofice/animations/entity/boreal_toad.animation.json",
+        "assets/yearofice/geo/entity/boreal_toad.geo.json",
+        "assets/yearofice/textures/entity/boreal_toad/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/boreal_toad.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "snd_ambient_dawn_chorus",
+      "files": [
+        "assets/yearofice/sounds/ambient/dawn_chorus_sparse.ogg",
+        "assets/yearofice/sounds/ambient/dawn_chorus_full.ogg",
+        "assets/yearofice/sounds/ambient/dawn_chorus_white_night.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/chorus.py",
+      "licence": "project",
+      "generator_version": "soundgen 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_chanterelle_caps",
+      "files": [
+        "assets/yearofice/models/item/chanterelle_caps.json",
+        "assets/yearofice/textures/item/chanterelle_caps.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_king_bolete_caps",
+      "files": [
+        "assets/yearofice/models/item/king_bolete_caps.json",
+        "assets/yearofice/textures/item/king_bolete_caps.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_hedgehog_caps",
+      "files": [
+        "assets/yearofice/models/item/hedgehog_caps.json",
+        "assets/yearofice/textures/item/hedgehog_caps.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_aspen_oyster_caps",
+      "files": [
+        "assets/yearofice/models/item/aspen_oyster_caps.json",
+        "assets/yearofice/textures/item/aspen_oyster_caps.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_puffball_slices",
+      "files": [
+        "assets/yearofice/models/item/puffball_slices.json",
+        "assets/yearofice/textures/item/puffball_slices.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_orange_jelly_pieces",
+      "files": [
+        "assets/yearofice/models/item/orange_jelly_pieces.json",
+        "assets/yearofice/textures/item/orange_jelly_pieces.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_hawks_wing_caps",
+      "files": [
+        "assets/yearofice/models/item/hawks_wing_caps.json",
+        "assets/yearofice/textures/item/hawks_wing_caps.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tamarack_jack_caps",
+      "files": [
+        "assets/yearofice/models/item/tamarack_jack_caps.json",
+        "assets/yearofice/textures/item/tamarack_jack_caps.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_lily_roots",
+      "files": [
+        "assets/yearofice/models/item/lily_roots.json",
+        "assets/yearofice/textures/item/lily_roots.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bur_reed_tubers",
+      "files": [
+        "assets/yearofice/models/item/bur_reed_tubers.json",
+        "assets/yearofice/textures/item/bur_reed_tubers.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_mares_tail_shoots",
+      "files": [
+        "assets/yearofice/models/item/mares_tail_shoots.json",
+        "assets/yearofice/textures/item/mares_tail_shoots.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_aspen_bracket",
+      "files": [
+        "assets/yearofice/blockstates/aspen_bracket.json",
+        "assets/yearofice/models/block/aspen_bracket.json",
+        "assets/yearofice/models/block/aspen_bracket_bare.json",
+        "assets/yearofice/textures/block/aspen_bracket.png",
+        "assets/yearofice/textures/block/aspen_bracket_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_aspen_oyster",
+      "files": [
+        "assets/yearofice/blockstates/aspen_oyster.json",
+        "assets/yearofice/models/block/aspen_oyster.json",
+        "assets/yearofice/models/block/aspen_oyster_bare.json",
+        "assets/yearofice/textures/block/aspen_oyster.png",
+        "assets/yearofice/textures/block/aspen_oyster_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bladderwort",
+      "files": [
+        "assets/yearofice/blockstates/bladderwort.json",
+        "assets/yearofice/models/block/bladderwort.json",
+        "assets/yearofice/models/block/bladderwort_bare.json",
+        "assets/yearofice/textures/block/bladderwort.png",
+        "assets/yearofice/textures/block/bladderwort_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_buckbean",
+      "files": [
+        "assets/yearofice/blockstates/buckbean.json",
+        "assets/yearofice/models/block/buckbean.json",
+        "assets/yearofice/models/block/buckbean_bare.json",
+        "assets/yearofice/textures/block/buckbean.png",
+        "assets/yearofice/textures/block/buckbean_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bur_reed",
+      "files": [
+        "assets/yearofice/blockstates/bur_reed.json",
+        "assets/yearofice/models/block/bur_reed.json",
+        "assets/yearofice/models/block/bur_reed_bare.json",
+        "assets/yearofice/textures/block/bur_reed.png",
+        "assets/yearofice/textures/block/bur_reed_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_chanterelle",
+      "files": [
+        "assets/yearofice/blockstates/chanterelle.json",
+        "assets/yearofice/models/block/chanterelle.json",
+        "assets/yearofice/models/block/chanterelle_bare.json",
+        "assets/yearofice/textures/block/chanterelle.png",
+        "assets/yearofice/textures/block/chanterelle_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_deadly_galerina",
+      "files": [
+        "assets/yearofice/blockstates/deadly_galerina.json",
+        "assets/yearofice/models/block/deadly_galerina.json",
+        "assets/yearofice/models/block/deadly_galerina_bare.json",
+        "assets/yearofice/textures/block/deadly_galerina.png",
+        "assets/yearofice/textures/block/deadly_galerina_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_destroying_angel",
+      "files": [
+        "assets/yearofice/blockstates/destroying_angel.json",
+        "assets/yearofice/models/block/destroying_angel.json",
+        "assets/yearofice/models/block/destroying_angel_bare.json",
+        "assets/yearofice/textures/block/destroying_angel.png",
+        "assets/yearofice/textures/block/destroying_angel_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_false_chanterelle",
+      "files": [
+        "assets/yearofice/blockstates/false_chanterelle.json",
+        "assets/yearofice/models/block/false_chanterelle.json",
+        "assets/yearofice/models/block/false_chanterelle_bare.json",
+        "assets/yearofice/textures/block/false_chanterelle.png",
+        "assets/yearofice/textures/block/false_chanterelle_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_hawks_wing",
+      "files": [
+        "assets/yearofice/blockstates/hawks_wing.json",
+        "assets/yearofice/models/block/hawks_wing.json",
+        "assets/yearofice/models/block/hawks_wing_bare.json",
+        "assets/yearofice/textures/block/hawks_wing.png",
+        "assets/yearofice/textures/block/hawks_wing_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_hedgehog_mushroom",
+      "files": [
+        "assets/yearofice/blockstates/hedgehog_mushroom.json",
+        "assets/yearofice/models/block/hedgehog_mushroom.json",
+        "assets/yearofice/models/block/hedgehog_mushroom_bare.json",
+        "assets/yearofice/textures/block/hedgehog_mushroom.png",
+        "assets/yearofice/textures/block/hedgehog_mushroom_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_king_bolete",
+      "files": [
+        "assets/yearofice/blockstates/king_bolete.json",
+        "assets/yearofice/models/block/king_bolete.json",
+        "assets/yearofice/models/block/king_bolete_bare.json",
+        "assets/yearofice/textures/block/king_bolete.png",
+        "assets/yearofice/textures/block/king_bolete_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_lily_pad",
+      "files": [
+        "assets/yearofice/blockstates/lily_pad.json",
+        "assets/yearofice/models/block/lily_pad.json",
+        "assets/yearofice/models/block/lily_pad_bare.json",
+        "assets/yearofice/textures/block/lily_pad.png",
+        "assets/yearofice/textures/block/lily_pad_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_mares_tail",
+      "files": [
+        "assets/yearofice/blockstates/mares_tail.json",
+        "assets/yearofice/models/block/mares_tail.json",
+        "assets/yearofice/models/block/mares_tail_bare.json",
+        "assets/yearofice/textures/block/mares_tail.png",
+        "assets/yearofice/textures/block/mares_tail_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_marsh_marigold",
+      "files": [
+        "assets/yearofice/blockstates/marsh_marigold.json",
+        "assets/yearofice/models/block/marsh_marigold.json",
+        "assets/yearofice/models/block/marsh_marigold_bare.json",
+        "assets/yearofice/textures/block/marsh_marigold.png",
+        "assets/yearofice/textures/block/marsh_marigold_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_orange_jelly",
+      "files": [
+        "assets/yearofice/blockstates/orange_jelly.json",
+        "assets/yearofice/models/block/orange_jelly.json",
+        "assets/yearofice/models/block/orange_jelly_bare.json",
+        "assets/yearofice/textures/block/orange_jelly.png",
+        "assets/yearofice/textures/block/orange_jelly_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_puffball",
+      "files": [
+        "assets/yearofice/blockstates/puffball.json",
+        "assets/yearofice/models/block/puffball.json",
+        "assets/yearofice/models/block/puffball_bare.json",
+        "assets/yearofice/textures/block/puffball.png",
+        "assets/yearofice/textures/block/puffball_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_red_belted_conk",
+      "files": [
+        "assets/yearofice/blockstates/red_belted_conk.json",
+        "assets/yearofice/models/block/red_belted_conk.json",
+        "assets/yearofice/models/block/red_belted_conk_bare.json",
+        "assets/yearofice/textures/block/red_belted_conk.png",
+        "assets/yearofice/textures/block/red_belted_conk_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_sundew",
+      "files": [
+        "assets/yearofice/blockstates/sundew.json",
+        "assets/yearofice/models/block/sundew.json",
+        "assets/yearofice/models/block/sundew_bare.json",
+        "assets/yearofice/textures/block/sundew.png",
+        "assets/yearofice/textures/block/sundew_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tamarack_jack",
+      "files": [
+        "assets/yearofice/blockstates/tamarack_jack.json",
+        "assets/yearofice/models/block/tamarack_jack.json",
+        "assets/yearofice/models/block/tamarack_jack_bare.json",
+        "assets/yearofice/textures/block/tamarack_jack.png",
+        "assets/yearofice/textures/block/tamarack_jack_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wild_calla",
+      "files": [
+        "assets/yearofice/blockstates/wild_calla.json",
+        "assets/yearofice/models/block/wild_calla.json",
+        "assets/yearofice/models/block/wild_calla_bare.json",
+        "assets/yearofice/textures/block/wild_calla.png",
+        "assets/yearofice/textures/block/wild_calla_bare.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/plants/gen.py",
+      "licence": "project",
+      "generator_version": "plants 1.0",
       "release_blocker": false
     }
   ]

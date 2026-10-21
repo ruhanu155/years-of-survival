@@ -25,6 +25,7 @@ public final class YearOfIce {
         com.yearofice.data.migrate.MigrateSystem.init(modBus);
         com.yearofice.story.clock.ClockSystem.init();
         com.yearofice.env.EnvSystem.init();
+        com.yearofice.env.weather.WeatherSystem.init(modBus);
         com.yearofice.hud.HudSystem.init();
         com.yearofice.hud.fieldnote.FieldNotes.init(modBus);
         com.yearofice.item.component.YoiComponents.register(modBus);
@@ -44,6 +45,7 @@ public final class YearOfIce {
         com.yearofice.crop.CropSystem.init(modBus);
         com.yearofice.world.season.SeasonSystem.init(modBus);
         com.yearofice.ecosystem.bird.BirdSystem.init(modBus);
+        com.yearofice.ecosystem.small.LifeSystem.init(modBus);
         LOG.info("Year of Ice loading (preset {})", "from config");
     }
 }

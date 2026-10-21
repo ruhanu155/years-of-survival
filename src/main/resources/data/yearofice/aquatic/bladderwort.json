@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:bladderwort",
+  "kind": "aquatic",
+  "window": {
+    "from": "06-15",
+    "peak": "07-25",
+    "to": "09-05"
+  },
+  "outside": "dormant"
+}

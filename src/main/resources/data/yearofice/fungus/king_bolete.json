@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:king_bolete",
+  "kind": "fungus",
+  "window": {
+    "from": "07-25",
+    "peak": "08-25",
+    "to": "09-25"
+  },
+  "outside": "leaf"
+}
