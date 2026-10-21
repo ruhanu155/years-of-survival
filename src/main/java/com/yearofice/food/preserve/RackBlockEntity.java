@@ -49,6 +49,7 @@ public abstract class RackBlockEntity extends StoreBlockEntity {
     public void stepHours(int hours) {
         if (level == null || level.isClientSide || items.isEmpty() || done) return;
         for (int i = 0; i < hours && !done; i++) hour();
+        com.yearofice.ecosystem.pool.ScentSources.post((net.minecraft.server.level.ServerLevel) level, worldPosition, com.yearofice.ecosystem.pool.ScentSources.RACK, 1); // M6 F: meat on a rack smells
         setChanged();
     }
 

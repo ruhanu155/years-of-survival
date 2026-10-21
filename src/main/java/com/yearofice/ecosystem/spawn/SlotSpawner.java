@@ -155,12 +155,14 @@ public final class SlotSpawner {
             Map.Entry<String, UUID> en = it.next();
             Entity e = level.getEntity(en.getValue());
             if (e == null || e.isRemoved()) {
+                com.yearofice.ecosystem.pool.ValleyPool.onLeave(level, en.getKey(), e);
                 it.remove();
                 continue;
             }
             boolean near = false;
             for (Player p : level.players()) if (!p.isSpectator() && p.distanceToSqr(e) <= r2) near = true;
             if (!near) {
+                com.yearofice.ecosystem.pool.ValleyPool.onLeave(level, en.getKey(), e);
                 e.discard();
                 it.remove();
             }
@@ -255,6 +257,7 @@ public final class SlotSpawner {
         if (key.isEmpty()) return;
         BODIES.remove(key);
         if (key.startsWith("debug:")) return;
+        if (key.startsWith("pool:")) { com.yearofice.ecosystem.pool.ValleyPool.onDeath(level, key); return; }
         SpeciesDef d = a.species();
         SlotData.of(level).harvest(key, SliceClock.minute(level) + Math.round(d.respawnDays() * Calendar.MINUTES_PER_DAY));
     }

@@ -136,6 +136,9 @@ public final class EcoGameTests {
     /** A stone pad high above the test grid, so no other test's blocks stand between an animal and the player. */
     static final int PAD_Y = 30;
 
+    /** Far-region table: each long-runway test owns one index (x4096 blocks along +z). 1 chase_cap, 2 sight_cone, 5 sign trail, 6-8 valley pool. */
+    public static final int FAR_UNIT = 4096, FAR_POOL = 6 * FAR_UNIT, FAR_POOL_CONSERVE = 7 * FAR_UNIT, FAR_CONTACT = 8 * FAR_UNIT, FAR_SIGN_LAID = 9 * FAR_UNIT;
+
     /** The moose's pad is low: a 4 m bank lifts its eyes over the next tests' blocks, and it steps off it unhurt. */
     static final int BANK_Y = 4;
 

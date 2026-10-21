@@ -39,13 +39,15 @@ public final class EcosystemSystem {
         modBus.addListener(EcosystemSystem::creativeTabs);
         NeoForge.EVENT_BUS.addListener(SpeciesBook::onAddReloadListeners);
         NeoForge.EVENT_BUS.addListener(EcoCommands::register);
+        NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.pool.PoolCommands::register); // M6 lane F
         NeoForge.EVENT_BUS.addListener(TrapCommands::register);
         NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.debug.BigGameCommands::register);
         NeoForge.EVENT_BUS.register(com.yearofice.ecosystem.HuntHooks.class);
         NeoForge.EVENT_BUS.addListener(SlotSpawner::onTick);
+        NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.pool.ValleyPool::onTick); // M6 lane F
         NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.theft.TheftService::onTick);
         NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.theft.TheftCommands::register);
-        NeoForge.EVENT_BUS.addListener((ServerStoppedEvent e) -> { SlotSpawner.clear(); com.yearofice.ecosystem.theft.TheftService.clear(); com.yearofice.ecosystem.ai.ScentPoints.clear(); });
+        NeoForge.EVENT_BUS.addListener((ServerStoppedEvent e) -> { SlotSpawner.clear(); com.yearofice.ecosystem.theft.TheftService.clear(); com.yearofice.ecosystem.ai.ScentPoints.clear(); com.yearofice.ecosystem.pool.ValleyPool.clear(); com.yearofice.ecosystem.pool.ScentSources.clear(); });
         // Belt and braces: our animals never reach vanilla's death, but nothing they could drop survives either.
         NeoForge.EVENT_BUS.addListener((LivingDropsEvent e) -> { if (e.getEntity() instanceof YoiAnimal) e.setCanceled(true); });
         NeoForge.EVENT_BUS.addListener((LivingExperienceDropEvent e) -> { if (e.getEntity() instanceof YoiAnimal) e.setCanceled(true); });

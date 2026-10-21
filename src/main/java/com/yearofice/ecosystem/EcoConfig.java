@@ -53,6 +53,7 @@ public final class EcoConfig {
         com.yearofice.ecosystem.encounter.EncounterConfig.define(b); // M6 lane D: [world], door entry, talk
         TrapConfig.define(b);
         com.yearofice.ecosystem.companion.CompanionConfig.define(b); // M9 lane A
+        com.yearofice.ecosystem.pool.PoolConfig.define(b); // M6 lane F
     }
 
     public static EcoTuning tuning() { return ECO.tuning(); }
@@ -75,5 +76,6 @@ public final class EcoConfig {
         com.yearofice.ecosystem.encounter.EncounterConfig.invalidate();
         TrapConfig.TRAPS.invalidate();
         com.yearofice.ecosystem.companion.CompanionConfig.invalidate();
+        com.yearofice.ecosystem.pool.PoolConfig.invalidate();
     }
 }
