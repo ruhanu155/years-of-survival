@@ -1,0 +1,71 @@
+{
+  "replace": false,
+  "values": {
+    "yearofice:wall_log": {
+      "u_w_m2k": 0.9
+    },
+    "yearofice:wall_plank": {
+      "u_w_m2k": 1.5
+    },
+    "yearofice:wall_sod": {
+      "u_w_m2k": 0.6
+    },
+    "yearofice:wall_stone": {
+      "u_w_m2k": 2.5
+    },
+    "yearofice:dressed_stone": {
+      "u_w_m2k": 2.2
+    },
+    "yearofice:roof_pole_sod": {
+      "u_w_m2k": 0.5
+    },
+    "yearofice:roof_plank": {
+      "u_w_m2k": 1.6
+    },
+    "yearofice:roof_shingle": {
+      "u_w_m2k": 1.2
+    },
+    "yearofice:slab_floor": {
+      "u_w_m2k": 0.8
+    },
+    "yearofice:log_deck": {
+      "u_w_m2k": 1.0
+    },
+    "yearofice:awning": {
+      "u_w_m2k": 3.0
+    },
+    "yearofice:door_frame": {
+      "u_w_m2k": 2.5
+    },
+    "yearofice:window_frame": {
+      "u_w_m2k": 3.0
+    },
+    "yearofice:path": {
+      "u_w_m2k": 2.0
+    },
+    "minecraft:stone": {
+      "u_w_m2k": 2.5
+    },
+    "minecraft:cobblestone": {
+      "u_w_m2k": 2.5
+    },
+    "minecraft:glass": {
+      "u_w_m2k": 5.0
+    },
+    "minecraft:oak_planks": {
+      "u_w_m2k": 1.5
+    },
+    "minecraft:spruce_planks": {
+      "u_w_m2k": 1.5
+    },
+    "minecraft:spruce_log": {
+      "u_w_m2k": 0.9
+    },
+    "minecraft:dirt": {
+      "u_w_m2k": 0.6
+    },
+    "minecraft:grass_block": {
+      "u_w_m2k": 0.6
+    }
+  }
+}

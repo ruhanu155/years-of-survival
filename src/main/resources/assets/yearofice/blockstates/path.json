@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "surface=dirt": {
+      "model": "yearofice:block/path_dirt"
+    },
+    "surface=gravel": {
+      "model": "yearofice:block/path_gravel"
+    },
+    "surface=plank": {
+      "model": "yearofice:block/path_plank"
+    },
+    "surface=stone": {
+      "model": "yearofice:block/path_stone"
+    }
+  }
+}

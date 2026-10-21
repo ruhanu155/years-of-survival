@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "open=false": {
+      "model": "yearofice:block/door_frame"
+    },
+    "open=true": {
+      "model": "yearofice:block/door_frame_open"
+    }
+  }
+}
