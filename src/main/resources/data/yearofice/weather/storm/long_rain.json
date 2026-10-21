@@ -1,0 +1,1 @@
+{"id": "long_rain", "kind": "long_rain", "precip_kind": "rain", "duration_h": [96, 96], "intensity": [0.6, 1.0], "wind_ms": [3, 9], "precip_mm_h": [1.2, 1.9], "visibility_m": [6000, 1500], "daily_start_pct": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "start_h": [0, 12]}

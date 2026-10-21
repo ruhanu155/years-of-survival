@@ -1,0 +1,2 @@
+{ "id": "yearofice:weather.thunder", "kind": "wind", "variants": 2, "length_s": 9, "lufs": -18,
+  "low_hz": 40, "high_hz": 160, "q": 0.8, "floor": 0.05, "rumble": 1.4, "highpass_hz": 25 }

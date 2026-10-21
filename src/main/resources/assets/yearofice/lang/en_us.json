@@ -692,6 +692,11 @@
   "block.yearofice.weir_stake": "Weir Stake",
   "block.yearofice.fish_wheel": "Fish Wheel",
   "block.yearofice.tip_up": "Tip-Up",
+  "block.yearofice.glaze_layer": "Glaze",
+  "block.yearofice.hail_layer": "Hail",
+  "block.yearofice.fallen_limb": "Fallen Limb",
+  "subtitles.yearofice.weather.strike": "Lightning strikes",
+  "subtitles.yearofice.weather.thunder": "Thunder rolls",
   "block.yearofice.skim_ice": "Skim Ice",
   "block.yearofice.river_ice": "River Ice",
   "block.yearofice.ice_hole": "Ice Hole"

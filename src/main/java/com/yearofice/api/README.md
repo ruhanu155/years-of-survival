@@ -169,3 +169,12 @@ Under `com.yearofice.`
 ## hunt (owner: hunt)
 `ConcealmentService.get().effectFor(level, player, animalDistM, animalInFront, bigPrey, bear)` returns `sim.hunt.Blinds.Effect` (sightX, noiseX, scentX, scentClearM, viewX) for the blind or tree stand the player is in; ecosystem multiplies the animal's senses by it.
 Events on `NeoForge.EVENT_BUS`: `CallSoundedEvent` (a call was sounded; `pRespond(species, listener, season, hour, shy, director)` gives each answer's odds, ecosystem rolls them), `AnimalWoundedEvent` (an arrow wounded but did not kill; wound state is `hunt.wound.WoundTracker`), `EncounterStateEvent` (bear strike/pinned, posted by `hunt.danger.Encounters`).
+
+## weather
+Owns the storm table, `yearofice_weather`, and the blocks `glaze_layer`, `hail_layer`, `fallen_limb`. `WeatherService.get()`.
+```java
+WeatherState current(ServerLevel l, BlockPos p); WeatherState at(ServerLevel l, BlockPos p, long minute);
+// WeatherState{kind, intensity, windMs, fromDeg, precipMmPerH, precipKind(none|rain|snow|glaze|hail), visibilityM}
+```
+- Snow depth, ice and seasons are `world`'s: read the state, never write glaze or hail. React to `WeatherChangedEvent(level, from, to)`.
+- The storm is already inside `EnvService` (wind, visibility, precipitation, closed-form hours); read it there for numbers.
