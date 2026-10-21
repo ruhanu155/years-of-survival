@@ -171,9 +171,26 @@ public final class WeekDriver {
             ItemStack st = p.getInventory().getItem(i);
             if (!st.isEmpty()) log("  kit: " + BuiltInRegistries.ITEM.getKey(st.getItem()) + " x" + st.getCount());
         }
-        log("EQUIP no equip path exists: WearMap.WEAR is registered but only sim.body.StartKit (fleece, shell, work gloves safe to -22) reaches the body model; mittens/parka/mukluks stay in the pack");
+        for (String id : new String[] {"parka", "mukluks", "fur_mittens"}) {
+            ItemStack st = ItemStack.EMPTY;
+            for (int i = 0; i < p.getInventory().getContainerSize(); i++) if (BuiltInRegistries.ITEM.getKey(p.getInventory().getItem(i).getItem()).getPath().equals(id)) { st = p.getInventory().getItem(i); break; }
+            if (st.isEmpty()) { log("EQUIP " + id + " not in pack"); continue; }
+            ItemStack held = p.getMainHandItem().copy();
+            p.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, st);
+            var r = st.use(level, p, net.minecraft.world.InteractionHand.MAIN_HAND);
+            p.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, held);
+            if (r.getResult().consumesAction()) { for (int i = 0; i < p.getInventory().getContainerSize(); i++) if (p.getInventory().getItem(i) == st && st.isEmpty()) p.getInventory().setItem(i, ItemStack.EMPTY); }
+            log("EQUIP " + id + " by use action: " + r.getResult());
+        }
+        for (var w : com.yearofice.api.body.ClothingService.get().worn(p)) log("WORN " + w.garment().zone().id() + " " + w.garment().layer() + " " + w.garment().id() + " warmth " + w.garment().warmthC() + " safe_to " + w.garment().safeToC());
         camp(p, level);
         kitTable(s);
+    }
+
+    private static ClothingState wornState(ServerPlayer p, BodyState s) {
+        ClothingState c = s.clothing();
+        for (var w : com.yearofice.api.body.ClothingService.get().worn(p)) c = c.wear(w);
+        return c;
     }
 
     /** The blueprint garment table through the body's own Warmth: what the pack's winter kit would be worth if it were worn. */
@@ -307,6 +324,7 @@ public final class WeekDriver {
         }
         if (day == 1 && m >= ck.duskMinute(ck.absDay()) - 25 && did.add("dusk1")) aimShot(p, level, "m7_first_dusk");
         if (s.warmth < 18 && did.add("coldshot")) aimShot(p, level, "m7_cold_d" + day + "_vitals");
+        if (day == 4 && h >= 12.3 && once("shot4", m)) aimShot(p, level, "m7_d4_minus25_hands");
         if (day == 3 && h >= 12.3 && once("shot3", m)) aimShot(p, level, "m7_day3_camp");
         if (day == 7 && h >= 12.6 && once("shot7", m)) aimShot(p, level, "m7_day7_vitals");
     }
@@ -323,9 +341,9 @@ public final class WeekDriver {
             ServerLevel level = p.serverLevel();
             var env = EnvService.get().sample(level, p.blockPosition());
             airMin = Math.min(airMin, env.airC());
-            ClothingState worn = StartKit.wear(s.clothing(), BodyConfig.tuning().kitWarmthC());
+            ClothingState worn = wornState(p, s);
             var row = item("fur_mittens").builtInRegistryHolder().getData(com.yearofice.body.clothing.WearMap.WEAR);
-            ClothingState withMit = row == null ? worn : worn.wear(com.yearofice.sim.body.WornGarment.fresh(row.garment("fur_mittens")));
+            ClothingState withMit = true ? worn : worn.wear(com.yearofice.sim.body.WornGarment.fresh(row.garment("fur_mittens")));
             double e1 = Warmth.zoneExposureC(env, worn, List.of(), WarmthContext.RESTING, Zone.HANDS);
             double e2 = Warmth.zoneExposureC(env, withMit, List.of(), WarmthContext.RESTING, Zone.HANDS);
             // margin above the zone's safe-to limit (negative: below it)
@@ -463,7 +481,7 @@ public final class WeekDriver {
         if (lastDay > 0 && lastDay <= DAYS && failure.isEmpty()) closeDay(lastDay);
         else if (lastDay > 0 && !failure.isEmpty()) closeDay(lastDay);
         if (!unmessaged.isEmpty()) failures.add("vital changes without a Messenger line: " + unmessaged.size());
-        if (handsFrostWindow > 0) failures.add("hands took frost points (max " + fmt(handsFrostWindow) + ") on the -25 C day: the body wears the start kit's work gloves (safe to -22), the mittens cannot be worn");
+        if (handsFrostWindow > 0) failures.add("hands took frost points (max " + fmt(handsFrostWindow) + ") on the -25 C day with the worn kit");
         verdict = failures.isEmpty() ? "PASS" : "FAIL " + failures;
         log("RESULT " + verdict);
         log(String.format(java.util.Locale.ROOT, "SUMMARY crossings %d covered %d unmessaged %d | hands frost max (week) %.0f, on the -25 C day %.0f | worst hands margin vs safe-to: worn kit %.1f C, mittens %.1f C | min BMI %.2f | bites %d matches %d",
