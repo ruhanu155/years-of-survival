@@ -27,6 +27,7 @@ public final class StoveGameTests {
         List<TestFunction> out = new ArrayList<>();
         out.add(test("yearofice:fire/stove_draft", 200, StoveGameTests::stoveDraft));
         out.add(test("yearofice:fire/creosote_builds", 400, StoveGameTests::creosoteBuilds));
+        out.add(test("yearofice:build/stove_accepts_split_at_partial_load", 100, StoveGameTests::acceptsSplit));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
 
@@ -136,6 +137,26 @@ public final class StoveGameTests {
         int fires = be.chimneyFires();
         for (int i = 0; i < 300; i++) { be.loadFuel(Wood.BIRCH, 10, 1.0); be.light(); be.stepMinutes(60); be.creosote(95); }
         h.assertTrue(be.chimneyFires() == fires, "a Steady fire never lights the chimney, only Hot");
+        h.succeed();
+    }
+
+    /** M8 lane E: dry splits (12 %) go into a part-loaded stove one by one, by right click, until it holds its maximum; a part-burned load takes more. */
+    static void acceptsSplit(GameTestHelper h) {
+        StoveBlockEntity be = stove(h, StoveRegistry.TIN_STOVE.get());
+        var p = com.yearofice.build.wood.WoodGameTests.player(h, "feeder", new net.minecraft.world.phys.Vec3(2.5, 1, 2.5));
+        var pos = h.absolutePos(S);
+        double max = 2.0;
+        int n = 0;
+        while (be.armloads() < max - 1e-6 && n++ < 12) {
+            var one = com.yearofice.build.wood.WoodItems.split(com.yearofice.sim.wood.WoodKind.BIRCH, 1, 12, 0);
+            p.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, one);
+            double before = be.armloads();
+            p.gameMode.useItemOn(p, h.getLevel(), one, net.minecraft.world.InteractionHand.MAIN_HAND,
+                    new net.minecraft.world.phys.BlockHitResult(net.minecraft.world.phys.Vec3.atCenterOf(pos), net.minecraft.core.Direction.UP, pos, false));
+            h.assertTrue(be.armloads() > before, "split #" + n + " refused at " + before + " armloads");
+            if (n == 3) { be.light(); be.stepMinutes(10); } // part-burned: the head load is no longer a round number
+        }
+        h.assertTrue(be.armloads() >= max - 1e-6, "the stove filled to " + be.armloads() + " of " + max);
         h.succeed();
     }
 }

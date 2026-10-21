@@ -18,6 +18,8 @@ public final class PiecesConfig {
             .dial("path_stone_pct", "Walking speed bonus on a stone path, percent.", 18, 0, 50)
             .dial("stamp_labour_pct", "Player labour of stamping a saved structure, percent of the first build's.", 5, 0, 100)
             .dial("stamp_setup_min", "Game minutes to mark a stamp's anchor.", 5, 0, 120)
+            // a fitted flue-loss term standing in for the blueprint's duty-cycle figure (+25..+35 C on 2 armloads a day), not a measured one
+            .dial("chimney_draw_w_per_c_per_kw2", "Air conductance a burning fire adds, W/C per kW delivered squared (fitted flue loss).", 1.0, 1.0, 1.2, 0, 10)
             .dial("stamp_pieces_per_tick", "Queued stamp pieces placed per server tick.", 4, 1, 64);
 
     public static void define(ModConfigSpec.Builder b) { TABLE.define(b, "Building pieces, rooms, heat, paths and stamping (M8)."); }
@@ -29,5 +31,6 @@ public final class PiecesConfig {
     public static double pathPct(String surface) { return TABLE.get("path_" + surface + "_pct"); }
     public static double stampPct() { return TABLE.get("stamp_labour_pct"); }
     public static double stampSetupMin() { return TABLE.get("stamp_setup_min"); }
+    public static double chimneyDraw() { return TABLE.get("chimney_draw_w_per_c_per_kw2"); }
     public static int stampPerTick() { return (int) Math.round(TABLE.get("stamp_pieces_per_tick")); }
 }

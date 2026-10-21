@@ -129,7 +129,7 @@ public final class CraftCommands {
         for (RecipeHolder<StationRecipe> h : StationCraft.all(p.level())) {
             StationCraft.Plan plan = StationCraft.plan(p, h, stations);
             c.getSource().sendSuccess(() -> Component.literal(String.format(Locale.ROOT, "%s [%s] %s: %.1f min, %.0f kcal (%s)",
-                    h.id(), h.value().tier().id(), plan.problem(), plan.minutes(), plan.kcal(), plan.word().text)), false);
+                    h.id(), h.value().tier().id(), plan.problem() == StationCraft.Problem.NONE ? "NONE" : StationCraft.why(p, plan, stations), plan.minutes(), plan.kcal(), plan.word().text)), false);
         }
         return 1;
     }
@@ -139,7 +139,7 @@ public final class CraftCommands {
         ResourceLocation id = ResourceLocationArgument.getId(c, "recipe");
         StationCraft.Job j = StationCraft.start(p, id, null);
         if (j == null) {
-            c.getSource().sendFailure(Component.literal("Cannot start " + id + " (see /yoi craft list)."));
+            c.getSource().sendFailure(Component.literal("Cannot start " + id + ": " + java.util.Objects.requireNonNullElse(StationCraft.lastRefusal(p), "no such recipe") + " (see /yoi craft list)."));
             return 0;
         }
         if (now) {

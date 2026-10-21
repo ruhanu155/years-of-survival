@@ -1,5 +1,7 @@
 package com.yearofice.body.env;
 
+import com.yearofice.api.build.Room;
+import com.yearofice.api.build.RoomService;
 import com.yearofice.api.clock.ClockService;
 import com.yearofice.api.env.EnvService;
 import com.yearofice.api.fire.FireHeatLookup;
@@ -80,6 +82,10 @@ public final class VanillaEnvSampler implements EnvSampler {
         } else {
             env = field(p, minute);
             if (roofed) env = env.withPrecip(Precip.NONE, 0);
+            // a sealed room: its temperature is the air, wind drops out, no shelter bonus (Warm rooms › Feels-like indoors)
+            Room room = RoomService.get().roomAt(level, p.blockPosition());
+            if (room == null) room = RoomService.get().roomAt(level, head);
+            if (room != null) env = env.inRoom(room.seed().hashCode() | 1, room.feelsLikeC());
         }
         List<HeatSource> heat = heatSources(level, p);
         return new Sample(env, heat, roofed ? ROOF : ShelterState.NONE, depth(p));

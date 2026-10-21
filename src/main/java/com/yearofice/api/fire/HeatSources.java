@@ -29,10 +29,15 @@ public final class HeatSources {
     public static void clearAll() { POSTED.clear(); }
 
     /** Watts of every source whose cell {@code inside} accepts (blocks for posted sources, fire coordinates for fires). */
-    public static double wattsIn(Level level, Predicate<BlockPos> inside) {
+    public static double wattsIn(Level level, Predicate<BlockPos> inside) { return wattsIn(level, inside, false); }
+
+    /** Watts of the burning fires and stoves only (they draw room air up their flue; posted sources do not). */
+    public static double firedIn(Level level, Predicate<BlockPos> inside) { return wattsIn(level, inside, true); }
+
+    private static double wattsIn(Level level, Predicate<BlockPos> inside, boolean firedOnly) {
         double w = 0;
         for (var f : FireHeatLookup.INSTANCE.fires(level)) if (inside.test(BlockPos.containing(f.x(), f.y(), f.z()))) w += f.kW() * 1000;
-        Map<BlockPos, Double> m = POSTED.get(level);
+        Map<BlockPos, Double> m = firedOnly ? null : POSTED.get(level);
         if (m != null) for (var e : m.entrySet()) if (inside.test(e.getKey())) w += e.getValue();
         return w;
     }
