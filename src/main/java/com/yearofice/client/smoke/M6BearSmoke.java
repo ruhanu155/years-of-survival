@@ -203,9 +203,9 @@ public final class M6BearSmoke {
         // the player 30 m off on open ground, looking at the pile
         BlockPos st = null;
         for (int a = 0; a < 360 && st == null; a += 15) {
-            int x = pile.getX() + (int) Math.round(200 * Math.cos(Math.toRadians(a))), z = pile.getZ() + (int) Math.round(200 * Math.sin(Math.toRadians(a)));
+            int x = pile.getX() + (int) Math.round(90 * Math.cos(Math.toRadians(a))), z = pile.getZ() + (int) Math.round(90 * Math.sin(Math.toRadians(a)));
             BlockPos g = level.getHeightmapPos(net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new BlockPos(x, 0, z));
-            if (level.hasChunkAt(g) && ground(level, g) && Math.abs(g.getY() - pile.getY()) < 80) st = g;
+            if (level.hasChunkAt(g) && ground(level, g) && Math.abs(g.getY() - pile.getY()) < 40) st = g;
         }
         stand = st == null ? c : st;
         Vec3 look = Vec3.atCenterOf(pile).subtract(Vec3.atCenterOf(stand));
@@ -265,6 +265,9 @@ public final class M6BearSmoke {
                     shotWait = 30;
                 }
             }
+        }
+        for (var r : com.yearofice.ecosystem.pool.ValleyPool.REACHED) if (r.species().endsWith("bear") || r.species().endsWith("grizzly")) {
+            if (!bearReached) { bearReached = true; reachMin = used; note += "ValleyPool.REACHED " + r + "; "; }
         }
         if (bearShot && !encShot && shotName == null) {
             linesAfter = HudBus.get().sent(p).size();
