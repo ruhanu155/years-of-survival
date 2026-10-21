@@ -681,6 +681,90 @@
       "floats": true,
       "material": "wood",
       "max_condition": 100
+    },
+    "yearofice:flint_knife": {
+      "category": "tool",
+      "stack_class": "single",
+      "material": "stone",
+      "max_condition": 300
+    },
+    "yearofice:flint_nodule": {
+      "category": "material",
+      "stack_class": "medium",
+      "material": "stone"
+    },
+    "yearofice:knife": {
+      "category": "tool",
+      "stack_class": "single",
+      "material": "steel",
+      "max_condition": 6000,
+      "theft": "porcupine"
+    },
+    "yearofice:rough_stone": {
+      "category": "material",
+      "stack_class": "medium",
+      "material": "stone"
+    },
+    "yearofice:stake": {
+      "category": "material",
+      "stack_class": "small",
+      "floats": true,
+      "material": "wood"
+    },
+    "yearofice:tool_handle": {
+      "category": "material",
+      "stack_class": "medium",
+      "floats": true,
+      "material": "wood"
+    },
+    "yearofice:workbench": {
+      "category": "piece",
+      "stack_class": "single",
+      "material": "wood"
+    },
+    "yearofice:skates": {
+      "category": "travel",
+      "stack_class": "single"
+    },
+    "yearofice:skis": {
+      "category": "travel",
+      "stack_class": "single"
+    },
+    "yearofice:climbing_skins": {
+      "category": "travel",
+      "stack_class": "single"
+    },
+    "yearofice:fur_mittens": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:fur_hat": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:parka": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:hide_coat": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:hide_pants": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:mukluks": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:hare_fur_liners": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:moccasins": {
+      "category": "clothing",
+      "stack_class": "single"
     }
   }
 }

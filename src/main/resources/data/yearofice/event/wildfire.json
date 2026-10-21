@@ -1,0 +1,6 @@
+{
+ "id": "wildfire",
+ "chance_per_year": 0.2,
+ "from_year": 1,
+ "window": ["06-10", "08-20"]
+}

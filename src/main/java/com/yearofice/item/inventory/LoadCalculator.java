@@ -43,6 +43,7 @@ public final class LoadCalculator implements LoadService {
         double kg = 0;
         Inventory inv = p.getInventory();
         for (int i = 0; i < inv.getContainerSize(); i++) kg += stackKg(inv.getItem(i), true);
+        kg += BoxCarry.kg(p); // a lifted box in the arms (A7)
         var curios = CuriosApi.getCuriosInventory(p);
         if (curios.isPresent()) {
             ItemStack back = PackSlots.back(p);

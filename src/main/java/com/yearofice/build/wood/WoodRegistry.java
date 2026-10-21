@@ -61,8 +61,12 @@ public final class WoodRegistry {
         }
     }
 
+    /** Tool durability: the crate hatchet lasts 5,000 uses (Crafting and building in depth › Tool durability). */
+    public static final int HATCHET_DURABILITY = 5000;
+
     /** The crate hatchet (Items › hatchet; Tools table row "Crate hatchet"), pulled forward from M3's kit for felling. */
-    public static final DeferredItem<Item> HATCHET = ITEMS.registerItem("hatchet", Item::new, new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> HATCHET = ITEMS.registerItem("hatchet", Item::new,
+            new Item.Properties().durability(HATCHET_DURABILITY));
 
     public static final DeferredBlock<ChoppingBlock> CHOPPING_BLOCK = BLOCKS.registerBlock("chopping_block", ChoppingBlock::new,
             BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL).strength(2.0F).sound(SoundType.WOOD).noOcclusion());

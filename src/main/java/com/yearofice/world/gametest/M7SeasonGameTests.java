@@ -58,6 +58,7 @@ public final class M7SeasonGameTests {
         out.add(test("yearofice:world/catchup_budget", 800, M7SeasonGameTests::catchupBudget));
         out.add(test("yearofice:world/snow_pass_classes", 200, M7SeasonGameTests::snowPassClasses));
         out.add(test("yearofice:world/flood_returns", 200, M7SeasonGameTests::floodReturns));
+        out.add(test("yearofice:season/storm_snow_accumulates", 100, M7SeasonGameTests::stormSnowAccumulates));
         out.add(test("yearofice:ice/hole_skins_over", 200, M7SeasonGameTests::holeSkinsOver));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
@@ -118,6 +119,38 @@ public final class M7SeasonGameTests {
         int doy = (int) (d % 365);
         double t = 4 + 20 * Math.cos(2 * Math.PI * (doy - 80) / 365.0);
         return new WeatherModel.Day(d, DayState.CLOUDY, 0, t, t, 3, d % 9 == 0 ? 9 : 3, 0, (d * 7919 % 13 == 0 ? 6 : 0) + (d % 5 == 0 ? 2 : 0), 0, 6);
+    }
+
+    // ---- season/storm_snow_accumulates --------------------------------------------------------------------------------
+
+    /** A storm's water reaches the snow pack through the adapter: a blizzard day piles snow, a rain day on cold snow crusts it. */
+    static void stormSnowAccumulates(GameTestHelper h) {
+        ServerLevel l = h.getLevel();
+        SeasonState st = SeasonState.get(l);
+        double[] saved = st.core.encode();
+        long savedDay = st.core.lastDay;
+        try {
+            SeasonSystem.setWeatherSource((lv, d) -> new WeatherModel.Day(d, DayState.CLOUDY, 0, -20, -20, 3, 3, 0, 0, 0, 0));
+            SeasonSystem.setStormSource((lv, d) -> d == 100 ? new double[] {8, 0} : d == 101 ? new double[] {0, 4} : new double[] {0, 0});
+            st.core.decode(new SeasonCore().encode());
+            st.core.lastDay = 98;
+            SeasonSystem.advanceTo(l, 99);
+            double calm = st.core.snow(SnowPack.SnowClass.OPEN).depthCm();
+            h.assertTrue(calm == 0, "no snow without a storm: " + calm);
+            SeasonSystem.advanceTo(l, 100);
+            double after = st.core.snow(SnowPack.SnowClass.OPEN).depthCm();
+            h.assertTrue(after > 8, "a blizzard day piles snow: " + after);
+            h.assertTrue(!st.core.snow(SnowPack.SnowClass.OPEN).crust, "fresh snow has no crust");
+            SeasonSystem.setWeatherSource((lv, d) -> new WeatherModel.Day(d, DayState.CLOUDY, 0, -8, -8, 3, 3, 0, 0, 0, 0));
+            SeasonSystem.advanceTo(l, 101);
+            h.assertTrue(st.core.snow(SnowPack.SnowClass.OPEN).crust, "a rain day crusts the pack");
+        } finally {
+            SeasonSystem.setWeatherSource(null);
+            SeasonSystem.setStormSource(null);
+            st.core.decode(saved);
+            st.core.lastDay = savedDay;
+        }
+        h.succeed();
     }
 
     // ---- world/catchup_equals_live -------------------------------------------------------------------------------
@@ -212,6 +245,7 @@ public final class M7SeasonGameTests {
         ClockService.get().setDay(clockDay + away);
         long farDay = ClockService.get().absDay();
         SeasonSystem.setWeatherSource((lv, d) -> synthDay(d));
+        SeasonSystem.setStormSource((lv, d) -> new double[] {0, 0});
         st.core.decode(new SeasonCore().encode());
         st.core.lastDay = Long.MIN_VALUE;
         SeasonSystem.slowestNs = 0;
@@ -240,6 +274,7 @@ public final class M7SeasonGameTests {
             ClockService.get().setDay(clockDay);
             for (LevelChunk c : chs) l.setChunkForced(c.getPos().x, c.getPos().z, false);
             SeasonSystem.setWeatherSource(null);
+            SeasonSystem.setStormSource(null);
             st.core.decode(saved);
             st.core.lastDay = savedDay;
         });

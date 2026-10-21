@@ -31,43 +31,6 @@
       }
     ]
   },
-  "trap.deadfall": {
-    "subtitle": "subtitles.yearofice.trap.deadfall",
-    "sounds": [
-      {
-        "name": "minecraft:dig/stone1",
-        "pitch": 0.55,
-        "attenuation_distance": 40
-      },
-      {
-        "name": "minecraft:dig/stone2",
-        "pitch": 0.5,
-        "attenuation_distance": 40
-      },
-      {
-        "name": "minecraft:dig/stone3",
-        "pitch": 0.6,
-        "attenuation_distance": 40
-      }
-    ]
-  },
-  "work.pan_swirl": {
-    "subtitle": "subtitles.yearofice.work.pan_swirl",
-    "sounds": [
-      {
-        "name": "minecraft:dig/gravel1",
-        "pitch": 0.7
-      },
-      {
-        "name": "minecraft:dig/gravel2",
-        "pitch": 0.75
-      },
-      {
-        "name": "minecraft:dig/gravel3",
-        "pitch": 0.7
-      }
-    ]
-  },
   "tree.chop": {
     "subtitle": "subtitles.yearofice.tree.chop",
     "sounds": [
@@ -156,6 +119,60 @@
       }
     ]
   },
+  "step.skate": {
+    "sounds": [
+      {
+        "name": "minecraft:dig/glass1",
+        "pitch": 1.4,
+        "volume": 0.4
+      }
+    ]
+  },
+  "ice.blade_ring": {
+    "sounds": [
+      {
+        "name": "minecraft:random/orb",
+        "pitch": 1.8,
+        "volume": 0.3
+      }
+    ]
+  },
+  "ice.blade_sing": {
+    "sounds": [
+      {
+        "name": "minecraft:note/harp",
+        "pitch": 2.0,
+        "volume": 0.2
+      }
+    ]
+  },
+  "ice.blade_crackle": {
+    "sounds": [
+      {
+        "name": "minecraft:dig/glass2",
+        "pitch": 0.6,
+        "volume": 0.8
+      }
+    ]
+  },
+  "step.ski_glide": {
+    "sounds": [
+      {
+        "name": "minecraft:step/snow1",
+        "pitch": 1.5,
+        "volume": 0.4
+      }
+    ]
+  },
+  "step.ski_squeal": {
+    "sounds": [
+      {
+        "name": "minecraft:step/snow2",
+        "pitch": 2.0,
+        "volume": 0.3
+      }
+    ]
+  },
   "music.dawn": {
     "sounds": [
       {
@@ -176,6 +193,78 @@
     "sounds": [
       {
         "name": "yearofice:music/fire_spring",
+        "stream": true
+      }
+    ]
+  },
+  "music.dawn_summer": {
+    "sounds": [
+      {
+        "name": "yearofice:music/dawn_summer",
+        "stream": true
+      }
+    ]
+  },
+  "music.day_summer": {
+    "sounds": [
+      {
+        "name": "yearofice:music/day_summer",
+        "stream": true
+      }
+    ]
+  },
+  "music.fire_summer": {
+    "sounds": [
+      {
+        "name": "yearofice:music/fire_summer",
+        "stream": true
+      }
+    ]
+  },
+  "music.dawn_fall": {
+    "sounds": [
+      {
+        "name": "yearofice:music/dawn_fall",
+        "stream": true
+      }
+    ]
+  },
+  "music.day_fall": {
+    "sounds": [
+      {
+        "name": "yearofice:music/day_fall",
+        "stream": true
+      }
+    ]
+  },
+  "music.fire_fall": {
+    "sounds": [
+      {
+        "name": "yearofice:music/fire_fall",
+        "stream": true
+      }
+    ]
+  },
+  "music.dawn_winter": {
+    "sounds": [
+      {
+        "name": "yearofice:music/dawn_winter",
+        "stream": true
+      }
+    ]
+  },
+  "music.day_winter": {
+    "sounds": [
+      {
+        "name": "yearofice:music/day_winter",
+        "stream": true
+      }
+    ]
+  },
+  "music.fire_winter": {
+    "sounds": [
+      {
+        "name": "yearofice:music/fire_winter",
         "stream": true
       }
     ]
@@ -237,6 +326,69 @@
         "name": "minecraft:entity/player/hurt_sweet_berry_bush",
         "pitch": 0.9,
         "volume": 0.7
+      }
+    ]
+  },
+  "carry.box_lift": {
+    "subtitle": "subtitles.yearofice.carry.box_lift",
+    "sounds": [
+      {
+        "name": "minecraft:dig/wood1",
+        "pitch": 0.6
+      },
+      {
+        "name": "minecraft:dig/wood3",
+        "pitch": 0.55
+      }
+    ]
+  },
+  "carry.box_set": {
+    "subtitle": "subtitles.yearofice.carry.box_set",
+    "sounds": [
+      {
+        "name": "minecraft:dig/wood2",
+        "pitch": 0.5
+      },
+      {
+        "name": "minecraft:dig/wood4",
+        "pitch": 0.45
+      }
+    ]
+  },
+  "trap.deadfall": {
+    "subtitle": "subtitles.yearofice.trap.deadfall",
+    "sounds": [
+      {
+        "name": "minecraft:dig/stone1",
+        "pitch": 0.55,
+        "attenuation_distance": 40
+      },
+      {
+        "name": "minecraft:dig/stone2",
+        "pitch": 0.5,
+        "attenuation_distance": 40
+      },
+      {
+        "name": "minecraft:dig/stone3",
+        "pitch": 0.6,
+        "attenuation_distance": 40
+      }
+    ]
+  },
+  "work.pan_swirl": {
+    "subtitle": "subtitles.yearofice.work.pan_swirl",
+    "sounds": [
+      {
+        "name": "minecraft:dig/gravel1",
+        "pitch": 0.7
+      },
+      {
+        "name": "minecraft:dig/gravel2",
+        "pitch": 0.75
+      },
+      {
+        "name": "minecraft:dig/gravel3",
+        "pitch": 0.7
       }
     ]
   },
@@ -307,6 +459,20 @@
       }
     ]
   },
+  "weather.strike": {
+    "subtitle": "subtitles.yearofice.weather.strike",
+    "sounds": [
+      "yearofice:weather/strike1",
+      "yearofice:weather/strike2"
+    ]
+  },
+  "weather.thunder": {
+    "subtitle": "subtitles.yearofice.weather.thunder",
+    "sounds": [
+      "yearofice:weather/thunder1",
+      "yearofice:weather/thunder2"
+    ]
+  },
   "ambient.dawn_chorus_sparse": {
     "subtitle": "subtitles.yearofice.ambient.dawn_chorus_sparse",
     "sounds": [
@@ -332,20 +498,6 @@
         "name": "yearofice:ambient/dawn_chorus_white_night",
         "attenuation_distance": 16
       }
-    ]
-  },
-  "weather.strike": {
-    "subtitle": "subtitles.yearofice.weather.strike",
-    "sounds": [
-      "yearofice:weather/strike1",
-      "yearofice:weather/strike2"
-    ]
-  },
-  "weather.thunder": {
-    "subtitle": "subtitles.yearofice.weather.thunder",
-    "sounds": [
-      "yearofice:weather/thunder1",
-      "yearofice:weather/thunder2"
     ]
   }
 }

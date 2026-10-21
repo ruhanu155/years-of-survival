@@ -19,9 +19,34 @@ public final class YoiSounds {
     }
 
     public static final DeferredHolder<SoundEvent, SoundEvent> FIELD_NOTE_CARD = reg("ui.field_note_card");
+    public static final DeferredHolder<SoundEvent, SoundEvent> STEP_SKATE = reg("step.skate");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ICE_BLADE_RING = reg("ice.blade_ring");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ICE_BLADE_SING = reg("ice.blade_sing");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ICE_BLADE_CRACKLE = reg("ice.blade_crackle");
+    public static final DeferredHolder<SoundEvent, SoundEvent> STEP_SKI_GLIDE = reg("step.ski_glide");
+    public static final DeferredHolder<SoundEvent, SoundEvent> STEP_SKI_SQUEAL = reg("step.ski_squeal");
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DAWN = reg("music.dawn");
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DAY = reg("music.day");
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_FIRE = reg("music.fire");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DAWN_SUMMER = reg("music.dawn_summer");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DAY_SUMMER = reg("music.day_summer");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_FIRE_SUMMER = reg("music.fire_summer");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DAWN_FALL = reg("music.dawn_fall");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DAY_FALL = reg("music.day_fall");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_FIRE_FALL = reg("music.fire_fall");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DAWN_WINTER = reg("music.dawn_winter");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DAY_WINTER = reg("music.day_winter");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_FIRE_WINTER = reg("music.fire_winter");
+
+    /** The piece for a season (0 spring, 1 summer, 2 fall, 3 winter) and kind (0 dawn, 1 day, 2 fire). */
+    public static SoundEvent music(int season, int kind) {
+        return switch (season) {
+            case 1 -> kind == 0 ? MUSIC_DAWN_SUMMER.get() : kind == 1 ? MUSIC_DAY_SUMMER.get() : MUSIC_FIRE_SUMMER.get();
+            case 2 -> kind == 0 ? MUSIC_DAWN_FALL.get() : kind == 1 ? MUSIC_DAY_FALL.get() : MUSIC_FIRE_FALL.get();
+            case 3 -> kind == 0 ? MUSIC_DAWN_WINTER.get() : kind == 1 ? MUSIC_DAY_WINTER.get() : MUSIC_FIRE_WINTER.get();
+            default -> kind == 0 ? MUSIC_DAWN.get() : kind == 1 ? MUSIC_DAY.get() : MUSIC_FIRE.get();
+        };
+    }
     public static final DeferredHolder<SoundEvent, SoundEvent> BREATH_PANIC = reg("body.breath_panic");
     public static final DeferredHolder<SoundEvent, SoundEvent> HIT_GRUNT = reg("body.hit_grunt");
     public static final DeferredHolder<SoundEvent, SoundEvent> BITE_CRUNCH = reg("body.bite_crunch");

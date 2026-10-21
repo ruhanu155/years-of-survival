@@ -39,6 +39,7 @@ public final class Lightning {
         int seed = StageHash.of(level.getSeed() + ":bolt:" + salt + ":" + top.asLong());
         for (ServerPlayer p : level.players())
             if (p.blockPosition().distSqr(top) <= FAR_M * FAR_M) YoiNet.send(p, new StrikePayload(top, seed, 1f));
+        com.yearofice.story.rare.StrikeHarm.apply(level, top, seed);
         return limb(level, top, seed);
     }
 

@@ -37,9 +37,6 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
  * visible animal; the visit itself is resolved by roll.
  */
 public final class ShelterEntry {
-    /** A statistical test pins the roll's stream origin so its sample does not depend on where the batch puts the door. */
-    public static volatile BlockPos streamOriginOverride;
-
     private ShelterEntry() {}
 
     /** Wolf pack state at a position (hunger drive, pack within 300 m); the wolf lane replaces this. */
@@ -92,9 +89,12 @@ public final class ShelterEntry {
     }
 
     /** One game hour at one door. Empty if the option is off, nobody came, or the door is shut. */
+    public static volatile BlockPos streamOriginOverride;
+
     public static Optional<Entry> hour(ServerLevel level, BlockPos door, Container store, long hourIndex, RaidOdds.Door ctx) {
         if (!WorldToggles.animalsEnterOpenDoors()) return Optional.empty();
-        var o = streamOriginOverride != null ? streamOriginOverride : door;
+        // GameTest hook: a pinned origin keeps the statistical door test on one stream whatever the batch layout
+        BlockPos o = streamOriginOverride != null ? streamOriginOverride : door;
         var r = Thresholds.stream(level.getSeed(), "door_entry", o.getX(), o.getY(), o.getZ(), hourIndex);
         Optional<RaidOdds.Raider> hit = RaidOdds.rollHour(ctx, EncounterConfig.doorScale(), r);
         if (hit.isEmpty()) return Optional.empty();

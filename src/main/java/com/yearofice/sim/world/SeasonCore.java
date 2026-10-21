@@ -26,8 +26,14 @@ public final class SeasonCore {
 
     /** Advances to {@code absDay}'s weather (one call per day, in order). */
     public void step(long absDay, int doy, double meanC, double precipMm, double windMs, SnowTuning st, IceTuning it) {
-        for (SnowClass c : SnowClass.values()) SnowPack.step(snow(c), c, st, meanC, precipMm, windMs, doy);
-        double rain = meanC < st.snowBelowC() ? 0 : precipMm;
+        step(absDay, doy, meanC, precipMm, windMs, 0, 0, st, it);
+    }
+
+    /** As above with the day's storm water: snow from snowstorms and blizzards, rain from rain and glaze storms. */
+    public void step(long absDay, int doy, double meanC, double precipMm, double windMs, double stormSnowMm, double stormRainMm,
+                     SnowTuning st, IceTuning it) {
+        for (SnowClass c : SnowClass.values()) SnowPack.step(snow(c), c, st, meanC, precipMm, windMs, doy, stormSnowMm, stormRainMm);
+        double rain = (meanC < st.snowBelowC() ? 0 : precipMm) + stormRainMm;
         double openSnow = snow(SnowClass.OPEN).depthCm();
         for (BodyClass c : BodyClass.values()) {
             IceModel.Event e = IceModel.step(ice(c), c, it, meanC, rain, openSnow);

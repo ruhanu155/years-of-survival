@@ -54,6 +54,13 @@ public final class SeasonSystem {
 
     public static void setWeatherSource(DayWeather w) { source = w == null ? (l, d) -> EnvService.get().day(l, d) : w; }
 
+    /** Storm water per day {snowMm, rainMm} from the weather table; tests swap it. */
+    private static volatile java.util.function.BiFunction<ServerLevel, Long, double[]> stormSource = com.yearofice.env.weather.WeatherSystem::dayPrecip;
+
+    public static void setStormSource(java.util.function.BiFunction<ServerLevel, Long, double[]> f) {
+        stormSource = f == null ? com.yearofice.env.weather.WeatherSystem::dayPrecip : f;
+    }
+
     private static final Map<ServerLevel, ArrayDeque<ChunkPos>> LIVE = new HashMap<>();
     private static final Map<ServerLevel, ArrayDeque<ChunkPos>> DEFERRED = new HashMap<>();
     private static int loadsThisTick;
@@ -79,7 +86,8 @@ public final class SeasonSystem {
         var ice = SeasonConfig.ice();
         for (long d = from; d <= today; d++) {
             WeatherModel.Day w = source.day(ow, d);
-            core.step(d, Calendar.dayOfYearOfDay(d), w.meanC(), w.precipMm(), w.windMs(), snow, ice);
+            double[] storm = stormSource.apply(ow, d);
+            core.step(d, Calendar.dayOfYearOfDay(d), w.meanC(), w.precipMm(), w.windMs(), storm[0], storm[1], snow, ice);
             n++;
         }
         if (n > 0) st.setDirty();
