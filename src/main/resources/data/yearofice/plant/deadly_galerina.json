@@ -1,0 +1,72 @@
+{
+  "id": "yearofice:deadly_galerina",
+  "name": "Deadly galerina",
+  "form": "mushroom",
+  "tags": [
+    "yearofice:no_taste_test",
+    "yearofice:toxic_plants"
+  ],
+  "habitat": [
+    "rotting_wood",
+    "mossy_forest_floor"
+  ],
+  "phases_dd": {
+    "leaf": 0.0,
+    "fruit": 300.0,
+    "seed": 360.0,
+    "senescent": "first_frost"
+  },
+  "verbs": {
+    "pick": {
+      "part": "yearofice:plant_material",
+      "unit": "cap",
+      "unit_g": 100,
+      "time_min": 2.0,
+      "units_per_clump": 3.0,
+      "phases": [
+        "fruit"
+      ],
+      "stripped_weight": 1.0
+    },
+    "uproot": {
+      "drops": "minecraft:stick",
+      "empty_years": 3
+    }
+  },
+  "patch": {
+    "clumps": [
+      20,
+      60
+    ],
+    "regrow_days": [
+      5,
+      8
+    ],
+    "flush_mults": [
+      1.0
+    ]
+  },
+  "identify": {
+    "pocket_guide": false,
+    "notes": [],
+    "stages": [
+      "shoot",
+      "flower",
+      "fruit"
+    ]
+  },
+  "inspect": {
+    "look": "small_brown_cap_rusty_spores_ring_on_wood",
+    "smell": "mealy",
+    "cut": "rusty_gills"
+  },
+  "toxic": {
+    "grade": "deadly",
+    "condition_loss": 25,
+    "onset_min": [
+      360,
+      1440
+    ]
+  },
+  "lookalike_group": "galerina_lookalike"
+}

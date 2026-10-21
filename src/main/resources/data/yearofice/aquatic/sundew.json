@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:sundew",
+  "kind": "aquatic",
+  "window": {
+    "from": "06-01",
+    "peak": "07-15",
+    "to": "09-15"
+  },
+  "outside": "dormant"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:chanterelle",
+  "kind": "fungus",
+  "window": {
+    "from": "07-15",
+    "peak": "08-15",
+    "to": "09-30"
+  },
+  "outside": "leaf"
+}

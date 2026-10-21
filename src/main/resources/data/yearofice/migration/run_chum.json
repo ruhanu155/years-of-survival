@@ -1,0 +1,10 @@
+{
+  "kind": "salmon_run",
+  "run": "chum_salmon",
+  "from": "07-15",
+  "peak": "08-05",
+  "to": "08-31",
+  "dieoff_days": 10,
+  "line": "Salmon in the river.",
+  "id": "yearofice:run_chum"
+}

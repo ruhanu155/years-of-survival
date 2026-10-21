@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/mares_tail"
+  },
+  "render_type": "minecraft:cutout"
+}

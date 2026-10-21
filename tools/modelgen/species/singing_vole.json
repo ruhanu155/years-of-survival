@@ -1,0 +1,52 @@
+{
+ "inherit": "red_squirrel",
+ "scale": 0.25,
+ "id": "singing_vole",
+ "geo_id": "singing_vole",
+ "texture_dir": "singing_vole",
+ "hitbox": [
+  0.15,
+  0.12
+ ],
+ "notes": "Generated. Cinnamon vole with a short tail.",
+ "paint": {
+  "_replace": true,
+  "tail_*": {
+   "ramp": "fur_cinnamon",
+   "step": 1,
+   "noise": 0.2
+  },
+  "leg_*": {
+   "ramp": "fur_cinnamon",
+   "step": 1
+  },
+  "ear_*": {
+   "ramp": "fur_cinnamon",
+   "step": 1
+  },
+  "muzzle": {
+   "ramp": "fur_cinnamon",
+   "step": 3
+  },
+  "head": {
+   "ramp": "fur_cinnamon",
+   "step": 2
+  },
+  "*": {
+   "ramp": "fur_cinnamon",
+   "step": 2,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": "bottom",
+     "ramp": "fur_tan",
+     "step": 3
+    }
+   ]
+  }
+ },
+ "textures": {
+  "_replace": true,
+  "adult_all": {}
+ }
+}

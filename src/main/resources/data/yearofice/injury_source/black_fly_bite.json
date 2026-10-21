@@ -1,0 +1,10 @@
+{
+  "condition_loss": 0.4,
+  "parts": {
+    "head": 50,
+    "arms": 30,
+    "hands": 20
+  },
+  "tears_outer": 0.0,
+  "problems": []
+}

@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:tamarack_jack",
+  "kind": "fungus",
+  "window": {
+    "from": "08-01",
+    "peak": "08-31",
+    "to": "09-30"
+  },
+  "outside": "leaf"
+}

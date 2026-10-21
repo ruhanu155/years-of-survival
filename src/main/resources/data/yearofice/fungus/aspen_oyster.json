@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:aspen_oyster",
+  "kind": "fungus",
+  "window": {
+    "from": "08-20",
+    "peak": "09-15",
+    "to": "10-15"
+  },
+  "outside": "leaf"
+}
