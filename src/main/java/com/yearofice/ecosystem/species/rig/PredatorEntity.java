@@ -42,6 +42,7 @@ public class PredatorEntity extends LandAnimal {
     protected Vec3 chaseLast;
     protected long cooldownUntil, nextScanTick, nextSmellTick, eatUntil;
     protected Object scentTarget;
+    private int stuckWalks;
     private double lastChaseM;
     private int givenUp, kills, scavenged;
 
@@ -229,6 +230,7 @@ public class PredatorEntity extends LandAnimal {
         double scale = speciesId().endsWith("bear") || speciesId().endsWith("grizzly") || speciesId().endsWith("wolverine") ? 3.0 : 1.5;
         smell = d.senses().smellM() * scale;
         Object best = pickScent(level, smell);
+        if (best != scentTarget) stuckWalks = 0;
         scentTarget = best;
         eatUntil = 0;
         return best != null && walkTo(level);
@@ -293,7 +295,8 @@ public class PredatorEntity extends LandAnimal {
             scentTarget = null;
             return false;
         }
-        if (position().distanceToSqr(at) < 6.25) {
+        double flat = Math.hypot(position().x - at.x, position().z - at.z);
+        if (flat <= 2.5 && Math.abs(position().y - at.y) < 4) { // within feed reach: a pile on a bank or bar sits a block or two off our feet
             eatUntil = level.getGameTime() + 20 * 40;
             getNavigation().stop();
             setMove(MOVE_FEED);
@@ -301,6 +304,11 @@ public class PredatorEntity extends LandAnimal {
             return true;
         }
         boolean far = position().distanceToSqr(at) > 40 * 40; // a scent trail far off is followed at a lope (the config's multiplier x trot), not a stroll
+        if (getNavigation().isDone() && flat < 30 && ++stuckWalks > 3) { // the path ended short (a bank, a bar edge): close the last metres in a straight line
+            getMoveControl().setWantedPosition(at.x, at.y, at.z, Gaits.input(species().trotMps()));
+            setMove(MOVE_WALK);
+            return true;
+        }
         if (getNavigation().isDone() || far && tickCount % 20 == 0) pathToward(at, Gaits.input(species().trotMps() * (far ? com.yearofice.ecosystem.pool.PoolConfig.tuning().predatorScentTrotMultiplier() : 1.0)));
         setMove(far ? MOVE_RUN : MOVE_WALK);
         return true;
