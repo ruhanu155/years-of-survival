@@ -38,8 +38,17 @@ public final class VitalExplainer {
         if (tired && !was.tired) say(bus, p, "energy_low", HudArg.fixed(s.energy, ""));
         if (hurt && !was.hurt) say(bus, p, "condition_low", HudArg.of(Math.round(s.condition())));
         if (hungry && !was.hungry) say(bus, p, "calories_low", HudArg.of(Math.round(s.balance24h())));
+        if (!cold && was.cold) say(bus, p, "warmth_ok", HudArg.of(Math.round(s.warmth)));
+        if (!thirsty && was.thirsty) say(bus, p, "water_ok", HudArg.of(Math.round(s.water)));
+        if (!tired && was.tired) say(bus, p, "energy_ok", HudArg.fixed(s.energy, ""));
+        if (!hurt && was.hurt) say(bus, p, "condition_ok", HudArg.of(Math.round(s.condition())));
+        if (!hungry && was.hungry) say(bus, p, "calories_ok", HudArg.of(Math.round(s.balance24h())));
         for (Part part : Part.values()) {
             int i = part.ordinal();
+            if (band[i] < was.band[i]) {
+                say(bus, p, "part_better", HudArg.key("body.yearofice.part." + part.name().toLowerCase(java.util.Locale.ROOT)),
+                        HudArg.of(s.parts.hp(part)));
+            }
             if (band[i] > was.band[i]) {
                 say(bus, p, "part_worse", HudArg.key("body.yearofice.part." + part.name().toLowerCase(java.util.Locale.ROOT)),
                         HudArg.of(s.parts.hp(part)));

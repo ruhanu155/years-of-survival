@@ -22,9 +22,28 @@ public final class FrostStep {
     public static final String EV_NIP = "frost_nip", EV_SUPERFICIAL = "frost_superficial", EV_DEEP = "frost_deep",
             EV_DIGIT = "frost_digit_lost";
 
+    /** Frost stage 0-3 of each zone (its worst part). */
+    public static int[] zoneStages(int[] partFrost) {
+        int[] out = new int[Zone.values().length];
+        for (Zone z : Zone.values()) out[z.ordinal()] = FrostModel.stage(FrostModel.zoneValue(partFrost, z));
+        return out;
+    }
+
+    /**
+     * The Messenger line id for a zone's stage change (0 clear, 1 nip, 2 superficial, 3 deep): a rise says the new stage,
+     * a fall says "clear" (back to 0) or "ease" (still frostbitten but better). Null when the stage did not change.
+     */
+    public static String eventKey(Zone z, int before, int after) {
+        if (before == after) return null;
+        String zone = z.name().toLowerCase(java.util.Locale.ROOT);
+        String what = after > before ? (after == 1 ? "nip" : after == 2 ? "superficial" : "deep") : after == 0 ? "clear" : "ease";
+        return "frost_" + zone + "_" + what;
+    }
+
     /** Steps {@code n} minutes at constant conditions starting at minute {@code m}, then refreshes {@code exposureMin}. */
     public static void tick(BodyState s, EnvSample env, List<HeatSource> heat, WarmthContext ctx, ClothingState clothing,
                             double coldScale, WellnessTuning w, long m, int n) {
+        int[] zoneBefore = zoneStages(s.parts.partFrost());
         double face = Skin.faceBonusC(s, m, w);
         int[] frost = s.parts.partFrost();
         int[] digits = s.parts.lostDigits();
@@ -45,9 +64,6 @@ public final class FrostStep {
             for (int k = 0; k < n; k++) {
                 FrostModel.PartStep st = FrostModel.stepMinute(pts, limit, feel, rewarming, true);
                 pts = st.points();
-                if (st.stageRose()) {
-                    IllnessModel.event(s, st.stageAfter() == 1 ? EV_NIP : st.stageAfter() == 2 ? EV_SUPERFICIAL : EV_DEEP);
-                }
                 if (st.digitLost()) {
                     digits = Digits.loseNext(digits, p);
                     IllnessModel.event(s, EV_DIGIT);
@@ -62,6 +78,12 @@ public final class FrostStep {
             }
         }
         if (changed) {
+            int[] zoneAfter = zoneStages(frost);
+            for (Zone z : Zone.values()) {
+                int b = zoneBefore[z.ordinal()], a = zoneAfter[z.ordinal()];
+                if (a > b) for (int st = b + 1; st <= a; st++) IllnessModel.event(s, eventKey(z, st - 1, st));
+                else if (a < b) IllnessModel.event(s, eventKey(z, b, a));
+            }
             BodyRecord r = s.parts.withFrost(frost).withDigits(digits);
             s.parts = r.withProblems(problems.size() > 16 ? problems.subList(0, 16) : problems);
         }
