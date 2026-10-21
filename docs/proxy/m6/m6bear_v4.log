@@ -1,0 +1,21 @@
+seed 3141592: pile -1092, 151, 789 (water -1092, 149, 790), player -1062, 150, 789, start minute 177845
+seed 3141592: bear seen true, reached false (min distance 19 m, first seen 145 m, reach at game minute -1), player within 60 m of a bear on 15 checks, 23 new HUD lines, 0 encounter events; game minutes run 2889
+seed 3141593: pile -1739, 132, 784 (water -1738, 131, 784), player -1713, 134, 799, start minute 177844
+seed 3141593: bear seen true, reached false (min distance 58 m, first seen 94 m, reach at game minute -1), game minutes run 2883 (stopped at two days)
+seed 3141594: pile -1848, 174, 1053 (water -1848, 173, 1054), player -1818, 175, 1053, start minute 177844
+seed 3141594: bear seen true, reached false (min distance 41 m, first seen 139 m, reach at game minute -1), game minutes run 2883 (stopped at two days)
+seed 3141595: pile -1893, 128, 1057 (water -1892, 127, 1058), player -1867, 129, 1072, start minute 177844
+seed 3141595: bear seen true, reached false (min distance 54 m, first seen 94 m, reach at game minute -1), game minutes run 2889 (stopped at two days)
+seed 3141596: pile -1302, 295, 1582 (water -1303, 294, 1582), player -1276, 297, 1597, start minute 177844
+seed 3141596: bear seen true, reached false (min distance 29 m, first seen 108 m, reach at game minute -1), game minutes run 2880 (stopped at two days)
+seed 3141597: pile -185, 173, 861 (water -184, 172, 862), player -155, 175, 861, start minute 177844
+seed 3141597: bear seen true, reached false (min distance 49 m, first seen 77 m, reach at game minute -1), game minutes run 2886 (stopped at two days)
+seed 3141598: pile -1707, 152, 676 (water -1706, 151, 677), player -1677, 153, 676, start minute 177844
+seed 3141598: bear seen true, reached false (min distance 65 m, first seen 142 m, reach at game minute -1), game minutes run 2886 (stopped at two days)
+seed 3141599: pile -839, 150, 695 (water -839, 149, 696), player -809, 150, 695, start minute 177844
+seed 3141599: bear seen true, reached false (min distance 79 m, first seen 104 m, reach at game minute -1), game minutes run 2886 (stopped at two days)
+seed 3141600: pile -1835, 151, 589 (water -1834, 150, 590), player -1809, 152, 604, start minute 177844
+seed 3141600: bear seen true, reached false (min distance 70 m, first seen 108 m, reach at game minute -1), game minutes run 2883 (stopped at two days)
+seed 3141601: pile -201, 151, 768 (water -200, 150, 768), player -175, 152, 783, start minute 177844
+seed 3141601: bear seen true, reached false (min distance 120 m, first seen 136 m, reach at game minute -1), game minutes run 2883 (stopped at two days)
+RESULT FAIL : bear reached the uncleared spot in 0 of 10 seeds (blueprint: 7 of 10 in 2 days)
