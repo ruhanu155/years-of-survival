@@ -1,0 +1,179 @@
+  kit: yearofice:pilot_bread x38
+  kit: yearofice:cord x10
+  kit: yearofice:cooking_pot x1
+  kit: yearofice:plant_guide x1
+  kit: yearofice:fixed_blade_knife x1
+  kit: yearofice:solar_panel_small x1
+  kit: yearofice:crate_backpack x1
+  kit: yearofice:medkit x1
+  kit: yearofice:hatchet x1
+  kit: yearofice:hiking_boots x1
+  kit: yearofice:rain_shell x1
+STASH 5 kit stacks (cooking pot, seeds, panel, lamp, guide ...) left in a barrel at -1086, 156, 814; free pack slots 32
+STEP 1 [BarrelBlockEntity loot (crate kit)] survival start, crate kit opened (22 stacks), hatchet in slot 9, start minute 727.0, commands off
+STEP 2 [level scan (what the eye sees)] looked for gravel bars within 110 m of the start: 13123 gravel blocks on the surface
+  dig 1 at -1086, 149, 793: destroyBlock true, block now Block{minecraft:air}, item entities within 3 m 0, held 0 minecraft:air
+  dig 2 at -1085, 149, 793: destroyBlock true, block now Block{minecraft:air}, item entities within 3 m 0, held 0 minecraft:air
+  dig 3 at -1085, 149, 792: destroyBlock true, block now Block{minecraft:air}, item entities within 3 m 0, held 0 minecraft:air
+  dig 4 at -1089, 147, 791: destroyBlock true, block now Block{minecraft:air}, item entities within 3 m 0, held 0 minecraft:air
+STEP 3 [block break, loot_table/blocks/gravel.json] dug 193 gravel blocks by hand: 16 rough stone, 3 flint nodules
+  left 14 surplus rough stones on the bar (the pack carries about 30 kg)
+STEP 4 [FellingService.trunk scan] looked for trees of 8-40 cm within 90 m: 1 (0 birch)
+WALK no birch in sight; looking for a birch stand, hop 1: 112.6 m = 1.6 game min (teleported)
+STEP 5 [FellingService.trunk scan] looked for trees of 8-40 cm within 90 m: 1 (0 birch)
+WALK no birch in sight; looking for a birch stand, hop 2: 207.8 m = 2.9 game min (teleported)
+STEP 6 [FellingService.trunk scan] looked for trees of 8-40 cm within 90 m: 1 (0 birch)
+FINDING no birch of fellable size within 90 m of four spots around the start: the bow stave's birch_split has no source here
+TREE BLACK_SPRUCE at -1052, 151, 848 dia 11.0 cm, 2 swings
+  log landed: BLACK_SPRUCE 9.0 m, 18 rounds left
+  wood so far: 1 trees, 14 splits piled, 3 rounds left
+  8 splits left in a pile at the stump (the pack carries about 30 kg)
+STEP 7 [WoodJobs Fell/Limb/Buck/Split via WorkService] wood: 1 trees felled, limbed, bucked and split with the crate hatchet; 0 birch splits in the pack (0 cut), 6 splits in all
+GRANT birch_split x2: no birch split cut (stave and spear handle need birch); wood on hand is other species
+GRANT tinder_bundle x1: no recipe or gathering path for tinder was found by this driver (field note only)
+  PACK FULL: 1 yearofice:tinder_bundle dropped at the feet
+GRANT match x1: none in the kit
+STEP 8 [FireRingBlockEntity.addPart/strikeMatch (the ring's own api)] laid tinder, kindling and 4 splits in a fire ring at -1088, 152, 818 and struck a match: The tinder smoulders. Blow on it. (TINDER)
+STEP 9 [GateService.isOpen] bushcraft gate open after the fire: true
+STEP 10 [StationCraft.start/advance] craft flint_knife x1 via recipe yearofice:station/flint_knife (9.8 game min of work)
+STEP 11 [StationCraft.start/advance] craft arrowhead x4 via recipe yearofice:station/arrowhead_knap (11.8 game min of work)
+STEP 12 [StationCraft.start/advance] craft arrowhead x4 via recipe yearofice:station/arrowhead_knap (11.5 game min of work)
+GRANT minecraft:stick x10: sticks for stakes (2) and arrow shafts (6): limbing gives kindling, fallen_limb comes only from lightning, a plant pull gives one stick
+STEP 13 [StationCraft.start/advance] craft stake x2 via recipe yearofice:station/stakes (1.8 game min of work)
+STEP 14 [StationCraft.start/advance] craft stake x2 via recipe yearofice:station/stakes (1.8 game min of work)
+GRANT yearofice:stake x4: ingredient of workbench with no obtainable source found by this driver
+  PACK FULL: 4 yearofice:stake dropped at the feet
+FINDING craft refused workbench: INPUTS (stations [yearofice:hands, yearofice:fire_ring])
+GRANT workbench x1: StationCraft refused: INPUTS
+  PACK FULL: 1 yearofice:workbench dropped at the feet
+STEP 15 [workbench BlockItem useItemOn] placed the crafted workbench at -1085, 152, 818
+WALK looking for a snowshoe_hare: 53.7 m = 0.7 game min (teleported)
+WALK looking for a snowshoe_hare: 63.1 m = 0.9 game min (teleported)
+WALK looking for a snowshoe_hare: 63.1 m = 0.9 game min (teleported)
+WALK looking for a snowshoe_hare: 63.1 m = 0.9 game min (teleported)
+WALK looking for a snowshoe_hare: 63.1 m = 0.9 game min (teleported)
+WALK looking for a snowshoe_hare: 104.8 m = 1.5 game min (teleported)
+WALK looking for a snowshoe_hare: 126.2 m = 1.8 game min (teleported)
+  hatchet blows on a snowshoe_hare at -1094, 151, 969: alive false
+  picked up a yearofice:snowshoe_hare carcass
+STEP 16 [Butchering.finish] dressed a yearofice:snowshoe_hare from the pack: now 0 sinew, 0 feathers
+WALK looking for a snowshoe_hare: 97.1 m = 1.3 game min (teleported)
+WALK looking for a snowshoe_hare: 126.2 m = 1.8 game min (teleported)
+STEP 17 [player melee on YoiAnimal, CarcassEntity.interact, Butchering.finish] small game by hand (hatchet blows): 0 sinew, 0 feathers after 10 tries
+GRANT sinew x2: no hare killed and butchered within 10 tries
+  PACK FULL: 2 yearofice:sinew dropped at the feet
+GRANT feather x6: no bird killed and butchered within 10 tries
+  PACK FULL: 6 yearofice:feather dropped at the feet
+GRANT yearofice:sinew x2: ingredient of sinew_cord with no obtainable source found by this driver
+  PACK FULL: 2 yearofice:sinew dropped at the feet
+FINDING craft refused sinew_cord: INPUTS (stations [yearofice:workbench, yearofice:hands])
+GRANT sinew_cord x1: StationCraft refused: INPUTS
+  PACK FULL: 1 yearofice:sinew_cord dropped at the feet
+GRANT yearofice:birch_split x1: ingredient of bow_stave with no obtainable source found by this driver
+  PACK FULL: 1 yearofice:birch_split dropped at the feet
+FINDING craft refused bow_stave: INPUTS (stations [yearofice:workbench, yearofice:hands])
+GRANT bow_stave x1: StationCraft refused: INPUTS
+  PACK FULL: 1 yearofice:bow_stave dropped at the feet
+GRANT yearofice:feather x3: ingredient of fletching with no obtainable source found by this driver
+  PACK FULL: 3 yearofice:feather dropped at the feet
+FINDING craft refused fletching: INPUTS (stations [yearofice:workbench, yearofice:hands])
+GRANT fletching x1: StationCraft refused: INPUTS
+  PACK FULL: 1 yearofice:fletching dropped at the feet
+GRANT yearofice:feather x3: ingredient of fletching with no obtainable source found by this driver
+  PACK FULL: 3 yearofice:feather dropped at the feet
+FINDING craft refused fletching: INPUTS (stations [yearofice:workbench, yearofice:hands])
+GRANT fletching x1: StationCraft refused: INPUTS
+  PACK FULL: 1 yearofice:fletching dropped at the feet
+GRANT yearofice:arrowhead x6: ingredient of arrow with no obtainable source found by this driver
+  PACK FULL: 6 yearofice:arrowhead dropped at the feet
+GRANT yearofice:fletching x2: ingredient of arrow with no obtainable source found by this driver
+  PACK FULL: 2 yearofice:fletching dropped at the feet
+FINDING craft refused arrow: INPUTS (stations [yearofice:workbench, yearofice:hands])
+GRANT arrow x1: StationCraft refused: INPUTS
+  PACK FULL: 6 yearofice:arrow dropped at the feet
+GRANT yearofice:bow_stave x1: ingredient of self_bow with no obtainable source found by this driver
+  PACK FULL: 1 yearofice:bow_stave dropped at the feet
+GRANT yearofice:sinew_cord x1: ingredient of self_bow with no obtainable source found by this driver
+  PACK FULL: 1 yearofice:sinew_cord dropped at the feet
+FINDING craft refused self_bow: INPUTS (stations [yearofice:workbench, yearofice:hands])
+GRANT self_bow x1: StationCraft refused: INPUTS
+  PACK FULL: 1 yearofice:self_bow dropped at the feet
+STEP 18 [StationCraft chain] bow chain done: self_bow false, arrows 0 (crafting labour 36.5 game min)
+WALK to a creek bank, spot 0: 26.9 m = 0.4 game min (teleported)
+WALK to a creek bank, spot 1: 70.2 m = 1.0 game min (teleported)
+WALK to a creek bank, spot 2: 70.6 m = 1.0 game min (teleported)
+WALK to a creek bank, spot 3: 70.0 m = 1.0 game min (teleported)
+WALK to a creek bank, spot 4: 70.0 m = 1.0 game min (teleported)
+WALK to a creek bank, spot 5: 70.2 m = 1.0 game min (teleported)
+WALK to a creek bank, spot 6: 70.0 m = 1.0 game min (teleported)
+WALK to a creek bank, spot 7: 70.2 m = 1.0 game min (teleported)
+WALK to a creek bank, spot 8: 89.2 m = 1.2 game min (teleported)
+WALK to a creek bank, spot 9: 70.0 m = 1.0 game min (teleported)
+WALK to a creek bank, spot 10: 70.4 m = 1.0 game min (teleported)
+WALK to a creek bank, spot 11: 70.2 m = 1.0 game min (teleported)
+WALK to a creek bank, spot 12: 71.3 m = 1.0 game min (teleported)
+WALK to a creek bank, spot 13: 71.3 m = 1.0 game min (teleported)
+WALK to a creek bank, spot 14: 149.2 m = 2.1 game min (teleported)
+WALK to a creek bank, spot 15: 58.4 m = 0.8 game min (teleported)
+WALK to a creek bank, spot 16: 85.2 m = 1.2 game min (teleported)
+WALK to a creek bank, spot 17: 101.0 m = 1.4 game min (teleported)
+WALK to a creek bank, spot 18: 90.1 m = 1.3 game min (teleported)
+WALK to a creek bank, spot 19: 64.8 m = 0.9 game min (teleported)
+WALK to a creek bank, spot 20: 68.2 m = 0.9 game min (teleported)
+WALK to a creek bank, spot 21: 64.3 m = 0.9 game min (teleported)
+FINDING no moose sign and no moose within 150 m of 22 riparian scouting spots
+---- LEDGER (18 steps) ----
+STEP 1 [BarrelBlockEntity loot (crate kit)] survival start, crate kit opened (22 stacks), hatchet in slot 9, start minute 727.0, commands off
+STEP 2 [level scan (what the eye sees)] looked for gravel bars within 110 m of the start: 13123 gravel blocks on the surface
+STEP 3 [block break, loot_table/blocks/gravel.json] dug 193 gravel blocks by hand: 16 rough stone, 3 flint nodules
+STEP 4 [FellingService.trunk scan] looked for trees of 8-40 cm within 90 m: 1 (0 birch)
+STEP 5 [FellingService.trunk scan] looked for trees of 8-40 cm within 90 m: 1 (0 birch)
+STEP 6 [FellingService.trunk scan] looked for trees of 8-40 cm within 90 m: 1 (0 birch)
+STEP 7 [WoodJobs Fell/Limb/Buck/Split via WorkService] wood: 1 trees felled, limbed, bucked and split with the crate hatchet; 0 birch splits in the pack (0 cut), 6 splits in all
+STEP 8 [FireRingBlockEntity.addPart/strikeMatch (the ring's own api)] laid tinder, kindling and 4 splits in a fire ring at -1088, 152, 818 and struck a match: The tinder smoulders. Blow on it. (TINDER)
+STEP 9 [GateService.isOpen] bushcraft gate open after the fire: true
+STEP 10 [StationCraft.start/advance] craft flint_knife x1 via recipe yearofice:station/flint_knife (9.8 game min of work)
+STEP 11 [StationCraft.start/advance] craft arrowhead x4 via recipe yearofice:station/arrowhead_knap (11.8 game min of work)
+STEP 12 [StationCraft.start/advance] craft arrowhead x4 via recipe yearofice:station/arrowhead_knap (11.5 game min of work)
+STEP 13 [StationCraft.start/advance] craft stake x2 via recipe yearofice:station/stakes (1.8 game min of work)
+STEP 14 [StationCraft.start/advance] craft stake x2 via recipe yearofice:station/stakes (1.8 game min of work)
+STEP 15 [workbench BlockItem useItemOn] placed the crafted workbench at -1085, 152, 818
+STEP 16 [Butchering.finish] dressed a yearofice:snowshoe_hare from the pack: now 0 sinew, 0 feathers
+STEP 17 [player melee on YoiAnimal, CarcassEntity.interact, Butchering.finish] small game by hand (hatchet blows): 0 sinew, 0 feathers after 10 tries
+STEP 18 [StationCraft chain] bow chain done: self_bow false, arrows 0 (crafting labour 36.5 game min)
+---- GRANTS ----
+GRANT birch_split x2
+GRANT tinder_bundle x1
+GRANT match x1
+GRANT minecraft:stick x10
+GRANT yearofice:stake x4
+GRANT workbench x1
+GRANT sinew x2
+GRANT feather x6
+GRANT yearofice:sinew x2
+GRANT sinew_cord x1
+GRANT yearofice:birch_split x1
+GRANT bow_stave x1
+GRANT yearofice:feather x6
+GRANT fletching x2
+GRANT yearofice:arrowhead x6
+GRANT yearofice:fletching x2
+GRANT arrow x1
+GRANT yearofice:bow_stave x1
+GRANT yearofice:sinew_cord x1
+GRANT self_bow x1
+---- FINDINGS ----
+no birch of fellable size within 90 m of four spots around the start: the bow stave's birch_split has no source here
+craft refused workbench: INPUTS (stations [yearofice:hands, yearofice:fire_ring])
+craft refused sinew_cord: INPUTS (stations [yearofice:workbench, yearofice:hands])
+craft refused bow_stave: INPUTS (stations [yearofice:workbench, yearofice:hands])
+craft refused fletching: INPUTS (stations [yearofice:workbench, yearofice:hands])
+craft refused fletching: INPUTS (stations [yearofice:workbench, yearofice:hands])
+craft refused arrow: INPUTS (stations [yearofice:workbench, yearofice:hands])
+craft refused self_bow: INPUTS (stations [yearofice:workbench, yearofice:hands])
+no moose sign and no moose within 150 m of 22 riparian scouting spots
+ASSERT no /yoi command after setup: ok
+ASSERT moose taken and dressed: FAILED
+ASSERT every step logged with its api: 18 steps
+labour: walking 37.8 game min, crafting 36.5 game min; shots fired 0; last shot: none
+RESULT FAIL : no moose was taken; grants {birch_split=2, tinder_bundle=1, match=1, minecraft:stick=10, yearofice:stake=4, workbench=1, sinew=2, feather=6, yearofice:sinew=2, sinew_cord=1, yearofice:birch_split=1, bow_stave=1, yearofice:feather=6, fletching=2, yearofice:arrowhead=6, yearofice:fletching=2, arrow=1, yearofice:bow_stave=1, yearofice:sinew_cord=1, self_bow=1}; []
