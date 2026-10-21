@@ -929,5 +929,20 @@
   "item.yearofice.wheat_seed": "Wheat Seed",
   "item.yearofice.wild_potato_root": "Wild Potato Root",
   "item.yearofice.wild_strawberry": "Wild Strawberry",
-  "item.yearofice.yarrow_leaves": "Yarrow Leaves"
+  "item.yearofice.yarrow_leaves": "Yarrow Leaves",
+  "block.yearofice.tin_stove": "Tin Stove",
+  "block.yearofice.barrel_stove": "Barrel Stove",
+  "block.yearofice.masonry_stove": "Masonry Stove",
+  "block.yearofice.chimney_pipe": "Stovepipe",
+  "block.yearofice.crate": "Crate",
+  "block.yearofice.barrel": "Barrel",
+  "block.yearofice.shelf": "Shelf",
+  "block.yearofice.hanging_bar": "Hanging Bar",
+  "block.yearofice.cache_legs": "Cache Platform",
+  "block.yearofice.cache_pole": "Cache Pole",
+  "block.yearofice.placed_lantern": "Hung Lantern",
+  "block.yearofice.smokehouse": "Smokehouse",
+  "block.yearofice.firewood_shed": "Firewood Shed",
+  "block.yearofice.root_cellar": "Root Cellar Hatch",
+  "block.yearofice.permafrost_cellar": "Permafrost Cellar Hatch"
 }

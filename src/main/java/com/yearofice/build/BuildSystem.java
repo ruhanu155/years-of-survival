@@ -18,6 +18,7 @@ public final class BuildSystem {
 
     public static void init(IEventBus modBus) {
         BuildRegistry.register(modBus);
+        com.yearofice.build.store.StoreSystem.init(modBus);
         com.yearofice.build.craft.CraftSystem.init(modBus);
         // A lifted box's hold (A7) is checked before the wood jobs'.
         var woodResolver = com.yearofice.build.work.WorkService.resolver;
@@ -28,6 +29,7 @@ public final class BuildSystem {
         modBus.addListener((RegisterDataMapTypesEvent e) -> e.register(BedData.MAP));
         modBus.addListener(BuildSystem::creativeTabs);
         NeoForge.EVENT_BUS.addListener(BuildCommands::register);
+        NeoForge.EVENT_BUS.addListener(com.yearofice.build.dugout.DugoutCommands::register);
     }
 
     private static void creativeTabs(BuildCreativeModeTabContentsEvent e) {

@@ -1,0 +1,13 @@
+{
+ "variants": {
+  "leg=barked": {
+   "model": "yearofice:block/cache_pole_barked"
+  },
+  "leg=peeled": {
+   "model": "yearofice:block/cache_pole_peeled"
+  },
+  "leg=banded": {
+   "model": "yearofice:block/cache_pole_banded"
+  }
+ }
+}
