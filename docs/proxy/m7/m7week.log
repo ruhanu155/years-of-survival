@@ -1,4 +1,6 @@
 GRANT fur_mittens x1
+GRANT fur_hat x1
+GRANT dried_meat x20
 GRANT parka x1
 GRANT mukluks x1
 GRANT pemmican x30
@@ -15,41 +17,216 @@ START minute 308520 clock 06:00 absDay 214 dayOfYear 214 kg 77.0 bmi 23.0
   kit: yearofice:fur_mittens x1
   kit: yearofice:medkit x1
   kit: yearofice:cord x10
+  kit: yearofice:fur_hat x1
+  kit: yearofice:dried_meat x20
   kit: yearofice:parka x1
   kit: yearofice:mukluks x1
   kit: yearofice:pemmican x30
   kit: yearofice:dried_fish x20
   kit: yearofice:match x12
-EQUIP no equip path exists: WearMap.WEAR is registered but only sim.body.StartKit (fleece, shell, work gloves safe to -22) reaches the body model; mittens/parka/mukluks stay in the pack
+  kit: yearofice:hiking_boots x1
+  kit: yearofice:rain_shell x1
+EQUIP parka by use action: CONSUME
+EQUIP mukluks by use action: CONSUME
+EQUIP fur_mittens by use action: CONSUME
+EQUIP fur_hat by use action: CONSUME
+WORN head INNER yearofice:wool_beanie warmth 2.0 safe_to NaN
+WORN head OUTER yearofice:fur_hat warmth 4.0 safe_to -30.0
+WORN torso INNER yearofice:fleece_jacket warmth 5.0 safe_to NaN
+WORN torso OUTER yearofice:parka warmth 15.0 safe_to NaN
+WORN hands INNER yearofice:work_gloves warmth 1.0 safe_to -22.0
+WORN hands OUTER yearofice:fur_mittens warmth 4.0 safe_to -25.0
+WORN legs INNER yearofice:work_pants warmth 2.0 safe_to NaN
+WORN feet INNER yearofice:wool_socks warmth 2.0 safe_to NaN
+WORN feet OUTER yearofice:mukluks warmth 6.0 safe_to -35.0
 camp site cleared: 650 tree blocks felled within 8 m
 camp: bed -1100, 150, 802 ring -1099, 150, 802 roofed (plank roof y+3), open ground for chores -1096, 152, 808
 TABLE air -14 C no wind, resting, no fire: feels-like start kit -9.5 C, with parka+mukluks+mittens 14.6 C; hands exposure -14.0 vs -14.0 (safe-to -22 vs -25); kit dial 4.5
 TABLE air -25 C no wind, resting, no fire: feels-like start kit -20.5 C, with parka+mukluks+mittens 3.6 C; hands exposure -25.0 vs -25.0 (safe-to -22 vs -25); kit dial 4.5
-  [d1 06:00] air -14.4 warmth 100 water 100 energy 10.0 kg 77.0 kcal24 -6 awake fire OUT 0.0 handsFrost 0/0
+  [d1 06:00] air -14.4 warmth 100 water 100 energy 10.0 kg 77.0 kcal24 -6 awake fire OUT 0.0 handsFrost 0/0 cap 10.0
 [06:30] fire lit match: yes TINDER
-  [d1 07:00] air -14.2 warmth 86 water 97 energy 9.8 kg 77.0 kcal24 -96 awake fire FIRE 1.1 handsFrost 0/0
-  [d1 08:00] air -13.9 warmth 82 water 98 energy 9.6 kg 77.2 kcal24 374 awake fire COALS 0.0 handsFrost 0/0
-  [d1 09:00] air -13.5 warmth 80 water 95 energy 9.4 kg 77.1 kcal24 284 awake fire FIRE 4.0 handsFrost 0/0
-  [d1 10:00] air -13.0 warmth 79 water 96 energy 9.2 kg 77.1 kcal24 194 awake fire FIRE 1.8 handsFrost 0/0
+  [d1 07:00] air -14.2 warmth 100 water 97 energy 9.8 kg 77.0 kcal24 -96 awake fire FIRE 1.1 handsFrost 0/0 cap 10.0
+  [d1 08:00] air -13.9 warmth 100 water 98 energy 9.6 kg 77.0 kcal24 102 awake fire COALS 0.0 handsFrost 0/0 cap 10.0
+  [d1 09:00] air -13.5 warmth 100 water 95 energy 9.4 kg 77.0 kcal24 12 awake fire FIRE 4.0 handsFrost 0/0 cap 10.0
+  [d1 10:00] air -13.0 warmth 100 water 96 energy 9.2 kg 77.0 kcal24 -78 awake fire FIRE 1.8 handsFrost 0/0 cap 10.0
 [d1 10:00] out to the open ground for wood, back at 12:00
-  [d1 11:00] air -12.6 warmth 59 water 98 energy 9.0 kg 77.0 kcal24 93 awake fire COALS 0.0 handsFrost 0/0
-  [d1 12:00] air -12.1 warmth 40 water 95 energy 8.8 kg 77.0 kcal24 -94 awake fire FIRE 4.0 handsFrost 0/0
-  [d1 13:00] air -11.8 warmth 40 water 96 energy 8.6 kg 77.1 kcal24 143 awake fire FIRE 1.8 handsFrost 0/0
-  [d1 14:00] air -11.6 warmth 40 water 98 energy 8.4 kg 76.9 kcal24 -170 awake fire COALS 0.0 handsFrost 0/0
-  [d1 15:00] air -11.5 warmth 40 water 95 energy 8.2 kg 76.8 kcal24 -487 awake fire FIRE 4.0 handsFrost 0/0
-  [d1 16:00] air -11.5 warmth 40 water 96 energy 8.0 kg 76.7 kcal24 -804 awake fire FIRE 1.8 handsFrost 0/0
+  [d1 11:00] air -12.6 warmth 100 water 98 energy 9.0 kg 76.9 kcal24 -178 awake fire COALS 0.0 handsFrost 0/0 cap 10.0
+  [d1 12:00] air -12.1 warmth 100 water 95 energy 8.8 kg 76.9 kcal24 -268 awake fire FIRE 4.0 handsFrost 0/0 cap 10.0
+  [d1 13:00] air -11.8 warmth 100 water 96 energy 8.6 kg 77.0 kcal24 -81 awake fire FIRE 1.8 handsFrost 0/0 cap 10.0
+  [d1 14:00] air -11.6 warmth 100 water 98 energy 8.4 kg 76.9 kcal24 -171 awake fire COALS 0.0 handsFrost 0/0 cap 10.0
+  [d1 15:00] air -11.5 warmth 100 water 95 energy 8.2 kg 76.9 kcal24 -261 awake fire FIRE 4.0 handsFrost 0/0 cap 10.0
+  [d1 16:00] air -11.5 warmth 100 water 96 energy 8.0 kg 76.9 kcal24 -351 awake fire FIRE 1.8 handsFrost 0/0 cap 10.0
 SHOT m7_first_dusk aimed at the fire from the bed end, 2 m, yaw -90.0 pitch 21.8
-  [d1 17:00] air -11.7 warmth 39 water 98 energy 7.8 kg 76.5 kcal24 -1125 awake fire COALS 0.0 handsFrost 0/0
-  [d1 18:00] air -11.8 warmth 39 water 95 energy 7.6 kg 76.4 kcal24 -1447 awake fire FIRE 4.1 handsFrost 0/0
-  [d1 19:00] air -12.1 warmth 39 water 96 energy 7.4 kg 76.7 kcal24 -650 awake fire FIRE 1.9 handsFrost 0/0
-  [d1 20:00] air -12.4 warmth 39 water 98 energy 7.2 kg 76.6 kcal24 -973 awake fire COALS 0.0 handsFrost 0/0
-  [d1 21:00] air -12.7 warmth 38 water 95 energy 7.0 kg 76.5 kcal24 -1302 awake fire FIRE 4.1 handsFrost 0/0
-  [d1 22:00] air -13.0 warmth 37 water 96 energy 6.8 kg 76.3 kcal24 -1637 awake fire FIRE 1.9 handsFrost 0/0
-  [d1 23:00] air -13.3 warmth 35 water 93 energy 6.5 kg 76.2 kcal24 -1989 awake fire COALS 0.0 handsFrost 0/0
-  [d2 00:00] air -24.9 warmth 28 water 89 energy 6.3 kg 76.0 kcal24 -2359 awake fire FIRE 4.1 handsFrost 0/0
-DAY 1 kcal_in 2240 kcal_out 4599 net -2359 kg 76.01 bmi 22.70 warmth_min 27.7 hands_margin_worn_kit 1.0 C hands_margin_with_mittens 5.2 C hands_frost_max 0 air_min -19.7 water_L 6.5 | chores 245 min of 960 waking, free 715 | {fire=30.0, water=8.0, water_wait=74.0, food=13.2, wood=120.0}
-SHOT m7_cold_d2_vitals aimed at the fire from the bed end, 2 m, yaw -90.0 pitch 21.8
-  [d2 01:00] air -25.7 warmth 12 water 86 energy 6.1 kg 75.9 kcal24 -2752 awake fire FIRE 1.9 handsFrost 0/0
-DAY 2 kcal_in 2240 kcal_out 5301 net -3061 kg 75.72 bmi 22.61 warmth_min 0.0 hands_margin_worn_kit -5.1 C hands_margin_with_mittens -1.2 C hands_frost_max 0 air_min -26.1 water_L 0.0 | chores 0 min of 960 waking, free 960 | {}
-RESULT FAIL [collapse: SOS state 1 on day 2 at 01:48]
-SUMMARY crossings 3 covered 3 unmessaged 0 | hands frost max (week) 0, on the -25 C day 0 | worst hands margin vs safe-to: worn kit -5.1 C, mittens -1.2 C | min BMI 22.61 | bites 4 matches 1
+  [d1 17:00] air -11.7 warmth 100 water 98 energy 7.8 kg 76.8 kcal24 -444 awake fire COALS 0.0 handsFrost 0/0 cap 10.0
+  [d1 18:00] air -11.8 warmth 100 water 95 energy 7.6 kg 76.8 kcal24 -534 awake fire FIRE 4.1 handsFrost 0/0 cap 10.0
+  [d1 19:00] air -12.1 warmth 100 water 96 energy 7.4 kg 77.0 kcal24 -48 awake fire FIRE 1.9 handsFrost 0/0 cap 10.0
+  [d1 20:00] air -12.4 warmth 100 water 98 energy 7.2 kg 76.9 kcal24 -138 awake fire COALS 0.0 handsFrost 0/0 cap 10.0
+  [d1 21:00] air -12.7 warmth 100 water 95 energy 7.0 kg 76.9 kcal24 -228 awake fire FIRE 4.1 handsFrost 0/0 cap 10.0
+  [d1 22:00] air -13.0 warmth 100 water 96 energy 6.8 kg 76.9 kcal24 -318 awake fire FIRE 1.9 handsFrost 0/0 cap 10.0
+  [d1 23:00] air -13.3 warmth 100 water 93 energy 7.5 kg 76.8 kcal24 -381 asleep fire COALS 0.0 handsFrost 0/0 cap 10.0
+  [d2 00:00] air -24.9 warmth 100 water 89 energy 7.4 kg 76.8 kcal24 -467 awake fire FIRE 4.1 handsFrost 0/0 cap 10.0
+DAY 1 kcal_in 1152 kcal_out 1619 net -467 kg 76.80 bmi 22.93 warmth_min 100.0 hands_margin_worn_kit 5.2 C hands_margin_with_mittens 5.2 C hands_frost_max 0 air_min -19.7 water_L 6.5 | chores 245 min of 960 waking, free 715 | {fire=30.0, water=8.0, water_wait=74.0, food=13.2, wood=120.0}
+  [d2 01:00] air -25.7 warmth 100 water 86 energy 8.2 kg 76.8 kcal24 -530 asleep fire FIRE 1.9 handsFrost 0/0 cap 10.0
+  [d2 02:00] air -26.3 warmth 100 water 82 energy 9.1 kg 76.8 kcal24 -590 asleep fire COALS 0.0 handsFrost 0/0 cap 10.0
+  [d2 03:00] air -26.8 warmth 100 water 79 energy 9.0 kg 76.7 kcal24 -677 awake fire FIRE 4.1 handsFrost 0/0 cap 10.0
+  [d2 04:00] air -27.1 warmth 100 water 75 energy 9.8 kg 76.7 kcal24 -740 asleep fire FIRE 1.9 handsFrost 0/0 cap 10.0
+  [d2 05:00] air -27.3 warmth 100 water 72 energy 10.0 kg 76.7 kcal24 -800 asleep fire COALS 0.0 handsFrost 0/0 cap 10.0
+  [d2 06:00] air -27.0 warmth 100 water 68 energy 9.8 kg 76.6 kcal24 -887 awake fire FIRE 4.1 handsFrost 0/0 cap 10.0
+  [d2 07:00] air -26.4 warmth 100 water 82 energy 9.6 kg 76.6 kcal24 -876 awake fire FIRE 1.9 handsFrost 0/0 cap 10.0
+  [d2 08:00] air -25.5 warmth 100 water 98 energy 9.4 kg 76.8 kcal24 -588 awake fire COALS 0.0 handsFrost 0/0 cap 10.0
+  [d2 09:00] air -24.3 warmth 100 water 95 energy 9.2 kg 76.8 kcal24 -588 awake fire FIRE 4.1 handsFrost 0/0 cap 10.0
+  [d2 10:00] air -23.1 warmth 100 water 96 energy 9.0 kg 76.7 kcal24 -588 awake fire FIRE 1.9 handsFrost 0/0 cap 10.0
+[d2 10:00] out to the open ground for wood, back at 12:00
+  [d2 11:00] air -21.7 warmth 100 water 98 energy 8.8 kg 76.7 kcal24 -588 awake fire COALS 0.0 handsFrost 0/0 cap 7.0
+  [d2 12:00] air -20.6 warmth 100 water 95 energy 8.6 kg 76.6 kcal24 -587 awake fire FIRE 4.1 handsFrost 0/0 cap 7.0
+  [d2 13:00] air -19.7 warmth 100 water 96 energy 8.4 kg 76.8 kcal24 -299 awake fire FIRE 1.9 handsFrost 0/0 cap 7.0
+  [d2 14:00] air -19.1 warmth 100 water 98 energy 8.2 kg 76.8 kcal24 -299 awake fire COALS 0.0 handsFrost 0/0 cap 7.0
+  [d2 15:00] air -18.9 warmth 100 water 95 energy 8.0 kg 76.8 kcal24 -299 awake fire FIRE 4.1 handsFrost 0/0 cap 7.0
+  [d2 16:00] air -19.0 warmth 100 water 96 energy 7.8 kg 76.7 kcal24 -299 awake fire FIRE 1.9 handsFrost 0/0 cap 7.0
+  [d2 17:00] air -19.3 warmth 100 water 98 energy 7.6 kg 76.7 kcal24 -296 awake fire COALS 0.0 handsFrost 0/0 cap 7.0
+  [d2 18:00] air -19.8 warmth 100 water 95 energy 7.4 kg 76.6 kcal24 -296 awake fire FIRE 4.1 handsFrost 0/0 cap 7.0
+  [d2 19:00] air -20.4 warmth 100 water 96 energy 7.2 kg 76.9 kcal24 -295 awake fire FIRE 1.9 handsFrost 0/0 cap 7.0
+  [d2 20:00] air -21.2 warmth 100 water 98 energy 7.0 kg 76.8 kcal24 -295 awake fire COALS 0.0 handsFrost 0/0 cap 7.0
+  [d2 21:00] air -22.1 warmth 100 water 95 energy 6.8 kg 76.8 kcal24 -295 awake fire FIRE 4.1 handsFrost 0/0 cap 7.0
+  [d2 22:00] air -23.1 warmth 100 water 96 energy 6.6 kg 76.7 kcal24 -295 awake fire FIRE 1.9 handsFrost 0/0 cap 7.0
+  [d2 23:00] air -24.0 warmth 100 water 93 energy 7.0 kg 76.7 kcal24 -297 asleep fire COALS 0.0 handsFrost 0/0 cap 7.0
+  [d3 00:00] air -21.8 warmth 100 water 89 energy 6.8 kg 76.7 kcal24 -295 awake fire FIRE 4.1 handsFrost 0/0 cap 7.0
+DAY 2 kcal_in 1728 kcal_out 2023 net -295 kg 76.68 bmi 22.90 warmth_min 100.0 hands_margin_worn_kit -2.3 C hands_margin_with_mittens -2.3 C hands_frost_max 0 air_min -27.2 water_L 6.5 | chores 246 min of 960 waking, free 714 | {fire=30.0, water=8.0, water_wait=74.0, food=13.799999999999999, wood=120.0}
+  [d3 01:00] air -22.6 warmth 100 water 86 energy 7.0 kg 76.7 kcal24 -297 asleep fire FIRE 1.9 handsFrost 0/0 cap 7.0
+  [d3 02:00] air -23.3 warmth 100 water 82 energy 7.0 kg 76.6 kcal24 -297 asleep fire COALS 0.0 handsFrost 0/0 cap 7.0
+  [d3 03:00] air -23.8 warmth 100 water 79 energy 6.8 kg 76.6 kcal24 -295 awake fire FIRE 4.1 handsFrost 0/0 cap 7.0
+  [d3 04:00] air -24.1 warmth 100 water 75 energy 7.0 kg 76.6 kcal24 -296 asleep fire FIRE 1.9 handsFrost 0/0 cap 7.0
+  [d3 05:00] air -24.2 warmth 100 water 72 energy 7.0 kg 76.5 kcal24 -296 asleep fire COALS 0.0 handsFrost 0/0 cap 7.0
+  [d3 06:00] air -24.0 warmth 100 water 68 energy 6.8 kg 76.5 kcal24 -295 awake fire FIRE 4.1 handsFrost 0/0 cap 7.0
+  [d3 07:00] air -23.4 warmth 100 water 82 energy 6.6 kg 76.5 kcal24 -295 awake fire FIRE 1.9 handsFrost 0/0 cap 7.0
+  [d3 08:00] air -22.5 warmth 100 water 98 energy 6.4 kg 76.7 kcal24 -295 awake fire COALS 0.0 handsFrost 0/0 cap 7.0
+  [d3 09:00] air -21.3 warmth 100 water 95 energy 6.2 kg 76.6 kcal24 -295 awake fire FIRE 4.1 handsFrost 0/0 cap 7.0
+  [d3 10:00] air -20.0 warmth 100 water 96 energy 6.0 kg 76.6 kcal24 -295 awake fire FIRE 1.9 handsFrost 0/0 cap 7.0
+[d3 10:00] out to the open ground for wood, back at 12:00
+  [d3 11:00] air -18.6 warmth 100 water 98 energy 5.8 kg 76.6 kcal24 -295 awake fire COALS 0.0 handsFrost 0/0 cap 7.0
+  [d3 12:00] air -17.5 warmth 100 water 95 energy 5.6 kg 76.5 kcal24 -294 awake fire FIRE 4.1 handsFrost 0/0 cap 7.0
+SHOT m7_day3_camp aimed at the fire from the bed end, 2 m, yaw -90.0 pitch 21.8
+  [d3 13:00] air -16.6 warmth 100 water 96 energy 5.4 kg 76.7 kcal24 -298 awake fire FIRE 1.9 handsFrost 0/0 cap 7.0
+  [d3 14:00] air -16.0 warmth 100 water 98 energy 5.2 kg 76.7 kcal24 -298 awake fire COALS 0.0 handsFrost 0/0 cap 6.0
+  [d3 15:00] air -15.8 warmth 100 water 95 energy 5.0 kg 76.6 kcal24 -298 awake fire FIRE 4.2 handsFrost 0/0 cap 6.0
+  [d3 16:00] air -15.9 warmth 100 water 96 energy 4.8 kg 76.6 kcal24 -298 awake fire FIRE 2.0 handsFrost 0/0 cap 5.0
+  [d3 17:00] air -16.2 warmth 100 water 98 energy 4.6 kg 76.6 kcal24 -298 awake fire COALS 0.0 handsFrost 0/0 cap 5.0
+  [d3 18:00] air -16.7 warmth 100 water 95 energy 4.4 kg 76.5 kcal24 -298 awake fire FIRE 4.2 handsFrost 0/0 cap 5.0
+  [d3 19:00] air -17.4 warmth 100 water 96 energy 4.2 kg 76.7 kcal24 -298 awake fire FIRE 2.0 handsFrost 0/0 cap 5.0
+  [d3 20:00] air -18.2 warmth 100 water 98 energy 4.0 kg 76.7 kcal24 -297 awake fire COALS 0.0 handsFrost 0/0 cap 5.0
+  [d3 21:00] air -19.1 warmth 100 water 95 energy 3.8 kg 76.7 kcal24 -297 awake fire FIRE 4.2 handsFrost 0/0 cap 5.0
+  [d3 22:00] air -20.0 warmth 100 water 96 energy 3.6 kg 76.6 kcal24 -297 awake fire FIRE 2.0 handsFrost 0/0 cap 5.0
+  [d3 23:00] air -20.9 warmth 100 water 93 energy 4.3 kg 76.6 kcal24 -300 asleep fire COALS 0.0 handsFrost 0/0 cap 5.0
+  [d4 00:00] air -25.2 warmth 100 water 89 energy 4.3 kg 76.6 kcal24 -297 awake fire FIRE 4.2 handsFrost 0/0 cap 5.0
+DAY 3 kcal_in 1728 kcal_out 2025 net -297 kg 76.55 bmi 22.86 warmth_min 100.0 hands_margin_worn_kit 0.7 C hands_margin_with_mittens 0.7 C hands_frost_max 0 air_min -27.2 water_L 6.5 | chores 246 min of 960 waking, free 714 | {fire=30.0, water=8.0, water_wait=74.0, food=13.799999999999999, wood=120.0}
+[d4] weather override -25 C set for the day (driver test seam)
+  [d4 01:00] air -25.0 warmth 100 water 86 energy 5.0 kg 76.5 kcal24 -300 asleep fire FIRE 2.0 handsFrost 0/0 cap 5.0
+  [d4 02:00] air -25.0 warmth 100 water 82 energy 5.0 kg 76.5 kcal24 -300 asleep fire COALS 0.0 handsFrost 0/0 cap 5.0
+UNMESSAGED vital change at 02:12 d4: energy_low ; journal keys: messenger.yearofice.alert.first_night_wake messenger.yearofice.alert.first_night_air 
+  [d4 03:00] air -25.0 warmth 100 water 79 energy 4.8 kg 76.5 kcal24 -297 awake fire FIRE 4.2 handsFrost 0/0 cap 5.0
+  [d4 04:00] air -25.0 warmth 100 water 75 energy 5.0 kg 76.4 kcal24 -300 asleep fire FIRE 2.0 handsFrost 0/0 cap 5.0
+  [d4 05:00] air -25.0 warmth 100 water 72 energy 5.0 kg 76.4 kcal24 -300 asleep fire COALS 0.0 handsFrost 0/0 cap 5.0
+  [d4 06:00] air -25.0 warmth 100 water 68 energy 4.8 kg 76.4 kcal24 -297 awake fire FIRE 4.2 handsFrost 0/0 cap 5.0
+  [d4 07:00] air -25.0 warmth 100 water 82 energy 4.6 kg 76.3 kcal24 -297 awake fire FIRE 2.0 handsFrost 0/0 cap 5.0
+  [d4 08:00] air -25.0 warmth 100 water 98 energy 4.4 kg 76.5 kcal24 -297 awake fire COALS 0.0 handsFrost 0/0 cap 5.0
+  [d4 09:00] air -25.0 warmth 100 water 95 energy 4.2 kg 76.5 kcal24 -297 awake fire FIRE 4.2 handsFrost 0/0 cap 5.0
+  [d4 10:00] air -25.0 warmth 100 water 96 energy 4.0 kg 76.5 kcal24 -297 awake fire FIRE 2.0 handsFrost 0/0 cap 5.0
+[d4 10:00] out to the open ground for wood, back at 12:00
+  [d4 11:00] air -25.0 warmth 100 water 98 energy 3.8 kg 76.4 kcal24 -297 awake fire COALS 0.0 handsFrost 0/0 cap 5.0
+  [d4 12:00] air -25.0 warmth 100 water 95 energy 3.6 kg 76.4 kcal24 -297 awake fire FIRE 4.2 handsFrost 0/0 cap 5.0
+SHOT m7_d4_minus25_hands aimed at the fire from the bed end, 2 m, yaw -90.0 pitch 21.8
+  [d4 13:00] air -25.0 warmth 100 water 96 energy 3.4 kg 76.6 kcal24 -296 awake fire FIRE 2.0 handsFrost 0/0 cap 5.0
+  [d4 14:00] air -25.0 warmth 100 water 98 energy 3.2 kg 76.5 kcal24 -296 awake fire COALS 0.0 handsFrost 0/0 cap 5.0
+  [d4 15:00] air -25.0 warmth 100 water 95 energy 3.0 kg 76.5 kcal24 -296 awake fire FIRE 4.3 handsFrost 0/0 cap 5.0
+  [d4 16:00] air -25.0 warmth 100 water 96 energy 2.8 kg 76.5 kcal24 -296 awake fire FIRE 2.1 handsFrost 0/0 cap 5.0
+  [d4 17:00] air -25.0 warmth 100 water 98 energy 2.6 kg 76.4 kcal24 -296 awake fire COALS 0.0 handsFrost 0/0 cap 5.0
+  [d4 18:00] air -25.0 warmth 100 water 95 energy 2.4 kg 76.4 kcal24 -296 awake fire FIRE 4.3 handsFrost 0/0 cap 5.0
+  [d4 19:00] air -25.0 warmth 100 water 96 energy 2.2 kg 76.6 kcal24 -312 awake fire FIRE 2.1 handsFrost 0/0 cap 5.0
+  [d4 20:00] air -25.0 warmth 100 water 98 energy 2.0 kg 76.6 kcal24 -312 awake fire COALS 0.0 handsFrost 0/0 cap 5.0
+  [d4 21:00] air -25.0 warmth 100 water 95 energy 1.8 kg 76.5 kcal24 -312 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d4 22:00] air -25.0 warmth 100 water 96 energy 1.6 kg 76.5 kcal24 -312 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d4 23:00] air -25.0 warmth 100 water 93 energy 2.3 kg 76.5 kcal24 -315 asleep fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d5 00:00] air -25.0 warmth 100 water 89 energy 2.3 kg 76.4 kcal24 -312 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+DAY 4 kcal_in 1712 kcal_out 2024 net -312 kg 76.42 bmi 22.82 warmth_min 100.0 hands_margin_worn_kit -0.0 C hands_margin_with_mittens -0.0 C hands_frost_max 0 air_min -27.2 water_L 6.5 | chores 246 min of 960 waking, free 715 | {fire=30.0, water=8.0, water_wait=74.0, food=13.5, wood=120.0}
+[d5] weather override cleared
+  [d5 01:00] air -25.0 warmth 100 water 86 energy 2.9 kg 76.4 kcal24 -315 asleep fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d5 02:00] air -25.7 warmth 100 water 82 energy 3.0 kg 76.4 kcal24 -315 asleep fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d5 03:00] air -26.2 warmth 100 water 79 energy 2.8 kg 76.3 kcal24 -312 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d5 04:00] air -26.5 warmth 100 water 75 energy 3.0 kg 76.3 kcal24 -315 asleep fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d5 05:00] air -26.6 warmth 100 water 72 energy 3.0 kg 76.3 kcal24 -315 asleep fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d5 06:00] air -26.4 warmth 100 water 68 energy 2.8 kg 76.2 kcal24 -311 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d5 07:00] air -25.8 warmth 100 water 82 energy 2.6 kg 76.2 kcal24 -311 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d5 08:00] air -24.9 warmth 100 water 98 energy 2.4 kg 76.4 kcal24 -327 awake fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d5 09:00] air -23.7 warmth 100 water 95 energy 2.2 kg 76.4 kcal24 -327 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d5 10:00] air -22.4 warmth 100 water 96 energy 2.0 kg 76.3 kcal24 -327 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+[d5 10:00] out to the open ground for wood, back at 12:00
+  [d5 11:00] air -21.0 warmth 100 water 98 energy 1.8 kg 76.3 kcal24 -327 awake fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d5 12:00] air -19.9 warmth 100 water 95 energy 1.6 kg 76.3 kcal24 -327 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d5 13:00] air -19.0 warmth 100 water 96 energy 1.4 kg 76.4 kcal24 -339 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d5 14:00] air -18.4 warmth 100 water 98 energy 1.2 kg 76.4 kcal24 -339 awake fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d5 15:00] air -18.2 warmth 100 water 95 energy 1.0 kg 76.4 kcal24 -339 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d5 16:00] air -18.3 warmth 100 water 96 energy 0.8 kg 76.3 kcal24 -339 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d5 17:00] air -18.6 warmth 100 water 98 energy 0.6 kg 76.3 kcal24 -339 awake fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d5 18:00] air -19.1 warmth 100 water 95 energy 0.4 kg 76.3 kcal24 -339 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d5 19:00] air -19.8 warmth 100 water 96 energy 0.2 kg 76.5 kcal24 -339 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d5 20:00] air -20.6 warmth 100 water 98 energy 0.0 kg 76.4 kcal24 -339 awake fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d5 21:00] air -21.5 warmth 100 water 95 energy 0.0 kg 76.4 kcal24 -339 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d5 22:00] air -22.4 warmth 100 water 96 energy 0.0 kg 76.3 kcal24 -339 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d5 23:00] air -23.3 warmth 100 water 93 energy 0.7 kg 76.3 kcal24 -340 asleep fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d6 00:00] air -27.2 warmth 100 water 89 energy 0.7 kg 76.3 kcal24 -339 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+DAY 5 kcal_in 1680 kcal_out 2019 net -339 kg 76.28 bmi 22.78 warmth_min 100.0 hands_margin_worn_kit -1.7 C hands_margin_with_mittens -1.7 C hands_frost_max 0 air_min -27.2 water_L 6.5 | chores 245 min of 960 waking, free 715 | {fire=30.0, water=8.0, water_wait=74.0, food=12.899999999999999, wood=120.0}
+  [d6 01:00] air -28.0 warmth 100 water 86 energy 1.4 kg 76.2 kcal24 -340 asleep fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d6 02:00] air -28.7 warmth 100 water 82 energy 2.3 kg 76.2 kcal24 -340 asleep fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d6 03:00] air -29.2 warmth 100 water 79 energy 2.3 kg 76.2 kcal24 -339 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d6 04:00] air -29.5 warmth 100 water 75 energy 2.9 kg 76.2 kcal24 -340 asleep fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d6 05:00] air -29.6 warmth 100 water 72 energy 3.0 kg 76.1 kcal24 -340 asleep fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d6 06:00] air -29.4 warmth 100 water 68 energy 2.8 kg 76.1 kcal24 -338 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d6 07:00] air -28.8 warmth 100 water 82 energy 2.6 kg 76.1 kcal24 -338 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d6 08:00] air -27.8 warmth 100 water 98 energy 2.4 kg 76.3 kcal24 -338 awake fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d6 09:00] air -26.7 warmth 100 water 95 energy 2.2 kg 76.2 kcal24 -338 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d6 10:00] air -25.4 warmth 100 water 96 energy 2.0 kg 76.2 kcal24 -338 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+[d6 10:00] out to the open ground for wood, back at 12:00
+  [d6 11:00] air -24.1 warmth 100 water 98 energy 1.8 kg 76.1 kcal24 -338 awake fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d6 12:00] air -22.9 warmth 100 water 95 energy 1.6 kg 76.1 kcal24 -338 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d6 13:00] air -22.0 warmth 100 water 96 energy 1.4 kg 76.3 kcal24 -338 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d6 14:00] air -21.4 warmth 100 water 98 energy 1.2 kg 76.3 kcal24 -338 awake fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d6 15:00] air -21.2 warmth 100 water 95 energy 1.0 kg 76.2 kcal24 -338 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d6 16:00] air -21.3 warmth 100 water 96 energy 0.8 kg 76.2 kcal24 -338 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d6 17:00] air -21.6 warmth 100 water 98 energy 0.6 kg 76.2 kcal24 -338 awake fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d6 18:00] air -22.1 warmth 100 water 95 energy 0.4 kg 76.1 kcal24 -338 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d6 19:00] air -22.8 warmth 100 water 96 energy 0.2 kg 76.3 kcal24 -337 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d6 20:00] air -23.6 warmth 100 water 98 energy 0.0 kg 76.3 kcal24 -337 awake fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d6 21:00] air -24.4 warmth 100 water 95 energy 0.0 kg 76.2 kcal24 -337 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d6 22:00] air -25.4 warmth 100 water 96 energy 0.0 kg 76.2 kcal24 -337 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d6 23:00] air -26.3 warmth 100 water 93 energy 0.7 kg 76.2 kcal24 -339 asleep fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d7 00:00] air -15.7 warmth 100 water 89 energy 0.7 kg 76.1 kcal24 -337 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+DAY 6 kcal_in 1680 kcal_out 2017 net -337 kg 76.13 bmi 22.73 warmth_min 100.0 hands_margin_worn_kit -5.6 C hands_margin_with_mittens -5.6 C hands_frost_max 0 air_min -29.5 water_L 6.5 | chores 245 min of 960 waking, free 715 | {fire=30.0, water=8.0, water_wait=74.0, food=12.899999999999999, wood=120.0}
+  [d7 01:00] air -16.0 warmth 100 water 86 energy 1.4 kg 76.1 kcal24 -339 asleep fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d7 02:00] air -16.2 warmth 100 water 82 energy 2.3 kg 76.1 kcal24 -339 asleep fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d7 03:00] air -16.4 warmth 100 water 79 energy 2.3 kg 76.0 kcal24 -337 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d7 04:00] air -16.5 warmth 100 water 75 energy 2.9 kg 76.0 kcal24 -338 asleep fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d7 05:00] air -16.6 warmth 100 water 72 energy 3.0 kg 76.0 kcal24 -338 asleep fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d7 06:00] air -16.5 warmth 100 water 68 energy 2.8 kg 76.0 kcal24 -337 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d7 07:00] air -16.3 warmth 100 water 82 energy 2.6 kg 75.9 kcal24 -337 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d7 08:00] air -16.0 warmth 100 water 98 energy 2.4 kg 76.1 kcal24 -337 awake fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d7 09:00] air -15.5 warmth 100 water 95 energy 2.2 kg 76.1 kcal24 -337 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+  [d7 10:00] air -15.1 warmth 100 water 96 energy 2.0 kg 76.0 kcal24 -336 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+[d7 10:00] out to the open ground for wood, back at 12:00
+  [d7 11:00] air -14.6 warmth 100 water 98 energy 1.8 kg 76.0 kcal24 -336 awake fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d7 12:00] air -14.2 warmth 100 water 95 energy 1.6 kg 76.0 kcal24 -336 awake fire FIRE 4.3 handsFrost 0/0 cap 3.0
+SHOT m7_day7_vitals aimed at the fire from the bed end, 2 m, yaw -90.0 pitch 21.8
+  [d7 13:00] air -13.9 warmth 100 water 96 energy 1.4 kg 76.2 kcal24 -340 awake fire FIRE 2.1 handsFrost 0/0 cap 3.0
+  [d7 14:00] air -13.6 warmth 100 water 98 energy 1.2 kg 76.1 kcal24 -340 awake fire COALS 0.0 handsFrost 0/0 cap 3.0
+  [d7 15:00] air -13.6 warmth 100 water 95 energy 1.0 kg 76.1 kcal24 -340 awake fire FIRE 4.4 handsFrost 0/0 cap 3.0
+  [d7 16:00] air -13.6 warmth 100 water 96 energy 0.8 kg 76.0 kcal24 -340 awake fire FIRE 2.3 handsFrost 0/0 cap 3.0
+  [d7 17:00] air -13.7 warmth 100 water 98 energy 0.6 kg 76.0 kcal24 -339 awake fire FIRE 0.1 handsFrost 0/0 cap 3.0
+  [d7 18:00] air -13.9 warmth 100 water 95 energy 0.4 kg 76.0 kcal24 -339 awake fire FIRE 4.4 handsFrost 0/0 cap 3.0
+  [d7 19:00] air -14.1 warmth 100 water 96 energy 0.2 kg 76.2 kcal24 -339 awake fire FIRE 2.3 handsFrost 0/0 cap 3.0
+  [d7 20:00] air -14.4 warmth 100 water 98 energy 0.0 kg 76.1 kcal24 -339 awake fire FIRE 0.1 handsFrost 0/0 cap 3.0
+  [d7 21:00] air -14.7 warmth 100 water 95 energy 0.0 kg 76.1 kcal24 -339 awake fire FIRE 4.4 handsFrost 0/0 cap 3.0
+  [d7 22:00] air -15.1 warmth 100 water 96 energy 0.0 kg 76.1 kcal24 -339 awake fire FIRE 2.3 handsFrost 0/0 cap 3.0
+  [d7 23:00] air -15.4 warmth 100 water 93 energy 0.7 kg 76.0 kcal24 -342 asleep fire FIRE 0.1 handsFrost 0/0 cap 3.0
+  [d8 00:00] air -17.6 warmth 100 water 89 energy 0.7 kg 76.0 kcal24 -339 awake fire FIRE 4.4 handsFrost 0/0 cap 3.0
+DAY 7 kcal_in 1680 kcal_out 2019 net -339 kg 75.99 bmi 22.69 warmth_min 100.0 hands_margin_worn_kit 7.8 C hands_margin_with_mittens 7.8 C hands_frost_max 0 air_min -29.5 water_L 6.5 | chores 245 min of 960 waking, free 715 | {fire=30.0, water=8.0, water_wait=74.0, food=12.899999999999999, wood=120.0}
+RESULT FAIL [vital changes without a Messenger line: 1]
+SUMMARY crossings 12 covered 11 unmessaged 1 | hands frost max (week) 0, on the -25 C day 0 | worst hands margin vs safe-to: worn kit 99.0 C, mittens 99.0 C | min BMI 22.67 | bites 30 matches 1

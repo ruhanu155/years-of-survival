@@ -192,6 +192,9 @@ public final class BodyModel {
                 s.energy = Math.min(cap, s.energy + Metabolism.SLEEP_BOLTS_PER_H * in.sleepQuality() * SleepRules.feverFactor(s, m, Wellness.tuning(t)) / 60.0 * done);
             }
             s.sleepRun += done;
+            // Sleep pays the awake debt back at 3 minutes per minute slept, so a night broken by fire-tending
+            // (the continuous run resets on every wake) still clears the day; 4 h unbroken clears it outright.
+            s.awakeMin = Math.max(0, s.awakeMin - 3 * done);
             if (s.sleepRun >= 240) s.awakeMin = 0;
             s.asleep = true;
             s.sleepQ = in.sleepQuality();

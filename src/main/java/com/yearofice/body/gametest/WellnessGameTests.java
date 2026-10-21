@@ -62,6 +62,8 @@ public final class WellnessGameTests {
         out.add(test("yearofice:body/fever_sleep_slow", WellnessGameTests::feverSleepSlow));
         out.add(test("yearofice:body/rest_day_part_rates", WellnessGameTests::restDayPartRates));
         out.add(test("yearofice:body/frostbite_live", WellnessGameTests::frostbiteLive));
+        out.add(test("yearofice:body/frost_stage_messages", WellnessGameTests::frostStageMessages));
+        out.add(test("yearofice:body/cold_exposure_no_silent_transition", WellnessGameTests::coldNoSilentTransition));
         out.add(test("yearofice:body/ground_bed_camera_direction", WellnessGameTests::groundBedDirection));
         out.add(test("yearofice:data/migrate_schema3", WellnessGameTests::migrateSchema3));
         return TestFilter.apply(out);
@@ -273,6 +275,66 @@ public final class WellnessGameTests {
             for (int k = 0; k < 2; k++) { s.warmth = 100; feed(s, 35 + k * 60L); BodyTicker.step(p, 35 + k * 60L, 60, Activity.REST, false, false, T); }
         });
         h.assertTrue(s.parts.partFrost()[hand.ordinal()] == 0, "frostnip clears within an hour of rewarming");
+        h.succeed();
+    }
+
+    /** Frost keys posted to the player's screen, in order (the bus's recent-lines list is capped, so callers read it often). */
+    private static List<String> frostLines(ServerPlayer p) {
+        List<String> out = new ArrayList<>();
+        var bus = com.yearofice.api.hud.HudBus.get();
+        java.util.stream.Stream.concat(bus.sent(p).stream(), bus.journal(p).stream()).forEach(l -> {
+            int i = l.key().indexOf("body.frost_");
+            if (i >= 0) out.add(l.key().substring(i + 5));
+        });
+        return out;
+    }
+
+    /** A hand frozen through every stage at -30 C with the start kit: one line per stage change, then rewarming says clear. */
+    static void frostStageMessages(GameTestHelper h) {
+        ServerPlayer p = BodyGameTests.player(h);
+        BodyState s = BodyAttachments.of(p);
+        com.yearofice.sim.body.part.Part hand = com.yearofice.sim.body.part.Part.LEFT_HAND;
+        java.util.Set<String> seen = new java.util.LinkedHashSet<>();
+        with(new Fixed(EnvSample.outdoors(-30, 0), List.of()), x -> {
+            for (int k = 0; k < 40; k++) {
+                s.warmth = 100;
+                feed(s, k * 15L);
+                BodyTicker.step(p, k * 15L, 15, Activity.REST, false, false, T.withKit(0));
+                seen.addAll(frostLines(p));
+            }
+        });
+        h.assertTrue(com.yearofice.sim.body.FrostModel.stage(s.parts.partFrost()[hand.ordinal()]) == 3, "the bare hand reached deep frostbite");
+        for (String k : new String[] {"frost_hands_nip", "frost_hands_superficial", "frost_hands_deep"})
+            h.assertTrue(seen.contains(k), "missing Messenger line " + k + ", saw " + seen);
+        h.succeed();
+    }
+
+    /** Two game hours of cold: every zone stage change (counted from the frost counters) has one line. */
+    static void coldNoSilentTransition(GameTestHelper h) {
+        ServerPlayer p = BodyGameTests.player(h);
+        BodyState s = BodyAttachments.of(p);
+        int[] lastStage = new int[com.yearofice.sim.body.Zone.values().length];
+        java.util.Map<String, Integer> expected = new java.util.HashMap<>();
+        java.util.Map<String, Integer> posted = new java.util.HashMap<>();
+        with(new Fixed(EnvSample.outdoors(-30, 0), List.of()), x -> {
+            for (int k = 0; k < 120; k++) {
+                s.warmth = 100;
+                feed(s, k);
+                BodyTicker.step(p, k, 1, Activity.REST, false, false, T.withKit(0));
+                int[] now = com.yearofice.sim.body.FrostStep.zoneStages(s.parts.partFrost());
+                for (com.yearofice.sim.body.Zone z : com.yearofice.sim.body.Zone.values()) {
+                    int i = z.ordinal();
+                    for (int st = lastStage[i] + 1; st <= now[i]; st++)
+                        expected.merge(com.yearofice.sim.body.FrostStep.eventKey(z, st - 1, st), 1, Integer::sum);
+                    if (now[i] < lastStage[i]) expected.merge(com.yearofice.sim.body.FrostStep.eventKey(z, lastStage[i], now[i]), 1, Integer::sum);
+                    lastStage[i] = now[i];
+                }
+                for (String key : frostLines(p)) posted.putIfAbsent(key, 1);
+            }
+        });
+        h.assertTrue(!expected.isEmpty(), "two hours at -30 C froze something");
+        for (String key : expected.keySet())
+            h.assertTrue(posted.containsKey(key), "transition " + key + " happened with no Messenger line; posted " + posted.keySet());
         h.succeed();
     }
 

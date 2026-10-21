@@ -67,7 +67,8 @@ public final class M6BearSmoke {
     private static volatile double minDist = 9999, startDist = -1;
     private static volatile long reachMin = -1;
     private static volatile int linesBefore, linesAfter, encounterEvents, bearsNear60;
-    private static volatile String note = "";
+    private static volatile String note = "", pileAct = "none";
+    private static volatile int pileShot = 0;
 
     @SubscribeEvent
     public static void onEnc(EncounterStateEvent e) { if (ON) encounterEvents++; }
@@ -111,7 +112,7 @@ public final class M6BearSmoke {
                     phase = Phase.LOADING;
                     ticks = 0;
                     ready = false; finished = false; bearSeen = false; bearReached = false; bearShot = false; encShot = false;
-                    minDist = 9999; startDist = -1; reachMin = -1; encounterEvents = 0; bearsNear60 = 0; note = "";
+                    minDist = 9999; startDist = -1; reachMin = -1; pileAct = "none"; pileShot = 0; encounterEvents = 0; bearsNear60 = 0; note = "";
                 }
             }
             case LOADING -> {
@@ -201,10 +202,10 @@ public final class M6BearSmoke {
         if (!made) { note += "leaveGuts refused; "; }
         // the player 30 m off on open ground, looking at the pile
         BlockPos st = null;
-        for (int a = 0; a < 360 && st == null; a += 30) {
-            int x = pile.getX() + (int) Math.round(30 * Math.cos(Math.toRadians(a))), z = pile.getZ() + (int) Math.round(30 * Math.sin(Math.toRadians(a)));
+        for (int a = 0; a < 360 && st == null; a += 15) {
+            int x = pile.getX() + (int) Math.round(200 * Math.cos(Math.toRadians(a))), z = pile.getZ() + (int) Math.round(200 * Math.sin(Math.toRadians(a)));
             BlockPos g = level.getHeightmapPos(net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new BlockPos(x, 0, z));
-            if (level.hasChunkAt(g) && ground(level, g) && Math.abs(g.getY() - pile.getY()) < 8) st = g;
+            if (level.hasChunkAt(g) && ground(level, g) && Math.abs(g.getY() - pile.getY()) < 80) st = g;
         }
         stand = st == null ? c : st;
         Vec3 look = Vec3.atCenterOf(pile).subtract(Vec3.atCenterOf(stand));
@@ -244,6 +245,13 @@ public final class M6BearSmoke {
             double d = b.position().distanceTo(pc);
             if (!bearSeen) { bearSeen = true; startDist = d; }
             minDist = Math.min(minDist, d);
+            if (d < 60) { pileAct = b.huntDebug(); if (pileShot == 0 && d < 40 && shotName == null) {
+                    pileShot = 1;
+                    Vec3 look = b.position().add(0, b.getBbHeight() * 0.6, 0).subtract(p.getEyePosition());
+                    p.teleportTo(level, p.getX(), p.getY(), p.getZ(), (float) Math.toDegrees(Math.atan2(-look.x, look.z)), (float) -Math.toDegrees(Math.atan2(look.y, Math.hypot(look.x, look.z))));
+                    shotName = "m6bear_pile_s" + seedIx;
+                    shotWait = 30;
+                } }
             if (d < 9 || b.scavenges() >= 1) {
                 if (!bearReached) { bearReached = true; reachMin = used; }
             }
@@ -263,9 +271,9 @@ public final class M6BearSmoke {
             if (linesAfter > linesBefore || encounterEvents > 0) { encShot = true; shotName = "m6bear_encounter_line_s" + seedIx; shotWait = 20; }
         }
         if (used >= RUN_MIN || bearReached && shotName == null && (bearShot || used > 60)) {
-            if (bearsNear60 > 0) note += "player within 60 m of a bear on " + bearsNear60 + " checks, " + (HudBus.get().sent(p).size() - linesBefore) + " new HUD lines, " + encounterEvents + " encounter events; ";
+            if (bearsNear60 > 0) note += "player within 60 m of a bear on " + bearsNear60 + " checks, " + (HudBus.get().sent(p).size() - linesBefore) + " new HUD lines, " + encounterEvents + " EncounterStateEvents while within 60 m of the PLAYER; ";
             else note += "no bear within 60 m of the player; ";
-            note += "game minutes run " + used;
+            note += "bear act/drive within 60 m of the pile: " + pileAct + "; game minutes run " + used;
             finished = true;
         }
     }

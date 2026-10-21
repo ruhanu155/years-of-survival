@@ -166,7 +166,7 @@ public final class BodyTicker {
         java.util.List<String> lines = new java.util.ArrayList<>(new java.util.LinkedHashSet<>(s.events));
         s.events.clear();
         for (String id : lines) {
-            com.yearofice.api.hud.HudBus.get().post(p, com.yearofice.api.hud.HudLine.of(
+            VitalExplainer.deliver(com.yearofice.api.hud.HudBus.get(), p, com.yearofice.api.hud.HudLine.of(
                     com.yearofice.api.hud.HudLineType.BODY, id, "body"));
             if (id.equals("face_sunburn") || id.equals("face_windburn")) {
                 p.level().playSound(null, p.blockPosition(), com.yearofice.sound.YoiSounds.SKIN_STING.get(),
@@ -188,6 +188,7 @@ public final class BodyTicker {
             return;
         }
         VitalExplainer.check(p, s, now);
+        VitalExplainer.flush(p);
         sync(p, now, false);
     }
 

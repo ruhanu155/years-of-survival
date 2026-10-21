@@ -22,7 +22,7 @@ public final class VitalExplainer {
 
     private static final Map<UUID, Last> LAST = new ConcurrentHashMap<>();
 
-    public static void forget(UUID id) { LAST.remove(id); }
+    public static void forget(UUID id) { LAST.remove(id); SLEPT.remove(id); }
 
     public static void check(net.minecraft.server.level.ServerPlayer p, BodyState s, long minute) {
         boolean cold = s.warmth < 70, thirsty = s.water < 60, tired = s.energy < 5, hurt = s.condition() < 60;
@@ -38,8 +38,17 @@ public final class VitalExplainer {
         if (tired && !was.tired) say(bus, p, "energy_low", HudArg.fixed(s.energy, ""));
         if (hurt && !was.hurt) say(bus, p, "condition_low", HudArg.of(Math.round(s.condition())));
         if (hungry && !was.hungry) say(bus, p, "calories_low", HudArg.of(Math.round(s.balance24h())));
+        if (!cold && was.cold) say(bus, p, "warmth_ok", HudArg.of(Math.round(s.warmth)));
+        if (!thirsty && was.thirsty) say(bus, p, "water_ok", HudArg.of(Math.round(s.water)));
+        if (!tired && was.tired) say(bus, p, "energy_ok", HudArg.fixed(s.energy, ""));
+        if (!hurt && was.hurt) say(bus, p, "condition_ok", HudArg.of(Math.round(s.condition())));
+        if (!hungry && was.hungry) say(bus, p, "calories_ok", HudArg.of(Math.round(s.balance24h())));
         for (Part part : Part.values()) {
             int i = part.ordinal();
+            if (band[i] < was.band[i]) {
+                say(bus, p, "part_better", HudArg.key("body.yearofice.part." + part.name().toLowerCase(java.util.Locale.ROOT)),
+                        HudArg.of(s.parts.hp(part)));
+            }
             if (band[i] > was.band[i]) {
                 say(bus, p, "part_worse", HudArg.key("body.yearofice.part." + part.name().toLowerCase(java.util.Locale.ROOT)),
                         HudArg.of(s.parts.hp(part)));
@@ -49,6 +58,28 @@ public final class VitalExplainer {
     }
 
     private static void say(HudBus bus, net.minecraft.server.level.ServerPlayer p, String id, HudArg... args) {
-        bus.post(p, HudLine.of(HudLineType.BODY, id, "body", args));
+        deliver(bus, p, HudLine.of(HudLineType.BODY, id, "body", args));
+    }
+
+    /** Lines raised while the player sleeps wait here (a sleeper sees no HUD) and post at wake. */
+    private static final Map<UUID, java.util.List<HudLine>> SLEPT = new ConcurrentHashMap<>();
+    private static final int MAX_SLEPT = 12;
+
+    /** Posts {@code line} now, or holds it for the wake when the player is asleep. */
+    public static void deliver(HudBus bus, net.minecraft.server.level.ServerPlayer p, HudLine line) {
+        if (p.isSleeping()) {
+            var q = SLEPT.computeIfAbsent(p.getUUID(), k -> new java.util.concurrent.CopyOnWriteArrayList<>());
+            if (q.size() < MAX_SLEPT) q.add(line);
+        } else bus.post(p, line);
+    }
+
+    /** At wake: a "while you slept" line, then what happened, in order. */
+    public static void flush(net.minecraft.server.level.ServerPlayer p) {
+        if (p.isSleeping() || !HudBus.installed()) return;
+        var q = SLEPT.remove(p.getUUID());
+        if (q == null || q.isEmpty()) return;
+        HudBus bus = HudBus.get();
+        bus.post(p, HudLine.of(HudLineType.BODY, "while_slept", "body"));
+        for (HudLine l : q) bus.post(p, l);
     }
 }
