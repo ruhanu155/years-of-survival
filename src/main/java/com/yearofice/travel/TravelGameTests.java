@@ -37,6 +37,7 @@ public final class TravelGameTests {
         out.add(test("yearofice:travel/skate_black_ice", 200, TravelGameTests::skateBlackIce));
         out.add(test("yearofice:travel/ski_vs_snowshoe", 100, TravelGameTests::skiVsSnowshoe));
         out.add(test("yearofice:travel/trail_sets_overnight", 100, TravelGameTests::trailSets));
+        out.add(test("yearofice:body/mittens_minus_25", 100, TravelGameTests::mittens));
         out.add(test("yearofice:body/stale_air_vent", 100, TravelGameTests::staleAirVent));
         out.add(test("yearofice:build/quinzhee", 100, TravelGameTests::quinzhee));
         out.add(test("yearofice:fishing/tipup_buried", 100, TravelGameTests::tipupBuried));
@@ -171,6 +172,23 @@ public final class TravelGameTests {
         h.assertTrue(TipUpSignal.buried(l, p), "new snow lies over the tip-up");
         h.assertTrue(TipUpSignal.signals(l, p), "it still signals the fish");
         h.assertTrue(com.yearofice.hunt.fishing.PassiveGearService.at(l, p) == g, "the snow did not unregister the gear");
+        h.succeed();
+    }
+
+    /** The shipped fur mittens, read through the item's wear data map: safe at -25 C, frostbite points at -26 C. */
+    static void mittens(GameTestHelper h) {
+        var row = TravelItems.FUR_MITTENS.get().builtInRegistryHolder().getData(com.yearofice.body.clothing.WearMap.WEAR);
+        h.assertTrue(row != null, "fur_mittens has a wear row");
+        var hands = com.yearofice.sim.body.ClothingState.of(row.garment("fur_mittens"));
+        double limit = com.yearofice.sim.body.Clothing.zoneSafeToC(hands, com.yearofice.sim.body.Zone.HANDS);
+        double at25 = com.yearofice.sim.body.Warmth.zoneExposureC(com.yearofice.sim.env.EnvSample.outdoors(-25, 0), hands, List.of(), com.yearofice.sim.body.WarmthContext.RESTING, com.yearofice.sim.body.Zone.HANDS);
+        double at26 = com.yearofice.sim.body.Warmth.zoneExposureC(com.yearofice.sim.env.EnvSample.outdoors(-26, 0), hands, List.of(), com.yearofice.sim.body.WarmthContext.RESTING, com.yearofice.sim.body.Zone.HANDS);
+        int p25 = 0;
+        for (int i = 0; i < 24 * 60; i++) p25 = com.yearofice.sim.body.FrostModel.stepMinute(p25, limit, at25, false, true).points();
+        int p26 = com.yearofice.sim.body.FrostModel.stepMinute(0, limit, at26, false, true).points();
+        h.assertTrue(limit == -25, "the mittens' safe-to is -25, got " + limit);
+        h.assertTrue(p25 == 0, "a day at -25 C costs no points: " + p25);
+        h.assertTrue(p26 > 0, "-26 C starts frostbite points: " + p26);
         h.succeed();
     }
 }
