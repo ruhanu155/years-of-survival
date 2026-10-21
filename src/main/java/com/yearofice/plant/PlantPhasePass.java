@@ -13,7 +13,7 @@ public final class PlantPhasePass {
 
     /** The phase a species is in today, from the normal-year curve times the year's warmth. */
     public static PlantPhase phaseNow(PlantSpec spec, int doy, boolean snow) {
-        return PhaseModel.phaseFor(spec.phases, PhaseModel.ddAt(doy, PlantDials.warmth), doy, snow);
+        return com.yearofice.plant.fungi.SeasonWindows.gate(spec.id, doy, PhaseModel.phaseFor(spec.phases, PhaseModel.ddAt(doy, PlantDials.warmth), doy, snow));
     }
 
     /** Re-phases every plant block within {@code r} blocks (y +/- 8) of {@code c}; returns how many changed. */

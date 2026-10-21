@@ -1,0 +1,65 @@
+{
+  "kind": "bird_wave",
+  "from": "05-01",
+  "to": "05-20",
+  "peak": "05-12",
+  "shifts": true,
+  "line": "Snipe winnowing over the bog.",
+  "spirits": 2,
+  "arrivals": [
+    {
+      "species": "mallard",
+      "date": "05-05"
+    },
+    {
+      "species": "common_loon",
+      "date": "05-05"
+    },
+    {
+      "species": "bufflehead",
+      "date": "05-01"
+    },
+    {
+      "species": "northern_harrier",
+      "date": "05-01"
+    },
+    {
+      "species": "osprey",
+      "date": "05-01"
+    },
+    {
+      "species": "fox_sparrow",
+      "date": "05-01"
+    },
+    {
+      "species": "wilsons_snipe",
+      "date": "05-05"
+    },
+    {
+      "species": "lesser_yellowlegs",
+      "date": "05-05"
+    },
+    {
+      "species": "greater_scaup",
+      "date": "05-10"
+    },
+    {
+      "species": "hermit_thrush",
+      "date": "05-10"
+    }
+  ],
+  "sound": "quacks and honks all night, snipe winnowing, yellowlegs yelping",
+  "present": [
+    {
+      "species": "mallard",
+      "from": "05-05",
+      "to": "10-15"
+    },
+    {
+      "species": "common_loon",
+      "from": "05-05",
+      "to": "10-10"
+    }
+  ],
+  "id": "yearofice:wave_3_duck_flood"
+}

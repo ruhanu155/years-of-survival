@@ -1,0 +1,52 @@
+{
+ "inherit": "wood_frog",
+ "scale": 1.0,
+ "id": "boreal_toad",
+ "geo_id": "boreal_toad",
+ "texture_dir": "boreal_toad",
+ "hitbox": [
+  0.2,
+  0.16
+ ],
+ "notes": "Generated. Warty tan toad, pale belly.",
+ "paint": {
+  "_replace": true,
+  "tail_*": {
+   "ramp": "fur_tan",
+   "step": 1,
+   "noise": 0.2
+  },
+  "leg_*": {
+   "ramp": "fur_tan",
+   "step": 1
+  },
+  "ear_*": {
+   "ramp": "fur_tan",
+   "step": 1
+  },
+  "muzzle": {
+   "ramp": "fur_tan",
+   "step": 3
+  },
+  "head": {
+   "ramp": "fur_tan",
+   "step": 2
+  },
+  "*": {
+   "ramp": "fur_tan",
+   "step": 2,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": "bottom",
+     "ramp": "fur_white",
+     "step": 3
+    }
+   ]
+  }
+ },
+ "textures": {
+  "_replace": true,
+  "adult_all": {}
+ }
+}

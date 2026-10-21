@@ -39,6 +39,7 @@ public final class YoiConfig {
         com.yearofice.build.BuildConfig.define(b);
         com.yearofice.plant.ForageConfig.define(b);
         com.yearofice.crop.GardenConfig.define(b);
+        com.yearofice.ecosystem.small.LifeConfig.define(b);
         com.yearofice.world.season.SeasonConfig.define(b); // M7 lane B: [season] [ice] [snow]
         SPEC = b.build();
     }

@@ -100,7 +100,8 @@ public final class BirdService {
             int hour = Calendar.minuteOfDayOfMinute(SliceClock.minute(level)) / 60;
             String path = BirdRegistry.IDS.get(level.random.nextInt(BirdRegistry.IDS.size()));
             BirdRules.Role role = BirdRules.role(path);
-            if (!BirdRules.inSeason(path, month) || !BirdRules.active(role, hour)) continue;
+            if (!BirdRules.inSeason(path, month) || !BirdRules.active(role, hour)
+                    || !com.yearofice.ecosystem.migration.MigrationService.present(level, path)) continue;
             boolean flock = BirdRules.flocks(role);
             if (flock ? c[1] >= t.flockCap() : c[0] >= t.activeCap()) continue;
             double ang = level.random.nextDouble() * Math.PI * 2, r = 24 + level.random.nextDouble() * (t.spawnRadiusM() - 24);

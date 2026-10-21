@@ -1,0 +1,52 @@
+{
+ "inherit": "red_squirrel",
+ "scale": 0.25,
+ "id": "little_brown_bat",
+ "geo_id": "little_brown_bat",
+ "texture_dir": "little_brown_bat",
+ "hitbox": [
+  0.15,
+  0.12
+ ],
+ "notes": "Generated. Small brown-black bat stand-in on the small-rodent rig; wing membranes follow with the bird rig pass.",
+ "paint": {
+  "_replace": true,
+  "tail_*": {
+   "ramp": "fur_black",
+   "step": 1,
+   "noise": 0.2
+  },
+  "leg_*": {
+   "ramp": "fur_black",
+   "step": 1
+  },
+  "ear_*": {
+   "ramp": "fur_black",
+   "step": 1
+  },
+  "muzzle": {
+   "ramp": "fur_black",
+   "step": 3
+  },
+  "head": {
+   "ramp": "fur_black",
+   "step": 2
+  },
+  "*": {
+   "ramp": "fur_black",
+   "step": 2,
+   "noise": 0.2,
+   "regions": [
+    {
+     "faces": "bottom",
+     "ramp": "fur_tan",
+     "step": 3
+    }
+   ]
+  }
+ },
+ "textures": {
+  "_replace": true,
+  "adult_all": {}
+ }
+}

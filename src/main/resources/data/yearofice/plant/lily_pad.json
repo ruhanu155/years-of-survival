@@ -1,0 +1,68 @@
+{
+  "id": "yearofice:lily_pad",
+  "name": "Yellow pond lily",
+  "form": "aquatic",
+  "tags": [],
+  "habitat": [
+    "pond_edge"
+  ],
+  "phases_dd": {
+    "bud": 0.0,
+    "leaf": 30.0,
+    "flower": 200.0,
+    "fruit": 320.0,
+    "seed": 450.0,
+    "senescent": "first_frost"
+  },
+  "verbs": {
+    "dig": {
+      "part": "yearofice:lily_roots",
+      "unit": "root",
+      "unit_g": 250,
+      "time_min": 15.0,
+      "units_per_clump": 3.0,
+      "phases": [
+        "bud",
+        "leaf",
+        "flower",
+        "fruit",
+        "seed",
+        "senescent"
+      ],
+      "stripped_weight": 1.0
+    }
+  },
+  "patch": {
+    "clumps": [
+      20,
+      60
+    ],
+    "regrow_days": [
+      5,
+      8
+    ],
+    "flush_mults": [
+      1.0
+    ]
+  },
+  "identify": {
+    "pocket_guide": false,
+    "notes": [],
+    "stages": [
+      "shoot",
+      "flower",
+      "fruit"
+    ]
+  },
+  "inspect": {
+    "look": "floating_heart_leaves_yellow_cup_flowers",
+    "smell": "none",
+    "cut": "spongy_starchy_rhizome"
+  },
+  "food": {
+    "part": "yearofice:lily_roots",
+    "kcal_per_100g": 88.0,
+    "vit_c_mg_per_100g": 0.0,
+    "spoil_days_at_5c": 5
+  }
+}

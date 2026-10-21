@@ -1,0 +1,75 @@
+{
+  "entity": "yearofice:singing_vole",
+  "rig": "small_mammal",
+  "habitat": [
+    "alpine",
+    "open_shrub"
+  ],
+  "population": [
+    5,
+    60
+  ],
+  "home_range_m": 30,
+  "active": [
+    "dawn",
+    "day",
+    "dusk"
+  ],
+  "gaits": {
+    "walk": 0.5,
+    "trot": 1.3,
+    "run": 2.5,
+    "swim": 0.6,
+    "step_height_m": 0.5
+  },
+  "senses": {
+    "sight": 10,
+    "hearing": 14,
+    "smell": 5,
+    "fov": 300
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": true,
+    "flush_m": 2,
+    "flee_m": [
+      4,
+      10
+    ],
+    "flee_gait": "run",
+    "zigzag": true,
+    "hide_min": [
+      2,
+      6
+    ],
+    "charges": false
+  },
+  "huntable": true,
+  "respawn_days": 3,
+  "breath_s": 10,
+  "spawn": {
+    "cell_m": 64,
+    "group": [
+      1,
+      1
+    ],
+    "density_per_km2": 30
+  },
+  "carcass": {
+    "whole_kg": 0.04,
+    "class": "tiny",
+    "body_plan": "small_rodent",
+    "tau_h": 1,
+    "floats": true,
+    "poses": [
+      "dead_side"
+    ],
+    "steps": {
+      "gut": 1
+    },
+    "parts": {}
+  },
+  "butcher_table": "yearofice:butchering/singing_vole"
+}

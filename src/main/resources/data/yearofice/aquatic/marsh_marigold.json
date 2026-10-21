@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:marsh_marigold",
+  "kind": "aquatic",
+  "window": {
+    "from": "05-01",
+    "peak": "05-20",
+    "to": "06-30"
+  },
+  "outside": "dormant"
+}

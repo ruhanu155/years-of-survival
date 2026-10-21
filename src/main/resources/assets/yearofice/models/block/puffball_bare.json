@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/puffball_bare"
+  },
+  "render_type": "minecraft:cutout"
+}
