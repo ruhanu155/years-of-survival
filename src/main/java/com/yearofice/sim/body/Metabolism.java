@@ -92,6 +92,21 @@ public final class Metabolism {
      * The energy cap: the lowest of the cap table's causes that apply (Blueprint › Energy cap). Gut illness caps
      * at 7. Lean-meat sickness and scurvy are M4.
      */
+    /** Cause ids for {@link #capCause}: what holds the cap down (0 nothing). */
+    public static final int CAP_NONE = 0, CAP_HUNGRY = 1, CAP_THIN = 2, CAP_THIRST = 3, CAP_GUT = 4, CAP_AWAKE = 5, CAP_ILL = 6;
+
+    /** The cause of the lowest cap in the table (the first of equals); {@code illCap} is the illness stage's cap. */
+    public static int capCause(double balance24h, double bmi, double water, int awakeMin, boolean gutIll, double illCap) {
+        double cap = energyCap(balance24h, bmi, water, awakeMin, gutIll);
+        if (illCap < cap) return CAP_ILL;
+        if (cap >= 10) return CAP_NONE;
+        if (energyCap(0, 22, 100, awakeMin, false) == cap) return CAP_AWAKE;
+        if (energyCap(balance24h, 22, 100, 0, false) == cap) return CAP_HUNGRY;
+        if (energyCap(0, bmi, 100, 0, false) == cap) return CAP_THIN;
+        if (energyCap(0, 22, water, 0, false) == cap) return CAP_THIRST;
+        return CAP_GUT;
+    }
+
     public static double energyCap(double balance24h, double bmi, double water, int awakeMin, boolean gutIll) {
         double cap = 10;
         if (balance24h < -1500) cap = Math.min(cap, 8);

@@ -52,4 +52,39 @@ class AwakeCapTest {
         assertEquals(5, Metabolism.energyCap(0, 22.7, 100, 48 * 60, false));
         assertEquals(3, Metabolism.energyCap(0, 22.7, 100, 72 * 60, false));
     }
+
+    /** The v5 proxy pattern: 960 awake min a day, an 8 h night broken by three 10 min fire wakes, seven days. */
+    @Test
+    void v5_pattern_seven_days_cap_ten_every_morning() {
+        BodyState s = new BodyState();
+        long m = 6 * 60;
+        for (int day = 0; day < 7; day++) {
+            run(s, false, 960, m); m += 960;
+            for (int part = 0; part < 4; part++) {
+                run(s, true, 120, m); m += 120;
+                if (part < 3) { run(s, false, 10, m); m += 10; }
+            }
+            assertEquals(10, Metabolism.energyCap(-300, 22.7, 100, s.awakeMin, false), "morning " + day + " awake " + s.awakeMin);
+        }
+    }
+
+    @Test
+    void seven_hours_in_a_ten_hour_window_clears_in_big_chunks() {
+        BodyState s = new BodyState();
+        s.awakeMin = 40 * 60;
+        BodyModel.Inputs in = new BodyModel.Inputs(Activity.SLEEP, true, 0.8, MILD, List.of(), ShelterState.NONE, ColdWater.Depth.NONE, false);
+        s.water = 100; s.warmth = 100;
+        BodyModel.step(s, in, BodyTuning.STANDARD, 0, 60);
+        BodyModel.step(s, in, BodyTuning.STANDARD, 300, 360); // wake gap, then 6 more hours: 7 h inside 10 h
+        assertEquals(0, s.awakeMin);
+    }
+
+    @Test
+    void cap_cause_names_the_lowest_row() {
+        assertEquals(Metabolism.CAP_AWAKE, Metabolism.capCause(0, 22, 100, 30 * 60, false, 10));
+        assertEquals(Metabolism.CAP_HUNGRY, Metabolism.capCause(-1600, 22, 100, 0, false, 10));
+        assertEquals(Metabolism.CAP_THIRST, Metabolism.capCause(0, 22, 10, 0, false, 10));
+        assertEquals(Metabolism.CAP_ILL, Metabolism.capCause(0, 22, 100, 0, false, 5));
+        assertEquals(Metabolism.CAP_NONE, Metabolism.capCause(0, 22, 100, 0, false, 10));
+    }
 }
