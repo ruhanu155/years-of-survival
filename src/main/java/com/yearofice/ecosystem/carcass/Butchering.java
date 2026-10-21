@@ -142,6 +142,11 @@ public final class Butchering {
         for (ItemStack s : in) {
             String path = BuiltInRegistries.ITEM.getKey(s.getItem()).getPath();
             if (path.equals("antler") && !(male || r.species().endsWith("caribou"))) continue;
+            if (path.equals("antler")) {
+                // the head's size travels with the antler to the trophy wall (A5): the kill's weight against its species' reference animal
+                double kg = r.weightG() / 1000.0, z = (kg - d.wholeKg()) / (0.15 * d.wholeKg());
+                s.set(YoiComponents.TROPHY_SIZE.get(), new com.yearofice.item.component.TrophySize("kg", kg, z, z >= 2 ? "monster" : z >= 1 ? "trophy" : z >= -1 ? "fair" : "small"));
+            }
             if (frozen && (path.endsWith("_hide") || path.endsWith("_pelt"))) continue;
             boolean meat = path.endsWith("_meat");
             String kind = meat ? "meat" : path;

@@ -154,6 +154,9 @@ public abstract class YoiAnimal extends PathfinderMob implements GeoEntity {
     /** A water-draw sample named this species: head for that edge when the animal is in its water act (or a bear at a run). */
     public void drawnToWater(BlockPos edge) { if (waterAt == null) waterAt = edge; }
 
+    /** The water edge this animal is heading for or standing at, or null. */
+    protected BlockPos waterEdge() { return waterAt; }
+
     public boolean wantsWater() { return driveState().act == Drives.Act.WATER; }
 
     public void respondToCall(Vec3 origin, long untilTick) {

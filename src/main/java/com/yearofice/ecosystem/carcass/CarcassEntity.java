@@ -89,6 +89,8 @@ public class CarcassEntity extends Entity implements GeoEntity {
         }
         ItemStack whole = WholeGameItem.of(record());
         if (!player.getInventory().add(whole)) player.drop(whole, false);
+        // hauling: lifting it costs the body 4 kcal a kilo (a 14 kg hare is a snack; a 40 kg doe is a meal's worth)
+        if (player instanceof net.minecraft.server.level.ServerPlayer sp) com.yearofice.api.body.BodyService.get().effort(sp, "haul", record().weightG() / 1000.0 * 4, 0);
         discard();
         return InteractionResult.CONSUME;
     }
