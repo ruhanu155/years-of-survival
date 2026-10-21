@@ -105,6 +105,7 @@ public final class EcoGameTests {
                     if (n != null) FORCED.put(key, n + 1);
                     else if (!level.getForcedChunks().contains(key)) {
                         level.setChunkForced(c.x + dx, c.z + dz, true);
+                        level.getChunk(c.x + dx, c.z + dz); // loaded now: far-region tests lay their floor at once
                         FORCED.put(key, 1);
                     }
                 } else {
