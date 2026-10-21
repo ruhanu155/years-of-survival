@@ -310,6 +310,27 @@
     "yearofice:kit_rod": {
       "weight_g": 450
     },
+    "yearofice:flint_knife": {
+      "weight_g": 120
+    },
+    "yearofice:flint_nodule": {
+      "weight_g": 400
+    },
+    "yearofice:knife": {
+      "weight_g": 250
+    },
+    "yearofice:rough_stone": {
+      "weight_g": 600
+    },
+    "yearofice:stake": {
+      "weight_g": 80
+    },
+    "yearofice:tool_handle": {
+      "weight_g": 350
+    },
+    "yearofice:workbench": {
+      "weight_g": 30000
+    },
     "yearofice:skates": {
       "weight_g": 1100
     },

@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": {
+    "yearofice:knife": {
+      "edge_uses": 400,
+      "material": "iron"
+    },
+    "yearofice:hatchet": {
+      "edge_uses": 600,
+      "material": "iron"
+    },
+    "yearofice:flint_knife": {
+      "edge_uses": 100,
+      "material": "stone"
+    },
+    "yearofice:rough_stone": {
+      "edge_uses": 0,
+      "material": "stone"
+    }
+  }
+}

@@ -1704,6 +1704,105 @@
       ]
     },
     {
+      "basis": "M3 lane B: gates attachment",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "attachment",
+      "ids": [
+        "gates"
+      ]
+    },
+    {
+      "basis": "M3 lane B: box_stamp attachment",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "attachment",
+      "ids": [
+        "box_stamp"
+      ]
+    },
+    {
+      "basis": "M3 crafting tag chip_tools",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "chip_tools"
+      ]
+    },
+    {
+      "basis": "M3 crafting tag gate_hide_and_bone",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "gate_hide_and_bone"
+      ]
+    },
+    {
+      "basis": "M3 crafting tag gate_iron",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "gate_iron"
+      ]
+    },
+    {
+      "basis": "M3 crafting tag knives",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "knives"
+      ]
+    },
+    {
+      "basis": "M3 crafting tag split_wood",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "split_wood"
+      ]
+    },
+    {
+      "basis": "M3 crafting item flint_knife",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "flint_knife"
+      ]
+    },
+    {
+      "basis": "M3 crafting item flint_nodule",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "flint_nodule"
+      ]
+    },
+    {
+      "basis": "M3 crafting item stake",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "stake"
+      ]
+    },
+    {
+      "basis": "M3 crafting item tool_handle",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "tool_handle"
+      ]
+    },
+    {
       "basis": "The food cache (Items > Containers; Theft by animals: mice in the cache)",
       "milestone": "m5",
       "owner": "food",
@@ -2168,18 +2267,12 @@
       ]
     },
     {
-      "basis": "M7 D winter gear and travel items",
-      "milestone": "m7",
-      "owner": "body",
-      "type": "item",
+      "basis": "M3 crafting re-land (#61): crop owns yearofice:station until M6-INT folds them",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "recipe_type",
       "ids": [
-        "fur_mittens",
-        "fur_hat",
-        "parka",
-        "hide_pants",
-        "mukluks",
-        "hare_fur_liners",
-        "moccasins"
+        "craft_station"
       ]
     },
     {
@@ -2234,6 +2327,21 @@
       "type": "sound_event",
       "ids": [
         "weather.thunder"
+      ]
+    },
+    {
+      "basis": "M7 D winter gear and travel items",
+      "milestone": "m7",
+      "owner": "body",
+      "type": "item",
+      "ids": [
+        "fur_mittens",
+        "fur_hat",
+        "parka",
+        "hide_pants",
+        "mukluks",
+        "hare_fur_liners",
+        "moccasins"
       ]
     },
     {
