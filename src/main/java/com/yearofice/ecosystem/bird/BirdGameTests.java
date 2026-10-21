@@ -56,7 +56,7 @@ public final class BirdGameTests {
     }
 
     static BlockPos pad(GameTestHelper h) {
-        for (int dx = -R; dx <= R; dx++) for (int dz = -R; dz <= R; dz++) h.setBlock(new BlockPos(1 + dx, PAD_Y, 1 + dz), Blocks.STONE);
+        for (int dx = -R; dx <= R; dx++) for (int dz = -R; dz <= R; dz++) com.yearofice.ecosystem.debug.EcoGameTests.stone(h, new BlockPos(1 + dx, PAD_Y, 1 + dz), true);
         BlockPos at = h.absolutePos(new BlockPos(1, PAD_Y + 1, 1));
         force(h.getLevel(), at, true);
         return at;
@@ -64,7 +64,7 @@ public final class BirdGameTests {
 
     static void unpad(GameTestHelper h, BlockPos at) {
         force(h.getLevel(), at, false);
-        for (int dx = -R; dx <= R; dx++) for (int dz = -R; dz <= R; dz++) h.setBlock(new BlockPos(1 + dx, PAD_Y, 1 + dz), Blocks.AIR);
+        for (int dx = -R; dx <= R; dx++) for (int dz = -R; dz <= R; dz++) com.yearofice.ecosystem.debug.EcoGameTests.stone(h, new BlockPos(1 + dx, PAD_Y, 1 + dz), false);
         for (BirdEntity b : h.getLevel().getEntitiesOfClass(BirdEntity.class, new AABB(at).inflate(48, 64, 48))) b.discard();
         for (CarcassEntity c : h.getLevel().getEntitiesOfClass(CarcassEntity.class, new AABB(at).inflate(48, 64, 48))) c.discard();
     }

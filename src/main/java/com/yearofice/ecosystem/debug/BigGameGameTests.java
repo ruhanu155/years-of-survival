@@ -64,25 +64,9 @@ public final class BigGameGameTests {
 
     static final int Y = EcoGameTests.PAD_Y;
 
-    /** Strip cells that some running test holds, by absolute position: overlapping tests share them (a neighbour's release must not clear what another still stands on). */
-    private static final java.util.Map<Long, Integer> HELD = new java.util.HashMap<>();
-
-    /** A stone strip under height Y (animals stand at Y), from {@code x0} to {@code x1} along the test's x axis and {@code side} blocks each way. */
-    static synchronized void strip(GameTestHelper h, int x0, int x1, int side, boolean on) {
-        for (int x = x0; x <= x1; x++) for (int z = -side; z <= side; z++) {
-            BlockPos rel = new BlockPos(1 + x, Y - 1, 1 + z);
-            long key = h.absolutePos(rel).asLong();
-            Integer n = HELD.get(key);
-            if (on) {
-                HELD.put(key, n == null ? 1 : n + 1);
-                h.setBlock(rel, Blocks.STONE);
-            } else if (n != null && n > 1) {
-                HELD.put(key, n - 1);
-            } else {
-                HELD.remove(key);
-                h.setBlock(rel, Blocks.AIR);
-            }
-        }
+    /** A stone strip under height Y (animals stand at Y), from {@code x0} to {@code x1} along the test's x axis and {@code side} blocks each way; shared with overlapping tests ({@link EcoGameTests#stone}). */
+    static void strip(GameTestHelper h, int x0, int x1, int side, boolean on) {
+        for (int x = x0; x <= x1; x++) for (int z = -side; z <= side; z++) EcoGameTests.stone(h, new BlockPos(1 + x, Y - 1, 1 + z), on);
     }
 
     static void forceLine(GameTestHelper h, Vec3 from, int dx, boolean on) {
