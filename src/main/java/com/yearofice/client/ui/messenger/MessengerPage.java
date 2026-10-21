@@ -42,7 +42,10 @@ public interface MessengerPage {
             l.bolts(0, p.energy(), p.energyCap());
             l.gap(Lcd.ROW);
             if (p.energyCap() < 10) {
-                l.text(tr("capped", Math.round(p.energyCap())), Pal.DIM);
+                // ponytail: cause inferred from the synced vitals; the awake clock is not synced — upgrade: add a cause byte to the payload
+                String why = p.bmi() < 18.5f ? "thin" : p.balance24h() < -1500 ? "hungry" : p.water() < 30 ? "thirsty"
+                        : p.gutIll() ? "gut" : "tired";
+                l.text(tr("capped", Math.round(p.energyCap()), tr("cause." + why)), Pal.DIM);
                 l.row();
             }
             l.text(tr("warmth", Math.round(p.warmth())), ClientBody.warmthWarn(p) ? Pal.RED : Pal.INK);

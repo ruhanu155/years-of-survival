@@ -56,6 +56,8 @@ public final class BodySosGameTests {
         List<TestFunction> out = new ArrayList<>();
         out.add(t("yearofice:body/vanilla_needs_held", 200, BodySosGameTests::vanillaNeedsHeld));
         out.add(t("yearofice:body/ground_sleep", 200, BodySosGameTests::groundSleep));
+        out.add(t("yearofice:body/sleep_resets_awake_cap", 200, BodySosGameTests::sleepResetsAwakeCap));
+        out.add(t("yearofice:body/asleep_lines_delivered_on_wake", 200, BodySosGameTests::asleepLinesOnWake));
         out.add(t("yearofice:body/sos_jump", 200, BodySosGameTests::sosJump));
         out.add(t("yearofice:body/own_body_sos", 400, BodySosGameTests::ownBodySos));
         out.add(t("yearofice:body/hardcore_end", 200, BodySosGameTests::hardcoreEnd));
@@ -123,6 +125,64 @@ public final class BodySosGameTests {
         p.stopSleepInBed(false, false);
         h.assertTrue(!p.isSleeping(), "awake");
         h.assertTrue(!h.getLevel().getBlockState(at).is(LeftPack.GROUND_BED.get()), "no ground_bed remains after waking");
+        Sleep.forget(p);
+        h.succeed();
+    }
+
+    /** 30 h awake caps energy at 7; a night through the sleep api (broken by a fire-tending wake) lifts it to 10. */
+    private static void sleepResetsAwakeCap(GameTestHelper h) {
+        ServerPlayer p = bot(h);
+        BodyState s = BodyAttachments.of(p);
+        s.energy = 2; s.awakeMin = 30 * 60; s.water = 100; s.warmth = 100;
+        long start = 22 * 60;
+        Sleep sleep = (Sleep) SleepService.get();
+        BodyTicker.VANILLA_ENV.override(p, new VanillaEnvSampler.EnvOverride(15, 0, Precip.NONE, 0, Double.NaN));
+        try {
+            BodyTicker.step(p, start - 1, 1, Activity.REST, false, false, BodyTuning.STANDARD);
+            h.assertTrue(s.lastEnergyCap == 7, "30 h awake caps at 7, got " + s.lastEnergyCap);
+            h.assertTrue(sleep.lieOnGround(p, start) == SleepService.Refusal.NONE, "lies down");
+            BodyTicker.step(p, start, 3 * 60, Activity.REST, true, false, BodyTuning.STANDARD);
+            p.stopSleepInBed(false, false); // up to tend the fire: the unbroken-run clock restarts
+            h.assertTrue(sleep.lieOnGround(p, start + 190) == SleepService.Refusal.NONE, "lies down again");
+            BodyTicker.step(p, start + 190, 5 * 60, Activity.REST, true, false, BodyTuning.STANDARD);
+            p.stopSleepInBed(false, false);
+            BodyTicker.step(p, start + 490, 1, Activity.REST, false, false, BodyTuning.STANDARD);
+        } finally {
+            BodyTicker.VANILLA_ENV.override(p, null);
+        }
+        h.assertTrue(s.awakeMin < 60, "awake clock cleared by 8 h of sleep, got " + s.awakeMin);
+        h.assertTrue(s.lastEnergyCap == 10, "cap back to 10, got " + s.lastEnergyCap);
+        Sleep.forget(p);
+        h.succeed();
+    }
+
+    /** energy_low crosses while asleep: nothing on the screen until the wake, then "while you slept" and the line. */
+    private static void asleepLinesOnWake(GameTestHelper h) {
+        ServerPlayer p = bot(h);
+        BodyState s = BodyAttachments.of(p);
+        s.energy = 6; s.water = 100; s.warmth = 100;
+        var bus = com.yearofice.api.hud.HudBus.get();
+        long start = 2 * 60;
+        h.assertTrue(((Sleep) SleepService.get()).lieOnGround(p, start) == SleepService.Refusal.NONE, "lies down");
+        com.yearofice.body.VitalExplainer.check(p, s, start);
+        s.energy = 4;
+        com.yearofice.body.VitalExplainer.check(p, s, start + 12);
+        java.util.function.Supplier<List<com.yearofice.api.hud.HudLine>> all = () -> {
+            List<com.yearofice.api.hud.HudLine> a = new ArrayList<>(bus.sent(p));
+            a.addAll(bus.held(p)); a.addAll(bus.journal(p));
+            return a;
+        };
+        boolean early = all.get().stream().anyMatch(l -> l.key().endsWith("energy_low"));
+        h.assertTrue(!early, "no line reaches a sleeper's screen");
+        p.stopSleepInBed(false, false);
+        com.yearofice.body.VitalExplainer.flush(p);
+        var sent = all.get();
+        int hdr = -1, low = -1;
+        for (int i = 0; i < sent.size(); i++) {
+            if (sent.get(i).key().endsWith("while_slept")) hdr = i;
+            if (sent.get(i).key().endsWith("energy_low")) low = i;
+        }
+        h.assertTrue(hdr >= 0 && low > hdr, "wake posts the header then energy_low: " + hdr + "/" + low);
         Sleep.forget(p);
         h.succeed();
     }
