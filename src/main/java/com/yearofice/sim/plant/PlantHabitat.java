@@ -45,14 +45,14 @@ public final class PlantHabitat {
             case "wet_meadow", "beaver_meadow" -> c.equals("willow_flat") || c.equals("muskeg");
             case "riverbank", "wet_riverbank", "river_bar", "creek_bottom", "slough" -> RIVER.contains(c);
             case "south_bluff", "south_slope", "dry_slope" -> (c.equals("birch_slope") || c.equals("foothill_benches")) && s.south();
-            case "birch_wood", "birch_slope", "birch_bark", "aspen_wood" -> c.equals("birch_slope");
-            case "bog", "bog_edge", "fen", "muskeg_edge", "cloudberry_muskeg" -> BOG.contains(c);
+            case "birch_wood", "birch_slope", "birch_bark", "aspen_wood", "old_birch" -> c.equals("birch_slope");
+            case "bog", "bog_edge", "fen", "muskeg_edge", "cloudberry_muskeg", "tamarack_bog" -> BOG.contains(c);
             case "pond_edge", "pond", "lake_edge", "open_water_edge" -> c.equals("willow_flat") || c.equals("muskeg") || c.equals("bar_edge");
             case "gravel_terrace", "gravel", "gravel_bar", "braided_flats", "terrace" -> GRAVEL.contains(c) || c.equals("foothill_benches");
             case "tundra", "alpine_heath", "alpine_meadow", "wet_subalpine_meadow", "alpine_seep" -> c.equals("alpine_tundra");
             case "subalpine" -> c.equals("lichen_woodland") || c.equals("alpine_tundra");
             case "alpine_slope", "alpine_ridge", "alpine_ledge", "cliff", "boulder", "rocky_slope" -> ROCK.contains(c);
-            case "wet_slope", "moist_forest", "mossy_forest_floor", "old_spruce" -> c.equals("spruce_moss") || c.equals("spruce_taiga") || c.equals("black_spruce_flats");
+            case "wet_slope", "moist_forest", "mossy_forest_floor", "old_spruce", "rotting_wood" -> c.equals("spruce_moss") || c.equals("spruce_taiga") || c.equals("black_spruce_flats");
             case "disturbed_soil", "trail_edge", "worn_ground", "old_garden" -> s.startDistM() < 300 && FOREST.contains(c);
             default -> false;
         };

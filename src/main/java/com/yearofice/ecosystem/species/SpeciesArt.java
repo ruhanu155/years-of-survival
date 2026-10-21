@@ -11,11 +11,12 @@ public final class SpeciesArt {
     private SpeciesArt() {}
 
     public static final Set<String> KNOWN = Set.of("snowshoe_hare", "moose", "red_squirrel", "marten", "ermine", "mink", "muskrat",
-            "beaver", "porcupine", "wood_frog", "yellowjacket", "black_bear", "grizzly", "wolf", "red_fox", "mule_deer");
+            "beaver", "porcupine", "wood_frog", "yellowjacket", "black_bear", "grizzly", "wolf", "red_fox", "mule_deer",
+            "brown_lemming", "collared_lemming", "bog_lemming", "singing_vole", "little_brown_bat", "boreal_toad");
     public static final Set<String> GROUSE = Set.of("willow_ptarmigan", "spruce_grouse", "ruffed_grouse", "rock_ptarmigan");
     /** One coat all year: the texture is {@code adult_all}. */
     public static final Set<String> SINGLE_COAT = Set.of("red_squirrel", "marten", "mink", "muskrat", "beaver", "porcupine", "wood_frog",
-            "yellowjacket");
+            "yellowjacket", "brown_lemming", "bog_lemming", "singing_vole", "little_brown_bat", "boreal_toad");
     public static final String PLACEHOLDER = "wood_frog";
 
     /**
@@ -33,6 +34,9 @@ public final class SpeciesArt {
 
     public static boolean has(String species) { return KNOWN.contains(species) || GROUSE.contains(species); }
 
+    /** A fish species (M7: a spawned-out salmon or a winterkill body is drawn on the fish rig). */
+    public static boolean fish(String species) { return com.yearofice.hunt.fishing.FishingSpecies.has(species); }
+
     /** The species whose animation names this one plays. */
-    public static String animSpecies(String species) { return artOf(species); }
+    public static String animSpecies(String species) { return fish(species) ? "fish" : artOf(species); }
 }

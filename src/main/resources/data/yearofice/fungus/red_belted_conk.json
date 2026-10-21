@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:red_belted_conk",
+  "kind": "fungus",
+  "window": {
+    "from": "05-01",
+    "peak": "10-01",
+    "to": "04-30"
+  },
+  "outside": "leaf"
+}

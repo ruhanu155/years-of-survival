@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:mares_tail",
+  "kind": "aquatic",
+  "window": {
+    "from": "05-20",
+    "peak": "07-01",
+    "to": "09-25"
+  },
+  "outside": "dormant"
+}

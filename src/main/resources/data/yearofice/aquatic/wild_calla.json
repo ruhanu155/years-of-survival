@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:wild_calla",
+  "kind": "aquatic",
+  "window": {
+    "from": "05-25",
+    "peak": "06-20",
+    "to": "09-15"
+  },
+  "outside": "dormant"
+}

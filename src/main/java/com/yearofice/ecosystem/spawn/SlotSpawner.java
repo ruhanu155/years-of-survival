@@ -184,7 +184,7 @@ public final class SlotSpawner {
             if (Habitats.any(level, g, d.habitat())) habitat.add(g);
         }
         double share = tested == 0 ? 0 : habitat.size() / (double) tested;
-        double mult = k.id().equals(SnowshoeHareEntity.ID) ? hareMultiplier(level, minute) : 1.0;
+        double mult = k.id().equals(SnowshoeHareEntity.ID) ? hareMultiplier(level, minute) : com.yearofice.ecosystem.small.LemmingIndex.multiplier(k.id(), level);
         double expected = Density.inCell(k.density().applyAsDouble(EcoConfig.tuning()), k.cellM(), share, mult);
         int n = habitat.isEmpty() ? 0 : Density.count(expected, r.nextDouble());
         List<Slot> slots = new ArrayList<>();

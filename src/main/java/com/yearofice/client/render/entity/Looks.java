@@ -16,6 +16,7 @@ final class Looks {
     static ResourceLocation rl(String path) { return ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, path); }
 
     static String geo(String species) {
+        if (SpeciesArt.fish(species)) return com.yearofice.hunt.fishing.FishEntity.isSchool(species) ? "rig_fish_school" : "rig_fish_resident";
         if (SpeciesArt.GROUSE.contains(species)) return "rig_grouse";
         return SpeciesArt.KNOWN.contains(species) ? species : SpeciesArt.artOf(species);
     }
@@ -28,6 +29,7 @@ final class Looks {
 
     /** The texture for a coat byte; the moose has summer coats only so far, a bull or a cow. */
     static ResourceLocation texture(String species, int coat, boolean male) {
+        if (SpeciesArt.fish(species)) return rl("textures/entity/fish/" + species + ".png");
         String art = SpeciesArt.artOf(species);
         if (!art.equals(species) && !art.equals(SpeciesArt.PLACEHOLDER)) species = art;
         SeasonalLooks.Coat c = SeasonalLooks.Coat.byId(coat);

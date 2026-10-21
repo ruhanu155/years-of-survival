@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/deadly_galerina_bare"
+  },
+  "render_type": "minecraft:cutout"
+}

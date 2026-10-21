@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:lily_pad",
+  "kind": "aquatic",
+  "window": {
+    "from": "06-10",
+    "peak": "07-25",
+    "to": "09-10"
+  },
+  "outside": "dormant"
+}

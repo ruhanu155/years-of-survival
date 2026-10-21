@@ -87,6 +87,11 @@ public final class M6DGameTests {
 
     /** An open cabin door with dried fish inside, the player 50 m away: a fox in 5% +-0.5 of 10,000 night hours, none by day, none shut. */
     static void doorRates(GameTestHelper h) {
+        com.yearofice.env.weather.WeatherSystem.calmOverride = true; // the 5% is a calm-night rate; storms keep foxes denned
+        try { doorRatesBody(h); } finally { com.yearofice.env.weather.WeatherSystem.calmOverride = false; }
+    }
+
+    static void doorRatesBody(GameTestHelper h) {
         ServerLevel l = h.getLevel();
         BlockPos door = h.absolutePos(DOOR);
         l.setBlock(door, Blocks.OAK_DOOR.defaultBlockState().setValue(DoorBlock.OPEN, true), 3);

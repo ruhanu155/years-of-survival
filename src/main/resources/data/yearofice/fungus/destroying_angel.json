@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:destroying_angel",
+  "kind": "fungus",
+  "window": {
+    "from": "07-20",
+    "peak": "08-20",
+    "to": "09-25"
+  },
+  "outside": "leaf"
+}

@@ -1,6 +1,17 @@
 {
   "replace": false,
   "values": {
+    "yearofice:aspen_oyster_caps": {"neoforge:conditions": [{"type": "neoforge:item_exists", "item": "yearofice:aspen_oyster_caps"}], "kcal_per_100g": 33.0, "protein_g_per_100g": 0.4, "fat_g_per_100g": 0.1, "vit_c_mg_per_100g": 0.0, "curve": "living_rot", "weight_g": 100.0, "spoil_days_at_5c": {"raw": 2.0}},
+    "yearofice:bur_reed_tubers": {"neoforge:conditions": [{"type": "neoforge:item_exists", "item": "yearofice:bur_reed_tubers"}], "kcal_per_100g": 86.7, "protein_g_per_100g": 1.1, "fat_g_per_100g": 0.2, "vit_c_mg_per_100g": 0.0, "curve": "living_rot", "weight_g": 150.0, "spoil_days_at_5c": {"raw": 5.0}},
+    "yearofice:chanterelle_caps": {"neoforge:conditions": [{"type": "neoforge:item_exists", "item": "yearofice:chanterelle_caps"}], "kcal_per_100g": 32.0, "protein_g_per_100g": 0.4, "fat_g_per_100g": 0.1, "vit_c_mg_per_100g": 0.0, "curve": "living_rot", "weight_g": 100.0, "spoil_days_at_5c": {"raw": 3.0}},
+    "yearofice:hawks_wing_caps": {"neoforge:conditions": [{"type": "neoforge:item_exists", "item": "yearofice:hawks_wing_caps"}], "kcal_per_100g": 30.0, "protein_g_per_100g": 0.4, "fat_g_per_100g": 0.1, "vit_c_mg_per_100g": 0.0, "curve": "living_rot", "weight_g": 100.0, "spoil_days_at_5c": {"raw": 3.0}},
+    "yearofice:hedgehog_caps": {"neoforge:conditions": [{"type": "neoforge:item_exists", "item": "yearofice:hedgehog_caps"}], "kcal_per_100g": 27.0, "protein_g_per_100g": 0.3, "fat_g_per_100g": 0.1, "vit_c_mg_per_100g": 0.0, "curve": "living_rot", "weight_g": 100.0, "spoil_days_at_5c": {"raw": 3.0}},
+    "yearofice:king_bolete_caps": {"neoforge:conditions": [{"type": "neoforge:item_exists", "item": "yearofice:king_bolete_caps"}], "kcal_per_100g": 35.0, "protein_g_per_100g": 0.4, "fat_g_per_100g": 0.1, "vit_c_mg_per_100g": 0.0, "curve": "living_rot", "weight_g": 200.0, "spoil_days_at_5c": {"raw": 2.0}},
+    "yearofice:lily_roots": {"neoforge:conditions": [{"type": "neoforge:item_exists", "item": "yearofice:lily_roots"}], "kcal_per_100g": 88.0, "protein_g_per_100g": 1.1, "fat_g_per_100g": 0.2, "vit_c_mg_per_100g": 0.0, "curve": "living_rot", "weight_g": 250.0, "spoil_days_at_5c": {"raw": 5.0}},
+    "yearofice:mares_tail_shoots": {"neoforge:conditions": [{"type": "neoforge:item_exists", "item": "yearofice:mares_tail_shoots"}], "kcal_per_100g": 20.0, "protein_g_per_100g": 0.2, "fat_g_per_100g": 0.0, "vit_c_mg_per_100g": 12.5, "curve": "living_rot", "weight_g": 40.0, "spoil_days_at_5c": {"raw": 2.0}},
+    "yearofice:orange_jelly_pieces": {"neoforge:conditions": [{"type": "neoforge:item_exists", "item": "yearofice:orange_jelly_pieces"}], "kcal_per_100g": 20.0, "protein_g_per_100g": 0.2, "fat_g_per_100g": 0.0, "vit_c_mg_per_100g": 0.0, "curve": "living_rot", "weight_g": 50.0, "spoil_days_at_5c": {"raw": 3.0}},
+    "yearofice:puffball_slices": {"neoforge:conditions": [{"type": "neoforge:item_exists", "item": "yearofice:puffball_slices"}], "kcal_per_100g": 26.7, "protein_g_per_100g": 0.3, "fat_g_per_100g": 0.1, "vit_c_mg_per_100g": 0.0, "curve": "living_rot", "weight_g": 150.0, "spoil_days_at_5c": {"raw": 2.0}},
+    "yearofice:tamarack_jack_caps": {"neoforge:conditions": [{"type": "neoforge:item_exists", "item": "yearofice:tamarack_jack_caps"}], "kcal_per_100g": 25.0, "protein_g_per_100g": 0.3, "fat_g_per_100g": 0.1, "vit_c_mg_per_100g": 0.0, "curve": "living_rot", "weight_g": 100.0, "spoil_days_at_5c": {"raw": 2.0}},
     "yearofice:turnip": {
       "neoforge:conditions": [
         {

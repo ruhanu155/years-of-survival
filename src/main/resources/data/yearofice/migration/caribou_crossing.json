@@ -1,0 +1,10 @@
+{
+  "kind": "caribou",
+  "from": "09-01",
+  "to": "09-30",
+  "peak": "09-15",
+  "line": "Caribou crossing the river.",
+  "spirits": 0,
+  "sound": "hooves in the shallows, grunts at the ford",
+  "id": "yearofice:caribou_crossing"
+}

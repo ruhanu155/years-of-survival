@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:orange_jelly",
+  "kind": "fungus",
+  "window": {
+    "from": "06-15",
+    "peak": "08-15",
+    "to": "10-31"
+  },
+  "outside": "leaf"
+}

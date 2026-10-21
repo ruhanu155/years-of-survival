@@ -1,0 +1,2 @@
+{ "variants": { "facing=north": {"model":"yearofice:block/fallen_limb"}, "facing=south": {"model":"yearofice:block/fallen_limb"},
+  "facing=east": {"model":"yearofice:block/fallen_limb","y":90}, "facing=west": {"model":"yearofice:block/fallen_limb","y":90} } }

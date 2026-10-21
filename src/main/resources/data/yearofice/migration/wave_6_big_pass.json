@@ -1,0 +1,40 @@
+{
+  "kind": "bird_wave",
+  "from": "08-25",
+  "to": "09-30",
+  "peak": "09-15",
+  "line": "Cranes heading south: about 50 days to freeze-up.",
+  "spirits": 0,
+  "arrivals": [
+    {
+      "species": "sandhill_crane",
+      "date": "08-25"
+    },
+    {
+      "species": "sandhill_crane",
+      "date": "09-15"
+    },
+    {
+      "species": "canada_goose",
+      "date": "09-05"
+    },
+    {
+      "species": "greater_white_fronted_goose",
+      "date": "09-05"
+    },
+    {
+      "species": "american_wigeon",
+      "date": "09-25"
+    },
+    {
+      "species": "rough_legged_hawk",
+      "date": "09-01"
+    },
+    {
+      "species": "bohemian_waxwing",
+      "date": "09-15"
+    }
+  ],
+  "sound": "goose skeins day and night, crane flocks at 3 km",
+  "id": "yearofice:wave_6_big_pass"
+}

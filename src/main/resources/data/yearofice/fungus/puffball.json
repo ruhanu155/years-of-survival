@@ -1,0 +1,10 @@
+{
+  "id": "yearofice:puffball",
+  "kind": "fungus",
+  "window": {
+    "from": "07-20",
+    "peak": "08-20",
+    "to": "09-20"
+  },
+  "outside": "leaf"
+}
