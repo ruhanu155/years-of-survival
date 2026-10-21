@@ -287,11 +287,23 @@ public final class SignGameTests {
         GateService.get().open(p, Tier.BUSHCRAFT, "test");
         p.getInventory().add(new ItemStack(CraftRegistry.KNIFE.get()));
         p.getInventory().add(new ItemStack(CraftRegistry.ROUGH_STONE.get()));
-        p.getInventory().add(new ItemStack(CraftRegistry.FLINT_NODULE.get(), 2));
+        p.getInventory().add(new ItemStack(CraftRegistry.FLINT_NODULE.get(), 4));
         PracticeService.get().set(p, Skill.KNAPPING, Skill.KNAPPING.n);
-        run(h, p, "arrowhead_knap");
-        h.assertTrue(count(p, HuntRegistry.ARROWHEAD.get()) == 4, "a nodule knaps to 4 heads: " + count(p, HuntRegistry.ARROWHEAD.get()));
-        p.getInventory().add(new ItemStack(HuntRegistry.ARROWHEAD.get(), 2));
+        // Knapping can shatter the core (5% when Practiced, rolled from a shared attempt counter), so the batch layout
+        // moves the roll: each job yields exactly 4 heads or none, and 4 nodules make a miss on all of them negligible.
+        int ok = 0;
+        for (int i = 0; i < 4; i++) {
+            int before = count(p, HuntRegistry.ARROWHEAD.get());
+            run(h, p, "arrowhead_knap");
+            int got = count(p, HuntRegistry.ARROWHEAD.get()) - before;
+            h.assertTrue(got == 4 || got == 0, "a nodule knaps to 4 heads or shatters: " + got);
+            if (got == 4) ok++;
+        }
+        h.assertTrue(ok >= 1 && count(p, CraftRegistry.FLINT_NODULE.get()) == 0, "knapping made heads from the nodules: " + ok);
+        int have = count(p, HuntRegistry.ARROWHEAD.get());
+        p.getInventory().clearContent();
+        p.getInventory().add(new ItemStack(CraftRegistry.KNIFE.get()));
+        p.getInventory().add(new ItemStack(HuntRegistry.ARROWHEAD.get(), 6));
         p.getInventory().add(new ItemStack(HuntRegistry.FEATHER.get(), 6));
         run(h, p, "fletching");
         run(h, p, "fletching");
