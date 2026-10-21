@@ -7,12 +7,12 @@
     "Items: the doc's count says 226, its list names 225"
   ],
   "counts": {
-    "total": 1627,
-    "by_type": {"mob": 157, "entity": 22, "block_with_entity": 83, "block": 173, "plant_block": 128, "multiblock": 3, "item": 522, "sound_event": 137, "particle_type": 43, "attachment": 34, "data_component": 31, "payload": 28, "gui_layer": 18, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 14, "loot_function": 8, "loot_condition": 3, "recipe_type": 6, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 87, "biome": 29, "worldgen_hook": 17, "poi_type": 14},
-    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 127, "m4": 51, "m5": 476, "m6": 323, "m7": 155, "m8": 147, "m9": 52, "none": 3},
-    "by_owner": {"body": 320, "building": 227, "ecosystem": 264, "food": 299, "look": 213, "story": 68, "studio": 75, "worldgen": 161},
-    "by_milestone_source": {"doc": 823, "rule": 804},
-    "by_status": {"planned": 1508, "registered": 116, "retired": 3}
+    "total": 1631,
+    "by_type": {"mob": 157, "entity": 22, "block_with_entity": 83, "block": 173, "plant_block": 128, "multiblock": 3, "item": 522, "sound_event": 137, "particle_type": 43, "attachment": 34, "data_component": 31, "payload": 28, "gui_layer": 18, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 14, "loot_function": 8, "loot_condition": 3, "recipe_type": 6, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 91, "biome": 29, "worldgen_hook": 17, "poi_type": 14},
+    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 127, "m4": 51, "m5": 476, "m6": 323, "m7": 155, "m8": 151, "m9": 52, "none": 3},
+    "by_owner": {"body": 320, "building": 231, "ecosystem": 264, "food": 299, "look": 213, "story": 68, "studio": 75, "worldgen": 161},
+    "by_milestone_source": {"doc": 827, "rule": 804},
+    "by_status": {"planned": 1512, "registered": 116, "retired": 3}
   },
   "entries": [
     {"id": "yearofice:alaska_blackfish", "type": "mob", "milestone": "m5", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
@@ -1519,6 +1519,7 @@
     {"id": "yearofice:coppice_plants", "type": "tag", "milestone": "m5", "owner": "body", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:crops", "type": "tag", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:diggable_soil", "type": "tag", "milestone": "m2", "owner": "worldgen", "milestone_source": "doc", "status": "registered"},
+    {"id": "yearofice:door", "type": "tag", "milestone": "m8", "owner": "building", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:drab_outer", "type": "tag", "milestone": "m6", "owner": "food", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:drag_obstacles", "type": "tag", "milestone": "m2", "owner": "worldgen", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:dressing_floor", "type": "tag", "milestone": "m6", "owner": "food", "milestone_source": "rule", "status": "planned"},
@@ -1528,6 +1529,7 @@
     {"id": "yearofice:erodible_bank", "type": "tag", "milestone": "m2", "owner": "worldgen", "milestone_source": "rule", "status": "registered"},
     {"id": "yearofice:fell_stops", "type": "tag", "milestone": "m2", "owner": "building", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:flock_birds", "type": "tag", "milestone": "m6", "owner": "ecosystem", "milestone_source": "rule", "status": "planned"},
+    {"id": "yearofice:floor", "type": "tag", "milestone": "m8", "owner": "building", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:freezing_soils", "type": "tag", "milestone": "m2", "owner": "worldgen", "milestone_source": "rule", "status": "registered"},
     {"id": "yearofice:funnel_materials", "type": "tag", "milestone": "m8", "owner": "building", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:gate_hide_and_bone", "type": "tag", "milestone": "m3", "owner": "building", "milestone_source": "doc", "status": "planned"},
@@ -1552,6 +1554,7 @@
     {"id": "yearofice:predators", "type": "tag", "milestone": "m2_5", "owner": "body", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:rakeable_berries", "type": "tag", "milestone": "m5", "owner": "body", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:raptors", "type": "tag", "milestone": "m6", "owner": "ecosystem", "milestone_source": "rule", "status": "planned"},
+    {"id": "yearofice:roof", "type": "tag", "milestone": "m8", "owner": "building", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:roof_any", "type": "tag", "milestone": "m8", "owner": "building", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:room_passable", "type": "tag", "milestone": "m8", "owner": "building", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:room_roofs", "type": "tag", "milestone": "m8", "owner": "building", "milestone_source": "rule", "status": "planned"},
@@ -1578,6 +1581,7 @@
     {"id": "yearofice:transplantable_plants", "type": "tag", "milestone": "m5", "owner": "body", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:valley_biomes", "type": "tag", "milestone": "m2", "owner": "worldgen", "milestone_source": "doc", "status": "registered"},
     {"id": "yearofice:vehicles", "type": "tag", "milestone": "m8", "owner": "building", "milestone_source": "rule", "status": "planned"},
+    {"id": "yearofice:wall", "type": "tag", "milestone": "m8", "owner": "building", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:waterbirds", "type": "tag", "milestone": "m6", "owner": "ecosystem", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:weighed_food", "type": "tag", "milestone": "m2", "owner": "studio", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:wild", "type": "tag", "milestone": "m6", "owner": "ecosystem", "milestone_source": "rule", "status": "planned"},

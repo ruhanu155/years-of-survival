@@ -2391,6 +2391,18 @@
         "door_frame",
         "window_frame"
       ]
+    },
+    {
+      "basis": "M8 lane A: block tags wall, roof, floor, door",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "wall",
+        "roof",
+        "floor",
+        "door"
+      ]
     }
   ],
   "expand": {
