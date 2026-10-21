@@ -22,6 +22,8 @@ public final class FoodItems {
 
     public static final DeferredItem<YoiFoodItem> PEMMICAN = food("pemmican");
     public static final DeferredItem<YoiFoodItem> DRIED_FISH = food("dried_fish");
+    /** Drying-rack output for meat, as {@link #DRIED_FISH} is for fish (food.json row {@code dried_meat}). */
+    public static final DeferredItem<YoiFoodItem> DRIED_MEAT = food("dried_meat");
     public static final DeferredItem<YoiFoodItem> HEN_EGG = food("hen_egg");
     public static final DeferredItem<YoiFoodItem> GOAT_MILK = food("goat_milk");
     public static final DeferredItem<YoiFoodItem> ROSE_HIPS = food("rose_hips");

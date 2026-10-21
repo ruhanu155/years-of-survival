@@ -483,6 +483,27 @@
     },
     "yearofice:sinew_bow": {
       "weight_g": 900
+    },
+    "yearofice:fleece_jacket": {
+      "weight_g": 500
+    },
+    "yearofice:rain_shell": {
+      "weight_g": 400
+    },
+    "yearofice:work_pants": {
+      "weight_g": 600
+    },
+    "yearofice:wool_socks": {
+      "weight_g": 100
+    },
+    "yearofice:hiking_boots": {
+      "weight_g": 1400
+    },
+    "yearofice:wool_beanie": {
+      "weight_g": 100
+    },
+    "yearofice:work_gloves": {
+      "weight_g": 100
     }
   }
 }

@@ -125,6 +125,9 @@ public final class BodyTicker {
         EnvSampler.Sample smp = env.sample(p, minute);
         LAST_SAMPLE.put(p.getUUID(), smp);
         skinContext(BodyAttachments.of(p));
+        // M7 lane F: a dressed player's body reads what is actually worn (null = the implied start kit, undressed mocks).
+        BodyAttachments.of(p).worn = com.yearofice.body.clothing.StartOutfit.dressed(p)
+                ? com.yearofice.api.body.ClothingService.get().worn(p) : null;
         // Sleep quality and the bed's insulation from the bed under the sleeper (bare ground 0.70, +0 °C).
         com.yearofice.api.body.SleepService.Spot bed = asleep ? com.yearofice.body.sleep.Sleep.spotFor(p) : null;
         return new BodyModel.Inputs(activity, asleep, bed == null ? 0 : bed.quality(), smp.env(), smp.heat(), smp.shelter(),

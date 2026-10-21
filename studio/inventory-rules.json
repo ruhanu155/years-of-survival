@@ -2896,6 +2896,21 @@
       "ids": [
         "rounds"
       ]
+    },
+    {
+      "basis": "M7 lane F wear it: start-kit garments (Blueprint › Clothing, Start tier)",
+      "milestone": "m7",
+      "owner": "body",
+      "type": "item",
+      "ids": [
+        "fleece_jacket",
+        "rain_shell",
+        "work_pants",
+        "wool_socks",
+        "hiking_boots",
+        "wool_beanie",
+        "work_gloves"
+      ]
     }
   ],
   "expand": {

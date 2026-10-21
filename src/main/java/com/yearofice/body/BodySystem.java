@@ -28,6 +28,8 @@ public final class BodySystem {
         LeftPack.register(modBus);
         com.yearofice.sim.body.Wellness.tuningSource = com.yearofice.body.illness.WellnessConfig::current;
         com.yearofice.body.injury.InjuryItems.register(modBus);
+        com.yearofice.body.clothing.ClothingItems.register(modBus);
+        com.yearofice.api.body.ClothingService.install(com.yearofice.body.clothing.ClothingSlots.INSTANCE);
     }
 
     /**

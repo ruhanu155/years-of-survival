@@ -217,6 +217,7 @@ public final class SosFlow {
         p.setHealth(p.getMaxHealth());
         p.resetFallDistance();
         giveStartingKit(p);
+        com.yearofice.body.clothing.StartOutfit.dress(p);
         countFlight(p);
         Journal.record(p, Journal.FLIGHT, f.cause.id, f.line, before, BodyClock.day(before));
         YearOfIce.LOG.info("SOS: {} back after {} min, {} stacks left at {}", p.getGameProfile().getName(), minute - before,

@@ -5,6 +5,12 @@
   "slots": [
     "back",
     "neck",
-    "snowshoes"
+    "snowshoes",
+    "head_inner",
+    "torso_inner",
+    "legs_inner",
+    "feet_inner",
+    "hands_inner",
+    "hands_outer"
   ]
 }
