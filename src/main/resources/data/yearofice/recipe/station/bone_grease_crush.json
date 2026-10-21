@@ -1,11 +1,13 @@
 {
-  "type": "yearofice:station",
+  "type": "yearofice:craft_station",
+  "tier": "start",
   "station": "yearofice:flat_stone",
-  "inputs": [
-    "yearofice:marrow_bone"
+  "ingredients": [
+    { "item": "yearofice:marrow_bone", "count": 1 }
   ],
   "tool": "yearofice:rough_stone",
+  "effort": "light",
+  "kcal": 0,
   "work_min_per_kg": 20,
-  "result": "yearofice:crushed_bone",
-  "yield_pct": 100
+  "result": { "id": "yearofice:crushed_bone", "count": 1 }
 }

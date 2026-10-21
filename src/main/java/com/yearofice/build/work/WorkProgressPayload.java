@@ -30,7 +30,7 @@ public record WorkProgressPayload(boolean active, float share, float perTick, by
             b -> new WorkProgressPayload(b.readBoolean(), b.readFloat(), b.readFloat(), b.readByte(), b.readShort(), b.readShort()));
 
     /** The ring's label. */
-    public enum Phase { NOTCH, BACK_CUT, CUT_BLOCK, CUT_TOP, LIMB, BUCK, SPLIT, SET_BLOCK, PAN, CRAFT, LIFT, CHIP }
+    public enum Phase { NOTCH, BACK_CUT, CUT_BLOCK, CUT_TOP, LIMB, BUCK, SPLIT, SET_BLOCK, PAN, CRAFT, LIFT, CHIP, HEAT, HAMMER, QUENCH }
 
     public static WorkProgressPayload idle() { return new WorkProgressPayload(false, 0, 0, (byte) 0, (short) 0, (short) 0); }
 

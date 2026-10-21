@@ -1,0 +1,24 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "iron",
+  "station": "yearofice:furnace",
+  "ingredients": [
+    {
+      "item": "yearofice:iron_bar",
+      "count": 2
+    },
+    {
+      "item": "yearofice:tool_handle",
+      "count": 1
+    }
+  ],
+  "tool": "yearofice:rough_stone",
+  "work_min": 180,
+  "effort": "high",
+  "kcal": 1350,
+  "skill": "smithing",
+  "result": {
+    "id": "yearofice:iron_saw",
+    "count": 1
+  }
+}

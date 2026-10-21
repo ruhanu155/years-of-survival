@@ -177,6 +177,11 @@ public final class GearBlocks {
 
         @Override
         protected InteractionResult useWithoutItem(BlockState s, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+            if (player.isShiftKeyDown() && level instanceof ServerLevel sl) {
+                com.yearofice.api.build.WheelService.get().clearDebris(sl, pos);
+                player.displayClientMessage(Component.literal("You clear the debris from the wheel."), true);
+                return InteractionResult.CONSUME;
+            }
             return checkAt(level, pos, player, PassiveGearService.Kind.FISH_WHEEL);
         }
     }

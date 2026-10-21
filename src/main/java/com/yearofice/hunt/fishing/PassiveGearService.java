@@ -175,7 +175,9 @@ public final class PassiveGearService {
                 }
                 PassiveGear.Hour hour = new PassiveGear.Hour(mean);
                 List<PassiveGear.Hour> hs = new ArrayList<>();
-                for (int i = 0; i < hours; i++) hs.add(hour);
+                // build.craft.water: a fish wheel turns only in a current, never under ice, and not once fouled
+                int turned = g.kind == Kind.FISH_WHEEL ? com.yearofice.api.build.WheelService.get().turningHours(level, g.pos, hours) : hours;
+                for (int i = 0; i < turned; i++) hs.add(hour);
                 List<PassiveGear.Catch> cs = PassiveGear.settle(level.getSeed(), g.pos.getX(), g.pos.getY(), g.pos.getZ(), day, period,
                         g.kind.sim, Math.max(0, g.holds() - g.held.size()), hs, false, false);
                 int idx = 0;

@@ -1,0 +1,17 @@
+{
+  "tier": "iron",
+  "number": 4,
+  "gate": {
+    "event": "first_iron_in_hand",
+    "items_tag": "yearofice:gate_iron"
+  },
+  "stations": [
+    "yearofice:furnace"
+  ],
+  "trail_line": "Iron ore. A clay furnace and charcoal could smelt it.",
+  "practice": {
+    "skill": "smithing",
+    "n": 20
+  },
+  "ambition": "first_bar"
+}

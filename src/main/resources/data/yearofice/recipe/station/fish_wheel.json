@@ -1,0 +1,27 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "homestead",
+  "station": "yearofice:hands",
+  "ingredients": [
+    {
+      "tag": "yearofice:split_wood",
+      "count": 24
+    },
+    {
+      "item": "yearofice:stake",
+      "count": 6
+    },
+    {
+      "item": "yearofice:square_nail",
+      "count": 20
+    }
+  ],
+  "work_min": 600,
+  "effort": "high",
+  "kcal": 4500,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:fish_wheel",
+    "count": 1
+  }
+}

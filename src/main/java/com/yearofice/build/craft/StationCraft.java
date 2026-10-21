@@ -95,6 +95,9 @@ public final class StationCraft {
         return best;
     }
 
+    /** Lanes that add stations (furnace, forge, canoe bed) append here; each adds ids to the set. Append-only. */
+    public static final List<java.util.function.BiConsumer<ServerPlayer, Set<ResourceLocation>>> STATION_PROVIDERS = new ArrayList<>();
+
     /** The stations the player can use here: the Hands always, a workbench within reach, a warm fire close by. */
     public static Set<ResourceLocation> stations(ServerPlayer p, @Nullable BlockPos bench) {
         Set<ResourceLocation> out = new HashSet<>();
@@ -108,6 +111,7 @@ public final class StationCraft {
         if (!FireHeatLookup.INSTANCE.sourcesNear(l, p.getX(), p.getY(), p.getZ()).isEmpty()) {
             out.add(ResourceLocation.fromNamespaceAndPath("yearofice", "fire_ring"));
         }
+        for (var provider : STATION_PROVIDERS) provider.accept(p, out);
         return out;
     }
 

@@ -20,6 +20,7 @@ public final class BuildSystem {
         BuildRegistry.register(modBus);
         com.yearofice.build.store.StoreSystem.init(modBus);
         com.yearofice.build.craft.CraftSystem.init(modBus);
+        com.yearofice.build.metal.MetalSystem.init(modBus); // M9 lane B
         com.yearofice.build.outpost.OutpostSystem.init(modBus);
         // A lifted box's hold (A7) is checked before the wood jobs'.
         var woodResolver = com.yearofice.build.work.WorkService.resolver;

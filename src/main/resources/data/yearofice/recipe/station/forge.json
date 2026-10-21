@@ -1,0 +1,26 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "homestead",
+  "station": "yearofice:hands",
+  "ingredients": [
+    {
+      "item": "yearofice:rough_stone",
+      "count": 40
+    },
+    {
+      "item": "minecraft:clay_ball",
+      "count": 8
+    },
+    {
+      "item": "yearofice:iron_bar",
+      "count": 4
+    }
+  ],
+  "work_min": 480,
+  "effort": "high",
+  "kcal": 3600,
+  "result": {
+    "id": "yearofice:forge",
+    "count": 1
+  }
+}

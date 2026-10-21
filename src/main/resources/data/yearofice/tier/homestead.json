@@ -1,0 +1,19 @@
+{
+  "tier": "homestead",
+  "number": 5,
+  "gate": {
+    "event": "first_breakup_in_a_warm_room",
+    "window_days": 21,
+    "breakup_on": "04-26"
+  },
+  "stations": [
+    "yearofice:forge",
+    "yearofice:canoe_bed"
+  ],
+  "trail_line": "The river is moving. You wintered here.",
+  "practice": {
+    "skill": "smithing",
+    "n": 20
+  },
+  "ambition": "run_a_fish_wheel"
+}

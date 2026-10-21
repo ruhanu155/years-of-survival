@@ -37,6 +37,18 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 public final class CraftCommands {
     private CraftCommands() {}
 
+    /** {@code /yoi craft tiers}: how many recipes each tier holds, and whether its gate is open for the caller. */
+    static int craftTiers(CommandContext<CommandSourceStack> c) throws CommandSyntaxException {
+        ServerPlayer p = c.getSource().getPlayerOrException();
+        int[] n = new int[Tier.values().length];
+        for (RecipeHolder<StationRecipe> h : StationCraft.all(p.level())) n[h.value().tier().ordinal()]++;
+        for (Tier t : Tier.values()) {
+            String line = t.id() + ": " + n[t.ordinal()] + " recipes, gate " + (GateService.get().isOpen(p, t) ? "open" : "closed");
+            c.getSource().sendSuccess(() -> Component.literal(line), false);
+        }
+        return 1;
+    }
+
     private static final SimpleCommandExceptionType BAD = new SimpleCommandExceptionType(Component.literal("Unknown name"));
 
     public static void register(RegisterCommandsEvent event) {
@@ -54,6 +66,7 @@ public final class CraftCommands {
                                 .executes(c -> practiceSet(c, true))))))
                 .then(Commands.literal("craft")
                         .then(Commands.literal("list").executes(CraftCommands::craftList))
+                        .then(Commands.literal("tiers").executes(CraftCommands::craftTiers))
                         .then(Commands.literal("start").then(Commands.argument("recipe", ResourceLocationArgument.id()).executes(c -> craft(c, false))))
                         .then(Commands.literal("now").then(Commands.argument("recipe", ResourceLocationArgument.id()).executes(c -> craft(c, true)))))
                 .then(Commands.literal("tool")

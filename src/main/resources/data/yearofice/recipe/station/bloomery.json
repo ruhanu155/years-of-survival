@@ -1,0 +1,22 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "iron",
+  "station": "yearofice:hands",
+  "ingredients": [
+    {
+      "item": "minecraft:clay_ball",
+      "count": 24
+    },
+    {
+      "item": "yearofice:rough_stone",
+      "count": 30
+    }
+  ],
+  "work_min": 960,
+  "effort": "high",
+  "kcal": 7200,
+  "result": {
+    "id": "yearofice:bloomery",
+    "count": 1
+  }
+}

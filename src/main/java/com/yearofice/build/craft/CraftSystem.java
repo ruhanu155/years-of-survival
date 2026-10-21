@@ -63,6 +63,7 @@ public final class CraftSystem {
         NeoForge.EVENT_BUS.addListener(CraftSystem::knifeInAir);
         NeoForge.EVENT_BUS.addListener(CraftSystem::fireLit);
         NeoForge.EVENT_BUS.addListener(CraftSystem::scanForGates);
+        NeoForge.EVENT_BUS.addListener(HomesteadGate::onTick);
         NeoForge.EVENT_BUS.addListener(CraftCommands::register);
     }
 
@@ -108,6 +109,11 @@ public final class CraftSystem {
     /** A first sinew or first iron in the pack opens its gate. */
     static void scanForGates(PlayerTickEvent.Post e) {
         if (!(e.getEntity() instanceof ServerPlayer p) || p.tickCount % GATE_SCAN_TICKS != 7 || p.isSpectator()) return;
+        scan(p);
+    }
+
+    /** One look at the pack for a first sinew or first iron (public so a GameTest can run it without ticking a player). */
+    public static void scan(ServerPlayer p) {
         GateService g = GateService.get();
         boolean hide = g.isOpen(p, Tier.HIDE_AND_BONE), iron = g.isOpen(p, Tier.IRON);
         if (hide && iron) return;
