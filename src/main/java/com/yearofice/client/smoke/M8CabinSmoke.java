@@ -706,15 +706,41 @@ public final class M8CabinSmoke {
     }
 
     private static final Map<Item, ResourceLocation> recipeFor = new HashMap<>();
+    private static int refusalsLogged;
+    private static final Set<String> refusedKinds = new HashSet<>();
     static double craftMin;
     static int crafted;
 
     /** Crafts one {@code it} through its station recipe (the craft job the Hands run); raw ingredients are granted and logged; no recipe: GRANT the item. */
+    private static BlockPos shop;
+
+    /** A lit fire ring (opens Bushcraft) and a forge block (the furnace station) beside the cabin pad; the forge is a GRANT of the iron age. */
+    private static void ensureWorkshop(ServerPlayer p) {
+        if (shop == null) {
+            shop = site.offset(-4, 0, 2);
+            level.setBlock(shop.below(), Blocks.DIRT.defaultBlockState(), 3);
+            level.setBlock(shop, FireRegistry.FIRE_RING.get().defaultBlockState(), 3);
+            level.setBlock(shop.north(), com.yearofice.build.metal.MetalRegistry.FORGE.get().defaultBlockState(), 3);
+            grant("forge_block", 1);
+            blocked("furnace station: a forge block is set by hand (ore, charcoal, smelting and the bloom are the iron age, not a day-one path); iron_bar ingredients are GRANTED");
+            p.teleportTo(level, shop.getX() + 1.5, shop.getY(), shop.getZ() + 0.5, 0, 0);
+            p.setShiftKeyDown(false);
+            ItemStack m = take(p, s -> s.is(FireRegistry.MATCH.get()));
+            if (m.isEmpty()) { grant("match", 1); m = new ItemStack(FireRegistry.MATCH.get(), 1); }
+            hold(p, workSlot, m.copyWithCount(1));
+            p.gameMode.useItemOn(p, level, p.getInventory().getItem(workSlot), InteractionHand.MAIN_HAND, new BlockHitResult(Vec3.atCenterOf(shop), Direction.UP, shop, false));
+            p.getInventory().setItem(workSlot, ItemStack.EMPTY);
+            log("WORKSHOP fire ring lit near the forge; bushcraft gate open: " + com.yearofice.api.build.GateService.get().isOpen(p, com.yearofice.sim.build.Tier.BUSHCRAFT));
+        }
+        p.teleportTo(level, shop.getX() + 1.5, shop.getY(), shop.getZ() + 0.5, 0, 0);
+    }
+
     private static void obtain(ServerPlayer p, Item it) {
         String nm = BuiltInRegistries.ITEM.getKey(it).getPath();
         if (recipeFor.isEmpty()) for (var h : StationCraft.all(level)) recipeFor.put(h.value().resultItem(), h.id());
         ResourceLocation rid = recipeFor.get(it);
         if (rid == null) { grant(nm, 1); return; }
+        ensureWorkshop(p);
         var holder = StationCraft.byId(level, rid);
         for (var need : holder.value().ingredients()) {
             ItemStack[] opts = need.ingredient().getItems();
@@ -722,9 +748,15 @@ public final class M8CabinSmoke {
             int have = StationCraft.count(p.getInventory(), need);
             if (have < need.count()) { grant("ingredient:" + BuiltInRegistries.ITEM.getKey(opts[0].getItem()).getPath(), need.count() - have); p.getInventory().add(opts[0].copyWithCount(need.count() - have)); }
         }
+        p.setShiftKeyDown(false);
         hold(p, hatchetSlot, p.getInventory().getItem(hatchetSlot));
         var job = StationCraft.start(p, rid, null);
-        if (job == null) { grant(nm + "(craft refused)", 1); return; }
+        if (job == null) {
+            var pl = StationCraft.plan(p, holder, StationCraft.stations(p, null));
+            if (refusalsLogged++ < 12 || !refusedKinds.contains(nm)) log("  craft refused " + nm + ": " + pl.problem() + " (stations " + StationCraft.stations(p, null) + ") [/yoi craft why equivalent]");
+            refusedKinds.add(nm);
+            grant(nm + "(craft refused)", 1); return;
+        }
         int t = 0;
         while (!StationCraft.advance(p, job, WorkService.dsPerTick()) && t++ < 200000) { }
         double m = t * WorkService.dsPerTick() / 600.0;
