@@ -31,7 +31,10 @@ public final class FirstKills {
     /** Records a kill of {@code species}; returns true if it was the first (and a journal line was written). */
     public static boolean onKill(ServerPlayer p, String species, String cause, TrophySize size, long minute, int day) {
         if (size != null) RecordBook.record(p, species, size, day);
-        if (BIG_GAME.contains(species)) com.yearofice.api.story.AmbitionTracker.open(p, com.yearofice.api.story.AmbitionTracker.HUNTING);
+        if (BIG_GAME.contains(species)) {
+            com.yearofice.api.story.AmbitionTracker.open(p, com.yearofice.api.story.AmbitionTracker.HUNTING);
+            com.yearofice.story.ambition.Ambitions.fire(p, "kill.big_game", minute);
+        }
         CompoundTag root = p.getPersistentData().getCompound(Player.PERSISTED_NBT_TAG);
         ListTag seen = root.getList(KEY, Tag.TAG_STRING);
         for (int i = 0; i < seen.size(); i++) if (seen.getString(i).equals(species)) return false;

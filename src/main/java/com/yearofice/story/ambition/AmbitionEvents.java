@@ -41,6 +41,14 @@ public final class AmbitionEvents {
     public static void hung(TrophyHungEvent e) { Ambitions.fire(e.player(), "trophy.hung", ClockService.installed() ? ClockService.get().nowMinute() : 0); }
 
     @SubscribeEvent
+    public static void crafted(com.yearofice.api.build.StationCraftEvent e) {
+        if (e.failed()) return;
+        long m = ClockService.installed() ? ClockService.get().nowMinute() : 0;
+        if (e.station().getPath().equals("forge")) Ambitions.fire(e.player(), "craft.forged_iron", m);
+        if (e.recipe().getPath().contains("fur_mittens")) Ambitions.fire(e.player(), "craft.fur_mittens", m);
+    }
+
+    @SubscribeEvent
     public static void commands(RegisterCommandsEvent e) {
         e.getDispatcher().register(Commands.literal("yoi").requires(s -> s.hasPermission(2)).then(Commands.literal("ambitions")
                 .executes(c -> {

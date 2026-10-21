@@ -7040,6 +7040,468 @@
       "licence": "project",
       "generator_version": "hand",
       "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_bog_iron",
+      "files": [
+        "assets/yearofice/models/item/bog_iron.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_scrap_iron",
+      "files": [
+        "assets/yearofice/models/item/scrap_iron.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_charcoal",
+      "files": [
+        "assets/yearofice/models/item/charcoal.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_square_nail",
+      "files": [
+        "assets/yearofice/models/item/square_nail.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_trap_jaws",
+      "files": [
+        "assets/yearofice/models/item/trap_jaws.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_canoe",
+      "files": [
+        "assets/yearofice/models/item/canoe.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_iron_nodule",
+      "files": [
+        "assets/yearofice/models/item/iron_nodule.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_iron_bloom",
+      "files": [
+        "assets/yearofice/models/item/iron_bloom.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_iron_bar",
+      "files": [
+        "assets/yearofice/models/item/iron_bar.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_iron_knife",
+      "files": [
+        "assets/yearofice/models/item/iron_knife.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_iron_saw",
+      "files": [
+        "assets/yearofice/models/item/iron_saw.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_iron_chisel",
+      "files": [
+        "assets/yearofice/models/item/iron_chisel.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_iron_axe_head",
+      "files": [
+        "assets/yearofice/models/item/iron_axe_head.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_iron_fish_hook",
+      "files": [
+        "assets/yearofice/models/item/iron_fish_hook.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_iron_pot",
+      "files": [
+        "assets/yearofice/models/item/iron_pot.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_awning",
+      "files": [
+        "assets/yearofice/models/item/awning.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_door_frame",
+      "files": [
+        "assets/yearofice/models/item/door_frame.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_dressed_stone",
+      "files": [
+        "assets/yearofice/models/item/dressed_stone.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_log_deck",
+      "files": [
+        "assets/yearofice/models/item/log_deck.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_roof_plank",
+      "files": [
+        "assets/yearofice/models/item/roof_plank.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_roof_pole_sod",
+      "files": [
+        "assets/yearofice/models/item/roof_pole_sod.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_roof_shingle",
+      "files": [
+        "assets/yearofice/models/item/roof_shingle.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_slab_floor",
+      "files": [
+        "assets/yearofice/models/item/slab_floor.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_wall_log",
+      "files": [
+        "assets/yearofice/models/item/wall_log.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_wall_plank",
+      "files": [
+        "assets/yearofice/models/item/wall_plank.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_wall_sod",
+      "files": [
+        "assets/yearofice/models/item/wall_sod.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_wall_stone",
+      "files": [
+        "assets/yearofice/models/item/wall_stone.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_window_frame",
+      "files": [
+        "assets/yearofice/models/item/window_frame.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_iron_outcrop",
+      "files": [
+        "assets/yearofice/models/item/iron_outcrop.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_path",
+      "files": [
+        "assets/yearofice/models/item/path.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_bloomery",
+      "files": [
+        "assets/yearofice/models/item/bloomery.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_bloomery_blk",
+      "files": [
+        "assets/yearofice/models/block/bloomery.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_bloomery_bs",
+      "files": [
+        "assets/yearofice/blockstates/bloomery.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_forge",
+      "files": [
+        "assets/yearofice/models/item/forge.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_forge_blk",
+      "files": [
+        "assets/yearofice/models/block/forge.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_forge_bs",
+      "files": [
+        "assets/yearofice/blockstates/forge.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_canoe_bed",
+      "files": [
+        "assets/yearofice/models/item/canoe_bed.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_canoe_bed_blk",
+      "files": [
+        "assets/yearofice/models/block/canoe_bed.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_canoe_bed_bs",
+      "files": [
+        "assets/yearofice/blockstates/canoe_bed.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_sluice_box",
+      "files": [
+        "assets/yearofice/models/item/sluice_box.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_sluice_box_blk",
+      "files": [
+        "assets/yearofice/models/block/sluice_box.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "m9int_sluice_box_bs",
+      "files": [
+        "assets/yearofice/blockstates/sluice_box.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
     }
   ]
 }

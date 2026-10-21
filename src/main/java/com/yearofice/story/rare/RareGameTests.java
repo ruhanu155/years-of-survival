@@ -28,6 +28,8 @@ public final class RareGameTests {
         List<TestFunction> out = new ArrayList<>();
         out.add(test("yearofice:story/sky_lore", 200, RareGameTests::skyLore));
         out.add(test("yearofice:story/mist_count", 200, RareGameTests::mistCount));
+        out.add(test("yearofice:story/rare_event_fires", 200, RareGameTests::rareEventFires));
+        out.add(test("yearofice:story/mist_rule_live", 200, RareGameTests::mistRuleLive));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
 
@@ -68,6 +70,36 @@ public final class RareGameTests {
             if (MistRule.mist(water >= 1, hr.windMs(), water, hr.airC(), wet)) mist++;
         }
         h.assertTrue(mist >= 25 && mist <= 40, "about 25-40 mist mornings a year, got " + mist);
+        h.succeed();
+    }
+
+    static void rareEventFires(GameTestHelper h) {
+        long seed = h.getLevel().getSeed();
+        long day = -1;
+        for (long d = 0; d < 365 * 40 && day < 0; d++) if (RareEventTicker.dayPass(seed, d).contains("aurora_storm")) day = d;
+        h.assertTrue(day >= 0, "aurora_storm rolls true in some year of 40 (35 % a year)");
+        var seen = new ArrayList<String>();
+        net.neoforged.bus.api.IEventBus bus = net.neoforged.neoforge.common.NeoForge.EVENT_BUS;
+        Consumer<com.yearofice.api.event.RareEventFiredEvent> l = e -> seen.add(e.id());
+        bus.addListener(l);
+        try {
+            RareEventTicker.fireDay(h.getLevel(), day);
+        } finally {
+            bus.unregister(l);
+        }
+        h.assertTrue(seen.contains("aurora_storm"), "the day pass posted the event: " + seen);
+        h.assertTrue(RareEventTicker.dayPass(seed, day + 1).isEmpty() || !RareEventTicker.dayPass(seed, day + 1).contains("aurora_storm"), "it fires once, on the window's first day");
+        h.succeed();
+    }
+
+    static void mistRuleLive(GameTestHelper h) {
+        int hits = 0;
+        for (long d = 1; d <= 365; d++) {
+            boolean live = RareEventTicker.morningMist(h.getLevel(), d);
+            if (live != RareEventTicker.mistToday()) h.fail("the ticker keeps the day's answer");
+            if (live) hits++;
+        }
+        h.assertTrue(hits >= 25 && hits <= 40, "the live pass finds about 25-40 mist mornings, got " + hits);
         h.succeed();
     }
 }

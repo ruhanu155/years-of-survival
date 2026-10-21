@@ -83,6 +83,8 @@ public final class BowDrillService {
         }
         if (v.lit()) {
             Fire.Result r = be.emberCaught(player);
+            if (r.ok() && player instanceof net.minecraft.server.level.ServerPlayer sp)
+                com.yearofice.story.ambition.Ambitions.fire(sp, "fire.bow_drill", player.level().getGameTime() / 1200);
             tell(player, r.ok() ? v.line() : r.line());
         } else if (v.line() != null) {
             tell(player, v.line());
