@@ -44,6 +44,8 @@ public final class PieceGameTests {
         out.add(new TestFunction("m8a", "yearofice:build/slab_floor_u", TEMPLATE, 60, 0, true, PieceGameTests::slabFloorU));
         out.add(new TestFunction("m8a", "yearofice:build/path_speed", TEMPLATE, 60, 0, true, PieceGameTests::pathSpeed));
         out.add(new TestFunction("m8a", "yearofice:build/stove_heats_real_room", TEMPLATE, 100, 0, true, PieceGameTests::stoveHeatsRealRoom));
+        out.add(new TestFunction("m8a", "yearofice:build/body_warm_in_heated_room", TEMPLATE, 400, 0, true, PieceGameTests::bodyWarmInHeatedRoom));
+        out.add(new TestFunction("m8a", "yearofice:build/body_cold_in_unheated_room", TEMPLATE, 400, 0, true, PieceGameTests::bodyColdInUnheatedRoom));
         out.add(new TestFunction("m8a", "yearofice:build/stove_state_saves", TEMPLATE, 60, 0, true, PieceGameTests::stoveStateSaves));
         return TestFilter.apply(out);
     }
@@ -134,23 +136,91 @@ public final class PieceGameTests {
         }
     }
 
+    /** A sealed 4x4x3 log cabin with a real tin stove (paused, unlit) under a 5 m pipe, at -30 C; returns the stove. Interior is 1..4. */
+    static com.yearofice.fire.stove.StoveBlockEntity realCabin(GameTestHelper h) {
+        Block wall = PieceRegistry.WALL_LOG.get();
+        for (int x = 0; x <= 5; x++) for (int z = 0; z <= 5; z++) {
+            h.setBlock(new BlockPos(x, UP, z), PieceRegistry.SLAB_FLOOR.get());
+            h.setBlock(new BlockPos(x, UP + 4, z), PieceRegistry.ROOF_POLE_SOD.get());
+            boolean ring = x == 0 || x == 5 || z == 0 || z == 5;
+            for (int y = 1; y <= 3; y++) h.setBlock(new BlockPos(x, UP + y, z), ring ? wall : Blocks.AIR);
+        }
+        BlockPos at = new BlockPos(1, UP + 1, 1);
+        h.setBlock(at, com.yearofice.fire.stove.StoveRegistry.TIN_STOVE.get());
+        for (int y = 2; y <= 5; y++) h.setBlock(new BlockPos(1, UP + y, 1), com.yearofice.fire.stove.StoveRegistry.CHIMNEY_PIPE.get());
+        com.yearofice.fire.stove.StoveBlockEntity be = h.getBlockEntity(at);
+        be.pause(true);
+        return be;
+    }
+
+    /** Two game hours, a minute at a time, of a resting player in the cabin's far corner: warmth after each minute, and the worst frost seen. */
+    private static double[] bodyHours(GameTestHelper h, com.yearofice.fire.stove.StoveBlockEntity be, boolean lit, int minutes) {
+        net.minecraft.server.level.ServerPlayer p = com.yearofice.build.wood.WoodGameTests.player(h, "roomer", new Vec3(4.5, UP + 1, 4.5));
+        com.yearofice.sim.body.BodyState s = com.yearofice.body.BodyAttachments.of(p);
+        s.warmth = 60;
+        double[] out = new double[minutes + 1];
+        out[0] = s.warmth;
+        int frost = 0;
+        for (int m = 0; m < minutes; m++) {
+            if (lit) be.stepMinutes(1);
+            com.yearofice.body.BodyTicker.step(p, 600 + m, 1, com.yearofice.sim.body.Activity.REST, false, false, com.yearofice.sim.body.BodyTuning.STANDARD);
+            out[m + 1] = com.yearofice.body.BodyAttachments.of(p).warmth;
+            for (int f : com.yearofice.body.BodyAttachments.of(p).parts.partFrost()) frost = Math.max(frost, f);
+        }
+        var smp = com.yearofice.body.BodyTicker.env.sample(p, 600);
+        if (false) h.fail("DBG lit=" + lit + " air " + smp.env().airC() + " indoors " + smp.env().indoors() + " heat " + smp.heat() + " warmth " + out[minutes] + " pos " + p.blockPosition());
+        return new double[] {out[0], out[minutes], frost, java.util.Arrays.stream(out).min().getAsDouble()};
+    }
+
+    /** M8 lane E: a player in a sealed, heated room at -30 C outside keeps warm for two game hours with no frost. */
+    static void bodyWarmInHeatedRoom(GameTestHelper h) {
+        night(h);
+        try {
+            com.yearofice.fire.stove.StoveBlockEntity be = realCabin(h);
+            be.loadFuel(com.yearofice.sim.fire.Wood.BIRCH, 10, 2.0);
+            if (!be.light()) h.fail("the stove did not light");
+            be.setting(com.yearofice.sim.env.FireSetting.STEADY);
+            double[] r = bodyHours(h, be, true, 120);
+            if (r[3] < r[0] - 1e-9) h.fail("warmth fell to " + r[3] + " from " + r[0] + " in a heated room");
+            if (r[1] <= r[0]) h.fail("warmth did not rise in a warm room: " + r[0] + " -> " + r[1]);
+            if (r[2] > 0) h.fail("frost " + r[2] + " in a heated room");
+            clear(h);
+            h.succeed();
+        } catch (RuntimeException ex) {
+            clear(h);
+            throw ex;
+        }
+    }
+
+    /** M8 lane E: the same room with the stove out is no warmer than the ground: warmth falls, but slower than in the open. */
+    static void bodyColdInUnheatedRoom(GameTestHelper h) {
+        night(h);
+        try {
+            com.yearofice.fire.stove.StoveBlockEntity be = realCabin(h);
+            double[] in = bodyHours(h, be, false, 30);
+            if (in[1] >= in[0]) h.fail("warmth did not fall in an unheated room at -30 C: " + in[0] + " -> " + in[1] + ", room " + RoomService.get().roomAt(h.getLevel(), inside(h, 0)));
+            // the same hours in the open: the same -30 C with the cabin's 3 m/s wind on the face
+            net.minecraft.server.level.ServerPlayer o = com.yearofice.build.wood.WoodGameTests.player(h, "outside", new Vec3(4.5, UP + 20, 4.5));
+            com.yearofice.body.BodyTicker.VANILLA_ENV.override(o, new com.yearofice.body.env.VanillaEnvSampler.EnvOverride(-30, 3, Precip.NONE, 0, Double.NaN));
+            com.yearofice.body.BodyAttachments.of(o).warmth = 60;
+            for (int m = 0; m < 30; m++) com.yearofice.body.BodyTicker.step(o, 600 + m, 1, com.yearofice.sim.body.Activity.REST, false, false, com.yearofice.sim.body.BodyTuning.STANDARD);
+            double outW = com.yearofice.body.BodyAttachments.of(o).warmth;
+            com.yearofice.body.BodyTicker.VANILLA_ENV.override(o, null);
+            if (in[1] <= outW) h.fail("the unheated room (" + in[1] + ") should keep more warmth than the open (" + outW + ")");
+            clear(h);
+            h.succeed();
+        } catch (RuntimeException ex) {
+            clear(h);
+            throw ex;
+        }
+    }
+
     /** M8 lane D: a real lit tin stove with a real chimney in a sealed 4x4x3 (48 m3 less the stove column) cabin at -30 C, no stub. */
     static void stoveHeatsRealRoom(GameTestHelper h) {
         ServerLevel l = h.getLevel();
         night(h);
         try {
-            Block wall = PieceRegistry.WALL_LOG.get();
-            for (int x = 0; x <= 5; x++) for (int z = 0; z <= 5; z++) {
-                h.setBlock(new BlockPos(x, UP, z), PieceRegistry.SLAB_FLOOR.get());
-                h.setBlock(new BlockPos(x, UP + 4, z), PieceRegistry.ROOF_POLE_SOD.get());
-                boolean ring = x == 0 || x == 5 || z == 0 || z == 5;
-                for (int y = 1; y <= 3; y++) h.setBlock(new BlockPos(x, UP + y, z), ring ? wall : Blocks.AIR);
-            }
-            BlockPos at = new BlockPos(1, UP + 1, 1);
-            h.setBlock(at, com.yearofice.fire.stove.StoveRegistry.TIN_STOVE.get());
-            for (int y = 2; y <= 5; y++) h.setBlock(new BlockPos(1, UP + y, 1), com.yearofice.fire.stove.StoveRegistry.CHIMNEY_PIPE.get());
-            com.yearofice.fire.stove.StoveBlockEntity be = h.getBlockEntity(at);
-            be.pause(true);
+            com.yearofice.fire.stove.StoveBlockEntity be = realCabin(h);
             BlockPos in = inside(h, 0);
             Room cold = RoomService.get().roomAt(l, in);
             if (cold == null || cold.volumeM3() != 45 || cold.sourceW() != 0) h.fail("cold cabin: " + cold);
@@ -160,6 +230,7 @@ public final class PieceGameTests {
             Room hot = RoomService.get().roomAt(l, in);
             if (hot.sourceW() < 1000 || Math.abs(hot.sourceW() - be.outputW()) > 1) h.fail("room got " + hot.sourceW() + " W, stove gives " + be.outputW());
             if (hot.feelsLikeC() <= 5) h.fail("STEADY " + hot.sourceW() + " W feels " + hot.feelsLikeC() + " C at -30 C");
+            if (hot.feelsLikeC() > 35) h.fail("a chinked cabin on a STEADY stove reads at most +35 C, not " + hot.feelsLikeC() + " (" + hot.sourceW() + " W, U " + hot.uWPerK() + ")");
             be.setting(com.yearofice.sim.env.FireSetting.LOW);
             Room low = RoomService.get().roomAt(l, in);
             System.out.println("YOI stove_heats_real_room: volume " + hot.volumeM3() + " U " + hot.uWPerK() + " STEADY " + hot.sourceW() + " W feels " + hot.feelsLikeC()

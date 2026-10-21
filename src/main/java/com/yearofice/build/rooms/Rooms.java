@@ -134,6 +134,10 @@ public final class Rooms implements RoomService {
         return com.yearofice.api.fire.HeatSources.wattsIn(l, c -> e.byCellHas(c.getX(), c.getY(), c.getZ()) || sourceOnWall(e, c));
     }
 
+    private static double firedW(ServerLevel l, RoomsData.Entry e) {
+        return com.yearofice.api.fire.HeatSources.firedIn(l, c -> e.byCellHas(c.getX(), c.getY(), c.getZ()) || sourceOnWall(e, c));
+    }
+
     private static Room balance(ServerLevel l, RoomsData.Entry e) {
         BlockPos seed = new BlockPos(e.minX, e.minY, e.minZ);
         BlockPos above = new BlockPos((e.minX + e.maxX) / 2, e.maxY + 3, (e.minZ + e.maxZ) / 2);
@@ -143,7 +147,7 @@ public final class Rooms implements RoomService {
         List<Heat.Face> faces = new ArrayList<>();
         for (Heat.Face f : e.scan.faces()) faces.add(f.part() == Heat.Part.ROOF ? new Heat.Face(f.part(), f.areaM2(), f.u(), snowM) : f);
         double w = sourceW(l, e);
-        Heat.Balance b = Heat.solve(faces, e.scan.leaks().size(), 0, w, out, ground, wind);
+        Heat.Balance b = Heat.solve(faces, e.scan.leaks().size(), 0, w, firedW(l, e), PiecesConfig.chimneyDraw(), out, ground, wind);
         List<BlockPos> leaks = new ArrayList<>();
         for (long c : e.scan.leaks()) leaks.add(new BlockPos(RoomScan.ux(c), RoomScan.uy(c), RoomScan.uz(c)));
         int walls = 0, snow = 0, flames = 0;
