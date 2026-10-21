@@ -1,0 +1,15 @@
+seed 3141592: pile -1092, 151, 789 (water -1092, 149, 790), player -1062, 150, 789, start minute 177845
+seed 3141592: bear seen true, reached false (min distance 144 m, first seen 145 m, reach at game minute -1), game minutes run 21126 (stopped at two days)
+seed 3141593: pile -1739, 132, 784 (water -1738, 131, 784), player -1713, 134, 799, start minute 177844
+seed 3141593: bear seen true, reached false (min distance 92 m, first seen 94 m, reach at game minute -1), game minutes run 2898 (stopped at two days)
+seed 3141594: pile -1848, 174, 1053 (water -1848, 173, 1054), player -1818, 175, 1053, start minute 177842
+seed 3141594: bear seen true, reached false (min distance 46 m, first seen 139 m, reach at game minute -1), game minutes run 2886 (stopped at two days)
+seed 3141595: pile -1893, 128, 1057 (water -1892, 127, 1058), player -1867, 129, 1072, start minute 177843
+seed 3141595: bear seen true, reached false (min distance 71 m, first seen 94 m, reach at game minute -1), game minutes run 2880 (stopped at two days)
+seed 3141596: pile -1302, 295, 1582 (water -1303, 294, 1582), player -1276, 297, 1597, start minute 177844
+seed 3141596: bear seen true, reached false (min distance 41 m, first seen 108 m, reach at game minute -1), game minutes run 22170 (stopped at two days)
+seed 3141597: pile -185, 173, 861 (water -184, 172, 862), player -155, 175, 861, start minute 177846
+seed 3141597: bear seen true, reached false (min distance 56 m, first seen 77 m, reach at game minute -1), game minutes run 2916 (stopped at two days)
+seed 3141598: pile -1707, 152, 676 (water -1706, 151, 677), player -1677, 153, 676, start minute 177843
+seed 3141598: bear seen true, reached false (min distance 60 m, first seen 93 m, reach at game minute -1), game minutes run 2889 (stopped at two days)
+RESULT FAIL (stopped at 7 of 10 seeds, 0 reached; 7 of 10 is unreachable): bears now spawn on every seed (first seen 77-145 m from the pile) but none came within 41 m of it in 2 game days. Seeds 3141599-3141601 not run (client OOM-killed, exit 137, repeatedly at seed index 7).
