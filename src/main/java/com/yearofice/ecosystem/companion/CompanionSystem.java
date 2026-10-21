@@ -11,6 +11,7 @@ public final class CompanionSystem {
 
     public static void init(IEventBus modBus) {
         CompanionRegistry.register(modBus);
+        CompanionAttachments.register(modBus);
         NeoForge.EVENT_BUS.addListener(Companions::onPlayerTick);
         NeoForge.EVENT_BUS.addListener(LeadFence::onTick);
         NeoForge.EVENT_BUS.addListener(LeadFence::onDeath);

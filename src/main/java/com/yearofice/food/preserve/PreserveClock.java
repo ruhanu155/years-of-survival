@@ -45,7 +45,7 @@ public final class PreserveClock {
     }
 
     private static void stepLoaded(int hours) {
-        each(be -> { if (be instanceof RackBlockEntity r) r.clockHours(hours); });
+        each(be -> { if (be instanceof RackBlockEntity r) r.clockHours(hours); else if (be instanceof FoodCacheBlockEntity c) c.spoilHours(hours); });
     }
 
     private static void dayLoaded(long absDay) {

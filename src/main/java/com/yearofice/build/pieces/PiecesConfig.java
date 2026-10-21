@@ -8,6 +8,7 @@ public final class PiecesConfig {
     private PiecesConfig() {}
 
     static final PresetTable TABLE = new PresetTable("pieces")
+            .dial("instant_place", "1 places a building piece at a tap; 0 makes placing a hold-to-work job of the piece's labour_min.", 1, 0, 0, 0, 1)
             .dial("room_max_m3", "Largest enclosure counted as a room, cubic metres; bigger fills are the open air.", 600, 8, 4096)
             .dial("room_scans_per_tick", "Dirty room scans run per server tick.", 4, 1, 64)
             .dial("room_cache_ticks", "How long a room's heat balance is trusted before it is recomputed, ticks.", 200, 1, 24000)
@@ -21,6 +22,7 @@ public final class PiecesConfig {
 
     public static void define(ModConfigSpec.Builder b) { TABLE.define(b, "Building pieces, rooms, heat, paths and stamping (M8)."); }
 
+    public static boolean instantPlace() { return TABLE.get("instant_place") >= 0.5; }
     public static int roomMax() { return (int) Math.round(TABLE.get("room_max_m3")); }
     public static int scansPerTick() { return (int) Math.round(TABLE.get("room_scans_per_tick")); }
     public static int cacheTicks() { return (int) Math.round(TABLE.get("room_cache_ticks")); }

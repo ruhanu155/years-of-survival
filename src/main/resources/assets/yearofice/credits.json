@@ -7526,5 +7526,27 @@
       "generator_version": "hand written",
       "release_blocker": false
     }
+    ,{
+      "asset_id": "m9int2_feed_boxes",
+      "files": [
+        "assets/yearofice/blockstates/feed_trough.json",
+        "assets/yearofice/models/block/feed_trough.json",
+        "assets/yearofice/models/item/feed_trough.json",
+        "assets/yearofice/blockstates/water_trough.json",
+        "assets/yearofice/models/block/water_trough.json",
+        "assets/yearofice/models/item/water_trough.json",
+        "assets/yearofice/blockstates/hay_rack.json",
+        "assets/yearofice/models/block/hay_rack.json",
+        "assets/yearofice/models/item/hay_rack.json",
+        "assets/yearofice/blockstates/nest_box.json",
+        "assets/yearofice/models/block/nest_box.json",
+        "assets/yearofice/models/item/nest_box.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m9_int_models.py",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    }
   ]
 }

@@ -225,11 +225,25 @@ public class WolfEntity extends PredatorEntity {
         return InteractionResult.PASS; // bones, and anything else, do nothing
     }
 
+    /** Trust comes from the attachment once it has been deserialised (it can land after readAdditionalSaveData). */
+    private void adoptTrust() {
+        if (adopted || !hasData(CompanionAttachments.TRUST.get())) return;
+        List<Double> l = getData(CompanionAttachments.TRUST.get());
+        if (l.isEmpty()) return;
+        double[] d = new double[l.size()];
+        for (int i = 0; i < d.length; i++) d[i] = l.get(i);
+        trust = Trust.load(d);
+        adopted = true;
+    }
+
+    private boolean adopted;
+
     // ---- the tick ------------------------------------------------------------------------------------------------------
 
     @Override
     public void tick() {
         super.tick();
+        adoptTrust();
         if (!(level() instanceof ServerLevel level) || trust == null) return;
         if (tickCount == 1) applyScale();
         if (autoDays) {
@@ -469,9 +483,10 @@ public class WolfEntity extends PredatorEntity {
         super.addAdditionalSaveData(tag);
         if (trust == null) return;
         if (ownerId != null) tag.putUUID("yoi_owner", ownerId);
-        ListTag l = new ListTag();
-        for (double d : trust.save()) l.add(DoubleTag.valueOf(d));
-        tag.put("yoi_trust", l);
+        java.util.List<Double> tl = new java.util.ArrayList<>();
+        for (double d : trust.save()) tl.add(d);
+        setData(CompanionAttachments.TRUST.get(), tl);
+        tag.putBoolean("yoi_has", true);
         tag.putBoolean("yoi_tameable", tameable);
         tag.putString("yoi_command", command.name());
         tag.putString("yoi_name", wolfName);
@@ -484,11 +499,15 @@ public class WolfEntity extends PredatorEntity {
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
-        if (!tag.contains("yoi_trust")) return;
-        ListTag l = tag.getList("yoi_trust", Tag.TAG_DOUBLE);
-        double[] d = new double[l.size()];
-        for (int i = 0; i < d.length; i++) d[i] = l.getDouble(i);
-        trust = Trust.load(d);
+        if (!tag.contains("yoi_trust") && !tag.contains("yoi_has")) return;
+        // 0.4.0: trust is the yearofice:trust attachment (read lazily, see adoptTrust); the old NBT list is read for one version
+        if (tag.contains("yoi_trust")) {
+            ListTag l = tag.getList("yoi_trust", Tag.TAG_DOUBLE);
+            double[] d = new double[l.size()];
+            for (int i = 0; i < d.length; i++) d[i] = l.getDouble(i);
+            trust = Trust.load(d);
+        } else if (hasData(CompanionAttachments.TRUST.get())) adoptTrust();
+        else trust = new Trust(0);
         ownerId = tag.hasUUID("yoi_owner") ? tag.getUUID("yoi_owner") : null;
         tameable = tag.getBoolean("yoi_tameable");
         command = Command.valueOf(tag.getString("yoi_command"));

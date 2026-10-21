@@ -1,0 +1,16 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "homestead",
+  "station": "yearofice:workbench",
+  "ingredients": [
+    { "item": "yearofice:log_piece", "count": 4 },
+    { "item": "yearofice:plank", "count": 6 },
+    { "item": "yearofice:cord", "count": 8 }
+  ],
+  "tool": "yearofice:hatchet",
+  "work_min": 480,
+  "effort": "medium",
+  "kcal": 2000,
+  "skill": "woodcraft",
+  "result": { "id": "yearofice:dog_sled", "count": 1 }
+}

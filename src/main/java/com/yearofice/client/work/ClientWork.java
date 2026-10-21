@@ -113,7 +113,7 @@ public final class ClientWork {
     public static void use(InputEvent.InteractionKeyMappingTriggered e) {
         if (!e.isUseItem() || e.getHand() != InteractionHand.MAIN_HAND) return;
         Minecraft mc = Minecraft.getInstance();
-        if (mc.player != null && target(mc, mc.player) != null) {
+        if (mc.player != null && com.yearofice.build.pieces.PlaceJob.row(mc.player.getMainHandItem()) == null && target(mc, mc.player) != null) {
             e.setSwingHand(false);
             e.setCanceled(true);
         }
@@ -135,7 +135,9 @@ public final class ClientWork {
                     (float) bh.getLocation().x, (float) bh.getLocation().y, (float) bh.getLocation().z);
         }
         boolean ok;
-        if (WoodItems.isRound(hand) && p.isShiftKeyDown() && bh.getDirection() == Direction.UP) {
+        if (com.yearofice.build.pieces.PlaceJob.row(hand) != null) {
+            ok = true; // a building piece in hand: the server holds it as a job unless [pieces] instant_place
+        } else if (WoodItems.isRound(hand) && p.isShiftKeyDown() && bh.getDirection() == Direction.UP) {
             ok = p.level().getBlockState(pos.above()).canBeReplaced() && s.isFaceSturdy(p.level(), pos, Direction.UP);
         } else if (com.yearofice.food.pan.PanTargets.isPan(hand) && com.yearofice.food.pan.PanTargets.isGravel(s)) {
             ok = true;

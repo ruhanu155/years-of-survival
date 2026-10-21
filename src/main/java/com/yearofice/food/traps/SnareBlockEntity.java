@@ -262,8 +262,13 @@ public class SnareBlockEntity extends BlockEntity implements GeoBlockEntity {
         long now = now();
         Snare.Catch v = state.visible(now);
         if (v != null) {
-            ItemStack whole = WholeGameItem.of(record(v));
+            CarcassRecord taken = record(v);
+            ItemStack whole = WholeGameItem.of(taken);
             if (!player.getInventory().add(whole)) player.drop(whole, false);
+            if (player instanceof ServerPlayer sp) {
+                com.yearofice.story.ambition.Ambitions.fire(sp, "snare.first_take", now);
+                if (taken.species().endsWith(":marten")) com.yearofice.story.ambition.Ambitions.fire(sp, "trap.marten", now);
+            }
             state = Snare.check(state, now, TrapConfig.tuning());
             announced = false;
             baitedAt = Long.MIN_VALUE;
