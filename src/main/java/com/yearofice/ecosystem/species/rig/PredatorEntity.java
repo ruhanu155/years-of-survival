@@ -287,8 +287,8 @@ public class PredatorEntity extends LandAnimal {
             scavenged++;
             return true;
         }
-        boolean far = position().distanceToSqr(at) > 40 * 40; // a scent trail far off is followed at a lope (1.6 x trot), not a stroll
-        if (getNavigation().isDone() || far && tickCount % 20 == 0) pathToward(at, Gaits.input(species().trotMps() * (far ? 1.6 : 1.0)));
+        boolean far = position().distanceToSqr(at) > 40 * 40; // a scent trail far off is followed at a lope (the config's multiplier x trot), not a stroll
+        if (getNavigation().isDone() || far && tickCount % 20 == 0) pathToward(at, Gaits.input(species().trotMps() * (far ? com.yearofice.ecosystem.pool.PoolConfig.tuning().predatorScentTrotMultiplier() : 1.0)));
         setMove(far ? MOVE_RUN : MOVE_WALK);
         return true;
     }

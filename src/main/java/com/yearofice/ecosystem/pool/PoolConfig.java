@@ -17,18 +17,19 @@ public final class PoolConfig {
      * @param smokehouseBaseM reach of a smokehouse with a fire burning
      */
     public record PoolTuning(double reachScale, double interestScale, double gutPileBaseM, double carcassBaseM,
-                             double rackBaseM, double smokehouseBaseM) {}
+                             double rackBaseM, double smokehouseBaseM, double predatorScentTrotMultiplier) {}
 
     public static final PresetConfig<PoolTuning> POOL = new PresetConfig<>(PoolTuning.class, p -> switch (p) {
-        case GENTLE -> new PoolTuning(0.7, 0.6, 1500, 2000, 800, 1200);
-        case STANDARD -> new PoolTuning(1.0, 1.0, 1500, 2000, 800, 1200);
-        case BRUTAL -> new PoolTuning(1.3, 1.5, 1500, 2000, 800, 1200);
+        case GENTLE -> new PoolTuning(0.7, 0.6, 1500, 2000, 800, 1200, 1.6);
+        case STANDARD -> new PoolTuning(1.0, 1.0, 1500, 2000, 800, 1200, 1.6);
+        case BRUTAL -> new PoolTuning(1.3, 1.5, 1500, 2000, 800, 1200, 1.3);
     }, Map.of("reachScale", "Multiplies how far (and so how many valley animals) a scent source reaches along the wind.",
             "interestScale", "Multiplies the hourly chance that an off-screen bear, wolf pack or wolverine in reach starts walking to the scent.",
             "gutPileBaseM", "Reach in metres of a fresh gut pile or fish-cleaning spot (times wind and rain factors).",
             "carcassBaseM", "Reach in metres of a carcass.",
             "rackBaseM", "Reach in metres of a rack with meat or fish.",
-            "smokehouseBaseM", "Reach in metres of a smokehouse with a fire."));
+            "smokehouseBaseM", "Reach in metres of a smokehouse with a fire.",
+            "predatorScentTrotMultiplier", "A predator follows a scent source more than 40 m away at this many times its trot."));
 
     public static void define(ModConfigSpec.Builder b) {
         b.comment("The valley's bears: off-screen animals pulled by scent (RECONCILE 306).").push("ecosystem");
