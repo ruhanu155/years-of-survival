@@ -37,4 +37,24 @@ public final class StormMath {
         for (int h = 0; h < Math.min(hoursIn, e.hours()); h++) sum += live(def, e, (h0 + h) * 60 + 30, severity, 0).precipMmH();
         return glazeMm(sum, canopy);
     }
+
+    /** Water a day's storms drop: {snowMm, rainMm}. Snow falls as snow, rain and glaze as rain (glaze crusts the pack), hail not at all. */
+    public static double[] dayPrecip(StormTable table, java.util.Map<String, StormDef> defs, long absDay, double severity) {
+        double snow = 0, rain = 0;
+        long h0 = absDay * 24;
+        for (StormTable.Event e : table.events()) {
+            if (e.endHour() <= h0 || e.startHour() >= h0 + 24) continue;
+            StormDef def = defs.get(e.id());
+            if (def == null) continue;
+            for (long h = Math.max(h0, e.startHour()); h < Math.min(h0 + 24, e.endHour()); h++) {
+                double mm = live(def, e, h * 60 + 30, severity, 0).precipMmH();
+                switch (def.precip()) {
+                    case SNOW -> snow += mm;
+                    case RAIN, GLAZE -> rain += mm;
+                    default -> { }
+                }
+            }
+        }
+        return new double[] {snow, rain};
+    }
 }
