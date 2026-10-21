@@ -1,0 +1,108 @@
+{
+ "note": "A group opens on its date (day 0 = May 1 of year 1) or after 4 ambitions of the group before it are done.",
+ "groups": [
+  {
+   "id": "first_days",
+   "open_days": 0,
+   "after": null
+  },
+  {
+   "id": "first_summer",
+   "open_days": 31,
+   "after": "first_days"
+  },
+  {
+   "id": "first_winter",
+   "open_days": 184,
+   "after": "first_summer"
+  },
+  {
+   "id": "year_one",
+   "open_days": 276,
+   "after": "first_winter"
+  },
+  {
+   "id": "beyond_homestead",
+   "open_days": 365,
+   "after": "year_one"
+  },
+  {
+   "id": "beyond_travel",
+   "open_days": 365,
+   "after": "year_one"
+  },
+  {
+   "id": "beyond_hunting",
+   "open_days": 365,
+   "after": "year_one"
+  },
+  {
+   "id": "beyond_wolves",
+   "open_days": 365,
+   "after": "year_one"
+  }
+ ],
+ "ids": [
+  "bear_wise",
+  "clean_water",
+  "first_catch",
+  "first_snare",
+  "iron_in_hand",
+  "keep_the_coals",
+  "last_cracker",
+  "spark",
+  "toward_the_horizon",
+  "under_a_roof",
+  "a_full_cache",
+  "dry_10_kg_of_fish",
+  "first_harvest",
+  "pemmican",
+  "pike",
+  "plant_reader",
+  "raised_walls",
+  "run_day",
+  "season_a_winters_firewood",
+  "seed_in_the_jar",
+  "smudge",
+  "wolf_at_the_door",
+  "all_ten_fingers",
+  "burbot_by_lamplight",
+  "held_the_door",
+  "ice_fish_through_1_m",
+  "prime_fur",
+  "shut_tight",
+  "snowshoe_10_km",
+  "solstice_fire",
+  "steady_through_the_dark",
+  "survive_minus_40",
+  "warm_hands",
+  "a_big_one",
+  "bmi_above_20_for_30_days",
+  "full_circle",
+  "on_your_own",
+  "see_the_thaw",
+  "take_a_moose",
+  "ten_kinds",
+  "barnyard_winter",
+  "bread",
+  "cellar_winter",
+  "launch_a_canoe",
+  "light_the_forge",
+  "sauerkraut_in_march",
+  "stamped",
+  "turn_the_wheel",
+  "above_the_falls",
+  "bridge_the_river",
+  "linked",
+  "map_all_16_regions",
+  "over_the_pass",
+  "at_the_crossing",
+  "beyond_hunting",
+  "beyond_trophy_wall",
+  "clean_shots",
+  "run_a_20_snare_trapline",
+  "sheep_on_the_crags",
+  "the_great_bear",
+  "bonded"
+ ]
+}

@@ -1,0 +1,11 @@
+{
+ "id": "beyond_hunting",
+ "group": "beyond_hunting",
+ "title": "First big game",
+ "condition": "Opens with the first big-game kill; no measure, no deadline",
+ "opens_on": "kill.big_game",
+ "closes_on": "",
+ "journal_line": "A new ambition: First big game.",
+ "hidden": false,
+ "reward": "none"
+}

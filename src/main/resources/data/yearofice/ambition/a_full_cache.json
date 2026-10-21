@@ -1,0 +1,11 @@
+{
+ "id": "a_full_cache",
+ "group": "first_summer",
+ "title": "A full cache",
+ "condition": "Hold 30 days of food at the Normal ration",
+ "opens_on": "",
+ "closes_on": "food.cache_30_days",
+ "journal_line": "Ambition done: A full cache. Hold 30 days of food at the Normal ration.",
+ "hidden": false,
+ "reward": "none"
+}

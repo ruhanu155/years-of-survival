@@ -1,0 +1,11 @@
+{
+ "id": "at_the_crossing",
+ "group": "beyond_hunting",
+ "title": "At the crossing",
+ "condition": "Take a caribou at a river crossing",
+ "opens_on": "",
+ "closes_on": "hunt.caribou_crossing",
+ "journal_line": "Ambition done: At the crossing. Take a caribou at a river crossing.",
+ "hidden": false,
+ "reward": "none"
+}

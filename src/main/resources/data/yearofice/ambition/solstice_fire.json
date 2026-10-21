@@ -1,0 +1,11 @@
+{
+ "id": "solstice_fire",
+ "group": "first_winter",
+ "title": "Solstice fire",
+ "condition": "Keep one fire alive from sunset on December 20 to sunrise on December 22",
+ "opens_on": "",
+ "closes_on": "fire.solstice_kept",
+ "journal_line": "Ambition done: Solstice fire. Keep one fire alive from sunset on December 20 to sunrise on December 22.",
+ "hidden": false,
+ "reward": "none"
+}

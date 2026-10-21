@@ -1,0 +1,12 @@
+{
+ "id": "yearofice:logbook_03",
+ "name": "Logbook page 3",
+ "description": "The old camp's logbook, page 3",
+ "weight_kg": 0.01,
+ "where": "Station Nine",
+ "journal_clip": "Elin's hand: 'The river went out today. I stood on the bank and counted the plates of ice.'",
+ "read": [
+  "The river went out today.",
+  "I stood on the bank and counted the plates of ice."
+ ]
+}

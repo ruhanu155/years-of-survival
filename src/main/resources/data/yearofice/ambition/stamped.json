@@ -1,0 +1,11 @@
+{
+ "id": "stamped",
+ "group": "beyond_homestead",
+ "title": "Stamped",
+ "condition": "Build a cabin from a saved blueprint",
+ "opens_on": "",
+ "closes_on": "build.blueprint_cabin",
+ "journal_line": "Ambition done: Stamped. Build a cabin from a saved blueprint.",
+ "hidden": false,
+ "reward": "none"
+}

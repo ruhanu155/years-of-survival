@@ -1,0 +1,11 @@
+{
+ "id": "linked",
+ "group": "beyond_travel",
+ "title": "Linked",
+ "condition": "Link three outposts",
+ "opens_on": "",
+ "closes_on": "build.outposts_linked_3",
+ "journal_line": "Ambition done: Linked. Link three outposts.",
+ "hidden": false,
+ "reward": "none"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "yearofice:supply_drop_standard",
+  "weight_cap_kg": 25,
+  "letter": "Every drop carries a letter from town.",
+  "manifest": [
+    { "item": "yearofice:bandage", "count": 6 },
+    { "item": "yearofice:bear_spray", "count": 1 },
+    { "item": "yearofice:turnip_seed", "count": 40 },
+    { "item": "yearofice:cabbage_seed", "count": 20 },
+    { "item": "yearofice:barley_flour", "count": 5 }
+  ]
+}

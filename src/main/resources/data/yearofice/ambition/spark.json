@@ -1,0 +1,11 @@
+{
+ "id": "spark",
+ "group": "first_days",
+ "title": "Spark",
+ "condition": "Light a fire with the bow drill",
+ "opens_on": "",
+ "closes_on": "fire.bow_drill",
+ "journal_line": "Ambition done: Spark. Light a fire with the bow drill.",
+ "hidden": false,
+ "reward": "none"
+}

@@ -1,0 +1,11 @@
+{
+ "id": "held_the_door",
+ "group": "first_winter",
+ "title": "Held the door",
+ "condition": "Drive off wolves at the shelter without losing food",
+ "opens_on": "",
+ "closes_on": "wolf.drove_off_no_loss",
+ "journal_line": "Ambition done: Held the door. Drive off wolves at the shelter without losing food.",
+ "hidden": false,
+ "reward": "none"
+}

@@ -1,0 +1,11 @@
+{
+ "id": "seed_in_the_jar",
+ "group": "first_summer",
+ "title": "Seed in the jar",
+ "condition": "Store dried seed from your own harvest",
+ "opens_on": "",
+ "closes_on": "crop.seed_saved",
+ "journal_line": "Ambition done: Seed in the jar. Store dried seed from your own harvest.",
+ "hidden": false,
+ "reward": "none"
+}

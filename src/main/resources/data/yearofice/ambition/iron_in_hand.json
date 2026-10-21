@@ -1,0 +1,11 @@
+{
+ "id": "iron_in_hand",
+ "group": "first_days",
+ "title": "Iron in hand",
+ "condition": "Pry a surface iron nodule",
+ "opens_on": "",
+ "closes_on": "ore.surface_iron",
+ "journal_line": "Ambition done: Iron in hand. Pry a surface iron nodule.",
+ "hidden": false,
+ "reward": "none"
+}

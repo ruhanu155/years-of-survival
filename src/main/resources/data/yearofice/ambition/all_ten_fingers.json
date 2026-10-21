@@ -1,0 +1,11 @@
+{
+ "id": "all_ten_fingers",
+ "group": "first_winter",
+ "title": "All ten fingers",
+ "condition": "Reach April 1 with no frostbite that winter",
+ "opens_on": "",
+ "closes_on": "body.no_frostbite_to_april",
+ "journal_line": "Ambition done: All ten fingers. Reach April 1 with no frostbite that winter.",
+ "hidden": false,
+ "reward": "none"
+}

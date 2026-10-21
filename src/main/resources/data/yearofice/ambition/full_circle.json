@@ -1,0 +1,11 @@
+{
+ "id": "full_circle",
+ "group": "year_one",
+ "title": "Full circle",
+ "condition": "Reach May 1 of year 2",
+ "opens_on": "",
+ "closes_on": "calendar.year2_may1",
+ "journal_line": "Ambition done: Full circle. Reach May 1 of year 2.",
+ "hidden": false,
+ "reward": "none"
+}

@@ -1,0 +1,31 @@
+{
+ "id": "yearofice:upriver_canyon",
+ "cell": "D3",
+ "name": "Upriver Canyon",
+ "ring": 1,
+ "bounds_m": {
+  "x": [
+   2048,
+   4095
+  ],
+  "z": [
+   0,
+   2047
+  ]
+ },
+ "biome_mix": {
+  "rock_scree": 0.4,
+  "open_river": 0.3,
+  "spruce_taiga": 0.3
+ },
+ "outposts": [
+  "yearofice:fish_camp",
+  "yearofice:rock_shelter"
+ ],
+ "drop_zone_m": [
+  3072,
+  1024
+ ],
+ "spring_lag_days": 2,
+ "landmark": "The spray of Long Falls"
+}

@@ -1,0 +1,11 @@
+{
+ "id": "sauerkraut_in_march",
+ "group": "beyond_homestead",
+ "title": "Sauerkraut in March",
+ "condition": "Eat cabbage you grew, in March",
+ "opens_on": "",
+ "closes_on": "food.own_cabbage_in_march",
+ "journal_line": "Ambition done: Sauerkraut in March. Eat cabbage you grew, in March.",
+ "hidden": false,
+ "reward": "none"
+}

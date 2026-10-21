@@ -1,0 +1,11 @@
+{
+ "id": "last_cracker",
+ "group": "first_days",
+ "title": "Last cracker",
+ "condition": "Eat the 38th cracker and a meal you caught on the same day",
+ "opens_on": "",
+ "closes_on": "food.last_cracker_and_catch",
+ "journal_line": "Ambition done: Last cracker. Eat the 38th cracker and a meal you caught on the same day.",
+ "hidden": false,
+ "reward": "none"
+}

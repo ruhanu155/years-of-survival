@@ -1,0 +1,11 @@
+{
+ "id": "run_day",
+ "group": "first_summer",
+ "title": "Run day",
+ "condition": "Take 5 salmon in one game day",
+ "opens_on": "",
+ "closes_on": "fish.salmon_5_in_a_day",
+ "journal_line": "Ambition done: Run day. Take 5 salmon in one game day.",
+ "hidden": false,
+ "reward": "none"
+}

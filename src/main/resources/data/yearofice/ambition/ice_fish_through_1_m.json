@@ -1,0 +1,11 @@
+{
+ "id": "ice_fish_through_1_m",
+ "group": "first_winter",
+ "title": "Ice-fish through 1 m of ice",
+ "condition": "Chisel a hole through 1 m of ice and land a fish from it",
+ "opens_on": "",
+ "closes_on": "fish.ice_1m",
+ "journal_line": "Ambition done: Ice-fish through 1 m of ice. Chisel a hole through 1 m of ice and land a fish from it.",
+ "hidden": false,
+ "reward": "none"
+}

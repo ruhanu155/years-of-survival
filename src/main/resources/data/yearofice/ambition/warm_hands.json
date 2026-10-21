@@ -1,0 +1,11 @@
+{
+ "id": "warm_hands",
+ "group": "first_winter",
+ "title": "Warm hands",
+ "condition": "Make fur mittens",
+ "opens_on": "",
+ "closes_on": "craft.fur_mittens",
+ "journal_line": "Ambition done: Warm hands. Make fur mittens.",
+ "hidden": false,
+ "reward": "none"
+}

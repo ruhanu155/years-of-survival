@@ -1066,5 +1066,10 @@
   "item.yearofice.goat_hide": "Goat Hide",
   "item.yearofice.reindeer_hide": "Reindeer Hide",
   "item.yearofice.goat_wool": "Goat Hair",
-  "item.yearofice.sourdough_starter": "Sourdough Starter"
+  "item.yearofice.sourdough_starter": "Sourdough Starter",
+  "block.yearofice.radio_desk": "Radio Desk",
+  "item.yearofice.radio_desk": "Radio Desk",
+  "item.yearofice.radio_battery": "Radio Battery",
+  "item.yearofice.note": "Note",
+  "entity.yearofice.supply_parachute": "Supply Parachute"
 }

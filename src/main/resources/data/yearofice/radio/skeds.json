@@ -1,0 +1,30 @@
+{
+  "sked": { "start_h": 19, "length_min": 30, "cost_pct": 3, "net_cost_pct": 2 },
+  "open": "Dana Reyes: Station Nine, this is town. Go ahead with your log.",
+  "closed": "Dana Reyes: Logs keep for fourteen days. Call again at the next sked.",
+  "forecast_intro": "Dana: Program outlook.",
+  "forecast": {
+    "clear": "Fair and quiet.",
+    "snowstorm": "Snow, heavy at times.",
+    "blizzard": "Blizzard. Visibility 20 m.",
+    "freezing_rain": "Rain or freezing rain.",
+    "hail": "Some storms with hail.",
+    "thunderstorm": "Thunderstorms possible this afternoon.",
+    "long_rain": "Steady rain, creeks rising."
+  },
+  "news": [
+    "Dana: The Hundredmile herd was seen from the air north of the Barrens.",
+    "Dana: Pete says the Ninemile is running low and clear below the canyon.",
+    "Dana: Dr. Whitlock asks you to keep the weather post log through the week.",
+    "Dana: Fairbanks had a hard frost last night; the river villages are asking after you.",
+    "Lorraine Beck: Evening net. Salmon are late at the village; how are yours?",
+    "Dana: The program has booked the next drop. Keep the zone clear."
+  ],
+  "drop": {
+    "first_months": [5, 8, 11, 2],
+    "at_h": 12,
+    "max_slip_days": 5,
+    "plane_line": "Pete Lund: Drop in two minutes. Stand clear of the zone.",
+    "landed_line": "A crate is down. Pete dips his wings and turns for town."
+  }
+}

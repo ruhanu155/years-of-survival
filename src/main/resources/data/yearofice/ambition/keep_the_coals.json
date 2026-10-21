@@ -1,0 +1,11 @@
+{
+ "id": "keep_the_coals",
+ "group": "first_days",
+ "title": "Keep the coals",
+ "condition": "Relight a fire from coals banked the night before",
+ "opens_on": "",
+ "closes_on": "fire.relight_from_coals",
+ "journal_line": "Ambition done: Keep the coals. Relight a fire from coals banked the night before.",
+ "hidden": false,
+ "reward": "none"
+}

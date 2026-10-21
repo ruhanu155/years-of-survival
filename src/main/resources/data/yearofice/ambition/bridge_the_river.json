@@ -1,0 +1,11 @@
+{
+ "id": "bridge_the_river",
+ "group": "beyond_travel",
+ "title": "Bridge the river",
+ "condition": "Build a crib bridge across the main river",
+ "opens_on": "",
+ "closes_on": "build.crib_bridge",
+ "journal_line": "Ambition done: Bridge the river. Build a crib bridge across the main river.",
+ "hidden": false,
+ "reward": "none"
+}

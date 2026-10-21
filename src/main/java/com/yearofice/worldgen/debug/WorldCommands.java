@@ -36,6 +36,7 @@ public final class WorldCommands {
         return Commands.literal("tp").then(Commands.literal("region").then(Commands.argument("cell", StringArgumentType.word())
                 .suggests((c, b) -> {
                     List<String> s = new ArrayList<>(List.of("start", "slice", "spot"));
+                    s.addAll(com.yearofice.worldgen.regions.Regions.IDS);
                     for (char col = 'A'; col <= 'D'; col++) for (int row = 1; row <= 4; row++) s.add("" + col + row);
                     ValleyWorld w = WorldHooks.world(c.getSource().getLevel());
                     if (w != null) for (SetPieces.Placement q : w.placements) s.add(q.id().substring(q.id().indexOf(':') + 1));
@@ -86,6 +87,8 @@ public final class WorldCommands {
         ServerPlayer p = c.getSource().getPlayerOrException();
         int x, z;
         String k = cell.toLowerCase(Locale.ROOT);
+        var named = com.yearofice.worldgen.regions.Regions.byId(k); // M9: a region by its data id (salmon_bend) too
+        if (named != null) k = named.cell().toLowerCase(Locale.ROOT);
         if (k.equals("start")) {
             int[] s = w.spawn();
             x = s[0];

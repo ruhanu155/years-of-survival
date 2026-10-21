@@ -1,0 +1,11 @@
+{
+ "id": "first_harvest",
+ "group": "first_summer",
+ "title": "First harvest",
+ "condition": "Dig potatoes you planted",
+ "opens_on": "",
+ "closes_on": "crop.potatoes_dug",
+ "journal_line": "Ambition done: First harvest. Dig potatoes you planted.",
+ "hidden": false,
+ "reward": "none"
+}

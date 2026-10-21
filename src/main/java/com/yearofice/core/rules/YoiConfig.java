@@ -51,6 +51,7 @@ public final class YoiConfig {
         com.yearofice.env.weather.WeatherConfig.define(b); // lane M7 A: [weather]
         com.yearofice.build.craft.CraftConfig.define(b);
         com.yearofice.build.metal.MetalConfig.define(b); // M9 lane B: [metal]
+        com.yearofice.story.radio.RadioConfig.define(b); // M9 lane D: [radio]
         SPEC = b.build();
     }
 

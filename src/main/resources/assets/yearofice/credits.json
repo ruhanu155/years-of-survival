@@ -7025,6 +7025,21 @@
       "licence": "project",
       "generator_version": "hand 1",
       "release_blocker": false
+    },
+    {
+      "asset_id": "model_radio_desk_m9d",
+      "files": [
+        "assets/yearofice/blockstates/radio_desk.json",
+        "assets/yearofice/models/block/radio_desk.json",
+        "assets/yearofice/models/item/radio_desk.json",
+        "assets/yearofice/models/item/radio_battery.json",
+        "assets/yearofice/models/item/note.json"
+      ],
+      "source_type": "generated",
+      "recipe": "hand-written models reusing credited textures (placeholder art for the radio desk, battery and note)",
+      "licence": "project",
+      "generator_version": "hand",
+      "release_blocker": false
     }
   ]
 }

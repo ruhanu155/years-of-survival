@@ -1,0 +1,11 @@
+{
+ "id": "launch_a_canoe",
+ "group": "beyond_homestead",
+ "title": "Launch a canoe",
+ "condition": "Paddle a finished birch-bark canoe 1 km",
+ "opens_on": "",
+ "closes_on": "travel.canoe_1km",
+ "journal_line": "Ambition done: Launch a canoe. Paddle a finished birch-bark canoe 1 km.",
+ "hidden": false,
+ "reward": "none"
+}
