@@ -26,7 +26,11 @@ public final class SignService {
     private SignService() {}
 
     private static final Map<ResourceKey<Level>, Set<BlockPos>> LIVE = new ConcurrentHashMap<>();
+    /** Fresh snow that hides a print (Blueprint: 2 cm hides small tracks). */
+    static final double NEW_SNOW_CM = 2.0;
     private static volatile Sign.Rules rules;
+
+    static double snowCm(ServerLevel l, BlockPos p) { return com.yearofice.api.env.EnvService.installed() ? com.yearofice.api.env.EnvService.get().snowCm(l, p) : 0; }
 
     public static Sign.Rules rules() {
         Sign.Rules r = rules;
@@ -70,6 +74,7 @@ public final class SignService {
         be.hz = n < 1e-6 ? 0 : (float) (dz / n);
         be.gait = gait;
         be.substrate = sub;
+        be.snowCm0 = snowCm(l, at);
         be.setChanged();
         l.scheduleTick(at, be.getBlockState().getBlock(), reviewTicks());
         return at;
@@ -95,7 +100,8 @@ public final class SignService {
     public static boolean review(ServerLevel l, BlockPos pos) {
         if (!(l.getBlockEntity(pos) instanceof SignBlockEntity be)) return false;
         Sign.Kind kind = ((SignBlock) be.getBlockState().getBlock()).kind;
-        if (Sign.erased(rules(), kind, be.substrate, now(l) - be.madeMin, precipAt(l, pos))) {
+        boolean newSnow = be.substrate == Sign.Substrate.SNOW && kind == Sign.Kind.TRACK && snowCm(l, pos) - be.snowCm0 >= NEW_SNOW_CM;
+        if (newSnow || Sign.erased(rules(), kind, be.substrate, now(l) - be.madeMin, precipAt(l, pos))) {
             l.removeBlock(pos, false);
             return true;
         }

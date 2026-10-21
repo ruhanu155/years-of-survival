@@ -54,6 +54,7 @@ public final class SignGameTests {
         out.add(test("yearofice:hunt/track_leads_to_animal", 200, SignGameTests::trackLeads));
         out.add(test("yearofice:craft/self_bow_chain", 100, SignGameTests::selfBowChain));
         out.add(test("yearofice:craft/arrow_batch", 100, SignGameTests::arrowBatch));
+        out.add(test("yearofice:craft/feathers_from_bird", 100, SignGameTests::feathersFromBird));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
 
@@ -130,6 +131,14 @@ public final class SignGameTests {
             env.setOverride(l, new EnvService.WeatherOverride(-10, Double.NaN, com.yearofice.sim.env.Precip.SNOW, 3));
             h.assertTrue(SignService.review(l, b) && l.getBlockState(b).isAir(), "snowfall erases the snow print");
         }
+        // Fresh snow: 2 cm or more deeper than when the print was made hides it.
+        BlockPos d = h.absolutePos(new BlockPos(5, Y, 2));
+        SignService.lay(l, d, Sign.Kind.TRACK, "yearofice:moose", 1, 0, 1);
+        SignBlockEntity bd = (SignBlockEntity) l.getBlockEntity(d);
+        bd.snowCm0 += 1;
+        h.assertTrue(!SignService.review(l, d), "1 cm of new snow leaves it");
+        bd.snowCm0 -= 3;
+        h.assertTrue(SignService.review(l, d) && l.getBlockState(d).isAir(), "2 cm and more of new snow erases it");
         // Practice: a stranger reads 0.5, a Practiced tracker 1.
         BlockPos c = h.absolutePos(new BlockPos(3, Y, 3));
         SignService.lay(l, c, Sign.Kind.SCAT, "yearofice:moose", 0, 0, 0);
@@ -286,5 +295,24 @@ public final class SignGameTests {
         run(h, p, "spear");
         h.assertTrue(count(p, HuntRegistry.SPEAR.get()) == 1, "a spear from handle, head and cord");
         h.succeed();
+    }
+
+    /** craft/feathers_from_bird: dressing a spruce grouse yields feathers, and they craft into fletching. */
+    static void feathersFromBird(GameTestHelper h) {
+        var grouse = h.spawn(EcosystemRegistry.SPRUCE_GROUSE.get(), new BlockPos(1, 2, 1));
+        h.runAfterDelay(2, () -> {
+            var rec = com.yearofice.ecosystem.carcass.DeathPipeline.record(grouse, grouse.species(), "test", com.yearofice.ecosystem.clock.SliceClock.minuteD(h.getLevel()));
+            int feathers = 0;
+            for (ItemStack s : com.yearofice.ecosystem.carcass.Butchering.parts(h.getLevel(), rec)) if (s.is(HuntRegistry.FEATHER.get())) feathers += s.getCount();
+            h.assertTrue(feathers == 15, "a grouse gives 15 feathers: " + feathers);
+            grouse.discard();
+            ServerPlayer p = bot(h, "feather_bot");
+            GateService.get().open(p, Tier.BUSHCRAFT, "test");
+            p.getInventory().add(new ItemStack(CraftRegistry.KNIFE.get()));
+            p.getInventory().add(new ItemStack(HuntRegistry.FEATHER.get(), feathers));
+            for (int i = 0; i < 5; i++) run(h, p, "fletching");
+            h.assertTrue(count(p, HuntRegistry.FLETCHING.get()) == 5 && count(p, HuntRegistry.FEATHER.get()) == 0, "15 feathers -> 5 fletchings");
+            h.succeed();
+        });
     }
 }

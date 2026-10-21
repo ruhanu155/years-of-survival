@@ -14,6 +14,7 @@ public class SignBlockEntity extends BlockEntity {
     double madeMin;
     float hx, hz;
     int gait;
+    double snowCm0;
     Sign.Substrate substrate = Sign.Substrate.SNOW;
 
     public SignBlockEntity(BlockPos pos, BlockState state) { super(SignRegistry.SIGN.get(), pos, state); }
@@ -39,6 +40,7 @@ public class SignBlockEntity extends BlockEntity {
         t.putFloat("hx", hx);
         t.putFloat("hz", hz);
         t.putInt("gait", gait);
+        t.putDouble("snow_cm0", snowCm0);
         t.putString("substrate", substrate.name());
     }
 
@@ -50,6 +52,7 @@ public class SignBlockEntity extends BlockEntity {
         hx = t.getFloat("hx");
         hz = t.getFloat("hz");
         gait = t.getInt("gait");
+        snowCm0 = t.getDouble("snow_cm0");
         try {
             substrate = Sign.Substrate.valueOf(t.getString("substrate"));
         } catch (IllegalArgumentException e) {
