@@ -6965,6 +6965,26 @@
       "licence": "project",
       "generator_version": "soundgen 0.1.0",
       "release_blocker": false
+    },
+    {
+      "asset_id": "m8int_models",
+      "files": [
+        "assets/yearofice/models/item/log_piece.json",
+        "assets/yearofice/models/item/plank.json",
+        "assets/yearofice/models/item/pole.json",
+        "assets/yearofice/models/item/sod.json",
+        "assets/yearofice/models/item/shingle.json",
+        "assets/yearofice/models/item/stone.json",
+        "assets/yearofice/models/block/ground_bed.json",
+        "assets/yearofice/models/block/left_pack.json",
+        "assets/yearofice/blockstates/ground_bed.json",
+        "assets/yearofice/blockstates/left_pack.json"
+      ],
+      "source_type": "generated",
+      "recipe": "hand-written JSON models over vanilla textures (M8-INT)",
+      "licence": "project",
+      "generator_version": "hand 1",
+      "release_blocker": false
     }
   ]
 }

@@ -433,6 +433,37 @@
         "erodible_bank",
         "valley_biomes"
       ]
+    },
+    {
+      "type": "mob",
+      "status": "registered",
+      "basis": "Registered by M5/M6 ecosystem lanes (EcosystemRegistry); M6 review (RECONCILE 292) regenerated",
+      "ids": [
+        "beaver",
+        "black_bear",
+        "caribou",
+        "coyote",
+        "ermine",
+        "grizzly",
+        "lynx",
+        "marten",
+        "mink",
+        "moose",
+        "mule_deer",
+        "muskrat",
+        "porcupine",
+        "red_fox",
+        "red_squirrel",
+        "rock_ptarmigan",
+        "ruffed_grouse",
+        "snowshoe_hare",
+        "spruce_grouse",
+        "willow_ptarmigan",
+        "wolf",
+        "wolverine",
+        "wood_frog",
+        "yellowjacket"
+      ]
     }
   ],
   "additions": [
@@ -2715,6 +2746,20 @@
       "type": "multiblock",
       "ids": [
         "furnace"
+      ]
+    },
+    {
+      "basis": "M8-INT: piece.json material items",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "log_piece",
+        "plank",
+        "pole",
+        "sod",
+        "shingle",
+        "stone"
       ]
     }
   ],

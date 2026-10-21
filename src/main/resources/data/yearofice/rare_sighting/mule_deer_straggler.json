@@ -1,0 +1,10 @@
+{
+  "kind": "straggler",
+  "species": "yearofice:mule_deer",
+  "flag": "yearofice:deer",
+  "male": true,
+  "window_start": [6, 1],
+  "window_days": 153,
+  "winter_snow_peak_cm": 80,
+  "spawn_distance_m": 48
+}

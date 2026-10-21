@@ -19,6 +19,8 @@ import com.yearofice.ecosystem.wound.DeathPipeline;
 import com.yearofice.sim.ecosystem.AnimalState;
 import com.yearofice.sim.ecosystem.Drives;
 import com.yearofice.sim.ecosystem.FieldCare;
+import com.yearofice.sim.ecosystem.Straggler;
+import com.yearofice.ecosystem.spawn.SlotSpawner;
 import com.yearofice.sim.ecosystem.Yields;
 import com.yearofice.sim.time.Calendar;
 import java.util.ArrayList;
@@ -54,6 +56,9 @@ public final class BigGameGameTests {
         out.add(test("yearofice:ecology/moose_daily_schedule", 100, BigGameGameTests::mooseSchedule));
         out.add(test("yearofice:ecology/butcher_yields", 200, BigGameGameTests::butcherYields));
         out.add(test("yearofice:ecology/herd_alarm_spreads", 300, BigGameGameTests::herdAlarm));
+        out.add(test("yearofice:eco/trophy_draw_runs", 100, BigGameGameTests::trophyDrawRuns));
+        out.add(test("yearofice:eco/daily_schedule_drives", 100, BigGameGameTests::dailyScheduleDrives));
+        out.add(test("yearofice:eco/straggler_spawns", 100, BigGameGameTests::stragglerSpawns));
         out.add(test("yearofice:eco/bear_finds_fish_spot", 900, BigGameGameTests::bearFindsSpot));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
@@ -302,6 +307,73 @@ public final class BigGameGameTests {
         h.assertTrue(share >= 0.55 && share <= 0.70, "bedded " + share + " of the hours 11:00-16:00");
         h.assertTrue(waterDays >= 24, "water at dusk on " + waterDays + " of 30 days");
         h.assertTrue(maxSw <= 6, "changed act " + maxSw + " times in an hour");
+        h.succeed();
+    }
+
+    /** eco/trophy_draw_runs (A5): the antler's trophy_size is TrophyDraw's draw: value = mean + z*sd, class from z, about 5% in the top class. */
+    static void trophyDrawRuns(GameTestHelper h) {
+        ServerLevel level = h.getLevel();
+        double mean = SpeciesBook.get("yearofice:moose").wholeKg();
+        int top = 0, n = 600;
+        java.util.Set<Long> distinct = new java.util.HashSet<>();
+        for (int i = 0; i < n; i++) {
+            CarcassRecord r = new CarcassRecord("yearofice:moose", 1, "test", 1000L + i * 977L, 450000, 0, record("yearofice:moose", true, 450).fresh());
+            var parts = Butchering.parts(level, r, new FieldCare.Result(0, 0), false);
+            var size = parts.stream().filter(x -> BuiltInRegistries.ITEM.getKey(x.getItem()).getPath().equals("antler"))
+                    .map(x -> x.get(com.yearofice.item.component.YoiComponents.TROPHY_SIZE.get())).findFirst().orElse(null);
+            h.assertTrue(size != null, "antler carries a trophy_size");
+            h.assertTrue(Math.abs(size.value() - (mean + size.z() * 0.15 * mean)) < 1e-6, "value follows the draw");
+            h.assertTrue(size.cls().equals(com.yearofice.sim.ecosystem.TrophyDraw.classOf(size.z())), "class " + size.cls() + " at z " + size.z());
+            if (size.cls().equals("trophy")) top++;
+            distinct.add(Math.round(size.value() * 1000));
+        }
+        h.assertTrue(distinct.size() > n / 2, "sizes vary between kills: " + distinct.size());
+        h.assertTrue(top >= n * 0.02 && top <= n * 0.09, "top class " + top + " of " + n);
+        h.succeed();
+    }
+
+    /** eco/daily_schedule_drives: DailySchedule on the moose file's rates meets the schedule bounds and matches the live entity's drive stepping. */
+    static void dailyScheduleDrives(GameTestHelper h) {
+        SpeciesDef d = SpeciesBook.get("yearofice:moose");
+        var run = com.yearofice.sim.ecosystem.DailySchedule.run(d.driveRates(), d.driveWeights(), 30, 3);
+        h.assertTrue(run.bedMiddayShare() >= 0.55 && run.bedMiddayShare() <= 0.70, "sim bedded " + run.bedMiddayShare());
+        h.assertTrue(run.duskWaterDays() >= 24 && run.maxSwitchesHour() <= 6, "sim water days " + run.duskWaterDays() + " switches " + run.maxSwitchesHour());
+        MooseEntity moose = h.spawn(EcosystemRegistry.MOOSE.get(), new BlockPos(1, 1, 1));
+        moose.pinDriveAct(Drives.Act.FEED);
+        int bed = 0, mid = 0;
+        double dt = 1.0 / 6;
+        for (int day = -3; day < 30; day++) for (int hr = 0; hr < 24; hr++) for (int k = 0; k < 6; k++) {
+            moose.stepDrives(hr + k * dt, dt);
+            if (day >= 0 && hr >= 11 && hr < 16) {
+                mid++;
+                if (moose.driveAct() == Drives.Act.BED) bed++;
+            }
+        }
+        moose.discard();
+        double live = bed / (double) mid;
+        h.assertTrue(Math.abs(live - run.bedMiddayShare()) < 0.08, "live " + live + " vs sim " + run.bedMiddayShare());
+        h.succeed();
+    }
+
+    /** eco/straggler_spawns: in a straggler year, on a day inside his stay, the rare-sighting spawner puts one yearling buck near the player; outside it, none. */
+    static void stragglerSpawns(GameTestHelper h) {
+        ServerLevel level = h.getLevel();
+        var def = new com.yearofice.ecosystem.spawn.RareSighting.Def("test", "yearofice:mule_deer", "yearofice:deer", true, 6, 1, 153, 80, 8);
+        long seed = level.getSeed();
+        int year = -1;
+        for (int y = 2; y < 400 && year < 0; y++) if (Straggler.roll(seed, y, false, 80, 1).straggler() && !Straggler.roll(seed, y - 1, false, 80, 1).straggler()) year = y;
+        h.assertTrue(year > 0, "some year in 400 is a straggler year");
+        var roll = Straggler.roll(seed, year, false, 80, 1);
+        int start = Calendar.dayOfYear(6, 1);
+        ServerPlayer p = EcoGameTests.player(h);
+        p.moveTo(h.absoluteVec(new net.minecraft.world.phys.Vec3(1, 1, 1)));
+        int outside = start + Math.min(152, roll.arrivalDay() + roll.stayDays() + 1);
+        h.assertTrue(roll.arrivalDay() + roll.stayDays() >= 152 || com.yearofice.ecosystem.spawn.RareSighting.ensure(level, p, def, seed, year, outside) == null, "no straggler after he leaves");
+        var deer = com.yearofice.ecosystem.spawn.RareSighting.ensure(level, p, def, seed, year, start + roll.arrivalDay());
+        h.assertTrue(deer != null && deer.male(), "a buck stands near the player on his arrival day");
+        h.assertTrue(com.yearofice.ecosystem.spawn.RareSighting.ensure(level, p, def, seed, year, start + roll.arrivalDay()) == null, "never two");
+        SlotSpawner.untrack("rare:test:" + year);
+        deer.discard();
         h.succeed();
     }
 

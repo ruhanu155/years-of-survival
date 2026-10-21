@@ -47,6 +47,7 @@ public final class SpeciesBook {
     public static void onAddReloadListeners(AddReloadListenerEvent e) {
         e.addListener(new Families());
         e.addListener(new Species());
+        com.yearofice.ecosystem.spawn.RareSighting.onAddReloadListeners(e);
     }
 
     static final class Species extends SimpleJsonResourceReloadListener {

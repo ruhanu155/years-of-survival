@@ -31,7 +31,10 @@ public final class RoomTells {
         if (mc.level == null || mc.player == null || mc.isPaused() || mc.level.getGameTime() % 10 != 0) return;
         BlockPos at = mc.player.blockPosition();
         var rnd = mc.level.random;
-        for (BlockPos seam : Tells.leakySeams(mc.level, at, 8)) {
+        // the room model's own leaks when a server is local (RoomService), else the tagged-seam scan
+        var srv = mc.getSingleplayerServer();
+        var room = srv == null ? null : com.yearofice.api.build.RoomService.get().roomAt(srv.getLevel(mc.level.dimension()), at);
+        for (BlockPos seam : room != null ? room.leaks() : Tells.leakySeams(mc.level, at, 8)) {
             if (!Tells.coldOutside(mc.level, seam)) continue;
             if (rnd.nextDouble() < CabinTells.frost(INSIDE_C, OUTSIDE_C, 2) * 0.35)
                 mc.level.addParticle(ParticleTypes.SNOWFLAKE, seam.getX() + rnd.nextDouble(), seam.getY() + rnd.nextDouble(), seam.getZ() + rnd.nextDouble(), 0, -0.01, 0);
