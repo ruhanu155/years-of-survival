@@ -28,6 +28,25 @@ public class BigGameEntity extends UngulateEntity {
     @Override
     protected double wanderRadius() { return 32; }
 
+    /** B12: a band following a lead fence walks to the mouth instead of its routine. */
+    @Override
+    protected void tickRoutine(ServerLevel level) {
+        if (com.yearofice.ecosystem.herd.LeadFence.walk(this, level)) return;
+        super.tickRoutine(level);
+    }
+
+    /** Walks toward a lead-fence mouth waypoint, or stands (null) at it. */
+    public void leadWalk(net.minecraft.world.phys.Vec3 target) {
+        if (target == null) {
+            getNavigation().stop();
+            setMove(MOVE_IDLE);
+            return;
+        }
+        if (getNavigation().isDone() || tickCount % 20 == 0)
+            getNavigation().moveTo(target.x, target.y, target.z, com.yearofice.sim.ecosystem.Gaits.input(species().walkMps()));
+        setMove(MOVE_WALK);
+    }
+
     /** Herd-mates of the same kind within the spread distance, this animal excluded. */
     public List<BigGameEntity> herd() {
         return level().getEntitiesOfClass(BigGameEntity.class, new AABB(position(), position()).inflate(SPREAD_M),

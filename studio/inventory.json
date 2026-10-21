@@ -7,12 +7,12 @@
     "Items: the doc's count says 226, its list names 225"
   ],
   "counts": {
-    "total": 1694,
-    "by_type": {"mob": 157, "entity": 23, "block_with_entity": 93, "block": 179, "plant_block": 128, "multiblock": 13, "item": 553, "sound_event": 137, "particle_type": 43, "attachment": 34, "data_component": 31, "payload": 28, "gui_layer": 18, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 16, "loot_function": 8, "loot_condition": 3, "recipe_type": 6, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 94, "biome": 29, "worldgen_hook": 17, "poi_type": 14},
-    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 127, "m4": 51, "m5": 476, "m6": 341, "m7": 155, "m8": 178, "m9": 70, "none": 3},
-    "by_owner": {"body": 324, "building": 272, "ecosystem": 264, "food": 317, "look": 213, "story": 68, "studio": 75, "worldgen": 161},
-    "by_milestone_source": {"doc": 890, "rule": 804},
-    "by_status": {"planned": 1575, "registered": 116, "retired": 3}
+    "total": 1696,
+    "by_type": {"mob": 157, "entity": 24, "block_with_entity": 93, "block": 179, "plant_block": 128, "multiblock": 13, "item": 554, "sound_event": 137, "particle_type": 43, "attachment": 34, "data_component": 31, "payload": 28, "gui_layer": 18, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 16, "loot_function": 8, "loot_condition": 3, "recipe_type": 6, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 94, "biome": 29, "worldgen_hook": 17, "poi_type": 14},
+    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 127, "m4": 51, "m5": 476, "m6": 341, "m7": 155, "m8": 178, "m9": 72, "none": 3},
+    "by_owner": {"body": 324, "building": 272, "ecosystem": 266, "food": 317, "look": 213, "story": 68, "studio": 75, "worldgen": 161},
+    "by_milestone_source": {"doc": 892, "rule": 804},
+    "by_status": {"planned": 1577, "registered": 116, "retired": 3}
   },
   "entries": [
     {"id": "yearofice:alaska_blackfish", "type": "mob", "milestone": "m5", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
@@ -191,6 +191,7 @@
     {"id": "yearofice:moose_skin_boat", "type": "entity", "milestone": "m9", "owner": "building", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:raft", "type": "entity", "milestone": "m8", "owner": "building", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:salmon_carcass", "type": "entity", "milestone": "m7", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
+    {"id": "yearofice:sled", "type": "entity", "milestone": "m9", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:sling_stone", "type": "entity", "milestone": "m6", "owner": "food", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:tadpole_school", "type": "entity", "milestone": "m6", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:toboggan", "type": "entity", "milestone": "m6", "owner": "building", "milestone_source": "rule", "status": "planned"},
@@ -754,6 +755,7 @@
     {"id": "yearofice:digging_stick", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:dip_net", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:dish", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},
+    {"id": "yearofice:dog_sled", "type": "item", "milestone": "m9", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:dogwood_shoots", "type": "item", "milestone": "m5", "owner": "body", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:dolly_varden", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:door_frame", "type": "item", "milestone": "m8", "owner": "building", "milestone_source": "doc", "status": "planned"},

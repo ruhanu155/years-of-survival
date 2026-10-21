@@ -23,6 +23,9 @@ public final class AmbitionTracker {
     /** M6: opens with the first mount hung on the trophy wall. */
     public static final String TROPHY_WALL = "beyond_trophy_wall";
 
+    /** M9: opens with the first lead fence segment placed; closes with a caribou taken at a lead fence (B12). */
+    public static final String AT_THE_FENCE = "at_the_fence";
+
     static final String KEY = "yearofice:ambitions", DONE_KEY = "yearofice:ambitions_done";
 
     private static CompoundTag root(ServerPlayer p) { return p.getPersistentData().getCompound(Player.PERSISTED_NBT_TAG); }

@@ -447,21 +447,6 @@
     },
     "yearofice:moccasins": {
       "weight_g": 400
-    },
-    "yearofice:canvas_wall_tent": {
-      "weight_g": 18000
-    },
-    "yearofice:stove_jack": {
-      "weight_g": 100
-    },
-    "yearofice:tent_stove": {
-      "weight_g": 8000
-    },
-    "yearofice:can_stove": {
-      "weight_g": 2000
-    },
-    "yearofice:spark_screen": {
-      "weight_g": 300
     }
   }
 }

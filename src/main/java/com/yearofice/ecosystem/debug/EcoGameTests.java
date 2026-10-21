@@ -94,7 +94,7 @@ public final class EcoGameTests {
     /** Chunks this class forced, with how many running tests hold each; one the framework held is never touched. */
     static final java.util.Map<Long, Integer> FORCED = new java.util.HashMap<>();
 
-    static synchronized void force(GameTestHelper h, Vec3 center, int radiusChunks, boolean on) {
+    public static synchronized void force(GameTestHelper h, Vec3 center, int radiusChunks, boolean on) {
         ChunkPos c = new ChunkPos(BlockPos.containing(center));
         ServerLevel level = h.getLevel();
         for (int dx = -radiusChunks; dx <= radiusChunks; dx++) {
