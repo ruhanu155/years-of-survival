@@ -301,7 +301,7 @@ public final class SignGameTests {
     static void feathersFromBird(GameTestHelper h) {
         var grouse = h.spawn(EcosystemRegistry.SPRUCE_GROUSE.get(), new BlockPos(1, 2, 1));
         h.runAfterDelay(2, () -> {
-            var rec = com.yearofice.ecosystem.carcass.DeathPipeline.record(grouse, grouse.species(), "test", com.yearofice.ecosystem.clock.SliceClock.minuteD(h.getLevel()));
+            var rec = com.yearofice.ecosystem.wound.DeathPipeline.record(grouse, grouse.species(), "test", com.yearofice.ecosystem.clock.SliceClock.minuteD(h.getLevel()));
             int feathers = 0;
             for (ItemStack s : com.yearofice.ecosystem.carcass.Butchering.parts(h.getLevel(), rec)) if (s.is(HuntRegistry.FEATHER.get())) feathers += s.getCount();
             h.assertTrue(feathers == 15, "a grouse gives 15 feathers: " + feathers);
