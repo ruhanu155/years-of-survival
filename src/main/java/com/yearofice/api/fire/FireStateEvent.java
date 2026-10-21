@@ -17,8 +17,15 @@ public class FireStateEvent extends Event {
     private final FireState to;
     private final FireHeat heat;
     private final String line;
+    private final net.minecraft.world.entity.player.Player actor;
 
     public FireStateEvent(Level level, BlockPos pos, FireState from, FireState to, FireHeat heat, String line) {
+        this(level, pos, from, to, heat, line, null);
+    }
+
+    public FireStateEvent(Level level, BlockPos pos, FireState from, FireState to, FireHeat heat, String line,
+                          net.minecraft.world.entity.player.Player actor) {
+        this.actor = actor;
         this.level = level;
         this.pos = pos.immutable();
         this.from = from;
@@ -34,4 +41,6 @@ public class FireStateEvent extends Event {
     /** The fire as a heat source after the change. */
     public FireHeat heat() { return heat; }
     public String line() { return line; }
+    /** The player whose match, drill or feeding caused the change, or null (the fire burnt on by itself). */
+    public net.minecraft.world.entity.player.Player actor() { return actor; }
 }

@@ -36,6 +36,7 @@ public final class OutpostSystem {
         NeoForge.EVENT_BUS.register(OutpostSystem.class);
         NeoForge.EVENT_BUS.register(com.yearofice.world.snow.FenceDrift.class);
         NeoForge.EVENT_BUS.addListener(OutpostSystem::commands);
+        OutpostSites.init();
     }
 
     /** The chunk a cell's outpost of this kind stands in, as a hash of (seed, cell). */
@@ -63,6 +64,7 @@ public final class OutpostSystem {
             if (!level.getFluidState(origin.below()).isEmpty() && !def.fit().equals("shore")) continue;
             long seed = level.getSeed() ^ c.toLong();
             Outposts.stamp(level, origin, def);
+            OutpostSites.record(level, origin, id);
             double years = (def.minAge() + (def.maxAge() - def.minAge()) * com.yearofice.sim.build.OutpostDecay.roll(seed, 1, 2, 3)) * OutpostConfig.get("outpost_age_scale");
             Outposts.age(level, origin, def, years, seed);
             com.yearofice.story.keepsake.OutpostKeepsakes.place(level, origin, id);

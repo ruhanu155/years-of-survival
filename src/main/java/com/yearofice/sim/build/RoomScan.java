@@ -16,10 +16,12 @@ public final class RoomScan {
     public enum Kind { AIR, SOLID, LEAK }
 
     /** A cell as seen by the scan: its kind and, for SOLID, the U of the piece. */
-    public record Cell(Kind kind, double u) {
+    public record Cell(Kind kind, double u, double seamM) {
+        public Cell(Kind kind, double u) { this(kind, u, 0); }
         public static final Cell AIR = new Cell(Kind.AIR, 0);
         public static final Cell LEAK = new Cell(Kind.LEAK, 0);
-        public static Cell solid(double u) { return new Cell(Kind.SOLID, u); }
+        public static Cell solid(double u) { return new Cell(Kind.SOLID, u, 0); }
+        public static Cell solid(double u, double seamM) { return new Cell(Kind.SOLID, u, seamM); }
     }
 
     /** Packs block coordinates into one long (26/12/26 bits, like BlockPos). */
@@ -29,7 +31,9 @@ public final class RoomScan {
     public static int uy(long p) { return (int) (p & 0xFFF) << 20 >> 20; }
 
     /** @param air the enclosed cells; empty and {@code enclosed} false when the fill ran past the cap */
-    public record Result(boolean enclosed, List<Long> air, List<Heat.Face> faces, List<Long> leaks, int volume) {}
+    public record Result(boolean enclosed, List<Long> air, List<Heat.Face> faces, List<Long> leaks, int volume, double seamM) {
+        public Result(boolean enclosed, List<Long> air, List<Heat.Face> faces, List<Long> leaks, int volume) { this(enclosed, air, faces, leaks, volume, 0); }
+    }
 
     private static final int[][] D = {{1, 0, 0}, {-1, 0, 0}, {0, 0, 1}, {0, 0, -1}, {0, 1, 0}, {0, -1, 0}};
 
@@ -39,6 +43,7 @@ public final class RoomScan {
         java.util.ArrayDeque<Long> q = new java.util.ArrayDeque<>();
         List<Long> air = new ArrayList<>(), leaks = new ArrayList<>();
         double[] area = new double[3], ua = new double[3];
+        double seam = 0;
         long s = pack(sx, sy, sz);
         seen.add(s);
         q.add(s);
@@ -57,6 +62,7 @@ public final class RoomScan {
                         int part = d[1] > 0 ? Heat.Part.ROOF.ordinal() : d[1] < 0 ? Heat.Part.FLOOR.ordinal() : Heat.Part.WALL.ordinal();
                         area[part] += 1;
                         ua[part] += cell.u();
+                        if (part == Heat.Part.WALL.ordinal()) seam += cell.seamM();
                     }
                 }
             }
@@ -66,6 +72,6 @@ public final class RoomScan {
             int i = p.ordinal();
             if (area[i] > 0) faces.add(new Heat.Face(p, area[i], ua[i] / area[i], 0));
         }
-        return new Result(true, air, faces, leaks, air.size());
+        return new Result(true, air, faces, leaks, air.size(), seam);
     }
 }

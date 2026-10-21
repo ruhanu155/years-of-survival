@@ -10,6 +10,10 @@
       "required": false
     },
     {
+      "id": "yearofice:iron_bar",
+      "required": false
+    },
+    {
       "id": "yearofice:scrap_iron",
       "required": false
     }

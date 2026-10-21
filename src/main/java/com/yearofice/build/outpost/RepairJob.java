@@ -19,8 +19,13 @@ public final class RepairJob implements WorkJob {
     private long carry;
     private int done;
     private final int total;
+    /** In play, an outpost's vanilla planks, logs and slabs cost one of themselves each (a GameTest's direct job leaves them free). */
+    private final boolean priceVanilla;
 
-    public RepairJob(ServerLevel level, List<Outposts.Piece> todo) {
+    public RepairJob(ServerLevel level, List<Outposts.Piece> todo) { this(level, todo, false); }
+
+    public RepairJob(ServerLevel level, List<Outposts.Piece> todo, boolean priceVanilla) {
+        this.priceVanilla = priceVanilla;
         this.level = level;
         this.todo = new java.util.ArrayList<>(todo);
         this.todo.sort(java.util.Comparator.comparingInt(p -> p.role().equals("roof") ? 1 : 0));
@@ -48,9 +53,18 @@ public final class RepairJob implements WorkJob {
         return row == null ? java.util.List.of() : row.materials();
     }
 
-    private static boolean pay(ServerPlayer p, Outposts.Piece pc, boolean take) {
+    /** What this job charges for a piece: the piece.json row, else (in play) one of the block's own item, else nothing. */
+    java.util.List<com.yearofice.api.build.PieceData.Material> price(Outposts.Piece pc) {
+        var c = cost(pc);
+        if (!c.isEmpty() || !priceVanilla) return c;
+        var item = pc.state().getBlock().asItem();
+        if (item == net.minecraft.world.item.Items.AIR || pc.state().is(net.minecraft.world.level.block.Blocks.BARREL)) return c;
+        return java.util.List.of(new com.yearofice.api.build.PieceData.Material(net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(item), 1));
+    }
+
+    private boolean pay(ServerPlayer p, Outposts.Piece pc, boolean take) {
         if (p.getAbilities().instabuild) return true;
-        for (var m : cost(pc)) {
+        for (var m : price(pc)) {
             var item = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(m.item());
             int have = 0;
             for (var s : p.getInventory().items) if (s.is(item)) have += s.getCount();

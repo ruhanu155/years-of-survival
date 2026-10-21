@@ -481,8 +481,13 @@ public class FireRingBlockEntity extends BlockEntity {
 
     // ---- state plumbing ------------------------------------------------------------------------------------
 
+    /** The player whose match or drill last worked this fire: a later puff that makes it flame is still their first fire. */
+    private transient java.lang.ref.WeakReference<Player> lighter;
+
     private void changed(Fire.Change c, Player actor) {
         if (level == null || level.isClientSide) return;
+        if (actor != null) lighter = new java.lang.ref.WeakReference<>(actor);
+        else if (lighter != null) actor = lighter.get();
         syncLay();
         BlockState now = level.getBlockState(worldPosition);
         if (now.getBlock() instanceof FireRingBlock) {
@@ -495,7 +500,7 @@ public class FireRingBlockEntity extends BlockEntity {
             FireState from = shownState;
             shownState = fire.state();
             refreshIndex();
-            NeoForge.EVENT_BUS.post(new FireStateEvent(level, worldPosition, from, fire.state(), heat(), c == null ? null : c.line()));
+            NeoForge.EVENT_BUS.post(new FireStateEvent(level, worldPosition, from, fire.state(), heat(), c == null ? null : c.line(), actor));
             if (c != null && c.line() != null && actor == null) tellNearby(c.line());
         }
     }
