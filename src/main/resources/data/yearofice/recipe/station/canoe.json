@@ -1,0 +1,23 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "homestead",
+  "station": "yearofice:canoe_bed",
+  "ingredients": [
+    {
+      "tag": "yearofice:split_wood",
+      "count": 12
+    },
+    {
+      "item": "yearofice:stake",
+      "count": 8
+    }
+  ],
+  "work_min": 720,
+  "effort": "medium",
+  "kcal": 3000,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:canoe",
+    "count": 1
+  }
+}

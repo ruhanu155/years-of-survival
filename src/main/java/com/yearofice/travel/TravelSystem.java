@@ -44,6 +44,7 @@ public final class TravelSystem {
 
     public static void init(IEventBus modBus) {
         TravelItems.ITEMS.register(modBus);
+        com.yearofice.travel.canoe.CanoeRegistry.register(modBus); // M9 lane B
         modBus.addListener((RegisterDataMapTypesEvent e) -> e.register(WearMap.WEAR));
         modBus.addListener((BuildCreativeModeTabContentsEvent e) -> {
             if (e.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {

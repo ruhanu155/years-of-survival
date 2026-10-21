@@ -6934,6 +6934,18 @@
       "licence": "project",
       "generator_version": "m8b_blocks 0.1.0",
       "release_blocker": false
+    },
+    {
+      "asset_id": "snd_work_sluice_wash",
+      "files": [
+        "assets/yearofice/sounds/work/sluice_wash1.ogg",
+        "assets/yearofice/sounds/work/sluice_wash2.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/recipes/work/sluice_wash.json",
+      "licence": "project",
+      "generator_version": "soundgen 0.1.0",
+      "release_blocker": false
     }
   ]
 }

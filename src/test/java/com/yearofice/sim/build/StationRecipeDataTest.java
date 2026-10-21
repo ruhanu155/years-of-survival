@@ -22,13 +22,13 @@ class StationRecipeDataTest {
         int seen = 0;
         for (Path f : files) {
             JsonObject o = JsonParser.parseString(Files.readString(f)).getAsJsonObject();
-            // crop's yearofice:station recipes share this folder until M6-INT folds the two types
+            // the folded crop recipes may still say yearofice:station (alias): both shapes are checked by GameTest craft/station_alias_loads
             if (!"yearofice:craft_station".equals(o.get("type").getAsString())) continue;
             seen++;
             String tier = o.get("tier").getAsString();
             assertTrue(Tier.byId(tier).isPresent(), f + " tier " + tier);
             Effort e = Effort.valueOf(o.get("effort").getAsString().toUpperCase());
-            double expect = e.kcalPerHour * o.get("work_min").getAsDouble() / 60.0;
+            double expect = e.kcalPerHour * (o.has("work_min") ? o.get("work_min").getAsDouble() : 0) / 60.0;
             assertEquals(expect, o.get("kcal").getAsDouble(), 1.0, f + " kcal");
             assertTrue(o.getAsJsonObject("result").get("id").getAsString().startsWith("yearofice:"), f + " result id");
         }

@@ -1,0 +1,2 @@
+{ "id": "yearofice:work.sluice_wash", "kind": "wind", "variants": 2, "length_s": 5, "lufs": -23, "loop": false,
+  "low_hz": 1100, "high_hz": 4200, "q": 0.5, "floor": 0.55, "rumble": 0.15 }
