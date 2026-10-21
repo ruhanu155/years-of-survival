@@ -101,4 +101,14 @@ public final class DecayServiceImpl implements DecayService {
                 f.lifeDh(), f.traits(), f.known());
         stack.set(YoiComponents.FRESH.get(), aged.settle(dNow(level)));
     }
+
+    @Override
+    public void shift(Level level, ItemStack stack, double hours, double storeRate) {
+        double deltaRate = storeRate - rate(level);
+        Fresh f = stack.get(YoiComponents.FRESH.get());
+        if (f == null || Double.isInfinite(f.dueDh()) || hours <= 0 || deltaRate == 0) return;
+        double due = Math.min(f.lifeDh(), f.dueDh() - hours * deltaRate);
+        Fresh moved = new Fresh(f.state(), f.clock(), Fresh.quantise(due, f.lifeDh(), DecayConfig.bands()), f.lifeDh(), f.traits(), f.known());
+        stack.set(YoiComponents.FRESH.get(), moved.settle(dNow(level)));
+    }
 }

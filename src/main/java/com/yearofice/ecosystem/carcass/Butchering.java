@@ -77,6 +77,7 @@ public final class Butchering {
         stack.shrink(1);
         for (ItemStack part : parts) if (!p.getInventory().add(part)) p.drop(part, false);
         leaveGuts(p.serverLevel(), p.blockPosition(), SpeciesBook.get(r.species()));
+        if (r.species().endsWith(":moose")) com.yearofice.story.ambition.Ambitions.fire(p, "hunt.moose_butchered", com.yearofice.hunt.fishing.FishingClock.minute(p.server));
         p.displayClientMessage(Component.translatable("ecosystem.yearofice.dressed",
                 Component.translatable("entity." + r.species().replace(':', '.'))), true);
         return stack;

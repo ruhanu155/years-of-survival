@@ -43,8 +43,10 @@ public final class ForgeJob implements WorkJob {
     public void work(ServerPlayer p, long step) {
         if (done) return;
         ds += step;
+        FurnaceDraft.post(p.serverLevel(), pos, true);
         if (ds < needDs) return;
         done = true;
+        FurnaceDraft.post(p.serverLevel(), pos, false);
         p.getMainHandItem().shrink(1);
         int need = Smelt.CHARCOAL_PER_CONSOLIDATION;
         for (ItemStack s : p.getInventory().items) {
@@ -59,6 +61,9 @@ public final class ForgeJob implements WorkJob {
         if (!p.getInventory().add(bars)) p.drop(bars, false);
         if (PracticeService.installed()) PracticeService.get().add(p, Skill.SMITHING, 1);
     }
+
+    @Override
+    public void stopped(ServerPlayer p) { FurnaceDraft.post(p.serverLevel(), pos, false); }
 
     @Override public boolean finished() { return done; }
     @Override public float share() { return Math.min(1f, ds / (float) needDs); }

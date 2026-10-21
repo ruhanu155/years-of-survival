@@ -81,6 +81,7 @@ class SaveFixturesTest {
         ATTACHMENTS.put("trees", in -> TreeMarksData.load(in).saveTag());
         ATTACHMENTS.put("plant_notes", codec(com.yearofice.plant.PlantAttachments.NOTES_CODEC));
         ATTACHMENTS.put("patches", codec(com.yearofice.plant.PatchData.CODEC));
+        ATTACHMENTS.put("trust", codec(com.mojang.serialization.Codec.DOUBLE.listOf()));
         SAVED_DATA.put("yearofice_clock", saved(com.yearofice.story.clock.ClockData.class));
         SAVED_DATA.put("yearofice_run", saved(com.yearofice.body.RunState.class));
         SAVED_DATA.put("yearofice_story", saved(com.yearofice.story.DayOne.Data.class));
@@ -207,4 +208,15 @@ class SaveFixturesTest {
 
     @SuppressWarnings("unused")
     private static List<Tag> asList(ListTag l) { return new ArrayList<>(l); }
+
+    @Test
+    void everyBlockEntityThatSavesAlsoLoads() throws IOException {
+        try (Stream<Path> s = Files.walk(Path.of("").toAbsolutePath().resolve("src/main/java"))) {
+            for (Path p : (Iterable<Path>) s.filter(x -> x.toString().endsWith(".java"))::iterator) {
+                String t = Files.readString(p);
+                if (t.contains("extends BlockEntity") && t.contains("void saveAdditional"))
+                    assertTrue(t.contains("void loadAdditional"), p.getFileName() + " saves block-entity state it never loads");
+            }
+        }
+    }
 }

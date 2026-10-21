@@ -34,12 +34,17 @@ public final class Structs {
         return d == null ? 0 : d.labourMin();
     }
 
+    /** Stoves and chimney pipes are not pieces (no labour) but a stamped room needs them, so a struct keeps them cold (the block entity itself saves with the world). */
+    static boolean isFixture(BlockState s) {
+        return s.getBlock() instanceof com.yearofice.fire.stove.StoveBlock || s.is(com.yearofice.fire.stove.StoveRegistry.CHIMNEY_PIPE.get());
+    }
+
     /** Records every piece (a block with piece data) in the box around {@code anchor}. */
     public static int save(ServerLevel l, String name, BlockPos anchor, int radius, int up) throws IOException {
         ListTag out = new ListTag();
         for (BlockPos p : BlockPos.betweenClosed(anchor.offset(-radius, 0, -radius), anchor.offset(radius, up, radius))) {
             BlockState s = l.getBlockState(p);
-            if (labour(s) <= 0) continue;
+            if (labour(s) <= 0 && !isFixture(s)) continue;
             CompoundTag c = new CompoundTag();
             BlockPos r = p.subtract(anchor);
             c.putIntArray("at", new int[] {r.getX(), r.getY(), r.getZ()});

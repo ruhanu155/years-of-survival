@@ -1,0 +1,189 @@
+hatchet found in slot 1, now slot 8: 1 yearofice:hatchet
+  kit: yearofice:pilot_bread x38
+  kit: yearofice:cord x10
+  kit: yearofice:cooking_pot x1
+  kit: yearofice:plant_guide x1
+  kit: yearofice:fixed_blade_knife x1
+  kit: yearofice:solar_panel_small x1
+  kit: yearofice:crate_backpack x1
+  kit: yearofice:medkit x1
+  kit: yearofice:hatchet x1
+START minute 727 clock 12:07 kit stacks 22 matches 0 bmi 23.0 kg 77.0
+INSTANT_PLACE: no [pieces] instant_place dial exists; pieces are plain BlockItems that place instantly and free (no hold-to-work). Labour is ledgered from piece.json.
+  kind trapline_cabin spacing 6400 m, enclosable true
+  kind fish_camp spacing 3200 m, enclosable false
+  kind hunting_blind_camp spacing 2400 m, enclosable true
+  kind rock_shelter spacing 4800 m, enclosable true
+OUTPOST candidates (kinds with walls and a roof, by region data): 233 nearest trapline_cabin chunk [-70, -9] 955.4 m
+  walk 955.4 m at 1.2 m/s = 13.3 game min (teleported: the bot does not path-find)
+OUTPOST yearofice:trapline_cabin (Trapline cabin) origin -1117, 626, -141: layout 146 pieces, 86 missing/rotted (59%)
+  repair list by role: {floor=28, roof=47, wall=11}
+BLOCKED no player-facing entry point starts RepairJob (only GameTests construct it) and it spends no materials (ponytail: flat 10 s per piece); the bot runs the same job through WorkService
+REPAIR 86 jobs in 14.5 game min (10 s each)
+REPAIR_OK all 146/146 pieces standing
+OUTPOST_ROOM yearofice:trapline_cabin at -1116, 627, -138: 48 m3, U 186.8 W/C, source 0 W, outside 2.0 C, feels 1.7 C, 0 leaks
+WALK back to the start valley for wood: 948.0 m = 13.2 game min (teleported)
+TREES at hop 0 around -1088, 152, 814: 1 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {8-18=1}; splits so far 0 of 56
+TREE BLACK_SPRUCE at -1052, 151, 848 dia 11.0 cm, 2 swings
+  log landed: BLACK_SPRUCE 9.0 m, 18 rounds left, limbed false
+  wood so far: 1 trees, 0 rounds, 0 splits
+WALK to look for forest (hop 1): 88.8 m = 1.2 game min (teleported)
+TREES at hop 1 around -968, 150, 814: 0 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {}; splits so far 0 of 56
+WALK to look for forest (hop 2): 119.0 m = 1.7 game min (teleported)
+TREES at hop 2 around -1028, 151, 917: 0 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {}; splits so far 0 of 56
+WALK to look for forest (hop 3): 119.5 m = 1.7 game min (teleported)
+TREES at hop 3 around -1147, 152, 917: 0 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {}; splits so far 0 of 56
+WALK to look for forest (hop 4): 120.4 m = 1.7 game min (teleported)
+TREES at hop 4 around -1208, 170, 814: 1 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {8-18=1}; splits so far 0 of 56
+TREE BLACK_SPRUCE at -1240, 152, 883 dia 9.9 cm, 1 swings
+  log landed: BLACK_SPRUCE 8.0 m, 16 rounds left, limbed false
+  wood so far: 2 trees, 0 rounds, 0 splits
+WALK to look for forest (hop 5): 194.1 m = 2.7 game min (teleported)
+TREES at hop 5 around -1148, 178, 711: 0 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {}; splits so far 0 of 56
+WALK to look for forest (hop 6): 119.5 m = 1.7 game min (teleported)
+TREES at hop 6 around -1028, 158, 711: 0 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {}; splits so far 0 of 56
+WALK to look for forest (hop 7): 206.7 m = 2.9 game min (teleported)
+TREES at hop 7 around -848, 152, 814: 1 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {8-18=1}; splits so far 0 of 56
+TREE BLACK_SPRUCE at -798, 150, 830 dia 11.0 cm, 2 swings
+  log landed: BLACK_SPRUCE 9.0 m, 18 rounds left, limbed false
+  wood so far: 3 trees, 0 rounds, 0 splits
+WALK to look for forest (hop 8): 257.0 m = 3.6 game min (teleported)
+TREES at hop 8 around -968, 149, 1021: 1 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {8-18=1}; splits so far 0 of 56
+TREE BLACK_SPRUCE at -912, 150, 1070 dia 9.9 cm, 1 swings
+  log landed: BLACK_SPRUCE 8.0 m, 16 rounds left, limbed false
+  wood so far: 4 trees, 0 rounds, 0 splits
+WALK to look for forest (hop 9): 301.0 m = 4.2 game min (teleported)
+TREES at hop 9 around -1207, 151, 1021: 0 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {}; splits so far 0 of 56
+WALK to look for forest (hop 10): 240.5 m = 3.3 game min (teleported)
+TREES at hop 10 around -1328, 154, 814: 1 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {8-18=1}; splits so far 0 of 56
+TREE BLACK_SPRUCE at -1353, 151, 888 dia 9.9 cm, 1 swings
+  log landed: BLACK_SPRUCE 8.0 m, 16 rounds left, limbed false
+  wood so far: 5 trees, 0 rounds, 0 splits
+WALK to look for forest (hop 11): 315.3 m = 4.4 game min (teleported)
+TREES at hop 11 around -1208, 236, 607: 0 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {}; splits so far 0 of 56
+WALK to look for forest (hop 12): 239.5 m = 3.3 game min (teleported)
+TREES at hop 12 around -968, 203, 607: 0 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {}; splits so far 0 of 56
+WALK to look for forest (hop 13): 316.2 m = 4.4 game min (teleported)
+TREES at hop 13 around -728, 164, 814: 1 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {8-18=1}; splits so far 0 of 56
+TREE BLACK_SPRUCE at -664, 151, 741 dia 9.9 cm, 1 swings
+  log landed: BLACK_SPRUCE 8.0 m, 16 rounds left, limbed false
+  wood so far: 6 trees, 0 rounds, 0 splits
+WALK to look for forest (hop 14): 456.0 m = 6.3 game min (teleported)
+TREES at hop 14 around -908, 150, 1125: 2 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {8-18=2}; splits so far 0 of 56
+TREE BLACK_SPRUCE at -970, 151, 1136 dia 9.9 cm, 1 swings
+  log landed: BLACK_SPRUCE 8.0 m, 16 rounds left, limbed false
+  wood so far: 7 trees, 0 rounds, 0 splits
+TREE BLACK_SPRUCE at -968, 152, 1162 dia 9.9 cm, 1 swings
+  log landed: BLACK_SPRUCE 8.0 m, 16 rounds left, limbed false
+  wood so far: 8 trees, 0 rounds, 0 splits
+WALK to look for forest (hop 15): 303.3 m = 4.2 game min (teleported)
+TREES at hop 15 around -1267, 151, 1125: 5 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {8-18=5}; splits so far 0 of 56
+TREE BLACK_SPRUCE at -1268, 151, 1172 dia 9.9 cm, 1 swings
+  log landed: BLACK_SPRUCE 8.0 m, 16 rounds left, limbed false
+  wood so far: 9 trees, 0 rounds, 0 splits
+TREE BLACK_SPRUCE at -1304, 152, 1174 dia 9.9 cm, 1 swings
+  log landed: BLACK_SPRUCE 8.0 m, 16 rounds left, limbed false
+  wood so far: 10 trees, 0 rounds, 0 splits
+TREE BLACK_SPRUCE at -1308, 152, 1178 dia 9.9 cm, 1 swings
+  log landed: BLACK_SPRUCE 8.0 m, 16 rounds left, limbed false
+  wood so far: 11 trees, 0 rounds, 0 splits
+TREE BLACK_SPRUCE at -1312, 152, 1189 dia 9.9 cm, 1 swings
+  no log landed
+TREE BLACK_SPRUCE at -1341, 153, 1154 dia 9.9 cm, 1 swings
+  log landed: BLACK_SPRUCE 8.0 m, 16 rounds left, limbed false
+  wood so far: 13 trees, 0 rounds, 0 splits
+WALK to look for forest (hop 16): 357.0 m = 5.0 game min (teleported)
+TREES at hop 16 around -1448, 154, 814: 1 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {8-18=1}; splits so far 0 of 56
+TREE BLACK_SPRUCE at -1437, 152, 873 dia 11.0 cm, 2 swings
+  log landed: BLACK_SPRUCE 9.0 m, 18 rounds left, limbed false
+  wood so far: 14 trees, 0 rounds, 0 splits
+WALK to look for forest (hop 17): 405.9 m = 5.6 game min (teleported)
+TREES at hop 17 around -1268, 311, 503: 0 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {}; splits so far 0 of 56
+WALK to look for forest (hop 18): 359.5 m = 5.0 game min (teleported)
+TREES at hop 18 around -908, 290, 503: 0 fellable trunks (8-40 cm) within 80 m, all trunks by diameter band {}; splits so far 0 of 56
+WOOD no more forest within 360 m of the start
+WOOD done: 14 trees felled, 0 rounds, 0 splits in the pack (0 kg), labour fell 7565 / limb 130 / buck 161 / split 0 game min
+BLOCKED only 0 of 56 splits could be cut; GRANTED 56 green birch splits stamped on day 1 so the burn can be measured
+SITE no flat 6x6 within 40 m: levelled a pad at -896, 283, 515 (bot setBlock; a real player has no digging tool for this)
+SITE2 levelled at -876, 273, 515
+SITE cabin pad -896, 283, 515 (ground y 282), second site -876, 273, 515
+BLOCKED slab_floor / wall_log / roof_pole_sod / door_frame / window_frame have no recipe or loot path (creative tab only); piece.json prices them in log_piece/pole/plank/sod/shingle/stone which also have no recipe. GRANTED for the build.
+BLOCKED dressed_stone: no recipe path either (nothing crafts it)
+FIRST_COURSE floor 36 slabs + 19 wall_log + door frame; labour so far 613.0 game min
+BLOCKED tin_stove / chimney_pipe: no recipe (bloomery/forge/anvil path absent); creative tab only. GRANTED.
+STOVE tin_stove at -895, 284, 516, chimney 5.0 m, flued true (min 1.5 m, ideal 3 m)
+CABIN built: 118 piece placements (0 fallbacks to setBlock), first-build labour 1583 game min = 26.4 h
+CABIN_ROOM 30 m3, U 63.0 W/C, source 0 W, outside 5.9 C, feels 4.9 C, leaks [] (stove cold)
+SAVE struct m8cabin: 111 pieces (stove and pipes are not pieces: not saved)
+STAMP queued 111 pieces at -876, 273, 515: 84 player min vs first build 1583 min = 5.3 %
+STAMP built: second site room NOT detected (the stove column is a roof hole: pipes are not pieces)
+STAMP second site after one chimney pipe in the roof hole: room 32 m3, 0 leaks
+NIGHT chosen: absolute day 245 (dayOfYear 245), coldest drawn air -38.2 C between 16:00 and 08:00 (the blueprint number is -30)
+CLOCK jumped by the driver's own hook to 15:00 day 245 (the smoke cannot wait 230 days at the 24 s/day Sleep rate inside its 30-minute cap)
+STOVE W by setting at the lit draft (flued true, chimney 5.0 m): LOW 1780 W (262.5 min/armload); STEADY 4450 W (105.0 min/armload); HOT 13351 W (35.0 min/armload); 
+STOVE lit true, setting STEADY, 4450 W, armloads 2.00
+  probe 15:15 tick 5: player alive true hp 20 at -893, 64, 506 inRoom false | stove lit true STEADY 4450 W armloads 2.00 flued true smoke 0% creosote 0.0 | StoveHeatLookup [StoveHeat[pos=BlockPos{x=-895, y=284, z=516}, watts=4450.285714285716, flued=true]] | HeatSources in room 4450 W
+  probe 15:30 tick 10: player alive true hp 20 at -893, 64, 506 inRoom false | stove lit true STEADY 4450 W armloads 2.00 flued true smoke 0% creosote 0.0 | StoveHeatLookup [StoveHeat[pos=BlockPos{x=-895, y=284, z=516}, watts=4450.285714285716, flued=true]] | HeatSources in room 4450 W
+  probe 15:45 tick 15: player alive true hp 20 at -893, 64, 506 inRoom false | stove lit true STEADY 4450 W armloads 2.00 flued true smoke 0% creosote 0.0 | StoveHeatLookup [StoveHeat[pos=BlockPos{x=-895, y=284, z=516}, watts=4450.285714285716, flued=true]] | HeatSources in room 4450 W
+  probe 16:00 tick 20: player alive true hp 20 at -893, 284, 518 inRoom true | stove lit true STEADY 4450 W armloads 2.00 flued true smoke 0% creosote 0.0 | StoveHeatLookup [StoveHeat[pos=BlockPos{x=-895, y=284, z=516}, watts=4450.285714285716, flued=true]] | HeatSources in room 4450 W
+  16:00 outside -30.3 C, inside feels -26.0 C, source 0 W, U 71.9 W/C, stove lit STEADY 2.00 armloads, warmth 60
+  16:30 outside -30.4 C, inside feels -26.1 C, source 0 W, U 72.0 W/C, stove lit STEADY 2.00 armloads, warmth 41
+  17:00 outside -30.4 C, inside feels -26.1 C, source 0 W, U 72.0 W/C, stove lit STEADY 2.00 armloads, warmth 22
+DIAG from 17:03: the real stove's W is now also posted via HeatSources at the air cell beside it, to show what the cabin does once the stove counts
+  DIAG 17:30 outside -30.4 C, inside feels 35.7 C, source 4450 W, U 72.0 W/C, stove lit LOW 1.77 armloads, warmth 3, splits left 44
+  DIAG 18:00 outside -30.5 C, inside feels -1.4 C, source 1780 W, U 71.9 W/C, stove lit STEADY 1.77 armloads, warmth 0, splits left 44
+  DIAG 18:30 outside -30.6 C, inside feels 35.7 C, source 4450 W, U 71.8 W/C, stove lit LOW 1.95 armloads, warmth 0, splits left 41
+  DIAG 19:00 outside -30.6 C, inside feels -1.4 C, source 1780 W, U 71.7 W/C, stove lit STEADY 1.95 armloads, warmth 0, splits left 41
+  DIAG 19:30 outside -30.7 C, inside feels 35.9 C, source 4450 W, U 71.5 W/C, stove lit LOW 1.38 armloads, warmth 0, splits left 41
+  DIAG 20:00 outside -30.8 C, inside feels -1.4 C, source 1780 W, U 71.3 W/C, stove lit STEADY 1.38 armloads, warmth 0, splits left 41
+  DIAG 20:30 outside -30.9 C, inside feels 36.2 C, source 4450 W, U 71.0 W/C, stove lit LOW 1.81 armloads, warmth 0, splits left 37
+  DIAG 21:00 outside -31.0 C, inside feels -1.4 C, source 1780 W, U 70.7 W/C, stove lit STEADY 1.81 armloads, warmth 0, splits left 37
+  DIAG 21:30 outside -31.1 C, inside feels 36.6 C, source 4450 W, U 70.4 W/C, stove lit LOW 1.24 armloads, warmth 0, splits left 37
+  DIAG 22:00 outside -31.2 C, inside feels -1.2 C, source 1780 W, U 70.0 W/C, stove lit LOW 1.24 armloads, warmth 0, splits left 37
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  DIAG 22:30 outside -31.3 C, inside feels -1.1 C, source 1780 W, U 69.6 W/C, stove lit LOW 1.01 armloads, warmth 0, splits left 37
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  DIAG 23:00 outside -31.4 C, inside feels -1.2 C, source 1780 W, U 69.6 W/C, stove lit LOW 1.01 armloads, warmth 0, splits left 37
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  DIAG 23:30 outside -34.3 C, inside feels -3.6 C, source 1780 W, U 69.6 W/C, stove lit LOW 0.78 armloads, warmth 0, splits left 37
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  DIAG 00:00 outside -37.2 C, inside feels -5.2 C, source 1780 W, U 67.8 W/C, stove lit LOW 0.78 armloads, warmth 0, splits left 37
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  stove refused a split (moisture 12%)
+  DIAG 00:30 outside -37.4 C, inside feels -5.0 C, source 1780 W, U 67.1 W/C, stove lit LOW 0.55 armloads, warmth 0, splits left 37
+FAIL the clock jumped 20163 min inside one tick at 00:33 (the body collapsed and the SOS flight ran?): night aborted
+finish at minute 374439 nightEnd 354720 phase END alive true
+FAIL inside feels-like min -26.1 C <= 5 C with the stove burning (outside min -30.4 C)
+
+DAY 1  (build day, ledger only; the driver acts instantly) kcal_in 0 kcal_out 12 kg 63.62 bmi 19.00 | chores 8013 game min ({walk=89.43140683526659, repair=14.5, fell=7564.75, limb=130.0, buck=160.5, stoke=54.0}) vs free 960 min waking/day => 8.3 waking days of labour
+NIGHT (15:00 to 08:00) kcal_in 0 kcal_out 12 bmi 19.00 warmth_min 0.0 | wood: 19 splits loaded = 71 kg, 4.2 armloads burned, 27 stoke visits
+HEAT BALANCE inside feels-like min -26.1 max -26.0 C, outside min -30.4 C, stove peak 0 W, U 71.9 W/C avg => dT 0.0 C (blueprint: > 5 C at -30 C)
+DIAG (stove W posted to an air cell) inside feels-like min -26.1 max 36.6 C over 151 samples, outside min -37.4 C, room source peak 4450 W => NOT above 5 C
+OUTPOST yearofice:trapline_cabin repair jobs 146/146 done, room detected true
+STAMP labour 84 min vs first build 1583 min = 5.3 %
+GRANTED (no honest path): {birch_split=56, slab_floor=36, wall_log=39, door_frame=1, window_frame=1, roof_pole_sod=35, tin_stove=1, chimney_pipe=6}
+BLOCKED findings: 5
+  - no player-facing entry point starts RepairJob (only GameTests construct it) and it spends no materials (ponytail: flat 10 s per piece); the bot runs the same job through WorkService
+  - only 0 of 56 splits could be cut; GRANTED 56 green birch splits stamped on day 1 so the burn can be measured
+  - slab_floor / wall_log / roof_pole_sod / door_frame / window_frame have no recipe or loot path (creative tab only); piece.json prices them in log_piece/pole/plank/sod/shingle/stone which also have no recipe. GRANTED for the build.
+  - dressed_stone: no recipe path either (nothing crafts it)
+  - tin_stove / chimney_pipe: no recipe (bloomery/forge/anvil path absent); creative tab only. GRANTED.
+RESULT FAIL [the clock jumped 20163 min inside one tick at 00:33 (the body collapsed and the SOS flight ran?): night aborted, inside feels-like min -26.1 C <= 5 C with the stove burning (outside min -30.4 C)]

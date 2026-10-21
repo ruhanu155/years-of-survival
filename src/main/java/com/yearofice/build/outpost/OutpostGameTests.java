@@ -39,6 +39,17 @@ public final class OutpostGameTests {
         h.assertTrue(lost > 5 && miss.size() == lost, "sixty years takes pieces (" + lost + " lost, " + miss.size() + " missing)");
         h.assertTrue(miss.stream().anyMatch(p -> p.role().equals("roof")), "the roof sags first");
         var p = WoodGameTests.player(h, "outposter", new Vec3(1, 2, 1));
+        // an outpost's own blocks are vanilla and free; a real building piece spends its piece.json materials
+        var wall = new Outposts.Piece(h.absolutePos(new BlockPos(6, 2, 6)), com.yearofice.build.pieces.PieceRegistry.WALL_LOG.get().defaultBlockState(), "wall");
+        l.setBlock(wall.pos(), net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), 3);
+        h.assertTrue(!RepairJob.cost(wall).isEmpty(), "a wall log has piece.json materials");
+        WorkService.runFor(p, new RepairJob(l, List.of(wall)), 200);
+        h.assertTrue(l.getBlockState(wall.pos()).isAir(), "an empty pack does not rebuild a priced piece");
+        for (var m : RepairJob.cost(wall)) p.getInventory().add(new net.minecraft.world.item.ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEM.get(m.item()), m.count()));
+        WorkService.runFor(p, new RepairJob(l, List.of(wall)), 200);
+        h.assertTrue(l.getBlockState(wall.pos()).is(wall.state().getBlock()), "with the materials it is rebuilt");
+        h.assertTrue(p.getInventory().items.stream().noneMatch(st -> !st.isEmpty() && RepairJob.cost(wall).stream().anyMatch(m -> net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(st.getItem()).equals(m.item()))), "and the materials are spent");
+        l.setBlock(wall.pos(), net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), 3);
         double min = WorkService.runFor(p, new RepairJob(l, miss), 5000);
         h.assertTrue(min > 0, "the repair job finished");
         h.assertTrue(Outposts.missing(l, origin, def).isEmpty(), "every piece is back");

@@ -9,7 +9,8 @@ import net.minecraft.server.level.ServerPlayer;
 /**
  * Repairs an outpost one piece at a time (Maintenance loops under the tedium rule): each missing piece takes
  * {@value #DS_PER_PIECE} game deciseconds of work, replaced in layout order, floor and walls before the roof.
- * ponytail: a flat time per piece, no materials spent — upgrade: M8 lane A's piece costs and refunds.
+ * Each piece spends its {@code piece.json} materials from the player's pack; with them short the job waits (and says
+ * so). Creative players pay nothing.
  */
 public final class RepairJob implements WorkJob {
     public static final long DS_PER_PIECE = 100;
@@ -33,9 +34,43 @@ public final class RepairJob implements WorkJob {
         carry += ds;
         while (carry >= DS_PER_PIECE && done < total) {
             carry -= DS_PER_PIECE;
-            Outposts.Piece pc = todo.get(done++);
+            Outposts.Piece pc = todo.get(done);
+            if (!pay(p, pc, false)) { carry = DS_PER_PIECE; return; }
+            pay(p, pc, true);
+            done++;
             level.setBlock(pc.pos(), pc.state(), 3);
         }
+    }
+
+    /** The materials a piece costs, from its data row (none for a piece without one). */
+    public static java.util.List<com.yearofice.api.build.PieceData.Material> cost(Outposts.Piece pc) {
+        var row = pc.state().getBlock().builtInRegistryHolder().getData(com.yearofice.api.build.PieceData.MAP);
+        return row == null ? java.util.List.of() : row.materials();
+    }
+
+    private static boolean pay(ServerPlayer p, Outposts.Piece pc, boolean take) {
+        if (p.getAbilities().instabuild) return true;
+        for (var m : cost(pc)) {
+            var item = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(m.item());
+            int have = 0;
+            for (var s : p.getInventory().items) if (s.is(item)) have += s.getCount();
+            if (have < m.count()) {
+                if (!take && p.tickCount % 100 == 0) p.displayClientMessage(net.minecraft.network.chat.Component.literal(
+                        "Repair needs " + m.count() + " x " + item.getDescription().getString() + " in your pack."), true);
+                return false;
+            }
+            if (take) {
+                int left = m.count();
+                for (var s : p.getInventory().items) {
+                    if (left <= 0) break;
+                    if (!s.is(item)) continue;
+                    int t = Math.min(left, s.getCount());
+                    s.shrink(t);
+                    left -= t;
+                }
+            }
+        }
+        return true;
     }
 
     @Override public boolean finished() { return done >= total; }

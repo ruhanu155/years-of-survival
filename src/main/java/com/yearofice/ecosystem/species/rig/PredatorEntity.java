@@ -8,6 +8,8 @@ import com.yearofice.ecosystem.ai.Sensing;
 import com.yearofice.ecosystem.carcass.CarcassEntity;
 import com.yearofice.ecosystem.carcass.CarcassRecord;
 import com.yearofice.ecosystem.clock.SliceClock;
+import com.yearofice.ecosystem.pool.ValleyPool;
+import com.yearofice.sim.ecosystem.PoolModel;
 import com.yearofice.ecosystem.species.SpeciesDef;
 import com.yearofice.ecosystem.wound.DeathPipeline;
 import com.yearofice.sim.ecosystem.AnimalState;
@@ -213,26 +215,45 @@ public class PredatorEntity extends LandAnimal {
         double smell = d.senses().smellM() * 3.0; // carrion: tripled for bears and wolverines (fresh meat), see plume table
         double scale = speciesId().endsWith("bear") || speciesId().endsWith("grizzly") || speciesId().endsWith("wolverine") ? 3.0 : 1.5;
         smell = d.senses().smellM() * scale;
-        double windToward = Sensing.windToward(level, this);
-        Object best = null;
-        double bd = Double.MAX_VALUE;
-        for (CarcassEntity c : level.getEntitiesOfClass(CarcassEntity.class, getBoundingBox().inflate(smell, 32, smell))) {
-            double dist = distanceTo(c);
-            if (dist > smell || dist >= bd) continue;
-            if (dist > 30 && !downwind(c.position(), windToward)) continue;
-            best = c;
-            bd = dist;
-        }
-        for (BlockPos pt : ScentPoints.in(level)) {
-            double dist = Math.sqrt(pt.distSqr(blockPosition()));
-            if (dist > smell || dist >= bd) continue;
-            if (dist > 30 && !downwind(Vec3.atCenterOf(pt), windToward)) continue;
-            best = pt;
-            bd = dist;
-        }
+        Object best = pickScent(level, smell);
         scentTarget = best;
         eatUntil = 0;
         return best != null && walkTo(level);
+    }
+
+    /** A rack or smokehouse post the predator walks to; the theft service takes over once it stands there. */
+    record RackPost(BlockPos pos) {}
+
+    /**
+     * M6 lane G: the strongest source it smells now (ValleyPool's live sources: reach by strength, wind and rain; a cone down the
+     * wind and a short all-round bubble), capped at this species' own smell range. A bear in Sep-Oct (PoolModel.season) weighs
+     * carrion twice over a rack, so it goes to the pile first.
+     */
+    Object pickScent(ServerLevel level, double smellCapM) {
+        double keen = PoolModel.season(speciesId().substring(speciesId().indexOf(':') + 1), Calendar.dayOfYearOfMinute(SliceClock.minute(level)));
+        Object best = null;
+        double bestScore = 0;
+        Vec3 me = position();
+        double windToward = Sensing.windToward(level, this); // the entity's own pin in tests, else the air at its feet
+        for (ValleyPool.Src s : ValleyPool.sources(level, SliceClock.minute(level))) {
+            double reach = Math.min(s.reachM(), smellCapM);
+            if (!PoolModel.inReach(s.pos().getX() + 0.5, s.pos().getZ() + 0.5, reach, windToward, me.x, me.z)) continue;
+            boolean carrion = s.kind().equals("carcass") || s.kind().equals("gut_pile");
+            double dist = Math.max(1, Math.hypot(me.x - s.pos().getX() - 0.5, me.z - s.pos().getZ() - 0.5));
+            double score = s.reachM() * (carrion && keen > 1 ? keen : 1) / dist;
+            if (score <= bestScore) continue;
+            Object target = s.kind().equals("carcass") ? nearestCarcass(level, s.pos()) : carrion ? s.pos() : new RackPost(s.pos());
+            if (target == null) continue;
+            best = target;
+            bestScore = score;
+        }
+        return best;
+    }
+
+    private static CarcassEntity nearestCarcass(ServerLevel level, BlockPos at) {
+        CarcassEntity best = null;
+        for (CarcassEntity c : level.getEntitiesOfClass(CarcassEntity.class, new AABB(at).inflate(3))) if (!c.isRemoved()) best = c;
+        return best;
     }
 
     /** True when this predator sits inside the 25° cone the wind carries the source's scent into. */
@@ -241,6 +262,17 @@ public class PredatorEntity extends LandAnimal {
     }
 
     boolean walkTo(ServerLevel level) {
+        if (scentTarget instanceof RackPost rp) { // the theft service raids once it is there; no meal here
+            if (position().distanceToSqr(Vec3.atCenterOf(rp.pos())) < 6.25) {
+                scentTarget = null;
+                nextSmellTick = level.getGameTime() + 200;
+                getNavigation().stop();
+                return false;
+            }
+            if (getNavigation().isDone()) pathToward(Vec3.atCenterOf(rp.pos()), Gaits.input(species().trotMps()));
+            setMove(MOVE_WALK);
+            return true;
+        }
         Vec3 at = scentTarget instanceof CarcassEntity c ? c.position() : Vec3.atCenterOf((BlockPos) scentTarget);
         if (scentTarget instanceof CarcassEntity c && (c.isRemoved())) { scentTarget = null; return false; }
         if (scentTarget instanceof BlockPos bp && level.isLoaded(bp) && !level.getBlockState(bp).is(EcosystemRegistry.GUT_PILE.get())) {
@@ -255,8 +287,9 @@ public class PredatorEntity extends LandAnimal {
             scavenged++;
             return true;
         }
-        if (getNavigation().isDone()) pathToward(at, Gaits.input(species().trotMps()));
-        setMove(MOVE_WALK);
+        boolean far = position().distanceToSqr(at) > 40 * 40; // a scent trail far off is followed at a lope (the config's multiplier x trot), not a stroll
+        if (getNavigation().isDone() || far && tickCount % 20 == 0) pathToward(at, Gaits.input(species().trotMps() * (far ? com.yearofice.ecosystem.pool.PoolConfig.tuning().predatorScentTrotMultiplier() : 1.0)));
+        setMove(far ? MOVE_RUN : MOVE_WALK);
         return true;
     }
 

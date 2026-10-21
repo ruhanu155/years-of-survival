@@ -120,7 +120,7 @@ public final class WoodJobs {
         final FellingGame game;
         final long swingDs;
         long into;
-        boolean creaked, felled;
+        boolean creaked, felled, notchFirst, wrongSide;
         Double forcedBearing;
 
         public Fell(ServerLevel level, TrunkSearch.Trunk t, ToolStats tool) {
@@ -165,8 +165,8 @@ public final class WoodJobs {
             l.playSound(null, base.above(), WoodRegistry.TREE_CHOP.get(), SoundSource.BLOCKS, 1.0f, 0.9f + 0.2f * l.random.nextFloat());
             chips(l, base.above(), l.getBlockState(base));
             switch (s) {
-                case NOTCH_FIRST -> say(p, "notch_first");
-                case WRONG_SIDE -> say(p, "back_cut_far_side");
+                case NOTCH_FIRST -> { notchFirst = true; say(p, "notch_first"); }
+                case WRONG_SIDE -> { wrongSide = true; say(p, "back_cut_far_side"); }
                 default -> { }
             }
             if (!wasNotch && game.notchDone() && !game.done()) {
@@ -174,8 +174,10 @@ public final class WoodJobs {
             }
             if (game.done()) {
                 TrunkSearch.Trunk now = FellingService.trunk(l, base);
-                FellingService.fell(l, now != null ? now : trunk, game.fallBearing(), p);
+                var felledTrunk = now != null ? now : trunk;
+                FellingService.fell(l, felledTrunk, game.fallBearing(), p);
                 felled = true;
+                Mishaps.roll(l, p, base, game.fallBearing(), felledTrunk.height(), notchFirst, wrongSide);
             }
         }
 

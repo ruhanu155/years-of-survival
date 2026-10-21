@@ -40,6 +40,7 @@ public final class EcosystemSystem {
         NeoForge.EVENT_BUS.addListener(SpeciesBook::onAddReloadListeners);
         NeoForge.EVENT_BUS.addListener(EcoCommands::register);
         NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.pool.PoolCommands::register); // M6 lane F
+        NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.ai.ScentCommands::register); // M6 lane G
         NeoForge.EVENT_BUS.addListener(TrapCommands::register);
         NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.debug.BigGameCommands::register);
         NeoForge.EVENT_BUS.register(com.yearofice.ecosystem.HuntHooks.class);

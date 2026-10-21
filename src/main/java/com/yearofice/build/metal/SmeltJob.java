@@ -27,11 +27,16 @@ public final class SmeltJob implements WorkJob {
     public void work(ServerPlayer p, long step) {
         if (done) return;
         ds += step;
+        FurnaceDraft.post(p.serverLevel(), pos, true);
         if (ds >= needDs && p.serverLevel().getBlockEntity(pos) instanceof BloomeryBlockEntity be) {
             be.finishSmelt();
             done = true;
+            FurnaceDraft.post(p.serverLevel(), pos, false);
         }
     }
+
+    @Override
+    public void stopped(ServerPlayer p) { FurnaceDraft.post(p.serverLevel(), pos, false); }
 
     @Override public boolean finished() { return done; }
     @Override public float share() { return Math.min(1f, ds / (float) needDs); }

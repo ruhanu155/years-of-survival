@@ -110,12 +110,28 @@ public final class Rooms implements RoomService {
             }
             e.stamp = Long.MIN_VALUE / 2;
         }
-        if (l.getGameTime() - e.stamp >= PiecesConfig.cacheTicks()) {
+        long now = clockNow(l);
+        // stale by game time (not server ticks: Sleep runs the clock thousands of times faster), or the sources changed under it
+        if (now - e.stamp >= PiecesConfig.cacheTicks() || e.room == null || Math.abs(sourceW(l, e) - e.room.sourceW()) > 1) {
             e.room = balance(l, e);
-            e.stamp = l.getGameTime();
+            e.stamp = now;
             d.remember(e.room.seed(), e.room.volumeM3(), e.room.uWPerK());
         }
         return e;
+    }
+
+    /** A stove, bloomery or tent stove is a solid block: it heats the room whose air touches it. ponytail: a source between two rooms heats both. */
+    private static boolean sourceOnWall(RoomsData.Entry e, BlockPos c) {
+        for (Direction d : Direction.values()) if (e.byCellHas(c.getX() + d.getStepX(), c.getY() + d.getStepY(), c.getZ() + d.getStepZ())) return true;
+        return false;
+    }
+
+    private static long clockNow(ServerLevel l) {
+        return com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().nowDs() : l.getGameTime();
+    }
+
+    private static double sourceW(ServerLevel l, RoomsData.Entry e) {
+        return com.yearofice.api.fire.HeatSources.wattsIn(l, c -> e.byCellHas(c.getX(), c.getY(), c.getZ()) || sourceOnWall(e, c));
     }
 
     private static Room balance(ServerLevel l, RoomsData.Entry e) {
@@ -126,11 +142,23 @@ public final class Rooms implements RoomService {
         double snowM = Math.min(1.0, env.snowCm(l, above) / 100.0);
         List<Heat.Face> faces = new ArrayList<>();
         for (Heat.Face f : e.scan.faces()) faces.add(f.part() == Heat.Part.ROOF ? new Heat.Face(f.part(), f.areaM2(), f.u(), snowM) : f);
-        double w = com.yearofice.api.fire.HeatSources.wattsIn(l, c -> e.byCellHas(c.getX(), c.getY(), c.getZ()));
+        double w = sourceW(l, e);
         Heat.Balance b = Heat.solve(faces, e.scan.leaks().size(), 0, w, out, ground, wind);
         List<BlockPos> leaks = new ArrayList<>();
         for (long c : e.scan.leaks()) leaks.add(new BlockPos(RoomScan.ux(c), RoomScan.uy(c), RoomScan.uz(c)));
-        return new Room(seed, e.scan.volume(), b.gWPerC(), b.feelsLikeC(), out, w, leaks);
+        int walls = 0, snow = 0, flames = 0;
+        for (long c : e.scan.air()) {
+            BlockPos at = new BlockPos(RoomScan.ux(c), RoomScan.uy(c), RoomScan.uz(c));
+            for (Direction d : Direction.values()) {
+                BlockPos n = at.relative(d);
+                if (e.scan.air().contains(RoomScan.pack(n.getX(), n.getY(), n.getZ()))) continue;
+                BlockState s = l.getBlockState(n);
+                walls++;
+                if (s.is(com.yearofice.travel.SnowRoom.SNOW_WALLS)) snow++;
+                if (s.is(net.minecraft.tags.BlockTags.FIRE) || (s.getBlock() instanceof net.minecraft.world.level.block.CampfireBlock && s.getValue(net.minecraft.world.level.block.CampfireBlock.LIT))) flames++;
+            }
+        }
+        return new Room(seed, e.scan.volume(), b.gWPerC(), b.feelsLikeC(), out, w, leaks, walls == 0 ? 0 : snow / (double) walls, flames);
     }
 
     @Override
