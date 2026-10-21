@@ -1,0 +1,14 @@
+{
+ "id": "yearofice:fur_ledger",
+ "name": "The fur ledger",
+ "description": "A trapper's ledger of pelts and prices",
+ "weight_kg": 0.01,
+ "where": "Trapline cabin",
+ "journal_clip": "The fur ledger: a column of marten, lynx and fox with the prices Pete paid.",
+ "read": [
+  "Marten, Nov-Feb, 8 points. Lynx, Dec-Feb, 15. Red fox, Nov-Jan, 6.",
+  "Beaver, Jan-Apr, 8. Muskrat, Mar-Apr, 1. River otter, Nov-Mar, 10.",
+  "Wolf, Dec-Mar, 12. Wolverine, Nov-Mar, 20: one a world at a time.",
+  "Prices move each year; read the sked."
+ ]
+}

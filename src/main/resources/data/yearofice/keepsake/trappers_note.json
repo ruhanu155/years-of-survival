@@ -1,0 +1,12 @@
+{
+ "id": "yearofice:trappers_note",
+ "name": "A trapper's note",
+ "description": "A note pinned inside the cabin door",
+ "weight_kg": 0.01,
+ "where": "Trapline cabin",
+ "journal_clip": "A trapper's note: 'Left the stove laid. Whoever you are, burn the dry birch first.'",
+ "read": [
+  "Left the stove laid.",
+  "Whoever you are, burn the dry birch first."
+ ]
+}

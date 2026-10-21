@@ -1,0 +1,31 @@
+{
+ "id": "yearofice:slough_country",
+ "cell": "A3",
+ "name": "Slough Country",
+ "ring": 1,
+ "bounds_m": {
+  "x": [
+   -4096,
+   -2049
+  ],
+  "z": [
+   0,
+   2047
+  ]
+ },
+ "biome_mix": {
+  "slough_country": 0.6,
+  "riparian": 0.3,
+  "open_river": 0.1
+ },
+ "outposts": [
+  "yearofice:fish_camp",
+  "yearofice:trapline_cabin"
+ ],
+ "drop_zone_m": [
+  -3072,
+  1024
+ ],
+ "spring_lag_days": 0,
+ "landmark": "The smokestack of a sunken sternwheeler"
+}

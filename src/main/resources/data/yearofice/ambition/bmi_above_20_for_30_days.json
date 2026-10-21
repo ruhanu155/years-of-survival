@@ -1,0 +1,11 @@
+{
+ "id": "bmi_above_20_for_30_days",
+ "group": "year_one",
+ "title": "Keep BMI above 20 for 30 days",
+ "condition": "30 game days in a row above BMI 20",
+ "opens_on": "",
+ "closes_on": "body.bmi20_30_days",
+ "journal_line": "Ambition done: Keep BMI above 20 for 30 days. 30 game days in a row above BMI 20.",
+ "hidden": false,
+ "reward": "none"
+}

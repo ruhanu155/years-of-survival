@@ -1,0 +1,11 @@
+{
+ "id": "dry_10_kg_of_fish",
+ "group": "first_summer",
+ "title": "Dry 10 kg of fish",
+ "condition": "Hold 10 kg of dried or smoked fish at once",
+ "opens_on": "",
+ "closes_on": "food.dried_fish_10kg",
+ "journal_line": "Ambition done: Dry 10 kg of fish. Hold 10 kg of dried or smoked fish at once.",
+ "hidden": false,
+ "reward": "none"
+}

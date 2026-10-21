@@ -1,0 +1,11 @@
+{
+ "id": "turn_the_wheel",
+ "group": "beyond_homestead",
+ "title": "Turn the wheel",
+ "condition": "Run a fish wheel through a whole run",
+ "opens_on": "",
+ "closes_on": "build.fish_wheel_run",
+ "journal_line": "Ambition done: Turn the wheel. Run a fish wheel through a whole run.",
+ "hidden": false,
+ "reward": "none"
+}

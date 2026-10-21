@@ -1,0 +1,8 @@
+{
+  "note": "Names given to animals that outlive a meeting with the player (The valley remembers). Read like companion/names.json: by species, in order of use.",
+  "wolf": ["Ash", "Tamarack", "Silt", "Birch", "Ptarmigan", "Kettle"],
+  "grizzly": ["Old Rust", "Willow", "Honey Bear", "Stump", "Mica"],
+  "black_bear": ["Soot", "Spruce", "Dipper", "Cinder"],
+  "return_line": "{name} again. The {species} has been through here before.",
+  "first_line": "A {species} that did not want a fight. You think of it as {name}."
+}

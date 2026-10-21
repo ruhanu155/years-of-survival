@@ -1,0 +1,30 @@
+{
+ "id": "yearofice:cloudberry_muskeg",
+ "cell": "C4",
+ "name": "Cloudberry Muskeg",
+ "ring": 1,
+ "bounds_m": {
+  "x": [
+   0,
+   2047
+  ],
+  "z": [
+   2048,
+   4095
+  ]
+ },
+ "biome_mix": {
+  "cloudberry_muskeg": 0.6,
+  "black_spruce_flats": 0.3,
+  "muskeg": 0.1
+ },
+ "outposts": [
+  "yearofice:trapline_cabin"
+ ],
+ "drop_zone_m": [
+  1024,
+  3072
+ ],
+ "spring_lag_days": 2,
+ "landmark": "A burn ridge of silver snags"
+}

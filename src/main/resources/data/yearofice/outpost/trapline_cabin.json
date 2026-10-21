@@ -152,5 +152,23 @@
    "block": "minecraft:barrel",
    "role": "store"
   }
+ ],
+ "keepsakes": [
+  {
+   "id": "yearofice:trappers_note",
+   "at": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "yearofice:fur_ledger",
+   "at": [
+    1,
+    1,
+    2
+   ]
+  }
  ]
 }

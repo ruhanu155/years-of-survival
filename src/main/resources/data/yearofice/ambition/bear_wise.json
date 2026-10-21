@@ -1,0 +1,11 @@
+{
+ "id": "bear_wise",
+ "group": "first_days",
+ "title": "Bear wise",
+ "condition": "Back away from a bear that noticed you, with no spray and no charge",
+ "opens_on": "",
+ "closes_on": "bear.backed_away",
+ "journal_line": "Ambition done: Bear wise. Back away from a bear that noticed you, with no spray and no charge.",
+ "hidden": false,
+ "reward": "none"
+}

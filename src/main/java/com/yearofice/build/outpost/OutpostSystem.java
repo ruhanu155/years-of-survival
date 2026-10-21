@@ -23,7 +23,7 @@ import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
  * Outposts (Open world in depth › Outposts): the decay data map, the worldgen hook that leaves a decayed line cabin,
  * fish camp, blind camp or rock shelter at the blueprint spacing, and {@code /yoi struct place|check|age|repair}.
  * Sites are deterministic: one chunk per spacing cell per outpost, picked by hashing the cell, and stamped when that
- * chunk is first generated. ponytail: sites ignore regions and rings — upgrade: ask the places layer (worldgen.SetPieces).
+ * chunk is first generated. ponytail: sites follow region/<id>.json's outposts list (M9) and ignore rings beyond 1.
  */
 public final class OutpostSystem {
     private OutpostSystem() {}
@@ -56,6 +56,7 @@ public final class OutpostSystem {
             OutpostDef def = OutpostDef.get(id);
             int cells = Math.max(1, def.spacingM() / 16);
             if (!siteChunk(level.getSeed(), id, def, Math.floorDiv(c.x, cells), Math.floorDiv(c.z, cells)).equals(c)) continue;
+            if (!com.yearofice.worldgen.regions.Regions.allowsOutpost(c.getMinBlockX() + 3, c.getMinBlockZ() + 3, id)) continue; // M9: by region
             BlockPos o = new BlockPos(c.getMinBlockX() + 3, 0, c.getMinBlockZ() + 3);
             int y = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, o.getX(), o.getZ());
             BlockPos origin = o.atY(y);
@@ -64,6 +65,7 @@ public final class OutpostSystem {
             Outposts.stamp(level, origin, def);
             double years = (def.minAge() + (def.maxAge() - def.minAge()) * com.yearofice.sim.build.OutpostDecay.roll(seed, 1, 2, 3)) * OutpostConfig.get("outpost_age_scale");
             Outposts.age(level, origin, def, years, seed);
+            com.yearofice.story.keepsake.OutpostKeepsakes.place(level, origin, id);
         }
     }
 

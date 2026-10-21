@@ -1,0 +1,11 @@
+{
+ "id": "ten_kinds",
+ "group": "year_one",
+ "title": "Ten kinds",
+ "condition": "Take 10 species of animal or fish",
+ "opens_on": "",
+ "closes_on": "hunt.ten_species",
+ "journal_line": "Ambition done: Ten kinds. Take 10 species of animal or fish.",
+ "hidden": false,
+ "reward": "none"
+}

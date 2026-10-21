@@ -1,0 +1,11 @@
+{
+ "id": "survive_minus_40",
+ "group": "first_winter",
+ "title": "Survive -40 C",
+ "condition": "Live through a day with a low of -40 C or colder without collapsing",
+ "opens_on": "",
+ "closes_on": "body.survived_minus_40",
+ "journal_line": "Ambition done: Survive -40 C. Live through a day with a low of -40 C or colder without collapsing.",
+ "hidden": false,
+ "reward": "none"
+}

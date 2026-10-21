@@ -1,0 +1,11 @@
+{
+ "id": "pike",
+ "group": "first_summer",
+ "title": "Pike",
+ "condition": "Catch a pike",
+ "opens_on": "",
+ "closes_on": "fish.pike",
+ "journal_line": "Ambition done: Pike. Catch a pike.",
+ "hidden": false,
+ "reward": "none"
+}

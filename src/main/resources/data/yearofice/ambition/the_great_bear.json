@@ -1,0 +1,11 @@
+{
+ "id": "the_great_bear",
+ "group": "beyond_hunting",
+ "title": "The great bear",
+ "condition": "Take a grizzly with a bow",
+ "opens_on": "",
+ "closes_on": "hunt.grizzly_bow",
+ "journal_line": "Ambition done: The great bear. Take a grizzly with a bow.",
+ "hidden": true,
+ "reward": "none"
+}

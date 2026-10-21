@@ -1,0 +1,11 @@
+{
+ "id": "prime_fur",
+ "group": "first_winter",
+ "title": "Prime fur",
+ "condition": "Trap a marten",
+ "opens_on": "",
+ "closes_on": "trap.marten",
+ "journal_line": "Ambition done: Prime fur. Trap a marten.",
+ "hidden": false,
+ "reward": "none"
+}

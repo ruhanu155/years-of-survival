@@ -1,0 +1,30 @@
+{
+ "id": "yearofice:beaver_valley",
+ "cell": "B4",
+ "name": "Beaver Valley",
+ "ring": 1,
+ "bounds_m": {
+  "x": [
+   -2048,
+   -1
+  ],
+  "z": [
+   2048,
+   4095
+  ]
+ },
+ "biome_mix": {
+  "riparian": 0.4,
+  "muskeg": 0.4,
+  "black_spruce_flats": 0.2
+ },
+ "outposts": [
+  "yearofice:trapline_cabin"
+ ],
+ "drop_zone_m": [
+  -1024,
+  3072
+ ],
+ "spring_lag_days": 1,
+ "landmark": "The Esker"
+}

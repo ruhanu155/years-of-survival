@@ -180,5 +180,15 @@
    "block": "minecraft:barrel",
    "role": "store"
   }
+ ],
+ "keepsakes": [
+  {
+   "id": "yearofice:childs_toy",
+   "at": [
+    0,
+    1,
+    1
+   ]
+  }
  ]
 }

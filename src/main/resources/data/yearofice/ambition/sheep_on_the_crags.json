@@ -1,0 +1,11 @@
+{
+ "id": "sheep_on_the_crags",
+ "group": "beyond_hunting",
+ "title": "Sheep on the crags",
+ "condition": "Take a Dall sheep",
+ "opens_on": "",
+ "closes_on": "hunt.dall_sheep",
+ "journal_line": "Ambition done: Sheep on the crags. Take a Dall sheep.",
+ "hidden": false,
+ "reward": "none"
+}

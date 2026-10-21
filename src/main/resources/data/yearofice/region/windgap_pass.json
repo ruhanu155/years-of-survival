@@ -1,0 +1,30 @@
+{
+ "id": "yearofice:windgap_pass",
+ "cell": "D1",
+ "name": "Windgap Pass",
+ "ring": 1,
+ "bounds_m": {
+  "x": [
+   2048,
+   4095
+  ],
+  "z": [
+   -4096,
+   -2049
+  ]
+ },
+ "biome_mix": {
+  "alpine_tundra": 0.5,
+  "rock_scree": 0.3,
+  "upland_barrens": 0.2
+ },
+ "outposts": [
+  "yearofice:rock_shelter"
+ ],
+ "drop_zone_m": [
+  3072,
+  -3072
+ ],
+ "spring_lag_days": 10,
+ "landmark": "A surveyor's cairn with a steel mast"
+}

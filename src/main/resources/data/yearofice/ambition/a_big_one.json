@@ -1,0 +1,11 @@
+{
+ "id": "a_big_one",
+ "group": "year_one",
+ "title": "A big one",
+ "condition": "Land a fish over 10 kg",
+ "opens_on": "",
+ "closes_on": "fish.over_10kg",
+ "journal_line": "Ambition done: A big one. Land a fish over 10 kg.",
+ "hidden": false,
+ "reward": "none"
+}

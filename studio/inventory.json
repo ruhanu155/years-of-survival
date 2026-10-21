@@ -7,12 +7,12 @@
     "Items: the doc's count says 226, its list names 225"
   ],
   "counts": {
-    "total": 1702,
-    "by_type": {"mob": 157, "entity": 24, "block_with_entity": 93, "block": 179, "plant_block": 128, "multiblock": 13, "item": 560, "sound_event": 137, "particle_type": 43, "attachment": 34, "data_component": 31, "payload": 28, "gui_layer": 18, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 16, "loot_function": 8, "loot_condition": 3, "recipe_type": 6, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 94, "biome": 29, "worldgen_hook": 17, "poi_type": 14},
-    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 127, "m4": 51, "m5": 476, "m6": 341, "m7": 155, "m8": 184, "m9": 72, "none": 3},
-    "by_owner": {"body": 324, "building": 278, "ecosystem": 266, "food": 317, "look": 213, "story": 68, "studio": 75, "worldgen": 161},
-    "by_milestone_source": {"doc": 898, "rule": 804},
-    "by_status": {"planned": 1559, "registered": 140, "retired": 3}
+    "total": 1704,
+    "by_type": {"mob": 157, "entity": 25, "block_with_entity": 93, "block": 179, "plant_block": 128, "multiblock": 13, "item": 561, "sound_event": 137, "particle_type": 43, "attachment": 34, "data_component": 31, "payload": 28, "gui_layer": 18, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 16, "loot_function": 8, "loot_condition": 3, "recipe_type": 6, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 94, "biome": 29, "worldgen_hook": 17, "poi_type": 14},
+    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 127, "m4": 51, "m5": 476, "m6": 341, "m7": 155, "m8": 184, "m9": 74, "none": 3},
+    "by_owner": {"body": 324, "building": 278, "ecosystem": 266, "food": 317, "look": 213, "story": 70, "studio": 75, "worldgen": 161},
+    "by_milestone_source": {"doc": 900, "rule": 804},
+    "by_status": {"planned": 1561, "registered": 140, "retired": 3}
   },
   "entries": [
     {"id": "yearofice:alaska_blackfish", "type": "mob", "milestone": "m5", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
@@ -193,6 +193,7 @@
     {"id": "yearofice:salmon_carcass", "type": "entity", "milestone": "m7", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:sled", "type": "entity", "milestone": "m9", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:sling_stone", "type": "entity", "milestone": "m6", "owner": "food", "milestone_source": "rule", "status": "planned"},
+    {"id": "yearofice:supply_parachute", "type": "entity", "milestone": "m9", "owner": "story", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:tadpole_school", "type": "entity", "milestone": "m6", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:toboggan", "type": "entity", "milestone": "m6", "owner": "building", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:travois", "type": "entity", "milestone": "m6", "owner": "building", "milestone_source": "rule", "status": "planned"},
@@ -1008,6 +1009,7 @@
     {"id": "yearofice:qiviut_liner", "type": "item", "milestone": "m4", "owner": "body", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:quill_band", "type": "item", "milestone": "m6", "owner": "food", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:quills", "type": "item", "milestone": "m6", "owner": "food", "milestone_source": "rule", "status": "planned"},
+    {"id": "yearofice:radio_battery", "type": "item", "milestone": "m9", "owner": "story", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:raspberry", "type": "item", "milestone": "m5", "owner": "body", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:red_currant", "type": "item", "milestone": "m5", "owner": "body", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:red_fox_meat", "type": "item", "milestone": "m6", "owner": "food", "milestone_source": "doc", "status": "planned"},

@@ -1,0 +1,11 @@
+{
+ "id": "cellar_winter",
+ "group": "beyond_homestead",
+ "title": "Cellar winter",
+ "condition": "Keep 100 kg of roots unfrozen from November 1 to March 31",
+ "opens_on": "",
+ "closes_on": "build.cellar_100kg_roots",
+ "journal_line": "Ambition done: Cellar winter. Keep 100 kg of roots unfrozen from November 1 to March 31.",
+ "hidden": false,
+ "reward": "none"
+}

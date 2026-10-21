@@ -21,7 +21,10 @@ public final class SosConfig {
 
     public static int flightTicks() { return (int) Math.round(TABLE.get("flight_ticks")); }
 
-    public static int awayDays() { return (int) Math.round(TABLE.get("away_days")); }
+    /** {@code /yoi sos stayout} (M9): game days that replace the table's away_days while above 0. */
+    public static volatile int stayoutDays = 0;
+
+    public static int awayDays() { return stayoutDays > 0 ? stayoutDays : (int) Math.round(TABLE.get("away_days")); }
 
     public static int lineMax() { return (int) Math.round(TABLE.get("line_max_chars")); }
 }

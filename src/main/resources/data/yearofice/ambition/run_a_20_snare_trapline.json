@@ -1,0 +1,11 @@
+{
+ "id": "run_a_20_snare_trapline",
+ "group": "beyond_hunting",
+ "title": "Run a 20-snare trapline",
+ "condition": "Check 20 pinned traps in one trip",
+ "opens_on": "",
+ "closes_on": "trap.line_20",
+ "journal_line": "Ambition done: Run a 20-snare trapline. Check 20 pinned traps in one trip.",
+ "hidden": false,
+ "reward": "none"
+}

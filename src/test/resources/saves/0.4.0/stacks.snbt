@@ -11,5 +11,6 @@
   {id:"yearofice:dish",count:1,components:{"yearofice:dish_id":"camp_stew","yearofice:nutrients":{kcal:1500.0d,protein_g:120.0d,fat_g:40.0d,vit_c_mg:30.0d,water_ml:500.0d},"yearofice:weight_g":1200}},
   {id:"yearofice:barley",count:1,components:{"yearofice:seed_lot":2,"yearofice:weight_g":800}},
   {id:"yearofice:trophy_plaque",count:1,components:{"yearofice:trophy_size":{measure:"spread_cm",value:152.0d,z:1.8d,class:"trophy"}}},
-  {id:"yearofice:flint_knife",count:1,components:{"minecraft:damage":40,"yearofice:edge":62.5d}}
+  {id:"yearofice:flint_knife",count:1,components:{"minecraft:damage":40,"yearofice:edge":62.5d}},
+  {id:"yearofice:note",count:1,components:{"yearofice:note_id":"fur_ledger"}}
 ]

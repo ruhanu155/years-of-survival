@@ -1,0 +1,11 @@
+{
+ "id": "steady_through_the_dark",
+ "group": "first_winter",
+ "title": "Steady through the dark",
+ "condition": "Keep Spirits at Steady or Bright from December 1 to January 31",
+ "opens_on": "",
+ "closes_on": "spirits.steady_dec_jan",
+ "journal_line": "Ambition done: Steady through the dark. Keep Spirits at Steady or Bright from December 1 to January 31.",
+ "hidden": false,
+ "reward": "none"
+}

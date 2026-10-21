@@ -1,0 +1,11 @@
+{
+ "id": "beyond_trophy_wall",
+ "group": "beyond_hunting",
+ "title": "Trophy wall",
+ "condition": "Opens with the first mount hung on the trophy wall; no measure, no deadline",
+ "opens_on": "trophy.hung",
+ "closes_on": "",
+ "journal_line": "A new ambition: Trophy wall.",
+ "hidden": false,
+ "reward": "none"
+}

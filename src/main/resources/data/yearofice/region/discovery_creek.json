@@ -1,0 +1,31 @@
+{
+ "id": "yearofice:discovery_creek",
+ "cell": "D4",
+ "name": "Discovery Creek",
+ "ring": 1,
+ "bounds_m": {
+  "x": [
+   2048,
+   4095
+  ],
+  "z": [
+   2048,
+   4095
+  ]
+ },
+ "biome_mix": {
+  "tailings": 0.4,
+  "riparian": 0.3,
+  "spruce_taiga": 0.3
+ },
+ "outposts": [
+  "yearofice:rock_shelter",
+  "yearofice:trapline_cabin"
+ ],
+ "drop_zone_m": [
+  3072,
+  3072
+ ],
+ "spring_lag_days": 2,
+ "landmark": "The 14 m dredge"
+}

@@ -1,0 +1,30 @@
+{
+ "id": "yearofice:hot_spring_basin",
+ "cell": "C2",
+ "name": "Hot Spring Basin",
+ "ring": 1,
+ "bounds_m": {
+  "x": [
+   0,
+   2047
+  ],
+  "z": [
+   -2048,
+   -1
+  ]
+ },
+ "biome_mix": {
+  "hot_spring_basin": 0.4,
+  "spruce_taiga": 0.4,
+  "riparian": 0.2
+ },
+ "outposts": [
+  "yearofice:trapline_cabin"
+ ],
+ "drop_zone_m": [
+  1024,
+  -1024
+ ],
+ "spring_lag_days": 3,
+ "landmark": "A steam plume below -15 C"
+}

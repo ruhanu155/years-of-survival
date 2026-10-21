@@ -1,0 +1,11 @@
+{
+ "id": "pemmican",
+ "group": "first_summer",
+ "title": "Pemmican",
+ "condition": "Make 5 kg of pemmican",
+ "opens_on": "",
+ "closes_on": "food.pemmican_5kg",
+ "journal_line": "Ambition done: Pemmican. Make 5 kg of pemmican.",
+ "hidden": false,
+ "reward": "none"
+}

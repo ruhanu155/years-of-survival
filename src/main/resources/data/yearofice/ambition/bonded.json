@@ -1,0 +1,11 @@
+{
+ "id": "bonded",
+ "group": "beyond_wolves",
+ "title": "Bonded",
+ "condition": "Raise a wolf to Bonded",
+ "opens_on": "wolf.tolerant",
+ "closes_on": "wolf.bonded",
+ "journal_line": "Ambition done: Bonded. Raise a wolf to Bonded.",
+ "hidden": true,
+ "reward": "none"
+}

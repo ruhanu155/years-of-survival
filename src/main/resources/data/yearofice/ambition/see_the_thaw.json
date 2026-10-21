@@ -1,0 +1,11 @@
+{
+ "id": "see_the_thaw",
+ "group": "year_one",
+ "title": "See the thaw",
+ "condition": "Be alive at the first breakup",
+ "opens_on": "",
+ "closes_on": "season.first_breakup",
+ "journal_line": "Ambition done: See the thaw. Be alive at the first breakup.",
+ "hidden": false,
+ "reward": "none"
+}

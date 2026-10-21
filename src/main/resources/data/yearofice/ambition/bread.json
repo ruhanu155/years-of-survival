@@ -1,0 +1,11 @@
+{
+ "id": "bread",
+ "group": "beyond_homestead",
+ "title": "Bread",
+ "condition": "Bake bread from wheat you grew",
+ "opens_on": "",
+ "closes_on": "food.bread_from_own_wheat",
+ "journal_line": "Ambition done: Bread. Bake bread from wheat you grew.",
+ "hidden": false,
+ "reward": "none"
+}
