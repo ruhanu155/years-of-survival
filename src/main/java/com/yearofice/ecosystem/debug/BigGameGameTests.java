@@ -64,10 +64,25 @@ public final class BigGameGameTests {
 
     static final int Y = EcoGameTests.PAD_Y;
 
+    /** Strip cells that some running test holds, by absolute position: overlapping tests share them (a neighbour's release must not clear what another still stands on). */
+    private static final java.util.Map<Long, Integer> HELD = new java.util.HashMap<>();
+
     /** A stone strip under height Y (animals stand at Y), from {@code x0} to {@code x1} along the test's x axis and {@code side} blocks each way. */
-    static void strip(GameTestHelper h, int x0, int x1, int side, boolean on) {
-        var b = on ? Blocks.STONE : Blocks.AIR;
-        for (int x = x0; x <= x1; x++) for (int z = -side; z <= side; z++) h.setBlock(new BlockPos(1 + x, Y - 1, 1 + z), b);
+    static synchronized void strip(GameTestHelper h, int x0, int x1, int side, boolean on) {
+        for (int x = x0; x <= x1; x++) for (int z = -side; z <= side; z++) {
+            BlockPos rel = new BlockPos(1 + x, Y - 1, 1 + z);
+            long key = h.absolutePos(rel).asLong();
+            Integer n = HELD.get(key);
+            if (on) {
+                HELD.put(key, n == null ? 1 : n + 1);
+                h.setBlock(rel, Blocks.STONE);
+            } else if (n != null && n > 1) {
+                HELD.put(key, n - 1);
+            } else {
+                HELD.remove(key);
+                h.setBlock(rel, Blocks.AIR);
+            }
+        }
     }
 
     static void forceLine(GameTestHelper h, Vec3 from, int dx, boolean on) {
@@ -199,10 +214,24 @@ public final class BigGameGameTests {
     static void chaseCap(GameTestHelper h) {
         Vec3 start0 = h.absolutePos(new BlockPos(1, Y, 1)).getCenter();
         forceLine(h, start0, 300, true);
-        chaseCapRun(h);
+        deferred(h, 40, () -> chaseCapRun(h)); // the strip needs its chunks loaded before blocks can be set in them
     }
 
-    static void chaseCapRun(GameTestHelper h) {
+    /**
+     * Runs {@code setup} once, {@code wait} ticks in, and then the per-tick handler it returns: one top-level
+     * {@code onEachTick}, because scheduling a delay or a tick handler from inside a delay callback modifies the
+     * framework's map mid-iteration (NPE in GameTestInfo.tickInternal).
+     */
+    static void deferred(GameTestHelper h, int wait, java.util.function.Supplier<Runnable> setup) {
+        Runnable[] handler = {null};
+        h.onEachTick(() -> {
+            if (h.getTick() < wait) return;
+            if (handler[0] == null) handler[0] = setup.get();
+            handler[0].run();
+        });
+    }
+
+    static Runnable chaseCapRun(GameTestHelper h) {
         strip(h, -5, 300, 24, true);
         PredatorEntity wolf = h.spawn(EcosystemRegistry.WOLF.get(), new BlockPos(1, Y, 1));
         BigGameEntity caribou = h.spawn(EcosystemRegistry.CARIBOU.get(), new BlockPos(1 + 25, Y, 1));
@@ -227,7 +256,7 @@ public final class BigGameGameTests {
             forceLine(h, start, 300, false);
             strip(h, -5, 300, 24, false);
         };
-        h.onEachTick(() -> {
+        return () -> {
             if (done[0]) return;
             try {
                 double ran = wolf.lastChaseM();
@@ -244,7 +273,7 @@ public final class BigGameGameTests {
                 release.run();
                 throw e;
             }
-        });
+        };
     }
 
     /**
@@ -397,10 +426,10 @@ public final class BigGameGameTests {
     static void bearFindsSpot(GameTestHelper h) {
         Vec3 start = h.absolutePos(new BlockPos(1, Y, 1)).getCenter();
         forceLine(h, start, 80, true);
-        bearFindsSpotRun(h, start); // force() loads the chunks synchronously
+        deferred(h, 40, () -> bearFindsSpotRun(h, start)); // the strip needs its chunks loaded before blocks can be set in them
     }
 
-    static void bearFindsSpotRun(GameTestHelper h, Vec3 start) {
+    static Runnable bearFindsSpotRun(GameTestHelper h, Vec3 start) {
         strip(h, -5, 80, 24, true);
         BlockPos pile = new BlockPos(1, Y, 1);
         h.setBlock(pile, EcosystemRegistry.GUT_PILE.get().defaultBlockState());
@@ -424,7 +453,7 @@ public final class BigGameGameTests {
             h.setBlock(pile, Blocks.AIR);
             strip(h, -5, 80, 24, false);
         };
-        h.onEachTick(() -> {
+        return () -> {
             if (done[0]) return;
             try {
                 if (bear.scavenges() >= 1) {
@@ -438,7 +467,7 @@ public final class BigGameGameTests {
                 release.run();
                 throw e;
             }
-        });
+        };
     }
 
 }

@@ -105,7 +105,6 @@ public final class EcoGameTests {
                     if (n != null) FORCED.put(key, n + 1);
                     else if (!level.getForcedChunks().contains(key)) {
                         level.setChunkForced(c.x + dx, c.z + dz, true);
-                        level.getChunk(c.x + dx, c.z + dz); // loaded now, so blocks can be set at once (no delay callback needed)
                         FORCED.put(key, 1);
                     }
                 } else {
