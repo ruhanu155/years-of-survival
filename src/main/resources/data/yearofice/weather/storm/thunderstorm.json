@@ -1,0 +1,1 @@
+{"id": "thunderstorm", "kind": "thunderstorm", "precip_kind": "rain", "duration_h": [1, 3], "intensity": [0.4, 1.0], "wind_ms": [6, 25], "precip_mm_h": [3, 20], "visibility_m": [6000, 1000], "strike_every_min": 7, "then": {"hail": 0.05}, "daily_start_pct": [0, 0, 0, 0, 0, 13.3, 16.0, 6.5, 0, 0, 0, 0], "start_h": [14, 18], "gate_air_c": [8, 40]}

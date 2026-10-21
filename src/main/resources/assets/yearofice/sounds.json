@@ -35,5 +35,7 @@
   "entity.black_bear.huff": {"subtitle": "subtitles.yearofice.entity.black_bear.huff", "sounds": [{"type": "event", "name": "minecraft:entity.horse.breathe", "pitch": 0.5, "volume": 0.9}]},
   "entity.black_bear.jaw_pop": {"subtitle": "subtitles.yearofice.entity.black_bear.jaw_pop", "sounds": [{"type": "event", "name": "minecraft:block.bone_block.hit", "pitch": 1.6, "volume": 1.0}]},
   "work.bone_crush": {"subtitle": "subtitles.yearofice.work.bone_crush", "sounds": [{"type": "event", "name": "minecraft:block.bone_block.break", "pitch": 0.7, "volume": 1.0}]},
-  "body.talk_walk": {"subtitle": "subtitles.yearofice.body.talk_walk", "sounds": [{"type": "event", "name": "minecraft:entity.villager.ambient", "pitch": 0.55, "volume": 0.8}, {"type": "event", "name": "minecraft:entity.villager.trade", "pitch": 0.5, "volume": 0.6}]}
+  "body.talk_walk": {"subtitle": "subtitles.yearofice.body.talk_walk", "sounds": [{"type": "event", "name": "minecraft:entity.villager.ambient", "pitch": 0.55, "volume": 0.8}, {"type": "event", "name": "minecraft:entity.villager.trade", "pitch": 0.5, "volume": 0.6}]},
+  "weather.strike": {"subtitle": "subtitles.yearofice.weather.strike", "sounds": ["yearofice:weather/strike1", "yearofice:weather/strike2"]},
+  "weather.thunder": {"subtitle": "subtitles.yearofice.weather.thunder", "sounds": ["yearofice:weather/thunder1", "yearofice:weather/thunder2"]}
 }

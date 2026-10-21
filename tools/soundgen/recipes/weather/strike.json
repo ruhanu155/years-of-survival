@@ -1,0 +1,2 @@
+{ "id": "yearofice:weather.strike", "kind": "crackle", "variants": 2, "length_s": 0.7, "lufs": -16,
+  "hiss_hz": 4000, "hiss_gain": 0.25, "pops_per_s": 30, "pop_low_hz": 800, "pop_high_hz": 9000, "thumps": 3, "highpass_hz": 200 }

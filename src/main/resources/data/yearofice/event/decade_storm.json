@@ -1,0 +1,41 @@
+{
+ "id": "decade_storm",
+ "chance_per_year": 0.1,
+ "from_year": 2,
+ "min_gap_years": 7,
+ "variants": [
+  {
+   "id": "big_snow",
+   "storm": "blizzard",
+   "window": [
+    "11-15",
+    "03-15"
+   ],
+   "intensity": 1.0,
+   "weight_pct": 40,
+   "duration_h": 72
+  },
+  {
+   "id": "great_glaze",
+   "storm": "freezing_rain",
+   "window": [
+    "10-15",
+    "12-15"
+   ],
+   "intensity": 1.0,
+   "weight_pct": 30,
+   "duration_h": 24
+  },
+  {
+   "id": "long_rain",
+   "storm": "long_rain",
+   "window": [
+    "07-10",
+    "08-31"
+   ],
+   "intensity": 1.0,
+   "weight_pct": 30,
+   "duration_h": 96
+  }
+ ]
+}

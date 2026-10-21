@@ -708,5 +708,10 @@
   "item.yearofice.moccasins": "Moccasins",
   "warn.yearofice.skate_thin": "The ice crackles under your blades. Get off it.",
   "warn.yearofice.skate_alone": "Skating alone on ice: nobody will hear you go through.",
-  "warn.yearofice.snow_vent": "The air in the snow room is going stale. Poke a vent hole."
+  "warn.yearofice.snow_vent": "The air in the snow room is going stale. Poke a vent hole.",
+  "block.yearofice.glaze_layer": "Glaze",
+  "block.yearofice.hail_layer": "Hail",
+  "block.yearofice.fallen_limb": "Fallen Limb",
+  "subtitles.yearofice.weather.strike": "Lightning strikes",
+  "subtitles.yearofice.weather.thunder": "Thunder rolls"
 }

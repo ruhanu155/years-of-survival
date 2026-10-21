@@ -1,0 +1,1 @@
+{"id": "freezing_rain", "kind": "freezing_rain", "precip_kind": "glaze", "duration_h": [2, 12], "intensity": [0.3, 1.0], "wind_ms": [2, 7], "precip_mm_h": [0.5, 3.0], "visibility_m": [8000, 2500], "daily_start_pct": [0.0, 0.4, 0.8, 0.8, 0.0, 0.0, 0.0, 0.0, 0.0, 0.8, 1.0, 1.0], "start_h": [0, 20], "gate_air_c": [-8, 2]}
