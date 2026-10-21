@@ -1,51 +1,351 @@
 {
   "fire.crackle": {
     "subtitle": "subtitles.yearofice.fire.crackle",
-    "sounds": ["yearofice:fire/crackle1", "yearofice:fire/crackle2", "yearofice:fire/crackle3"]
+    "sounds": [
+      "yearofice:fire/crackle1",
+      "yearofice:fire/crackle2",
+      "yearofice:fire/crackle3"
+    ]
   },
   "fire.bow_drill": {
     "subtitle": "subtitles.yearofice.fire.bow_drill",
-    "sounds": ["yearofice:fire/bow_drill1", "yearofice:fire/bow_drill2"]
+    "sounds": [
+      "yearofice:fire/bow_drill1",
+      "yearofice:fire/bow_drill2"
+    ]
   },
   "trap.snare_hare": {
     "subtitle": "subtitles.yearofice.trap.snare_hare",
     "sounds": [
-      {"name": "minecraft:mob/rabbit/hurt1", "attenuation_distance": 40},
-      {"name": "minecraft:mob/rabbit/hurt2", "attenuation_distance": 40},
-      {"name": "minecraft:mob/rabbit/hurt3", "attenuation_distance": 40}
+      {
+        "name": "minecraft:mob/rabbit/hurt1",
+        "attenuation_distance": 40
+      },
+      {
+        "name": "minecraft:mob/rabbit/hurt2",
+        "attenuation_distance": 40
+      },
+      {
+        "name": "minecraft:mob/rabbit/hurt3",
+        "attenuation_distance": 40
+      }
     ]
   },
-  "trap.deadfall": {"subtitle": "subtitles.yearofice.trap.deadfall", "sounds": [{"name": "minecraft:dig/stone1", "pitch": 0.55, "attenuation_distance": 40}, {"name": "minecraft:dig/stone2", "pitch": 0.5, "attenuation_distance": 40}, {"name": "minecraft:dig/stone3", "pitch": 0.6, "attenuation_distance": 40}]},
-  "work.pan_swirl": {"subtitle": "subtitles.yearofice.work.pan_swirl", "sounds": [{"name": "minecraft:dig/gravel1", "pitch": 0.7}, {"name": "minecraft:dig/gravel2", "pitch": 0.75}, {"name": "minecraft:dig/gravel3", "pitch": 0.7}]},
-  "tree.chop": {"subtitle": "subtitles.yearofice.tree.chop", "sounds": [{"name": "minecraft:dig/wood1", "pitch": 0.8}, {"name": "minecraft:dig/wood2", "pitch": 0.8}, {"name": "minecraft:dig/wood3", "pitch": 0.8}, {"name": "minecraft:dig/wood4", "pitch": 0.8}]},
-  "tree.creak": {"subtitle": "subtitles.yearofice.tree.creak", "sounds": [{"name": "minecraft:random/door_open", "pitch": 0.5, "attenuation_distance": 32}, {"name": "minecraft:random/door_close", "pitch": 0.45, "attenuation_distance": 32}]},
-  "tree.fall": {"subtitle": "subtitles.yearofice.tree.fall", "sounds": [{"name": "minecraft:dig/wood1", "pitch": 0.5, "attenuation_distance": 48}, {"name": "minecraft:dig/wood2", "pitch": 0.5, "attenuation_distance": 48}, {"name": "minecraft:dig/wood3", "pitch": 0.5, "attenuation_distance": 48}, {"name": "minecraft:dig/wood4", "pitch": 0.5, "attenuation_distance": 48}]},
-  "tree.split": {"subtitle": "subtitles.yearofice.tree.split", "sounds": [{"name": "minecraft:step/wood1", "pitch": 1.3}, {"name": "minecraft:step/wood2", "pitch": 1.3}, {"name": "minecraft:step/wood3", "pitch": 1.3}]},
-  "ui.field_note_card": {"subtitle": "subtitles.yearofice.ui.field_note_card", "sounds": [{"name": "minecraft:random/pop", "pitch": 0.7, "volume": 0.5}]},
-  "music.dawn": {"sounds": [{"name": "yearofice:music/dawn_spring", "stream": true}]},
-  "music.day": {"sounds": [{"name": "yearofice:music/day_spring", "stream": true}]},
-  "music.fire": {"sounds": [{"name": "yearofice:music/fire_spring", "stream": true}]},
-  "body.breath_panic": {"subtitle": "subtitles.yearofice.body.breath_panic", "sounds": [{"name": "minecraft:entity/player/breathe", "pitch": 0.6, "volume": 0.7}]},
-  "body.hit_grunt": {"subtitle": "subtitles.yearofice.body.hit_grunt", "sounds": [{"name": "minecraft:entity/player/hurt", "pitch": 0.8, "volume": 0.8}]},
-  "body.bite_crunch": {"subtitle": "subtitles.yearofice.body.bite_crunch", "sounds": [{"name": "minecraft:entity/generic/eat1", "pitch": 0.5, "volume": 0.9}]},
-  "item.pack_tear": {"subtitle": "subtitles.yearofice.item.pack_tear", "sounds": [{"name": "minecraft:item/armor/break", "pitch": 0.7, "volume": 0.9}]},
-  "body.back_twinge": {"subtitle": "subtitles.yearofice.body.back_twinge", "sounds": [{"name": "minecraft:entity/player/hurt", "pitch": 0.6, "volume": 0.6}]},
-  "body.skin_sting": {"subtitle": "subtitles.yearofice.body.skin_sting", "sounds": [{"name": "minecraft:entity/player/hurt_sweet_berry_bush", "pitch": 0.9, "volume": 0.7}]},
-  "entity.grizzly.jaw_pop": {"subtitle": "subtitles.yearofice.entity.grizzly.jaw_pop", "sounds": [{"type": "event", "name": "minecraft:block.bone_block.hit", "pitch": 1.3, "volume": 1.0}, {"type": "event", "name": "minecraft:entity.polar_bear.warning", "pitch": 1.7, "volume": 0.5}]},
-  "entity.black_bear.huff": {"subtitle": "subtitles.yearofice.entity.black_bear.huff", "sounds": [{"type": "event", "name": "minecraft:entity.horse.breathe", "pitch": 0.5, "volume": 0.9}]},
-  "entity.black_bear.jaw_pop": {"subtitle": "subtitles.yearofice.entity.black_bear.jaw_pop", "sounds": [{"type": "event", "name": "minecraft:block.bone_block.hit", "pitch": 1.6, "volume": 1.0}]},
-  "work.bone_crush": {"subtitle": "subtitles.yearofice.work.bone_crush", "sounds": [{"type": "event", "name": "minecraft:block.bone_block.break", "pitch": 0.7, "volume": 1.0}]},
-  "body.talk_walk": {"subtitle": "subtitles.yearofice.body.talk_walk", "sounds": [{"type": "event", "name": "minecraft:entity.villager.ambient", "pitch": 0.55, "volume": 0.8}, {"type": "event", "name": "minecraft:entity.villager.trade", "pitch": 0.5, "volume": 0.6}]},
+  "trap.deadfall": {
+    "subtitle": "subtitles.yearofice.trap.deadfall",
+    "sounds": [
+      {
+        "name": "minecraft:dig/stone1",
+        "pitch": 0.55,
+        "attenuation_distance": 40
+      },
+      {
+        "name": "minecraft:dig/stone2",
+        "pitch": 0.5,
+        "attenuation_distance": 40
+      },
+      {
+        "name": "minecraft:dig/stone3",
+        "pitch": 0.6,
+        "attenuation_distance": 40
+      }
+    ]
+  },
+  "work.pan_swirl": {
+    "subtitle": "subtitles.yearofice.work.pan_swirl",
+    "sounds": [
+      {
+        "name": "minecraft:dig/gravel1",
+        "pitch": 0.7
+      },
+      {
+        "name": "minecraft:dig/gravel2",
+        "pitch": 0.75
+      },
+      {
+        "name": "minecraft:dig/gravel3",
+        "pitch": 0.7
+      }
+    ]
+  },
+  "tree.chop": {
+    "subtitle": "subtitles.yearofice.tree.chop",
+    "sounds": [
+      {
+        "name": "minecraft:dig/wood1",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:dig/wood2",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:dig/wood3",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:dig/wood4",
+        "pitch": 0.8
+      }
+    ]
+  },
+  "tree.creak": {
+    "subtitle": "subtitles.yearofice.tree.creak",
+    "sounds": [
+      {
+        "name": "minecraft:random/door_open",
+        "pitch": 0.5,
+        "attenuation_distance": 32
+      },
+      {
+        "name": "minecraft:random/door_close",
+        "pitch": 0.45,
+        "attenuation_distance": 32
+      }
+    ]
+  },
+  "tree.fall": {
+    "subtitle": "subtitles.yearofice.tree.fall",
+    "sounds": [
+      {
+        "name": "minecraft:dig/wood1",
+        "pitch": 0.5,
+        "attenuation_distance": 48
+      },
+      {
+        "name": "minecraft:dig/wood2",
+        "pitch": 0.5,
+        "attenuation_distance": 48
+      },
+      {
+        "name": "minecraft:dig/wood3",
+        "pitch": 0.5,
+        "attenuation_distance": 48
+      },
+      {
+        "name": "minecraft:dig/wood4",
+        "pitch": 0.5,
+        "attenuation_distance": 48
+      }
+    ]
+  },
+  "tree.split": {
+    "subtitle": "subtitles.yearofice.tree.split",
+    "sounds": [
+      {
+        "name": "minecraft:step/wood1",
+        "pitch": 1.3
+      },
+      {
+        "name": "minecraft:step/wood2",
+        "pitch": 1.3
+      },
+      {
+        "name": "minecraft:step/wood3",
+        "pitch": 1.3
+      }
+    ]
+  },
+  "ui.field_note_card": {
+    "subtitle": "subtitles.yearofice.ui.field_note_card",
+    "sounds": [
+      {
+        "name": "minecraft:random/pop",
+        "pitch": 0.7,
+        "volume": 0.5
+      }
+    ]
+  },
+  "music.dawn": {
+    "sounds": [
+      {
+        "name": "yearofice:music/dawn_spring",
+        "stream": true
+      }
+    ]
+  },
+  "music.day": {
+    "sounds": [
+      {
+        "name": "yearofice:music/day_spring",
+        "stream": true
+      }
+    ]
+  },
+  "music.fire": {
+    "sounds": [
+      {
+        "name": "yearofice:music/fire_spring",
+        "stream": true
+      }
+    ]
+  },
+  "body.breath_panic": {
+    "subtitle": "subtitles.yearofice.body.breath_panic",
+    "sounds": [
+      {
+        "name": "minecraft:entity/player/breathe",
+        "pitch": 0.6,
+        "volume": 0.7
+      }
+    ]
+  },
+  "body.hit_grunt": {
+    "subtitle": "subtitles.yearofice.body.hit_grunt",
+    "sounds": [
+      {
+        "name": "minecraft:entity/player/hurt",
+        "pitch": 0.8,
+        "volume": 0.8
+      }
+    ]
+  },
+  "body.bite_crunch": {
+    "subtitle": "subtitles.yearofice.body.bite_crunch",
+    "sounds": [
+      {
+        "name": "minecraft:entity/generic/eat1",
+        "pitch": 0.5,
+        "volume": 0.9
+      }
+    ]
+  },
+  "item.pack_tear": {
+    "subtitle": "subtitles.yearofice.item.pack_tear",
+    "sounds": [
+      {
+        "name": "minecraft:item/armor/break",
+        "pitch": 0.7,
+        "volume": 0.9
+      }
+    ]
+  },
+  "body.back_twinge": {
+    "subtitle": "subtitles.yearofice.body.back_twinge",
+    "sounds": [
+      {
+        "name": "minecraft:entity/player/hurt",
+        "pitch": 0.6,
+        "volume": 0.6
+      }
+    ]
+  },
+  "body.skin_sting": {
+    "subtitle": "subtitles.yearofice.body.skin_sting",
+    "sounds": [
+      {
+        "name": "minecraft:entity/player/hurt_sweet_berry_bush",
+        "pitch": 0.9,
+        "volume": 0.7
+      }
+    ]
+  },
+  "entity.grizzly.jaw_pop": {
+    "subtitle": "subtitles.yearofice.entity.grizzly.jaw_pop",
+    "sounds": [
+      {
+        "type": "event",
+        "name": "minecraft:block.bone_block.hit",
+        "pitch": 1.3,
+        "volume": 1.0
+      },
+      {
+        "type": "event",
+        "name": "minecraft:entity.polar_bear.warning",
+        "pitch": 1.7,
+        "volume": 0.5
+      }
+    ]
+  },
+  "entity.black_bear.huff": {
+    "subtitle": "subtitles.yearofice.entity.black_bear.huff",
+    "sounds": [
+      {
+        "type": "event",
+        "name": "minecraft:entity.horse.breathe",
+        "pitch": 0.5,
+        "volume": 0.9
+      }
+    ]
+  },
+  "entity.black_bear.jaw_pop": {
+    "subtitle": "subtitles.yearofice.entity.black_bear.jaw_pop",
+    "sounds": [
+      {
+        "type": "event",
+        "name": "minecraft:block.bone_block.hit",
+        "pitch": 1.6,
+        "volume": 1.0
+      }
+    ]
+  },
+  "work.bone_crush": {
+    "subtitle": "subtitles.yearofice.work.bone_crush",
+    "sounds": [
+      {
+        "type": "event",
+        "name": "minecraft:block.bone_block.break",
+        "pitch": 0.7,
+        "volume": 1.0
+      }
+    ]
+  },
+  "body.talk_walk": {
+    "subtitle": "subtitles.yearofice.body.talk_walk",
+    "sounds": [
+      {
+        "type": "event",
+        "name": "minecraft:entity.villager.ambient",
+        "pitch": 0.55,
+        "volume": 0.8
+      },
+      {
+        "type": "event",
+        "name": "minecraft:entity.villager.trade",
+        "pitch": 0.5,
+        "volume": 0.6
+      }
+    ]
+  },
   "ambient.dawn_chorus_sparse": {
     "subtitle": "subtitles.yearofice.ambient.dawn_chorus_sparse",
-    "sounds": [{"name": "yearofice:ambient/dawn_chorus_sparse", "attenuation_distance": 16}]
+    "sounds": [
+      {
+        "name": "yearofice:ambient/dawn_chorus_sparse",
+        "attenuation_distance": 16
+      }
+    ]
   },
   "ambient.dawn_chorus_full": {
     "subtitle": "subtitles.yearofice.ambient.dawn_chorus_full",
-    "sounds": [{"name": "yearofice:ambient/dawn_chorus_full", "attenuation_distance": 16}]
+    "sounds": [
+      {
+        "name": "yearofice:ambient/dawn_chorus_full",
+        "attenuation_distance": 16
+      }
+    ]
   },
   "ambient.dawn_chorus_white_night": {
     "subtitle": "subtitles.yearofice.ambient.dawn_chorus_white_night",
-    "sounds": [{"name": "yearofice:ambient/dawn_chorus_white_night", "attenuation_distance": 16}]
+    "sounds": [
+      {
+        "name": "yearofice:ambient/dawn_chorus_white_night",
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "weather.strike": {
+    "subtitle": "subtitles.yearofice.weather.strike",
+    "sounds": [
+      "yearofice:weather/strike1",
+      "yearofice:weather/strike2"
+    ]
+  },
+  "weather.thunder": {
+    "subtitle": "subtitles.yearofice.weather.thunder",
+    "sounds": [
+      "yearofice:weather/thunder1",
+      "yearofice:weather/thunder2"
+    ]
   }
 }

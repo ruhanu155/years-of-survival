@@ -59,7 +59,7 @@ public final class EnvServiceImpl implements EnvService {
 
     /** The valley hour at {@code minute} with this level's override applied. */
     WeatherModel.Hour hourAt(ServerLevel level, long minute) {
-        WeatherModel.Hour h = model(level).hour(minute);
+        WeatherModel.Hour h = com.yearofice.env.weather.WeatherSystem.overlay(level, minute, model(level).hour(minute));
         WeatherOverride o = overrides.get(level.dimension());
         if (o == null) return h;
         double air = Double.isNaN(o.airC()) ? h.airC() : o.airC();

@@ -1,0 +1,5 @@
+{
+  "textures": { "log": "minecraft:block/spruce_log", "end": "minecraft:block/spruce_log_top", "particle": "minecraft:block/spruce_log" },
+  "elements": [ { "from": [0, 0, 5], "to": [16, 4, 11],
+    "faces": { "down": {"texture":"#log"}, "up": {"texture":"#log"}, "north": {"texture":"#log"}, "south": {"texture":"#log"}, "west": {"texture":"#end"}, "east": {"texture":"#end"} } } ]
+}

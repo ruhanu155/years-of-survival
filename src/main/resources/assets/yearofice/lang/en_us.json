@@ -707,5 +707,10 @@
   "subtitles.yearofice.ambient.dawn_chorus_white_night": "Birds sing through the white night",
   "block.yearofice.skim_ice": "Skim Ice",
   "block.yearofice.river_ice": "River Ice",
-  "block.yearofice.ice_hole": "Ice Hole"
+  "block.yearofice.ice_hole": "Ice Hole",
+  "block.yearofice.glaze_layer": "Glaze",
+  "block.yearofice.hail_layer": "Hail",
+  "block.yearofice.fallen_limb": "Fallen Limb",
+  "subtitles.yearofice.weather.strike": "Lightning strikes",
+  "subtitles.yearofice.weather.thunder": "Thunder rolls"
 }

@@ -1,0 +1,1 @@
+{"id": "snowstorm", "kind": "snowstorm", "precip_kind": "snow", "duration_h": [6, 24], "intensity": [0.3, 1.0], "wind_ms": [3, 11], "precip_mm_h": [0.4, 2.5], "visibility_m": [4000, 300], "then": {"blizzard": 0.15}, "daily_start_pct": [4.0, 3.5, 3.0, 1.5, 0.0, 0.0, 0.0, 0.0, 1.0, 4.0, 5.0, 5.0], "start_h": [0, 20], "gate_air_c": [-45, 1]}

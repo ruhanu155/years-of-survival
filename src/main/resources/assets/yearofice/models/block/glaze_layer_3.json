@@ -1,0 +1,6 @@
+{
+  "textures": { "all": "minecraft:block/ice", "particle": "minecraft:block/ice" },
+  "render_type": "minecraft:translucent",
+  "elements": [ { "from": [0, 0, 0], "to": [16, 3, 16],
+    "faces": { "down": {"texture":"#all"}, "up": {"texture":"#all"}, "north": {"texture":"#all"}, "south": {"texture":"#all"}, "west": {"texture":"#all"}, "east": {"texture":"#all"} } } ]
+}

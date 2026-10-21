@@ -1,0 +1,12 @@
+{
+  "hit": 0.5, "false_alarm": 0.2,
+  "base_24h": { "snowstorm": 0.05, "blizzard": 0.015, "freezing_rain": 0.004, "hail": 0.006, "thunderstorm": 0.05 },
+  "signs": {
+    "halo_moon": { "snowstorm": 0.5, "blizzard": 0.15 },
+    "mares_tails": { "snowstorm": 0.3, "freezing_rain": 0.2 },
+    "falling_barometer": { "snowstorm": 0.4, "blizzard": 0.4, "thunderstorm": 0.3, "freezing_rain": 0.3 },
+    "towering_cumulus": { "thunderstorm": 0.6, "hail": 0.15 },
+    "warm_south_wind": { "freezing_rain": 0.45 },
+    "ravens_quiet": { "blizzard": 0.3, "snowstorm": 0.2 }
+  }
+}
