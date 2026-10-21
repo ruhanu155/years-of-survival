@@ -338,7 +338,10 @@ public final class ValleyPool extends SavedData {
                 }
                 double x0 = a.x, z0 = a.z;
                 PoolModel.walk(a, a.tx, a.tz, speed, seconds);
+                double demoteR = EcoConfig.tuning().demoteRadiusM();
                 for (double[] v : viewers) {
+                    // a body only lives within the demote radius of a player: a pile beyond it is reached by the walk, not by a body that would be demoted on the way
+                    if (Math.hypot(a.tx - v[0], a.tz - v[1]) > demoteR - 15) continue;
                     double[] e = PoolModel.entry(x0, z0, a.x, a.z, v[0], v[1], activeR * 0.95);
                     if (e != null && instantiate(level, a, e[0], e[1])) break;
                 }
