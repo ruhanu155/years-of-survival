@@ -1,0 +1,8 @@
+{
+  "species": "caribou",
+  "track_every_m": 1.2,
+  "print_cm": 10,
+  "scat": true,
+  "browse": false,
+  "bed": true
+}

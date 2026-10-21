@@ -2824,6 +2824,69 @@
       "ids": [
         "supply_parachute"
       ]
+    },
+    {
+      "basis": "M6 lane E sign and the bow: craftable bow chain",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "bow_stave"
+      ]
+    },
+    {
+      "basis": "M6 lane E sign and the bow: craftable bow chain",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "sinew_cord"
+      ]
+    },
+    {
+      "basis": "M6 lane E sign and the bow: craftable bow chain",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "fletching"
+      ]
+    },
+    {
+      "basis": "M6 lane E sign and the bow: craftable bow chain",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "sinew_bow"
+      ]
+    },
+    {
+      "basis": "M6 lane E sign blocks",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "track"
+      ]
+    },
+    {
+      "basis": "M6 lane E sign blocks",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "scat"
+      ]
+    },
+    {
+      "basis": "M6 lane E sign blocks",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "browse"
+      ]
     }
   ],
   "expand": {

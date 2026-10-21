@@ -1,0 +1,8 @@
+{
+  "species": "moose",
+  "track_every_m": 1.5,
+  "print_cm": 14,
+  "scat": true,
+  "browse": true,
+  "bed": true
+}

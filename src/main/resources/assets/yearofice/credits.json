@@ -7502,6 +7502,29 @@
       "licence": "project",
       "generator_version": "artgen 0.4.0",
       "release_blocker": false
+    },
+    {
+      "asset_id": "m6e_sign_and_bow_models",
+      "files": [
+        "assets/yearofice/blockstates/track.json",
+        "assets/yearofice/models/block/track.json",
+        "assets/yearofice/blockstates/scat.json",
+        "assets/yearofice/models/block/scat.json",
+        "assets/yearofice/blockstates/browse.json",
+        "assets/yearofice/models/block/browse.json",
+        "assets/yearofice/blockstates/bed.json",
+        "assets/yearofice/models/block/bed.json",
+        "assets/yearofice/models/item/bow_stave.json",
+        "assets/yearofice/models/item/sinew_cord.json",
+        "assets/yearofice/models/item/fletching.json",
+        "assets/yearofice/models/item/feather.json",
+        "assets/yearofice/models/item/sinew_bow.json"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "M6 lane E placeholder models: sign blocks and bow-chain items reuse vanilla or existing project textures until art lands",
+      "generator_version": "hand written",
+      "release_blocker": false
     }
   ]
 }

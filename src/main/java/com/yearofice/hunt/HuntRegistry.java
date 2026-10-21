@@ -33,6 +33,11 @@ public final class HuntRegistry {
     public static final DeferredItem<SpearItem> SPEAR = ITEMS.registerItem("spear", SpearItem::new, new Item.Properties().stacksTo(1).durability(200));
     public static final DeferredItem<Item> ARROW = ITEMS.registerItem("arrow", Item::new, new Item.Properties().stacksTo(32));
     public static final DeferredItem<Item> ARROWHEAD = ITEMS.registerItem("arrowhead", Item::new, new Item.Properties().stacksTo(64));
+    public static final DeferredItem<BowItem> SINEW_BOW = ITEMS.registerItem("sinew_bow", p -> new BowItem(p, "sinew_bow"), new Item.Properties().stacksTo(1).durability(500));
+    public static final DeferredItem<Item> BOW_STAVE = ITEMS.registerItem("bow_stave", Item::new, new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> SINEW_CORD = ITEMS.registerItem("sinew_cord", Item::new, new Item.Properties().stacksTo(32));
+    public static final DeferredItem<Item> FLETCHING = ITEMS.registerItem("fletching", Item::new, new Item.Properties().stacksTo(32));
+    public static final DeferredItem<Item> FEATHER = ITEMS.registerItem("feather", Item::new, new Item.Properties().stacksTo(64));
     public static final DeferredItem<CallItem> MOOSE_CALL = ITEMS.registerItem("moose_call", p -> new CallItem(p, "moose_call"), new Item.Properties().stacksTo(1));
     public static final DeferredItem<CallItem> SQUEAK_CALL = ITEMS.registerItem("squeak_call", p -> new CallItem(p, "squeak_call"), new Item.Properties().stacksTo(1));
 

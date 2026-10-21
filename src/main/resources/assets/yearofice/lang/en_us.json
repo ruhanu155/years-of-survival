@@ -1071,5 +1071,14 @@
   "item.yearofice.radio_desk": "Radio Desk",
   "item.yearofice.radio_battery": "Radio Battery",
   "item.yearofice.note": "Note",
-  "entity.yearofice.supply_parachute": "Supply Parachute"
+  "entity.yearofice.supply_parachute": "Supply Parachute",
+  "block.yearofice.track": "Tracks",
+  "block.yearofice.scat": "Droppings",
+  "block.yearofice.browse": "Clipped Browse",
+  "block.yearofice.bed": "Pressed Bed",
+  "item.yearofice.bow_stave": "Bow Stave",
+  "item.yearofice.sinew_cord": "Sinew Cord",
+  "item.yearofice.fletching": "Fletching",
+  "item.yearofice.feather": "Feather",
+  "item.yearofice.sinew_bow": "Sinew-Backed Bow"
 }

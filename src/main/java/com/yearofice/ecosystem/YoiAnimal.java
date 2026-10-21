@@ -312,6 +312,7 @@ public abstract class YoiAnimal extends PathfinderMob implements GeoEntity {
      * hunger, thirst and rest each step and acts on the strongest ({@link Drives}); the rest feed and wander.
      */
     protected void tickRoutine(ServerLevel level) {
+        com.yearofice.hunt.sign.SignLaying.tick(this, level);
         if (callTarget != null) {
             if (level.getGameTime() > callUntil || position().distanceToSqr(callTarget) < 100) {
                 if (position().distanceToSqr(callTarget) < 100) woundMeetings++;

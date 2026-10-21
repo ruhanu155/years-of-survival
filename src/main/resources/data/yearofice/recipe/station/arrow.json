@@ -1,0 +1,28 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "bushcraft",
+  "station": "yearofice:workbench",
+  "ingredients": [
+    {
+      "item": "minecraft:stick",
+      "count": 6
+    },
+    {
+      "item": "yearofice:arrowhead",
+      "count": 6
+    },
+    {
+      "item": "yearofice:fletching",
+      "count": 2
+    }
+  ],
+  "tool": "#yearofice:knives",
+  "work_min": 180,
+  "effort": "light",
+  "kcal": 300,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:arrow",
+    "count": 6
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "species": "mule_deer",
+  "track_every_m": 1.0,
+  "print_cm": 7,
+  "scat": true,
+  "browse": true,
+  "bed": true
+}

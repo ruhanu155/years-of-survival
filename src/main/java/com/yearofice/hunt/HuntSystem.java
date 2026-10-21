@@ -20,6 +20,7 @@ public final class HuntSystem {
 
     public static void init(IEventBus modBus) {
         HuntRegistry.register(modBus);
+        com.yearofice.hunt.sign.SignRegistry.register(modBus);
         ConcealmentService.install(new HuntConcealment());
         modBus.addListener((ModConfigEvent.Loading e) -> HuntConfig.invalidate());
         modBus.addListener((ModConfigEvent.Reloading e) -> HuntConfig.invalidate());
@@ -30,6 +31,8 @@ public final class HuntSystem {
         });
         NeoForge.EVENT_BUS.addListener((ServerStoppedEvent e) -> WoundTracker.clear());
         NeoForge.EVENT_BUS.addListener(HuntCommands::register);
+        NeoForge.EVENT_BUS.addListener(com.yearofice.hunt.sign.SignCommands::register);
+        NeoForge.EVENT_BUS.addListener((ServerStoppedEvent e) -> com.yearofice.hunt.sign.SignService.clearAll());
     }
 
     private static void creativeTabs(BuildCreativeModeTabContentsEvent e) {
@@ -37,6 +40,7 @@ public final class HuntSystem {
             e.accept(HuntRegistry.SELF_BOW.get());
             e.accept(HuntRegistry.KIT_BOW.get());
             e.accept(HuntRegistry.LONGBOW.get());
+            e.accept(HuntRegistry.SINEW_BOW.get());
             e.accept(HuntRegistry.SPEAR.get());
             for (String h : new String[] {"knapped_stone", "bone", "steel", "blunt"}) e.accept(HuntItems.arrow(h, 16));
             e.accept(HuntRegistry.ARROWHEAD.get());

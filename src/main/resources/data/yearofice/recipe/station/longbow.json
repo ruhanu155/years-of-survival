@@ -1,0 +1,24 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "bushcraft",
+  "station": "yearofice:workbench",
+  "ingredients": [
+    {
+      "item": "yearofice:bow_stave",
+      "count": 1
+    },
+    {
+      "item": "yearofice:sinew_cord",
+      "count": 2
+    }
+  ],
+  "tool": "#yearofice:knives",
+  "work_min": 180,
+  "effort": "medium",
+  "kcal": 750,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:longbow",
+    "count": 1
+  }
+}

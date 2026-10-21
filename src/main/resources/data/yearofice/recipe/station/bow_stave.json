@@ -1,0 +1,20 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "bushcraft",
+  "station": "yearofice:workbench",
+  "ingredients": [
+    {
+      "item": "yearofice:birch_split",
+      "count": 1
+    }
+  ],
+  "tool": "#yearofice:knives",
+  "work_min": 90,
+  "effort": "medium",
+  "kcal": 375,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:bow_stave",
+    "count": 1
+  }
+}
