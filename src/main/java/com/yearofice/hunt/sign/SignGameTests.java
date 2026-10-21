@@ -70,13 +70,24 @@ public final class SignGameTests {
 
     /** hunt/sign_laid_by_moose: a moose walked 14+ m east over snow leaves a line of tracks, each heading east. */
     static void laidByMoose(GameTestHelper h) {
-        floor(h, -4, 34, 4, 0, Blocks.SNOW_BLOCK);
-        var moose = h.spawn(EcosystemRegistry.MOOSE.get(), new BlockPos(1, Y, 1));
-        Vec3 target = moose.position().add(24, 0, 0);
-        moose.respondToCall(target, h.getLevel().getGameTime() + 1200);
-        moose.getNavigation().stop(); // a wander path begun before the call would otherwise run first
-        BlockPos start = moose.blockPosition();
+        // its own far region (EcoGameTests.FAR_SIGN_LAID): the 24 m walk must not cross a neighbour's pad, wall or animal
+        final int far = EcoGameTests.FAR_SIGN_LAID;
+        Vec3 c0 = h.absolutePos(new BlockPos(1, Y, 1 + far)).getCenter();
+        for (int x = -16; x <= 48; x += 16) EcoGameTests.force(h, c0.add(x, 0, 0), 1, true);
+        com.yearofice.ecosystem.species.MooseEntity[] m = {null};
+        BlockPos[] st = {null};
         h.onEachTick(() -> {
+            if (h.getTick() < 40) return;
+            if (m[0] == null) {
+                floor(h, -4, 34, 4, far, Blocks.SNOW_BLOCK);
+                m[0] = h.spawn(EcosystemRegistry.MOOSE.get(), new BlockPos(1, Y, 1 + far));
+                m[0].respondToCall(m[0].position().add(24, 0, 0), h.getLevel().getGameTime() + 1200);
+                m[0].getNavigation().stop(); // a wander path begun before the call would otherwise run first
+                st[0] = m[0].blockPosition();
+                return;
+            }
+            var moose = m[0];
+            BlockPos start = st[0];
             if (moose.answeringCall()) return;
             List<BlockPos> tracks = new ArrayList<>();
             for (BlockPos p : SignService.within(h.getLevel(), start, 40)) {
@@ -90,6 +101,7 @@ public final class SignGameTests {
                 h.assertTrue(r.age() != Sign.Age.OLD, "laid this walk, not old: " + r.ageMin());
             }
             moose.discard();
+            for (int x = -16; x <= 48; x += 16) EcoGameTests.force(h, c0.add(x, 0, 0), 1, false);
             h.succeed();
         });
     }

@@ -1080,5 +1080,8 @@
   "item.yearofice.sinew_cord": "Sinew Cord",
   "item.yearofice.fletching": "Fletching",
   "item.yearofice.feather": "Feather",
-  "item.yearofice.sinew_bow": "Sinew-Backed Bow"
+  "item.yearofice.sinew_bow": "Sinew-Backed Bow",
+  "messenger.yearofice.alert.bear_noticed": "Bear, %s m. It has seen you.",
+  "messenger.yearofice.nearmiss.bear_bluff": "A bear charged and stopped %s m short.",
+  "messenger.yearofice.nearmiss.bear_contact": "A bear reached you."
 }

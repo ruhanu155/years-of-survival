@@ -38,6 +38,48 @@ public class BearEntity extends PredatorEntity {
         }
     }
 
+    // ---- contact sequence (M6 lane F, RECONCILE 306) ---------------------------------------------------------------
+
+    public final com.yearofice.ecosystem.encounter.BearContactDriver contact = new com.yearofice.ecosystem.encounter.BearContactDriver();
+
+    @Override
+    protected void customServerAiStep() {
+        super.customServerAiStep();
+        contact.tick(this, (net.minecraft.server.level.ServerLevel) level());
+    }
+
+    /** True while the bear is walking to or eating at carrion: it defends it inside 50 m. */
+    public boolean onCarrion() { return scentTarget != null; }
+
+    public void holdAndLook(net.minecraft.world.entity.LivingEntity who) {
+        getNavigation().stop();
+        setMove(MOVE_IDLE);
+        getLookControl().setLookAt(who, 30, 30);
+    }
+
+    public void rushAt(net.minecraft.world.entity.LivingEntity who) {
+        getLookControl().setLookAt(who, 30, 30);
+        pathToward(who.position(), com.yearofice.sim.ecosystem.Gaits.input(species().runMps()));
+        setMove(MOVE_WALK);
+    }
+
+    @Override
+    public void tickState(net.minecraft.server.level.ServerLevel level, AnimalState s) {
+        if (contact.phase != com.yearofice.sim.ecosystem.BearContact.Phase.NONE) return; // the contact sequence drives the body
+        super.tickState(level, s);
+    }
+
+    @Override
+    public void enterState(AnimalState s) {
+        if (s == AnimalState.FLEE && contact.phase != com.yearofice.sim.ecosystem.BearContact.Phase.NONE) return;
+        super.enterState(s);
+    }
+
+    public void stopMoving() { getNavigation().stop(); }
+
+    /** The huff and jaw-pop: a caption sound once the sound event exists (art lane); the sequence does not wait on it. */
+    public void huff() { setMove(MOVE_IDLE); }
+
     @Override
     protected String animKey(AnimalState s, int move) {
         if (s == AnimalState.ALERT) return "stand";
