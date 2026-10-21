@@ -1,0 +1,140 @@
+{
+  "replace": false,
+  "values": {
+    "yearofice:wall_log": {
+      "mass_kg": 180,
+      "labour_min": 12,
+      "materials": [
+        {
+          "item": "yearofice:log_piece",
+          "count": 1
+        }
+      ]
+    },
+    "yearofice:wall_plank": {
+      "mass_kg": 90,
+      "labour_min": 8,
+      "materials": [
+        {
+          "item": "yearofice:plank",
+          "count": 4
+        }
+      ]
+    },
+    "yearofice:wall_sod": {
+      "mass_kg": 300,
+      "labour_min": 15,
+      "materials": [
+        {
+          "item": "yearofice:sod",
+          "count": 4
+        }
+      ]
+    },
+    "yearofice:wall_stone": {
+      "mass_kg": 900,
+      "labour_min": 30,
+      "materials": [
+        {
+          "item": "yearofice:stone",
+          "count": 4
+        }
+      ]
+    },
+    "yearofice:roof_pole_sod": {
+      "mass_kg": 220,
+      "labour_min": 20,
+      "materials": [
+        {
+          "item": "yearofice:pole",
+          "count": 3
+        }
+      ]
+    },
+    "yearofice:roof_plank": {
+      "mass_kg": 80,
+      "labour_min": 10,
+      "materials": [
+        {
+          "item": "yearofice:plank",
+          "count": 4
+        }
+      ]
+    },
+    "yearofice:roof_shingle": {
+      "mass_kg": 60,
+      "labour_min": 14,
+      "materials": [
+        {
+          "item": "yearofice:shingle",
+          "count": 8
+        }
+      ]
+    },
+    "yearofice:slab_floor": {
+      "mass_kg": 120,
+      "labour_min": 10,
+      "materials": [
+        {
+          "item": "yearofice:plank",
+          "count": 4
+        }
+      ]
+    },
+    "yearofice:log_deck": {
+      "mass_kg": 150,
+      "labour_min": 10,
+      "materials": [
+        {
+          "item": "yearofice:log_piece",
+          "count": 1
+        }
+      ]
+    },
+    "yearofice:awning": {
+      "mass_kg": 40,
+      "labour_min": 6,
+      "materials": [
+        {
+          "item": "yearofice:pole",
+          "count": 2
+        }
+      ]
+    },
+    "yearofice:dressed_stone": {
+      "mass_kg": 1100,
+      "labour_min": 60,
+      "materials": [
+        {
+          "item": "yearofice:stone",
+          "count": 4
+        }
+      ]
+    },
+    "yearofice:path": {
+      "mass_kg": 40,
+      "labour_min": 3,
+      "materials": []
+    },
+    "yearofice:door_frame": {
+      "mass_kg": 70,
+      "labour_min": 25,
+      "materials": [
+        {
+          "item": "yearofice:plank",
+          "count": 6
+        }
+      ]
+    },
+    "yearofice:window_frame": {
+      "mass_kg": 50,
+      "labour_min": 30,
+      "materials": [
+        {
+          "item": "yearofice:plank",
+          "count": 3
+        }
+      ]
+    }
+  }
+}

@@ -1074,7 +1074,7 @@
       ]
     },
     {
-      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
       "milestone": "m2",
       "owner": "worldgen",
       "type": "block",
@@ -1100,7 +1100,7 @@
       ]
     },
     {
-      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
       "milestone": "m2",
       "owner": "worldgen",
       "type": "biome",
@@ -1126,7 +1126,7 @@
       ]
     },
     {
-      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
       "milestone": "m2",
       "owner": "worldgen",
       "type": "worldgen_hook",
@@ -1141,7 +1141,7 @@
       ]
     },
     {
-      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
       "milestone": "m2",
       "owner": "worldgen",
       "type": "tag",
@@ -2380,7 +2380,7 @@
       ]
     },
     {
-      "basis": "M8 lane B: stoves (Blueprint \u203a Fire; Crafting \u203a Warm rooms)",
+      "basis": "M8 lane B: stoves (Blueprint › Fire; Crafting › Warm rooms)",
       "milestone": "m8",
       "owner": "body",
       "type": "block_with_entity",
@@ -2448,6 +2448,57 @@
       "type": "data_map",
       "ids": [
         "store"
+      ]
+    },
+    {
+      "basis": "M8 lane A: building pieces (Structures and buildables › Building pieces)",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "block",
+      "ids": [
+        "wall_log",
+        "wall_plank",
+        "wall_sod",
+        "wall_stone",
+        "roof_pole_sod",
+        "roof_plank",
+        "roof_shingle",
+        "door_frame",
+        "window_frame"
+      ]
+    },
+    {
+      "basis": "M8 lane A: building pieces (Structures and buildables › Building pieces)",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "wall_log",
+        "wall_plank",
+        "wall_sod",
+        "wall_stone",
+        "roof_pole_sod",
+        "roof_plank",
+        "roof_shingle",
+        "slab_floor",
+        "log_deck",
+        "awning",
+        "dressed_stone",
+        "path",
+        "door_frame",
+        "window_frame"
+      ]
+    },
+    {
+      "basis": "M8 lane A: block tags wall, roof, floor, door",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "wall",
+        "roof",
+        "floor",
+        "door"
       ]
     }
   ],
@@ -2555,7 +2606,7 @@
     {
       "basis": "Ready for development > M2.5 ids (every one tagged m2_5)",
       "file": "docs/ready-for-development.md",
-      "heading": "M2.5 \u2014 Vertical slice",
+      "heading": "M2.5 — Vertical slice",
       "line_contains": "**Ids and data:**",
       "until_line_contains": "**Work, in order:**",
       "milestone": "m2_5",
@@ -2570,7 +2621,7 @@
     {
       "basis": "Ready for development > M0 ids",
       "file": "docs/ready-for-development.md",
-      "heading": "M0 \u2014 Seeded world",
+      "heading": "M0 — Seeded world",
       "line_contains": "**Ids and data:**",
       "milestone": "m0",
       "types": [
@@ -2581,7 +2632,7 @@
     {
       "basis": "Ready for development > M2 ids",
       "file": "docs/ready-for-development.md",
-      "heading": "M2 \u2014 Walkable valley",
+      "heading": "M2 — Walkable valley",
       "line_contains": "**Ids and data:**",
       "milestone": "m2",
       "types": [
@@ -2593,7 +2644,7 @@
     {
       "basis": "Ready for development > M5 ids",
       "file": "docs/ready-for-development.md",
-      "heading": "M5 \u2014 Food and goals",
+      "heading": "M5 — Food and goals",
       "line_contains": "**Ids and data:**",
       "milestone": "m5",
       "types": [
@@ -2604,7 +2655,7 @@
     {
       "basis": "Ready for development > M8 ids",
       "file": "docs/ready-for-development.md",
-      "heading": "M8 \u2014 Building and outposts",
+      "heading": "M8 — Building and outposts",
       "line_contains": "**Ids and data:**",
       "milestone": "m8",
       "types": [
@@ -2616,7 +2667,7 @@
     {
       "basis": "Ready for development > M9 ids",
       "file": "docs/ready-for-development.md",
-      "heading": "M9 \u2014 Homestead and beyond",
+      "heading": "M9 — Homestead and beyond",
       "line_contains": "**Ids and data:**",
       "milestone": "m9",
       "types": [
