@@ -104,6 +104,8 @@ public final class SlotSpawner {
     private static final Map<String, Cell> CELLS = new ConcurrentHashMap<>();
     private static final Map<String, UUID> BODIES = new ConcurrentHashMap<>();
 
+    public static boolean has(String key) { return BODIES.containsKey(key); }
+
     public static void clear() {
         CELLS.clear();
         BODIES.clear();
@@ -114,6 +116,7 @@ public final class SlotSpawner {
         ServerLevel level = e.getServer().overworld();
         EcoTuning t = EcoConfig.tuning();
         demote(level, t);
+        RareSighting.tick(level);
         List<? extends Player> players = level.players();
         if (players.isEmpty()) return;
         long minute = SliceClock.minute(level);

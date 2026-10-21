@@ -1,0 +1,36 @@
+{
+ "variants": {
+  "facing=north,occupied=false": {
+   "model": "yearofice:block/ground_bed",
+   "y": 0
+  },
+  "facing=north,occupied=true": {
+   "model": "yearofice:block/ground_bed",
+   "y": 0
+  },
+  "facing=east,occupied=false": {
+   "model": "yearofice:block/ground_bed",
+   "y": 90
+  },
+  "facing=east,occupied=true": {
+   "model": "yearofice:block/ground_bed",
+   "y": 90
+  },
+  "facing=south,occupied=false": {
+   "model": "yearofice:block/ground_bed",
+   "y": 180
+  },
+  "facing=south,occupied=true": {
+   "model": "yearofice:block/ground_bed",
+   "y": 180
+  },
+  "facing=west,occupied=false": {
+   "model": "yearofice:block/ground_bed",
+   "y": 270
+  },
+  "facing=west,occupied=true": {
+   "model": "yearofice:block/ground_bed",
+   "y": 270
+  }
+ }
+}

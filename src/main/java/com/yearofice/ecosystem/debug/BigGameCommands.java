@@ -48,6 +48,7 @@ public final class BigGameCommands {
                         .then(Commands.literal("info").executes(BigGameCommands::carcassInfo))))
                 .then(Commands.literal("herd").executes(BigGameCommands::herd))
                 .then(Commands.literal("kin").executes(BigGameCommands::kin))
+                .then(Commands.literal("haze").executes(BigGameCommands::haze))
                 .then(Commands.literal("show")
                         .then(Commands.literal("scent").executes(BigGameCommands::scent))
                         .then(Commands.literal("tiers").executes(BigGameCommands::tiers)))
@@ -166,6 +167,22 @@ public final class BigGameCommands {
         if (deer == null) return 0;
         deer.setMale(true);
         return say(c, "A yearling mule deer buck, driven off by his mother, stands in front of you.");
+    }
+
+    /** Hazes the nearest animal within 50 m (Haze verb): it avoids camp for its species' days. Debug only; the camp-visit rolls read {@code yoi_hazed_until}. */
+    static int haze(CommandContext<CommandSourceStack> c) {
+        ServerLevel level = c.getSource().getLevel();
+        var box = new net.minecraft.world.phys.AABB(c.getSource().getPosition(), c.getSource().getPosition()).inflate(50);
+        YoiAnimal best = null;
+        for (YoiAnimal a : level.getEntitiesOfClass(YoiAnimal.class, box)) if (best == null || a.distanceToSqr(c.getSource().getPosition()) < best.distanceToSqr(c.getSource().getPosition())) best = a;
+        if (best == null) {
+            c.getSource().sendFailure(Component.literal("No animal within 50 m."));
+            return 0;
+        }
+        String sp = best.speciesPath();
+        int days = sp.contains("bear") ? 30 : sp.equals("wolf") ? 14 : sp.equals("woodchuck") ? 10 : 7;
+        best.getPersistentData().putLong("yoi_hazed_until", Calendar.absDayOfMinute(SliceClock.minute(level)) + days);
+        return say(c, sp + " hazed: avoids camp for " + days + " days.");
     }
 
     static int deerInfo(CommandContext<CommandSourceStack> c) {

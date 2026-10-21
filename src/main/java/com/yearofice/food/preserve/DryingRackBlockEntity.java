@@ -52,7 +52,7 @@ public class DryingRackBlockEntity extends RackBlockEntity {
 
     double airC() {
         if (testAir != null) return testAir;
-        return level instanceof ServerLevel sl ? EnvService.get().airC(sl, worldPosition) : 0;
+        return level instanceof ServerLevel sl ? com.yearofice.api.build.StoreService.INSTANCE.tempC(sl, worldPosition) : 0; // the room, cellar or open air there (M8 stores)
     }
 
     /** A burning fire (Low to Hot, or coals) within 3 blocks: its smoke keeps the flies off. */

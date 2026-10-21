@@ -66,10 +66,23 @@ public final class SnowPass {
                     BlockState want = layers == 0 ? Blocks.AIR.defaultBlockState()
                             : snowBlock.defaultBlockState().setValue(SnowCoverBlock.LAYERS, layers)
                                     .setValue(SnowCoverBlock.CRUST, st.crust).setValue(SnowCoverBlock.WET, st.wet);
+                    if (cur.is(snowBlock) && cur.getValue(SnowCoverBlock.LAYERS) > layers && nearFence(c, lx, lz, by + 1 + k)) continue; // a drift downwind of a fence stays (FenceDrift)
                     if (!cur.isAir() && !cur.is(snowBlock)) break; // a plant or a piece above the ground: leave the column
                     if (cur != want) c.set(m.immutable(), want);
                 }
             }
         }
+    }
+
+    /** A tagged fence within the drift reach on either axis of the column (inside the chunk; ponytail: a fence across the chunk edge is not seen). */
+    static boolean nearFence(PassContext c, int lx, int lz, int y) {
+        int x0 = c.chunk.getPos().getMinBlockX(), z0 = c.chunk.getPos().getMinBlockZ();
+        for (int d = 1; d <= FenceDrift.reach(); d++)
+            for (int[] v : new int[][] {{d, 0}, {-d, 0}, {0, d}, {0, -d}}) {
+                int x = lx + v[0], z = lz + v[1];
+                if (x < 0 || x > 15 || z < 0 || z > 15) continue;
+                if (c.get(new BlockPos(x0 + x, y, z0 + z)).is(FenceDrift.FENCES)) return true;
+            }
+        return false;
     }
 }

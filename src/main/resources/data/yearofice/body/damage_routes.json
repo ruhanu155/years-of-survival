@@ -30,7 +30,7 @@
     "minecraft:hot_floor": "fire_step",
     "minecraft:lightning_bolt": "lightning",
     "minecraft:generic_kill": "#systemic",
-    "minecraft:fell_out_of_world": "#systemic",
+    "minecraft:out_of_world": "#systemic",
     "minecraft:fall": "#fall",
     "minecraft:drown": "#none",
     "minecraft:cactus": "nettle",

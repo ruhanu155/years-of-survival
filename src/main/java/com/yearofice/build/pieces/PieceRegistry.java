@@ -30,6 +30,13 @@ public final class PieceRegistry {
         return BlockBehaviour.Properties.of().mapColor(c).strength(strength, 3f).sound(s);
     }
 
+    /** The building materials piece.json prices pieces in (M8-INT): plain items; the work system and outposts count them. */
+    public static final java.util.Map<String, String> MATERIALS = java.util.Map.of("log_piece", "Log Piece", "plank", "Plank", "pole", "Pole",
+            "sod", "Sod Block", "shingle", "Shingle", "stone", "Building Stone");
+    static {
+        for (String id : MATERIALS.keySet()) ITEMS.register(id, () -> new Item(new Item.Properties()));
+    }
+
     private static <B extends Block> DeferredBlock<B> piece(String id, Supplier<B> make) {
         DeferredBlock<B> b = BLOCKS.register(id, make);
         ITEMS.register(id, () -> new BlockItem(b.get(), new Item.Properties()));

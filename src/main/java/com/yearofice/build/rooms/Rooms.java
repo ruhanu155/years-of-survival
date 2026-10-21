@@ -31,7 +31,6 @@ import org.jetbrains.annotations.Nullable;
 public final class Rooms implements RoomService {
     public static final Rooms INSTANCE = new Rooms();
     /** Test/sim heat sources: level → pos → watts (the stove stub of {@code build/cabin_holds_5c}). */
-    private static final Map<Level, Map<BlockPos, Double>> STUBS = new ConcurrentHashMap<>();
 
     private static final java.util.Set<ServerLevel> ACTIVE = ConcurrentHashMap.newKeySet();
 
@@ -56,10 +55,10 @@ public final class Rooms implements RoomService {
         });
     }
 
-    public static void reset() { ACTIVE.clear(); STUBS.clear(); }
+    public static void reset() { ACTIVE.clear(); com.yearofice.api.fire.HeatSources.clearAll(); }
 
-    public static void stubSource(Level level, BlockPos pos, double watts) { STUBS.computeIfAbsent(level, k -> new ConcurrentHashMap<>()).put(pos.immutable(), watts); }
-    public static void clearStubs(Level level) { STUBS.remove(level); }
+    public static void stubSource(Level level, BlockPos pos, double watts) { com.yearofice.api.fire.HeatSources.post(level, pos, watts); }
+    public static void clearStubs(Level level) { com.yearofice.api.fire.HeatSources.clear(level); }
 
     /** A block changed at {@code pos}: drop the rooms it touches and queue a rescan of its air neighbours. */
     public static void dirty(Level level, BlockPos pos) {
@@ -127,10 +126,7 @@ public final class Rooms implements RoomService {
         double snowM = Math.min(1.0, env.snowCm(l, above) / 100.0);
         List<Heat.Face> faces = new ArrayList<>();
         for (Heat.Face f : e.scan.faces()) faces.add(f.part() == Heat.Part.ROOF ? new Heat.Face(f.part(), f.areaM2(), f.u(), snowM) : f);
-        double w = 0;
-        for (FireHeat f : FireHeatLookup.INSTANCE.fires(l)) if (e.byCellHas(f.x(), f.y(), f.z())) w += f.kW() * 1000;
-        Map<BlockPos, Double> stubs = STUBS.get(l);
-        if (stubs != null) for (var s : stubs.entrySet()) if (e.byCellHas(s.getKey().getX(), s.getKey().getY(), s.getKey().getZ())) w += s.getValue();
+        double w = com.yearofice.api.fire.HeatSources.wattsIn(l, c -> e.byCellHas(c.getX(), c.getY(), c.getZ()));
         Heat.Balance b = Heat.solve(faces, e.scan.leaks().size(), 0, w, out, ground, wind);
         List<BlockPos> leaks = new ArrayList<>();
         for (long c : e.scan.leaks()) leaks.add(new BlockPos(RoomScan.ux(c), RoomScan.uy(c), RoomScan.uz(c)));
