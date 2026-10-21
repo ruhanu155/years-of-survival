@@ -1,0 +1,28 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "bushcraft",
+  "station": "yearofice:workbench",
+  "ingredients": [
+    {
+      "item": "yearofice:tool_handle",
+      "count": 1
+    },
+    {
+      "item": "yearofice:rough_stone",
+      "count": 1
+    },
+    {
+      "item": "yearofice:cord",
+      "count": 2
+    }
+  ],
+  "tool": "#yearofice:knives",
+  "work_min": 45,
+  "effort": "medium",
+  "kcal": 188,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:hoe",
+    "count": 1
+  }
+}

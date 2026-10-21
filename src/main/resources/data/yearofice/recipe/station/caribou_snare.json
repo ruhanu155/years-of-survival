@@ -1,0 +1,24 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "homestead",
+  "station": "yearofice:hands",
+  "ingredients": [
+    {
+      "item": "yearofice:cord",
+      "count": 6
+    },
+    {
+      "item": "yearofice:stake",
+      "count": 4
+    }
+  ],
+  "tool": "#yearofice:knives",
+  "work_min": 30,
+  "effort": "light",
+  "kcal": 50,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:caribou_snare",
+    "count": 1
+  }
+}

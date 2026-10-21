@@ -42,6 +42,9 @@ public final class Garden {
      * tilled bare bed's +1 C. A pinned air ({@code /yoi env set}, GameTests) holds for the whole week.
      */
     public static double soilC(ServerLevel level, BlockPos pos) {
+        // Inside a detected room (a stovehouse) the soil sits at the room's air, not the outdoor week.
+        var room = com.yearofice.api.build.RoomService.get().roomAt(level, pos.above());
+        if (room != null) return CropModel.soilC(room.feelsLikeC(), 1.0); // ponytail: today's room air stands for the week; upgrade: a room history
         double now = EnvService.get().airC(level, pos);
         var ov = EnvService.get().override(level);
         double[] means = new double[SOIL_DAYS];

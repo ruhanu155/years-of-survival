@@ -1,0 +1,24 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "homestead",
+  "station": "yearofice:workbench",
+  "ingredients": [
+    {
+      "item": "yearofice:rough_stone",
+      "count": 2
+    },
+    {
+      "item": "yearofice:tool_handle",
+      "count": 1
+    }
+  ],
+  "tool": "#yearofice:knives",
+  "work_min": 120,
+  "effort": "high",
+  "kcal": 900,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:hand_quern",
+    "count": 1
+  }
+}

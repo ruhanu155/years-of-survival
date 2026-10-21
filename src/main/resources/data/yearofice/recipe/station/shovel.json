@@ -1,0 +1,28 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "homestead",
+  "station": "yearofice:workbench",
+  "ingredients": [
+    {
+      "item": "yearofice:tool_handle",
+      "count": 1
+    },
+    {
+      "item": "yearofice:plank",
+      "count": 2
+    },
+    {
+      "item": "yearofice:cord",
+      "count": 2
+    }
+  ],
+  "tool": "#yearofice:knives",
+  "work_min": 60,
+  "effort": "medium",
+  "kcal": 250,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:shovel",
+    "count": 1
+  }
+}

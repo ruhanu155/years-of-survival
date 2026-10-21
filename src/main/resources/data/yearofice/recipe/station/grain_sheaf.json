@@ -1,0 +1,28 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "homestead",
+  "station": "yearofice:hands",
+  "ingredients": [
+    {
+      "item": "yearofice:barley",
+      "count": 1
+    },
+    {
+      "item": "yearofice:straw",
+      "count": 1
+    },
+    {
+      "item": "yearofice:cord",
+      "count": 1
+    }
+  ],
+  "tool": "#yearofice:knives",
+  "work_min": 5,
+  "effort": "light",
+  "kcal": 8,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:grain_sheaf",
+    "count": 1
+  }
+}

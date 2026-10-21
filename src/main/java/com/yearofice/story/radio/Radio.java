@@ -48,7 +48,7 @@ public final class Radio {
     /** A powered desk used by a player: the sked is read to them and the radio counts as working. */
     public static void tuneIn(ServerLevel level, ServerPlayer p, BlockPos pos) {
         long minute = ClockService.installed() ? ClockService.get().nowMinute() : 0;
-        for (String line : skedLines(level, pos, minute)) p.sendSystemMessage(Component.literal(line));
+        for (String line : skedLines(level, pos, minute)) com.yearofice.api.hud.HudBus.get().post(p, com.yearofice.api.hud.HudLine.of(com.yearofice.api.hud.HudLineType.EVENT, "radio_sked", "story.radio", com.yearofice.api.hud.HudArg.text(line)));
         CompoundTag r = state(p);
         if (!r.getBoolean("working")) {
             r.putBoolean("working", true);

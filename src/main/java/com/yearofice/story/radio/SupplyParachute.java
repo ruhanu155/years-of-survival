@@ -61,6 +61,12 @@ public class SupplyParachute extends Entity {
                 c.setItem(slot++, new ItemStack(item.get(), o.get("count").getAsInt()));
             }
         }
+        var stock = RadioData.manifest().getAsJsonArray("livestock");
+        long day = com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().absDay() : 0;
+        if (stock != null) for (var e : stock) {
+            JsonObject o = e.getAsJsonObject();
+            if (day >= o.get("from_days").getAsLong()) com.yearofice.ecosystem.livestock.LivestockDrop.deliver(level, at, o.get("entity").getAsString(), o.get("count").getAsInt());
+        }
         String line = RadioData.skeds().getAsJsonObject("drop").get("landed_line").getAsString();
         for (ServerPlayer p : level.players()) if (p.distanceToSqr(at.getX(), at.getY(), at.getZ()) < 600 * 600) p.sendSystemMessage(Component.literal(line));
     }

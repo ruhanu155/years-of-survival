@@ -27,7 +27,8 @@ class StationInputSourceSweepTest {
         "spruce_round", "src/main/java/com/yearofice/build/wood/WoodJobs.java",
         "birch_round", "src/main/java/com/yearofice/build/wood/WoodJobs.java",
         "birch_split", "src/main/java/com/yearofice/build/wood/WoodJobs.java",
-        "iron_bar", "src/main/java/com/yearofice/build/metal/ForgeJob.java");
+        "iron_bar", "src/main/java/com/yearofice/build/metal/ForgeJob.java",
+        "straw", "src/main/java/com/yearofice/crop/Garden.java");
 
     static String path(String id) { return id.substring(id.indexOf(':') + 1); }
 
