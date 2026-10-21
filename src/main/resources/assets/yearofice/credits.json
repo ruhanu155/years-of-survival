@@ -5829,6 +5829,49 @@
       "licence": "project",
       "generator_version": "modelgen 0.4.0",
       "release_blocker": false
+    },
+    {
+      "asset_id": "snd_weather_strike",
+      "files": [
+        "assets/yearofice/sounds/weather/strike1.ogg",
+        "assets/yearofice/sounds/weather/strike2.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/recipes/weather/strike.json",
+      "licence": "project",
+      "generator_version": "soundgen 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "snd_weather_thunder",
+      "files": [
+        "assets/yearofice/sounds/weather/thunder1.ogg",
+        "assets/yearofice/sounds/weather/thunder2.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/recipes/weather/thunder.json",
+      "licence": "project",
+      "generator_version": "soundgen 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_m7_weather",
+      "files": [
+        "assets/yearofice/blockstates/glaze_layer.json",
+        "assets/yearofice/blockstates/hail_layer.json",
+        "assets/yearofice/blockstates/fallen_limb.json",
+        "assets/yearofice/models/block/glaze_layer_1.json",
+        "assets/yearofice/models/block/glaze_layer_2.json",
+        "assets/yearofice/models/block/glaze_layer_3.json",
+        "assets/yearofice/models/block/hail_layer_1.json",
+        "assets/yearofice/models/block/hail_layer_2.json",
+        "assets/yearofice/models/block/fallen_limb.json"
+      ],
+      "source_type": "generated",
+      "recipe": "src/main/java/com/yearofice/env/weather/WeatherRegistry.java",
+      "licence": "project",
+      "generator_version": "hand 0.1.0",
+      "release_blocker": false
     }
   ]
 }

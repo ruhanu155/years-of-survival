@@ -691,5 +691,10 @@
   "item.yearofice.kit_rod": "Kit Rod",
   "block.yearofice.weir_stake": "Weir Stake",
   "block.yearofice.fish_wheel": "Fish Wheel",
-  "block.yearofice.tip_up": "Tip-Up"
+  "block.yearofice.tip_up": "Tip-Up",
+  "block.yearofice.glaze_layer": "Glaze",
+  "block.yearofice.hail_layer": "Hail",
+  "block.yearofice.fallen_limb": "Fallen Limb",
+  "subtitles.yearofice.weather.strike": "Lightning strikes",
+  "subtitles.yearofice.weather.thunder": "Thunder rolls"
 }
