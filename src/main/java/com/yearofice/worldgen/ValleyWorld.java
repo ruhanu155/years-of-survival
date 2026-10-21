@@ -318,6 +318,18 @@ public final class ValleyWorld {
     }
 
     /** The nearest core block column of a water type (WaterStage.MAIN, CREEK, ...) within r blocks, or null. */
+    /** The water layer value (WaterStage.DRY/MAIN/CREEK/LAKE/OXBOW/POOL) at a block column, DRY outside the core. */
+    public int waterTypeAt(int x, int z) {
+        int c = cellOf(x, z);
+        return c < 0 ? WaterStage.DRY : wType[c];
+    }
+
+    /** The water flags (WaterStage.F_THIN, F_SPRING, F_LEAD, ...) at a block column, 0 outside the core. */
+    public int waterFlagsAt(int x, int z) {
+        int c = cellOf(x, z);
+        return c < 0 ? 0 : wFlags[c] & 0xFF;
+    }
+
     public int[] nearestWater(int x, int z, int r, int type) {
         int[] best = null;
         double bd = Double.MAX_VALUE;
