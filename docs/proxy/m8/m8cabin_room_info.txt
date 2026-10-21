@@ -1,2 +1,2 @@
 /yoi room info
-none
+room: 30 m3, U 72.0 W/C, 8091 W in, outside -30.4 C, inside 86.3 C, 0 leaks
