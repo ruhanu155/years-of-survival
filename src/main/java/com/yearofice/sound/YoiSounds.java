@@ -19,6 +19,12 @@ public final class YoiSounds {
     }
 
     public static final DeferredHolder<SoundEvent, SoundEvent> FIELD_NOTE_CARD = reg("ui.field_note_card");
+    public static final DeferredHolder<SoundEvent, SoundEvent> STEP_SKATE = reg("step.skate");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ICE_BLADE_RING = reg("ice.blade_ring");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ICE_BLADE_SING = reg("ice.blade_sing");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ICE_BLADE_CRACKLE = reg("ice.blade_crackle");
+    public static final DeferredHolder<SoundEvent, SoundEvent> STEP_SKI_GLIDE = reg("step.ski_glide");
+    public static final DeferredHolder<SoundEvent, SoundEvent> STEP_SKI_SQUEAL = reg("step.ski_squeal");
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DAWN = reg("music.dawn");
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DAY = reg("music.day");
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_FIRE = reg("music.fire");

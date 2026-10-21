@@ -99,6 +99,14 @@ public final class TravelSystem {
         BlockState at = level.getBlockState(feet);
         if (at.is(WorldBlocks.SNOW_COVER.get()) && at.getValue(SnowCoverBlock.TRAIL_WEAR) == 0 && hd > 0.05) // walking breaks a trail
             level.setBlock(feet, at.setValue(SnowCoverBlock.TRAIL_WEAR, 1), 2);
+        if (hd > 0.1 && g != Travel.Gear.NONE && g != Travel.Gear.SNOWSHOES && p.onGround()) { // gear sounds
+            var s = g == Travel.Gear.SKATES ? com.yearofice.sound.YoiSounds.STEP_SKATE
+                    : (slope > 0.02 ? com.yearofice.sound.YoiSounds.STEP_SKI_SQUEAL : com.yearofice.sound.YoiSounds.STEP_SKI_GLIDE);
+            if (g != Travel.Gear.SKATES || IceBlocks.isIce(level.getBlockState(feet.below())))
+                level.playSound(null, p.blockPosition(), s.get(), net.minecraft.sounds.SoundSource.PLAYERS, 0.5f, 1f);
+            if (g == Travel.Gear.SKATES && thinIce(level, feet))
+                level.playSound(null, p.blockPosition(), com.yearofice.sound.YoiSounds.ICE_BLADE_CRACKLE.get(), net.minecraft.sounds.SoundSource.PLAYERS, 0.8f, 1f);
+        }
         WarnOnce w = WARN.computeIfAbsent(p.getUUID(), k -> new WarnOnce());
         long minute = level.getGameTime() / 20;
         boolean skating = g == Travel.Gear.SKATES;
