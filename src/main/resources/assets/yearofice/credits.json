@@ -1791,8 +1791,11 @@
       "asset_id": "model_wood_blocks",
       "files": [
         "assets/yearofice/blockstates/chopping_block.json",
+        "assets/yearofice/blockstates/workbench.json",
         "assets/yearofice/models/block/chopping_block.json",
-        "assets/yearofice/models/item/chopping_block.json"
+        "assets/yearofice/models/block/workbench.json",
+        "assets/yearofice/models/item/chopping_block.json",
+        "assets/yearofice/models/item/workbench.json"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/wood_blocks.py",
@@ -1948,6 +1951,78 @@
       "recipe": "tools/soundgen/music/music.py",
       "licence": "project",
       "generator_version": "music 0.1.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_flint_knife",
+      "files": [
+        "assets/yearofice/textures/item/flint_knife.png",
+        "assets/yearofice/models/item/flint_knife.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/flint_knife.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_flint_nodule",
+      "files": [
+        "assets/yearofice/textures/item/flint_nodule.png",
+        "assets/yearofice/models/item/flint_nodule.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/flint_nodule.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_knife",
+      "files": [
+        "assets/yearofice/textures/item/knife.png",
+        "assets/yearofice/models/item/knife.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/knife.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_rough_stone",
+      "files": [
+        "assets/yearofice/textures/item/rough_stone.png",
+        "assets/yearofice/models/item/rough_stone.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/rough_stone.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_stake",
+      "files": [
+        "assets/yearofice/textures/item/stake.png",
+        "assets/yearofice/models/item/stake.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/stake.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tool_handle",
+      "files": [
+        "assets/yearofice/textures/item/tool_handle.png",
+        "assets/yearofice/models/item/tool_handle.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/tool_handle.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
       "release_blocker": false
     },
     {
@@ -5831,6 +5906,150 @@
       "release_blocker": false
     },
     {
+      "asset_id": "tex_model_ice_blocks",
+      "files": [
+        "assets/yearofice/blockstates/ice_hole.json",
+        "assets/yearofice/blockstates/river_ice.json",
+        "assets/yearofice/blockstates/skim_ice.json",
+        "assets/yearofice/models/block/ice_hole.json",
+        "assets/yearofice/models/block/river_ice_rotten.json",
+        "assets/yearofice/models/block/river_ice_safe.json",
+        "assets/yearofice/models/block/river_ice_thin.json",
+        "assets/yearofice/models/block/skim_ice.json",
+        "assets/yearofice/textures/block/ice_hole_all.png",
+        "assets/yearofice/textures/block/river_ice_rotten_all.png",
+        "assets/yearofice/textures/block/river_ice_safe_all.png",
+        "assets/yearofice/textures/block/river_ice_thin_all.png",
+        "assets/yearofice/textures/block/skim_ice_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/ice_blocks.py",
+      "licence": "project",
+      "generator_version": "ice_blocks 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_skates",
+      "files": [
+        "assets/yearofice/models/item/skates.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_skis",
+      "files": [
+        "assets/yearofice/models/item/skis.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_climbing_skins",
+      "files": [
+        "assets/yearofice/models/item/climbing_skins.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_fur_mittens",
+      "files": [
+        "assets/yearofice/models/item/fur_mittens.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_fur_hat",
+      "files": [
+        "assets/yearofice/models/item/fur_hat.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_parka",
+      "files": [
+        "assets/yearofice/models/item/parka.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_hide_coat",
+      "files": [
+        "assets/yearofice/models/item/hide_coat.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_hide_pants",
+      "files": [
+        "assets/yearofice/models/item/hide_pants.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_mukluks",
+      "files": [
+        "assets/yearofice/models/item/mukluks.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_hare_fur_liners",
+      "files": [
+        "assets/yearofice/models/item/hare_fur_liners.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_moccasins",
+      "files": [
+        "assets/yearofice/models/item/moccasins.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
       "asset_id": "snd_weather_strike",
       "files": [
         "assets/yearofice/sounds/weather/strike1.ogg",
@@ -5857,15 +6076,15 @@
     {
       "asset_id": "model_m7_weather",
       "files": [
+        "assets/yearofice/blockstates/fallen_limb.json",
         "assets/yearofice/blockstates/glaze_layer.json",
         "assets/yearofice/blockstates/hail_layer.json",
-        "assets/yearofice/blockstates/fallen_limb.json",
+        "assets/yearofice/models/block/fallen_limb.json",
         "assets/yearofice/models/block/glaze_layer_1.json",
         "assets/yearofice/models/block/glaze_layer_2.json",
         "assets/yearofice/models/block/glaze_layer_3.json",
         "assets/yearofice/models/block/hail_layer_1.json",
-        "assets/yearofice/models/block/hail_layer_2.json",
-        "assets/yearofice/models/block/fallen_limb.json"
+        "assets/yearofice/models/block/hail_layer_2.json"
       ],
       "source_type": "generated",
       "recipe": "src/main/java/com/yearofice/env/weather/WeatherRegistry.java",
@@ -5874,26 +6093,102 @@
       "release_blocker": false
     },
     {
-      "asset_id": "tex_model_ice_blocks",
+      "asset_id": "mus_dawn_summer",
       "files": [
-        "assets/yearofice/textures/block/skim_ice_all.png",
-        "assets/yearofice/models/block/skim_ice.json",
-        "assets/yearofice/textures/block/river_ice_thin_all.png",
-        "assets/yearofice/models/block/river_ice_thin.json",
-        "assets/yearofice/textures/block/river_ice_safe_all.png",
-        "assets/yearofice/models/block/river_ice_safe.json",
-        "assets/yearofice/textures/block/river_ice_rotten_all.png",
-        "assets/yearofice/models/block/river_ice_rotten.json",
-        "assets/yearofice/textures/block/ice_hole_all.png",
-        "assets/yearofice/models/block/ice_hole.json",
-        "assets/yearofice/blockstates/skim_ice.json",
-        "assets/yearofice/blockstates/ice_hole.json",
-        "assets/yearofice/blockstates/river_ice.json"
+        "assets/yearofice/sounds/music/dawn_summer.ogg"
       ],
       "source_type": "generated",
-      "recipe": "tools/artgen/ice_blocks.py",
+      "recipe": "tools/soundgen/music/music.py",
       "licence": "project",
-      "generator_version": "ice_blocks 1.0",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_day_summer",
+      "files": [
+        "assets/yearofice/sounds/music/day_summer.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_fire_summer",
+      "files": [
+        "assets/yearofice/sounds/music/fire_summer.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_dawn_fall",
+      "files": [
+        "assets/yearofice/sounds/music/dawn_fall.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_day_fall",
+      "files": [
+        "assets/yearofice/sounds/music/day_fall.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_fire_fall",
+      "files": [
+        "assets/yearofice/sounds/music/fire_fall.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_dawn_winter",
+      "files": [
+        "assets/yearofice/sounds/music/dawn_winter.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_day_winter",
+      "files": [
+        "assets/yearofice/sounds/music/day_winter.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_fire_winter",
+      "files": [
+        "assets/yearofice/sounds/music/fire_winter.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
       "release_blocker": false
     },
     {

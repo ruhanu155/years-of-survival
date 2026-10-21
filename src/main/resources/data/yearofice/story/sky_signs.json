@@ -1,0 +1,19 @@
+{
+  "signs": {
+    "sun_dogs": { "truth": "cold_holds", "p_true": 0.8, "p_false": 0.1, "strength": 5,
+      "lore": "Bright spots stand either side of the low sun. The cold will not break tomorrow." },
+    "light_pillars": { "truth": "colder_tonight", "p_true": 0.85, "p_false": 0.08, "strength": 4,
+      "lore": "Pillars of light climb off the chimneys into still air. It will be clear and colder by morning." },
+    "aurora": { "truth": "clear_tomorrow", "p_true": 0.7, "p_false": 0.2, "strength": 3,
+      "lore": "A green glow lifts in the north at dusk. The sky is open and the night is long." },
+    "smoke_straight": { "truth": "clear_tomorrow", "p_true": 0.7, "p_false": 0.15, "strength": 2,
+      "lore": "Stove smoke rises straight as a post. High pressure; clear tomorrow." },
+    "smoke_flat": { "truth": "front", "p_true": 0.7, "p_false": 0.1, "strength": 1,
+      "lore": "The smoke sinks and spreads along the roof. A front is coming within the half day." }
+  },
+  "skill": {
+    "clumsy": { "notices": 1, "right": 0.55 },
+    "handy": { "notices": 3, "right": 0.70 },
+    "practiced": { "notices": 99, "right": 0.80 }
+  }
+}

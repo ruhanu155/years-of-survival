@@ -1,0 +1,1 @@
+{state:{Name:"minecraft:chest",Properties:{facing:"east",type:"single",waterlogged:"false"}},block_entity:{id:"minecraft:chest",Items:[{Slot:0b,count:4,id:"yearofice:stake"}]},kg:12.4d,stacks:1}

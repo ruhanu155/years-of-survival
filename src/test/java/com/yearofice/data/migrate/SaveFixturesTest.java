@@ -72,6 +72,10 @@ class SaveFixturesTest {
         ATTACHMENTS.put("field_notes", codec(com.yearofice.hud.fieldnote.FieldNoteRecord.CODEC));
         ATTACHMENTS.put("pack_rules", codec(PackAttachments.Rules.CODEC));
         ATTACHMENTS.put("carcass", codec(CarcassRecord.CODEC));
+        ATTACHMENTS.put("practice", codec(com.yearofice.build.craft.PracticeData.CODEC));
+        ATTACHMENTS.put("gates", codec(com.yearofice.build.craft.GateData.CODEC));
+        ATTACHMENTS.put("box_stamp", codec(com.mojang.serialization.Codec.LONG));
+        ATTACHMENTS.put("carry", codec(com.yearofice.item.inventory.CarryData.CODEC));
         ATTACHMENTS.put("placed_mask", in -> (Tag) call(com.yearofice.world.attach.PlacedMaskData.class, "write", call(
                 com.yearofice.world.attach.PlacedMaskData.class, "read", null, in)));
         ATTACHMENTS.put("trees", in -> TreeMarksData.load(in).saveTag());
@@ -86,6 +90,7 @@ class SaveFixturesTest {
         SAVED_DATA.put("yearofice_weather", saved(com.yearofice.env.weather.WeatherData.class));
         SAVED_DATA.put("yearofice_ice", saved(com.yearofice.world.season.SeasonState.class));
         SAVED_DATA.put("yearofice_terrain", saved(com.yearofice.world.terrain.TerrainChangeQueue.class));
+        SAVED_DATA.put("yearofice_weather", saved(com.yearofice.env.weather.WeatherData.class));
         SAVED_DATA.put("yearofice_run_ledger", saved(com.yearofice.hunt.fishing.RunLedger.class));
     }
 

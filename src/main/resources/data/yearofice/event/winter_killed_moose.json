@@ -1,0 +1,6 @@
+{
+ "id": "winter_killed_moose",
+ "chance_per_year": 0.4,
+ "from_year": 1,
+ "window": ["02-01", "03-31"]
+}

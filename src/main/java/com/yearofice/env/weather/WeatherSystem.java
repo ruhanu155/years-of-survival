@@ -154,6 +154,11 @@ public final class WeatherSystem {
         return built;
     }
 
+    /** {snowMm, rainMm} the storms drop on absolute day {@code absDay} (for the snow pack). */
+    public static double[] dayPrecip(ServerLevel level, long absDay) {
+        return StormMath.dayPrecip(table(level, Calendar.yearOfDay(absDay)), loaded.defs(), absDay, WeatherConfig.tuning().stormSeverity());
+    }
+
     public static StormTable.Event eventAt(ServerLevel level, long minute) {
         long hour = Math.floorDiv(minute, 60L);
         return table(level, Calendar.yearOfDay(Math.floorDiv(hour, 24L))).at(hour);

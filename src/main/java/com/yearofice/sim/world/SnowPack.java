@@ -24,8 +24,14 @@ public final class SnowPack {
     }
 
     public static void step(State s, SnowClass cls, SnowTuning t, double meanC, double precipMm, double windMs, int doy) {
-        double snowMm = meanC < t.snowBelowC() ? precipMm : 0;
-        double rainMm = precipMm - snowMm;
+        step(s, cls, t, meanC, precipMm, windMs, doy, 0, 0);
+    }
+
+    /** As above plus a storm's water on top of the day's: {@code stormSnowMm} always snow, {@code stormRainMm} rain or glaze whatever the day's mean. */
+    public static void step(State s, SnowClass cls, SnowTuning t, double meanC, double precipMm, double windMs, int doy,
+                            double stormSnowMm, double stormRainMm) {
+        double snowMm = (meanC < t.snowBelowC() ? precipMm : 0) + stormSnowMm;
+        double rainMm = precipMm - (meanC < t.snowBelowC() ? precipMm : 0) + stormRainMm;
         double fall = snowMm * (cls == SnowClass.UNDER_SPRUCE ? t.underSpruceX() : 1);
         if (cls == SnowClass.LEE_DRIFT && windMs >= t.leeWindMs()) fall += snowMm * (t.leeX() - 1);
         double fallCm = fall * 100 / t.freshDensity();

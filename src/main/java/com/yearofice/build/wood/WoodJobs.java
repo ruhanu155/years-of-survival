@@ -4,6 +4,7 @@ import com.yearofice.api.hud.HudArg;
 import com.yearofice.api.hud.HudBus;
 import com.yearofice.api.hud.HudLine;
 import com.yearofice.api.hud.HudLineType;
+import com.yearofice.build.craft.Wear;
 import com.yearofice.build.work.WorkJob;
 import com.yearofice.build.work.WorkProgressPayload.Phase;
 import com.yearofice.build.work.WorkStartPayload;
@@ -158,6 +159,7 @@ public final class WoodJobs {
             into += ds;
             if (into < swingDs) return;
             into = 0;
+            Wear.use(p, p.getMainHandItem(), 1);
             boolean wasNotch = game.notchDone();
             FellingGame.Strike s = game.strike(bearingOf(p));
             l.playSound(null, base.above(), WoodRegistry.TREE_CHOP.get(), SoundSource.BLOCKS, 1.0f, 0.9f + 0.2f * l.random.nextFloat());
@@ -254,6 +256,7 @@ public final class WoodJobs {
             if (finished) return;
             long before = doneDs;
             doneDs += ds;
+            Wear.use(p, p.getMainHandItem(), (int) (doneDs / DS_PER_MIN - before / DS_PER_MIN));
             if (before / (DS_PER_MIN * 2) != doneDs / (DS_PER_MIN * 2)) {
                 p.serverLevel().playSound(null, target, WoodRegistry.TREE_CHOP.get(), SoundSource.BLOCKS, 0.8f, 1.0f);
                 chips(p.serverLevel(), target, p.serverLevel().getBlockState(target));
@@ -302,7 +305,9 @@ public final class WoodJobs {
         @Override
         public void work(ServerPlayer p, long ds) {
             if (finished) return;
+            long before = doneDs;
             doneDs += ds;
+            Wear.use(p, p.getMainHandItem(), (int) (doneDs / DS_PER_MIN - before / DS_PER_MIN));
             if (doneDs < needDs) return;
             finished = true;
             log.setLimbed();
@@ -344,6 +349,7 @@ public final class WoodJobs {
         final long roundDs;
         final int total;
         long into;
+        long wearDs;
         int cut;
 
         public Buck(FelledLogEntity log, ToolStats tool) {
@@ -358,6 +364,9 @@ public final class WoodJobs {
         public void work(ServerPlayer p, long ds) {
             if (finished()) return;
             into += ds;
+            wearDs += ds;
+            Wear.use(p, p.getMainHandItem(), (int) (wearDs / DS_PER_MIN));
+            wearDs %= DS_PER_MIN;
             while (into >= roundDs && !finished()) {
                 into -= roundDs;
                 long day = WoodItems.today();
@@ -428,6 +437,7 @@ public final class WoodJobs {
             into += ds;
             if (into < strikeDs) return;
             into = 0;
+            Wear.use(p, p.getMainHandItem(), 1);
             ServerLevel l = p.serverLevel();
             ChoppingBlockEntity b = be(l);
             double[] a = aimOf(p);

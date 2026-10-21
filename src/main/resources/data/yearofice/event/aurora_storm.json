@@ -1,0 +1,6 @@
+{
+ "id": "aurora_storm",
+ "chance_per_year": 0.35,
+ "from_year": 1,
+ "window": ["09-01", "03-31"]
+}
