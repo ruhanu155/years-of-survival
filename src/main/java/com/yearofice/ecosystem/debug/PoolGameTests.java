@@ -232,8 +232,13 @@ public final class PoolGameTests {
      */
     static void contactSequence(GameTestHelper h) {
         int zOff = EcoGameTests.FAR_CONTACT;
-        BigGameGameTests.strip(h, -5, 40, 35, true, zOff);
-        BigGameGameTests.deferred(h, 40, () -> contactRun(h, zOff));
+        // the bears only tick in loaded, entity-ticking chunks: force the whole field (no player holds it open) for the test's length
+        Vec3 mid = h.absolutePos(new BlockPos(1 + 18, BigGameGameTests.Y, 1 + zOff)).getCenter();
+        EcoGameTests.force(h, mid, 3, true);
+        BigGameGameTests.deferred(h, 40, () -> {
+            BigGameGameTests.strip(h, -5, 40, 35, true, zOff);
+            return contactRun(h, zOff);
+        });
     }
 
     static Runnable contactRun(GameTestHelper h, int zOff) {
@@ -328,5 +333,6 @@ public final class PoolGameTests {
             r.bear.discard();
         }
         BigGameGameTests.strip(h, -5, 40, 35, false, s.zOff);
+        EcoGameTests.force(h, h.absolutePos(new BlockPos(1 + 18, BigGameGameTests.Y, 1 + s.zOff)).getCenter(), 3, false);
     }
 }
