@@ -98,6 +98,7 @@ public final class TravelSystem {
         ServerLevel level = p.serverLevel();
         BlockPos feet = p.blockPosition();
         BlockState at = level.getBlockState(feet);
+        tripMeters(p, g, level);
         if (at.is(WorldBlocks.SNOW_COVER.get()) && at.getValue(SnowCoverBlock.TRAIL_WEAR) == 0 && hd > 0.05) // walking breaks a trail
             level.setBlock(feet, at.setValue(SnowCoverBlock.TRAIL_WEAR, 1), 2);
         if (hd > 0.1 && g != Travel.Gear.NONE && g != Travel.Gear.SNOWSHOES && p.onGround()) { // gear sounds
@@ -116,6 +117,27 @@ public final class TravelSystem {
         if (w.update("skate_thin", thin, minute)) p.displayClientMessage(Component.translatable("warn.yearofice.skate_thin"), true);
         boolean alone = skating && level.players().size() <= 1 && IceBlocks.isIce(level.getBlockState(feet.below()));
         if (w.update("skate_alone", alone, minute)) p.displayClientMessage(Component.translatable("warn.yearofice.skate_alone"), true);
+    }
+
+    private static final Map<UUID, net.minecraft.world.phys.Vec3> LAST = new ConcurrentHashMap<>();
+    static final double SNOWSHOE_TRIP_M = 10_000, SKI_TRIP_M = 25_000;
+
+    /** Totals the metres walked on snowshoes and skis (saved on the player) and fires the ambition triggers (Ambitions). */
+    static void tripMeters(ServerPlayer p, Travel.Gear g, ServerLevel level) {
+        var now = p.position();
+        var last = LAST.put(p.getUUID(), now);
+        if (last == null || !p.onGround() || (g != Travel.Gear.SNOWSHOES && g != Travel.Gear.SKIS && g != Travel.Gear.SKIS_SKINS)) return;
+        double d = Math.hypot(now.x - last.x, now.z - last.z);
+        if (d > 8) return; // a teleport or a ride is not a trip
+        boolean ski = g != Travel.Gear.SNOWSHOES;
+        String key = ski ? "yoi_ski_m" : "yoi_shoe_m";
+        var root = p.getPersistentData().getCompound(net.minecraft.world.entity.player.Player.PERSISTED_NBT_TAG);
+        double total = root.getDouble(key) + d;
+        root.putDouble(key, total);
+        p.getPersistentData().put(net.minecraft.world.entity.player.Player.PERSISTED_NBT_TAG, root);
+        long minute = level.getGameTime() / 20 / 60;
+        if (ski && total >= SKI_TRIP_M) com.yearofice.story.ambition.Ambitions.fire(p, "travel.ski_trip", minute);
+        if (!ski && total >= SNOWSHOE_TRIP_M) com.yearofice.story.ambition.Ambitions.fire(p, "travel.snowshoe_10km", minute);
     }
 
     /** True when the ice under {@code feet} is thin enough to crackle under a skater. */

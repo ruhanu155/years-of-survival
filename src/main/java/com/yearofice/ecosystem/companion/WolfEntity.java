@@ -164,6 +164,9 @@ public class WolfEntity extends PredatorEntity {
         }
         double g = trust.apply(a, CompanionConfig.tuning());
         if (g > 0) {
+            long fm = SliceClock.minute(p.serverLevel());
+            if (trust.value() >= Trust.TOLERANT) com.yearofice.story.ambition.Ambitions.fire(p, "wolf.tolerant", fm);
+            if (trust.value() >= Trust.BONDED) com.yearofice.story.ambition.Ambitions.fire(p, "wolf.bonded", fm);
             if (a == Trust.Action.FEED_GROUND || a == Trust.Action.HAND_FEED || a == Trust.Action.SHARE_KILL) noteFed(p);
             if (trust.value() >= Trust.TOLERANT && wolfName.isEmpty()) {
                 wolfName = WolfNames.pick(random);
