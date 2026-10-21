@@ -65,8 +65,17 @@ public final class BigGameGameTests {
     static final int Y = EcoGameTests.PAD_Y;
 
     /** A stone strip under height Y (animals stand at Y), from {@code x0} to {@code x1} along the test's x axis and {@code side} blocks each way; shared with overlapping tests ({@link EcoGameTests#stone}). */
-    static void strip(GameTestHelper h, int x0, int x1, int side, boolean on) {
-        for (int x = x0; x <= x1; x++) for (int z = -side; z <= side; z++) EcoGameTests.stone(h, new BlockPos(1 + x, Y - 1, 1 + z), on);
+    static void strip(GameTestHelper h, int x0, int x1, int side, boolean on) { strip(h, x0, x1, side, on, 0); }
+
+    /**
+     * Long runways never share the batch grid: a 150-300 m line crosses neighbouring tests' structures, pads and
+     * entities. Each long-runway test runs in its own far region, {@code index * FAR_M} blocks along +z from the
+     * template origin, far outside any batch layout.
+     */
+    static final int FAR_M = 4096, FAR_CHASE = 1 * FAR_M, FAR_SIGHT = 2 * FAR_M;
+
+    static void strip(GameTestHelper h, int x0, int x1, int side, boolean on, int zOff) {
+        for (int x = x0; x <= x1; x++) for (int z = -side; z <= side; z++) EcoGameTests.stone(h, new BlockPos(1 + x, Y - 1, 1 + z + zOff), on);
     }
 
     static void forceLine(GameTestHelper h, Vec3 from, int dx, boolean on) {
@@ -134,15 +143,15 @@ public final class BigGameGameTests {
      * the next 8 s.
      */
     static void sightCone(GameTestHelper h) {
-        BigGameEntity caribou = h.spawn(EcosystemRegistry.CARIBOU.get(), new BlockPos(1, Y, 1));
+        forceLine(h, h.absolutePos(new BlockPos(1, Y, 1 + FAR_SIGHT)).getCenter().add(-120, 0, 0), 240, true);
+        BigGameEntity caribou = h.spawn(EcosystemRegistry.CARIBOU.get(), new BlockPos(1, Y, 1 + FAR_SIGHT));
         caribou.setScentEnabled(false);
         caribou.pinDriveAct(Drives.Act.BED);
         // Predators of a caribou in the null test group (wolves and bears of neighbouring tests) are threats to every other
         // null-group caribou within sight; a group of its own keeps this test to the one walker it is about.
         caribou.setTestGroup("sight_cone");
         Vec3 at = caribou.position();
-        strip(h, -110, 110, 3, true);
-        EcoGameTests.force(h, at, 2, true);
+        strip(h, -110, 110, 3, true, FAR_SIGHT);
         ServerPlayer p = EcoGameTests.player(h);
         ThreatSources.addForTest(p, caribou);
         float yaw = -90f; // facing +x... yaw -90 looks toward +x
@@ -157,8 +166,8 @@ public final class BigGameGameTests {
             done[0] = true;
             ThreatSources.removeForTest(p);
             caribou.discard();
-            EcoGameTests.force(h, at, 2, false);
-            strip(h, -110, 110, 3, false);
+            forceLine(h, at.add(-120, 0, 0), 240, false);
+            strip(h, -110, 110, 3, false, FAR_SIGHT);
         };
         h.onEachTick(() -> {
             if (done[0]) return;
@@ -196,7 +205,7 @@ public final class BigGameGameTests {
      * the wolf ran at least 120 m and no more than 150 m plus one tick of speed.
      */
     static void chaseCap(GameTestHelper h) {
-        Vec3 start0 = h.absolutePos(new BlockPos(1, Y, 1)).getCenter();
+        Vec3 start0 = h.absolutePos(new BlockPos(1, Y, 1 + FAR_CHASE)).getCenter();
         forceLine(h, start0, 300, true);
         deferred(h, 40, () -> chaseCapRun(h)); // the strip needs its chunks loaded before blocks can be set in them
     }
@@ -216,9 +225,9 @@ public final class BigGameGameTests {
     }
 
     static Runnable chaseCapRun(GameTestHelper h) {
-        strip(h, -5, 300, 24, true);
-        PredatorEntity wolf = h.spawn(EcosystemRegistry.WOLF.get(), new BlockPos(1, Y, 1));
-        BigGameEntity caribou = h.spawn(EcosystemRegistry.CARIBOU.get(), new BlockPos(1 + 25, Y, 1));
+        strip(h, -5, 300, 24, true, FAR_CHASE);
+        PredatorEntity wolf = h.spawn(EcosystemRegistry.WOLF.get(), new BlockPos(1, Y, 1 + FAR_CHASE));
+        BigGameEntity caribou = h.spawn(EcosystemRegistry.CARIBOU.get(), new BlockPos(1 + 25, Y, 1 + FAR_CHASE));
         wolf.setScentEnabled(false);
         caribou.setScentEnabled(false);
         wolf.setTestGroup("chase");
@@ -238,7 +247,7 @@ public final class BigGameGameTests {
             wolf.discard();
             caribou.discard();
             forceLine(h, start, 300, false);
-            strip(h, -5, 300, 24, false);
+            strip(h, -5, 300, 24, false, FAR_CHASE);
         };
         return () -> {
             if (done[0]) return;
