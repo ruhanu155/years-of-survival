@@ -72,9 +72,7 @@ public final class TravelSystem {
     }
 
     /** Multiplier for this player right now (also read by GameTests). */
-    public static double multiplier(ServerPlayer p, Travel.Gear g, double slope) {
-        ServerLevel level = p.serverLevel();
-        BlockPos feet = p.blockPosition();
+    public static double multiplier(ServerLevel level, BlockPos feet, Travel.Gear g, double slope) {
         BlockState at = level.getBlockState(feet);
         boolean snow = at.is(WorldBlocks.SNOW_COVER.get());
         boolean ice = IceBlocks.isIce(level.getBlockState(feet.below())) || IceBlocks.isIce(at);
@@ -89,7 +87,7 @@ public final class TravelSystem {
         Travel.Gear g = gear(p);
         double hd = Math.hypot(p.getX() - p.xo, p.getZ() - p.zo);
         double slope = hd > 0.01 ? (p.getY() - p.yo) / hd : 0;
-        double m = multiplier(p, g, slope);
+        double m = multiplier(p.serverLevel(), p.blockPosition(), g, slope);
         AttributeInstance a = p.getAttribute(Attributes.MOVEMENT_SPEED);
         if (a != null) {
             a.removeModifier(MOD_ID);
@@ -104,29 +102,35 @@ public final class TravelSystem {
         long minute = level.getGameTime() / 20;
         boolean skating = g == Travel.Gear.SKATES;
         boolean thin = false;
-        if (skating) {
-            try { thin = Travel.cracklesUnder(IceService.get().thicknessCm(level, feet.below())) && IceBlocks.isIce(level.getBlockState(feet.below())); }
-            catch (IllegalStateException ignored) { /* ice service not installed in this world */ }
-        }
+        if (skating) thin = thinIce(level, feet);
         if (w.update("skate_thin", thin, minute)) p.displayClientMessage(Component.translatable("warn.yearofice.skate_thin"), true);
         boolean alone = skating && level.players().size() <= 1 && IceBlocks.isIce(level.getBlockState(feet.below()));
         if (w.update("skate_alone", alone, minute)) p.displayClientMessage(Component.translatable("warn.yearofice.skate_alone"), true);
+    }
+
+    /** True when the ice under {@code feet} is thin enough to crackle under a skater. */
+    public static boolean thinIce(ServerLevel level, BlockPos feet) {
+        if (!IceBlocks.isIce(level.getBlockState(feet.below()))) return false;
+        try { return Travel.cracklesUnder(IceService.get().thicknessCm(level, feet.below())); }
+        catch (IllegalStateException ignored) { return false; /* ice service not installed in this world */ }
     }
 
     /** Hourly: after 6 hours of hard frost every broken trail near a player is set. */
     static void onHour(ClockEvent.Hour e) {
         var server = net.neoforged.neoforge.server.ServerLifecycleHooks.getCurrentServer();
         if (server == null) return;
-        for (ServerPlayer p : server.getPlayerList().getPlayers()) {
-            ServerLevel level = p.serverLevel();
-            coldHours = Travel.coldHours(coldHours, EnvService.get().sample(level, p.blockPosition()).airC());
-            if (coldHours < Travel.SET_AFTER_H) continue;
-            BlockPos c = p.blockPosition();
-            for (BlockPos q : BlockPos.betweenClosed(c.offset(-16, -3, -16), c.offset(16, 3, 16))) {
-                BlockState s = level.getBlockState(q);
-                if (s.is(WorldBlocks.SNOW_COVER.get()) && s.getValue(SnowCoverBlock.TRAIL_WEAR) == 1)
-                    level.setBlock(q, s.setValue(SnowCoverBlock.TRAIL_WEAR, 2), 2);
-            }
+        for (ServerPlayer p : server.getPlayerList().getPlayers())
+            hourStep(p.serverLevel(), p.blockPosition(), EnvService.get().sample(p.serverLevel(), p.blockPosition()).airC());
+    }
+
+    /** One game hour at {@code c} with air {@code airC}: trails within 16 blocks set once the frost has held. */
+    public static void hourStep(ServerLevel level, BlockPos c, double airC) {
+        coldHours = Travel.coldHours(coldHours, airC);
+        if (coldHours < Travel.SET_AFTER_H) return;
+        for (BlockPos q : BlockPos.betweenClosed(c.offset(-16, -3, -16), c.offset(16, 3, 16))) {
+            BlockState s = level.getBlockState(q);
+            if (s.is(WorldBlocks.SNOW_COVER.get()) && s.getValue(SnowCoverBlock.TRAIL_WEAR) == 1)
+                level.setBlock(q.immutable(), s.setValue(SnowCoverBlock.TRAIL_WEAR, 2), 2);
         }
     }
 }
