@@ -1,0 +1,18 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "bushcraft",
+  "ingredients": [
+    {
+      "item": "yearofice:pole",
+      "count": 3
+    }
+  ],
+  "work_min": 10,
+  "effort": "medium",
+  "kcal": 42,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:roof_pole_sod",
+    "count": 1
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "bushcraft",
+  "ingredients": [
+    {
+      "item": "yearofice:pole",
+      "count": 2
+    }
+  ],
+  "work_min": 3,
+  "effort": "medium",
+  "kcal": 12,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:awning",
+    "count": 1
+  }
+}

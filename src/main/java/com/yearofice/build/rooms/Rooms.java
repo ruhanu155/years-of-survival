@@ -110,9 +110,11 @@ public final class Rooms implements RoomService {
             }
             e.stamp = Long.MIN_VALUE / 2;
         }
-        if (l.getGameTime() - e.stamp >= PiecesConfig.cacheTicks()) {
+        long now = clockNow(l);
+        // stale by game time (not server ticks: Sleep runs the clock thousands of times faster), or the sources changed under it
+        if (now - e.stamp >= PiecesConfig.cacheTicks() || e.room == null || Math.abs(sourceW(l, e) - e.room.sourceW()) > 1) {
             e.room = balance(l, e);
-            e.stamp = l.getGameTime();
+            e.stamp = now;
             d.remember(e.room.seed(), e.room.volumeM3(), e.room.uWPerK());
         }
         return e;
@@ -124,6 +126,14 @@ public final class Rooms implements RoomService {
         return false;
     }
 
+    private static long clockNow(ServerLevel l) {
+        return com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().nowDs() : l.getGameTime();
+    }
+
+    private static double sourceW(ServerLevel l, RoomsData.Entry e) {
+        return com.yearofice.api.fire.HeatSources.wattsIn(l, c -> e.byCellHas(c.getX(), c.getY(), c.getZ()) || sourceOnWall(e, c));
+    }
+
     private static Room balance(ServerLevel l, RoomsData.Entry e) {
         BlockPos seed = new BlockPos(e.minX, e.minY, e.minZ);
         BlockPos above = new BlockPos((e.minX + e.maxX) / 2, e.maxY + 3, (e.minZ + e.maxZ) / 2);
@@ -132,7 +142,7 @@ public final class Rooms implements RoomService {
         double snowM = Math.min(1.0, env.snowCm(l, above) / 100.0);
         List<Heat.Face> faces = new ArrayList<>();
         for (Heat.Face f : e.scan.faces()) faces.add(f.part() == Heat.Part.ROOF ? new Heat.Face(f.part(), f.areaM2(), f.u(), snowM) : f);
-        double w = com.yearofice.api.fire.HeatSources.wattsIn(l, c -> e.byCellHas(c.getX(), c.getY(), c.getZ()) || sourceOnWall(e, c));
+        double w = sourceW(l, e);
         Heat.Balance b = Heat.solve(faces, e.scan.leaks().size(), 0, w, out, ground, wind);
         List<BlockPos> leaks = new ArrayList<>();
         for (long c : e.scan.leaks()) leaks.add(new BlockPos(RoomScan.ux(c), RoomScan.uy(c), RoomScan.uz(c)));

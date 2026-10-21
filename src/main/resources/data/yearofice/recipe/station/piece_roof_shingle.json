@@ -1,0 +1,18 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "bushcraft",
+  "ingredients": [
+    {
+      "item": "yearofice:shingle",
+      "count": 8
+    }
+  ],
+  "work_min": 7,
+  "effort": "medium",
+  "kcal": 29,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:roof_shingle",
+    "count": 1
+  }
+}

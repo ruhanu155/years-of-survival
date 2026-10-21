@@ -189,7 +189,7 @@ public class StoveBlockEntity extends BlockEntity {
     public void onLoad() {
         super.onLoad();
         if (level != null && !level.isClientSide) {
-            lastMinute = nowMinute();
+            if (lastMinute == Long.MIN_VALUE) lastMinute = nowMinute(); // a saved stove catches up the minutes it was away
             if (burn != null && burn.lit()) sync();
         }
     }
@@ -209,6 +209,7 @@ public class StoveBlockEntity extends BlockEntity {
         tag.putDouble("creosote", burn.creosote());
         tag.putDouble("smoke_pct", burn.smokePct());
         tag.putInt("chimney_fires", chimneyFires);
+        if (lastMinute != Long.MIN_VALUE) tag.putLong("last_minute", lastMinute);
         ListTag l = new ListTag();
         for (Armload a : burn.queue()) {
             CompoundTag c = new CompoundTag();
@@ -234,6 +235,7 @@ public class StoveBlockEntity extends BlockEntity {
         b.smokePct(tag.getDouble("smoke_pct"));
         b.lit(tag.getBoolean("lit"));
         chimneyFires = tag.getInt("chimney_fires");
+        if (tag.contains("last_minute")) lastMinute = tag.getLong("last_minute");
         burn = b;
     }
 }
