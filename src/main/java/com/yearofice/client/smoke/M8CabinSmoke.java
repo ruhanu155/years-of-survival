@@ -1,6 +1,8 @@
 package com.yearofice.client.smoke;
 
 import com.yearofice.api.build.Room;
+import com.yearofice.build.craft.StationCraft;
+import net.minecraft.resources.ResourceLocation;
 import com.yearofice.api.build.RoomService;
 import com.yearofice.api.clock.ClockService;
 import com.yearofice.api.env.EnvService;
@@ -35,6 +37,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -133,7 +136,7 @@ public final class M8CabinSmoke {
     private static double dMin = 99, dMax = -99, dSrcMax = 0, dOutMin = 99;
     private static int dN = 0;
     private static double feelsMin = 99, feelsMax = -99, outMin = 99, warmMin = 100, sourceMax = 0, uAvg = 0, wSum = 0;
-    private static int nightTicks = 0, refuels = 0, loadedSplits = 0, shotsDone = 0;
+    private static int nightTicks = 0, refuels = 0, loadedSplits = 0, shotsDone = -1;
     private static double burnedStart = 0;
     private static String roomInfo = "none";
     private static BodyState bodyAtStart;
@@ -685,8 +688,8 @@ public final class M8CabinSmoke {
     /** Places {@code it} at {@code target} through the real block-item use path, clicking a supporting neighbour. */
     private static boolean placeAt(ServerPlayer p, Item it, BlockPos target) {
         ItemStack st = new ItemStack(it);
+        obtain(p, it);
         hold(p, workSlot, st);
-        grant(BuiltInRegistries.ITEM.getKey(it).getPath(), 1);
         for (Direction d : new Direction[] {Direction.DOWN, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST}) {
             BlockPos nb = target.relative(d);
             BlockState ns = level.getBlockState(nb);
@@ -702,6 +705,36 @@ public final class M8CabinSmoke {
         return false;
     }
 
+    private static final Map<Item, ResourceLocation> recipeFor = new HashMap<>();
+    static double craftMin;
+    static int crafted;
+
+    /** Crafts one {@code it} through its station recipe (the craft job the Hands run); raw ingredients are granted and logged; no recipe: GRANT the item. */
+    private static void obtain(ServerPlayer p, Item it) {
+        String nm = BuiltInRegistries.ITEM.getKey(it).getPath();
+        if (recipeFor.isEmpty()) for (var h : StationCraft.all(level)) recipeFor.put(h.value().resultItem(), h.id());
+        ResourceLocation rid = recipeFor.get(it);
+        if (rid == null) { grant(nm, 1); return; }
+        var holder = StationCraft.byId(level, rid);
+        for (var need : holder.value().ingredients()) {
+            ItemStack[] opts = need.ingredient().getItems();
+            if (opts.length == 0) continue;
+            int have = StationCraft.count(p.getInventory(), need);
+            if (have < need.count()) { grant("ingredient:" + BuiltInRegistries.ITEM.getKey(opts[0].getItem()).getPath(), need.count() - have); p.getInventory().add(opts[0].copyWithCount(need.count() - have)); }
+        }
+        hold(p, hatchetSlot, p.getInventory().getItem(hatchetSlot));
+        var job = StationCraft.start(p, rid, null);
+        if (job == null) { grant(nm + "(craft refused)", 1); return; }
+        int t = 0;
+        while (!StationCraft.advance(p, job, WorkService.dsPerTick()) && t++ < 200000) { }
+        double m = t * WorkService.dsPerTick() / 600.0;
+        craftMin += m;
+        firstBuildMin += m;
+        chore("craft", m);
+        crafted++;
+        for (int i = 0; i < p.getInventory().getContainerSize(); i++) if (p.getInventory().getItem(i).is(it)) { p.getInventory().setItem(i, ItemStack.EMPTY); break; }
+    }
+
     private static double labour(Item it) {
         var d = it instanceof net.minecraft.world.item.BlockItem bi ? bi.getBlock().builtInRegistryHolder().getData(com.yearofice.api.build.PieceData.MAP) : null;
         return d == null ? 0 : d.labourMin();
@@ -712,7 +745,7 @@ public final class M8CabinSmoke {
         int y0 = site.getY();
         if (cabinStep == 0) { // floor on the ground layer, then the first wall course
             for (int x = 0; x < N; x++) for (int z = 0; z < N; z++) { placeAt(p, floor, site.offset(x, 0, z)); firstBuildMin += labour(floor); }
-            blocked("slab_floor / wall_log / roof_pole_sod / door_frame / window_frame have no recipe or loot path (creative tab only); piece.json prices them in log_piece/pole/plank/sod/shingle/stone which also have no recipe. GRANTED for the build.");
+            blocked("pieces now craft through station recipes (log_piece/plank/pole/sod ingredients are GRANTED in bulk, the supply is a finding); old note: no recipe or loot path (creative tab only); piece.json prices them in log_piece/pole/plank/sod/shingle/stone which also have no recipe. GRANTED for the build.");
             blocked("dressed_stone: no recipe path either (nothing crafts it)");
             for (int x = 0; x < N; x++) for (int z = 0; z < N; z++) {
                 boolean ring = x == 0 || x == N - 1 || z == 0 || z == N - 1;
@@ -751,7 +784,7 @@ public final class M8CabinSmoke {
         if (cabinStep == 2) { // stove, chimney, fuel
             stovePos = site.offset(1, 1, 1);
             Item stove = StoveRegistry.TIN_STOVE_ITEM.get(), pipe = StoveRegistry.CHIMNEY_PIPE_ITEM.get();
-            blocked("tin_stove / chimney_pipe: no recipe (bloomery/forge/anvil path absent); creative tab only. GRANTED.");
+            blocked("tin_stove / chimney_pipe need iron_bar + furnace (iron tier): not reachable in a day-one kit. GRANTED.");
             placeAt(p, stove, stovePos);
             for (int i = 1; i <= 5; i++) placeAt(p, pipe, stovePos.above(i));
             if (!(level.getBlockEntity(stovePos) instanceof StoveBlockEntity be)) { fail("no stove block entity at " + stovePos.toShortString()); finish(p); return; }
@@ -779,7 +812,7 @@ public final class M8CabinSmoke {
         try {
             BlockPos anchor = site.offset(3, 0, 3);
             int n = Structs.save(level, "m8cabin", anchor, 4, 6);
-            log("SAVE struct m8cabin: " + n + " pieces (stove and pipes are not pieces: not saved)");
+            log("SAVE struct m8cabin: " + n + " pieces (stove/pipes saved too if lane D saves them)");
             site2 = site2.atY(level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, site2.getX(), site2.getZ()));
             p.teleportTo(level, site2.getX() + 3, site2.getY(), site2.getZ() - 4, 0, 20);
             stampMin = Structs.stamp(level, "m8cabin", site2.offset(3, 0, 3));
@@ -801,7 +834,7 @@ public final class M8CabinSmoke {
         if (r == null && subStep++ < 130) { wait = 10; return; }
         log("STAMP built: second site room " + (r == null ? "NOT detected (the stove column is a roof hole: pipes are not pieces)" : String.format(Locale.ROOT, "%d m3, %d leaks %s", r.volumeM3(), r.leaks().size(), r.leaks())));
         // seal the stove column with a pipe, as the player would
-        placeAt(p, StoveRegistry.CHIMNEY_PIPE_ITEM.get(), site2.offset(1, 3, 1));
+        if (r == null) placeAt(p, StoveRegistry.CHIMNEY_PIPE_ITEM.get(), site2.offset(1, 3, 1));
         Room r2 = RoomService.get().roomAt(level, in);
         log("STAMP second site after one chimney pipe in the roof hole: room " + (r2 == null ? "still NOT detected" : r2.volumeM3() + " m3, " + r2.leaks().size() + " leaks"));
         wait = 40;
@@ -904,7 +937,7 @@ public final class M8CabinSmoke {
         }
         BodyState bs = BodyAttachments.of(p);
         warmMin = Math.min(warmMin, bs.warmth);
-        if (be != null && now > nightStart + 120) { // DIAGNOSTIC: the stove's own watts posted to an air cell, as lane A's GameTests do (see the finding: a real stove block is not an air cell)
+        if (be != null && now > nightStart + 120 && sourceMax <= 0) { // DIAGNOSTIC (only when the real wiring still reports 0 W): the stove's own watts posted to an air cell, as lane A's GameTests do (see the finding: a real stove block is not an air cell)
             if (!diag) { diag = true; log("DIAG from " + clock(now) + ": the real stove's W is now also posted via HeatSources at the air cell beside it, to show what the cabin does once the stove counts"); }
             com.yearofice.api.fire.HeatSources.post(level, site.offset(2, 1, 1), be.lit() ? be.outputW() : 0);
         }
@@ -925,6 +958,11 @@ public final class M8CabinSmoke {
             log(String.format(Locale.ROOT, "  DIAG %s outside %.1f C, inside feels %.1f C, source %.0f W, U %.1f W/C, stove %s %s %.2f armloads, warmth %.0f, splits left %d", clock(now), r.outsideC(), r.feelsLikeC(), r.sourceW(), r.uWPerK(),
                     be != null && be.lit() ? "lit" : "out", be == null ? "-" : be.setting(), be == null ? -1 : be.armloads(), bs.warmth, splitPile.size() + grantedSplits));
         } else if (r == null && now > nightStart + 30 && nightTicks % 60 == 0) log("  " + clock(now) + " no room at the bed cell");
+        if (shotsDone == -1 && now > nightStart + 90) { // interior, lit stove
+            cam(p, new Vec3(site.getX() + 4, site.getY() + 1.6, site.getZ() + 4), new Vec3(site.getX() + 1.5, site.getY() + 0.8, site.getZ() + 1.5));
+            shot = "m8_cabin_stove_lit";
+            shotsDone = 0;
+        }
         if (shotsDone == 0 && now > nightStart + 360) { // inside, in bed light, strip drawn in full
             cam(p, new Vec3(site.getX() + 4, site.getY() + 1.6, site.getZ() + 4), new Vec3(site.getX() + 1.5, site.getY() + 1.5, site.getZ() + 1.5));
             shot = "m8_cabin_night_vitals";

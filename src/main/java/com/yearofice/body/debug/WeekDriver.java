@@ -81,7 +81,11 @@ public final class WeekDriver {
     private static ServerPlayer pl;
 
     // crossing tracker (the same lines VitalExplainer raises, plus frost stage per part)
-    private record Pend(long minute, String label, String key, int before, int due) {}
+    private record Pend(long minute, String label, String key, int before, int due, boolean asleep) {}
+    private static final Map<String, Integer> posted = new java.util.concurrent.ConcurrentHashMap<>();
+    static final boolean LEAN_FIRST = "leanfirst".equals(System.getenv("YEAROFICE_M7_DIET"));
+    private static final Map<String, double[]> diet = new LinkedHashMap<>();
+    private static int mealNo = 0;
     private static Map<String, Integer> prevCounts = new java.util.HashMap<>();
     private static final List<Pend> pend = new ArrayList<>();
     private static boolean[] was = null;
@@ -151,7 +155,7 @@ public final class WeekDriver {
             }
         }
         // GRANT: the M4-M7 winter kit has no crate source in the slice; a player would craft or find it. Logged, never hidden.
-        String[][] grants = {{"fur_mittens", "1"}, {"parka", "1"}, {"mukluks", "1"}, {"pemmican", "30"}, {"dried_fish", "20"}, {"pilot_bread", "12"}, {"match", "12"}};
+        String[][] grants = {{"fur_mittens", "1"}, {"fur_hat", "1"}, {"dried_meat", "20"}, {"parka", "1"}, {"mukluks", "1"}, {"pemmican", "30"}, {"dried_fish", "20"}, {"pilot_bread", "12"}, {"match", "12"}};
         for (String[] g : grants) {
             Item it = item(g[0]);
             if (it == net.minecraft.world.item.Items.AIR) { log("GRANT-MISSING " + g[0] + " is not a registered item"); continue; }
@@ -159,6 +163,7 @@ public final class WeekDriver {
             log("GRANT " + g[0] + " x" + g[1]);
         }
         // the December jump is the driver's own hook; bodies are not stepped across a jump (BodyTicker)
+        com.yearofice.hud.HudBusImpl.tap = (pp, l) -> posted.merge(l.key(), 1, Integer::sum);
         ClockService ck = ClockService.get();
         ck.setNow((DEC1 * 1440L + 6 * 60) * 600L);
         com.yearofice.body.BodyTicker.resync(p.server);
@@ -171,7 +176,7 @@ public final class WeekDriver {
             ItemStack st = p.getInventory().getItem(i);
             if (!st.isEmpty()) log("  kit: " + BuiltInRegistries.ITEM.getKey(st.getItem()) + " x" + st.getCount());
         }
-        for (String id : new String[] {"parka", "mukluks", "fur_mittens"}) {
+        for (String id : new String[] {"parka", "mukluks", "fur_mittens", "fur_hat"}) {
             ItemStack st = ItemStack.EMPTY;
             for (int i = 0; i < p.getInventory().getContainerSize(); i++) if (BuiltInRegistries.ITEM.getKey(p.getInventory().getItem(i).getItem()).getPath().equals(id)) { st = p.getInventory().getItem(i); break; }
             if (st.isEmpty()) { log("EQUIP " + id + " not in pack"); continue; }
@@ -370,8 +375,11 @@ public final class WeekDriver {
         was = now;
         for (Part part : Part.values()) { wasBand[part.ordinal()] = s.parts.band(part).ordinal(); wasFrostStage[part.ordinal()] = com.yearofice.sim.body.FrostModel.stage(s.parts.frost(part)); }
         wasDigits = Integer.bitCount(s.parts.lostDigits()[0]) + Integer.bitCount(s.parts.lostDigits()[1]);
+        List<Pend> toAdd = new ArrayList<>();
         for (var it = pend.iterator(); it.hasNext();) {
             Pend q = it.next();
+            if (q.asleep && p.isSleeping()) continue; // lines raised asleep post at wake ("While you slept")
+            if (q.asleep) { it.remove(); toAdd.add(new Pend(q.minute, q.label, q.key, q.before, tick + 6, false)); continue; }
             if (tick < q.due) continue;
             it.remove();
             boolean ok = count(p, q.key) > q.before;
@@ -383,24 +391,32 @@ public final class WeekDriver {
                 log("UNMESSAGED vital change at " + clock(q.minute) + " d" + day + ": " + q.label + " ; journal keys: " + ks);
             }
         }
+        pend.addAll(toAdd);
+        if (Math.floorMod(m, 1440L) / 60 == 6 && day >= 2 && did.add("morning" + day)) {
+            double metaCap = com.yearofice.sim.body.Metabolism.energyCap(s.balance24h(), s.bmi(), s.water, s.awakeMin, s.gutIll(m));
+            String why = s.bmi() < 18.5 ? "thin" : s.balance24h() < -1500 ? "hungry" : s.water < 30 ? "thirsty" : s.gutIll(m) ? "gut" : "tired";
+            StringBuilder ill = new StringBuilder();
+            for (var a : s.ill) ill.append(a).append(' ');
+            log(String.format(java.util.Locale.ROOT, "MORNING d%d energy %.1f cap %.1f | rest line messenger.yearofice.vitals.capped(%d, messenger.yearofice.vitals.cause.%s [client-inferred from synced vitals]) | engine: metabolic cap %.1f, illness active [%s], awakeMin %d, balance24h %.0f, water %.0f | macro 72h carb %.2f fat %.2f protein %.2f",
+                    day, s.energy, s.lastEnergyCap, Math.round(s.lastEnergyCap), why, metaCap, ill.toString().trim(), s.awakeMin, s.balance24h(), s.water, s.macroMeter(0), s.macroMeter(1), s.macroMeter(2)));
+            if (s.lastEnergyCap < 8) failures.add("morning energy cap " + fmt(s.lastEnergyCap) + " < 8 on day " + day);
+        }
         if (did.add("sample" + (m / 60))) {
-            log(String.format(java.util.Locale.ROOT, "  [d%d %s] air %.1f warmth %.0f water %.0f energy %.1f kg %.1f kcal24 %.0f %s fire %s handsFrost %d/%d", day, clock(m),
+            log(String.format(java.util.Locale.ROOT, "  [d%d %s] air %.1f warmth %.0f water %.0f energy %.1f kg %.1f kcal24 %.0f %s fire %s handsFrost %d/%d cap %.1f", day, clock(m),
                     EnvService.get().airC(p.serverLevel(), p.blockPosition()), s.warmth, s.water, s.energy, s.kg, s.balance24h(), p.isSleeping() ? "asleep" : "awake",
-                    ring == null ? "-" : ring.fire().state().name() + " " + fmt(ring.fire().armloads()), s.parts.frost(Part.LEFT_HAND), s.parts.frost(Part.RIGHT_HAND)));
+                    ring == null ? "-" : ring.fire().state().name() + " " + fmt(ring.fire().armloads()), s.parts.frost(Part.LEFT_HAND), s.parts.frost(Part.RIGHT_HAND), s.lastEnergyCap));
         }
     }
 
     private static void add(long m, String label, String key, int jsize) {
         crossings++;
-        pend.add(new Pend(m, label, key, jsize, tick + 6));
+        pend.add(new Pend(m, label, key, jsize, tick + 6, pl != null && pl.isSleeping()));
     }
 
     /** Lines the bus holds for the player whose key contains {@code key} ("" counts all), over journal, screen and held lists. */
     private static int count(ServerPlayer p, String key) {
         int n = 0;
-        for (var l : HudBus.get().journal(p)) if (l.key().contains(key)) n++;
-        for (var l : HudBus.get().sent(p)) if (l.key().contains(key)) n++;
-        for (var l : HudBus.get().held(p)) if (l.key().contains(key)) n++;
+        for (var e : posted.entrySet()) if (e.getKey().contains(key)) n += e.getValue();
         return n;
     }
 
@@ -455,22 +471,44 @@ public final class WeekDriver {
         litres += 0.5;
     }
 
+    // per 100 g from food.json: kcal, protein g, fat g (carbs = the rest of the kcal at 4 kcal/g)
+    private static final Map<String, double[]> ROW = Map.of("pemmican", new double[] {560, 30.8, 46.7}, "dried_meat", new double[] {288, 62.5, 4.25},
+            "dried_fish", new double[] {350, 62, 11.3}, "pilot_bread", new double[] {400, 10, 8.9});
+
+    private static int bite(ServerPlayer p, String id, BodyState s, int day) {
+        for (int i = 0; i < p.getInventory().getContainerSize(); i++) {
+            ItemStack st = p.getInventory().getItem(i);
+            if (st.isEmpty() || !BuiltInRegistries.ITEM.getKey(st.getItem()).getPath().equals(id)) continue;
+            double before = s.pendingKcal;
+            var b = Meals.eat(p, st);
+            if (!b.eaten()) { log("  meal refused for " + id + ": " + b.outcome() + " stomach " + fmt(s.stomachKg)); return -1; }
+            double[] r = ROW.get(id);
+            double g = b.grams(), kcal = g * r[0] / 100, pr = g * r[1] / 100, fat = g * r[2] / 100, carb = Math.max(0, (kcal - 4 * pr - 9 * fat) / 4);
+            double[] tot = diet.computeIfAbsent("d" + day + " " + id, k -> new double[5]);
+            tot[0] += g; tot[1] += kcal; tot[2] += fat; tot[3] += pr; tot[4] += carb;
+            log(String.format(java.util.Locale.ROOT, "  BITE d%d %s %.0f g %.0f kcal fat %.1f protein %.1f carb %.1f (pending %+.0f) | macro meters 72h carb %.2f fat %.2f protein %.2f",
+                    day, id, g, kcal, fat, pr, carb, s.pendingKcal - before, s.macroMeter(0), s.macroMeter(1), s.macroMeter(2)));
+            return 1;
+        }
+        return 0;
+    }
+
     private static void meal(ServerPlayer p) {
         BodyState s = BodyAttachments.of(p);
-        int bites = 0;
-        for (int pass = 0; pass < 2; pass++) {
-            for (int i = 0; i < p.getInventory().getContainerSize() && bites < 40; i++) {
-                ItemStack st = p.getInventory().getItem(i);
-                if (st.isEmpty()) continue;
-                String id = BuiltInRegistries.ITEM.getKey(st.getItem()).getPath();
-                if (!(pass == 0 ? (id.equals("pemmican") || id.equals("dried_fish")) : id.equals("pilot_bread"))) continue;
-                while (!st.isEmpty() && bites < 40) {
-                    if (s.balance24h() + s.pendingKcal >= 0) break;
-                    var b = Meals.eat(p, st);
-                    if (!b.eaten()) { log("  meal refused for " + id + ": " + b.outcome() + " stomach " + fmt(s.stomachKg)); break; }
-                    bites++;
-                }
+        int day = lastDay, bites = 0;
+        mealNo++;
+        if (LEAN_FIRST) {
+            // v4 diet: dried meat first (inventory order), pemmican and fish after, bread to fill
+            for (String id : new String[] {"dried_meat", "pemmican", "dried_fish", "pilot_bread"}) {
+                while (bites < 40 && s.balance24h() + s.pendingKcal < 0) { int r = bite(p, id, s, day); if (r <= 0) break; bites++; }
             }
+        } else {
+            // a player's meal: pemmican with every meal (2 bites), alternate dried fish / dried meat (2 bites), bread to fill
+            // (only while the 24 h balance is short: a player stops when fed)
+            if (s.balance24h() + s.pendingKcal < 0 && bite(p, "pemmican", s, day) > 0) bites++;
+            String alt = mealNo % 2 == 0 ? "dried_fish" : "dried_meat";
+            if (s.balance24h() + s.pendingKcal < 0 && bite(p, alt, s, day) > 0) bites++;
+            while (bites < 40 && s.balance24h() + s.pendingKcal < 0) { int r = bite(p, "pilot_bread", s, day); if (r <= 0) break; bites++; }
         }
         ateBites += bites;
         chore("food", 4 + bites * 0.3);
@@ -483,6 +521,8 @@ public final class WeekDriver {
         if (!unmessaged.isEmpty()) failures.add("vital changes without a Messenger line: " + unmessaged.size());
         if (handsFrostWindow > 0) failures.add("hands took frost points (max " + fmt(handsFrostWindow) + ") on the -25 C day with the worn kit");
         verdict = failures.isEmpty() ? "PASS" : "FAIL " + failures;
+        for (var e : diet.entrySet()) { double[] v = e.getValue(); log(String.format(java.util.Locale.ROOT, "DIET %s %.0f g %.0f kcal fat %.0f protein %.0f carb %.0f", e.getKey(), v[0], v[1], v[2], v[3], v[4])); }
+        log("DIET MODE " + (LEAN_FIRST ? "leanfirst (v4)" : "player (v5)"));
         log("RESULT " + verdict);
         log(String.format(java.util.Locale.ROOT, "SUMMARY crossings %d covered %d unmessaged %d | hands frost max (week) %.0f, on the -25 C day %.0f | worst hands margin vs safe-to: worn kit %.1f C, mittens %.1f C | min BMI %.2f | bites %d matches %d",
                 crossings, covered, unmessaged.size(), handsFrostMax, handsFrostWindow, handsExpMin, mitExpMin, minBmi, ateBites, matches));

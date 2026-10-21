@@ -42,7 +42,10 @@ public interface MessengerPage {
             l.bolts(0, p.energy(), p.energyCap());
             l.gap(Lcd.ROW);
             if (p.energyCap() < 10) {
-                l.text(tr("capped", Math.round(p.energyCap())), Pal.DIM);
+                String why = switch (p.capCause()) {
+                    case 1 -> "hungry"; case 2 -> "thin"; case 3 -> "thirsty"; case 4 -> "gut"; case 5 -> "awake"; default -> "ill";
+                };
+                l.text(tr("capped", Math.round(p.energyCap()), tr("cause." + why)), Pal.DIM);
                 l.row();
             }
             l.text(tr("warmth", Math.round(p.warmth())), ClientBody.warmthWarn(p) ? Pal.RED : Pal.INK);

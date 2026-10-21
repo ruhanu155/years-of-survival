@@ -90,6 +90,10 @@ public final class BodyState {
     /** True while the last step was on an unbroken Rest day near warmth. */
     public transient boolean restActive = false;
     public transient double lastEnergyCap = 10;
+    public transient int lastCapCause = 0;
+    /** Minutes slept inside the current 10 h window, and where the window began (transient: a reload starts a fresh window). */
+    public transient int sleepWin = 0;
+    public transient long sleepWinStart = Long.MIN_VALUE / 2;
     public transient Activity lastActivity = Activity.REST;
     public transient double lastAirC = 10;
 
