@@ -1,0 +1,8 @@
+{
+  "species": "grizzly",
+  "track_every_m": 1.2,
+  "print_cm": 27,
+  "scat": true,
+  "browse": false,
+  "bed": true
+}

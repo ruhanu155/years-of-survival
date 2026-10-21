@@ -1,0 +1,8 @@
+{
+  "species": "lynx",
+  "track_every_m": 0.9,
+  "print_cm": 9,
+  "scat": true,
+  "browse": false,
+  "bed": false
+}

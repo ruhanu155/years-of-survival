@@ -1,0 +1,8 @@
+{
+  "species": "snowshoe_hare",
+  "track_every_m": 0.6,
+  "print_cm": 12,
+  "scat": true,
+  "browse": true,
+  "bed": true
+}

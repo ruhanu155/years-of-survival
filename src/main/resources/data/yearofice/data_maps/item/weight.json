@@ -468,6 +468,21 @@
     },
     "yearofice:sourdough_starter": {
       "weight_g": 400
+    },
+    "yearofice:bow_stave": {
+      "weight_g": 700
+    },
+    "yearofice:sinew_cord": {
+      "weight_g": 10
+    },
+    "yearofice:fletching": {
+      "weight_g": 3
+    },
+    "yearofice:feather": {
+      "weight_g": 1
+    },
+    "yearofice:sinew_bow": {
+      "weight_g": 900
     }
   }
 }

@@ -799,6 +799,23 @@
       "category": "food",
       "stack_class": "single",
       "scent_level": 1
+    },
+    "yearofice:bow_stave": {
+      "category": "material",
+      "stack_class": "single",
+      "material": "wood"
+    },
+    "yearofice:sinew_cord": {
+      "category": "material",
+      "stack_class": "small"
+    },
+    "yearofice:fletching": {
+      "category": "material",
+      "stack_class": "small"
+    },
+    "yearofice:feather": {
+      "category": "material",
+      "stack_class": "small"
     }
   }
 }

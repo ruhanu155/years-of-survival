@@ -1,0 +1,1 @@
+{"parent":"minecraft:block/block","textures":{"all":"minecraft:block/coarse_dirt","particle":"minecraft:block/coarse_dirt"},"elements":[{"from":[3,0,3],"to":[13,0.4,13],"faces":{"up":{"texture":"#all"},"down":{"texture":"#all"}}}]}

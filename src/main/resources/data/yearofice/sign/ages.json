@@ -1,0 +1,12 @@
+{
+  "fresh_below_min": 60,
+  "soft_below_min": 1440,
+  "crusted_below_min": 4320,
+  "mud_life_min": 7200,
+  "sand_life_min": 1440,
+  "snow_life_min": 10080,
+  "moss_life_min": 1440,
+  "scat_life_min": 10080,
+  "browse_life_min": 20160,
+  "bed_life_min": 2880
+}

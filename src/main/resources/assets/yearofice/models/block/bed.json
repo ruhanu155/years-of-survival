@@ -1,0 +1,1 @@
+{"parent":"minecraft:block/block","textures":{"all":"minecraft:block/hay_block_top","particle":"minecraft:block/hay_block_top"},"elements":[{"from":[3,0,3],"to":[13,0.4,13],"faces":{"up":{"texture":"#all"},"down":{"texture":"#all"}}}]}

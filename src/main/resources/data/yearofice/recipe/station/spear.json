@@ -1,0 +1,28 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "bushcraft",
+  "station": "yearofice:workbench",
+  "ingredients": [
+    {
+      "item": "yearofice:tool_handle",
+      "count": 1
+    },
+    {
+      "item": "yearofice:arrowhead",
+      "count": 1
+    },
+    {
+      "item": "yearofice:cord",
+      "count": 1
+    }
+  ],
+  "tool": "#yearofice:knives",
+  "work_min": 45,
+  "effort": "light",
+  "kcal": 75,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:spear",
+    "count": 1
+  }
+}

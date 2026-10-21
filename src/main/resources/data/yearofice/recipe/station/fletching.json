@@ -1,0 +1,20 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "bushcraft",
+  "station": "yearofice:hands",
+  "ingredients": [
+    {
+      "item": "yearofice:feather",
+      "count": 3
+    }
+  ],
+  "tool": "#yearofice:knives",
+  "work_min": 30,
+  "effort": "light",
+  "kcal": 50,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:fletching",
+    "count": 1
+  }
+}

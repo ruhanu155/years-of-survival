@@ -1,0 +1,8 @@
+{
+  "species": "black_bear",
+  "track_every_m": 1.0,
+  "print_cm": 20,
+  "scat": true,
+  "browse": false,
+  "bed": true
+}

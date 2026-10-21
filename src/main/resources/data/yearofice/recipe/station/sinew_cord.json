@@ -1,0 +1,19 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "bushcraft",
+  "station": "yearofice:hands",
+  "ingredients": [
+    {
+      "item": "yearofice:sinew",
+      "count": 2
+    }
+  ],
+  "work_min": 120,
+  "effort": "light",
+  "kcal": 200,
+  "skill": "cordage",
+  "result": {
+    "id": "yearofice:sinew_cord",
+    "count": 1
+  }
+}

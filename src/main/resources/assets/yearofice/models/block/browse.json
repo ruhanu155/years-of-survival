@@ -1,0 +1,1 @@
+{"parent":"minecraft:block/block","textures":{"all":"minecraft:block/stripped_birch_log_top","particle":"minecraft:block/stripped_birch_log_top"},"elements":[{"from":[3,0,3],"to":[13,0.4,13],"faces":{"up":{"texture":"#all"},"down":{"texture":"#all"}}}]}

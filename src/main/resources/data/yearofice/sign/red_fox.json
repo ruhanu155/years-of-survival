@@ -1,0 +1,8 @@
+{
+  "species": "red_fox",
+  "track_every_m": 0.8,
+  "print_cm": 5,
+  "scat": true,
+  "browse": false,
+  "bed": false
+}

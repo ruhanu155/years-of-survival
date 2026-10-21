@@ -1,0 +1,8 @@
+{
+  "species": "wolf",
+  "track_every_m": 1.3,
+  "print_cm": 11,
+  "scat": true,
+  "browse": false,
+  "bed": true
+}
