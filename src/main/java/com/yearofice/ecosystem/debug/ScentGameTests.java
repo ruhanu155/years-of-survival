@@ -9,7 +9,6 @@ import com.yearofice.ecosystem.pool.ValleyPool;
 import com.yearofice.ecosystem.species.BearEntity;
 import com.yearofice.ecosystem.species.rig.BigGameEntity;
 import com.yearofice.ecosystem.species.rig.PredatorEntity;
-import com.yearofice.env.weather.WeatherSystem;
 import com.yearofice.sim.ecosystem.Drives;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -62,9 +61,8 @@ public final class ScentGameTests {
         h.setBlock(pile, EcosystemRegistry.GUT_PILE.get().defaultBlockState());
         BlockPos abs = h.absolutePos(pile);
         ScentPoints.add(h.getLevel(), abs);
-        boolean calm0 = WeatherSystem.calmOverride; // pool tests share these statics: put back what was there, not a default
+        // no global weather pin here: a parallel weather/ test reads the same flag. The wind is pinned per entity and by ValleyPool.windOverride; 120 m is far inside any rain-trimmed reach.
         double[] wind0 = ValleyPool.windOverride;
-        WeatherSystem.calmOverride = true;
         int dx = bearCase ? 120 : 40;
         PredatorEntity eater = bearCase ? h.spawn(EcosystemRegistry.GRIZZLY.get(), new BlockPos(1 + dx, Y, 1 + zOff))
                 : h.spawn(EcosystemRegistry.WOLF.get(), new BlockPos(1 + dx, Y, 1 + zOff));
@@ -91,7 +89,6 @@ public final class ScentGameTests {
             ScentPoints.remove(h.getLevel(), abs);
             eater.discard();
             if (prey != null) prey.discard();
-            WeatherSystem.calmOverride = calm0;
             ValleyPool.windOverride = wind0;
             BigGameGameTests.forceLine(h, start, len, false);
             h.setBlock(pile, Blocks.AIR);
