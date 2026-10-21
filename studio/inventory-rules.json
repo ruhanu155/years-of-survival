@@ -2239,7 +2239,7 @@
     {
       "basis": "B10 snow shelter walls",
       "milestone": "m7",
-      "owner": "travel",
+      "owner": "body",
       "type": "tag",
       "ids": [
         "snow_walls"
