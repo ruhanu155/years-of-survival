@@ -86,8 +86,8 @@ public final class OutpostGameTests {
             boolean edge = x == 3 || x == 7 || z == 3 || z == 7;
             for (int y = 2; y <= 3; y++) if (edge) h.setBlock(new BlockPos(x, y, z), z == 3 ? net.minecraft.world.level.block.Blocks.SPRUCE_PLANKS : log);
         }
-        for (int x = 2; x <= 8; x++) for (int z = 2; z <= 8; z++) h.setBlock(new BlockPos(x, 4, z), net.minecraft.world.level.block.Blocks.SPRUCE_SLAB);
-        h.setBlock(new BlockPos(2, 5, 5), com.yearofice.worldgen.block.WorldBlocks.SNOW_COVER.get().defaultBlockState());
+        for (int x = 3; x <= 8; x++) for (int z = 3; z <= 7; z++) h.setBlock(new BlockPos(x, 4, z), net.minecraft.world.level.block.Blocks.SPRUCE_SLAB);
+        h.setBlock(new BlockPos(8, 5, 5), com.yearofice.worldgen.block.WorldBlocks.SNOW_COVER.get().defaultBlockState());
         var seams = Tells.leakySeams(h.getLevel(), h.absolutePos(new BlockPos(5, 3, 5)), 6);
         h.assertTrue(seams.contains(h.absolutePos(new BlockPos(3, 2, 5))), "a log wall with warm air inside and open air outside is a seam");
         h.assertTrue(!seams.contains(h.absolutePos(new BlockPos(5, 2, 3))), "a planked wall is not");
@@ -128,6 +128,7 @@ public final class OutpostGameTests {
         net.minecraft.world.phys.Vec3 at = h.absoluteVec(new net.minecraft.world.phys.Vec3(1.5, 2, 1.5));
         raft.setPos(at);
         raft.setNoGravity(true);
+        raft.noPhysics = true;
         h.getLevel().addFreshEntity(raft);
         var rng = new java.util.SplittableRandom(77);
         for (int i = 0; i < 100; i++) h.assertTrue(raft.step(new net.minecraft.world.phys.Vec3(1, 0, 0), 1.2, false, rng), "calm water never breaks it");
