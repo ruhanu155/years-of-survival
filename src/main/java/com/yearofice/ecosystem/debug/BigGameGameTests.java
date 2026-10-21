@@ -196,7 +196,7 @@ public final class BigGameGameTests {
     static void chaseCap(GameTestHelper h) {
         Vec3 start0 = h.absolutePos(new BlockPos(1, Y, 1)).getCenter();
         forceLine(h, start0, 300, true);
-        h.runAfterDelay(40, () -> chaseCapRun(h));
+        chaseCapRun(h);
     }
 
     static void chaseCapRun(GameTestHelper h) {
@@ -394,8 +394,7 @@ public final class BigGameGameTests {
     static void bearFindsSpot(GameTestHelper h) {
         Vec3 start = h.absolutePos(new BlockPos(1, Y, 1)).getCenter();
         forceLine(h, start, 80, true);
-        // the strip needs its chunks loaded before blocks can be set in them
-        h.runAfterDelay(40, () -> bearFindsSpotRun(h, start));
+        bearFindsSpotRun(h, start); // force() loads the chunks synchronously
     }
 
     static void bearFindsSpotRun(GameTestHelper h, Vec3 start) {

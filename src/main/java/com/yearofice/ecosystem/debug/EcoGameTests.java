@@ -105,6 +105,7 @@ public final class EcoGameTests {
                     if (n != null) FORCED.put(key, n + 1);
                     else if (!level.getForcedChunks().contains(key)) {
                         level.setChunkForced(c.x + dx, c.z + dz, true);
+                        level.getChunk(c.x + dx, c.z + dz); // loaded now, so blocks can be set at once (no delay callback needed)
                         FORCED.put(key, 1);
                     }
                 } else {
@@ -277,14 +278,15 @@ public final class EcoGameTests {
             for (int i = 0; i < 5; i++) {
                 h.assertFalse(moose.hurt(h.getLevel().damageSources().playerAttack(p), 1000f), "the hit took");
             }
-            h.runAfterDelay(5, () -> {
-                h.assertTrue(moose.isAlive() && !moose.isRemoved(), "the moose died");
-                h.assertTrue(moose.getHealth() == hp, "health " + moose.getHealth() + " of " + hp);
-                h.assertTrue(h.getLevel().getEntitiesOfClass(CarcassEntity.class, moose.getBoundingBox().inflate(8),
-                        c -> c.record().species().equals(MooseEntity.ID)).isEmpty(), "a moose carcass appeared");
-                h.assertTrue(moose.awareness().max() >= 99, "a hit should alarm it, awareness " + moose.awareness().max());
-                h.succeed();
-            });
+        });
+        // scheduled here, not inside the delay above: nested delays modify the framework's map mid-iteration
+        h.runAfterDelay(10, () -> {
+            h.assertTrue(moose.isAlive() && !moose.isRemoved(), "the moose died");
+            h.assertTrue(moose.getHealth() == hp, "health " + moose.getHealth() + " of " + hp);
+            h.assertTrue(h.getLevel().getEntitiesOfClass(CarcassEntity.class, moose.getBoundingBox().inflate(8),
+                    c -> c.record().species().equals(MooseEntity.ID)).isEmpty(), "a moose carcass appeared");
+            h.assertTrue(moose.awareness().max() >= 99, "a hit should alarm it, awareness " + moose.awareness().max());
+            h.succeed();
         });
     }
 
