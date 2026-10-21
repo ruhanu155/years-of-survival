@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "yearofice:spruce_round",
+    "yearofice:birch_round",
+    "yearofice:aspen_round",
+    "yearofice:poplar_round",
+    "yearofice:tamarack_round",
+    "yearofice:willow_round",
+    "yearofice:alder_round",
+    "yearofice:drift_round"
+  ]
+}

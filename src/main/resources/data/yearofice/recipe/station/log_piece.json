@@ -1,0 +1,20 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "homestead",
+  "station": "yearofice:workbench",
+  "ingredients": [
+    {
+      "tag": "yearofice:rounds",
+      "count": 1
+    }
+  ],
+  "tool": "yearofice:hatchet",
+  "work_min": 12,
+  "effort": "medium",
+  "kcal": 50,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:log_piece",
+    "count": 2
+  }
+}

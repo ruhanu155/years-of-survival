@@ -2887,6 +2887,15 @@
       "ids": [
         "browse"
       ]
+    },
+    {
+      "basis": "M6 lane G rounds item tag (log_piece recipe)",
+      "milestone": "m6",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "rounds"
+      ]
     }
   ],
   "expand": {

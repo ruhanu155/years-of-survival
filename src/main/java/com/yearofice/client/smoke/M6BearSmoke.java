@@ -135,6 +135,7 @@ public final class M6BearSmoke {
                 mc.getToasts().clear();
                 if (mc.screen instanceof net.minecraft.client.gui.screens.PauseScreen) mc.setScreen(null);
                 if (ticks % 10 == 0) mc.getSingleplayerServer().execute(() -> watch(mc));
+                else mc.getSingleplayerServer().execute(M6BearSmoke::stopCheck); // RECONCILE 312: the 2-day stop is checked every tick, not every half second
                 if (shotWait >= 0 && --shotWait == 0 && shotName != null) {
                     Screenshot.grab(mc.gameDirectory, shotName + ".png", mc.getMainRenderTarget(), m -> YearOfIce.LOG.info("Smoke screenshot: {}", m.getString()));
                     shotName = null;
@@ -219,6 +220,16 @@ public final class M6BearSmoke {
         shotWait = seedIx == 0 ? 30 : -1;
         if (seedIx != 0) shotName = null;
         ready = true;
+    }
+
+    /** Server thread, every client tick: a run stops at two game days whatever the clock did between the half-second looks. */
+    private static void stopCheck() {
+        if (finished) return;
+        long used = ClockService.get().nowMinute() - startMin;
+        if (used >= RUN_MIN) {
+            note += "game minutes run " + used + " (stopped at two days)";
+            finished = true;
+        }
     }
 
     /** Server thread, every half second: look for bears near the pile; end after two game days. */

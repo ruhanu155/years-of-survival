@@ -1,0 +1,20 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "homestead",
+  "station": "yearofice:workbench",
+  "ingredients": [
+    {
+      "tag": "yearofice:split_wood",
+      "count": 1
+    }
+  ],
+  "tool": "yearofice:hatchet",
+  "work_min": 24,
+  "effort": "medium",
+  "kcal": 100,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:plank",
+    "count": 2
+  }
+}
