@@ -6769,6 +6769,51 @@
       "licence": "project",
       "generator_version": "plants 1.0",
       "release_blocker": false
+    },
+    {
+      "asset_id": "snd_world_frost_drip",
+      "files": [
+        "assets/yearofice/sounds/world/frost_drip1.ogg",
+        "assets/yearofice/sounds/world/frost_drip2.ogg",
+        "assets/yearofice/sounds/world/frost_drip3.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/recipes/world/frost_drip.json",
+      "licence": "project",
+      "generator_version": "soundgen 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "snd_world_icicle_crack",
+      "files": [
+        "assets/yearofice/sounds/world/icicle_crack1.ogg",
+        "assets/yearofice/sounds/world/icicle_crack2.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/recipes/world/icicle_crack.json",
+      "licence": "project",
+      "generator_version": "soundgen 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tent_kit",
+      "files": [
+        "assets/yearofice/models/item/canvas_wall_tent.json",
+        "assets/yearofice/textures/item/canvas_wall_tent.png",
+        "assets/yearofice/models/item/stove_jack.json",
+        "assets/yearofice/textures/item/stove_jack.png",
+        "assets/yearofice/models/item/tent_stove.json",
+        "assets/yearofice/textures/item/tent_stove.png",
+        "assets/yearofice/models/item/can_stove.json",
+        "assets/yearofice/textures/item/can_stove.png",
+        "assets/yearofice/models/item/spark_screen.json",
+        "assets/yearofice/textures/item/spark_screen.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/tent_items.py",
+      "licence": "project",
+      "generator_version": "tent_items 1.0",
+      "release_blocker": false
     }
   ]
 }

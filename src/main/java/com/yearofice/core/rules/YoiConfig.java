@@ -36,6 +36,7 @@ public final class YoiConfig {
         com.yearofice.food.FoodConfig.define(b);
         com.yearofice.story.StoryConfig.define(b);
         com.yearofice.build.wood.WoodConfig.define(b);
+        com.yearofice.build.outpost.OutpostConfig.define(b);
         com.yearofice.build.BuildConfig.define(b);
         com.yearofice.plant.ForageConfig.define(b);
         com.yearofice.crop.GardenConfig.define(b);
