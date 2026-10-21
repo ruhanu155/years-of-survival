@@ -816,6 +816,34 @@
     "yearofice:feather": {
       "category": "material",
       "stack_class": "small"
+    },
+    "yearofice:fleece_jacket": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:rain_shell": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:work_pants": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:wool_socks": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:hiking_boots": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:wool_beanie": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:work_gloves": {
+      "category": "clothing",
+      "stack_class": "single"
     }
   }
 }

@@ -7547,6 +7547,94 @@
       "licence": "project",
       "generator_version": "artgen 0.4.0",
       "release_blocker": false
+    },
+    {
+      "asset_id": "model_fleece_jacket",
+      "files": [
+        "assets/yearofice/models/item/fleece_jacket.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_rain_shell",
+      "files": [
+        "assets/yearofice/models/item/rain_shell.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_work_pants",
+      "files": [
+        "assets/yearofice/models/item/work_pants.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_wool_socks",
+      "files": [
+        "assets/yearofice/models/item/wool_socks.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_hiking_boots",
+      "files": [
+        "assets/yearofice/models/item/hiking_boots.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_wool_beanie",
+      "files": [
+        "assets/yearofice/models/item/wool_beanie.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_work_gloves",
+      "files": [
+        "assets/yearofice/models/item/work_gloves.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_dried_meat",
+      "files": [
+        "assets/yearofice/models/item/dried_meat.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
     }
   ]
 }
