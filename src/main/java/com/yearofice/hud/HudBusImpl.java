@@ -60,8 +60,13 @@ public final class HudBusImpl implements HudBus {
 
     private static long now() { return ClockService.installed() ? ClockService.get().nowMinute() : 0; }
 
+    /** Append-only observer of every line offered to the bus (the proxy checks read it; null in play). */
+    public static volatile java.util.function.BiConsumer<ServerPlayer, HudLine> tap = null;
+
     @Override
     public void post(ServerPlayer p, HudLine line) {
+        var tp = tap;
+        if (tp != null) tp.accept(p, line);
         if (fromTrap(line.source())) {
             if (!FMLEnvironment.production) throw new IllegalArgumentException("No trap catches on the HUD: " + line.key() + " from " + line.source());
             return;
