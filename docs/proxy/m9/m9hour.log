@@ -9,21 +9,42 @@
   kit: yearofice:cord x10
   kit: yearofice:hiking_boots x1
   kit: yearofice:rain_shell x1
-GRANT the crate kit is used as dealt (22 stacks)
+GRANT the crate kit is used as dealt (22 stacks), except that the camp gear (bread, pot, panel, guide, medkit) is stashed in a barrel by the door: the 30 kg pack has no room for the homestead's materials otherwise
+STASH 5 kit stacks left in a barrel at -1086, 156, 814
 CLOCK set through ClockService.setNow to 22:50 absolute day 598, year 2, day of year 233 (setup jump; no /yoi)
 GRANT homestead pad levelled by setBlock at -1078, 151, 810 ground y 150 (a real player has no digging tool for this); cabin -1078, 151, 810, stovehouse -1069, 151, 810, pen -1059, 151, 810
 GRANT shell -1078, 151, 810: slab_floor, wall_log, door_frame, window_frame, roof_pole_sod (station recipes exist at the iron tier; not run in an hour)
 GRANT tin_stove + 5 chimney_pipe at -1077, 152, 811: chimney 5.0 m, flued true
-GRANT radio_desk placed at -1074, 152, 811 (no recipe or loot path)
 GRANT 24 seasoned birch splits for the two stoves (the wood chain was proven in M8)
 GRANT 1 match (kit had none left)
 STOVE -1077, 152, 811 lit true, setting STEADY, 4450 W, armloads 2.00
+GATE BUSHCRAFT open: false
+GRANT gate BUSHCRAFT opened through GateService.open: no fire was lit before the clock jump
+GATE HOMESTEAD open: false
+GRANT gate HOMESTEAD opened through GateService.open: the clock was set to December of year 2, skipping the first breakup in a warm room that opens it
+GRANT 8 sticks for stakes (limbing gives kindling, fallen_limb comes from lightning, a plant pull gives one)
+GRANT 3 rough stones (knapping tool, knife, hoe head); the gravel path that makes them is proven by the M6 hunt proxy
+GRANT flint_nodule (ingredient of flint_knife; first shortfall, more are tallied in the final ledger)
+GRANT spruce_split (ingredient of workbench; first shortfall, more are tallied in the final ledger)
+BENCH crafted and placed at -1075, 152, 814: true, stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring]
+  PACK FULL (weight cap): iron_bar x2 dropped at the feet
+GRANT iron_bar (ingredient of radio_desk; first shortfall, more are tallied in the final ledger)
+FINDING craft refused radio_desk: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+CRAFTED at the cabin bench: {flint_knife=1, stake=4, workbench=1, tool_handle=1, hoe=1, plank=4}; labour 400 game min so far
+radio_desk crafted at the bench and placed at -1074, 152, 811
 GRANT 9 vanilla lanterns (6 on stone-brick lamp posts in the yard, 3 indoors) so the midnight frames are readable; screenshot dressing only
 GRANT shell -1069, 151, 810: slab_floor, wall_log, door_frame, window_frame, roof_pole_sod (station recipes exist at the iron tier; not run in an hour)
 GRANT tin_stove + 5 chimney_pipe at -1068, 152, 811: chimney 5.0 m, flued true
 GRANT 1 match (kit had none left)
 STOVE -1068, 152, 811 lit true, setting STEADY, 4450 W, armloads 2.00
-GRANT hoe, 2 cabbage_seed, 2 turnip_seed (the hoe has no recipe; the seeds arrive in the supply drop, season 1 onward)
+GRANT the drop is landed by calling SupplyParachute.land at -1063, 151, 806 (the radio sked that would fly it is exercised separately by the radio moment)
+  crate: 1 yearofice:bear_spray left in the crate (the pack's weight cap)
+  crate: 40 yearofice:turnip_seed left in the crate (the pack's weight cap)
+  crate: 20 yearofice:cabbage_seed left in the crate (the pack's weight cap)
+  crate: 5 yearofice:barley_flour left in the crate (the pack's weight cap)
+  crate: 1 yearofice:radio_battery left in the crate (the pack's weight cap)
+SUPPLY crate opened: 6 items taken (0 turnip seed, 0 cabbage seed); 5 livestock came down with it
+SOW the hoe is the one crafted at the bench (1 in the pack); the seeds came in the supply drop crate (cabbage 0, turnip 0)
 SOW yearofice:cabbage_crop at -1066, 152, 813: 0 of 1 up
 FINDING sowing inside the heated stovehouse in December germinates 0 of 1 (Garden.soilC reads the 7-day outdoor air mean, not the room); the bot set up=1 on the crop block entity (GRANT)
 SOW yearofice:turnip_crop at -1065, 152, 813: 0 of 1 up
@@ -31,51 +52,62 @@ FINDING sowing inside the heated stovehouse in December germinates 0 of 1 (Garde
 SOW yearofice:cabbage_crop at -1066, 152, 814: 0 of 1 up
 FINDING sowing inside the heated stovehouse in December germinates 0 of 1 (Garden.soilC reads the 7-day outdoor air mean, not the room); the bot set up=1 on the crop block entity (GRANT)
 SOW yearofice:turnip_crop at -1065, 152, 814: 1 of 1 up
-ROOM cabin: 28 m3, U 82.4 W/C, source 4450 W, outside -30.0 C, feels 28.6 C, 0 leaks
-ROOM stovehouse: 28 m3, U 102.3 W/C, source 4450 W, outside -30.0 C, feels 21.1 C, 0 leaks
-GRANT 56 wall_log pieces: a closed two-course log stockade (no recipe path run in an hour)
-GRANT hay_rack, feed_trough, nest_box, water_trough placed (no recipe: feed_boxes only drop themselves)
-GRANT 2 goats and 3 hens spawned in the pen with EntityType.create (no taming, trade, capture or egg-hatching path exists for a player)
+ROOM cabin: 27 m3, U 68.0 W/C, source 4450 W, outside -30.0 C, feels 2.5 C, 0 leaks
+ROOM stovehouse: 28 m3, U 88.1 W/C, source 4450 W, outside -30.0 C, feels 0.8 C, 0 leaks
+  PACK FULL (weight cap): spruce_split x2 dropped at the feet
+FINDING craft refused workbench: INPUTS (stations [yearofice:hands, yearofice:fire_ring], pack 0 splits)
+BENCH 2 crafted and placed at -1062, 151, 812 beside the pen: true, stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring]
+GRANT 8 more sticks for the furniture's stakes
+  PACK FULL (weight cap): spruce_split x2 dropped at the feet
+FINDING craft refused plank: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  PACK FULL (weight cap): spruce_split x2 dropped at the feet
+FINDING craft refused plank: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  PACK FULL (weight cap): spruce_split x2 dropped at the feet
+FINDING craft refused plank: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  PACK FULL (weight cap): spruce_split x2 dropped at the feet
+FINDING craft refused plank: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  PACK FULL (weight cap): plank x3 dropped at the feet
+GRANT plank (ingredient of hay_rack; first shortfall, more are tallied in the final ledger)
+FINDING craft refused hay_rack: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  PACK FULL (weight cap): stake x2 dropped at the feet
+GRANT stake (ingredient of feed_trough; first shortfall, more are tallied in the final ledger)
+FINDING craft refused feed_trough: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  PACK FULL (weight cap): stake x2 dropped at the feet
+FINDING craft refused nest_box: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  PACK FULL (weight cap): stake x2 dropped at the feet
+FINDING craft refused water_trough: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+PEN hay_rack, feed_trough, nest_box, water_trough crafted at the pen bench and placed through the block-item use path
+GRANT log_piece (ingredient of wall_log; first shortfall, more are tallied in the final ledger)
+PEN 56 wall_log pieces crafted one at a time (piece_wall_log from log_piece) and placed: a closed two-course log stockade; crafted in all {flint_knife=1, stake=18, workbench=1, tool_handle=1, hoe=1, plank=4, wall_log=56}; labour 1040 game min (17.3 h) that the hour test does not spend
+FINDING the homestead set (two benches, planks, hoe, troughs, rack, nest box, radio desk, 56 wall pieces) is 17.3 game hours of crafting labour once its raw materials are on hand
+LIVESTOCK 5 animals from the supply drop herded into the pen (teleported: 0 game min of leading on foot); no goat or hen is spawned by the driver
+GRANT 40 straw and 5 water buckets for the keeper's round (the hay and well chain is the farm's, not the hour's)
 KEEPER round: 16 straw into the rack (rack now 8.0 kg), 20 hand feeds/waterings on animals
-GRANT wolf spawned owned at trust 85 (Companion), age 400 days, named Ash: honest taming is 30-60 game days of feeding; 'pup' acts exist as Wolf.act but no player-facing feed-ground input was exercised in an hour
+PUP the den pup arrived at -1167, 151, 882 (134 m out), unowned and tameable, trust 0.0
+WALK the pup is led to the cabin (teleported)
+GRANT the pup's trust set to 85, age 400 days and owner set: honest taming is 30-60 game days of feeding and growing up
 OUTPOST nearest yearofice:fish_camp (Fish camp) 921 m away, origin -253, 344, 355: layout 122 pieces, 26 missing/rotted. Chunks generated in setup (the first-load stamp)
-  crossing at 23:22: frost_stage1:LEFT_LEG
-  crossing at 23:22: frost_stage1:RIGHT_LEG
-  crossing at 23:24: frost_stage1:HEAD
 
-HOUR BEGIN 23:27 day 598 year 2 | stored feed 15.5 kg | crop units 0.0 | body warmth 83 water 98 energy 9.8 kg 77.0 bmi 22.98 | sos 0
+HOUR BEGIN 23:27 day 598 year 2 | stored feed 15.5 kg | crop units 0.0 | body warmth 99 water 97 energy 9.8 kg 77.0 bmi 22.98 | sos 0
   journal at start: 0 entries; HudBus journal 2 lines
-  crossing at 23:32: frost_stage1:LEFT_HAND
-  crossing at 23:32: frost_stage1:RIGHT_HAND
-  crossing at 23:39: frost_stage1:TORSO
-  crossing at 23:39: frost_stage1:LEFT_ARM
-  crossing at 23:39: frost_stage1:RIGHT_ARM
-  crossing at 23:41: frost_stage1:LEFT_FOOT
-  crossing at 23:41: frost_stage1:RIGHT_FOOT
-WOLF follow test at +15 min: the player is 18.0 m from the wolf (command FOLLOW, trust 85)
-  crossing at 23:49: frost_stage2:LEFT_LEG
-  crossing at 23:49: frost_stage2:RIGHT_LEG
-  crossing at 23:51: frost_stage2:HEAD
-UNMESSAGED vital change at 23:49: frost_stage2:LEFT_LEG ; journal keys: messenger.yearofice.alert.first_night_wake messenger.yearofice.alert.first_night_air 
-UNMESSAGED vital change at 23:49: frost_stage2:RIGHT_LEG ; journal keys: messenger.yearofice.alert.first_night_wake messenger.yearofice.alert.first_night_air 
-  crossing at 23:53: warmth_low
-UNMESSAGED vital change at 23:51: frost_stage2:HEAD ; journal keys: messenger.yearofice.alert.first_night_wake messenger.yearofice.alert.first_night_air 
-  crossing at 23:56: frost_stage2:LEFT_HAND
-  crossing at 23:56: frost_stage2:RIGHT_HAND
-UNMESSAGED vital change at 23:56: frost_stage2:LEFT_HAND ; journal keys: messenger.yearofice.alert.first_night_wake messenger.yearofice.alert.first_night_air 
-UNMESSAGED vital change at 23:56: frost_stage2:RIGHT_HAND ; journal keys: messenger.yearofice.alert.first_night_wake messenger.yearofice.alert.first_night_air 
+WOLF follow test at +13 min: the player is 18.0 m from the wolf (command FOLLOW, trust 85)
+  crossing at 23:56: frost_stage1:LEFT_LEG
+  crossing at 23:56: frost_stage1:RIGHT_LEG
+  crossing at 23:57: frost_stage1:HEAD
 WALK to the outpost: 934 m = 13.0 game min at 1.2 m/s (teleported; the clock keeps its own pace)
 OUTPOST visited: yearofice:fish_camp layout 122 pieces, 26 missing; HudBus lines mentioning outpost: 0, journal entries of kind outpost: 0
 FINDING entering an outpost raises no Messenger or journal line (no visit event in the build/outpost package)
-  crossing at 00:02: frost_stage2:TORSO
-  crossing at 00:02: frost_stage2:LEFT_ARM
-  crossing at 00:02: frost_stage2:RIGHT_ARM
-  crossing at 00:02: frost_stage2:LEFT_FOOT
-  crossing at 00:02: frost_stage2:RIGHT_FOOT
+  crossing at 23:58: frost_stage1:LEFT_HAND
+  crossing at 23:58: frost_stage1:RIGHT_HAND
+  crossing at 00:01: frost_stage1:TORSO
+  crossing at 00:01: frost_stage1:LEFT_ARM
+  crossing at 00:01: frost_stage1:RIGHT_ARM
+  crossing at 00:01: frost_stage1:LEFT_FOOT
+  crossing at 00:01: frost_stage1:RIGHT_FOOT
 WOLF at the outpost: not loaded there
 WALK home (teleported, indoors)
-RADIO battery 1% at the desk, 6 crank uses with sneak -> 13% (a real crank is a held job: not paced here)
-RADIO tuned in: working=true (was false), battery now 10.0%, journal +1, HudBus radio lines +0
+RADIO battery 0% at the desk, 6 crank uses with sneak -> 12% (a real crank is a held job: not paced here)
+RADIO tuned in: working=true (was false), battery now 9.0%, journal +1, HudBus radio lines +0
   sked: Dana Reyes: Station Nine, this is town. Go ahead with your log.
   sked: Dana: Program outlook.
   sked: Tomorrow: Fair and quiet.
@@ -85,46 +117,51 @@ RADIO tuned in: working=true (was false), battery now 10.0%, journal +1, HudBus 
   sked: In 5 days: Fair and quiet.
   sked: Dana: Pete says the Ninemile is running low and clear below the canyon.
 FINDING the radio sked is spoken with sendSystemMessage straight to chat, not through HudBus/Messenger (Layer 8 says every system word goes through the bus)
-  crossing at 00:09: frost_stage3:LEFT_LEG
-  crossing at 00:09: frost_stage3:RIGHT_LEG
-  crossing at 00:14: frost_stage3:HEAD
-UNMESSAGED vital change at 00:14: frost_stage3:HEAD ; journal keys: messenger.yearofice.alert.first_night_wake messenger.yearofice.alert.first_night_air 
 CHECK at +52 min: stored feed 15.3 kg, crop units 0.0, stoves lit true/true
-HOUR END 00:27 (ran 60 game min in 1200 ticks)
+HOUR END 00:27 (ran 60 game min in 1193 ticks)
 
-WOLF follow: start 18.0 m, closest 5.4 m, after 10 s 5.4 m; wolf loaded at the end true
-LIVESTOCK stored feed 15.50 -> 15.32 kg (0.18 kg eaten), 5/5 found alive and loaded; goat fed 100 watered 100 feed_kg 1.92 debt 0.00 | goat fed 100 watered 100 feed_kg 1.92 debt 0.00 | hen fed 100 watered 100 feed_kg 1.50 debt 0.00 | hen fed 100 watered 100 feed_kg 1.50 debt 0.00 | hen fed 100 watered 100 feed_kg 1.50 debt 0.00 | 
+WOLF follow: start 18.0 m, closest 5.5 m, after 10 s 5.5 m; wolf loaded at the end false
+FAIL the wolf is gone or unloaded at the end of the hour; wolves within 96 m: 0, away record false
+LIVESTOCK stored feed 15.50 -> 15.32 kg (0.18 kg eaten), 5/5 found alive and loaded; hen fed 97 watered 97 feed_kg 1.50 debt 0.00 | hen fed 97 watered 97 feed_kg 1.50 debt 0.00 | hen fed 97 watered 97 feed_kg 1.50 debt 0.00 | goat fed 98 watered 97 feed_kg 1.92 debt 0.08 | goat fed 98 watered 97 feed_kg 1.92 debt 0.08 | 
 GREENS crop units 0.000 -> 0.000; cabbage_crop units 0.0 stage 1 up 1 lastDone 597 | turnip_crop units 0.0 stage 0 up 1 lastDone 597 | cabbage_crop units 0.0 stage 1 up 1 lastDone 597 | turnip_crop units 0.0 stage 0 up 1 lastDone 597 | 
-  stovehouse room at the end: 28 m3, U 80.8 W/C, source 4450 W, outside -34.8 C, feels 31.7 C, 0 leaks
+  stovehouse room at the end: 28 m3, U 70.9 W/C, source 4450 W, outside -34.8 C, feels 6.7 C, 0 leaks
 FAIL greens did not grow: 0.000 -> 0.000 units across the midnight day tick
 RADIO journal entry present: true
-VITALS start [warmth 83 water 98 energy 9.8 kg 77.0 bmi 22.98] end [warmth 53 water 94 energy 9.6 kg 76.9 bmi 22.97]; minima warmth 53 water 94 energy 9.6 condition 100; crossings 24, with a Messenger line 18, without 6
-  of the 6 unmessaged, 6 are frost-stage steps and 0 are strip icons, part bands or lost digits (the three kinds VitalExplainer posts)
-FINDING frost progression has no Messenger line past the first 'Frostnip on your hands, feet or face' (once per 10 game minutes): 6 frost-stage steps on torso, arms, legs, head, feet and hands went unannounced in the hour (VitalExplainer only posts strip icons, part bands and lost digits)
-FAIL vital changes without a Messenger line: 6 (6 frost-stage, 0 other) [23:49 frost_stage2:LEFT_LEG, 23:49 frost_stage2:RIGHT_LEG, 23:51 frost_stage2:HEAD, 23:56 frost_stage2:LEFT_HAND, 23:56 frost_stage2:RIGHT_HAND, 00:14 frost_stage3:HEAD]
+VITALS start [warmth 99 water 97 energy 9.8 kg 77.0 bmi 22.98] end [warmth 93 water 94 energy 9.6 kg 76.9 bmi 22.97]; minima warmth 87 water 94 energy 9.6 condition 100; crossings 10, with a Messenger line 10, without 0
+  of the 0 unmessaged, 0 are frost-stage steps and 0 are strip icons, part bands or lost digits (the three kinds VitalExplainer posts)
 MESSENGER device: battery 10000 (lines reach the screen only above 0; the journal keeps the rest)
-MSPT all 1200 ticks: avg 13.76 p50 2.43 p95 49.12 max 2550.51, over 50 ms: 48
-MSPT clean (driver teleports/chunk loads excluded) 649 ticks: avg 3.37 p50 2.28 p95 8.02 max 35.01, over 50 ms: 0 (budget: avg < 30, never > 50)
-SAVE homestead NBT (block entities in the yard box + the wolf and the flock, compressed) 5.9 KB; 22 region-file chunks sets (.mca files)
-SAVE world folder 18.10 MB total; chunk files (region/entities/poi) 18.08 MB; everything else 0.03 MB (data/ 5 KB, playerdata/ 3 KB)
-  largest: region/r.-1.0.mca 4240 KB
-  largest: region/r.-3.1.mca 3760 KB
-  largest: region/r.-2.1.mca 3169 KB
-  largest: region/r.-1.1.mca 1483 KB
+MSPT all 1193 ticks: avg 11.68 p50 1.85 p95 48.33 max 3054.27, over 50 ms: 41
+MSPT clean (driver teleports/chunk loads excluded) 642 ticks: avg 2.41 p50 1.71 p95 6.05 max 16.02, over 50 ms: 0 (budget: avg < 30, never > 50)
+SAVE homestead NBT (block entities in the yard box + the wolf and the flock, compressed) 5.6 KB; 23 region-file chunks sets (.mca files)
+SAVE world folder 18.48 MB total; chunk files (region/entities/poi) 18.45 MB; everything else 0.03 MB (data/ 5 KB, playerdata/ 3 KB)
+  largest: region/r.-1.0.mca 4264 KB
+  largest: region/r.-3.1.mca 3854 KB
+  largest: region/r.-2.1.mca 3211 KB
+  largest: region/r.-1.1.mca 1562 KB
   largest: region/r.-3.2.mca 1430 KB
   largest: region/r.-2.0.mca 1151 KB
   largest: region/r.-2.2.mca 1102 KB
   largest: region/r.-3.0.mca 909 KB
-SAVE mod save data = data/ + playerdata/ + level.dat + the homestead's NBT = 0.030 MB (chunk files carry terrain; the five-year test line is mod save data)
-NOTE the whole world folder is 18.10 MB, over 5 MB, because of generated terrain in the region files; it is not mod save data
+SAVE mod save data = data/ + playerdata/ + level.dat + the homestead's NBT = 0.032 MB (chunk files carry terrain; the five-year test line is mod save data)
+NOTE the whole world folder is 18.48 MB, over 5 MB, because of generated terrain in the region files; it is not mod save data
 FINDING SERVER HANG (seen in an earlier run of this driver, pole-fence pen): FenceDrift.onChunkLoad (ChunkEvent.Load, non-new chunk, winter) calls build(), which reads up to fence_drift_reach (5-10) blocks downwind with Level.getBlockState; across a chunk edge that is a blocking getChunk on the server thread inside the chunk's own FULL-status task, so the server thread parks forever in ServerChunkCache.managedBlock (stack: FenceDrift.build:64 <- settle:101 <- onChunkLoad:109). Any fence or wall within ~10 blocks of a chunk edge hangs the world when its chunk reloads. This run uses log walls, which the yearofice:fences tag does not list.
-GRANTED (no honest path or shortcut taken): {slab_floor=56, wall_log=134, door_frame=2, window_frame=2, roof_pole_sod=70, tin_stove=2, chimney_pipe=10, radio_desk=1, birch_split=24, match=2, lantern=9, hoe=1, cabbage_seed=2, turnip_seed=2, hay_rack=1, feed_trough=1, nest_box=1, water_trough=1, goat=2, hen=3, straw=40, water_bucket=5, tamed_wolf=1}
-DESIGN FINDINGS: 7
+GRANTED (no honest path or shortcut taken): {slab_floor=56, wall_log=78, door_frame=2, window_frame=2, roof_pole_sod=70, tin_stove=2, chimney_pipe=10, birch_split=25, match=2, gate_bushcraft=1, gate_homestead=1, stick=16, rough_stone=3, flint_nodule=1, spruce_split=14, iron_bar=2, radio_desk(refused)=1, lantern=9, supply_drop_trigger=1, workbench(refused)=1, plank(refused)=4, plank=13, hay_rack(refused)=1, stake=6, feed_trough(refused)=1, nest_box(refused)=1, water_trough(refused)=1, log_piece=56, straw=40, water_bucket=5, wolf_trust_and_age=1}
+DESIGN FINDINGS: 17
+  - craft refused radio_desk: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
   - sowing inside the heated stovehouse in December germinates 0 of 1 (Garden.soilC reads the 7-day outdoor air mean, not the room); the bot set up=1 on the crop block entity (GRANT)
   - sowing inside the heated stovehouse in December germinates 0 of 1 (Garden.soilC reads the 7-day outdoor air mean, not the room); the bot set up=1 on the crop block entity (GRANT)
   - sowing inside the heated stovehouse in December germinates 0 of 1 (Garden.soilC reads the 7-day outdoor air mean, not the room); the bot set up=1 on the crop block entity (GRANT)
+  - craft refused workbench: INPUTS (stations [yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  - craft refused plank: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  - craft refused plank: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  - craft refused plank: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  - craft refused plank: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  - craft refused hay_rack: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  - craft refused feed_trough: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  - craft refused nest_box: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  - craft refused water_trough: INPUTS (stations [yearofice:workbench, yearofice:hands, yearofice:fire_ring], pack 0 splits)
+  - the homestead set (two benches, planks, hoe, troughs, rack, nest box, radio desk, 56 wall pieces) is 17.3 game hours of crafting labour once its raw materials are on hand
   - entering an outpost raises no Messenger or journal line (no visit event in the build/outpost package)
   - the radio sked is spoken with sendSystemMessage straight to chat, not through HudBus/Messenger (Layer 8 says every system word goes through the bus)
-  - frost progression has no Messenger line past the first 'Frostnip on your hands, feet or face' (once per 10 game minutes): 6 frost-stage steps on torso, arms, legs, head, feet and hands went unannounced in the hour (VitalExplainer only posts strip icons, part bands and lost digits)
   - SERVER HANG (seen in an earlier run of this driver, pole-fence pen): FenceDrift.onChunkLoad (ChunkEvent.Load, non-new chunk, winter) calls build(), which reads up to fence_drift_reach (5-10) blocks downwind with Level.getBlockState; across a chunk edge that is a blocking getChunk on the server thread inside the chunk's own FULL-status task, so the server thread parks forever in ServerChunkCache.managedBlock (stack: FenceDrift.build:64 <- settle:101 <- onChunkLoad:109). Any fence or wall within ~10 blocks of a chunk edge hangs the world when its chunk reloads. This run uses log walls, which the yearofice:fences tag does not list.
-RESULT FAIL [greens did not grow: 0.000 -> 0.000 units across the midnight day tick, vital changes without a Messenger line: 6 (6 frost-stage, 0 other) [23:49 frost_stage2:LEFT_LEG, 23:49 frost_stage2:RIGHT_LEG, 23:51 frost_stage2:HEAD, 23:56 frost_stage2:LEFT_HAND, 23:56 frost_stage2:RIGHT_HAND, 00:14 frost_stage3:HEAD]]
+RESULT FAIL [the wolf is gone or unloaded at the end of the hour; wolves within 96 m: 0, away record false, greens did not grow: 0.000 -> 0.000 units across the midnight day tick]
