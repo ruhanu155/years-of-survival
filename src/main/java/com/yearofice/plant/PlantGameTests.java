@@ -272,7 +272,7 @@ public final class PlantGameTests {
             ServerPlayer p = player(h);
             ItemStack grain = new ItemStack(CropRegistry.WHEAT.get());
             grain.set(YoiComponents.WEIGHT_G.get(), 1000);
-            var r = com.yearofice.crop.StationRecipe.find(h.getLevel(), "yearofice:hand_quern", grain);
+            var r = com.yearofice.build.craft.StationRecipe.find(h.getLevel(), "yearofice:hand_quern", grain);
             h.assertTrue(r != null, "a yearofice:station recipe for the hand quern loads from data");
             h.assertTrue(r.workMinPerKg() == 60 && r.resultItem() == CropRegistry.BARLEY_FLOUR.get(), "recipe numbers");
             p.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new ItemStack(CropRegistry.HAND_QUERN.get()));

@@ -1,0 +1,20 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "iron",
+  "station": "yearofice:furnace",
+  "ingredients": [
+    {
+      "item": "yearofice:iron_bar",
+      "count": 1
+    }
+  ],
+  "tool": "yearofice:rough_stone",
+  "work_min": 60,
+  "effort": "high",
+  "kcal": 450,
+  "skill": "smithing",
+  "result": {
+    "id": "yearofice:trap_jaws",
+    "count": 1
+  }
+}

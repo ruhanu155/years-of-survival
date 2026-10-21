@@ -1,5 +1,6 @@
 package com.yearofice.crop;
 
+import com.yearofice.build.craft.StationRecipe;
 import com.yearofice.api.clock.ClockService;
 import com.yearofice.item.component.YoiComponents;
 import com.yearofice.sim.crop.Milling;

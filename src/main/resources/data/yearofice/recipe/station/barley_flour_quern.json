@@ -1,9 +1,13 @@
 {
-  "type": "yearofice:station",
+  "type": "yearofice:craft_station",
+  "tier": "start",
   "station": "yearofice:hand_quern",
-  "inputs": ["yearofice:barley", "yearofice:wheat"],
+  "ingredients": [
+    { "item": "yearofice:barley", "count": 1 }
+  ],
   "tool": "yearofice:hand_quern",
+  "effort": "light",
+  "kcal": 0,
   "work_min_per_kg": 60,
-  "result": "yearofice:barley_flour",
-  "yield_pct": 100
+  "result": { "id": "yearofice:barley_flour", "count": 1 }
 }

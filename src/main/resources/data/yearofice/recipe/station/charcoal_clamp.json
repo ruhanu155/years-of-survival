@@ -1,0 +1,19 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "iron",
+  "station": "yearofice:hands",
+  "ingredients": [
+    {
+      "tag": "yearofice:split_wood",
+      "count": 10
+    }
+  ],
+  "work_min": 120,
+  "effort": "high",
+  "kcal": 900,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:charcoal",
+    "count": 15
+  }
+}

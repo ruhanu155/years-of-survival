@@ -16,6 +16,18 @@
     "yearofice:rough_stone": {
       "edge_uses": 0,
       "material": "stone"
+    },
+    "yearofice:iron_knife": {
+      "edge_uses": 500,
+      "material": "iron"
+    },
+    "yearofice:iron_saw": {
+      "edge_uses": 300,
+      "material": "iron"
+    },
+    "yearofice:iron_chisel": {
+      "edge_uses": 400,
+      "material": "iron"
     }
   }
 }

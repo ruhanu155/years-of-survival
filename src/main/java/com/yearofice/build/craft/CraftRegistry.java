@@ -33,6 +33,9 @@ public final class CraftRegistry {
             net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, "craft_station")));
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<StationRecipe>> STATION_SERIALIZER =
             RECIPE_SERIALIZERS.register("craft_station", () -> StationRecipe.SERIALIZER);
+    /** The shipped M5 id {@code yearofice:station}: the same codec in its own serializer object, so old data still loads (never rename without alias). */
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<StationRecipe>> STATION_ALIAS =
+            RECIPE_SERIALIZERS.register("station", StationRecipe::serializer);
 
     public static final DeferredBlock<WorkbenchBlock> WORKBENCH = BLOCKS.registerBlock("workbench", WorkbenchBlock::new,
             BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL).strength(2.0F).sound(SoundType.WOOD).noOcclusion());
