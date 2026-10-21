@@ -24,6 +24,19 @@ public final class Heat {
         public double gWPerC() { return gAirWPerC + gFloorWPerC; }
     }
 
+    /**
+     * Chimney draw (Warm rooms › Heat sources: Hot "loses half of it up the chimney"): a fire burning P kW delivered to the
+     * room passes air through its firebox in proportion to P and the flue gas leaves hotter in proportion to P, so what goes up
+     * the pipe grows as P squared. Counted as an air conductance of {@value #DRAW_W_PER_C_PER_KW2} W/°C per kW squared (about
+     * 65 W/°C for an 8 kW tin stove on a 5 m pipe, 17 for a 4 kW one, 2 for a Low fire).
+     */
+    public static final double DRAW_W_PER_C_PER_KW2 = 1.0;
+
+    /** The chimney-draw conductance (W/°C) of {@code firedW} watts of burning fires and stoves in the room. */
+    public static double drawWPerC(double firedW) { return drawWPerC(firedW, DRAW_W_PER_C_PER_KW2); }
+
+    public static double drawWPerC(double firedW, double coef) { double kw = Math.max(0, firedW) / 1000.0; return coef * kw * kw; }
+
     public static final double OPEN_U = 40, SNOW_K = 0.15, SEAM_W_PER_M = 0.4, BASE_LEAK = 1.5, WIND_PER_MS = 0.06;
 
     /** U of a face in series with snow and with the wind's film. */
@@ -39,7 +52,17 @@ public final class Heat {
      * @param sourceW heat sources inside, W
      */
     public static Balance solve(List<Face> faces, double openM2, double seamM, double sourceW, double outC, double groundC, double windMs) {
-        double gAir = BASE_LEAK + OPEN_U * openM2 + SEAM_W_PER_M * seamM, gFloor = 0;
+        return solve(faces, openM2, seamM, sourceW, 0, outC, groundC, windMs);
+    }
+
+    /** As above, with {@code firedW} of the sources burning fuel: their {@link #drawWPerC} is a further air loss. */
+    public static Balance solve(List<Face> faces, double openM2, double seamM, double sourceW, double firedW, double outC, double groundC, double windMs) {
+        return solve(faces, openM2, seamM, sourceW, firedW, DRAW_W_PER_C_PER_KW2, outC, groundC, windMs);
+    }
+
+    /** As above with the chimney-draw coefficient (the {@code [pieces]} dial) given. */
+    public static Balance solve(List<Face> faces, double openM2, double seamM, double sourceW, double firedW, double drawCoef, double outC, double groundC, double windMs) {
+        double gAir = BASE_LEAK + OPEN_U * openM2 + SEAM_W_PER_M * seamM + drawWPerC(firedW, drawCoef), gFloor = 0;
         for (Face f : faces) {
             double g = effectiveU(f, windMs) * f.areaM2();
             if (f.part() == Part.FLOOR) gFloor += g; else gAir += g;

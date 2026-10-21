@@ -54,6 +54,7 @@ public final class CraftGameTests {
         out.add(test("yearofice:craft/practice_attachment", CraftGameTests::practice));
         out.add(test("yearofice:craft/gates_independent", CraftGameTests::gates));
         out.add(test("yearofice:craft/stakes_craft", CraftGameTests::stakes));
+        out.add(test("yearofice:build/m8_recipes_craftable", CraftGameTests::m8Recipes));
         out.add(test("yearofice:craft/tool_wear_edge", CraftGameTests::wear));
         out.add(test("yearofice:pack/lift_box_30kg", CraftGameTests::lift30));
         out.add(test("yearofice:pack/box_keeps_contents", CraftGameTests::keepsContents));
@@ -103,6 +104,40 @@ public final class CraftGameTests {
         h.assertTrue(!g.open(p, Tier.IRON, "again"), "opening twice reports false");
         h.assertTrue(com.yearofice.build.craft.CraftSystem.openBushcraftAt(h.absolutePos(BlockPos.ZERO), List.of(p)) >= 0, "fire opens bushcraft");
         h.assertTrue(g.isOpen(p, Tier.BUSHCRAFT), "a lit fire opens Bushcraft");
+        h.succeed();
+    }
+
+    /** A player holding a recipe's inputs and tool, at its station, with its tier open, is never refused; a refusal says why. */
+    static void m8Recipes(GameTestHelper h) {
+        ServerPlayer p = bot(h, "m8_bot");
+        StringBuilder bad = new StringBuilder();
+        for (String name : List.of("plank", "pole", "log_piece", "piece_wall_log", "piece_slab_floor", "piece_roof_pole_sod", "piece_door_frame", "tin_stove", "chimney_pipe")) {
+            var holder = StationCraft.byId(h.getLevel(), rl("yearofice:station/" + name));
+            if (holder == null) { bad.append(name).append(" has no recipe; "); continue; }
+            var r = holder.value();
+            p.getInventory().clearContent();
+            for (var need : r.ingredients()) {
+                ItemStack[] opts = need.ingredient().getItems();
+                if (opts.length > 0) p.getInventory().add(opts[0].copyWithCount(need.count()));
+            }
+            r.tool().ifPresent(t -> {
+                var item = t.tag() ? null : net.minecraft.core.registries.BuiltInRegistries.ITEM.get(t.id());
+                if (item != null) p.getInventory().add(new ItemStack(item));
+                else net.minecraft.core.registries.BuiltInRegistries.ITEM.getTag(net.minecraft.tags.TagKey.create(net.minecraft.core.registries.Registries.ITEM, t.id()))
+                        .flatMap(set -> set.stream().findFirst()).ifPresent(hd -> p.getInventory().add(new ItemStack(hd.value())));
+            });
+            GateService.get().open(p, r.tier(), "test");
+            var st = new java.util.HashSet<>(StationCraft.stations(p, null));
+            st.add(r.station());
+            var plan = StationCraft.plan(p, holder, st);
+            if (plan.problem() != StationCraft.Problem.NONE) bad.append(StationCraft.why(p, plan, st)).append("; ");
+        }
+        h.assertTrue(bad.length() == 0, bad.toString());
+        // and a refusal says which gate is shut
+        ServerPlayer q = bot(h, "m8_bot2");
+        var plank = StationCraft.byId(h.getLevel(), rl("yearofice:station/plank"));
+        h.assertTrue(StationCraft.start(q, rl("yearofice:station/plank"), null) == null && StationCraft.lastRefusal(q) != null
+                && StationCraft.lastRefusal(q).contains("bushcraft"), "a shut gate is named: " + StationCraft.lastRefusal(q));
         h.succeed();
     }
 
