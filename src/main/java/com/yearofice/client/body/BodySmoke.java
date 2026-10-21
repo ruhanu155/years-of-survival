@@ -34,7 +34,7 @@ public final class BodySmoke {
 
     @SubscribeEvent
     public static void tick(ClientTickEvent.Post e) {
-        if (!(TwoDaysDriver.ON || com.yearofice.body.debug.MonthDriver.ON) || phase == Phase.DONE) return;
+        if (!(TwoDaysDriver.ON || com.yearofice.body.debug.MonthDriver.ON || com.yearofice.client.smoke.M8CabinSmoke.ON) || phase == Phase.DONE) return;
         Minecraft mc = Minecraft.getInstance();
         if (mc.getOverlay() != null) return;
         ticks++;
@@ -54,7 +54,7 @@ public final class BodySmoke {
             case CREATE -> {
                 if (mc.screen instanceof CreateWorldScreen s && ticks > 20) {
                     WorldCreationUiState ui = s.getUiState();
-                    ui.setName(com.yearofice.body.debug.MonthDriver.ON ? "yoi-smoke-month" : "yoi-smoke-body");
+                    ui.setName(com.yearofice.client.smoke.M8CabinSmoke.ON ? "yoi-smoke-m8cabin" : com.yearofice.body.debug.MonthDriver.ON ? "yoi-smoke-month" : "yoi-smoke-body");
                     ui.setSeed("3141592");
                     ui.setGameMode(WorldCreationUiState.SelectedGameMode.SURVIVAL);
                     ui.setAllowCommands(false);
@@ -77,6 +77,7 @@ public final class BodySmoke {
                 if (ticks == 20) {
                     org.lwjgl.glfw.GLFW.glfwSetWindowSize(mc.getWindow().getWindow(), 1920, 1080);
                     mc.options.guiScale().set(2);
+                    if (com.yearofice.client.smoke.M8CabinSmoke.ON) { mc.options.renderDistance().set(6); mc.options.simulationDistance().set(6); } // the box is memory-bound
                     mc.options.hideGui = false;
                     mc.getToasts().clear();
                 }
@@ -90,9 +91,9 @@ public final class BodySmoke {
                     Screenshot.grab(mc.gameDirectory, "body_two_days_vitals.png", mc.getMainRenderTarget(),
                             msg -> YearOfIce.LOG.info("Smoke screenshot (a vital under its warn line): {}", msg.getString()));
                 }
-                String want = com.yearofice.body.debug.MonthDriver.shot;
+                String want = com.yearofice.client.smoke.M8CabinSmoke.ON ? com.yearofice.client.smoke.M8CabinSmoke.shot : com.yearofice.body.debug.MonthDriver.shot;
                 if (want != null) {
-                    com.yearofice.body.debug.MonthDriver.shot = null;
+                    if (com.yearofice.client.smoke.M8CabinSmoke.ON) com.yearofice.client.smoke.M8CabinSmoke.shot = null; else com.yearofice.body.debug.MonthDriver.shot = null;
                     pendingShot = want;
                     shotAt = ticks + 6;
                     // the strip is drawn in its full form for the frame (display mode only; no gameplay command)
@@ -104,15 +105,15 @@ public final class BodySmoke {
                     Screenshot.grab(mc.gameDirectory, n + ".png", mc.getMainRenderTarget(),
                             msg -> YearOfIce.LOG.info("Smoke screenshot: {}", msg.getString()));
                 }
-                if (TwoDaysDriver.done || com.yearofice.body.debug.MonthDriver.done) { phase = Phase.SHOT; ticks = 0; }
+                if (TwoDaysDriver.done || com.yearofice.body.debug.MonthDriver.done || com.yearofice.client.smoke.M8CabinSmoke.done) { phase = Phase.SHOT; ticks = 0; }
             }
             case SHOT -> {
                 if (ticks == 40) {
-                    Screenshot.grab(mc.gameDirectory, (com.yearofice.body.debug.MonthDriver.ON ? "m5_month_end.png" : "body_two_days_end.png"), mc.getMainRenderTarget(),
+                    Screenshot.grab(mc.gameDirectory, (com.yearofice.client.smoke.M8CabinSmoke.ON ? "m8_end.png" : com.yearofice.body.debug.MonthDriver.ON ? "m5_month_end.png" : "body_two_days_end.png"), mc.getMainRenderTarget(),
                             msg -> YearOfIce.LOG.info("Smoke screenshot: {}", msg.getString()));
                 }
                 if (ticks == 80) {
-                    YearOfIce.LOG.info("SMOKE BODY DONE: {}", com.yearofice.body.debug.MonthDriver.ON ? com.yearofice.body.debug.MonthDriver.verdict : TwoDaysDriver.verdict);
+                    YearOfIce.LOG.info("SMOKE BODY DONE: {}", com.yearofice.client.smoke.M8CabinSmoke.ON ? com.yearofice.client.smoke.M8CabinSmoke.verdict : com.yearofice.body.debug.MonthDriver.ON ? com.yearofice.body.debug.MonthDriver.verdict : TwoDaysDriver.verdict);
                     phase = Phase.DONE;
                     mc.stop();
                 }
