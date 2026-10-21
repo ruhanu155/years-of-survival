@@ -132,6 +132,7 @@ public final class SignGameTests {
             h.assertTrue(SignService.review(l, b) && l.getBlockState(b).isAir(), "snowfall erases the snow print");
         }
         // Fresh snow: 2 cm or more deeper than when the print was made hides it.
+        EnvService.get().setOverride(l, new EnvService.WeatherOverride(Double.NaN, Double.NaN, com.yearofice.sim.env.Precip.NONE, 0));
         BlockPos d = h.absolutePos(new BlockPos(5, Y, 2));
         SignService.lay(l, d, Sign.Kind.TRACK, "yearofice:moose", 1, 0, 1);
         SignBlockEntity bd = (SignBlockEntity) l.getBlockEntity(d);
