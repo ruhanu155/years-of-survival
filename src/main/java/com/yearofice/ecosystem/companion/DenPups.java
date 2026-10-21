@@ -18,8 +18,8 @@ import net.neoforged.neoforge.server.ServerLifecycleHooks;
 /**
  * The taming path's start (Blueprint: takes a wolf pup from a den while the pack is out hunting): once a summer (June to
  * August) a den pup is left alone 120-200 m from each player, tameable and unowned; trust does the rest (WolfEntity).
- * ponytail: the spot is a random loaded point near the player, not the region's real den layer (worldgen.Ranges has dens
- * as data only, no pack entities yet) — upgrade: ask Ranges.Layers for the nearest wolf den once packs exist.
+ * The pup comes from the den of the nearest pack range (worldgen.Ranges): it wanders out along the bearing from the player
+ * toward that den and is left 120-200 m away (no den, e.g. a test world: any bearing).
  */
 public final class DenPups {
     private DenPups() {}
@@ -37,11 +37,19 @@ public final class DenPups {
 
     /** Leaves a pup for this player if none came this year; false when the ground was not loaded (it tries again tomorrow). */
     public static boolean leave(ServerPlayer p, int year) {
+        var vw = WorldHooks.world(p.serverLevel());
+        return vw == null || leave(p, year, vw.life());
+    }
+
+    /** As {@link #leave(ServerPlayer, int)} with the home-range layers given (tests pass their own). */
+    public static boolean leave(ServerPlayer p, int year, com.yearofice.worldgen.Ranges.Layers life) {
         ServerLevel level = p.serverLevel();
-        if (WorldHooks.world(level) == null) return true;
         CompoundTag root = p.getPersistentData().getCompound(Player.PERSISTED_NBT_TAG);
         if (root.contains(KEY) && root.getInt(KEY) >= year) return true;
-        double ang = level.random.nextDouble() * Math.PI * 2, rad = 120 + level.random.nextDouble() * 80;
+        var den = life == null ? null : life.nearestWolfDen(p.getX(), p.getZ());
+        double ang = den == null ? level.random.nextDouble() * Math.PI * 2
+                : Math.atan2(den.z() - p.getZ(), den.x() - p.getX()) + (level.random.nextDouble() - 0.5) * 0.5;
+        double rad = 120 + level.random.nextDouble() * 80;
         int x = p.getBlockX() + (int) Math.round(Math.cos(ang) * rad), z = p.getBlockZ() + (int) Math.round(Math.sin(ang) * rad);
         if (!level.hasChunkAt(new BlockPos(x, 0, z))) return false;
         int y = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, x, z);

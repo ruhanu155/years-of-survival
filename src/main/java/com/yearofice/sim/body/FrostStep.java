@@ -19,8 +19,7 @@ import java.util.List;
 public final class FrostStep {
     private FrostStep() {}
 
-    public static final String EV_NIP = "frost_nip", EV_SUPERFICIAL = "frost_superficial", EV_DEEP = "frost_deep",
-            EV_DIGIT = "frost_digit_lost";
+    public static final String EV_DIGIT = "frost_digit_lost";
 
     /** Frost stage 0-3 of each zone (its worst part). */
     public static int[] zoneStages(int[] partFrost) {
