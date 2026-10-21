@@ -1,0 +1,55 @@
+GRANT fur_mittens x1
+GRANT parka x1
+GRANT mukluks x1
+GRANT pemmican x30
+GRANT dried_fish x20
+GRANT pilot_bread x12
+GRANT match x12
+START minute 308520 clock 06:00 absDay 214 dayOfYear 214 kg 77.0 bmi 23.0
+  kit: yearofice:pilot_bread x50
+  kit: yearofice:hatchet x1
+  kit: yearofice:cooking_pot x1
+  kit: yearofice:plant_guide x1
+  kit: yearofice:fixed_blade_knife x1
+  kit: yearofice:solar_panel_small x1
+  kit: yearofice:fur_mittens x1
+  kit: yearofice:medkit x1
+  kit: yearofice:cord x10
+  kit: yearofice:parka x1
+  kit: yearofice:mukluks x1
+  kit: yearofice:pemmican x30
+  kit: yearofice:dried_fish x20
+  kit: yearofice:match x12
+EQUIP no equip path exists: WearMap.WEAR is registered but only sim.body.StartKit (fleece, shell, work gloves safe to -22) reaches the body model; mittens/parka/mukluks stay in the pack
+camp site cleared: 650 tree blocks felled within 8 m
+camp: bed -1100, 150, 802 ring -1099, 150, 802 roofed (plank roof y+3), open ground for chores -1096, 152, 808
+TABLE air -14 C no wind, resting, no fire: feels-like start kit -9.5 C, with parka+mukluks+mittens 14.6 C; hands exposure -14.0 vs -14.0 (safe-to -22 vs -25); kit dial 4.5
+TABLE air -25 C no wind, resting, no fire: feels-like start kit -20.5 C, with parka+mukluks+mittens 3.6 C; hands exposure -25.0 vs -25.0 (safe-to -22 vs -25); kit dial 4.5
+  [d1 06:00] air -14.4 warmth 100 water 100 energy 10.0 kg 77.0 kcal24 -6 awake fire OUT 0.0 handsFrost 0/0
+[06:30] fire lit match: yes TINDER
+  [d1 07:00] air -14.2 warmth 86 water 97 energy 9.8 kg 77.0 kcal24 -96 awake fire FIRE 1.1 handsFrost 0/0
+  [d1 08:00] air -13.9 warmth 82 water 98 energy 9.6 kg 77.2 kcal24 374 awake fire COALS 0.0 handsFrost 0/0
+  [d1 09:00] air -13.5 warmth 80 water 95 energy 9.4 kg 77.1 kcal24 284 awake fire FIRE 4.0 handsFrost 0/0
+  [d1 10:00] air -13.0 warmth 79 water 96 energy 9.2 kg 77.1 kcal24 194 awake fire FIRE 1.8 handsFrost 0/0
+[d1 10:00] out to the open ground for wood, back at 12:00
+  [d1 11:00] air -12.6 warmth 59 water 98 energy 9.0 kg 77.0 kcal24 93 awake fire COALS 0.0 handsFrost 0/0
+  [d1 12:00] air -12.1 warmth 40 water 95 energy 8.8 kg 77.0 kcal24 -94 awake fire FIRE 4.0 handsFrost 0/0
+  [d1 13:00] air -11.8 warmth 40 water 96 energy 8.6 kg 77.1 kcal24 143 awake fire FIRE 1.8 handsFrost 0/0
+  [d1 14:00] air -11.6 warmth 40 water 98 energy 8.4 kg 76.9 kcal24 -170 awake fire COALS 0.0 handsFrost 0/0
+  [d1 15:00] air -11.5 warmth 40 water 95 energy 8.2 kg 76.8 kcal24 -487 awake fire FIRE 4.0 handsFrost 0/0
+  [d1 16:00] air -11.5 warmth 40 water 96 energy 8.0 kg 76.7 kcal24 -804 awake fire FIRE 1.8 handsFrost 0/0
+SHOT m7_first_dusk aimed at the fire from the bed end, 2 m, yaw -90.0 pitch 21.8
+  [d1 17:00] air -11.7 warmth 39 water 98 energy 7.8 kg 76.5 kcal24 -1125 awake fire COALS 0.0 handsFrost 0/0
+  [d1 18:00] air -11.8 warmth 39 water 95 energy 7.6 kg 76.4 kcal24 -1447 awake fire FIRE 4.1 handsFrost 0/0
+  [d1 19:00] air -12.1 warmth 39 water 96 energy 7.4 kg 76.7 kcal24 -650 awake fire FIRE 1.9 handsFrost 0/0
+  [d1 20:00] air -12.4 warmth 39 water 98 energy 7.2 kg 76.6 kcal24 -973 awake fire COALS 0.0 handsFrost 0/0
+  [d1 21:00] air -12.7 warmth 38 water 95 energy 7.0 kg 76.5 kcal24 -1302 awake fire FIRE 4.1 handsFrost 0/0
+  [d1 22:00] air -13.0 warmth 37 water 96 energy 6.8 kg 76.3 kcal24 -1637 awake fire FIRE 1.9 handsFrost 0/0
+  [d1 23:00] air -13.3 warmth 35 water 93 energy 6.5 kg 76.2 kcal24 -1989 awake fire COALS 0.0 handsFrost 0/0
+  [d2 00:00] air -24.9 warmth 28 water 89 energy 6.3 kg 76.0 kcal24 -2359 awake fire FIRE 4.1 handsFrost 0/0
+DAY 1 kcal_in 2240 kcal_out 4599 net -2359 kg 76.01 bmi 22.70 warmth_min 27.7 hands_margin_worn_kit 1.0 C hands_margin_with_mittens 5.2 C hands_frost_max 0 air_min -19.7 water_L 6.5 | chores 245 min of 960 waking, free 715 | {fire=30.0, water=8.0, water_wait=74.0, food=13.2, wood=120.0}
+SHOT m7_cold_d2_vitals aimed at the fire from the bed end, 2 m, yaw -90.0 pitch 21.8
+  [d2 01:00] air -25.7 warmth 12 water 86 energy 6.1 kg 75.9 kcal24 -2752 awake fire FIRE 1.9 handsFrost 0/0
+DAY 2 kcal_in 2240 kcal_out 5301 net -3061 kg 75.72 bmi 22.61 warmth_min 0.0 hands_margin_worn_kit -5.1 C hands_margin_with_mittens -1.2 C hands_frost_max 0 air_min -26.1 water_L 0.0 | chores 0 min of 960 waking, free 960 | {}
+RESULT FAIL [collapse: SOS state 1 on day 2 at 01:48]
+SUMMARY crossings 3 covered 3 unmessaged 0 | hands frost max (week) 0, on the -25 C day 0 | worst hands margin vs safe-to: worn kit -5.1 C, mittens -1.2 C | min BMI 22.61 | bites 4 matches 1
