@@ -42,6 +42,9 @@ public abstract class RackBlockEntity extends StoreBlockEntity {
 
     abstract FoodState finishedState();
 
+    /** The finished stack's item (same item by default; the drying rack turns raw meat cuts into dried meat). */
+    ItemStack becomes(ItemStack s) { return s; }
+
     void clockHours(int hours) {
         if (!paused) stepHours(hours);
     }
@@ -64,6 +67,7 @@ public abstract class RackBlockEntity extends StoreBlockEntity {
             double days = decay.daysUntil(level, s, p0.size() > i ? p0.get(i) : 0);
             if (days > 0 && !Double.isInfinite(days)) decay.age(level, s, days);
             if (fouled) decay.age(level, s, 100_000);
+            items.set(i, becomes(s));
         }
         changed();
     }

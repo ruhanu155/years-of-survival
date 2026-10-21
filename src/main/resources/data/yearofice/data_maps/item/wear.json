@@ -90,6 +90,83 @@
       "weight_kg": 0.4,
       "water_uptake": 1.0,
       "fur": false
+    },
+    "yearofice:fleece_jacket": {
+      "zone": "torso",
+      "layer": "inner",
+      "warmth_c": 5,
+      "wind_block": 0.1,
+      "kept_when_wet": 0.7,
+      "waterproof": false,
+      "weight_kg": 0.5,
+      "water_uptake": 0.4,
+      "fur": false
+    },
+    "yearofice:rain_shell": {
+      "zone": "torso",
+      "layer": "outer",
+      "warmth_c": 1,
+      "wind_block": 0.9,
+      "waterproof": true,
+      "weight_kg": 0.4,
+      "water_uptake": 0.8,
+      "fur": false
+    },
+    "yearofice:work_pants": {
+      "zone": "legs",
+      "layer": "inner",
+      "warmth_c": 2,
+      "wind_block": 0.2,
+      "kept_when_wet": 0.3,
+      "waterproof": false,
+      "weight_kg": 0.6,
+      "water_uptake": 0.8,
+      "fur": false
+    },
+    "yearofice:wool_socks": {
+      "zone": "feet",
+      "layer": "inner",
+      "warmth_c": 2,
+      "wind_block": 0,
+      "kept_when_wet": 0.8,
+      "waterproof": false,
+      "weight_kg": 0.1,
+      "water_uptake": 1.5,
+      "fur": false
+    },
+    "yearofice:hiking_boots": {
+      "zone": "feet",
+      "layer": "outer",
+      "warmth_c": 2,
+      "wind_block": 0.5,
+      "safe_to_c": -22,
+      "waterproof": true,
+      "weight_kg": 1.4,
+      "water_uptake": 0.8,
+      "fur": false
+    },
+    "yearofice:wool_beanie": {
+      "zone": "head",
+      "layer": "inner",
+      "warmth_c": 2,
+      "wind_block": 0.3,
+      "kept_when_wet": 0.8,
+      "waterproof": false,
+      "weight_kg": 0.1,
+      "water_uptake": 1.5,
+      "fur": false
+    },
+    "yearofice:work_gloves": {
+      "zone": "hands",
+      "layer": "inner",
+      "warmth_c": 1,
+      "wind_block": 0.2,
+      "kept_when_wet": 0.2,
+      "safe_to_c": -22,
+      "waterproof": false,
+      "weight_kg": 0.1,
+      "water_uptake": 0.8,
+      "fur": false
     }
   }
 }

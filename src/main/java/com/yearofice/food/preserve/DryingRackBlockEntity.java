@@ -1,5 +1,7 @@
 package com.yearofice.food.preserve;
 
+import net.minecraft.world.item.ItemStack;
+
 import com.yearofice.api.env.EnvService;
 import com.yearofice.sim.fire.FireHeat;
 import com.yearofice.api.fire.FireHeatLookup;
@@ -75,6 +77,14 @@ public class DryingRackBlockEntity extends RackBlockEntity {
 
     @Override
     FoodState finishedState() { return FoodState.DRIED; }
+
+    static final net.minecraft.tags.TagKey<net.minecraft.world.item.Item> DRIES_TO_MEAT = net.minecraft.tags.TagKey.create(
+            net.minecraft.core.registries.Registries.ITEM, net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("yearofice", "dries_to_meat"));
+
+    @Override
+    ItemStack becomes(ItemStack s) {
+        return s.is(DRIES_TO_MEAT) ? new ItemStack(com.yearofice.food.FoodItems.DRIED_MEAT.getDelegate(), s.getCount(), s.getComponentsPatch()) : s;
+    }
 
     @Override
     void resetBatch() { drying = Racks.Drying.start(); }

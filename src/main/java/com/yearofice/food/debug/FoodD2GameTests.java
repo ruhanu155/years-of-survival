@@ -128,6 +128,7 @@ public final class FoodD2GameTests {
         be.stepHours(48);
         h.assertTrue(be.done(), "dried after 48 h");
         ItemStack dried = be.items().get(0);
+        h.assertTrue(dried.is(FoodItems.DRIED_MEAT.get()), "raw meat dries into yearofice:dried_meat, got " + dried.getItem());
         h.assertTrue(DecayService.get().settle(h.getLevel(), dried).state() == FoodState.DRIED, "state dried");
         double driedKg = be.heldKg();
         h.assertTrue(Math.abs(driedKg - 0.4 * freshKg) < 1e-6, "dried weight " + driedKg + " kg, want " + 0.4 * freshKg);

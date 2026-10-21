@@ -30,7 +30,7 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 public final class ScentGameTests {
     private ScentGameTests() {}
 
-    static final int FAR_BEAR = 12 * 4096, FAR_WOLF = 13 * 4096;
+    static final int FAR_BEAR = 12 * 4096, FAR_WOLF = 13 * 4096, FAR_LIVE = 14 * 4096;
     static final String GROUP = "scent_g";
 
     @GameTestGenerator
@@ -39,6 +39,8 @@ public final class ScentGameTests {
         int walkTicks = (int) Math.ceil(30 * SliceClock.TICKS_PER_MINUTE);
         out.add(test("yearofice:eco/bear_walks_to_pile", walkTicks + 120, h -> run(h, true, FAR_BEAR, walkTicks)));
         out.add(test("yearofice:eco/wolf_ignores_pile_when_hunting", 400, h -> run(h, false, FAR_WOLF, 300)));
+        int liveTicks = (int) Math.ceil(120 * SliceClock.TICKS_PER_MINUTE);
+        out.add(test("yearofice:eco/bear_walks_to_pile_live_wind", liveTicks + 120, h -> live(h, liveTicks)));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
 
@@ -123,5 +125,60 @@ public final class ScentGameTests {
                 throw e;
             }
         };
+    }
+
+    /**
+     * eco/bear_walks_to_pile_live_wind: as play has it. No wind pin, no pinned drive act (bed and water acts cycle), the real
+     * weather; a hungry grizzly 100 m from the pile on the side the live wind carries the scent to feeds within 2 game hours.
+     */
+    static void live(GameTestHelper h, int limit) {
+        int zOff = FAR_LIVE;
+        Vec3 start = h.absolutePos(new BlockPos(1, Y, 1 + zOff)).getCenter();
+        EcoGameTests.force(h, start, 8, true);
+        BigGameGameTests.deferred(h, 40, () -> {
+            BigGameGameTests.strip(h, -105, 105, 105, true, zOff);
+            BlockPos pile = new BlockPos(1, Y, 1 + zOff);
+            h.setBlock(pile, EcosystemRegistry.GUT_PILE.get().defaultBlockState());
+            BlockPos abs = h.absolutePos(pile);
+            ScentPoints.add(h.getLevel(), abs);
+            // the live wind at the pile decides which side is downwind: the bear stands 100 m along the way the scent is carried
+            double toward = Math.toRadians(Sensing.windTowardDeg(h.getLevel(), abs)); // minecraft yaw
+            int bx = (int) Math.round(-Math.sin(toward) * 100), bz = (int) Math.round(Math.cos(toward) * 100);
+            BearEntity bear = h.spawn(EcosystemRegistry.GRIZZLY.get(), new BlockPos(1 + bx, Y, 1 + zOff + bz));
+            bear.setScentEnabled(false);
+            bear.setTestGroup(GROUP);
+            bear.setSeasonDayOverride(com.yearofice.sim.time.Calendar.dayOfYear(9, 20)); // bears den from Oct 20: this bear's own season, the world date untouched
+            bear.getRandom().setSeed(4403L);
+            bear.driveState().hunger = 0.7; // hungry, but tired: the day's rhythm wants the bed
+            bear.driveState().rest = 1.0;
+            bear.driveState().act = Drives.Act.BED; // starts in the act that used to stop the trail
+            double wind = Sensing.windToward(h.getLevel(), bear);
+            boolean[] done = {false};
+            Runnable release = () -> {
+                if (done[0]) return;
+                done[0] = true;
+                ScentPoints.remove(h.getLevel(), abs);
+                bear.discard();
+                EcoGameTests.force(h, start, 8, false);
+                h.setBlock(pile, Blocks.AIR);
+                BigGameGameTests.strip(h, -105, 105, 105, false, zOff);
+            };
+            return () -> {
+                if (done[0]) return;
+                try {
+                    long t = h.getTick() - 40;
+                    if (bear.scavenges() >= 1) {
+                        h.assertTrue(bear.distanceToSqr(Vec3.atCenterOf(abs)) < 9 * 9, "it fed from afar");
+                        release.run();
+                        h.succeed();
+                    } else if (t > limit) {
+                        h.fail("the bear never fed in 2 game hours: " + bear.huntDebug() + " wind at start " + wind + " moved " + bear.position().subtract(start));
+                    }
+                } catch (RuntimeException e) {
+                    release.run();
+                    throw e;
+                }
+            };
+        });
     }
 }
