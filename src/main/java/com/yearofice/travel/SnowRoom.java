@@ -41,6 +41,9 @@ public final class SnowRoom {
     }
 
     public static Scan scan(ServerLevel level, BlockPos head) {
+        // an enclosed room the building system knows answers directly; open or oversized ground falls through to the local fill
+        var room = com.yearofice.api.build.RoomService.get().roomAt(level, head);
+        if (room != null) return new Scan(true, room.volumeM3(), !room.leaks().isEmpty() || openAbove(level, head), room.snowShare(), room.flames());
         if (!level.getBlockState(head).isAir()) return new Scan(false, 0, false, 0, 0);
         Set<BlockPos> seen = new HashSet<>();
         ArrayDeque<BlockPos> q = new ArrayDeque<>();

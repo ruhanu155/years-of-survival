@@ -30,10 +30,20 @@ public class StoreBlock extends BaseEntityBlock {
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) { return new StoreContainerBlockEntity(pos, state); }
 
+
+    /** A raised cache platform more than 2.5 m above the player's feet is out of reach: the Messenger says a ladder is needed. */
+    private static boolean tooHigh(Level level, BlockPos pos, Player player) {
+        if (!(level.getBlockEntity(pos) instanceof StoreContainerBlockEntity be) || be.heightM() < 2 || pos.getY() - player.getY() <= 2.5) return false;
+        if (player instanceof net.minecraft.server.level.ServerPlayer sp) com.yearofice.api.hud.HudBus.get().post(sp,
+                com.yearofice.api.hud.HudLine.of(com.yearofice.api.hud.HudLineType.WARN, "cache_needs_ladder", "build.store"));
+        return true;
+    }
+
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player,
                                               InteractionHand hand, BlockHitResult hit) {
         if (level.isClientSide) return ItemInteractionResult.SUCCESS;
+        if (tooHigh(level, pos, player)) return ItemInteractionResult.CONSUME;
         if (level.getBlockEntity(pos) instanceof StoreContainerBlockEntity be && be.putOn(stack) > 0) return ItemInteractionResult.CONSUME;
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
@@ -41,6 +51,7 @@ public class StoreBlock extends BaseEntityBlock {
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if (level.isClientSide) return InteractionResult.SUCCESS;
+        if (tooHigh(level, pos, player)) return InteractionResult.CONSUME;
         if (level.getBlockEntity(pos) instanceof StoreContainerBlockEntity be) {
             for (ItemStack s : be.takeAll()) player.getInventory().placeItemBackInInventory(s);
         }

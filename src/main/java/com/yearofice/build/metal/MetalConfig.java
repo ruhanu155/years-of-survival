@@ -14,6 +14,7 @@ public final class MetalConfig {
     static final PresetTable TABLE = new PresetTable("metal")
             .dial("smelt_hours", "Game hours of pumping one smelt takes at the bloomery.", 4, 6, 8, 0.1, 100)
             .dial("consolidate_hours", "Game hours consolidating a bloom into bar takes at the forge.", 1.5, 2, 3, 0.1, 100)
+            .dial("furnace_kw", "Heat a bloomery or forge under work gives its room at full draft, kW.", 4, 4, 4, 0, 50)
             .dial("work_reach_m", "How far you may stand from the bloomery, forge or sluice and keep working, in blocks.", 4, 1, 8)
             .dial("wheel_foul_per_h", "Debris a fish wheel gathers per game hour it turns.", 0.5, 1.0, 2.0, 0, 20)
             .dial("wheel_foul_max", "Debris at which a fish wheel stops until a player clears it (sneak and use).", 96, 1, 1000)

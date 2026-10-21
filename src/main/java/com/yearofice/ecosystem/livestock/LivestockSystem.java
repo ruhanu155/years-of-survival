@@ -88,7 +88,11 @@ public final class LivestockSystem {
         LivestockTuning t = tuning();
         String id = e.speciesPath();
         double roomC = tempC(e, level, minute, live);
-        if (live && hourOfDay % 3 == 0) scanPen(e, level, c);
+        if (live && hourOfDay % 3 == 0) {
+            scanPen(e, level, c);
+            // troughs and hay racks within 3 m top up a day's feed and water; the rest of the ration is the keeper's
+            FeedBoxBlockEntity.draw(level, e.blockPosition(), c, Math.max(0, c.spec().feedKgPerDay() - c.feedKg), Math.max(0, c.spec().waterLPerDay() - c.waterL));
+        }
         c.stepHour(t, browseShare(id, month), live ? waterNear(e, level) : c.waterL > 0, roomC);
         if (c.care.dead()) { DeathPipeline.kill(e, level.damageSources().generic(), "starved"); return; }
         if (hourOfDay == 3) nightRoll(e, level, c, day, t);
@@ -154,6 +158,7 @@ public final class LivestockSystem {
         boolean suckling = c.stage() == Growth.Stage.SUCKLING;
         boolean milk = suckling && c.care.producing();
         c.stepDay(t, milk || !suckling);
+        if (c.starvedKid()) { DeathPipeline.kill(e, level.damageSources().generic(), "starved"); return; }
         if (c.ageDays > sp.lifespanYears() * 365) { DeathPipeline.kill(e, level.damageSources().generic(), "old_age"); return; }
         if (!c.adult() || !c.female) return;
         String id = e.speciesPath();
@@ -163,7 +168,7 @@ public final class LivestockSystem {
             c.eggAcc += Produce.eggsPerDay(light, tempC(e, level, day * 1440, true), c.care.fed()) * 1.0;
             while (c.eggAcc >= 1) {
                 c.eggAcc -= 1;
-                drop(level, e, new ItemStack(FoodItems.HEN_EGG.get()));
+                if (!FeedBoxBlockEntity.layInBox(level, e.blockPosition())) drop(level, e, new ItemStack(FoodItems.HEN_EGG.get()));
             }
         } else if (sp.milkLPerDay() > 0) {
             c.milkOwedL = Math.min(sp.milkLPerDay() * 2, c.milkOwedL + c.milkToday(day, c.feedKg <= 0 && c.feedDebtKg > 0));

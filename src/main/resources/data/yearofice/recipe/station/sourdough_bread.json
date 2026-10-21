@@ -1,0 +1,13 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "start",
+  "station": "yearofice:flat_stone",
+  "ingredients": [
+    { "item": "yearofice:barley_flour", "count": 1 }
+  ],
+  "tool": "yearofice:sourdough_starter",
+  "work_min": 20,
+  "effort": "light",
+  "kcal": 33.3,
+  "result": { "id": "yearofice:dish", "count": 1, "components": { "yearofice:weight_g": 750 } }
+}

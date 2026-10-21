@@ -485,6 +485,7 @@ public final class FishingService {
                     if (!o.getInventory().add(fish)) o.drop(fish, false);
                     long minute = FishingClock.minute(o.server);
                     harvest((ServerLevel) b.level(), b.waterBlock(), sid, minute, t);
+                    fishAmbitions(o, (ServerLevel) b.level(), b.waterBlock(), sid, grams, minute);
                     FishSpawner.removeOne((ServerLevel) b.level(), b.waterBlock(), sid);
                 }
                 line = String.format(Locale.ROOT, "Landed a %s, %.2f kg.", f.params.species().id().replace('_', ' '), grams / 1000.0);
@@ -511,6 +512,17 @@ public final class FishingService {
         say(o, line);
         if (o != null) send(o, new FishResultPayload(f.fightId, out, f.params.species().id(), grams));
         b.discard();
+    }
+
+    /** The ambitions a landed fish closes: any fish, a pike, over 10 kg, a burbot at night, a fish through 1 m of ice. */
+    static void fishAmbitions(ServerPlayer o, ServerLevel level, BlockPos water, String sid, int grams, long minute) {
+        com.yearofice.story.ambition.Ambitions.fire(o, "fish.first", minute);
+        if (sid.equals("northern_pike")) com.yearofice.story.ambition.Ambitions.fire(o, "fish.pike", minute);
+        if (grams >= 10_000) com.yearofice.story.ambition.Ambitions.fire(o, "fish.over_10kg", minute);
+        long hour = (minute / 60) % 24;
+        boolean ice = com.yearofice.api.world.IceService.get().thicknessCm(level, water) > 0;
+        if (sid.equals("burbot") && ice && (hour >= 21 || hour < 5)) com.yearofice.story.ambition.Ambitions.fire(o, "fish.burbot_night", minute);
+        if (ice && com.yearofice.api.world.IceService.get().thicknessCm(level, water) >= 100) com.yearofice.story.ambition.Ambitions.fire(o, "fish.ice_1m", minute);
     }
 
     /** Takes one fish of the species from the spot's stock and stamps the last catch. */

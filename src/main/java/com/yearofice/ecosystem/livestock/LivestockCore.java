@@ -18,6 +18,8 @@ public final class LivestockCore {
     public boolean female = true;
     public long lastHour = Long.MIN_VALUE, lastBirthDay = -1000, dueDay = -1, milkOffUntilDay = -1, lastEggDay = -1;
     public int bond = 0;
+    /** Days a suckling has gone without milk; {@link Growth#STARVE_DAYS_SUCKLING} kills it. */
+    public int milklessDays = 0;
     /** Seen by the pen scan each hour; not saved (a reload rescans). */
     public boolean penned;
     public long escapedDay = -1;
@@ -59,6 +61,7 @@ public final class LivestockCore {
         t.putLong("milk_off_until_day", milkOffUntilDay);
         t.putLong("last_egg_day", lastEggDay);
         t.putInt("bond", bond);
+        t.putInt("milkless_days", milklessDays);
         t.putLong("escaped_day", escapedDay);
     }
 
@@ -79,6 +82,7 @@ public final class LivestockCore {
         milkOffUntilDay = t.getLong("milk_off_until_day");
         lastEggDay = t.getLong("last_egg_day");
         bond = t.getInt("bond");
+        milklessDays = t.getInt("milkless_days");
         escapedDay = t.getLong("escaped_day");
     }
 
@@ -104,8 +108,11 @@ public final class LivestockCore {
     /** One game day of growth and age. */
     public void stepDay(LivestockTuning t, boolean hasMilk) {
         ageDays += 1;
+        milklessDays = (ageDays < spec.weanDays() && !hasMilk) ? milklessDays + 1 : 0;
         progress = Growth.dayStep(spec, t, progress, ageDays, care.fed(), hasMilk);
     }
+
+    public boolean starvedKid() { return milklessDays >= Growth.STARVE_DAYS_SUCKLING; }
 
     public double milkToday(long absDay, boolean hayOnly) {
         if (!female || !adult() || absDay < milkOffUntilDay || !care.producing()) return 0;

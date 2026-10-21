@@ -13,6 +13,15 @@ public final class PieceSystem {
         PathSpeed.init();
         PieceJobs.init();
         Rooms.init();
+        var prev = com.yearofice.build.work.WorkService.resolver;
+        com.yearofice.build.work.WorkService.resolver = (p, w) -> {
+            var job = PlaceJob.resolve(p, w);
+            return job != null ? job : prev.apply(p, w);
+        };
+        // not instant: a tap places nothing, the hold does (the client sends the heartbeat for any piece in hand)
+        NeoForge.EVENT_BUS.addListener((net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.RightClickBlock e) -> {
+            if (!PiecesConfig.instantPlace() && !e.getLevel().isClientSide && PlaceJob.row(e.getItemStack()) != null) e.setUseItem(net.neoforged.neoforge.common.util.TriState.FALSE);
+        });
         NeoForge.EVENT_BUS.addListener(PieceCommands::register);
         NeoForge.EVENT_BUS.addListener((net.neoforged.neoforge.event.server.ServerStoppedEvent e) -> Rooms.reset());
     }

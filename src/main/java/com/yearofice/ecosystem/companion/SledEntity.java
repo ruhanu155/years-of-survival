@@ -170,8 +170,14 @@ public class SledEntity extends Entity {
         move(MoverType.SELF, v);
         setDeltaMovement(v);
         wearLane(level);
+        // the rider works the sled too: steering and braking cost a little every 10 s of real driving
+        if (speedMps > 0.3 && tickCount % EFFORT_TICKS == 0 && rider instanceof ServerPlayer rp)
+            com.yearofice.api.body.BodyService.get().effort(rp, "haul", EFFORT_KCAL, EFFORT_GAME_MIN);
         placeTeam(wolves, dir);
     }
+
+    private static final int EFFORT_TICKS = 200;
+    private static final double EFFORT_KCAL = 6, EFFORT_GAME_MIN = 4;
 
     private void wearLane(ServerLevel level) {
         BlockPos cell = blockPosition();

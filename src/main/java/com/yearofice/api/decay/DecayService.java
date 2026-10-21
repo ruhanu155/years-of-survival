@@ -49,6 +49,9 @@ public interface DecayService {
     /** Ages a stack by {@code days} game days at its clock's temperature ({@code /yoi decay advance}). */
     void age(Level level, ItemStack stack, double days);
 
+    /** Spoils a stack for {@code hours} at {@code storeRate} (StoreService.rate) instead of the open air's rate: a warmer store ages it further, a colder one gives time back. */
+    void shift(Level level, ItemStack stack, double hours, double storeRate);
+
     /** The air the slice clock reads now (the valley floor's, this hour), °C. */
     double airC(Level level);
 

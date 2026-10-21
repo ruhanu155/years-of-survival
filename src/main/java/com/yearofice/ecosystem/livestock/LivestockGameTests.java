@@ -280,6 +280,7 @@ public final class LivestockGameTests {
             starved.progress = 0; starved.ageDays = 0;
             for (int d = 0; d < 10; d++) starved.stepDay(LivestockSystem.tuning(), false);
             h.assertTrue(starved.progress == 0, "a kid with no milk does not grow");
+            h.assertTrue(starved.starvedKid(), "and after three milkless days it has starved");
             kid.discard();
             doe.discard();
             h.succeed();

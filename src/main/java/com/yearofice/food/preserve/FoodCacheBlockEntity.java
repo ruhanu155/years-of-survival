@@ -50,6 +50,17 @@ public class FoodCacheBlockEntity extends StoreBlockEntity {
         return n;
     }
 
+    /**
+     * What the cache keeps: each stack (food and dishes alike) spoils at the store's rate (StoreService: a raised box
+     * in winter air, a cellar, a cold room) instead of the open air's, so the difference is added or taken back.
+     */
+    void spoilHours(int hours) {
+        if (!(level instanceof ServerLevel sl) || items.isEmpty()) return;
+        double rate = com.yearofice.api.build.StoreService.INSTANCE.rate(sl, worldPosition);
+        for (ItemStack s : items) com.yearofice.api.decay.DecayService.get().shift(sl, s, hours, rate);
+        setChanged();
+    }
+
     void day(long absDay) {
         if (absDay % 7 != 0) return;
         settleWeek(absDay / 7, Calendar.month(Calendar.dayOfYearOfDay(absDay)));
