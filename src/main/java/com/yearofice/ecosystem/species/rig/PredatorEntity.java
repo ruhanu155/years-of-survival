@@ -92,6 +92,19 @@ public class PredatorEntity extends LandAnimal {
         super.tickFeed(level);
     }
 
+    /**
+     * A bear or wolf hungry past 0.5 that smells carrion keeps walking to it whatever act the day's rhythm picks: live, the
+     * drive act cycles through bed and water, and a bed act stopped the trail short of the pile (m6bear v3: closest approach
+     * 41-144 m). Smelling is checked on the same 2 s clock as the feed act.
+     */
+    @Override
+    protected boolean scentLocked(ServerLevel level) {
+        if (!hasDrives() || chase != null || driveState().hunger <= 0.5) return false;
+        long t = level.getGameTime();
+        if (scentTarget == null && t >= nextSmellTick) scavenge(level, t);
+        return scentTarget != null;
+    }
+
     boolean hasDrives() { return species().hasDrives(); }
 
     private boolean huntAnyHour;
