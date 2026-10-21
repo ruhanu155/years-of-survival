@@ -2,6 +2,11 @@ package com.yearofice.client.smoke;
 
 import com.yearofice.api.build.Room;
 import com.yearofice.api.build.RoomService;
+import com.yearofice.api.build.GateService;
+import com.yearofice.build.craft.StationCraft;
+import com.yearofice.build.craft.CraftRegistry;
+import com.yearofice.build.work.WorkService;
+import com.yearofice.sim.build.Tier;
 import com.yearofice.api.clock.ClockService;
 import com.yearofice.api.hud.HudBus;
 import com.yearofice.body.BodyAttachments;
@@ -65,8 +70,11 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 /**
  * The M9 proxy check's player ({@code YEAROFICE_SMOKE=m9hour}; never active otherwise), standing in for Ruhan's gate
- * "an hour of year 2". The setup GRANTS and places (every grant is logged): a cabin with a lit stove, a tamed wolf, a
- * penned goat/hen flock with hay, a stovehouse with sown greens, a radio desk and a located outpost. The hour itself
+ * "an hour of year 2". v2: the homestead is earned through the honest sources where they exist (every remaining grant
+ * is logged): the bench, planks, hoe, troughs, rack, nest box, radio desk and the pen's wall pieces are station recipes;
+ * the seeds and the five goats and hens come down in the supply crate (SupplyParachute.land); the wolf is the den pup
+ * (DenPups.leave). Still granted: raw materials (splits, sticks, log pieces, iron bars), the gates the clock jump
+ * skipped, the cabin shell, stoves, the pup's trust and age, lamps. The hour itself
  * (23:30 to 00:30 on 20 December of year 2, World rate, so the midnight day tick falls inside it) uses no debug
  * command: the bot crouches, uses, feeds and walks (teleports, ledgered) through the real block and entity paths.
  * Asserts: no collapse, every vital change has a Messenger line, mod save data under 5 MB, MSPT inside the budget
@@ -100,7 +108,9 @@ public final class M9HourSmoke {
     private static final int hatchetSlot = 8, workSlot = 7;
 
     // layout
-    private static BlockPos siteA, siteB, penO, stoveA, stoveB, deskPos, rackPos;
+    private static BlockPos siteA, siteB, penO, stoveA, stoveB, deskPos, rackPos, benchPos;
+    private static double craftMin = 0;
+    private static final Map<String, Integer> crafted = new LinkedHashMap<>();
     private static int padY;
     private static final List<ItemStack> splitPile = new ArrayList<>();
     private static int splitsLoaded = 0, refuels = 0;
@@ -266,7 +276,8 @@ public final class M9HourSmoke {
             ItemStack s = p.getInventory().getItem(i);
             if (!s.isEmpty()) log("  kit: " + BuiltInRegistries.ITEM.getKey(s.getItem()) + " x" + s.getCount());
         }
-        log("GRANT " + "the crate kit is used as dealt (" + moved + " stacks)");
+        log("GRANT " + "the crate kit is used as dealt (" + moved + " stacks), except that the camp gear (bread, pot, panel, guide, medkit) is stashed in a barrel by the door: the 30 kg pack has no room for the homestead's materials otherwise");
+        stashKit(p);
         ClockService ck = ClockService.get();
         ck.forceRate(null);
         long m0 = DEC20_Y2 * 1440 + 22 * 60 + 50;
@@ -275,6 +286,138 @@ public final class M9HourSmoke {
                 + " (setup jump; no /yoi)");
         if (ck.year() != 2) fail("clock is not in year 2: " + ck.year());
         wait = 100;
+    }
+
+    /** Crafts one {@code id} through its station recipe at the bench. A missing ingredient with no source in this driver is a logged GRANT; a refusal grants the result. */
+    private static boolean craftAt(ServerPlayer p, String id) {
+        Item it = item(id);
+        ResourceLocation rid = null;
+        for (var h : StationCraft.all(level)) if (h.value().resultItem() == it) { rid = h.id(); break; }
+        if (rid == null) { grant(id, 1); log("GRANT " + id + " x1: no station recipe produces it"); p.getInventory().add(new ItemStack(it)); return false; }
+        var holder = StationCraft.byId(level, rid);
+        for (var need : holder.value().ingredients()) {
+            ItemStack[] opts = need.ingredient().getItems();
+            if (opts.length == 0) continue;
+            int hv = StationCraft.count(p.getInventory(), need);
+            if (hv < need.count()) {
+                String nm = BuiltInRegistries.ITEM.getKey(opts[0].getItem()).getPath();
+                grant(nm, need.count() - hv);
+                if (!p.getInventory().add(opts[0].copyWithCount(need.count() - hv))) log("  PACK FULL (weight cap): " + nm + " x" + (need.count() - hv) + " dropped at the feet");
+                if (grants.get(nm) == need.count() - hv) log("GRANT " + nm + " (ingredient of " + id + "; first shortfall, more are tallied in the final ledger)");
+            }
+        }
+        p.setShiftKeyDown(false);
+        var job = StationCraft.start(p, rid, benchPos);
+        if (job == null) {
+            var pl = StationCraft.plan(p, holder, StationCraft.stations(p, benchPos));
+            finding("craft refused " + id + ": " + pl.problem() + " (stations " + StationCraft.stations(p, benchPos) + ", pack " + packCount(p, item("birch_split")) + " splits)");
+            grant(id + "(refused)", 1);
+            p.getInventory().add(new ItemStack(it, holder.value().result().getCount()));
+            return false;
+        }
+        int t = 0;
+        while (!StationCraft.advance(p, job, WorkService.dsPerTick()) && t++ < 400000) { }
+        craftMin += t * WorkService.dsPerTick() / 600.0;
+        crafted.merge(id, holder.value().result().getCount(), Integer::sum);
+        return true;
+    }
+
+    /** As placeAt for an item made at the bench: not counted as a grant (falls back to setBlock only if nothing can be clicked). */
+    private static boolean placeMade(ServerPlayer p, Item it, BlockPos target) {
+        Integer before = grants.get(BuiltInRegistries.ITEM.getKey(it).getPath());
+        boolean ok = placeAt(p, it, target);
+        String k = BuiltInRegistries.ITEM.getKey(it).getPath();
+        if (before == null) grants.remove(k); else grants.put(k, before);
+        return ok;
+    }
+
+    private static void remove(ServerPlayer p, Item it, int n) {
+        for (int i = 0; i < p.getInventory().getContainerSize() && n > 0; i++) {
+            ItemStack s = p.getInventory().getItem(i);
+            if (s.is(it)) { int k = Math.min(n, s.getCount()); s.shrink(k); n -= k; }
+        }
+    }
+
+    private static int packCount(ServerPlayer p, Item it) {
+        int n = 0;
+        for (int i = 0; i < p.getInventory().getContainerSize(); i++) { ItemStack s = p.getInventory().getItem(i); if (s.is(it)) n += s.getCount(); }
+        return n;
+    }
+
+    /** The homestead set earned at a bench: gates, bench, planks, troughs, rack, nest box, hoe and radio desk, all through recipes. */
+    private static void homesteadCrafts(ServerPlayer p) {
+        for (Tier t : new Tier[] {Tier.BUSHCRAFT, Tier.HOMESTEAD}) {
+            boolean open = GateService.get().isOpen(p, t);
+            log("GATE " + t + " open: " + open);
+            if (!open) {
+                GateService.get().open(p, t, "m9 proxy setup");
+                grant("gate_" + t.name().toLowerCase(Locale.ROOT), 1);
+                log("GRANT gate " + t + " opened through GateService.open: " + (t == Tier.HOMESTEAD ? "the clock was set to December of year 2, skipping the first breakup in a warm room that opens it" : "no fire was lit before the clock jump"));
+            }
+        }
+        // the pack carries about 30 kg: raw wood is granted one craft at a time (craftAt tops up the shortfall) and each product is placed or put away at once
+        grant("stick", 8);
+        p.getInventory().add(new ItemStack(net.minecraft.world.item.Items.STICK, 8));
+        log("GRANT 8 sticks for stakes (limbing gives kindling, fallen_limb comes from lightning, a plant pull gives one)");
+        benchPos = siteA.offset(3, 1, 4);
+        // the crate knife is not in #yearofice:knives: recipes want a flint knife (M6 hunt proxy: gravel gives the stone and flint)
+        p.getInventory().add(new ItemStack(item("rough_stone"), 3));
+        grant("rough_stone", 3);
+        log("GRANT 3 rough stones (knapping tool, knife, hoe head); the gravel path that makes them is proven by the M6 hunt proxy");
+        craftAt(p, "flint_knife");
+        craftAt(p, "stake"); craftAt(p, "stake");
+        craftAt(p, "workbench");
+        placeMade(p, item("workbench"), benchPos);
+        remove(p, item("workbench"), 1);
+        p.teleportTo(level, siteA.getX() + 3.5, padY + 1, siteA.getZ() + 3.5, 0, 10);
+        boolean bench = level.getBlockState(benchPos).is(CraftRegistry.WORKBENCH.get());
+        log("BENCH crafted and placed at " + benchPos.toShortString() + ": " + bench + ", stations " + StationCraft.stations(p, benchPos));
+        if (!bench) fail("the crafted workbench is not at " + benchPos.toShortString());
+        craftAt(p, "tool_handle");
+        craftAt(p, "hoe");
+        craftAt(p, "plank"); // four planks for the desk
+        craftAt(p, "radio_desk");
+        remove(p, item("plank"), 8);
+        log("CRAFTED at the cabin bench: " + crafted + "; labour " + String.format(Locale.ROOT, "%.0f", craftMin) + " game min so far");
+    }
+
+    /** A second bench by the pen, so the walls and furniture are made where they stand (the pack cannot carry them). */
+    private static void penBench(ServerPlayer p) {
+        BlockPos spot = new BlockPos(penO.getX() - 3, penO.getY(), penO.getZ() + 2);
+        p.teleportTo(level, spot.getX() + 1.5, spot.getY(), spot.getZ() + 0.5, 0, 0);
+        craftAt(p, "stake"); craftAt(p, "stake");
+        craftAt(p, "workbench");
+        placeMade(p, item("workbench"), spot);
+        remove(p, item("workbench"), 1);
+        benchPos = spot;
+        boolean ok = level.getBlockState(spot).is(CraftRegistry.WORKBENCH.get());
+        log("BENCH 2 crafted and placed at " + spot.toShortString() + " beside the pen: " + ok + ", stations " + StationCraft.stations(p, benchPos));
+    }
+
+    /** Crafts {@code id} at the pen bench and places it at {@code at}; the leftovers of the recipe stay in the pack (light). */
+    private static void makeAndPlace(ServerPlayer p, String id, BlockPos at) {
+        if (packCount(p, item(id)) == 0) craftAt(p, id);
+        placeMade(p, item(id), at);
+        remove(p, item(id), 1);
+    }
+
+    private static void stashKit(ServerPlayer p) {
+        java.util.Set<String> keep = java.util.Set.of("hatchet", "fixed_blade_knife", "cord", "match", "bear_spray", "crate_backpack");
+        BlockPos at = p.blockPosition().east(2);
+        at = new BlockPos(at.getX(), level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, at.getX(), at.getZ()), at.getZ());
+        level.setBlock(at, Blocks.BARREL.defaultBlockState(), 3);
+        int n = 0;
+        if (level.getBlockEntity(at) instanceof BarrelBlockEntity b) {
+            for (int i = 0; i < p.getInventory().getContainerSize() && n < b.getContainerSize(); i++) {
+                ItemStack st = p.getInventory().getItem(i);
+                if (st.isEmpty()) continue;
+                String path = BuiltInRegistries.ITEM.getKey(st.getItem()).getPath();
+                if (keep.contains(path) || path.endsWith("boots") || path.endsWith("jacket") || path.endsWith("shell") || path.endsWith("pants") || path.endsWith("socks") || path.endsWith("beanie") || path.endsWith("gloves")) continue;
+                b.setItem(n++, st.copy());
+                p.getInventory().setItem(i, ItemStack.EMPTY);
+            }
+        }
+        log("STASH " + n + " kit stacks left in a barrel at " + at.toShortString());
     }
 
     private static void levelPad(BlockPos o, int w, int d, int y) {
@@ -309,13 +452,15 @@ public final class M9HourSmoke {
                 stoveA = siteA.offset(1, 1, 1);
                 placeStove(p, stoveA);
                 deskPos = siteA.offset(4, 1, 1);
-                placeAt(p, RadioRegistry.RADIO_DESK_ITEM.get(), deskPos);
-                log("GRANT radio_desk placed at " + deskPos.toShortString() + " (no recipe or loot path)");
                 grantDay = WoodItems.today();
                 for (int i = 0; i < 24; i++) splitPile.add(WoodItems.split(com.yearofice.sim.wood.WoodKind.BIRCH, 1, 18, grantDay));
                 grant("birch_split", 24);
                 log("GRANT 24 seasoned birch splits for the two stoves (the wood chain was proven in M8)");
                 lightStove(p, stoveA);
+                p.teleportTo(level, siteA.getX() + 3.5, padY + 1, siteA.getZ() + 3.5, 0, 10);
+                homesteadCrafts(p);
+                placeMade(p, RadioRegistry.RADIO_DESK_ITEM.get(), deskPos);
+                log("radio_desk crafted at the bench and placed at " + deskPos.toShortString());
                 p.teleportTo(level, siteA.getX() + 3.5, padY + 1, siteA.getZ() + 3.5, 0, 10); // the rest of the setup is done from indoors: the bot is a warm homesteader, not a frostbitten one
                 lamps();
                 artifact(40);
@@ -327,6 +472,7 @@ public final class M9HourSmoke {
                 stoveB = siteB.offset(1, 1, 1);
                 placeStove(p, stoveB);
                 lightStove(p, stoveB);
+                supplyDrop(p);
                 sowBeds(p);
                 artifact(40);
                 st = 3;
@@ -445,10 +591,7 @@ public final class M9HourSmoke {
 
     private static void sowBeds(ServerPlayer p) {
         ItemStack hoe = new ItemStack(CropRegistry.HOE.get());
-        grant("hoe", 1);
-        grant("cabbage_seed", 2);
-        grant("turnip_seed", 2);
-        log("GRANT hoe, 2 cabbage_seed, 2 turnip_seed (the hoe has no recipe; the seeds arrive in the supply drop, season 1 onward)");
+        log("SOW the hoe is the one crafted at the bench (" + packCount(p, CropRegistry.HOE.get()) + " in the pack); the seeds came in the supply drop crate (cabbage " + packCount(p, CropRegistry.CABBAGE_SEED.get()) + ", turnip " + packCount(p, CropRegistry.TURNIP_SEED.get()) + ")");
         BlockPos[] spots = {siteB.offset(3, 0, 3), siteB.offset(4, 0, 3), siteB.offset(3, 0, 4), siteB.offset(4, 0, 4)};
         for (int i = 0; i < spots.length; i++) {
             BlockPos g = spots[i];
@@ -489,40 +632,48 @@ public final class M9HourSmoke {
     private static void buildPen(ServerPlayer p) {
         // 6x6 interior log-stockade pen, two courses (wall_log is the mod's stockade kind: Pens.kindOf). A pole fence is the natural first choice, but FenceDrift hangs the server on a reload.
         int x0 = penO.getX(), z0 = penO.getZ(), y = penO.getY();
+        penBench(p);
+        p.getInventory().add(new ItemStack(net.minecraft.world.item.Items.STICK, 8));
+        grant("stick", 8);
+        log("GRANT 8 more sticks for the furniture's stakes");
+        rackPos = new BlockPos(x0 + 4, y, z0 + 4);
+        craftAt(p, "stake"); craftAt(p, "stake"); craftAt(p, "stake"); craftAt(p, "stake"); craftAt(p, "stake");
+        craftAt(p, "plank"); craftAt(p, "plank"); craftAt(p, "plank"); craftAt(p, "plank");
+        makeAndPlace(p, "hay_rack", rackPos);
+        makeAndPlace(p, "feed_trough", new BlockPos(x0 + 4, y, z0 + 1));
+        makeAndPlace(p, "nest_box", new BlockPos(x0 + 1, y, z0 + 4));
+        makeAndPlace(p, "water_trough", new BlockPos(x0 + 1, y, z0 + 1));
+        log("PEN hay_rack, feed_trough, nest_box, water_trough crafted at the pen bench and placed through the block-item use path");
+        remove(p, item("plank"), 16);
+        remove(p, item("stake"), 10);
         int nWall = 0;
         for (int x = -1; x <= 6; x++) for (int z = -1; z <= 6; z++) {
             boolean edge = x == -1 || x == 6 || z == -1 || z == 6;
             if (!edge) continue;
-            for (int c = 1; c <= 2; c++) { placeAt(p, item("wall_log"), new BlockPos(x0 + x, y + c - 1, z0 + z)); nWall++; }
+            for (int c = 1; c <= 2; c++) {
+                makeAndPlace(p, "wall_log", new BlockPos(x0 + x, y + c - 1, z0 + z));
+                nWall++;
+            }
         }
-        log("GRANT " + nWall + " wall_log pieces: a closed two-course log stockade (no recipe path run in an hour)");
-        rackPos = new BlockPos(x0 + 4, y, z0 + 4);
-        placeAt(p, item("hay_rack"), rackPos);
-        placeAt(p, item("feed_trough"), new BlockPos(x0 + 4, y, z0 + 1));
-        placeAt(p, item("nest_box"), new BlockPos(x0 + 1, y, z0 + 4));
-        placeAt(p, item("water_trough"), new BlockPos(x0 + 1, y, z0 + 1));
-        log("GRANT hay_rack, feed_trough, nest_box, water_trough placed (no recipe: feed_boxes only drop themselves)");
+        log("PEN " + nWall + " wall_log pieces crafted one at a time (piece_wall_log from log_piece) and placed: a closed two-course log stockade; crafted in all " + crafted + "; labour " + String.format(Locale.ROOT, "%.0f", craftMin) + " game min (" + String.format(Locale.ROOT, "%.1f", craftMin / 60) + " h) that the hour test does not spend");
+        finding("the homestead set (two benches, planks, hoe, troughs, rack, nest box, radio desk, 56 wall pieces) is " + String.format(Locale.ROOT, "%.1f", craftMin / 60) + " game hours of crafting labour once its raw materials are on hand");
     }
 
     private static void stockPen(ServerPlayer p) {
         int x0 = penO.getX(), z0 = penO.getZ(), y = penO.getY();
-        String[] kinds = {"goat", "goat", "hen", "hen", "hen"};
-        for (int i = 0; i < kinds.length; i++) {
-            var type = kinds[i].equals("goat") ? LivestockRegistry.GOAT.get() : LivestockRegistry.HEN.get();
-            var e = type.create(level);
-            if (!(e instanceof com.yearofice.ecosystem.YoiAnimal a) || !(e instanceof Livestock l)) { fail("cannot create " + kinds[i]); continue; }
-            a.moveTo(x0 + 2.5 + (i % 3), y, z0 + 2.5 + (i / 3), 0, 0);
-            l.core().female = !(kinds[i].equals("goat") && i == 1);
-            if (l.core().female) l.core().lastBirthDay = ClockService.get().absDay() - 30;
-            level.addFreshEntity(a);
-            flockIds.add(a.getUUID());
+        int herded = 0;
+        for (var id : flockIds) {
+            var e = level.getEntity(id);
+            if (e == null || !e.isAlive()) continue;
+            e.moveTo(x0 + 2.5 + (herded % 3), y, z0 + 2.5 + (herded / 3), 0, 0);
+            herded++;
         }
-        grant("goat", 2);
-        grant("hen", 3);
-        log("GRANT 2 goats and 3 hens spawned in the pen with EntityType.create (no taming, trade, capture or egg-hatching path exists for a player)");
+        log("LIVESTOCK " + herded + " animals from the supply drop herded into the pen (teleported: " + String.format(Locale.ROOT, "%.0f", 18 / WALK_MS / 60) + " game min of leading on foot); no goat or hen is spawned by the driver");
+        if (herded < 5) finding("the supply drop delivered " + herded + " of the 5 manifest animals (hens 3, goats 2)");
         // keeper's round, through the real paths: straw into the rack and by hand, a water bucket per animal
         grant("straw", 40);
         grant("water_bucket", 5);
+        log("GRANT 40 straw and 5 water buckets for the keeper's round (the hay and well chain is the farm's, not the hour's)");
         p.teleportTo(level, x0 + 3, y, z0 - 2.5, 0, 0);
         ItemStack straw = new ItemStack(CropRegistry.STRAW.get(), 40);
         hold(p, workSlot, straw);
@@ -557,16 +708,60 @@ public final class M9HourSmoke {
     private static WolfEntity wolf() { return wolfId != null && level.getEntity(wolfId) instanceof WolfEntity w && w.isAlive() ? w : null; }
 
     private static void spawnWolf(ServerPlayer p) {
-        WolfEntity wolf = EcosystemRegistry.WOLF.get().create(level);
-        wolf.moveTo(siteA.getX() + 3, padY, siteA.getZ() - 5, 0, 0);
+        int year = ClockService.get().year();
+        // the honest source: the den pup the world leaves 120-200 m away each summer (DenPups.leave)
+        BlockPos at = p.blockPosition();
+        var before = level.getEntitiesOfClass(WolfEntity.class, new net.minecraft.world.phys.AABB(at).inflate(260));
+        boolean left = false;
+        int tries = 0;
+        for (; tries < 40 && !left; tries++) {
+            net.minecraft.nbt.CompoundTag root = p.getPersistentData().getCompound(net.minecraft.world.entity.player.Player.PERSISTED_NBT_TAG);
+            left = com.yearofice.ecosystem.companion.DenPups.leave(p, year) && level.getEntitiesOfClass(WolfEntity.class, new net.minecraft.world.phys.AABB(at).inflate(260)).size() > before.size();
+        }
+        WolfEntity wolf = null;
+        for (WolfEntity w : level.getEntitiesOfClass(WolfEntity.class, new net.minecraft.world.phys.AABB(at).inflate(260))) if (!before.contains(w)) wolf = w;
+        if (wolf == null) {
+            finding("DenPups.leave placed no pup in " + tries + " tries: it needs the chunk 120-200 m out loaded, and this box runs a render distance of 6 (96 m). At the default view distance it reaches.");
+            wolf = EcosystemRegistry.WOLF.get().create(level);
+            wolf.moveTo(siteA.getX() + 3, padY, siteA.getZ() - 5, 0, 0);
+            wolf.makeTameable(0, 60);
+            level.addFreshEntity(wolf);
+            grant("den_pup_fallback", 1);
+            log("GRANT a pup created as DenPups does (tameable, trust 0, 60 days) beside the cabin because the den pup could not be placed");
+        } else {
+            log("PUP the den pup arrived at " + wolf.blockPosition().toShortString() + " (" + String.format(Locale.ROOT, "%.0f", Math.sqrt(wolf.distanceToSqr(p))) + " m out), unowned and tameable, trust " + wolf.trust().value());
+            wolf.moveTo(siteA.getX() + 3, padY, siteA.getZ() - 5, 0, 0);
+            log("WALK the pup is led to the cabin (teleported)");
+        }
+        // taming is 30-60 game days of feeding; the hour cannot spend that, so trust and age are set by hand
         wolf.makeTameable(85, 400);
         wolf.setOwner(p);
         wolf.trust().set(85);
         wolf.setName("Ash");
-        level.addFreshEntity(wolf);
         wolfId = wolf.getUUID();
-        grant("tamed_wolf", 1);
-        log("GRANT wolf spawned owned at trust 85 (Companion), age 400 days, named Ash: honest taming is 30-60 game days of feeding; 'pup' acts exist as Wolf.act but no player-facing feed-ground input was exercised in an hour");
+        grant("wolf_trust_and_age", 1);
+        log("GRANT the pup's trust set to 85, age 400 days and owner set: honest taming is 30-60 game days of feeding and growing up");
+    }
+
+    /** The supply crate lands where the parachute would put it (SupplyParachute.land: barrel, manifest and, from day 365, the livestock). */
+    private static void supplyDrop(ServerPlayer p) {
+        BlockPos crate = new BlockPos(siteA.getX() + 15, padY, siteA.getZ() - 4);
+        int before = flockIds.size();
+        com.yearofice.story.radio.SupplyParachute.land(level, crate);
+        grant("supply_drop_trigger", 1);
+        log("GRANT the drop is landed by calling SupplyParachute.land at " + crate.toShortString() + " (the radio sked that would fly it is exercised separately by the radio moment)");
+        int taken = 0;
+        if (level.getBlockEntity(crate) instanceof BarrelBlockEntity b) {
+            for (int i = 0; i < b.getContainerSize(); i++) {
+                ItemStack st = b.getItem(i);
+                if (!st.isEmpty()) {
+                    if (p.getInventory().add(st.copy())) { b.setItem(i, ItemStack.EMPTY); taken += st.getCount(); }
+                    else log("  crate: " + st + " left in the crate (the pack's weight cap)");
+                }
+            }
+        }
+        for (var e : level.getEntitiesOfClass(com.yearofice.ecosystem.YoiAnimal.class, new net.minecraft.world.phys.AABB(crate).inflate(8), a -> a instanceof Livestock)) flockIds.add(e.getUUID());
+        log("SUPPLY crate opened: " + taken + " items taken (" + packCount(p, CropRegistry.TURNIP_SEED.get()) + " turnip seed, " + packCount(p, CropRegistry.CABBAGE_SEED.get()) + " cabbage seed); " + (flockIds.size() - before) + " livestock came down with it");
     }
 
     private static void findOutpost(ServerPlayer p) {
