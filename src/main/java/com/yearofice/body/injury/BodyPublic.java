@@ -39,6 +39,8 @@ public final class BodyPublic {
             if ((p.group == Part.Group.LEGS || p.group == Part.Group.FEET) && s.parts.hp(p) < 50) f |= BodyPublicPayload.LIMP;
         }
         if (s.sos == 1 || s.condition() <= 0) f |= BodyPublicPayload.DOWN;
+        int beard = com.yearofice.sim.body.Skin.beardStage(s, com.yearofice.sim.body.Wellness.tuning(com.yearofice.body.BodyConfig.tuning()));
+        f |= Math.max(0, Math.min(7, beard)) << BodyPublicPayload.BEARD_SHIFT; // Stubble and no beard both show nothing
         return f;
     }
 

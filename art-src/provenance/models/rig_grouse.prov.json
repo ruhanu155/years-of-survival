@@ -1,12 +1,10 @@
 {
- "species": "willow_ptarmigan",
+ "species": "mallard",
  "grade": "G2",
  "generator": "modelgen 0.4.0",
  "base": null,
  "geo": "geo/entity/rig_grouse.geo.json",
  "textures": [
-  "adult_moult",
-  "adult_summer",
-  "adult_winter"
+  "adult_all"
  ]
 }

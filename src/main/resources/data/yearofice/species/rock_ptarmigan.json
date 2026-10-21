@@ -1,0 +1,83 @@
+{
+  "entity": "yearofice:rock_ptarmigan",
+  "rig": "grouse",
+  "habitat": [
+    "alpine"
+  ],
+  "population": [
+    2,
+    8
+  ],
+  "home_range_m": 400,
+  "active": [
+    "dawn",
+    "day",
+    "dusk"
+  ],
+  "gaits": {
+    "walk": 0.8,
+    "trot": 2,
+    "run": 3,
+    "fly": 12
+  },
+  "senses": {
+    "sight": 30,
+    "hearing": 10,
+    "smell": 0,
+    "fov": 300
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": true,
+    "flush_m": 3.0,
+    "flee_m": [
+      25,
+      35
+    ],
+    "flee_gait": "fly",
+    "zigzag": false,
+    "hide_min": [
+      10,
+      30
+    ],
+    "charges": false
+  },
+  "huntable": true,
+  "respawn_days": 10,
+  "carcass": {
+    "whole_kg": 0.55,
+    "class": "small",
+    "body_plan": "bird",
+    "tau_h": 1,
+    "floats": true,
+    "poses": [
+      "dead_wings"
+    ],
+    "steps": {
+      "gut": 2,
+      "pluck": 4
+    },
+    "parts": {
+      "meat": 0.35,
+      "organs": {
+        "giblets": 0.03
+      },
+      "cover": {
+        "feathers": 15,
+        "kind": "feathers"
+      },
+      "guts_kg": 0.08
+    }
+  },
+  "butcher_table": "yearofice:butchering/rock_ptarmigan",
+  "spawn": {
+    "cell_m": 256,
+    "group": [
+      2,
+      5
+    ],
+    "density_per_km2": 2
+  }
+}

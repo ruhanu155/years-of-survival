@@ -53,6 +53,17 @@ public interface BodyService {
      */
     boolean eat(ServerPlayer player, ItemStack stack, double grams);
 
+    /**
+     * Eats food whose nutrients travel with the stack (a dish, dried meat): {@code grams} of mass to the stomach and the
+     * given kcal, protein, fat and water to the body. Returns false when the stomach is full. Added in M5 lane D2.
+     */
+    default boolean eatNutrients(ServerPlayer player, double grams, double kcal, double proteinG, double fatG, double waterMl) {
+        return false;
+    }
+
+    /** Adds C-days (10 mg each) to the vitamin C reserve, capped at its 30 days; the scurvy clock reads it. Added in M5 lane D2. */
+    default void addVitaminC(ServerPlayer player, double cDays) {}
+
     /** Drinks {@code litres} from a source of the given purity; untreated water rolls gut illness. */
     void drink(ServerPlayer player, double litres, WaterPurity.Source source, boolean boiled);
 
@@ -61,6 +72,9 @@ public interface BodyService {
 
     /** Ends sleep or waiting at once and says why. */
     void wake(ServerPlayer player, String cause);
+
+    /** Starts an illness register file ({@code taste_sick}, {@code poison_plant}, ...), rolling its onset; false for an unknown id. */
+    boolean beginIllness(ServerPlayer player, String illnessId);
 
     static BodyService get() {
         BodyService s = Holder.service;

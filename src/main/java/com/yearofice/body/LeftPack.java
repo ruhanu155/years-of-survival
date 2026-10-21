@@ -71,17 +71,24 @@ public final class LeftPack {
 
         public GroundBed(Properties p) {
             super(p);
-            registerDefaultState(stateDefinition.any().setValue(net.minecraft.world.level.block.BedBlock.OCCUPIED, false));
+            registerDefaultState(stateDefinition.any().setValue(net.minecraft.world.level.block.BedBlock.OCCUPIED, false)
+                    .setValue(net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING, net.minecraft.core.Direction.NORTH));
         }
 
         @Override
         protected void createBlockStateDefinition(net.minecraft.world.level.block.state.StateDefinition.Builder<Block, BlockState> b) {
-            b.add(net.minecraft.world.level.block.BedBlock.OCCUPIED);
+            b.add(net.minecraft.world.level.block.BedBlock.OCCUPIED, net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING);
         }
 
         @Override
         public boolean isBed(BlockState state, net.minecraft.world.level.BlockGetter level, BlockPos pos,
                              net.minecraft.world.entity.LivingEntity sleeper) { return true; }
+
+        /** The camera of a sleeper reads the bed's direction; this marker has no {@code facing}, so it answers north. */
+        @Override
+        public net.minecraft.core.Direction getBedDirection(BlockState state, net.minecraft.world.level.LevelReader level, BlockPos pos) {
+            return net.minecraft.core.Direction.NORTH;
+        }
 
         @Override
         protected net.minecraft.world.phys.shapes.VoxelShape getShape(BlockState s, net.minecraft.world.level.BlockGetter l,

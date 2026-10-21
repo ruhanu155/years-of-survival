@@ -74,6 +74,11 @@ public final class SliceSpots {
         return year * 12 + Math.floorMod(FishSeason.month(doy) - 5, 12);
     }
 
+    /** The stock key for a species at a cell: the grayling keeps the bare cell key (saves from the slice stay valid). */
+    public static long speciesKey(long cellKey, String speciesId) {
+        return FishingSpecies.GRAYLING.equals(speciesId) ? cellKey : cellKey ^ (com.yearofice.sim.fishing.Draws.name(speciesId) * 0x9E3779B97F4A7C15L);
+    }
+
     public static Stocks stocks(ServerLevel level) {
         return level.getServer().overworld().getDataStorage().computeIfAbsent(Stocks.FACTORY, "yearofice_fish_stocks");
     }
@@ -85,31 +90,52 @@ public final class SliceSpots {
         private final Map<Long, double[]> cells = new HashMap<>();
         private final Map<Long, Long> spookedUntil = new HashMap<>();
 
-        /** The stock now, regrown to this month. */
+        private final Map<Long, Long> lastCatch = new HashMap<>();
+
+        /** The grayling stock now, regrown to this month. */
         public FishStock get(long key, long absoluteDay, FishingTuning t) {
-            int doy = FishSeason.dayOfYear(absoluteDay);
-            double k = capacity(doy, t);
+            return get(key, absoluteDay, capacity(FishSeason.dayOfYear(absoluteDay), t), GRAYLING_R);
+        }
+
+        /** Any species' stock now, regrown to this month at growth rate {@code r}; {@code k} is today's capacity. */
+        public FishStock get(long key, long absoluteDay, double k, double r) {
+            return get(key, absoluteDay, k, r, FishingConfig.tuning().spotMigrationPerDay());
+        }
+
+        /** As above with fish migrating in from neighbouring water at {@code mig} of the gap a game day (M6 lane C). */
+        public FishStock get(long key, long absoluteDay, double k, double r, double mig) {
             long mi = monthIndex(absoluteDay);
             double[] e = cells.get(key);
             if (e == null) return FishStock.full(k);
             FishStock s = new FishStock(e[0], Math.max(e[0], k)).rescale(k);
+            if (e.length > 2 && e[2] >= 0) s = new FishStock(com.yearofice.sim.fishing.SpotMigration.after(s.n(), k, mig, Math.min(60, absoluteDay - (long) e[2])), k);
             long months = Math.min(12, mi - (long) e[1]);
             long m0 = (long) e[1];
             for (long i = 1; i <= months; i++) {
                 int calMonth = Math.floorMod((int) ((m0 + i) % 12) + 4, 12) + 1;
-                s = s.regrow(GRAYLING_R, FishStock.IMMIGRATION_RIVER, calMonth);
+                s = s.regrow(r, FishStock.IMMIGRATION_RIVER, calMonth);
             }
             return s;
         }
 
         public void harvest(long key, long absoluteDay, FishingTuning t, int fish) {
             FishStock s = get(key, absoluteDay, t).harvest(fish);
-            cells.put(key, new double[] {s.n(), monthIndex(absoluteDay)});
+            cells.put(key, new double[] {s.n(), monthIndex(absoluteDay), absoluteDay});
             setDirty();
         }
 
+        public void harvest(long key, long absoluteDay, double k, double r, int fish, long minute) {
+            FishStock s = get(key, absoluteDay, k, r).harvest(fish);
+            cells.put(key, new double[] {s.n(), monthIndex(absoluteDay), absoluteDay});
+            lastCatch.put(key, minute);
+            setDirty();
+        }
+
+        /** Game minute of the last fish taken from this stock, or Long.MIN_VALUE. */
+        public long lastCatch(long key) { return lastCatch.getOrDefault(key, Long.MIN_VALUE); }
+
         public void set(long key, long absoluteDay, double n) {
-            cells.put(key, new double[] {n, monthIndex(absoluteDay)});
+            cells.put(key, new double[] {n, monthIndex(absoluteDay), absoluteDay});
             setDirty();
         }
 
@@ -121,7 +147,15 @@ public final class SliceSpots {
             Stocks s = new Stocks();
             for (Tag el : tag.getList("cells", Tag.TAG_COMPOUND)) {
                 CompoundTag c = (CompoundTag) el;
-                s.cells.put(c.getLong("key"), new double[] {c.getDouble("n"), c.getLong("month")});
+                s.cells.put(c.getLong("key"), new double[] {c.getDouble("n"), c.getLong("month"), c.contains("day") ? c.getLong("day") : -1});
+            }
+            for (Tag el : tag.getList("last", Tag.TAG_COMPOUND)) {
+                CompoundTag c = (CompoundTag) el;
+                s.lastCatch.put(c.getLong("key"), c.getLong("minute"));
+            }
+            for (Tag el : tag.getList("last", Tag.TAG_COMPOUND)) {
+                CompoundTag c = (CompoundTag) el;
+                s.lastCatch.put(c.getLong("key"), c.getLong("minute"));
             }
             return s;
         }
@@ -134,9 +168,18 @@ public final class SliceSpots {
                 c.putLong("key", k);
                 c.putDouble("n", v[0]);
                 c.putLong("month", (long) v[1]);
+                if (v.length > 2 && v[2] >= 0) c.putLong("day", (long) v[2]);
                 list.add(c);
             });
             tag.put("cells", list);
+            ListTag last = new ListTag();
+            lastCatch.forEach((k, v) -> {
+                CompoundTag c = new CompoundTag();
+                c.putLong("key", k);
+                c.putLong("minute", v);
+                last.add(c);
+            });
+            if (!last.isEmpty()) tag.put("last", last);
             return tag;
         }
     }

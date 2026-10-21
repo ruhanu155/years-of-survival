@@ -165,3 +165,7 @@ Under `com.yearofice.`
 | `client.minigame.bowdrill` | body |
 | `client.minigame.fishing` | food |
 | `gametest` | testers |
+
+## hunt (owner: hunt)
+`ConcealmentService.get().effectFor(level, player, animalDistM, animalInFront, bigPrey, bear)` returns `sim.hunt.Blinds.Effect` (sightX, noiseX, scentX, scentClearM, viewX) for the blind or tree stand the player is in; ecosystem multiplies the animal's senses by it.
+Events on `NeoForge.EVENT_BUS`: `CallSoundedEvent` (a call was sounded; `pRespond(species, listener, season, hour, shy, director)` gives each answer's odds, ecosystem rolls them), `AnimalWoundedEvent` (an arrow wounded but did not kill; wound state is `hunt.wound.WoundTracker`), `EncounterStateEvent` (bear strike/pinned, posted by `hunt.danger.Encounters`).

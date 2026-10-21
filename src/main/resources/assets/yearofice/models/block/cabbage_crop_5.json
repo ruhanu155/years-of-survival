@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yearofice:block/cabbage_crop_5"
+  },
+  "render_type": "minecraft:cutout"
+}

@@ -1074,7 +1074,7 @@
       ]
     },
     {
-      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
       "milestone": "m2",
       "owner": "worldgen",
       "type": "block",
@@ -1100,7 +1100,7 @@
       ]
     },
     {
-      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
       "milestone": "m2",
       "owner": "worldgen",
       "type": "biome",
@@ -1126,7 +1126,7 @@
       ]
     },
     {
-      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
       "milestone": "m2",
       "owner": "worldgen",
       "type": "worldgen_hook",
@@ -1141,7 +1141,7 @@
       ]
     },
     {
-      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
       "milestone": "m2",
       "owner": "worldgen",
       "type": "tag",
@@ -1801,6 +1801,479 @@
       "ids": [
         "tool_handle"
       ]
+    },
+    {
+      "basis": "The food cache (Items > Containers; Theft by animals: mice in the cache)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "food_cache"
+      ]
+    },
+    {
+      "basis": "Plants and fungi: willow and rock ptarmigan; M5 lane A grouse and ptarmigan rig",
+      "milestone": "m5",
+      "owner": "ecosystem",
+      "type": "mob",
+      "ids": [
+        "rock_ptarmigan"
+      ]
+    },
+    {
+      "basis": "Minecraft development: data-only species spawn through one generic entity type (data_only_species_spawns)",
+      "milestone": "m5",
+      "owner": "ecosystem",
+      "type": "entity",
+      "ids": [
+        "critter"
+      ]
+    },
+    {
+      "basis": "Bestiary: carcass yields, small game and furbearers (M5 lane A)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "red_squirrel_meat",
+        "marten_meat",
+        "mink_meat",
+        "muskrat_meat",
+        "porcupine_meat",
+        "beaver_meat",
+        "spruce_grouse_meat",
+        "ruffed_grouse_meat",
+        "rock_ptarmigan_meat"
+      ]
+    },
+    {
+      "basis": "Bestiary: carcass yields, pelts (M5 lane A)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "marten_pelt",
+        "mink_pelt",
+        "muskrat_pelt",
+        "red_squirrel_pelt"
+      ]
+    },
+    {
+      "basis": "Structures and buildables: Thieves at the rack, item classes the thieves take (M5 lane A)",
+      "milestone": "m5",
+      "owner": "ecosystem",
+      "type": "tag",
+      "ids": [
+        "theft_meat",
+        "theft_fish",
+        "theft_hide",
+        "theft_berry_seed"
+      ]
+    },
+    {
+      "basis": "Minecraft development: data_only_species_spawns test species, defined only in data (M5 lane A)",
+      "milestone": "m5",
+      "owner": "ecosystem",
+      "type": "mob",
+      "ids": [
+        "data_only_probe"
+      ]
+    },
+    {
+      "basis": "Fishing M5 lane C: the landed fish is the item with the species id (DIRECTOR RULING 101; Waters and fish > Species ledger)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "dolly_varden",
+        "northern_pike",
+        "humpback_whitefish",
+        "burbot",
+        "lake_trout",
+        "chinook_salmon",
+        "chum_salmon",
+        "coho_salmon"
+      ]
+    },
+    {
+      "basis": "M5 lane B: the blueprint foraging species the master list lacks (Plants and fungi, Foraging and plant knowledge: blueberry, lingonberry, cloudberry, highbush cranberry, wild rose, fireweed and the lookalike pairs)",
+      "milestone": "m5",
+      "owner": "body",
+      "type": "plant_block",
+      "ids": [
+        "blueberry_bush",
+        "lingonberry_bush",
+        "cloudberry_bush",
+        "highbush_cranberry_bush",
+        "wild_rose",
+        "fireweed",
+        "labrador_tea",
+        "water_hemlock",
+        "death_camas",
+        "wild_chives",
+        "wild_celery",
+        "cow_parsnip",
+        "morel",
+        "false_morel",
+        "baneberry",
+        "fly_agaric",
+        "chaga",
+        "nettle",
+        "yarrow",
+        "cattail",
+        "usnea"
+      ]
+    },
+    {
+      "basis": "M5 lane B: part items named after their species (Plants and fungi, Registry ids) and plant_material for non-food parts",
+      "milestone": "m5",
+      "owner": "body",
+      "type": "item",
+      "ids": [
+        "birch_bolete_caps",
+        "bistort_bulbils",
+        "bistort_root",
+        "black_currant",
+        "bluebell_flowers",
+        "blueberries",
+        "bulrush_root",
+        "bunchberries",
+        "cattail_roots",
+        "celery_stems",
+        "chaga_conk",
+        "chickweed_greens",
+        "chives",
+        "cloudberries",
+        "coltsfoot_leaves",
+        "cranberries",
+        "dandelion_greens",
+        "dogwood_shoots",
+        "dwarf_fireweed_leaves",
+        "fern_root",
+        "fiddleheads",
+        "fireweed_shoots",
+        "foxtail_seed",
+        "iceland_moss_pieces",
+        "juniper_berries",
+        "labrador_tea_leaves",
+        "lambsquarters_leaves",
+        "lingonberries",
+        "mint_leaves",
+        "morels",
+        "nettle_tops",
+        "orange_cap_bolete_caps",
+        "parsnip_shoots",
+        "pineapple_weed_heads",
+        "plantain_leaves",
+        "raspberry",
+        "rhubarb_stems",
+        "rock_tripe_pieces",
+        "roseroot_leaves",
+        "shaggy_mane_caps",
+        "skunk_currant",
+        "sorrel_leaves",
+        "sourdock_leaves",
+        "sweet_pea_roots",
+        "usnea_strands",
+        "wild_potato_root",
+        "yarrow_leaves",
+        "plant_material"
+      ]
+    },
+    {
+      "basis": "M5 lane B: the player plant notebook (Foraging and plant knowledge, Knowing a plant)",
+      "milestone": "m5",
+      "owner": "body",
+      "type": "attachment",
+      "ids": [
+        "plant_notes"
+      ]
+    },
+    {
+      "basis": "M5 lane B: plants flagged for the body lane (Plants and fungi, Poisonings)",
+      "milestone": "m5",
+      "owner": "body",
+      "type": "tag",
+      "ids": [
+        "toxic_plants"
+      ]
+    },
+    {
+      "basis": "M5 lane D2",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "deadfall"
+      ]
+    },
+    {
+      "basis": "M5 lane D2",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block_with_entity",
+      "ids": [
+        "mouse_deadfall"
+      ]
+    },
+    {
+      "basis": "M5 lane D2",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "snare_funnel"
+      ]
+    },
+    {
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "roe"
+      ]
+    },
+    {
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "fish_chunk"
+      ]
+    },
+    {
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "spoon"
+      ]
+    },
+    {
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "fly"
+      ]
+    },
+    {
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "gill_net_segment"
+      ]
+    },
+    {
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "set_line"
+      ]
+    },
+    {
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "weir_basket"
+      ]
+    },
+    {
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "set_line"
+      ]
+    },
+    {
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "gill_net"
+      ]
+    },
+    {
+      "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "weir_basket"
+      ]
+    },
+    {
+      "basis": "M5 lane B2: vegetation placement feature",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "worldgen_hook",
+      "ids": [
+        "layer_plants"
+      ]
+    },
+    {
+      "basis": "M5 lane TUNE bait from hare/fish guts (Blueprint: Guts 10% bait one per 0.1 kg)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "fish_guts"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "self_bow"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "kit_bow"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "spear"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "arrow"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "pole_blind"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "blood_trail"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "tree_stand"
+      ]
+    },
+    {
+      "basis": "Birds and the air: the M6 bird sheets (M6 lane C)",
+      "milestone": "m6",
+      "owner": "ecosystem",
+      "type": "mob",
+      "ids": [
+        "stellers_jay"
+      ]
+    },
+    {
+      "basis": "M6 lane C: the one dressed-bird item all nine birds yield",
+      "milestone": "m6",
+      "owner": "ecosystem",
+      "type": "item",
+      "ids": [
+        "bird_meat"
+      ]
+    },
+    {
+      "basis": "M6 lane C: willow pole vs kit rod split",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "kit_rod"
+      ]
+    },
+    {
+      "basis": "M6 lane C: fish weir fence, fish wheel, tip-up (Waters and fish > Gear and structures)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "weir_stake",
+        "fish_wheel",
+        "tip_up"
+      ]
+    },
+    {
+      "basis": "M6 lane C: block items of the fish weir stake, fish wheel and tip-up",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "weir_stake",
+        "fish_wheel",
+        "tip_up"
+      ]
+    },
+    {
+      "basis": "M6 lane C: the other thirteen fish species' landed-fish items (Waters and fish > Species ledger)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "sockeye_salmon",
+        "arctic_char",
+        "broad_whitefish",
+        "round_whitefish",
+        "least_cisco",
+        "bering_cisco",
+        "sheefish",
+        "longnose_sucker",
+        "slimy_sculpin",
+        "lake_chub",
+        "ninespine_stickleback",
+        "alaska_blackfish",
+        "arctic_lamprey"
+      ]
+    },
+    {
+      "basis": "M3 crafting re-land (#61): crop owns yearofice:station until M6-INT folds them",
+      "milestone": "m3",
+      "owner": "building",
+      "type": "recipe_type",
+      "ids": [
+        "craft_station"
+      ]
     }
   ],
   "expand": {
@@ -1907,7 +2380,7 @@
     {
       "basis": "Ready for development > M2.5 ids (every one tagged m2_5)",
       "file": "docs/ready-for-development.md",
-      "heading": "M2.5 \u2014 Vertical slice",
+      "heading": "M2.5 — Vertical slice",
       "line_contains": "**Ids and data:**",
       "until_line_contains": "**Work, in order:**",
       "milestone": "m2_5",
@@ -1922,7 +2395,7 @@
     {
       "basis": "Ready for development > M0 ids",
       "file": "docs/ready-for-development.md",
-      "heading": "M0 \u2014 Seeded world",
+      "heading": "M0 — Seeded world",
       "line_contains": "**Ids and data:**",
       "milestone": "m0",
       "types": [
@@ -1933,7 +2406,7 @@
     {
       "basis": "Ready for development > M2 ids",
       "file": "docs/ready-for-development.md",
-      "heading": "M2 \u2014 Walkable valley",
+      "heading": "M2 — Walkable valley",
       "line_contains": "**Ids and data:**",
       "milestone": "m2",
       "types": [
@@ -1945,7 +2418,7 @@
     {
       "basis": "Ready for development > M5 ids",
       "file": "docs/ready-for-development.md",
-      "heading": "M5 \u2014 Food and goals",
+      "heading": "M5 — Food and goals",
       "line_contains": "**Ids and data:**",
       "milestone": "m5",
       "types": [
@@ -1956,7 +2429,7 @@
     {
       "basis": "Ready for development > M8 ids",
       "file": "docs/ready-for-development.md",
-      "heading": "M8 \u2014 Building and outposts",
+      "heading": "M8 — Building and outposts",
       "line_contains": "**Ids and data:**",
       "milestone": "m8",
       "types": [
@@ -1968,7 +2441,7 @@
     {
       "basis": "Ready for development > M9 ids",
       "file": "docs/ready-for-development.md",
-      "heading": "M9 \u2014 Homestead and beyond",
+      "heading": "M9 — Homestead and beyond",
       "line_contains": "**Ids and data:**",
       "milestone": "m9",
       "types": [
@@ -2583,6 +3056,15 @@
       "owner": "building",
       "ids": [
         "bough_bed"
+      ]
+    },
+    {
+      "basis": "M5 lane B: patches is the plants lane's chunk attachment",
+      "milestone": "m5",
+      "owner": "body",
+      "type": "attachment",
+      "ids": [
+        "patches"
       ]
     }
   ],

@@ -1,0 +1,20 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "taken": "0|1"
+      },
+      "apply": {
+        "model": "yearofice:block/stair_step_moss"
+      }
+    },
+    {
+      "when": {
+        "taken": "2|3"
+      },
+      "apply": {
+        "model": "yearofice:block/stair_step_moss_bare"
+      }
+    }
+  ]
+}

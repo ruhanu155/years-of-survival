@@ -17,7 +17,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 /**
- * Building's M3 crafting entries: the workbench and its block entity, the recipe type {@code yearofice:station}, the
+ * Building's M3 crafting entries: the workbench and its block entity, the recipe type {@code yearofice:craft_station} (crop owns yearofice:station until M6-INT folds them), the
  * knapping and bench items and the crate knife. Every id here is in {@code studio/inventory.json}.
  */
 public final class CraftRegistry {
@@ -29,10 +29,10 @@ public final class CraftRegistry {
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, YearOfIce.MOD_ID);
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Registries.RECIPE_SERIALIZER, YearOfIce.MOD_ID);
 
-    public static final DeferredHolder<RecipeType<?>, RecipeType<StationRecipe>> STATION = RECIPE_TYPES.register("station", () -> RecipeType.simple(
-            net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, "station")));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<StationRecipe>> STATION = RECIPE_TYPES.register("craft_station", () -> RecipeType.simple(
+            net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, "craft_station")));
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<StationRecipe>> STATION_SERIALIZER =
-            RECIPE_SERIALIZERS.register("station", () -> StationRecipe.SERIALIZER);
+            RECIPE_SERIALIZERS.register("craft_station", () -> StationRecipe.SERIALIZER);
 
     public static final DeferredBlock<WorkbenchBlock> WORKBENCH = BLOCKS.registerBlock("workbench", WorkbenchBlock::new,
             BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL).strength(2.0F).sound(SoundType.WOOD).noOcclusion());

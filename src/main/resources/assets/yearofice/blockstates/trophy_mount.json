@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "facing=north,plate=plain": {
+      "model": "yearofice:block/trophy_mount",
+      "y": 0
+    },
+    "facing=north,plate=arvid": {
+      "model": "yearofice:block/trophy_mount",
+      "y": 0
+    },
+    "facing=east,plate=plain": {
+      "model": "yearofice:block/trophy_mount",
+      "y": 90
+    },
+    "facing=east,plate=arvid": {
+      "model": "yearofice:block/trophy_mount",
+      "y": 90
+    },
+    "facing=south,plate=plain": {
+      "model": "yearofice:block/trophy_mount",
+      "y": 180
+    },
+    "facing=south,plate=arvid": {
+      "model": "yearofice:block/trophy_mount",
+      "y": 180
+    },
+    "facing=west,plate=plain": {
+      "model": "yearofice:block/trophy_mount",
+      "y": 270
+    },
+    "facing=west,plate=arvid": {
+      "model": "yearofice:block/trophy_mount",
+      "y": 270
+    }
+  }
+}

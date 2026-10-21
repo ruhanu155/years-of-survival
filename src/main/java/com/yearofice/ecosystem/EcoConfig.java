@@ -23,6 +23,8 @@ public final class EcoConfig {
         NOTES.put("demoteRadiusM", "Wild bodies leave beyond this many metres from every player.");
         NOTES.put("activeCap", "Most wild bodies in one level at once.");
         NOTES.put("workMinPerS", "The Work time-lapse: game minutes a real second while a hold-to-work ring fills.");
+        NOTES.put("smallGameDensityMult", "Multiplies the species-file densities of the small game, furbearers and grouse (red squirrel to rock ptarmigan).");
+        NOTES.put("theftMult", "Multiplies the hourly theft chances at the camp's stores (marten, jay, raven, fox).");
         NOTES.put("minWorkEnergy", "Hold-to-work (dressing, setting a snare) needs at least this many energy bolts.");
     }
 
@@ -43,6 +45,7 @@ public final class EcoConfig {
         HARE_CYCLE_YEAR = b.comment("Pin the hare cycle to a year 0-9 (multipliers 0.3, 0.5, 0.9, 1.5, 2.2, 2.5, 1.8, 0.9, 0.4, 0.25); -1 draws the phase from the seed.")
                 .defineInRange("hare_cycle_year", -1, -1, 9);
         b.pop();
+        com.yearofice.ecosystem.encounter.EncounterConfig.define(b); // M6 lane D: [world], door entry, talk
         TrapConfig.define(b);
     }
 
@@ -50,10 +53,13 @@ public final class EcoConfig {
 
     public static boolean mooseHuntable() { return YoiConfig.SPEC.isLoaded() && MOOSE_HUNTABLE != null && MOOSE_HUNTABLE.get(); }
 
+    public static boolean rackThievesDefault() { return com.yearofice.ecosystem.encounter.WorldToggles.rackThieves(); }
+
     public static int hareCycleYear() { return YoiConfig.SPEC.isLoaded() && HARE_CYCLE_YEAR != null ? HARE_CYCLE_YEAR.get() : -1; }
 
     public static void invalidate() {
         ECO.invalidate();
+        com.yearofice.ecosystem.encounter.EncounterConfig.invalidate();
         TrapConfig.TRAPS.invalidate();
     }
 }

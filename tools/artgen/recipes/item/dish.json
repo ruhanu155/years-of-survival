@@ -1,0 +1,40 @@
+{
+ "id": "yearofice:dish",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "ellipse",
+   "ramp": "wood_cut",
+   "step": 2,
+   "box": [
+    1,
+    6,
+    14,
+    14
+   ]
+  },
+  {
+   "kind": "ellipse",
+   "ramp": "meat_cooked",
+   "step": 2,
+   "box": [
+    3,
+    6,
+    12,
+    10
+   ]
+  },
+  {
+   "kind": "ellipse",
+   "ramp": "fat_cream",
+   "step": 3,
+   "box": [
+    5,
+    7,
+    8,
+    8
+   ],
+   "flat": true
+  }
+ ]
+}

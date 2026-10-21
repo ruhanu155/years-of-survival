@@ -41,8 +41,15 @@ public final class WorldgenGameTests {
     static final int WATER_HASH = 0x88d7b428; // M2: RECONCILE 167 lake polish (was 0x71d37a3c)
     static final int PLACES_HASH = 0x007f2f85; // M3: Station Nine's 12 x 15 footprint (was 0xf8528e7b)
 
+    /** The uncached search of {@link #SEED}, started by the first m0 test so it runs beside the other tests (class init starts it once). */
+    static final class FullSearch {
+        static final java.util.concurrent.CompletableFuture<com.yearofice.worldgen.ValleyWorld> RESULT =
+                java.util.concurrent.CompletableFuture.supplyAsync(() -> com.yearofice.worldgen.ValleyWorld.build(Pipeline.standard(), SEED, null));
+    }
+
     @GameTest(template = "gametest/empty3", batch = "m0")
     public static void worldgen_landform_hash_matches_junit(GameTestHelper helper) {
+        FullSearch.RESULT.isDone(); // start the uncached search for worldgen_layer_cache_matches
         Pipeline pipe = Pipeline.standard();
         SeedStage.SeedParams s = pipe.seed(SEED, 0);
         helper.assertTrue(s.archetype() == Archetype.OXBOW_MARSH, "seed " + SEED + " archetype " + s.archetype());
@@ -63,6 +70,28 @@ public final class WorldgenGameTests {
                 "water hash " + Integer.toHexString(r.waterHash()) + " != " + Integer.toHexString(WATER_HASH));
         helper.assertTrue(r.placesHash() == PLACES_HASH,
                 "places hash " + Integer.toHexString(r.placesHash()) + " != " + Integer.toHexString(PLACES_HASH));
+        helper.succeed();
+    }
+
+    /**
+     * The layer cache is only a shortcut: the world bound for the test dimension (cached attempt or not) equals a full
+     * uncached search of seed 3141592, and the cache file records that attempt. The full search runs on a worker thread
+     * started in batch m0.
+     */
+    @GameTest(template = "gametest/empty3", batch = "m1", timeoutTicks = 100)
+    public static void worldgen_layer_cache_matches(GameTestHelper helper) {
+        com.yearofice.worldgen.ValleyWorld bound = com.yearofice.worldgen.gen.ValleyWorlds.get(SEED);
+        java.util.concurrent.CompletableFuture<com.yearofice.worldgen.ValleyWorld> full = FullSearch.RESULT;
+        java.nio.file.Path dir = helper.getLevel().getServer().getWorldPath(net.minecraft.world.level.storage.LevelResource.ROOT)
+                .resolve("yearofice").resolve("layer_cache");
+        // Test timeouts count ticks, which run far faster than wall time on the test server: wait on the thread instead.
+        com.yearofice.worldgen.ValleyWorld f = full.join();
+        helper.assertTrue(f.seed.attempt() == bound.seed.attempt(), "attempt " + f.seed.attempt() + " != bound " + bound.seed.attempt());
+        helper.assertTrue(f.m1Hash == bound.m1Hash && f.coverHash == bound.coverHash, "layer hashes differ from the bound world");
+        helper.assertTrue(java.util.Arrays.equals(f.spawn(), bound.spawn()), "spawn differs");
+        helper.assertTrue(f.placements.equals(bound.placements), "placements differ");
+        helper.assertTrue(com.yearofice.worldgen.LayerCache.load(dir, SEED) == f.seed.attempt(),
+                "cache file for " + SEED + " does not hold attempt " + f.seed.attempt());
         helper.succeed();
     }
 

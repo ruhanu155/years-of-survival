@@ -1,0 +1,15 @@
+{
+  "species": "yearofice:mink",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    {
+      "item": "yearofice:mink_meat",
+      "kind": "meat",
+      "unit_g": 100
+    },
+    {
+      "item": "yearofice:mink_pelt",
+      "kind": "cover"
+    }
+  ]
+}

@@ -172,7 +172,7 @@ final class StackLayers {
             int cx = g.guiWidth() / 2, cy = g.guiHeight() / 2;
             ClientHud.Shown p = ClientHud.prompt(), r = ClientHud.readout();
             Component row1 = p != null ? p.text() : HudDebug.on() ? Component.literal("RMB  Pick up flint (0.4 kg)") : null;
-            Component row2 = r != null ? r.text() : HudDebug.on() ? Component.literal("Ice 12 cm") : null;
+            Component row2 = r != null ? r.text() : HudDebug.on() ? Component.literal("Fireweed shoots") : null;
             if (row1 != null) centered(g, mc().font, row1, cx, cy + 14, INK, false);
             if (row2 != null) centered(g, mc().font, row2, cx, cy + 25, DIM, false);
         }

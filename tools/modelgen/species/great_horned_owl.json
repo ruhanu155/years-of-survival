@@ -1,0 +1,21 @@
+{
+ "inherit": "willow_ptarmigan",
+ "id": "great_horned_owl",
+ "texture_dir": "great_horned_owl",
+ "anim_copies": [
+  "willow_ptarmigan",
+  "great_horned_owl"
+ ],
+ "notes": "Tawny body with darker face. Same rig (grouse), recoloured; the renderer scales it (M6 lane C).",
+ "textures": {
+  "_replace": true,
+  "adult_all": {
+   "remap": {
+    "feather_ptarmigan_summer": "fur_tan",
+    "comb_red": "fur_cinnamon",
+    "fur_white": "fur_tan",
+    "fur_black": "fur_cinnamon"
+   }
+  }
+ }
+}

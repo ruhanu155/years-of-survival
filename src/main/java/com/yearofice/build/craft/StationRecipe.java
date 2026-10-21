@@ -27,7 +27,7 @@ import net.neoforged.neoforge.common.crafting.SizedIngredient;
  * station, costing time and calories. Files are {@code data/yearofice/recipe/station/<id>.json}.
  *
  * <pre>
- * { "type": "yearofice:station", "tier": "bushcraft", "station": "yearofice:workbench",
+ * { "type": "yearofice:craft_station", "tier": "bushcraft", "station": "yearofice:workbench",
  *   "ingredients": [ { "item": "yearofice:tool_handle", "count": 1 } ], "tool": "#yearofice:knives",
  *   "work_min": 240, "effort": "light", "kcal": 400, "skill": "woodcraft", "taught_by": "yearofice:logbook_07",
  *   "result": { "id": "yearofice:longbow", "count": 1 } }

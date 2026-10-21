@@ -1,0 +1,75 @@
+{
+  "entity": "yearofice:raven",
+  "rig": "corvid",
+  "habitat": [
+    "forest"
+  ],
+  "population": [
+    1,
+    4
+  ],
+  "home_range_m": 500,
+  "active": [
+    "dawn",
+    "day",
+    "dusk"
+  ],
+  "gaits": {
+    "walk": 1.0,
+    "trot": 2.5,
+    "run": 4,
+    "fly": 14
+  },
+  "senses": {
+    "sight": 100,
+    "hearing": 60,
+    "smell": 0,
+    "fov": 300
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": false,
+    "flush_m": 0,
+    "flee_m": [
+      60,
+      120
+    ],
+    "flee_gait": "fly",
+    "zigzag": false,
+    "hide_min": [
+      5,
+      15
+    ],
+    "charges": false
+  },
+  "huntable": true,
+  "respawn_days": 10,
+  "carcass": {
+    "whole_kg": 1.2,
+    "class": "small",
+    "body_plan": "bird",
+    "tau_h": 1,
+    "floats": true,
+    "poses": [
+      "dead_wings"
+    ],
+    "steps": {
+      "gut": 2,
+      "pluck": 4
+    },
+    "parts": {
+      "meat": 0.5,
+      "organs": {
+        "giblets": 0.04
+      },
+      "cover": {
+        "feathers": 20,
+        "kind": "feathers"
+      },
+      "guts_kg": 0.084
+    }
+  },
+  "butcher_table": "yearofice:butchering/raven"
+}

@@ -38,7 +38,10 @@ public final class ValleyWorld {
     public final TerrainPalette palette = new TerrainPalette();
     final int[] classSoil, classSurface, classBed;
     final int clayBank, riverSand, rockClass;
-    final int detailSeed, treeSeed;
+    final int detailSeed, treeSeed, plantSeed;
+
+    /** The seed of the vegetation pass ({@link PlantPlan}). */
+    public int plantSeed() { return plantSeed; }
     public final int m1Hash, coverHash;
     public final SliceCut.Window slice;
     /** The slice valley's fishing spot: the best one in the cut nearest the start, dug to a 2-block pool. */
@@ -81,6 +84,7 @@ public final class ValleyWorld {
         this.notes = new ArrayList<>(r.water().notes());
         this.detailSeed = SeedStage.stageSeed(r.seed().attemptSeed(), "terrain:detail");
         this.treeSeed = SeedStage.stageSeed(r.seed().attemptSeed(), "cover:trees");
+        this.plantSeed = SeedStage.stageSeed(r.seed().attemptSeed(), "cover:plants");
 
         Cover.Params cp = p.cover();
         int k = cp.classes().size();
@@ -138,18 +142,48 @@ public final class ValleyWorld {
         this.sliceSpot = pickSliceSpot();
     }
 
+    /** Food's guarantee (RECONCILE 236): a usable spot within this many blocks of the start bank. */
+    public static final double SPOT_NEAR_START_M = 60;
+
+    /** The made-up spot when no real one lies within {@link #SPOT_NEAR_START_M}; null otherwise. Not in {@link #spots}, so no stage hash moves. */
+    private WaterStage.Spot nearSpot;
+
     private WaterStage.Spot pickSliceSpot() {
         SetPieces.Placement start = outpost();
         double sx = start == null ? slice.centreX() : start.x(), sz = start == null ? slice.centreZ() : start.z();
-        WaterStage.Spot best = null;
-        double key = -Double.MAX_VALUE;
+        WaterStage.Spot best = null, nearest = null;
+        double key = -Double.MAX_VALUE, nd = Double.MAX_VALUE;
         for (WaterStage.Spot s : spots) {
             if (!slice.contains(s.x(), s.z())) continue;
-            double dx = s.x() - sx, dz = s.z() - sz;
-            double k = s.q() * 1000 - Math.sqrt(dx * dx + dz * dz);
+            double dx = s.x() - sx, dz = s.z() - sz, d = Math.sqrt(dx * dx + dz * dz);
+            if (d < nd) { nd = d; nearest = s; }
+            if (d > SPOT_NEAR_START_M) continue;
+            double k = s.q() * 1000 - d;
             if (k > key) { key = k; best = s; }
         }
-        return best;
+        if (best != null) return best;
+        // None close enough: make a pool spot at the nearest water (the start site guarantees water within 40 m), typed and stocked like the nearest real one.
+        double bd = Double.MAX_VALUE;
+        int bx = 0, bz = 0;
+        for (int dz = -60; dz <= 60; dz += 2) for (int dx = -60; dx <= 60; dx += 2) {
+            double d = Math.sqrt(dx * dx + dz * dz);
+            if (d > SPOT_NEAR_START_M || d >= bd) continue;
+            int x = (int) Math.floor(sx) + dx, z = (int) Math.floor(sz) + dz;
+            if (!slice.contains(x + 0.5, z + 0.5) || !allWet(x, z, 3)) continue;
+            bd = d; bx = x; bz = z;
+        }
+        if (nearest == null || bd == Double.MAX_VALUE) return nearest;
+        int cell = cellOf(bx, bz);
+        int[] stock = new int[nearest.stock().length];
+        for (int i = 0; i < stock.length; i++) stock[i] = (int) Math.round(nearest.stock()[i] * 0.55 / Math.max(0.1, nearest.q()));
+        nearSpot = new WaterStage.Spot(nearest.type(), cell, bx + 0.5, bz + 0.5, nearest.radiusM(), 0.55, 1.5, nearest.bodyId(),
+                nearest.species(), stock, false);
+        return nearSpot;
+    }
+
+    private boolean allWet(int x, int z, int r) {
+        int c = cellOf(x, z);
+        return c >= 0 && wType[c] != WaterStage.DRY;
     }
 
     /** Pool depth in blocks the slice spot is dug to, over this radius around it (Food's stand-in rule: 2 × 2, 1.5 m). */
@@ -162,8 +196,20 @@ public final class ValleyWorld {
      * Runs stages 1–6 and the start-site search for a level seed and binds the result: attempt k + 1 on any failed
      * check in stages 1–7, up to {@code seed.max_attempts}. About 5 s; call it off the main thread where it can be.
      */
-    public static ValleyWorld build(Pipeline pipe, long levelSeed) {
-        StartSite.Outcome o = StartSite.search(pipe, levelSeed, StartSiteParams.load());
+    public static ValleyWorld build(Pipeline pipe, long levelSeed) { return build(pipe, levelSeed, null); }
+
+    /** As {@link #build(Pipeline, long)}, reading and writing the winning attempt in {@code cacheDir} (null: no cache). */
+    public static ValleyWorld build(Pipeline pipe, long levelSeed, java.nio.file.Path cacheDir) {
+        int first = LayerCache.load(cacheDir, levelSeed);
+        StartSite.Outcome o;
+        try {
+            o = StartSite.search(pipe, levelSeed, StartSiteParams.load(), Math.max(0, first));
+        } catch (IllegalStateException e) {
+            if (first <= 0) throw e;
+            o = StartSite.search(pipe, levelSeed, StartSiteParams.load());
+            first = -1;
+        }
+        if (first != o.result().attempt()) LayerCache.store(cacheDir, levelSeed, o.result().attempt());
         ValleyWorld w = new ValleyWorld(pipe.params(), o.result(), o.cover(), pipe.setPieces(), o.placements(), true);
         w.startOutcome = o;
         return w;
@@ -311,6 +357,7 @@ public final class ValleyWorld {
             double dx = s.x() - x, dz = s.z() - z;
             if (dx * dx + dz * dz <= (radius + s.radiusM()) * (radius + s.radiusM())) out.add(s);
         }
+        if (nearSpot != null && d2(nearSpot, x, z) <= (radius + nearSpot.radiusM()) * (radius + nearSpot.radiusM())) out.add(nearSpot);
         out.sort((a, b) -> Double.compare(d2(a, x, z), d2(b, x, z)));
         return out;
     }

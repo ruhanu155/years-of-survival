@@ -1,5 +1,5 @@
 {
-  "type": "yearofice:station",
+  "type": "yearofice:craft_station",
   "tier": "bushcraft",
   "station": "yearofice:hands",
   "ingredients": [

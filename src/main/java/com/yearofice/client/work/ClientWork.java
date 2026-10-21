@@ -137,6 +137,8 @@ public final class ClientWork {
         boolean ok;
         if (WoodItems.isRound(hand) && p.isShiftKeyDown() && bh.getDirection() == Direction.UP) {
             ok = p.level().getBlockState(pos.above()).canBeReplaced() && s.isFaceSturdy(p.level(), pos, Direction.UP);
+        } else if (com.yearofice.food.pan.PanTargets.isPan(hand) && com.yearofice.food.pan.PanTargets.isGravel(s)) {
+            ok = true;
         } else if (tool == null) {
             ok = false;
         } else if (s.getBlock() instanceof YoiLogBlock) {

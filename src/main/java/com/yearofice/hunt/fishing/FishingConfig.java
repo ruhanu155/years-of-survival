@@ -50,6 +50,8 @@ public final class FishingConfig {
         NOTES.put("assist", "1 turns on the fishing assist: safe band shaded, side pressure set, fish tire 30% faster.");
         NOTES.put("wormDigMax", "Worms one broken riparian soil block may give (0 to this).");
         NOTES.put("wormDigRange", "Soil within this many blocks of water is riparian.");
+        NOTES.put("wormForestMax", "Worms one broken soil block under trees may give away from water (0 to this); rain doubles it.");
+        NOTES.put("spotMigrationPerDay", "Share of a fished-down spot's gap that swims in from neighbouring water each game day (not in tarns or ponds).");
         NOTES.put("turbidity", "Turbidity until the environment field lands (0 clear to 1 muddy).");
     }
 

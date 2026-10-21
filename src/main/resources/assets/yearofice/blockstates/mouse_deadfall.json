@@ -1,0 +1,10 @@
+{
+ "variants": {
+  "sprung=false": {
+   "model": "yearofice:block/mouse_deadfall"
+  },
+  "sprung=true": {
+   "model": "yearofice:block/mouse_deadfall_sprung"
+  }
+ }
+}

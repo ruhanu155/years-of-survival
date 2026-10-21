@@ -1,0 +1,64 @@
+{
+ "id": "yearofice:gold_pan",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "ellipse",
+   "ramp": "iron",
+   "step": 2,
+   "box": [
+    1,
+    4,
+    13,
+    13
+   ]
+  },
+  {
+   "kind": "ellipse",
+   "ramp": "iron",
+   "step": 1,
+   "box": [
+    3,
+    6,
+    11,
+    11
+   ]
+  },
+  {
+   "kind": "line",
+   "ramp": "iron",
+   "step": 3,
+   "points": [
+    [
+     12,
+     3
+    ],
+    [
+     14,
+     1
+    ]
+   ],
+   "width": 2
+  },
+  {
+   "kind": "pixels",
+   "ramp": "rust",
+   "step": 4,
+   "points": [
+    [
+     6,
+     8
+    ],
+    [
+     8,
+     9
+    ],
+    [
+     5,
+     9
+    ]
+   ],
+   "flat": true
+  }
+ ]
+}

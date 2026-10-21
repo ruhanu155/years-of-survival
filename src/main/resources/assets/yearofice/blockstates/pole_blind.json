@@ -1,0 +1,10 @@
+{
+ "variants": {
+  "fresh=true": {
+   "model": "yearofice:block/pole_blind"
+  },
+  "fresh=false": {
+   "model": "yearofice:block/pole_blind"
+  }
+ }
+}

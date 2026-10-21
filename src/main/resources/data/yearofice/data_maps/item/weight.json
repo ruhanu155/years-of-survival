@@ -82,12 +82,6 @@
     "yearofice:fixed_blade_knife": {
       "weight_g": 350
     },
-    "yearofice:flint_knife": {
-      "weight_g": 120
-    },
-    "yearofice:flint_nodule": {
-      "weight_g": 400
-    },
     "yearofice:hare_pelt": {
       "weight_g": 200
     },
@@ -102,9 +96,6 @@
     },
     "yearofice:kindling": {
       "weight_g": 1500
-    },
-    "yearofice:knife": {
-      "weight_g": 250
     },
     "yearofice:match": {
       "weight_g": 2
@@ -139,9 +130,6 @@
     "yearofice:rod": {
       "weight_g": 400
     },
-    "yearofice:rough_stone": {
-      "weight_g": 600
-    },
     "yearofice:seed_packet": {
       "weight_g": 20
     },
@@ -166,9 +154,6 @@
     "yearofice:spruce_split": {
       "weight_g": 3750
     },
-    "yearofice:stake": {
-      "weight_g": 80
-    },
     "yearofice:steel_bottle": {
       "weight_g": 180
     },
@@ -187,9 +172,6 @@
     "yearofice:tinder_bundle": {
       "weight_g": 50
     },
-    "yearofice:tool_handle": {
-      "weight_g": 350
-    },
     "yearofice:whole_game": {
       "weight_g": 1500
     },
@@ -202,9 +184,6 @@
     "yearofice:willow_split": {
       "weight_g": 3750
     },
-    "yearofice:workbench": {
-      "weight_g": 30000
-    },
     "yearofice:worm": {
       "weight_g": 5
     },
@@ -216,6 +195,120 @@
     },
     "yearofice:bandage": {
       "weight_g": 15
+    },
+    "yearofice:dolly_varden": {
+      "weight_g": 1100
+    },
+    "yearofice:northern_pike": {
+      "weight_g": 3000
+    },
+    "yearofice:humpback_whitefish": {
+      "weight_g": 1000
+    },
+    "yearofice:burbot": {
+      "weight_g": 2000
+    },
+    "yearofice:lake_trout": {
+      "weight_g": 5000
+    },
+    "yearofice:chinook_salmon": {
+      "weight_g": 12000
+    },
+    "yearofice:chum_salmon": {
+      "weight_g": 4000
+    },
+    "yearofice:coho_salmon": {
+      "weight_g": 3500
+    },
+    "yearofice:red_squirrel_meat": {
+      "weight_g": 100
+    },
+    "yearofice:marten_meat": {
+      "weight_g": 100
+    },
+    "yearofice:mink_meat": {
+      "weight_g": 100
+    },
+    "yearofice:muskrat_meat": {
+      "weight_g": 100
+    },
+    "yearofice:beaver_meat": {
+      "weight_g": 100
+    },
+    "yearofice:porcupine_meat": {
+      "weight_g": 100
+    },
+    "yearofice:spruce_grouse_meat": {
+      "weight_g": 100
+    },
+    "yearofice:ruffed_grouse_meat": {
+      "weight_g": 100
+    },
+    "yearofice:rock_ptarmigan_meat": {
+      "weight_g": 100
+    },
+    "yearofice:marten_pelt": {
+      "weight_g": 250
+    },
+    "yearofice:mink_pelt": {
+      "weight_g": 100
+    },
+    "yearofice:muskrat_pelt": {
+      "weight_g": 150
+    },
+    "yearofice:red_squirrel_pelt": {
+      "weight_g": 40
+    },
+    "yearofice:ermine_pelt": {
+      "weight_g": 50
+    },
+    "yearofice:beaver_pelt": {
+      "weight_g": 1500
+    },
+    "yearofice:bird_meat": {
+      "weight_g": 100
+    },
+    "yearofice:sockeye_salmon": {
+      "weight_g": 3000
+    },
+    "yearofice:arctic_char": {
+      "weight_g": 1750
+    },
+    "yearofice:broad_whitefish": {
+      "weight_g": 3250
+    },
+    "yearofice:round_whitefish": {
+      "weight_g": 600
+    },
+    "yearofice:least_cisco": {
+      "weight_g": 190
+    },
+    "yearofice:bering_cisco": {
+      "weight_g": 800
+    },
+    "yearofice:sheefish": {
+      "weight_g": 9000
+    },
+    "yearofice:longnose_sucker": {
+      "weight_g": 1000
+    },
+    "yearofice:slimy_sculpin": {
+      "weight_g": 30
+    },
+    "yearofice:lake_chub": {
+      "weight_g": 35
+    },
+    "yearofice:ninespine_stickleback": {
+      "weight_g": 5
+    },
+    "yearofice:alaska_blackfish": {
+      "weight_g": 115
+    },
+    "yearofice:arctic_lamprey": {
+      "weight_g": 200
+    },
+    "yearofice:kit_rod": {
+      "weight_g": 450
     }
   }
 }

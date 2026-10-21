@@ -1,0 +1,73 @@
+{
+  "id": "yearofice:cloudberry_bush",
+  "name": "Cloudberry",
+  "form": "berry_shrub",
+  "tags": [
+    "yearofice:berry_bushes"
+  ],
+  "habitat": [
+    "cloudberry_muskeg"
+  ],
+  "phases_dd": {
+    "bud": 0.0,
+    "leaf": 40.0,
+    "flower": 90.0,
+    "fruit": 480.0,
+    "seed": 700.0,
+    "senescent": "first_frost"
+  },
+  "verbs": {
+    "pick": {
+      "part": "yearofice:cloudberries",
+      "unit": "cup",
+      "unit_g": 150,
+      "time_min": 30.0,
+      "units_per_clump": 1.2,
+      "phases": [
+        "fruit"
+      ],
+      "stripped_weight": 1.0
+    },
+    "strip": {
+      "allowed": false,
+      "reason": "berries_burst"
+    },
+    "uproot": {
+      "drops": "minecraft:stick",
+      "empty_years": 3
+    }
+  },
+  "patch": {
+    "clumps": [
+      20,
+      60
+    ],
+    "regrow_days": [
+      5,
+      8
+    ],
+    "flush_mults": [
+      1.0
+    ]
+  },
+  "identify": {
+    "pocket_guide": false,
+    "notes": [],
+    "stages": [
+      "shoot",
+      "flower",
+      "fruit"
+    ]
+  },
+  "inspect": {
+    "look": "amber_berry_single_flower_bog",
+    "smell": "sweet",
+    "cut": "none"
+  },
+  "food": {
+    "part": "yearofice:cloudberries",
+    "kcal_per_100g": 56.7,
+    "vit_c_mg_per_100g": 13.3,
+    "spoil_days_at_5c": 3
+  }
+}

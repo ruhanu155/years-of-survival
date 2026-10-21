@@ -16,9 +16,11 @@ public final class StorySystem {
 
     public static void init(IEventBus modBus) {
         StoryAttachments.register(modBus);
+        com.yearofice.story.trophy.TrophyRegistry.register(modBus);
         modBus.addListener(StoryNet::register);
         modBus.addListener((ModConfigEvent.Loading e) -> StoryConfig.invalidate());
         modBus.addListener((ModConfigEvent.Reloading e) -> StoryConfig.invalidate());
         NeoForge.EVENT_BUS.addListener(OnboardingCommands::register);
+        NeoForge.EVENT_BUS.addListener(FirstKills::onDeath);
     }
 }

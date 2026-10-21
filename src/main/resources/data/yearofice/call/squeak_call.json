@@ -1,0 +1,6 @@
+{
+  "id": "squeak_call",
+  "sounds": { "distress_squeak": { "range_m": 300, "falloff": "flat", "wails": 3, "sets_max": 5 } },
+  "species": { "yearofice:red_fox": { "base_p": 0.5 }, "yearofice:lynx": { "base_p": 0.25 }, "yearofice:gray_wolf": { "base_p": 0.10 }, "yearofice:black_bear": { "base_p": 0.10, "months": [4, 10] }, "yearofice:coyote": { "base_p": 0.15 } },
+  "risk": "bears_and_winter_wolves_come_too"
+}

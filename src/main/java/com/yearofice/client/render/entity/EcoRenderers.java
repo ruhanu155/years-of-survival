@@ -22,6 +22,16 @@ public final class EcoRenderers {
         e.registerEntityRenderer(EcosystemRegistry.WILLOW_PTARMIGAN.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.25f));
         e.registerEntityRenderer(EcosystemRegistry.MOOSE.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.9f));
         e.registerEntityRenderer(EcosystemRegistry.CARCASS_SMALL.get(), CarcassRenderer::new);
+        // M5 lane A
+        for (var t : java.util.List.of(EcosystemRegistry.RED_SQUIRREL, EcosystemRegistry.MARTEN, EcosystemRegistry.ERMINE,
+                EcosystemRegistry.MINK, EcosystemRegistry.MUSKRAT, EcosystemRegistry.WOOD_FROG, EcosystemRegistry.YELLOWJACKET,
+                EcosystemRegistry.CRITTER)) e.registerEntityRenderer(t.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.15f));
+        e.registerEntityRenderer(EcosystemRegistry.BEAVER.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.4f));
+        e.registerEntityRenderer(EcosystemRegistry.PORCUPINE.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.3f));
+        for (var t : java.util.List.of(EcosystemRegistry.SPRUCE_GROUSE, EcosystemRegistry.RUFFED_GROUSE, EcosystemRegistry.ROCK_PTARMIGAN))
+            e.registerEntityRenderer(t.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.25f));
+        e.registerEntityRenderer(EcosystemRegistry.CARCASS_TINY.get(), CarcassRenderer::new);
+        e.registerEntityRenderer(EcosystemRegistry.CARCASS_MEDIUM.get(), CarcassRenderer::new);
         e.registerBlockEntityRenderer(TrapRegistry.SNARE_ENTITY.get(), ctx -> new SnareRenderer());
     }
 

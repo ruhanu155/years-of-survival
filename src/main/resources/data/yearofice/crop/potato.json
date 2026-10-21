@@ -1,0 +1,48 @@
+{
+  "id": "yearofice:potato",
+  "block": "yearofice:potato_crop",
+  "seed": {
+    "item": "yearofice:seed_potato",
+    "weight_g": 50,
+    "base_germination": 0.85,
+    "saved_germination": 0.85,
+    "seeds_per_block": 1
+  },
+  "sow_window": [
+    "05-25",
+    "06-15"
+  ],
+  "units": {
+    "sprout": 60,
+    "ripe": 1100,
+    "frost_sensitive": [
+      0,
+      0
+    ]
+  },
+  "frost": {
+    "seedling_min_c": -1,
+    "head_min_c": -1,
+    "head_yield_mult": 1.0,
+    "hard_freeze_c": -5
+  },
+  "yield": {
+    "item": "yearofice:potato",
+    "kg_per_block": 1.0,
+    "straw_kg": 0.0,
+    "stand_formula": "piece"
+  },
+  "pests": {
+    "hare_loss_pct": 2,
+    "grouse_loss_pct": 1,
+    "moose_visit_pct": 0,
+    "moose_take_pct": 0
+  },
+  "work_min": {
+    "sow": 1,
+    "weed": 1,
+    "cut": 3,
+    "thresh": 0,
+    "winnow_per_kg": 0
+  }
+}

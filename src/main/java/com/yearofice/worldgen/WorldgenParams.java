@@ -143,6 +143,7 @@ public record WorldgenParams(
                 layer(j, "base_noise"), layer(j, "ridged_noise"), layer(j, "detail_noise"), warp, rise,
                 river, hard, ero, seed, checks, HydroParams.from(j), Cover.Params.from(j.obj("cover")),
                 TerrainParams.from(j.obj("terrain")));
+        PlacerParams.from(j.obj("placer"));
         j.done();
         return p;
     }
