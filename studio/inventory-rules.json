@@ -2166,6 +2166,21 @@
         "alaska_blackfish",
         "arctic_lamprey"
       ]
+    },
+    {
+      "basis": "M7 D winter gear and travel items",
+      "milestone": "m7",
+      "owner": "body",
+      "type": "item",
+      "ids": [
+        "fur_mittens",
+        "fur_hat",
+        "parka",
+        "hide_pants",
+        "mukluks",
+        "hare_fur_liners",
+        "moccasins"
+      ]
     }
   ],
   "expand": {

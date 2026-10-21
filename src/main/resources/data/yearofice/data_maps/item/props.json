@@ -543,6 +543,50 @@
       "floats": true,
       "material": "wood",
       "max_condition": 100
+    },
+    "yearofice:skates": {
+      "category": "travel",
+      "stack_class": "single"
+    },
+    "yearofice:skis": {
+      "category": "travel",
+      "stack_class": "single"
+    },
+    "yearofice:climbing_skins": {
+      "category": "travel",
+      "stack_class": "single"
+    },
+    "yearofice:fur_mittens": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:fur_hat": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:parka": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:hide_coat": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:hide_pants": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:mukluks": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:hare_fur_liners": {
+      "category": "clothing",
+      "stack_class": "single"
+    },
+    "yearofice:moccasins": {
+      "category": "clothing",
+      "stack_class": "single"
     }
   }
 }

@@ -19,6 +19,8 @@ public class SnowCoverBlock extends Block {
     public static final IntegerProperty LAYERS = IntegerProperty.create("layers", 1, 8);
     public static final BooleanProperty CRUST = BooleanProperty.create("crust");
     public static final BooleanProperty WET = BooleanProperty.create("wet");
+    /** Trail wear 0 none, 1 broken, 2 set (hard overnight), 3 sled lane (travel lane D owns writes). */
+    public static final IntegerProperty TRAIL_WEAR = IntegerProperty.create("trail_wear", 0, 3);
     static final VoxelShape[] BY_LAYER = new VoxelShape[9];
 
     static {
@@ -27,11 +29,11 @@ public class SnowCoverBlock extends Block {
 
     public SnowCoverBlock(Properties p) {
         super(p);
-        registerDefaultState(stateDefinition.any().setValue(LAYERS, 1).setValue(CRUST, false).setValue(WET, false));
+        registerDefaultState(stateDefinition.any().setValue(LAYERS, 1).setValue(CRUST, false).setValue(WET, false).setValue(TRAIL_WEAR, 0));
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) { b.add(LAYERS, CRUST, WET); }
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) { b.add(LAYERS, CRUST, WET, TRAIL_WEAR); }
 
     @Override
     protected VoxelShape getShape(BlockState s, BlockGetter l, BlockPos p, CollisionContext c) { return BY_LAYER[s.getValue(LAYERS)]; }

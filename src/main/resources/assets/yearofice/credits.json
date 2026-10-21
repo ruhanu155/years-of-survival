@@ -5852,6 +5852,127 @@
       "licence": "project",
       "generator_version": "ice_blocks 1.0",
       "release_blocker": false
+    },
+    {
+      "asset_id": "model_skates",
+      "files": [
+        "assets/yearofice/models/item/skates.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_skis",
+      "files": [
+        "assets/yearofice/models/item/skis.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_climbing_skins",
+      "files": [
+        "assets/yearofice/models/item/climbing_skins.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_fur_mittens",
+      "files": [
+        "assets/yearofice/models/item/fur_mittens.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_fur_hat",
+      "files": [
+        "assets/yearofice/models/item/fur_hat.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_parka",
+      "files": [
+        "assets/yearofice/models/item/parka.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_hide_coat",
+      "files": [
+        "assets/yearofice/models/item/hide_coat.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_hide_pants",
+      "files": [
+        "assets/yearofice/models/item/hide_pants.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_mukluks",
+      "files": [
+        "assets/yearofice/models/item/mukluks.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_hare_fur_liners",
+      "files": [
+        "assets/yearofice/models/item/hare_fur_liners.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
+    },
+    {
+      "asset_id": "model_moccasins",
+      "files": [
+        "assets/yearofice/models/item/moccasins.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": true
     }
   ]
 }

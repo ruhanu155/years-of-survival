@@ -1,0 +1,9 @@
+{
+  "size": 1,
+  "order": 70,
+  "icon": "curios:slot/empty_feet_slot",
+  "add_cosmetic": false,
+  "validators": [
+    "curios:tag"
+  ]
+}
