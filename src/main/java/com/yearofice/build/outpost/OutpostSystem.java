@@ -73,6 +73,11 @@ public final class OutpostSystem {
     @SubscribeEvent
     public static void visit(net.neoforged.neoforge.event.tick.PlayerTickEvent.Post e) {
         if (!(e.getEntity() instanceof net.minecraft.server.level.ServerPlayer p) || p.tickCount % 40 != 0 || WorldHooks.world(p.serverLevel()) == null) return;
+        scan(p);
+    }
+
+    /** One visit check for {@code p} (the tick handler's body; public for tests, which have no valley generator). */
+    public static void scan(net.minecraft.server.level.ServerPlayer p) {
         ServerLevel level = p.serverLevel();
         var seen = p.getPersistentData().getCompound(net.minecraft.world.entity.player.Player.PERSISTED_NBT_TAG);
         var tag = seen.getCompound("yoi_outposts_seen");

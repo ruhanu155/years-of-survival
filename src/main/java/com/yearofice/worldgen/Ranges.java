@@ -16,6 +16,9 @@ import java.util.List;
 public final class Ranges {
     private Ranges() {}
 
+    /** Blueprint, Home ranges: the wolf range unit is a pack and its range is the whole 8 km home valley (radius 4 km), around the one den. */
+    public static final double WOLF_RANGE_RADIUS_M = 4000;
+
     public record Range(String species, double x, double z, double radiusM) {
         public boolean covers(double px, double pz) {
             double dx = px - x, dz = pz - z;
@@ -26,7 +29,19 @@ public final class Ranges {
     public record Den(String kind, double x, double z) {}
 
     /** {@code trail} holds x, z pairs in world metres. */
-    public record Layers(List<Range> moose, List<Range> bears, List<Den> dens, double[] trail) {
+    public record Layers(List<Range> moose, List<Range> bears, List<Den> dens, double[] trail, List<Range> wolves) {
+        /** The pack range whose den is nearest (x, z), or null when the world has no wolf range. */
+        public Den nearestWolfDen(double x, double z) {
+            Den best = null;
+            double bd = Double.MAX_VALUE;
+            for (Range r : wolves) for (Den d : dens) {
+                if (!d.kind().equals("wolf") || !r.covers(d.x(), d.z())) continue;
+                double dd = (d.x() - x) * (d.x() - x) + (d.z() - z) * (d.z() - z);
+                if (dd < bd) { bd = dd; best = d; }
+            }
+            return best;
+        }
+
         public int trailPointsWithin(double x, double z, double r) {
             int n = 0;
             for (int i = 0; i + 1 < trail.length; i += 2) {
@@ -97,7 +112,11 @@ public final class Ranges {
             int key = Noise.hash(vw.seed.attemptSeed() ^ 0x574F4C46, c, 7);
             if (wolf < 0 || key > wolfKey) { wolf = c; wolfKey = key; }
         }
-        if (wolf >= 0) dens.add(new Den("wolf", g.worldX(wolf), g.worldZ(wolf)));
+        List<Range> wolves = new ArrayList<>();
+        if (wolf >= 0) {
+            dens.add(new Den("wolf", g.worldX(wolf), g.worldZ(wolf)));
+            wolves.add(new Range("wolf", g.worldX(wolf), g.worldZ(wolf), WOLF_RANGE_RADIUS_M));
+        }
 
         // Trails: each range's centre to its nearest water access points (a lattice along the water), straight lines.
         int lat = Math.max(1, (int) Math.round(lp.trailWaterLatticeM() / g.cell));
@@ -125,7 +144,7 @@ public final class Ranges {
         }
         double[] t = new double[trail.size()];
         for (int i = 0; i < t.length; i++) t[i] = trail.get(i);
-        return new Layers(List.copyOf(moose), List.copyOf(bears), List.copyOf(dens), t);
+        return new Layers(List.copyOf(moose), List.copyOf(bears), List.copyOf(dens), t, List.copyOf(wolves));
     }
 
     private static List<Range> pick(ValleyWorld vw, StartSiteParams.Life lp, StartSiteParams.Species sp, String name, int salt) {

@@ -49,6 +49,7 @@ public final class WorldHooks {
         NeoForge.EVENT_BUS.addListener(WorldHooks::portal);
         NeoForge.EVENT_BUS.addListener(WorldHooks::placed);
         NeoForge.EVENT_BUS.addListener(WorldHooks::broken);
+        NeoForge.EVENT_BUS.register(GroundYield.class);
         FishSpotService.install(new Spots());
     }
 
