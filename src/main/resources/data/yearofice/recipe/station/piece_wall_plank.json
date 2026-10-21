@@ -1,0 +1,18 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "bushcraft",
+  "ingredients": [
+    {
+      "item": "yearofice:plank",
+      "count": 4
+    }
+  ],
+  "work_min": 4,
+  "effort": "medium",
+  "kcal": 17,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:wall_plank",
+    "count": 1
+  }
+}

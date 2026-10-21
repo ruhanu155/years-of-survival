@@ -44,7 +44,9 @@ public final class CookingData {
             for (Map.Entry<ResourceLocation, JsonElement> f : files.entrySet()) {
                 if (!f.getKey().getNamespace().equals(YearOfIce.MOD_ID)) continue;
                 try {
-                    JsonObject foodsObj = f.getValue().getAsJsonObject().getAsJsonObject("foods");
+                    JsonObject root = f.getValue().getAsJsonObject();
+                    if (!root.has("foods")) continue; // the folder is shared: sourdough.json holds "dishes", read by Sourdough
+                    JsonObject foodsObj = root.getAsJsonObject("foods");
                     for (Map.Entry<String, JsonElement> e : foodsObj.entrySet()) {
                         ResourceLocation id = ResourceLocation.parse(e.getKey());
                         if (!BuiltInRegistries.ITEM.containsKey(id)) continue;

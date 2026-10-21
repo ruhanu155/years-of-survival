@@ -24,6 +24,7 @@ class StationInputSourceSweepTest {
     static final Path DATA = Path.of("src/main/resources/data/yearofice");
     /** Items given by Java (a work job): item path to the source file that must name it. */
     static final Map<String, String> CODE = Map.of(
+        "spruce_round", "src/main/java/com/yearofice/build/wood/WoodJobs.java",
         "birch_round", "src/main/java/com/yearofice/build/wood/WoodJobs.java",
         "birch_split", "src/main/java/com/yearofice/build/wood/WoodJobs.java",
         "iron_bar", "src/main/java/com/yearofice/build/metal/ForgeJob.java");
@@ -48,6 +49,7 @@ class StationInputSourceSweepTest {
     void everyStationInputHasASource() throws Exception {
         TreeSet<String> sources = new TreeSet<>();
         sources.addAll(strings(DATA.resolve("loot_table")));
+        sources.addAll(strings(Path.of("src/main/resources/data/minecraft/loot_table"))); // overrides of vanilla block drops
         sources.addAll(strings(DATA.resolve("plant")));
         sources.addAll(strings(DATA.resolve("crop")));
         List<JsonObject> recipes = new ArrayList<>();
