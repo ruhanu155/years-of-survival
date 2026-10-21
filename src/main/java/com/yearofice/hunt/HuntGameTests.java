@@ -70,18 +70,6 @@ public final class HuntGameTests {
         Vec3 from = h.absoluteVec(new Vec3(0.5, 10, 0.5));
         Vec3 from2 = from.add(0, 0, 2);
         var bow = HuntData.weapon("longbow");
-        // The shaft flies 30 m across chunk borders; an entity in a chunk that is not entity-ticking never moves, so alone
-        // (without batch neighbours holding the chunks) the arrow froze at the structure's edge and "dropped" 0 m.
-        net.minecraft.world.level.ChunkPos c0 = new net.minecraft.world.level.ChunkPos(net.minecraft.core.BlockPos.containing(from));
-        List<long[]> held = new ArrayList<>();
-        for (int dx = -1; dx <= 3; dx++) for (int dz = -1; dz <= 1; dz++) {
-            int cx = c0.x + dx, cz = c0.z + dz;
-            if (!level.getForcedChunks().contains(net.minecraft.world.level.ChunkPos.asLong(cx, cz))) {
-                level.setChunkForced(cx, cz, true);
-                level.getChunk(cx, cz);
-                held.add(new long[] {cx, cz});
-            }
-        }
         ArrowEntity calm = new ArrowEntity(HuntRegistry.ARROW_ENTITY.get(), level).withWind(0, 0);
         ArrowEntity windy = new ArrowEntity(HuntRegistry.ARROW_ENTITY.get(), level).withWind(0, 6);
         calm.launch(null, from, new Vec3(1, 0, 0), bow.arrowSpeedMps(), bow.fullEnergyJ(), bow, "knapped_stone");
@@ -101,17 +89,13 @@ public final class HuntGameTests {
             });
         }
         h.runAfterDelay(30, () -> {
-            try {
             h.assertTrue(seen[0] > 1.0 && seen[0] < 2.8, "drop in 30 m should be about 1.9 m, was " + seen[0]);
             h.assertTrue(Math.abs(seen[0] - want[0]) < 0.45, "entity " + seen[0] + " vs model " + want[0]);
             h.assertTrue(Math.abs(seen[1]) < 1e-6, "no wind, no drift: " + seen[1]);
             h.assertTrue(seen[3] > 0.04 && seen[3] < 0.8, "a 6 m/s crosswind drifts the shaft sideways, was " + seen[3]);
+            calm.discard();
+            windy.discard();
             h.succeed();
-            } finally {
-                calm.discard();
-                windy.discard();
-                for (long[] k : held) level.setChunkForced((int) k[0], (int) k[1], false);
-            }
         });
     }
 

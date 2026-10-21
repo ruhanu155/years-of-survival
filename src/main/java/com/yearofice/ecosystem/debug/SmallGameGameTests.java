@@ -32,7 +32,6 @@ import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 
 /**
@@ -115,21 +114,18 @@ public final class SmallGameGameTests {
         h.assertTrue(a.species().walkMps() > 0 && a.species().wholeKg() == 0.2, "numbers read from the file");
         ServerPlayer p = EcoGameTests.player(h);
         p.moveTo(a.getX() + 1, a.getY(), a.getZ(), 0, 0);
-        // both delays are scheduled here: a runAfterDelay inside a delay callback modifies the framework's map mid-iteration
-        Vec3[] diedAt = {null};
         h.runAfterDelay(30, () -> {
             h.assertTrue(a.isAlive(), "the probe is gone");
-            diedAt[0] = a.position();
             h.assertTrue(a.hurt(h.getLevel().damageSources().playerAttack(p), 1f), "the hit did not take");
-        });
-        h.runAfterDelay(35, () -> {
-            AABB box = new AABB(diedAt[0], diedAt[0]).inflate(6);
-            List<CarcassEntity> cs = h.getLevel().getEntitiesOfClass(CarcassEntity.class, box);
-            h.assertTrue(cs.size() == 1 && cs.get(0).record().species().equals(id), "carcasses " + cs.size());
-            List<ItemStack> parts = Butchering.parts(h.getLevel(), cs.get(0).record());
-            h.assertTrue(parts.size() == 1 && parts.get(0).is(EcosystemRegistry.SNOWSHOE_HARE_MEAT.get()), "parts " + parts);
-            cs.get(0).discard();
-            h.succeed();
+            h.runAfterDelay(5, () -> {
+                AABB box = new AABB(a.position(), a.position()).inflate(6);
+                List<CarcassEntity> cs = h.getLevel().getEntitiesOfClass(CarcassEntity.class, box);
+                h.assertTrue(cs.size() == 1 && cs.get(0).record().species().equals(id), "carcasses " + cs.size());
+                List<ItemStack> parts = Butchering.parts(h.getLevel(), cs.get(0).record());
+                h.assertTrue(parts.size() == 1 && parts.get(0).is(EcosystemRegistry.SNOWSHOE_HARE_MEAT.get()), "parts " + parts);
+                cs.get(0).discard();
+                h.succeed();
+            });
         });
     }
 

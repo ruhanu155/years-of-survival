@@ -1,6 +1,7 @@
 package com.yearofice.hunt;
 
 import com.yearofice.api.body.BodyService;
+import com.yearofice.api.fire.FireEffortEvent;
 import com.yearofice.sim.hunt.HuntData;
 import com.yearofice.sim.hunt.Weapon;
 import net.minecraft.server.level.ServerPlayer;
@@ -13,12 +14,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.NeoForge;
 
 /**
  * A bow (data {@code weapon/<id>.json}, Blueprint › Weapons and arrowheads). Hold right mouse to draw; the draw takes
  * the bow's ready time (x1.5 under 3 bolts), is capped at 60% when Strength is under the bow's requirement, and past
  * the hold limit the aim shakes at triple sway. Release looses the first {@code yearofice:arrow} in the pack.
- * Holding costs the body a little each second (BodyService.effort).
+ * Holding costs the body a little each second ({@link FireEffortEvent} until BodyService.effort lands).
  */
 public class BowItem extends Item {
     public static final int USE_TICKS = 72_000;
@@ -85,7 +87,7 @@ public class BowItem extends Item {
         Weapon w = weapon();
         Loose.fire(p, w, head, draw, heldS, bow);
         int kcal = (int) Math.round(Math.max(0, heldS - w.drawTimeS()) * HuntConfig.tuning().holdBoltsPerS() * KCAL_PER_BOLT);
-        if (kcal > 0) com.yearofice.api.body.BodyService.get().effort(p, "bow_hold", kcal, 0);
+        if (kcal > 0) NeoForge.EVENT_BUS.post(new FireEffortEvent(p, "bow_hold", kcal, 0));
         bow.hurtAndBreak(1, p, net.minecraft.world.entity.EquipmentSlot.MAINHAND);
     }
 

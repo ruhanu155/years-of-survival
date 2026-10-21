@@ -1074,7 +1074,7 @@
       ]
     },
     {
-      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
       "milestone": "m2",
       "owner": "worldgen",
       "type": "block",
@@ -1100,7 +1100,7 @@
       ]
     },
     {
-      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
       "milestone": "m2",
       "owner": "worldgen",
       "type": "biome",
@@ -1126,7 +1126,7 @@
       ]
     },
     {
-      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
       "milestone": "m2",
       "owner": "worldgen",
       "type": "worldgen_hook",
@@ -1141,7 +1141,7 @@
       ]
     },
     {
-      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development › The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
+      "basis": "M2 lane A (Director's brief, RECONCILE 167): Minecraft development \u203a The generator, YoiBiomeSource and the biome list, Terrain to blocks, Registry tables",
       "milestone": "m2",
       "owner": "worldgen",
       "type": "tag",
@@ -2026,113 +2026,6 @@
       ]
     },
     {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
-      "owner": "food",
-      "type": "item",
-      "ids": [
-        "self_bow"
-      ]
-    },
-    {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
-      "owner": "food",
-      "type": "item",
-      "ids": [
-        "kit_bow"
-      ]
-    },
-    {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
-      "owner": "food",
-      "type": "item",
-      "ids": [
-        "spear"
-      ]
-    },
-    {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
-      "owner": "food",
-      "type": "item",
-      "ids": [
-        "arrow"
-      ]
-    },
-    {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
-      "owner": "food",
-      "type": "block",
-      "ids": [
-        "pole_blind"
-      ]
-    },
-    {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
-      "owner": "food",
-      "type": "block",
-      "ids": [
-        "blood_trail"
-      ]
-    },
-    {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
-      "owner": "food",
-      "type": "item",
-      "ids": [
-        "tree_stand"
-      ]
-    },
-    {
-      "basis": "M6 lane A: big game and predator parts",
-      "milestone": "m6",
-      "owner": "food",
-      "type": "item",
-      "ids": [
-        "moose_meat",
-        "caribou_meat",
-        "black_bear_meat",
-        "grizzly_meat",
-        "wolf_meat",
-        "coyote_meat",
-        "red_fox_meat",
-        "lynx_meat",
-        "wolverine_meat",
-        "moose_hide",
-        "caribou_hide",
-        "black_bear_hide",
-        "grizzly_hide",
-        "wolf_pelt",
-        "coyote_pelt",
-        "red_fox_pelt",
-        "lynx_pelt",
-        "wolverine_pelt"
-      ]
-    },
-    {
-      "basis": "M5 lane B2: vegetation placement feature",
-      "milestone": "m5",
-      "owner": "food",
-      "type": "worldgen_hook",
-      "ids": [
-        "layer_plants"
-      ]
-    },
-    {
-      "basis": "M5 lane TUNE bait from hare/fish guts (Blueprint: Guts 10% bait one per 0.1 kg)",
-      "milestone": "m5",
-      "owner": "food",
-      "type": "item",
-      "ids": [
-        "fish_guts"
-      ]
-    },
-    {
       "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
       "milestone": "m5",
       "owner": "food",
@@ -2220,6 +2113,87 @@
       "type": "block",
       "ids": [
         "weir_basket"
+      ]
+    },
+    {
+      "basis": "M5 lane B2: vegetation placement feature",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "worldgen_hook",
+      "ids": [
+        "layer_plants"
+      ]
+    },
+    {
+      "basis": "M5 lane TUNE bait from hare/fish guts (Blueprint: Guts 10% bait one per 0.1 kg)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "fish_guts"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "self_bow"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "kit_bow"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "spear"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "arrow"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "pole_blind"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "blood_trail"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "tree_stand"
       ]
     },
     {
@@ -2378,6 +2352,42 @@
       "ids": [
         "snow_walls"
       ]
+    },
+    {
+      "basis": "M8 decay.json data map",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "data_map",
+      "ids": [
+        "decay"
+      ]
+    },
+    {
+      "basis": "B9 fences tag",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "fences"
+      ]
+    },
+    {
+      "basis": "B8 leak seam stub tag",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "leak_seams"
+      ]
+    },
+    {
+      "basis": "Traversal raft",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "entity",
+      "ids": [
+        "raft"
+      ]
     }
   ],
   "expand": {
@@ -2484,7 +2494,7 @@
     {
       "basis": "Ready for development > M2.5 ids (every one tagged m2_5)",
       "file": "docs/ready-for-development.md",
-      "heading": "M2.5 — Vertical slice",
+      "heading": "M2.5 \u2014 Vertical slice",
       "line_contains": "**Ids and data:**",
       "until_line_contains": "**Work, in order:**",
       "milestone": "m2_5",
@@ -2499,7 +2509,7 @@
     {
       "basis": "Ready for development > M0 ids",
       "file": "docs/ready-for-development.md",
-      "heading": "M0 — Seeded world",
+      "heading": "M0 \u2014 Seeded world",
       "line_contains": "**Ids and data:**",
       "milestone": "m0",
       "types": [
@@ -2510,7 +2520,7 @@
     {
       "basis": "Ready for development > M2 ids",
       "file": "docs/ready-for-development.md",
-      "heading": "M2 — Walkable valley",
+      "heading": "M2 \u2014 Walkable valley",
       "line_contains": "**Ids and data:**",
       "milestone": "m2",
       "types": [
@@ -2522,7 +2532,7 @@
     {
       "basis": "Ready for development > M5 ids",
       "file": "docs/ready-for-development.md",
-      "heading": "M5 — Food and goals",
+      "heading": "M5 \u2014 Food and goals",
       "line_contains": "**Ids and data:**",
       "milestone": "m5",
       "types": [
@@ -2533,7 +2543,7 @@
     {
       "basis": "Ready for development > M8 ids",
       "file": "docs/ready-for-development.md",
-      "heading": "M8 — Building and outposts",
+      "heading": "M8 \u2014 Building and outposts",
       "line_contains": "**Ids and data:**",
       "milestone": "m8",
       "types": [
@@ -2545,7 +2555,7 @@
     {
       "basis": "Ready for development > M9 ids",
       "file": "docs/ready-for-development.md",
-      "heading": "M9 — Homestead and beyond",
+      "heading": "M9 \u2014 Homestead and beyond",
       "line_contains": "**Ids and data:**",
       "milestone": "m9",
       "types": [

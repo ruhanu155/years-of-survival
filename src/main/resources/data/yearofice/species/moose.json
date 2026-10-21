@@ -1,107 +1,20 @@
 {
   "entity": "yearofice:moose",
   "rig": "ungulate",
-  "habitat": [
-    "riparian"
-  ],
-  "population": [
-    4,
-    8
-  ],
+  "habitat": ["riparian"],
+  "population": [4, 8],
   "home_range_m": 3000,
-  "active": [
-    "dawn",
-    "dusk"
-  ],
-  "gaits": {
-    "walk": 1.6,
-    "trot": 4,
-    "run": 14,
-    "swim": 1.8,
-    "step_height_m": 1.0
-  },
-  "senses": {
-    "sight": 60,
-    "hearing": 40,
-    "smell": 150,
-    "fov": 300
-  },
+  "active": ["dawn", "dusk"],
+  "gaits": { "walk": 1.6, "trot": 4, "run": 14, "swim": 1.8, "step_height_m": 1.0 },
+  "senses": { "sight": 60, "hearing": 40, "smell": 150, "fov": 300 },
   "behavior": {
-    "alert": 30,
-    "response": 70,
-    "calm": 20,
-    "freezes": false,
-    "flee_trigger_m": 40,
-    "flee_m": [
-      200,
-      400
-    ],
-    "flee_gait": "trot",
-    "zigzag": false,
-    "hide_min": [
-      30,
-      60
-    ],
-    "charges": false
+    "alert": 30, "response": 70, "calm": 20, "freezes": false, "flee_trigger_m": 40,
+    "flee_m": [200, 400], "flee_gait": "trot", "zigzag": false, "hide_min": [30, 60], "charges": false
   },
   "huntable": false,
   "huntable_from": "m6",
   "respawn_days": 365,
   "breath_s": 60,
-  "carcass": {
-    "whole_kg": 450,
-    "class": "huge",
-    "body_plan": "cervid",
-    "poses": [
-      "dead_side"
-    ],
-    "steps": {
-      "position": 5,
-      "gut": 45,
-      "organs": 15,
-      "prop": 5,
-      "skin": 45,
-      "quarter": 100,
-      "hang": 20
-    },
-    "parts": {
-      "meat": 180,
-      "cover": {
-        "item": "yearofice:moose_hide",
-        "kg": 30
-      },
-      "guts_kg": 60
-    }
-  },
-  "butcher_table": "yearofice:butchering/moose",
-  "drives": {
-    "hunger_up": 0.08,
-    "hunger_down": 0.25,
-    "thirst_up": 0.04,
-    "thirst_down": 1.0,
-    "rest_up": 0.06,
-    "rest_down": 0.2,
-    "weights": {
-      "dawn": [
-        1.5,
-        0.7,
-        0.3
-      ],
-      "midday": [
-        0.5,
-        0.35,
-        3.1
-      ],
-      "dusk": [
-        1.2,
-        2.0,
-        0.3
-      ],
-      "night": [
-        1.0,
-        0.1,
-        1.0
-      ]
-    }
-  }
+  "carcass": { "whole_kg": 450, "class": "huge", "body_plan": "cervid", "poses": ["dead_side"] },
+  "butcher_table": "yearofice:butchering/moose"
 }

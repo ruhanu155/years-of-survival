@@ -10,7 +10,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 
 /**
  * The trophy wall's ambitions (A6): "Beyond: trophy wall" opens with the first mount hung (no deadline, no gold).
- * The first mount opens {@link com.yearofice.api.story.AmbitionTracker#TROPHY_WALL} and writes one journal line; the record book keeps the sizes.
+ * Until the ambition tracker lands, the first mount writes one journal line and the record book keeps the sizes.
  */
 @EventBusSubscriber(modid = YearOfIce.MOD_ID)
 public final class TrophyAmbitions {
@@ -24,7 +24,6 @@ public final class TrophyAmbitions {
     @SubscribeEvent
     public static void onHung(TrophyHungEvent e) {
         ServerPlayer p = e.player();
-        com.yearofice.api.story.AmbitionTracker.open(p, com.yearofice.api.story.AmbitionTracker.TROPHY_WALL);
         if (Journal.entries(p).stream().noneMatch(j -> KIND.equals(j.kind())))
             Journal.record(p, KIND, e.species(), "First trophy hung: " + e.species().replace('_', ' ') + ".", 0, 0);
     }

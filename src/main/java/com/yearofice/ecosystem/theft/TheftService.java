@@ -93,7 +93,7 @@ public final class TheftService {
         }
         if (stacks.isEmpty()) return Optional.empty();
         var r = Thresholds.stream(level.getSeed(), "theft", at.getX(), at.getY(), at.getZ(), hourIndex);
-        Optional<Theft.Hit> hit = Theft.rollHour(ctx, EcoConfig.tuning().theftMult(), r, stacks, liveThieves(level, at));
+        Optional<Theft.Hit> hit = Theft.rollHour(ctx, EcoConfig.tuning().theftMult(), r, stacks);
         if (hit.isEmpty()) return Optional.empty();
         Theft.Hit h = hit.get();
         ItemStack s = store.getItem(slot[h.stack()]);
@@ -103,20 +103,6 @@ public final class TheftService {
         store.setChanged();
         thefts++;
         return Optional.of(h.thief().name().toLowerCase() + " took " + h.units() + " " + name);
-    }
-
-    /**
-     * Jays and ravens that are live birds near the store are the thieves there: the hourly roll skips them, so one visit
-     * is not counted twice (RECONCILE 242). Without a bird in range the abstract roll still stands in for them.
-     */
-    static java.util.Set<Theft.Thief> liveThieves(ServerLevel level, BlockPos at) {
-        double r = com.yearofice.ecosystem.bird.BirdConfig.tuning().thiefRangeM();
-        java.util.Set<Theft.Thief> out = java.util.EnumSet.noneOf(Theft.Thief.class);
-        for (var b : level.getEntitiesOfClass(com.yearofice.ecosystem.bird.BirdEntity.class, new net.minecraft.world.phys.AABB(at).inflate(r, 32, r), x -> x.isAlive())) {
-            if (b.role() == com.yearofice.sim.bird.BirdRules.Role.CORVID) out.add(Theft.Thief.RAVEN);
-            else if (b.role() == com.yearofice.sim.bird.BirdRules.Role.JAY) out.add(Theft.Thief.GRAY_JAY);
-        }
-        return out;
     }
 
     /** The context at a store this minute: night from the clock, roof from the sky, the nearest player. */

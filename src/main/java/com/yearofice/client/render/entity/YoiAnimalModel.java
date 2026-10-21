@@ -21,7 +21,7 @@ public class YoiAnimalModel<T extends YoiAnimal> extends GeoModel<T> {
     @Override
     public void setCustomAnimations(T a, long instanceId, AnimationState<T> state) {
         super.setCustomAnimations(a, instanceId, state);
-        if (!(a instanceof MooseEntity || a instanceof com.yearofice.ecosystem.species.rig.BigGameEntity)) return;
+        if (!(a instanceof MooseEntity)) return;
         float s = a.male() ? Math.max(0.001f, a.antlerScale()) : 0.001f;
         for (String bone : new String[] {"antler_l", "antler_r"}) {
             getBone(bone).ifPresent(b -> {

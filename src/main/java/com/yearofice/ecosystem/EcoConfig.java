@@ -25,8 +25,6 @@ public final class EcoConfig {
         NOTES.put("workMinPerS", "The Work time-lapse: game minutes a real second while a hold-to-work ring fills.");
         NOTES.put("smallGameDensityMult", "Multiplies the species-file densities of the small game, furbearers and grouse (red squirrel to rock ptarmigan).");
         NOTES.put("theftMult", "Multiplies the hourly theft chances at the camp's stores (marten, jay, raven, fox).");
-        NOTES.put("bigGameDensityMult", "Multiplies the species-file densities of caribou and the other big game (M6).");
-        NOTES.put("predatorDensityMult", "Multiplies the species-file densities of bears, wolves, coyote, fox, lynx and wolverine (M6).");
         NOTES.put("minWorkEnergy", "Hold-to-work (dressing, setting a snare) needs at least this many energy bolts.");
     }
 
@@ -38,7 +36,6 @@ public final class EcoConfig {
 
     public static ModConfigSpec.BooleanValue MOOSE_HUNTABLE;
     public static ModConfigSpec.IntValue HARE_CYCLE_YEAR;
-    public static ModConfigSpec.BooleanValue DEER_FLAG;
 
     public static void define(ModConfigSpec.Builder b) {
         b.comment("Ecosystem: small game, the passive moose and the slot spawner (Minecraft development > Entities and AI).").push("ecosystem");
@@ -47,8 +44,6 @@ public final class EcoConfig {
                 .define("moose_huntable", false);
         HARE_CYCLE_YEAR = b.comment("Pin the hare cycle to a year 0-9 (multipliers 0.3, 0.5, 0.9, 1.5, 2.2, 2.5, 1.8, 0.9, 0.4, 0.25); -1 draws the phase from the seed.")
                 .defineInRange("hare_cycle_year", -1, -1, 9);
-        DEER_FLAG = b.comment("Content flag yearofice:deer (RECONCILE 152): the mule deer straggler and the deer species. On in dev and beta, off in stable.")
-                .define("deer", true);
         b.pop();
         com.yearofice.ecosystem.encounter.EncounterConfig.define(b); // M6 lane D: [world], door entry, talk
         TrapConfig.define(b);
@@ -57,13 +52,6 @@ public final class EcoConfig {
     public static EcoTuning tuning() { return ECO.tuning(); }
 
     public static boolean mooseHuntable() { return YoiConfig.SPEC.isLoaded() && MOOSE_HUNTABLE != null && MOOSE_HUNTABLE.get(); }
-
-    /** A species file's {@code content_flag}: empty is always on; {@code yearofice:deer} follows {@code [ecosystem] deer}. */
-    public static boolean flagOn(String flag) {
-        if (flag == null || flag.isEmpty()) return true;
-        if (flag.equals("yearofice:deer")) return !YoiConfig.SPEC.isLoaded() || DEER_FLAG == null || DEER_FLAG.get();
-        return true;
-    }
 
     public static boolean rackThievesDefault() { return com.yearofice.ecosystem.encounter.WorldToggles.rackThieves(); }
 

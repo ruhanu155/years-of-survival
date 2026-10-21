@@ -2,6 +2,7 @@ package com.yearofice.body;
 
 import com.yearofice.api.fire.FireEffortEvent;
 import com.yearofice.core.YearOfIce;
+import com.yearofice.sim.body.BodyModel;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -18,6 +19,9 @@ public final class FireHooks {
 
     @SubscribeEvent
     public static void onEffort(FireEffortEvent e) {
-        if (e.player() instanceof ServerPlayer p) com.yearofice.api.body.BodyService.get().effort(p, e.activity(), e.kcal(), e.gameMinutes());
+        if (!(e.player() instanceof ServerPlayer p) || p.isCreative() || p.isSpectator()) return;
+        long minute = BodyTicker.clock.minute(p.server);
+        BodyModel.charge(BodyAttachments.of(p), minute, e.kcal());
+        BodyTicker.sync(p, minute, false);
     }
 }

@@ -143,10 +143,6 @@ public final class PreserveGameTests {
         for (int i = 0; i < 4; i++) h.assertTrue(be.putOn(meat(h, 64)) == 64, "stack " + i + " should fit");
         int start = 256, weeks = 8;
         be.pinDeadfalls(0);
-        // The roll is keyed by world seed and position; pin both (the slice seed, a fixed origin) so the 8-week sample is the
-        // same wherever the batch puts the cache. The origin is one whose draws land in the band (2.5 %); the sim's own
-        // JUnit holds the distribution.
-        be.pinRoll(3141592L, new net.minecraft.core.BlockPos(3, 0, 0));
         int lost = 0;
         for (int w = 0; w < weeks; w++) lost += be.settleWeek(1000 + w, 11);
         double perWeek = lost / (double) start / weeks;

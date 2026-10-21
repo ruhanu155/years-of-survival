@@ -1,0 +1,1 @@
+{ "id": "yearofice:world.frost_drip", "kind": "drip", "variants": 3, "length_s": 0.5, "lufs": -26, "start_hz": 1400, "fall_per_s": 14, "floor_hz": 500, "decay_s": 0.09 }

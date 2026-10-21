@@ -101,18 +101,17 @@ public final class HudGameTests {
         ServerPlayer live = withMessenger(h, "live", 100);
         HudLine body = HudLine.of(HudLineType.BODY, "test_weight", "body", HudArg.fixed(68.9, "kg"));
         for (ServerPlayer p : List.of(dead, none, live)) bus.post(p, body);
-        // both delays are scheduled here: a runAfterDelay inside a delay callback modifies the framework's map mid-iteration
-        HudLine pickup = HudLine.of(HudLineType.PICKUP, "ate", "body", HudArg.of(250), HudArg.of(40));
-        h.runAfterDelay(4, () -> {
-            h.assertTrue(bus.sent(none).contains(pickup), "pickup lines need no messenger");
-            h.succeed();
-        });
         h.runAfterDelay(2, () -> {
             h.assertTrue(bus.journal(dead).contains(body) && bus.sent(dead).isEmpty(), "battery 0: journal only");
             h.assertTrue(bus.journal(none).contains(body) && bus.sent(none).isEmpty(), "no messenger: journal only");
             h.assertTrue(bus.sent(live).contains(body) && bus.journal(live).isEmpty(), "a live messenger shows it");
             // Pickup lines answer the player's own action: no battery needed.
+            HudLine pickup = HudLine.of(HudLineType.PICKUP, "ate", "body", HudArg.of(250), HudArg.of(40));
             bus.post(none, pickup);
+            h.runAfterDelay(2, () -> {
+                h.assertTrue(bus.sent(none).contains(pickup), "pickup lines need no messenger");
+                h.succeed();
+            });
         });
     }
 

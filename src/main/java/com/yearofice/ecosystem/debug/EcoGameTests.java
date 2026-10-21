@@ -138,34 +138,13 @@ public final class EcoGameTests {
     /** The moose's pad is low: a 4 m bank lifts its eyes over the next tests' blocks, and it steps off it unhurt. */
     static final int BANK_Y = 4;
 
-    private static final java.util.Map<Long, Integer> HELD = new java.util.HashMap<>();
-
-    /**
-     * Stone floor cells shared by overlapping tests, by absolute position: each {@code on} holds a cell, each {@code off}
-     * releases one, and only the last release clears it, so a neighbour finishing never pulls the ground from under a
-     * test still running (a 300 m chase strip crosses other tests' pads).
-     */
-    public static synchronized void stone(GameTestHelper h, BlockPos rel, boolean on) {
-        long key = h.absolutePos(rel).asLong();
-        Integer n = HELD.get(key);
-        if (on) {
-            HELD.put(key, n == null ? 1 : n + 1);
-            h.setBlock(rel, net.minecraft.world.level.block.Blocks.STONE);
-        } else if (n != null && n > 1) {
-            HELD.put(key, n - 1);
-        } else {
-            HELD.remove(key);
-            h.setBlock(rel, net.minecraft.world.level.block.Blocks.AIR);
-        }
-    }
-
     static BlockPos pad(GameTestHelper h, int r, int y) {
-        for (int dx = -r; dx <= r; dx++) for (int dz = -r; dz <= r; dz++) stone(h, new BlockPos(1 + dx, y, 1 + dz), true);
+        for (int dx = -r; dx <= r; dx++) for (int dz = -r; dz <= r; dz++) h.setBlock(new BlockPos(1 + dx, y, 1 + dz), net.minecraft.world.level.block.Blocks.STONE);
         return new BlockPos(1, y + 1, 1);
     }
 
     static void unpad(GameTestHelper h, int r, int y) {
-        for (int dx = -r; dx <= r; dx++) for (int dz = -r; dz <= r; dz++) stone(h, new BlockPos(1 + dx, y, 1 + dz), false);
+        for (int dx = -r; dx <= r; dx++) for (int dz = -r; dz <= r; dz++) h.setBlock(new BlockPos(1 + dx, y, 1 + dz), net.minecraft.world.level.block.Blocks.AIR);
     }
 
     static double flat(Vec3 a, Vec3 b) { return Math.hypot(a.x - b.x, a.z - b.z); }
@@ -174,8 +153,9 @@ public final class EcoGameTests {
     static final int RUN_WEST = 10, RUN_EAST = 26, RUN_SIDE = 12;
 
     static void runway(GameTestHelper h, boolean on) {
+        var b = on ? net.minecraft.world.level.block.Blocks.STONE : net.minecraft.world.level.block.Blocks.AIR;
         for (int dx = -RUN_WEST; dx <= RUN_EAST; dx++) {
-            for (int dz = -RUN_SIDE; dz <= RUN_SIDE; dz++) stone(h, new BlockPos(1 + dx, PAD_Y, 1 + dz), on);
+            for (int dz = -RUN_SIDE; dz <= RUN_SIDE; dz++) h.setBlock(new BlockPos(1 + dx, PAD_Y, 1 + dz), b);
         }
     }
 
@@ -256,11 +236,10 @@ public final class EcoGameTests {
         SnowshoeHareEntity hare = h.spawn(EcosystemRegistry.SNOWSHOE_HARE.get(), AT);
         ServerPlayer p = player(h);
         p.moveTo(hare.getX() + 1, hare.getY(), hare.getZ(), 0, 0);
-        // both delays are scheduled here: a runAfterDelay inside a delay callback modifies the framework's map mid-iteration and crashes the server now and then
-        h.runAfterDelay(5, () -> h.assertTrue(hare.hurt(h.getLevel().damageSources().playerAttack(p), 1f), "the hit did not take"));
-        {
-            h.runAfterDelay(15, () -> {
-                AABB box = h.getBounds().inflate(1); // this test's own cell: batch neighbours drop items within 8 blocks
+        h.runAfterDelay(5, () -> {
+            h.assertTrue(hare.hurt(h.getLevel().damageSources().playerAttack(p), 1f), "the hit did not take");
+            h.runAfterDelay(10, () -> {
+                AABB box = new AABB(hare.position(), hare.position()).inflate(8);
                 ServerLevel l = h.getLevel();
                 List<CarcassEntity> carcasses = l.getEntitiesOfClass(CarcassEntity.class, box);
                 h.assertTrue(hare.isRemoved(), "the living hare should be gone");
@@ -282,7 +261,7 @@ public final class EcoGameTests {
                 h.assertTrue(c.isRemoved(), "the carcass entity should be taken up");
                 h.succeed();
             });
-        }
+        });
     }
 
     /** The passive moose: with {@code [ecosystem] moose_huntable} off (every preset until M6), player hits do nothing. */
@@ -297,15 +276,14 @@ public final class EcoGameTests {
             for (int i = 0; i < 5; i++) {
                 h.assertFalse(moose.hurt(h.getLevel().damageSources().playerAttack(p), 1000f), "the hit took");
             }
-        });
-        // scheduled here, not inside the delay above: nested delays modify the framework's map mid-iteration
-        h.runAfterDelay(10, () -> {
-            h.assertTrue(moose.isAlive() && !moose.isRemoved(), "the moose died");
-            h.assertTrue(moose.getHealth() == hp, "health " + moose.getHealth() + " of " + hp);
-            h.assertTrue(h.getLevel().getEntitiesOfClass(CarcassEntity.class, moose.getBoundingBox().inflate(8),
-                    c -> c.record().species().equals(MooseEntity.ID)).isEmpty(), "a moose carcass appeared");
-            h.assertTrue(moose.awareness().max() >= 99, "a hit should alarm it, awareness " + moose.awareness().max());
-            h.succeed();
+            h.runAfterDelay(5, () -> {
+                h.assertTrue(moose.isAlive() && !moose.isRemoved(), "the moose died");
+                h.assertTrue(moose.getHealth() == hp, "health " + moose.getHealth() + " of " + hp);
+                h.assertTrue(h.getLevel().getEntitiesOfClass(CarcassEntity.class, moose.getBoundingBox().inflate(8),
+                        c -> c.record().species().equals(MooseEntity.ID)).isEmpty(), "a moose carcass appeared");
+                h.assertTrue(moose.awareness().max() >= 99, "a hit should alarm it, awareness " + moose.awareness().max());
+                h.succeed();
+            });
         });
     }
 

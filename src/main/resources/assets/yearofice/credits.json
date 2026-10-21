@@ -2292,157 +2292,6 @@
       "release_blocker": false
     },
     {
-      "asset_id": "model_ermine",
-      "files": [
-        "assets/yearofice/animations/entity/ermine.animation.json",
-        "assets/yearofice/geo/entity/ermine.geo.json",
-        "assets/yearofice/textures/entity/ermine/adult_mottled.png",
-        "assets/yearofice/textures/entity/ermine/adult_summer.png",
-        "assets/yearofice/textures/entity/ermine/adult_winter.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/ermine.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_marten",
-      "files": [
-        "assets/yearofice/animations/entity/marten.animation.json",
-        "assets/yearofice/geo/entity/marten.geo.json",
-        "assets/yearofice/textures/entity/marten/adult_all.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/marten.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_mink",
-      "files": [
-        "assets/yearofice/animations/entity/mink.animation.json",
-        "assets/yearofice/geo/entity/mink.geo.json",
-        "assets/yearofice/textures/entity/mink/adult_all.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/mink.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_muskrat",
-      "files": [
-        "assets/yearofice/animations/entity/muskrat.animation.json",
-        "assets/yearofice/geo/entity/muskrat.geo.json",
-        "assets/yearofice/textures/entity/muskrat/adult_all.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/muskrat.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_porcupine",
-      "files": [
-        "assets/yearofice/animations/entity/porcupine.animation.json",
-        "assets/yearofice/geo/entity/porcupine.geo.json",
-        "assets/yearofice/textures/entity/porcupine/adult_all.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/porcupine.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_rock_ptarmigan",
-      "files": [
-        "assets/yearofice/animations/entity/rock_ptarmigan.animation.json",
-        "assets/yearofice/textures/entity/rock_ptarmigan/adult_moult.png",
-        "assets/yearofice/textures/entity/rock_ptarmigan/adult_summer.png",
-        "assets/yearofice/textures/entity/rock_ptarmigan/adult_winter.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/rock_ptarmigan.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_ruffed_grouse",
-      "files": [
-        "assets/yearofice/animations/entity/ruffed_grouse.animation.json",
-        "assets/yearofice/textures/entity/ruffed_grouse/female_adult.png",
-        "assets/yearofice/textures/entity/ruffed_grouse/male_adult.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/ruffed_grouse.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_wood_frog",
-      "files": [
-        "assets/yearofice/animations/entity/wood_frog.animation.json",
-        "assets/yearofice/geo/entity/wood_frog.geo.json",
-        "assets/yearofice/textures/entity/wood_frog/adult_all.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/wood_frog.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_yellowjacket",
-      "files": [
-        "assets/yearofice/animations/entity/yellowjacket.animation.json",
-        "assets/yearofice/geo/entity/yellowjacket.geo.json",
-        "assets/yearofice/textures/entity/yellowjacket/adult_all.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/modelgen/species/yellowjacket.json",
-      "licence": "project",
-      "generator_version": "modelgen 0.4.0",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_small_game",
-      "files": [
-        "assets/yearofice/blockstates/gut_pile.json",
-        "assets/yearofice/models/block/gut_pile_0.json",
-        "assets/yearofice/models/block/gut_pile_1.json",
-        "assets/yearofice/models/block/gut_pile_2.json",
-        "assets/yearofice/models/block/gut_pile_3.json",
-        "assets/yearofice/models/item/beaver_meat.json",
-        "assets/yearofice/models/item/beaver_pelt.json",
-        "assets/yearofice/models/item/ermine_pelt.json",
-        "assets/yearofice/models/item/marten_meat.json",
-        "assets/yearofice/models/item/marten_pelt.json",
-        "assets/yearofice/models/item/mink_meat.json",
-        "assets/yearofice/models/item/mink_pelt.json",
-        "assets/yearofice/models/item/muskrat_meat.json",
-        "assets/yearofice/models/item/muskrat_pelt.json",
-        "assets/yearofice/models/item/porcupine_meat.json",
-        "assets/yearofice/models/item/red_squirrel_meat.json",
-        "assets/yearofice/models/item/red_squirrel_pelt.json",
-        "assets/yearofice/models/item/rock_ptarmigan_meat.json",
-        "assets/yearofice/models/item/ruffed_grouse_meat.json",
-        "assets/yearofice/models/item/spruce_grouse_meat.json",
-        "assets/yearofice/textures/block/gut_pile.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/small_game.py",
-      "licence": "project",
-      "generator_version": "small_game 0.1.0",
-      "release_blocker": false
-    },
-    {
       "asset_id": "tex_alpine_bearberry",
       "files": [
         "assets/yearofice/models/item/alpine_bearberry.json",
@@ -4920,221 +4769,6 @@
       "release_blocker": false
     },
     {
-      "files": [
-        "assets/yearofice/models/item/burbot.json",
-        "assets/yearofice/models/item/chinook_salmon.json",
-        "assets/yearofice/models/item/chum_salmon.json",
-        "assets/yearofice/models/item/coho_salmon.json",
-        "assets/yearofice/models/item/dolly_varden.json",
-        "assets/yearofice/models/item/humpback_whitefish.json",
-        "assets/yearofice/models/item/lake_trout.json",
-        "assets/yearofice/models/item/northern_pike.json"
-      ],
-      "source_type": "generated",
-      "recipe": "hand-written original (placeholder models reusing the project's own grayling texture until the fish art pass)",
-      "licence": "project",
-      "generator_version": "hand",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_self_bow",
-      "files": [
-        "assets/yearofice/models/item/self_bow.json",
-        "assets/yearofice/textures/item/self_bow.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
-      "generator_version": "hand script (PIL)",
-      "recipe": "tools/artgen/hunt_placeholders.py",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_kit_bow",
-      "files": [
-        "assets/yearofice/models/item/kit_bow.json",
-        "assets/yearofice/textures/item/kit_bow.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
-      "generator_version": "hand script (PIL)",
-      "recipe": "tools/artgen/hunt_placeholders.py",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_longbow",
-      "files": [
-        "assets/yearofice/models/item/longbow.json",
-        "assets/yearofice/textures/item/longbow.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
-      "generator_version": "hand script (PIL)",
-      "recipe": "tools/artgen/hunt_placeholders.py",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_spear",
-      "files": [
-        "assets/yearofice/models/item/spear.json",
-        "assets/yearofice/textures/item/spear.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
-      "generator_version": "hand script (PIL)",
-      "recipe": "tools/artgen/hunt_placeholders.py",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_arrow",
-      "files": [
-        "assets/yearofice/models/item/arrow.json",
-        "assets/yearofice/textures/item/arrow.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
-      "generator_version": "hand script (PIL)",
-      "recipe": "tools/artgen/hunt_placeholders.py",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_arrowhead",
-      "files": [
-        "assets/yearofice/models/item/arrowhead.json",
-        "assets/yearofice/textures/item/arrowhead.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
-      "generator_version": "hand script (PIL)",
-      "recipe": "tools/artgen/hunt_placeholders.py",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_moose_call",
-      "files": [
-        "assets/yearofice/models/item/moose_call.json",
-        "assets/yearofice/textures/item/moose_call.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
-      "generator_version": "hand script (PIL)",
-      "recipe": "tools/artgen/hunt_placeholders.py",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_squeak_call",
-      "files": [
-        "assets/yearofice/models/item/squeak_call.json",
-        "assets/yearofice/textures/item/squeak_call.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
-      "generator_version": "hand script (PIL)",
-      "recipe": "tools/artgen/hunt_placeholders.py",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_pole_blind",
-      "files": [
-        "assets/yearofice/blockstates/pole_blind.json",
-        "assets/yearofice/models/block/pole_blind.json",
-        "assets/yearofice/models/item/pole_blind.json",
-        "assets/yearofice/textures/block/pole_blind.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
-      "generator_version": "hand script (PIL)",
-      "recipe": "tools/artgen/hunt_placeholders.py",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_tree_stand",
-      "files": [
-        "assets/yearofice/blockstates/tree_stand.json",
-        "assets/yearofice/models/block/tree_stand.json",
-        "assets/yearofice/models/item/tree_stand.json",
-        "assets/yearofice/textures/block/tree_stand.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
-      "generator_version": "hand script (PIL)",
-      "recipe": "tools/artgen/hunt_placeholders.py",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "tex_blood_trail",
-      "files": [
-        "assets/yearofice/blockstates/blood_trail.json",
-        "assets/yearofice/models/block/blood_bright_1.json",
-        "assets/yearofice/models/block/blood_bright_2.json",
-        "assets/yearofice/models/block/blood_bright_3.json",
-        "assets/yearofice/models/block/blood_dark_1.json",
-        "assets/yearofice/models/block/blood_dark_2.json",
-        "assets/yearofice/models/block/blood_dark_3.json",
-        "assets/yearofice/models/block/blood_gut_1.json",
-        "assets/yearofice/models/block/blood_gut_2.json",
-        "assets/yearofice/models/block/blood_gut_3.json",
-        "assets/yearofice/models/item/blood_trail.json",
-        "assets/yearofice/textures/block/blood_bright.png",
-        "assets/yearofice/textures/block/blood_dark.png",
-        "assets/yearofice/textures/block/blood_gut.png"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
-      "generator_version": "hand script (PIL)",
-      "recipe": "tools/artgen/hunt_placeholders.py",
-      "release_blocker": false
-    },
-    {
-      "asset_id": "model_big_game_items",
-      "files": [
-        "assets/yearofice/models/item/moose_meat.json",
-        "assets/yearofice/models/item/caribou_meat.json",
-        "assets/yearofice/models/item/mule_deer_meat.json",
-        "assets/yearofice/models/item/black_bear_meat.json",
-        "assets/yearofice/models/item/grizzly_meat.json",
-        "assets/yearofice/models/item/wolf_meat.json",
-        "assets/yearofice/models/item/coyote_meat.json",
-        "assets/yearofice/models/item/red_fox_meat.json",
-        "assets/yearofice/models/item/lynx_meat.json",
-        "assets/yearofice/models/item/wolverine_meat.json",
-        "assets/yearofice/models/item/moose_hide.json",
-        "assets/yearofice/models/item/caribou_hide.json",
-        "assets/yearofice/models/item/mule_deer_hide.json",
-        "assets/yearofice/models/item/black_bear_hide.json",
-        "assets/yearofice/models/item/grizzly_hide.json",
-        "assets/yearofice/models/item/wolf_pelt.json",
-        "assets/yearofice/models/item/coyote_pelt.json",
-        "assets/yearofice/models/item/red_fox_pelt.json",
-        "assets/yearofice/models/item/lynx_pelt.json",
-        "assets/yearofice/models/item/wolverine_pelt.json",
-        "assets/yearofice/models/item/animal_fat.json",
-        "assets/yearofice/models/item/heart.json",
-        "assets/yearofice/models/item/liver.json",
-        "assets/yearofice/models/item/kidney.json",
-        "assets/yearofice/models/item/tongue.json",
-        "assets/yearofice/models/item/marrow_bone.json",
-        "assets/yearofice/models/item/antler.json",
-        "assets/yearofice/models/item/claw.json"
-      ],
-      "source_type": "generated",
-      "licence": "project",
-      "note": "Item models for the M6 big-game parts: parents of existing original art (M6 lane A)",
-      "recipe": "tools/artgen/snare.py",
-      "generator_version": "m6a 0.1",
-      "release_blocker": false
-    },
-    {
       "asset_id": "tex_flail",
       "files": [
         "assets/yearofice/models/item/flail.json",
@@ -5156,6 +4790,23 @@
       "recipe": "tools/artgen/plants/gen2.py",
       "licence": "project",
       "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "files": [
+        "assets/yearofice/models/item/burbot.json",
+        "assets/yearofice/models/item/chinook_salmon.json",
+        "assets/yearofice/models/item/chum_salmon.json",
+        "assets/yearofice/models/item/coho_salmon.json",
+        "assets/yearofice/models/item/dolly_varden.json",
+        "assets/yearofice/models/item/humpback_whitefish.json",
+        "assets/yearofice/models/item/lake_trout.json",
+        "assets/yearofice/models/item/northern_pike.json"
+      ],
+      "source_type": "generated",
+      "recipe": "hand-written original (placeholder models reusing the project's own grayling texture until the fish art pass)",
+      "licence": "project",
+      "generator_version": "hand",
       "release_blocker": false
     },
     {
@@ -5471,6 +5122,157 @@
       "release_blocker": false
     },
     {
+      "asset_id": "model_ermine",
+      "files": [
+        "assets/yearofice/animations/entity/ermine.animation.json",
+        "assets/yearofice/geo/entity/ermine.geo.json",
+        "assets/yearofice/textures/entity/ermine/adult_mottled.png",
+        "assets/yearofice/textures/entity/ermine/adult_summer.png",
+        "assets/yearofice/textures/entity/ermine/adult_winter.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/ermine.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_marten",
+      "files": [
+        "assets/yearofice/animations/entity/marten.animation.json",
+        "assets/yearofice/geo/entity/marten.geo.json",
+        "assets/yearofice/textures/entity/marten/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/marten.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_mink",
+      "files": [
+        "assets/yearofice/animations/entity/mink.animation.json",
+        "assets/yearofice/geo/entity/mink.geo.json",
+        "assets/yearofice/textures/entity/mink/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/mink.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_muskrat",
+      "files": [
+        "assets/yearofice/animations/entity/muskrat.animation.json",
+        "assets/yearofice/geo/entity/muskrat.geo.json",
+        "assets/yearofice/textures/entity/muskrat/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/muskrat.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_porcupine",
+      "files": [
+        "assets/yearofice/animations/entity/porcupine.animation.json",
+        "assets/yearofice/geo/entity/porcupine.geo.json",
+        "assets/yearofice/textures/entity/porcupine/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/porcupine.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_rock_ptarmigan",
+      "files": [
+        "assets/yearofice/animations/entity/rock_ptarmigan.animation.json",
+        "assets/yearofice/textures/entity/rock_ptarmigan/adult_moult.png",
+        "assets/yearofice/textures/entity/rock_ptarmigan/adult_summer.png",
+        "assets/yearofice/textures/entity/rock_ptarmigan/adult_winter.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/rock_ptarmigan.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_ruffed_grouse",
+      "files": [
+        "assets/yearofice/animations/entity/ruffed_grouse.animation.json",
+        "assets/yearofice/textures/entity/ruffed_grouse/female_adult.png",
+        "assets/yearofice/textures/entity/ruffed_grouse/male_adult.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/ruffed_grouse.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_wood_frog",
+      "files": [
+        "assets/yearofice/animations/entity/wood_frog.animation.json",
+        "assets/yearofice/geo/entity/wood_frog.geo.json",
+        "assets/yearofice/textures/entity/wood_frog/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/wood_frog.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_yellowjacket",
+      "files": [
+        "assets/yearofice/animations/entity/yellowjacket.animation.json",
+        "assets/yearofice/geo/entity/yellowjacket.geo.json",
+        "assets/yearofice/textures/entity/yellowjacket/adult_all.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/modelgen/species/yellowjacket.json",
+      "licence": "project",
+      "generator_version": "modelgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_small_game",
+      "files": [
+        "assets/yearofice/blockstates/gut_pile.json",
+        "assets/yearofice/models/block/gut_pile_0.json",
+        "assets/yearofice/models/block/gut_pile_1.json",
+        "assets/yearofice/models/block/gut_pile_2.json",
+        "assets/yearofice/models/block/gut_pile_3.json",
+        "assets/yearofice/models/item/beaver_meat.json",
+        "assets/yearofice/models/item/beaver_pelt.json",
+        "assets/yearofice/models/item/ermine_pelt.json",
+        "assets/yearofice/models/item/marten_meat.json",
+        "assets/yearofice/models/item/marten_pelt.json",
+        "assets/yearofice/models/item/mink_meat.json",
+        "assets/yearofice/models/item/mink_pelt.json",
+        "assets/yearofice/models/item/muskrat_meat.json",
+        "assets/yearofice/models/item/muskrat_pelt.json",
+        "assets/yearofice/models/item/porcupine_meat.json",
+        "assets/yearofice/models/item/red_squirrel_meat.json",
+        "assets/yearofice/models/item/red_squirrel_pelt.json",
+        "assets/yearofice/models/item/rock_ptarmigan_meat.json",
+        "assets/yearofice/models/item/ruffed_grouse_meat.json",
+        "assets/yearofice/models/item/spruce_grouse_meat.json",
+        "assets/yearofice/textures/block/gut_pile.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/small_game.py",
+      "licence": "project",
+      "generator_version": "small_game 0.1.0",
+      "release_blocker": false
+    },
+    {
       "asset_id": "m5look_item_hen_egg",
       "files": [
         "assets/yearofice/models/item/hen_egg.json",
@@ -5700,6 +5502,165 @@
       "licence": "project",
       "note": "Original pixel art for Year of Ice (M5 lane TUNE), a recoloured fish_chunk, no found assets",
       "generator_version": "hand script (PIL)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_self_bow",
+      "files": [
+        "assets/yearofice/models/item/self_bow.json",
+        "assets/yearofice/textures/item/self_bow.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_kit_bow",
+      "files": [
+        "assets/yearofice/models/item/kit_bow.json",
+        "assets/yearofice/textures/item/kit_bow.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_longbow",
+      "files": [
+        "assets/yearofice/models/item/longbow.json",
+        "assets/yearofice/textures/item/longbow.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_spear",
+      "files": [
+        "assets/yearofice/models/item/spear.json",
+        "assets/yearofice/textures/item/spear.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_arrow",
+      "files": [
+        "assets/yearofice/models/item/arrow.json",
+        "assets/yearofice/textures/item/arrow.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_arrowhead",
+      "files": [
+        "assets/yearofice/models/item/arrowhead.json",
+        "assets/yearofice/textures/item/arrowhead.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_moose_call",
+      "files": [
+        "assets/yearofice/models/item/moose_call.json",
+        "assets/yearofice/textures/item/moose_call.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_squeak_call",
+      "files": [
+        "assets/yearofice/models/item/squeak_call.json",
+        "assets/yearofice/textures/item/squeak_call.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_pole_blind",
+      "files": [
+        "assets/yearofice/blockstates/pole_blind.json",
+        "assets/yearofice/models/block/pole_blind.json",
+        "assets/yearofice/models/item/pole_blind.json",
+        "assets/yearofice/textures/block/pole_blind.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tree_stand",
+      "files": [
+        "assets/yearofice/blockstates/tree_stand.json",
+        "assets/yearofice/models/block/tree_stand.json",
+        "assets/yearofice/models/item/tree_stand.json",
+        "assets/yearofice/textures/block/tree_stand.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_blood_trail",
+      "files": [
+        "assets/yearofice/blockstates/blood_trail.json",
+        "assets/yearofice/models/block/blood_bright_1.json",
+        "assets/yearofice/models/block/blood_bright_2.json",
+        "assets/yearofice/models/block/blood_bright_3.json",
+        "assets/yearofice/models/block/blood_dark_1.json",
+        "assets/yearofice/models/block/blood_dark_2.json",
+        "assets/yearofice/models/block/blood_dark_3.json",
+        "assets/yearofice/models/block/blood_gut_1.json",
+        "assets/yearofice/models/block/blood_gut_2.json",
+        "assets/yearofice/models/block/blood_gut_3.json",
+        "assets/yearofice/models/item/blood_trail.json",
+        "assets/yearofice/textures/block/blood_bright.png",
+        "assets/yearofice/textures/block/blood_dark.png",
+        "assets/yearofice/textures/block/blood_gut.png"
+      ],
+      "source_type": "generated",
+      "licence": "project",
+      "note": "Original pixel art drawn for Year of Ice (M6 lane B hunt), no found assets",
+      "generator_version": "hand script (PIL)",
+      "recipe": "tools/artgen/hunt_placeholders.py",
       "release_blocker": false
     },
     {
@@ -6768,6 +6729,51 @@
       "recipe": "tools/artgen/plants/gen.py",
       "licence": "project",
       "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "snd_world_frost_drip",
+      "files": [
+        "assets/yearofice/sounds/world/frost_drip1.ogg",
+        "assets/yearofice/sounds/world/frost_drip2.ogg",
+        "assets/yearofice/sounds/world/frost_drip3.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/recipes/world/frost_drip.json",
+      "licence": "project",
+      "generator_version": "soundgen 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "snd_world_icicle_crack",
+      "files": [
+        "assets/yearofice/sounds/world/icicle_crack1.ogg",
+        "assets/yearofice/sounds/world/icicle_crack2.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/recipes/world/icicle_crack.json",
+      "licence": "project",
+      "generator_version": "soundgen 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tent_kit",
+      "files": [
+        "assets/yearofice/models/item/canvas_wall_tent.json",
+        "assets/yearofice/textures/item/canvas_wall_tent.png",
+        "assets/yearofice/models/item/stove_jack.json",
+        "assets/yearofice/textures/item/stove_jack.png",
+        "assets/yearofice/models/item/tent_stove.json",
+        "assets/yearofice/textures/item/tent_stove.png",
+        "assets/yearofice/models/item/can_stove.json",
+        "assets/yearofice/textures/item/can_stove.png",
+        "assets/yearofice/models/item/spark_screen.json",
+        "assets/yearofice/textures/item/spark_screen.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/tent_items.py",
+      "licence": "project",
+      "generator_version": "tent_items 1.0",
       "release_blocker": false
     }
   ]

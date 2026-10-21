@@ -71,7 +71,7 @@ public final class SlotSpawner {
     static List<Kind> kinds() {
         List<Kind> out = new ArrayList<>(KINDS);
         for (SpeciesDef d : SpeciesBook.all()) {
-            if (!d.spawns() || !EcoConfig.flagOn(d.contentFlag())) continue;
+            if (!d.spawns()) continue;
             boolean dup = false;
             for (Kind k : KINDS) if (k.id().equals(d.id())) dup = true;
             if (dup) continue;
@@ -80,18 +80,9 @@ public final class SlotSpawner {
             SpeciesDef.Spawn sp = d.spawn();
             out.add(new Kind(d.id(), sp.cellM(), sp.groupMin(), sp.groupMax(),
                     () -> (EntityType<? extends YoiAnimal>) net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.get(rl),
-                    t -> sp.densityPerKm2() * densityMult(sp.densityGroup(), t), !d.entityType().equals(d.id())));
+                    t -> sp.densityPerKm2() * t.smallGameDensityMult(), !d.entityType().equals(d.id())));
         }
         return out;
-    }
-
-    /** The density dial of a species file's {@code density_group} (small game, big game or predator). */
-    static double densityMult(String group, EcoTuning t) {
-        return switch (group) {
-            case "big_game" -> t.bigGameDensityMult();
-            case "predator" -> t.predatorDensityMult();
-            default -> t.smallGameDensityMult();
-        };
     }
 
     /** Every species the spawner places, by id (for the debug command's suggestions). */
@@ -121,10 +112,7 @@ public final class SlotSpawner {
         int alive = BODIES.size();
         for (Player p : players) {
             if (p.isSpectator()) continue;
-            int doy = Calendar.dayOfYearOfMinute(minute);
             for (Kind k : kinds()) {
-                // Bears are in their dens from October 20 to April 20 (M5 debt: hibernation dates).
-                if (com.yearofice.sim.ecosystem.Dormancy.denned(k.id(), doy)) continue;
                 int r = (int) Math.ceil(t.activeRadiusM());
                 int x0 = Math.floorDiv(p.getBlockX() - r, k.cellM()), x1 = Math.floorDiv(p.getBlockX() + r, k.cellM());
                 int z0 = Math.floorDiv(p.getBlockZ() - r, k.cellM()), z1 = Math.floorDiv(p.getBlockZ() + r, k.cellM());

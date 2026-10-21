@@ -51,10 +51,7 @@ public class GutPileBlock extends Block {
 
     @Override
     protected void onPlace(BlockState s, Level level, BlockPos pos, BlockState old, boolean moved) {
-        if (!level.isClientSide) {
-            level.scheduleTick(pos, this, HOUR_TICKS);
-            com.yearofice.ecosystem.ai.ScentPoints.add((ServerLevel) level, pos);
-        }
+        if (!level.isClientSide) level.scheduleTick(pos, this, HOUR_TICKS);
     }
 
     /** Each game hour the pile advances one of four stages with the chance that makes its life the temperature's. */
@@ -65,7 +62,6 @@ public class GutPileBlock extends Block {
         if (r.nextDouble() < p) {
             int age = s.getValue(AGE);
             if (age >= 3) {
-                com.yearofice.ecosystem.ai.ScentPoints.remove(level, pos);
                 level.removeBlock(pos, false);
                 return;
             }

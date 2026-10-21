@@ -37,12 +37,6 @@ public interface BodyService {
     /** The vitals as the HUD and journal read them. */
     BodyReadout readout(ServerPlayer player);
 
-    /**
-     * Charges {@code kcal} of effort to the calorie ledger for {@code activity} (hunting: a held bow; hauling: a carried
-     * carcass). The activity's game minutes belong to the clock. Added in M6-INT; a no-op where no body is installed.
-     */
-    default void effort(ServerPlayer player, String activity, double kcal, double gameMinutes) {}
-
     /** Condition and warmth over 30, not in water (encounters may stage). */
     boolean isSafeToStage(ServerPlayer player);
 

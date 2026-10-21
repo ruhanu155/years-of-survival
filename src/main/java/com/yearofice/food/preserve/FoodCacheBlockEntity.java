@@ -55,25 +55,15 @@ public class FoodCacheBlockEntity extends StoreBlockEntity {
         settleWeek(absDay / 7, Calendar.month(Calendar.dayOfYearOfDay(absDay)));
     }
 
-    /** A test pins the roll's stream (world seed and position), so a band test does not depend on where the cache stands. */
-    private Long pinSeed;
-    private net.minecraft.core.BlockPos pinPos;
-
-    public void pinRoll(long seed, net.minecraft.core.BlockPos origin) {
-        pinSeed = seed;
-        pinPos = origin;
-    }
-
     /** One week's mice, once per week number; returns the units lost. */
     public int settleWeek(long week, int month) {
         if (level == null || level.isClientSide || week == lastWeek || items.isEmpty()) return 0;
         lastWeek = week;
-        long seed = pinSeed != null ? pinSeed : level instanceof ServerLevel sl ? sl.getSeed() : 0L;
-        net.minecraft.core.BlockPos at = pinPos != null ? pinPos : worldPosition;
+        long seed = level instanceof ServerLevel sl ? sl.getSeed() : 0L;
         int dead = deadfallsWithin3(), total = 0;
         for (int i = 0; i < items.size(); i++) {
             ItemStack s = items.get(i);
-            int lost = MiceInStores.unitsLost(seed, at.getX(), at.getY(), at.getZ(), week, i,
+            int lost = MiceInStores.unitsLost(seed, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), week, i,
                     s.getCount(), MiceInStores.Store.CACHE, dead, month);
             if (lost > 0) {
                 s.shrink(lost);

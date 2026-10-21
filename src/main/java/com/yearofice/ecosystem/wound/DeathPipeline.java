@@ -31,7 +31,7 @@ import net.neoforged.neoforge.common.CommonHooks;
  *   <li>Counts: the animal's slot waits out its respawn days.</li>
  * </ol>
  * Vanilla's {@code die} never runs, so loot tables, {@code doMobLoot} and experience never come into it. Medium to
- * huge carcasses (M6) are the same entity in two more sizes. Tiny, small and medium
+ * huge carcasses land in M6; until then a moose death (only by command) leaves no body. Tiny, small and medium
  * carcasses (M5) are one entity class in three sizes; a class "none" (an insect) leaves nothing.
  */
 public final class DeathPipeline {
@@ -65,8 +65,6 @@ public final class DeathPipeline {
             case "tiny" -> EcosystemRegistry.CARCASS_TINY.get();
             case "small" -> EcosystemRegistry.CARCASS_SMALL.get();
             case "medium" -> EcosystemRegistry.CARCASS_MEDIUM.get();
-            case "large" -> EcosystemRegistry.CARCASS_LARGE.get();
-            case "huge" -> EcosystemRegistry.CARCASS_HUGE.get();
             default -> null;
         };
     }
