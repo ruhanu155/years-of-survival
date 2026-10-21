@@ -1,0 +1,105 @@
+{
+  "entity": "yearofice:reindeer",
+  "rig": "cervid",
+  "habitat": [],
+  "population": [
+    0,
+    0
+  ],
+  "home_range_m": 20,
+  "active": [
+    "dawn",
+    "dusk"
+  ],
+  "gaits": {
+    "walk": 1.4,
+    "trot": 3.5,
+    "run": 13,
+    "swim": 1.2,
+    "step_height_m": 1.0
+  },
+  "senses": {
+    "sight": 100,
+    "hearing": 50,
+    "smell": 150,
+    "fov": 300
+  },
+  "behavior": {
+    "alert": 60,
+    "response": 95,
+    "calm": 10,
+    "freezes": false,
+    "flee_trigger_m": 6,
+    "flee_m": [
+      8,
+      16
+    ],
+    "flee_gait": "run",
+    "zigzag": false,
+    "hide_min": [
+      20,
+      40
+    ],
+    "charges": false
+  },
+  "huntable": false,
+  "respawn_days": 0,
+  "breath_s": 60,
+  "drives": {
+    "hunger_up": 0.09,
+    "hunger_down": 0.25,
+    "thirst_up": 0.04,
+    "thirst_down": 1.0,
+    "rest_up": 0.06,
+    "rest_down": 0.2,
+    "weights": {
+      "dawn": [
+        1.5,
+        0.6,
+        0.3
+      ],
+      "midday": [
+        0.4,
+        0.4,
+        2.4
+      ],
+      "dusk": [
+        1.4,
+        1.0,
+        0.3
+      ],
+      "night": [
+        0.8,
+        0.1,
+        1.2
+      ]
+    }
+  },
+  "content_flag": "",
+  "carcass": {
+    "whole_kg": 90.0,
+    "class": "large",
+    "body_plan": "cervid",
+    "poses": [
+      "dead_side"
+    ],
+    "steps": {
+      "position": 3,
+      "gut": 20,
+      "organs": 8,
+      "prop": 4,
+      "skin": 24,
+      "quarter": 40,
+      "hang": 12
+    },
+    "parts": {
+      "meat": 36.0,
+      "cover": {
+        "item": "yearofice:reindeer_hide",
+        "kg": 5
+      },
+      "guts_kg": 18.0
+    }
+  },
+  "butcher_table": "yearofice:butchering/reindeer"
+}

@@ -24,7 +24,9 @@ public final class SpeciesArt {
      * caribou as the mule deer, coyote as the wolf, lynx as the red fox, wolverine as the black bear.
      */
     public static final java.util.Map<String, String> ALIAS = java.util.Map.of("caribou", "mule_deer", "coyote", "wolf",
-            "lynx", "red_fox", "wolverine", "black_bear");
+            "lynx", "red_fox", "wolverine", "black_bear",
+            // M9 lane C: kept animals borrow a wild cousin's art until their own models land.
+            "goat", "mule_deer", "reindeer", "mule_deer", "hen", "spruce_grouse");
 
     /** The species whose art draws this one. */
     public static String artOf(String species) {

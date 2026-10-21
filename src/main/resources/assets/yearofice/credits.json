@@ -6891,6 +6891,46 @@
       "release_blocker": false
     },
     {
+      "asset_id": "tex_goat_wool",
+      "files": [
+        "assets/yearofice/models/item/goat_wool.json",
+        "assets/yearofice/textures/item/goat_wool.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/goat_wool.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_sourdough_starter",
+      "files": [
+        "assets/yearofice/models/item/sourdough_starter.json",
+        "assets/yearofice/textures/item/sourdough_starter.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/sourdough_starter.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_livestock_items",
+      "files": [
+        "assets/yearofice/models/item/goat_meat.json",
+        "assets/yearofice/models/item/reindeer_meat.json",
+        "assets/yearofice/models/item/hen_meat.json",
+        "assets/yearofice/models/item/goat_hide.json",
+        "assets/yearofice/models/item/reindeer_hide.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/recipes/item/goat_wool.json",
+      "licence": "project",
+      "generator_version": "artgen 0.4.0",
+      "release_blocker": false,
+      "note": "Item models for the M9 livestock parts: parents of existing original art (M9 lane C). The kept animals draw as their wild cousins (mule deer, spruce grouse) until their own models land."
+    },
+    {
       "asset_id": "model_m9a_fence_sled",
       "files": [
         "assets/yearofice/models/item/dog_sled.json",

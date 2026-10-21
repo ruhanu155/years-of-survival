@@ -142,7 +142,10 @@ public final class Garden {
         }
         be.setDry(wet || moisture >= 2 ? 0 : be.dryDays() + 1);
         double low = day.meanC() - day.swingC() / 2.0 + GardenConfig.frostOffsetC();
-        if (be.dryDays() < 7 && !be.frosted()) be.addUnits(CropModel.growthUnits(day.meanC(), month, PlantDials.warmth));
+        double units = CropModel.growthUnits(day.meanC(), month, PlantDials.warmth);
+        var room = com.yearofice.crop.stovehouse.StovehouseAdapter.inside(level, cropPos, endedDay, low); // M9 lane C: a heated room grows on its own air
+        if (room != null) { units = room.units(); low = room.lowC(); }
+        if (be.dryDays() < 7 && !be.frosted()) be.addUnits(units);
         nightFrost(be, s, low);
     }
 

@@ -93,7 +93,8 @@
       "yearofice:snowshoe_hare",
       "yearofice:willow_ptarmigan",
       "yearofice:spruce_grouse",
-      "yearofice:ruffed_grouse"
+      "yearofice:ruffed_grouse",
+      "yearofice:hen"
     ],
     "chase_cap_m": 80,
     "detect_m": 60,

@@ -40,6 +40,7 @@ public final class Lightning {
         for (ServerPlayer p : level.players())
             if (p.blockPosition().distSqr(top) <= FAR_M * FAR_M) YoiNet.send(p, new StrikePayload(top, seed, 1f));
         com.yearofice.story.rare.StrikeHarm.apply(level, top, seed);
+        if (tree(level.getBlockState(top))) com.yearofice.world.longterm.LongTerm.treeStruck(level, top, seed); // M9 lane C: may escalate
         return limb(level, top, seed);
     }
 

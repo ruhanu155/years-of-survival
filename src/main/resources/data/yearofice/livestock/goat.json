@@ -1,0 +1,36 @@
+{
+  "entity": "yearofice:goat",
+  "rig": "ungulate",
+  "lifespan_years": 12,
+  "growth": {
+    "adult_kg": 55,
+    "birth_kg": 3.5,
+    "mature_days": 240,
+    "wean_days": 60
+  },
+  "needs": {
+    "feed_kg_per_d": 2.0,
+    "water_l_per_d": 4.0,
+    "comfort_c": -5,
+    "cold_slope_per_c": 5,
+    "fed_decay_per_d": 80,
+    "water_decay_per_d": 100,
+    "trough_feed_days": 3,
+    "trough_water_days": 2
+  },
+  "calendar": {
+    "rut_from_month": 10,
+    "rut_to_month": 11,
+    "birth_month": 5
+  },
+  "produce": {
+    "milk_l_per_d": 2.0,
+    "lactation_days": 240,
+    "hay_only_factor": 0.75,
+    "hair_kg_per_year": 0.4
+  },
+  "pen": {
+    "free_range_m": 16,
+    "browse_share": 0.5
+  }
+}

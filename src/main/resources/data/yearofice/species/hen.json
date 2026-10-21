@@ -1,0 +1,101 @@
+{
+  "entity": "yearofice:hen",
+  "rig": "hen",
+  "habitat": [],
+  "population": [
+    0,
+    0
+  ],
+  "home_range_m": 10,
+  "active": [
+    "dawn",
+    "dusk"
+  ],
+  "gaits": {
+    "walk": 0.8,
+    "trot": 2.0,
+    "run": 4.5,
+    "swim": 0.0,
+    "step_height_m": 0.6
+  },
+  "senses": {
+    "sight": 100,
+    "hearing": 50,
+    "smell": 150,
+    "fov": 300
+  },
+  "behavior": {
+    "alert": 60,
+    "response": 95,
+    "calm": 10,
+    "freezes": false,
+    "flee_trigger_m": 6,
+    "flee_m": [
+      8,
+      16
+    ],
+    "flee_gait": "run",
+    "zigzag": false,
+    "hide_min": [
+      20,
+      40
+    ],
+    "charges": false
+  },
+  "huntable": false,
+  "respawn_days": 0,
+  "breath_s": 60,
+  "drives": {
+    "hunger_up": 0.09,
+    "hunger_down": 0.25,
+    "thirst_up": 0.04,
+    "thirst_down": 1.0,
+    "rest_up": 0.06,
+    "rest_down": 0.2,
+    "weights": {
+      "dawn": [
+        1.5,
+        0.6,
+        0.3
+      ],
+      "midday": [
+        0.4,
+        0.4,
+        2.4
+      ],
+      "dusk": [
+        1.4,
+        1.0,
+        0.3
+      ],
+      "night": [
+        0.8,
+        0.1,
+        1.2
+      ]
+    }
+  },
+  "content_flag": "",
+  "carcass": {
+    "whole_kg": 2.0,
+    "class": "small",
+    "body_plan": "bird",
+    "poses": [
+      "dead_side"
+    ],
+    "steps": {
+      "gut": 3,
+      "skin": 4,
+      "joint": 4
+    },
+    "parts": {
+      "meat": 0.8,
+      "guts_kg": 0.4,
+      "organs": {
+        "heart": 0.01,
+        "liver": 0.02
+      }
+    }
+  },
+  "butcher_table": "yearofice:butchering/hen"
+}

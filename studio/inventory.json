@@ -7,12 +7,12 @@
     "Items: the doc's count says 226, its list names 225"
   ],
   "counts": {
-    "total": 1702,
-    "by_type": {"mob": 157, "entity": 24, "block_with_entity": 93, "block": 179, "plant_block": 128, "multiblock": 13, "item": 560, "sound_event": 137, "particle_type": 43, "attachment": 34, "data_component": 31, "payload": 28, "gui_layer": 18, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 16, "loot_function": 8, "loot_condition": 3, "recipe_type": 6, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 94, "biome": 29, "worldgen_hook": 17, "poi_type": 14},
-    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 127, "m4": 51, "m5": 476, "m6": 341, "m7": 155, "m8": 184, "m9": 72, "none": 3},
-    "by_owner": {"body": 324, "building": 278, "ecosystem": 266, "food": 317, "look": 213, "story": 68, "studio": 75, "worldgen": 161},
-    "by_milestone_source": {"doc": 898, "rule": 804},
-    "by_status": {"planned": 1559, "registered": 140, "retired": 3}
+    "total": 1707,
+    "by_type": {"mob": 157, "entity": 24, "block_with_entity": 93, "block": 179, "plant_block": 128, "multiblock": 13, "item": 565, "sound_event": 137, "particle_type": 43, "attachment": 34, "data_component": 31, "payload": 28, "gui_layer": 18, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 16, "loot_function": 8, "loot_condition": 3, "recipe_type": 6, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 94, "biome": 29, "worldgen_hook": 17, "poi_type": 14},
+    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 127, "m4": 51, "m5": 476, "m6": 341, "m7": 155, "m8": 184, "m9": 77, "none": 3},
+    "by_owner": {"body": 324, "building": 278, "ecosystem": 266, "food": 322, "look": 213, "story": 68, "studio": 75, "worldgen": 161},
+    "by_milestone_source": {"doc": 903, "rule": 804},
+    "by_status": {"planned": 1564, "registered": 140, "retired": 3}
   },
   "entries": [
     {"id": "yearofice:alaska_blackfish", "type": "mob", "milestone": "m5", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
@@ -825,6 +825,8 @@
     {"id": "yearofice:glass_globe", "type": "item", "milestone": "m5", "owner": "building", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:glass_shard", "type": "item", "milestone": "m5", "owner": "building", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:glazed_fish", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "rule", "status": "planned"},
+    {"id": "yearofice:goat_hide", "type": "item", "milestone": "m9", "owner": "food", "milestone_source": "doc", "status": "planned"},
+    {"id": "yearofice:goat_meat", "type": "item", "milestone": "m9", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:goat_milk", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:goat_wool", "type": "item", "milestone": "m9", "owner": "story", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:goat_wool_insoles", "type": "item", "milestone": "m4", "owner": "body", "milestone_source": "rule", "status": "planned"},
@@ -848,6 +850,7 @@
     {"id": "yearofice:heart", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:heliograph_mirror", "type": "item", "milestone": "m8", "owner": "story", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:hen_egg", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},
+    {"id": "yearofice:hen_meat", "type": "item", "milestone": "m9", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:herbarium_sheet", "type": "item", "milestone": "m5", "owner": "body", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:hide_coat", "type": "item", "milestone": "m4", "owner": "body", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:hide_pack", "type": "item", "milestone": "m2", "owner": "studio", "milestone_source": "doc", "status": "planned"},
@@ -1014,6 +1017,8 @@
     {"id": "yearofice:red_fox_pelt", "type": "item", "milestone": "m6", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:red_squirrel_meat", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:red_squirrel_pelt", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},
+    {"id": "yearofice:reindeer_hide", "type": "item", "milestone": "m9", "owner": "food", "milestone_source": "doc", "status": "planned"},
+    {"id": "yearofice:reindeer_meat", "type": "item", "milestone": "m9", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:retted_fibre", "type": "item", "milestone": "m8", "owner": "building", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:rhubarb_stems", "type": "item", "milestone": "m5", "owner": "body", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:rock_ptarmigan_meat", "type": "item", "milestone": "m5", "owner": "food", "milestone_source": "doc", "status": "planned"},

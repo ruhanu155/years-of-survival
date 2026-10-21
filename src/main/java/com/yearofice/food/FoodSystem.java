@@ -17,6 +17,8 @@ public final class FoodSystem {
     private FoodSystem() {}
 
     public static void init(IEventBus modBus) {
+        com.yearofice.food.sourdough.SourdoughRegistry.register(modBus); // M9 lane C: B6
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(com.yearofice.food.sourdough.SourdoughCommands::register);
         CookingRegistry.register(modBus);
         FoodItems.register(modBus);
         com.yearofice.food.pan.PanRegistry.register(modBus);

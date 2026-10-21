@@ -1,0 +1,15 @@
+{
+  "species": "yearofice:goat",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    {
+      "item": "yearofice:goat_meat",
+      "kind": "meat",
+      "unit_g": 100
+    },
+    {
+      "item": "yearofice:goat_hide",
+      "kind": "cover"
+    }
+  ]
+}

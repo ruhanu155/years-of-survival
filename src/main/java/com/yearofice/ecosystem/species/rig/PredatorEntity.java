@@ -119,7 +119,7 @@ public class PredatorEntity extends LandAnimal {
         AABB box = getBoundingBox().inflate(reach, 16, reach);
         YoiAnimal best = null;
         double bd = Double.MAX_VALUE;
-        for (YoiAnimal a : level.getEntitiesOfClass(YoiAnimal.class, box, a -> a != this && a.isAlive() && rule.takes(a.speciesId()) && java.util.Objects.equals(a.testGroup(), testGroup()))) {
+        for (YoiAnimal a : level.getEntitiesOfClass(YoiAnimal.class, box, a -> a != this && a.isAlive() && rule.takes(a.speciesId()) && !(a instanceof com.yearofice.ecosystem.livestock.Livestock ls && ls.core().penned) && java.util.Objects.equals(a.testGroup(), testGroup()))) {
             double dist = distanceTo(a);
             if (dist > reach || dist >= bd) continue;
             boolean seen = dist <= d.senses().sightM() && Awareness.inView(d.senses().fovDeg(), getYHeadRot(), Sensing.bearing(position(), a.position()))

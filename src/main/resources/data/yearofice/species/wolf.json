@@ -94,7 +94,10 @@
       "yearofice:caribou",
       "yearofice:beaver",
       "yearofice:snowshoe_hare",
-      "yearofice:mule_deer"
+      "yearofice:mule_deer",
+      "yearofice:goat",
+      "yearofice:reindeer",
+      "yearofice:hen"
     ],
     "chase_cap_m": 150,
     "detect_m": 120,

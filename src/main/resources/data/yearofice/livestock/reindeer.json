@@ -1,0 +1,36 @@
+{
+  "entity": "yearofice:reindeer",
+  "rig": "ungulate",
+  "lifespan_years": 15,
+  "growth": {
+    "adult_kg": 90,
+    "birth_kg": 6,
+    "mature_days": 300,
+    "wean_days": 90
+  },
+  "needs": {
+    "feed_kg_per_d": 3.0,
+    "water_l_per_d": 6.0,
+    "comfort_c": -25,
+    "cold_slope_per_c": 4,
+    "fed_decay_per_d": 70,
+    "water_decay_per_d": 100,
+    "trough_feed_days": 3,
+    "trough_water_days": 2
+  },
+  "calendar": {
+    "rut_from_month": 9,
+    "rut_to_month": 10,
+    "birth_month": 5
+  },
+  "produce": {
+    "milk_l_per_d": 0.0,
+    "lactation_days": 0,
+    "hay_only_factor": 1.0,
+    "hair_kg_per_year": 0.0
+  },
+  "pen": {
+    "free_range_m": 24,
+    "browse_share": 0.6
+  }
+}

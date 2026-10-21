@@ -30,6 +30,9 @@ public final class EcosystemSystem {
         EcosystemRegistry.register(modBus);
         TrapRegistry.register(modBus);
         com.yearofice.ecosystem.raid.RaidRegistry.register(modBus);
+        com.yearofice.ecosystem.livestock.LivestockRegistry.register(modBus);
+        NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.livestock.LivestockCommands::register);
+        com.yearofice.world.longterm.LongTermHooks.init();
         modBus.addListener(EcosystemSystem::attributes);
         modBus.addListener((ModConfigEvent.Loading e) -> EcoConfig.invalidate());
         modBus.addListener((ModConfigEvent.Reloading e) -> EcoConfig.invalidate());

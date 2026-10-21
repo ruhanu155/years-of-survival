@@ -1,0 +1,22 @@
+{
+ "id": "yearofice:goat_wool",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "ellipse",
+   "ramp": "fat_cream",
+   "step": 3,
+   "box": [
+    2,
+    4,
+    13,
+    12
+   ],
+   "speckle": {
+    "ramp": "bone",
+    "step": 1,
+    "density": 0.2
+   }
+  }
+ ]
+}

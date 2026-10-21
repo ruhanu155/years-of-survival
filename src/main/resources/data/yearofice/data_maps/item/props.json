@@ -765,6 +765,40 @@
     "yearofice:moccasins": {
       "category": "clothing",
       "stack_class": "single"
+    },
+    "yearofice:goat_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:reindeer_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:hen_meat": {
+      "category": "food",
+      "stack_class": "by_weight",
+      "scent_level": 3
+    },
+    "yearofice:goat_hide": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:reindeer_hide": {
+      "category": "hide",
+      "stack_class": "medium",
+      "scent_level": 1
+    },
+    "yearofice:goat_wool": {
+      "category": "material",
+      "stack_class": "by_weight"
+    },
+    "yearofice:sourdough_starter": {
+      "category": "food",
+      "stack_class": "single",
+      "scent_level": 1
     }
   }
 }

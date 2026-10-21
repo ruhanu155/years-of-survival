@@ -2525,6 +2525,66 @@
         "cooked": 9
       },
       "weight_g": 115
+    },
+    "yearofice:goat_meat": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:goat_meat"
+        }
+      ],
+      "kcal_per_100g": 109,
+      "protein_g_per_100g": 20.6,
+      "fat_g_per_100g": 2.3,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 6,
+        "cooked": 9,
+        "smoked": 30,
+        "dried": 60
+      },
+      "weight_g": 100
+    },
+    "yearofice:reindeer_meat": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:reindeer_meat"
+        }
+      ],
+      "kcal_per_100g": 120,
+      "protein_g_per_100g": 22.5,
+      "fat_g_per_100g": 3.2,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 6,
+        "cooked": 9,
+        "smoked": 30,
+        "dried": 60
+      },
+      "weight_g": 100
+    },
+    "yearofice:hen_meat": {
+      "neoforge:conditions": [
+        {
+          "type": "neoforge:item_exists",
+          "item": "yearofice:hen_meat"
+        }
+      ],
+      "kcal_per_100g": 167,
+      "protein_g_per_100g": 19.0,
+      "fat_g_per_100g": 9.6,
+      "vit_c_mg_per_100g": 0,
+      "curve": "living_rot",
+      "spoil_days_at_5c": {
+        "raw": 4,
+        "cooked": 7,
+        "smoked": 21,
+        "dried": 45
+      },
+      "weight_g": 100
     }
   }
 }

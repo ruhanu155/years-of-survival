@@ -176,6 +176,18 @@
     "yearofice:arctic_lamprey": {
       "spit": "whole_fish",
       "family": "fish"
+    },
+    "yearofice:goat_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:reindeer_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:hen_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
     }
   }
 }
