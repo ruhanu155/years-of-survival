@@ -1,0 +1,14 @@
+seed 3141592: pile -1092, 151, 789 (water -1092, 149, 790), player -1062, 150, 789, start minute 177845
+seed 3141592: bear seen false, reached false (min distance 9999 m, first seen -1 m, reach at game minute -1), no bear within 60 m of the player; game minutes run 21144
+seed 3141593: pile -1739, 132, 784 (water -1738, 131, 784), player -1713, 134, 799, start minute 177843
+seed 3141593: bear seen false, reached false (min distance 9999 m, first seen -1 m, reach at game minute -1), no bear within 60 m of the player; game minutes run 2907
+seed 3141594: pile -1848, 174, 1053 (water -1848, 173, 1054), player -1818, 175, 1053, start minute 177843
+seed 3141594: pile -1848, 174, 1053 (water -1848, 173, 1054), player -1818, 175, 1053, start minute 177845
+seed 3141594: pile -1848, 174, 1053 (water -1848, 173, 1054), player -1818, 175, 1053, start minute 177844
+seed 3141594: bear seen false, reached false (min distance 9999 m, first seen -1 m, reach at game minute -1), no bear within 60 m of the player; game minutes run 2886
+seed 3141595: pile -1893, 128, 1057 (water -1892, 127, 1058), player -1867, 129, 1072, start minute 177843
+seed 3141595: pile -1893, 128, 1057 (water -1892, 127, 1058), player -1867, 129, 1072, start minute 177843
+seed 3141595: bear seen false, reached false (min distance 9999 m, first seen -1 m, reach at game minute -1), no bear within 60 m of the player; game minutes run 2883
+seed 3141596: pile -1302, 295, 1582 (water -1303, 294, 1582), player -1276, 297, 1597, start minute 177844
+seed 3141596: bear seen false, reached false (min distance 9999 m), no bear within 60 m (observed in an earlier pass whose log was overwritten by a restart)
+RESULT FAIL (stopped early, 5 of 10 seeds run, 0 reached; 7 of 10 is now unreachable): no bear body existed within 500 m of the pile on any run seed over 2 game days. Seeds 3141597-3141601 not run: the client was repeatedly OOM-killed (exit 137) by other lanes.
