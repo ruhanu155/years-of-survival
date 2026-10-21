@@ -63,6 +63,8 @@ public final class CraftSystem {
         NeoForge.EVENT_BUS.addListener(CraftSystem::knifeInAir);
         NeoForge.EVENT_BUS.addListener(CraftSystem::fireLit);
         NeoForge.EVENT_BUS.addListener(CraftSystem::scanForGates);
+        NeoForge.EVENT_BUS.addListener(CraftSystem::stationBlockUsed);
+        NeoForge.EVENT_BUS.addListener(CraftSystem::stationBlockPlaced);
         NeoForge.EVENT_BUS.addListener(HomesteadGate::onTick);
         NeoForge.EVENT_BUS.addListener(CraftCommands::register);
     }
@@ -94,6 +96,23 @@ public final class CraftSystem {
     static void fireLit(FireStateEvent e) {
         if (e.level().isClientSide() || !e.to().flaming() || e.from().flaming()) return;
         openBushcraftAt(e.pos(), ((net.minecraft.server.level.ServerLevel) e.level()).players());
+        // the player who struck it owns the first fire wherever they stand (a drill may be worked from a step away)
+        if (e.actor() instanceof ServerPlayer p) GateService.get().open(p, Tier.BUSHCRAFT, "first fire");
+    }
+
+    /** A player who sets or works a bloomery or forge has iron in hand in every way the blueprint cares about. */
+    static void stationBlockUsed(PlayerInteractEvent.RightClickBlock e) {
+        if (e.getEntity() instanceof ServerPlayer p && !e.getLevel().isClientSide()) openIronAtStation(p, e.getLevel().getBlockState(e.getPos()));
+    }
+
+    static void stationBlockPlaced(net.neoforged.neoforge.event.level.BlockEvent.EntityPlaceEvent e) {
+        if (e.getEntity() instanceof ServerPlayer p) openIronAtStation(p, e.getPlacedBlock());
+    }
+
+    /** Opens Iron when {@code state} is a bloomery or forge (public so a GameTest can drive it). */
+    public static boolean openIronAtStation(ServerPlayer p, net.minecraft.world.level.block.state.BlockState state) {
+        return (state.is(com.yearofice.build.metal.MetalRegistry.BLOOMERY.get()) || state.is(com.yearofice.build.metal.MetalRegistry.FORGE.get()))
+                && GateService.get().open(p, Tier.IRON, "forge built");
     }
 
     /** Opens Bushcraft for the players within the fire's reach of {@code fire}; returns how many it opened it for. */

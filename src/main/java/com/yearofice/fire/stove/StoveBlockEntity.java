@@ -164,6 +164,7 @@ public class StoveBlockEntity extends BlockEntity {
         BlockState s = getBlockState();
         boolean lit = burn().lit();
         if (s.getValue(StoveBlock.LIT) != lit) level.setBlock(worldPosition, s.setValue(StoveBlock.LIT, lit), 3);
+        com.yearofice.api.fire.HeatSources.postDuty(level, worldPosition, lit ? burn().duty(draft()) : 1.0);
         if (lit) StoveIndex.INSTANCE.set(level, worldPosition, outputW(), flued());
         else StoveIndex.INSTANCE.remove(level, worldPosition);
     }
@@ -175,6 +176,7 @@ public class StoveBlockEntity extends BlockEntity {
         long now = be.nowMinute();
         if (be.lastMinute == Long.MIN_VALUE) be.lastMinute = now;
         if (!be.paused && be.burn().lit() && now > be.lastMinute) be.stepMinutes(now - be.lastMinute);
+        else if (!be.paused && !be.burn().lit() && now > be.lastMinute) be.burn().idle(now - be.lastMinute);
         be.lastMinute = now;
         if (be.burn().lit()) {
             be.sync();
@@ -196,7 +198,7 @@ public class StoveBlockEntity extends BlockEntity {
 
     @Override
     public void setRemoved() {
-        if (level != null && !level.isClientSide) StoveIndex.INSTANCE.remove(level, worldPosition);
+        if (level != null && !level.isClientSide) { StoveIndex.INSTANCE.remove(level, worldPosition); com.yearofice.api.fire.HeatSources.postDuty(level, worldPosition, 1.0); }
         super.setRemoved();
     }
 
@@ -209,6 +211,8 @@ public class StoveBlockEntity extends BlockEntity {
         tag.putDouble("creosote", burn.creosote());
         tag.putDouble("smoke_pct", burn.smokePct());
         tag.putInt("chimney_fires", chimneyFires);
+        tag.putDouble("fired_min_24", burn.firedMin24());
+        tag.putDouble("observed_min_24", burn.observedMin24());
         if (lastMinute != Long.MIN_VALUE) tag.putLong("last_minute", lastMinute);
         ListTag l = new ListTag();
         for (Armload a : burn.queue()) {
@@ -235,6 +239,8 @@ public class StoveBlockEntity extends BlockEntity {
         b.smokePct(tag.getDouble("smoke_pct"));
         b.lit(tag.getBoolean("lit"));
         chimneyFires = tag.getInt("chimney_fires");
+        b.firedMin24(tag.getDouble("fired_min_24"));
+        b.observedMin24(tag.getDouble("observed_min_24"));
         if (tag.contains("last_minute")) lastMinute = tag.getLong("last_minute");
         burn = b;
     }

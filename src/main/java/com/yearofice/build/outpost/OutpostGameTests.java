@@ -26,6 +26,7 @@ public final class OutpostGameTests {
         out.add(new TestFunction("m8_outposts", "yearofice:build/hot_tent_warms", WoodGameTests.EMPTY, 20, 0, true, OutpostGameTests::hotTentWarms));
         out.add(new TestFunction("m8_outposts", "yearofice:build/raft_drifts_and_breaks", WoodGameTests.EMPTY, 60, 0, true, OutpostGameTests::raft));
         out.add(new TestFunction("m8_outposts", "yearofice:build/fence_near_chunk_edge_reload", WoodGameTests.EMPTY, 1200, 0, true, OutpostGameTests::fenceChunkEdge));
+        out.add(new TestFunction("m8_outposts", "yearofice:build/outpost_repair_in_play", WoodGameTests.PLOT, 400, 0, true, OutpostGameTests::repairInPlay));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
 
@@ -57,6 +58,47 @@ public final class OutpostGameTests {
         h.assertTrue(min > 0, "the repair job finished");
         h.assertTrue(Outposts.missing(l, origin, def).isEmpty(), "every piece is back");
         h.succeed();
+    }
+
+    /**
+     * Repair from play: the outpost is recorded in {@link OutpostSites} as worldgen records it, and the hold-to-work resolver
+     * (the heartbeat the client sends on a held block) turns a hold on a decayed outpost block into a RepairJob that spends
+     * the priced pieces' materials. The test holds a block inside the box, not a /yoi command.
+     */
+    static void repairInPlay(GameTestHelper h) {
+        OutpostDef def = OutpostDef.get("trapline_cabin");
+        BlockPos origin = h.absolutePos(new BlockPos(4, 2, 4));
+        var l = h.getLevel();
+        Outposts.stamp(l, origin, def);
+        OutpostSites.record(l, origin, "trapline_cabin");
+        try {
+            h.assertTrue(OutpostSites.get(l).all().get(origin).equals("trapline_cabin"), "the site is on record");
+            Outposts.age(l, origin, def, 60, 12345);
+            int before = Outposts.missing(l, origin, def).size();
+            h.assertTrue(before > 5, "the cabin has decayed: " + before);
+            var p = WoodGameTests.player(h, "repair-in-play", new Vec3(1, 2, 1));
+            var w = new com.yearofice.build.work.WorkStartPayload(true, origin.offset(1, 0, 1), -1, (byte) 1, 0.5f, 1f, 0.5f);
+            h.assertTrue(WorkService.resolver.apply(p, w) != null, "a hold inside the box starts a job");
+            var away = new com.yearofice.build.work.WorkStartPayload(true, origin.offset(90, 0, 90), -1, (byte) 1, 0.5f, 1f, 0.5f);
+            h.assertTrue(OutpostSites.repairAt(p, away.pos()) == null, "a hold outside it does not");
+            // an empty pack cannot pay for the planks and logs: the job stalls on the first priced piece and takes nothing
+            WorkService.runFor(p, OutpostSites.repairAt(p, origin), 3000);
+            int stalled = Outposts.missing(l, origin, def).size();
+            h.assertTrue(stalled > 0, "an empty pack repairs nothing it must pay for");
+            var need = new java.util.HashMap<net.minecraft.world.item.Item, Integer>();
+            for (var pc : Outposts.missing(l, origin, def)) for (var m : new RepairJob(l, List.of(), true).price(pc))
+                need.merge(net.minecraft.core.registries.BuiltInRegistries.ITEM.get(m.item()), m.count(), Integer::sum);
+            h.assertTrue(!need.isEmpty(), "some missing pieces cost materials");
+            need.forEach((it, n) -> p.getInventory().add(new net.minecraft.world.item.ItemStack(it, n)));
+            int have = need.keySet().stream().mapToInt(it -> p.getInventory().items.stream().filter(st -> st.is(it)).mapToInt(net.minecraft.world.item.ItemStack::getCount).sum()).sum();
+            WorkService.runFor(p, OutpostSites.repairAt(p, origin), 5000);
+            h.assertTrue(Outposts.missing(l, origin, def).isEmpty(), "with the materials in the pack every piece is back");
+            int after = need.keySet().stream().mapToInt(it -> p.getInventory().items.stream().filter(st -> st.is(it)).mapToInt(net.minecraft.world.item.ItemStack::getCount).sum()).sum();
+            h.assertTrue(after < have, "and the materials are spent (" + have + " -> " + after + ")");
+            h.succeed();
+        } finally {
+            OutpostSites.forget(l, origin);
+        }
     }
 
     static int layers(GameTestHelper h, BlockPos rel) {
