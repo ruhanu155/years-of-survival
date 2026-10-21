@@ -356,6 +356,10 @@ public abstract class YoiAnimal extends PathfinderMob implements GeoEntity {
     }
 
     private Drives.Act pinned;
+    private Integer seasonDayOverride;
+
+    /** GameTests: this animal's denning date, a day of the year, without touching the world clock (null = the calendar). */
+    public void setSeasonDayOverride(Integer doy) { seasonDayOverride = doy; }
 
     /** Holds the animal on one act and stops the drive steps (GameTests that need it hunting or feeding now). */
     public void pinDriveAct(Drives.Act a) {
@@ -367,8 +371,11 @@ public abstract class YoiAnimal extends PathfinderMob implements GeoEntity {
 
     /** True when the species is denned for the date (bears, October 20 to April 20): bedded, not moving. */
     protected boolean denned(ServerLevel level) {
-        return pinned == null && species().denning() && Dormancy.denned(speciesId(), Calendar.dayOfYearOfMinute(SliceClock.minute(level)));
+        return pinned == null && species().denning() && Dormancy.denned(speciesId(), seasonDayOverride != null ? seasonDayOverride : Calendar.dayOfYearOfMinute(SliceClock.minute(level)));
     }
+
+    /** True while a hungry animal is following a scent: bed and water acts do not pull it off the trail (M6 lane G). */
+    protected boolean scentLocked(ServerLevel level) { return false; }
 
     protected void driveRoutine(ServerLevel level) {
         if (denned(level)) {
@@ -381,7 +388,7 @@ public abstract class YoiAnimal extends PathfinderMob implements GeoEntity {
             nextDriveTick = t + DRIVE_TICKS;
             stepDrives(hourNow(level), engaged);
         }
-        switch (driveState().act) {
+        switch (scentLocked(level) ? Drives.Act.FEED : driveState().act) {
             case BED -> {
                 getNavigation().stop();
                 setMove(MOVE_IDLE);
