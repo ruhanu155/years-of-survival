@@ -103,6 +103,9 @@ public final class BodyState {
 
     public boolean gutIll(long minute) { return gutUntil >= 0 && minute < gutUntil; }
 
+    /** The garments actually worn, set by the body adapter each step; null (sim-only tests, undressed mocks) = the {@link StartKit} stand-in. */
+    public transient java.util.List<WornGarment> worn;
+
     public ClothingState clothing() { return ClothingState.naked().withWet(slotWet.clone()); }
 
     public double wetness() { return Clothing.wetness(clothing()); }

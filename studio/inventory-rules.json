@@ -2887,6 +2887,39 @@
       "ids": [
         "browse"
       ]
+    },
+    {
+      "basis": "M6 lane G rounds item tag (log_piece recipe)",
+      "milestone": "m6",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "rounds"
+      ]
+    },
+    {
+      "basis": "M7 lane F wear it: start-kit garments (Blueprint › Clothing, Start tier)",
+      "milestone": "m7",
+      "owner": "body",
+      "type": "item",
+      "ids": [
+        "fleece_jacket",
+        "rain_shell",
+        "work_pants",
+        "wool_socks",
+        "hiking_boots",
+        "wool_beanie",
+        "work_gloves"
+      ]
+    },
+    {
+      "basis": "M7 lane F: dried_meat producer tag (drying rack, raw meat cuts)",
+      "milestone": "m7",
+      "owner": "food",
+      "type": "tag",
+      "ids": [
+        "dries_to_meat"
+      ]
     }
   ],
   "expand": {

@@ -209,7 +209,7 @@ public final class ValleyPool extends SavedData {
 
     // ---- scent sources -------------------------------------------------------------------------------------------
 
-    record Src(BlockPos pos, String kind, double reachM, double towardDeg) {}
+    public record Src(BlockPos pos, String kind, double reachM, double towardDeg) {}
 
     static double[] wind(ServerLevel level, BlockPos pos) {
         double[] w = windOverride;
@@ -223,7 +223,7 @@ public final class ValleyPool extends SavedData {
     }
 
     /** Every source that smells now, with its reach and the yaw the wind carries it toward. */
-    static List<Src> sources(ServerLevel level, long minute) {
+    public static List<Src> sources(ServerLevel level, long minute) {
         PoolConfig.PoolTuning t = PoolConfig.tuning();
         List<Src> out = new ArrayList<>();
         for (BlockPos p : ScentPoints.in(level)) {

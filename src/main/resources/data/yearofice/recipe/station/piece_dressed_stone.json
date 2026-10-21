@@ -1,0 +1,17 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "bushcraft",
+  "ingredients": [
+    {
+      "item": "yearofice:stone",
+      "count": 4
+    }
+  ],
+  "work_min": 30,
+  "effort": "medium",
+  "kcal": 125,
+  "result": {
+    "id": "yearofice:dressed_stone",
+    "count": 1
+  }
+}

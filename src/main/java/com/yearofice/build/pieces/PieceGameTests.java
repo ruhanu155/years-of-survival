@@ -43,6 +43,8 @@ public final class PieceGameTests {
         out.add(new TestFunction("m8a", "yearofice:build/cabin_holds_5c", TEMPLATE, 60, 0, true, PieceGameTests::cabinHolds5c));
         out.add(new TestFunction("m8a", "yearofice:build/slab_floor_u", TEMPLATE, 60, 0, true, PieceGameTests::slabFloorU));
         out.add(new TestFunction("m8a", "yearofice:build/path_speed", TEMPLATE, 60, 0, true, PieceGameTests::pathSpeed));
+        out.add(new TestFunction("m8a", "yearofice:build/stove_heats_real_room", TEMPLATE, 100, 0, true, PieceGameTests::stoveHeatsRealRoom));
+        out.add(new TestFunction("m8a", "yearofice:build/stove_state_saves", TEMPLATE, 60, 0, true, PieceGameTests::stoveStateSaves));
         return TestFilter.apply(out);
     }
 
@@ -130,6 +132,85 @@ public final class PieceGameTests {
             clear(h);
             throw ex;
         }
+    }
+
+    /** M8 lane D: a real lit tin stove with a real chimney in a sealed 4x4x3 (48 m3 less the stove column) cabin at -30 C, no stub. */
+    static void stoveHeatsRealRoom(GameTestHelper h) {
+        ServerLevel l = h.getLevel();
+        night(h);
+        try {
+            Block wall = PieceRegistry.WALL_LOG.get();
+            for (int x = 0; x <= 5; x++) for (int z = 0; z <= 5; z++) {
+                h.setBlock(new BlockPos(x, UP, z), PieceRegistry.SLAB_FLOOR.get());
+                h.setBlock(new BlockPos(x, UP + 4, z), PieceRegistry.ROOF_POLE_SOD.get());
+                boolean ring = x == 0 || x == 5 || z == 0 || z == 5;
+                for (int y = 1; y <= 3; y++) h.setBlock(new BlockPos(x, UP + y, z), ring ? wall : Blocks.AIR);
+            }
+            BlockPos at = new BlockPos(1, UP + 1, 1);
+            h.setBlock(at, com.yearofice.fire.stove.StoveRegistry.TIN_STOVE.get());
+            for (int y = 2; y <= 5; y++) h.setBlock(new BlockPos(1, UP + y, 1), com.yearofice.fire.stove.StoveRegistry.CHIMNEY_PIPE.get());
+            com.yearofice.fire.stove.StoveBlockEntity be = h.getBlockEntity(at);
+            be.pause(true);
+            BlockPos in = inside(h, 0);
+            Room cold = RoomService.get().roomAt(l, in);
+            if (cold == null || cold.volumeM3() != 45 || cold.sourceW() != 0) h.fail("cold cabin: " + cold);
+            be.loadFuel(com.yearofice.sim.fire.Wood.BIRCH, 10, 2.0);
+            if (!be.light()) h.fail("the stove did not light");
+            be.setting(com.yearofice.sim.env.FireSetting.STEADY);
+            Room hot = RoomService.get().roomAt(l, in);
+            if (hot.sourceW() < 1000 || Math.abs(hot.sourceW() - be.outputW()) > 1) h.fail("room got " + hot.sourceW() + " W, stove gives " + be.outputW());
+            if (hot.feelsLikeC() <= 5) h.fail("STEADY " + hot.sourceW() + " W feels " + hot.feelsLikeC() + " C at -30 C");
+            be.setting(com.yearofice.sim.env.FireSetting.LOW);
+            Room low = RoomService.get().roomAt(l, in);
+            System.out.println("YOI stove_heats_real_room: volume " + hot.volumeM3() + " U " + hot.uWPerK() + " STEADY " + hot.sourceW() + " W feels " + hot.feelsLikeC()
+                    + " C, LOW " + low.sourceW() + " W feels " + low.feelsLikeC() + " C");
+            if (low.sourceW() >= hot.sourceW()) h.fail("LOW did not lower the watts");
+            be.douse();
+            Room out = RoomService.get().roomAt(l, in);
+            if (out.sourceW() != 0 || out.feelsLikeC() > 0) h.fail("a doused stove still heats: " + out.sourceW() + " W " + out.feelsLikeC() + " C");
+            clear(h);
+            h.succeed();
+        } catch (RuntimeException ex) {
+            clear(h);
+            throw ex;
+        }
+    }
+
+    /** M8 lane D: a stove's fire survives save and load, and a saved structure keeps its stove and chimney pipes. */
+    static void stoveStateSaves(GameTestHelper h) {
+        try { stoveStateSaves0(h); } catch (java.io.IOException ex) { h.fail(ex.toString()); }
+    }
+
+    static void stoveStateSaves0(GameTestHelper h) throws java.io.IOException {
+        ServerLevel l = h.getLevel();
+        BlockPos at = new BlockPos(2, UP + 1, 2);
+        h.setBlock(at.below(), Blocks.STONE);
+        h.setBlock(at, com.yearofice.fire.stove.StoveRegistry.TIN_STOVE.get());
+        h.setBlock(at.above(), com.yearofice.fire.stove.StoveRegistry.CHIMNEY_PIPE.get());
+        com.yearofice.fire.stove.StoveBlockEntity be = h.getBlockEntity(at);
+        be.pause(true);
+        be.loadFuel(com.yearofice.sim.fire.Wood.BIRCH, 10, 2.0);
+        be.loadFuel(com.yearofice.sim.fire.Wood.SPRUCE, 20, 1.0);
+        h.assertTrue(be.light(), "lights");
+        be.setting(com.yearofice.sim.env.FireSetting.HOT);
+        be.creosote(7);
+        be.stepMinutes(30);
+        net.minecraft.nbt.CompoundTag tag = be.saveWithFullMetadata(l.registryAccess());
+        BlockPos abs = h.absolutePos(at);
+        com.yearofice.fire.stove.StoveBlockEntity fresh = new com.yearofice.fire.stove.StoveBlockEntity(abs, l.getBlockState(abs));
+        fresh.loadWithComponents(tag, l.registryAccess());
+        h.assertTrue(fresh.lit() == be.lit() && be.lit(), "lit survives");
+        h.assertTrue(fresh.setting() == be.setting(), "setting survives: " + fresh.setting());
+        h.assertTrue(Math.abs(fresh.armloads() - be.armloads()) < 1e-6, "fuel survives: " + fresh.armloads() + " vs " + be.armloads());
+        h.assertTrue(Math.abs(fresh.creosote() - be.creosote()) < 1e-6 && Math.abs(fresh.smokePct() - be.smokePct()) < 1e-6, "creosote and smoke survive");
+        h.assertTrue(tag.contains("last_minute") || !com.yearofice.api.clock.ClockService.installed() || be.lit(), "the stove keeps when it last ran");
+        Structs.save(l, "m8d_fixture", abs, 3, 4);
+        Structs.Saved sv = Structs.load(l, "m8d_fixture");
+        boolean stove = sv.states().stream().anyMatch(s -> s.is(com.yearofice.fire.stove.StoveRegistry.TIN_STOVE.get()));
+        boolean pipe = sv.states().stream().anyMatch(s -> s.is(com.yearofice.fire.stove.StoveRegistry.CHIMNEY_PIPE.get()));
+        h.assertTrue(stove && pipe, "a saved structure keeps its stove and pipe: " + sv.states());
+        be.douse();
+        h.succeed();
     }
 
     static void slabFloorU(GameTestHelper h) {

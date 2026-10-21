@@ -90,6 +90,8 @@ public final class PoolGameTests {
         boolean calm = WeatherSystem.calmOverride;
         WeatherSystem.calmOverride = true;
         ValleyPool pool = new ValleyPool();
+        ValleyPool prevPool = ValleyPool.testPool; // conserves holds its own pool across ticks: this test runs inside one tick and puts it back
+        double[] prevWind = ValleyPool.windOverride;
         ValleyPool.testPool = pool;
         int reached = 0, seeds = 10;
         try {
@@ -119,8 +121,8 @@ public final class PoolGameTests {
                 EcoGameTests.force(h, Vec3.atCenterOf(pile), 0, false);
             }
         } finally {
-            ValleyPool.testPool = null;
-            ValleyPool.windOverride = null;
+            ValleyPool.testPool = prevPool;
+            ValleyPool.windOverride = prevWind;
             WeatherSystem.calmOverride = calm;
         }
         com.mojang.logging.LogUtils.getLogger().info("scent_pulls_bear_from_valley: {} of {} seeds had a bear within 20 m of the pile", reached, seeds);

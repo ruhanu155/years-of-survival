@@ -1088,5 +1088,20 @@
   "item.yearofice.sinew_bow": "Sinew-Backed Bow",
   "messenger.yearofice.alert.bear_noticed": "Bear, %s m. It has seen you.",
   "messenger.yearofice.nearmiss.bear_bluff": "A bear charged and stopped %s m short.",
-  "messenger.yearofice.nearmiss.bear_contact": "A bear reached you."
+  "messenger.yearofice.nearmiss.bear_contact": "A bear reached you.",
+  "item.yearofice.fleece_jacket": "Fleece Jacket",
+  "item.yearofice.rain_shell": "Rain Shell",
+  "item.yearofice.work_pants": "Work Pants",
+  "item.yearofice.wool_socks": "Wool Socks",
+  "item.yearofice.hiking_boots": "Hiking Boots",
+  "item.yearofice.wool_beanie": "Wool Beanie",
+  "item.yearofice.work_gloves": "Work Gloves",
+  "item.yearofice.dried_meat": "Dried Meat",
+  "curios.identifier.head_inner": "Head (under)",
+  "curios.identifier.torso_inner": "Torso (under)",
+  "curios.identifier.legs_inner": "Legs (under)",
+  "curios.identifier.feet_inner": "Feet (under)",
+  "curios.identifier.hands_inner": "Hands (under)",
+  "curios.identifier.hands_outer": "Hands (over)",
+  "yoi.wear.header": "Worn: %s"
 }
