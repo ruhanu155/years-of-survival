@@ -1,0 +1,6 @@
+{
+ "id": "spring_flood",
+ "chance_per_year": 0.3,
+ "from_year": 1,
+ "window": ["04-15", "05-15"]
+}

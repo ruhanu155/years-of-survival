@@ -330,6 +330,39 @@
     },
     "yearofice:workbench": {
       "weight_g": 30000
+    },
+    "yearofice:skates": {
+      "weight_g": 1100
+    },
+    "yearofice:skis": {
+      "weight_g": 2600
+    },
+    "yearofice:climbing_skins": {
+      "weight_g": 400
+    },
+    "yearofice:fur_mittens": {
+      "weight_g": 300
+    },
+    "yearofice:fur_hat": {
+      "weight_g": 400
+    },
+    "yearofice:parka": {
+      "weight_g": 4000
+    },
+    "yearofice:hide_coat": {
+      "weight_g": 3500
+    },
+    "yearofice:hide_pants": {
+      "weight_g": 2500
+    },
+    "yearofice:mukluks": {
+      "weight_g": 1200
+    },
+    "yearofice:hare_fur_liners": {
+      "weight_g": 200
+    },
+    "yearofice:moccasins": {
+      "weight_g": 400
     }
   }
 }

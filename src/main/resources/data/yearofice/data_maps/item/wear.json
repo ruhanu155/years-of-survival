@@ -1,0 +1,95 @@
+{
+  "values": {
+    "yearofice:fur_mittens": {
+      "zone": "hands",
+      "layer": "outer",
+      "warmth_c": 4,
+      "wind_block": 0.9,
+      "kept_when_wet": 0.5,
+      "waterproof": false,
+      "weight_kg": 0.3,
+      "water_uptake": 1.0,
+      "fur": true,
+      "safe_to_c": -25
+    },
+    "yearofice:fur_hat": {
+      "zone": "head",
+      "layer": "outer",
+      "warmth_c": 4,
+      "wind_block": 0.8,
+      "kept_when_wet": 0.6,
+      "waterproof": false,
+      "weight_kg": 0.4,
+      "water_uptake": 1.0,
+      "fur": true,
+      "safe_to_c": -30
+    },
+    "yearofice:parka": {
+      "zone": "torso",
+      "layer": "outer",
+      "warmth_c": 15,
+      "wind_block": 0.95,
+      "kept_when_wet": 0.5,
+      "waterproof": false,
+      "weight_kg": 4,
+      "water_uptake": 1.0,
+      "fur": true
+    },
+    "yearofice:hide_coat": {
+      "zone": "torso",
+      "layer": "outer",
+      "warmth_c": 12,
+      "wind_block": 0.9,
+      "kept_when_wet": 0.5,
+      "waterproof": false,
+      "weight_kg": 3.5,
+      "water_uptake": 1.0,
+      "fur": false
+    },
+    "yearofice:hide_pants": {
+      "zone": "legs",
+      "layer": "outer",
+      "warmth_c": 8,
+      "wind_block": 0.9,
+      "kept_when_wet": 0.5,
+      "waterproof": false,
+      "weight_kg": 2.5,
+      "water_uptake": 1.0,
+      "fur": false
+    },
+    "yearofice:mukluks": {
+      "zone": "feet",
+      "layer": "outer",
+      "warmth_c": 6,
+      "wind_block": 0.9,
+      "kept_when_wet": 0.4,
+      "waterproof": false,
+      "weight_kg": 1.2,
+      "water_uptake": 1.0,
+      "fur": true,
+      "safe_to_c": -35
+    },
+    "yearofice:hare_fur_liners": {
+      "zone": "feet",
+      "layer": "inner",
+      "warmth_c": 3,
+      "wind_block": 0,
+      "kept_when_wet": 0.6,
+      "waterproof": false,
+      "weight_kg": 0.2,
+      "water_uptake": 1.0,
+      "fur": true
+    },
+    "yearofice:moccasins": {
+      "zone": "feet",
+      "layer": "outer",
+      "warmth_c": 1,
+      "wind_block": 0.3,
+      "kept_when_wet": 0.3,
+      "waterproof": false,
+      "weight_kg": 0.4,
+      "water_uptake": 1.0,
+      "fur": false
+    }
+  }
+}

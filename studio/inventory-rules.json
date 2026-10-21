@@ -2328,6 +2328,30 @@
       "ids": [
         "weather.thunder"
       ]
+    },
+    {
+      "basis": "M7 D winter gear and travel items",
+      "milestone": "m7",
+      "owner": "body",
+      "type": "item",
+      "ids": [
+        "fur_mittens",
+        "fur_hat",
+        "parka",
+        "hide_pants",
+        "mukluks",
+        "hare_fur_liners",
+        "moccasins"
+      ]
+    },
+    {
+      "basis": "B10 snow shelter walls",
+      "milestone": "m7",
+      "owner": "body",
+      "type": "tag",
+      "ids": [
+        "snow_walls"
+      ]
     }
   ],
   "expand": {

@@ -1,0 +1,6 @@
+{
+ "id": "hard_winter",
+ "chance_per_year": 0.15,
+ "from_year": 2,
+ "window": ["12-01", "01-29"]
+}

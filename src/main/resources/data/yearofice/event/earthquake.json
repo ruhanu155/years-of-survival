@@ -1,0 +1,6 @@
+{
+ "id": "earthquake",
+ "chance_per_year": 0.08,
+ "from_year": 1,
+ "window": ["01-01", "12-31"]
+}
