@@ -58,13 +58,14 @@ public final class IceModel {
             s.cm -= t.meltCmPerPdd() * meanC + (meanC > 0.5 ? t.rainMeltCmPerMm() * rainMm : 0);
             if (s.peakCm > 0 && (s.peakCm - s.cm) / s.peakCm * 100 >= t.rottenLossPct() && s.peakCm >= t.thinCm()) s.rotten = true;
         }
-        if (s.cm <= 0) {
-            s.cm = 0; s.fdd = 0; s.peakCm = 0; s.rotten = false;
-            return Event.MELT_OUT;
-        }
+        // a river sheet that rots and goes in one warm spell is still a breakup (the flood pulse), never a quiet melt-out
         if (c == BodyClass.RIVER && s.rotten && s.cm <= t.breakupCmRiver()) {
             s.cm = 0; s.fdd = 0; s.peakCm = 0; s.rotten = false;
             return Event.BREAKUP;
+        }
+        if (s.cm <= 0) {
+            s.cm = 0; s.fdd = 0; s.peakCm = 0; s.rotten = false;
+            return Event.MELT_OUT;
         }
         return Event.NONE;
     }

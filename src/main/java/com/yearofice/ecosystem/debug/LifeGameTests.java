@@ -36,6 +36,7 @@ public final class LifeGameTests {
         out.add(test("yearofice:life/lemming_cycle", 80, LifeGameTests::lemmingCycle));
         out.add(test("yearofice:life/insects_bite", 100, LifeGameTests::insectsBite));
         out.add(test("yearofice:life/salmon_dieoff", 80, LifeGameTests::salmonDieoff));
+        out.add(test("yearofice:life/salmon_swim_run", 120, LifeGameTests::salmonSwimRun));
         out.add(test("yearofice:life/chorus_by_date", 60, LifeGameTests::chorusByDate));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
@@ -97,6 +98,52 @@ public final class LifeGameTests {
         h.assertTrue(have == placed && have <= LifeConfig.tuning().salmonCarcassMax(), "bodies " + have + " placed " + placed);
         h.assertTrue(MigrationService.dieOff(l, spot, "chinook") == 0, "a second pass added more");
         MigrationService.bodies(l, spot, "chinook").forEach(b -> b.discard());
+        h.succeed();
+    }
+
+    /** Each of the four salmon swims as a visible fish at the peak of its run, none outside it, and a predator can take one (WaterLife). */
+    static void salmonSwimRun(GameTestHelper h) {
+        var l = h.getLevel();
+        BlockPos c = h.absolutePos(AT);
+        for (int x = -3; x <= 3; x++) for (int z = -3; z <= 3; z++) {
+            l.setBlockAndUpdate(c.offset(x, -2, z), Blocks.STONE.defaultBlockState());
+            l.setBlockAndUpdate(c.offset(x, -1, z), Blocks.WATER.defaultBlockState());
+            l.setBlockAndUpdate(c.offset(x, 0, z), Blocks.WATER.defaultBlockState());
+            l.setBlockAndUpdate(c.offset(x, 1, z), Blocks.WATER.defaultBlockState());
+        }
+        var spot = new FishSpotService.Spot("outside_bend", c, 4, 1.0, 3.0, 1,
+                List.of("chinook_salmon", "chum_salmon", "coho_salmon", "sockeye_salmon"), List.of(60, 60, 60, 60), true);
+        FishSpotService before = FishSpotService.get();
+        FishSpotService.install(new FishSpotService() {
+            @Override public List<Spot> spotsNear(net.minecraft.server.level.ServerLevel lv, BlockPos pos, double r) { return spot.contains(pos) ? List.of(spot) : List.of(); }
+            @Override public java.util.Optional<Spot> sliceSpot(net.minecraft.server.level.ServerLevel lv) { return java.util.Optional.empty(); }
+        });
+        var clock = com.yearofice.api.clock.ClockService.get();
+        long day0 = clock.absDay();
+        try {
+            for (String sp : List.of("chinook_salmon", "chum_salmon", "coho_salmon", "sockeye_salmon")) {
+                int peak = com.yearofice.sim.fishing.SalmonRun.RUNS.get(sp).peak();
+                clock.setDay(peak - 1);
+                com.yearofice.hunt.fishing.FishSpawner.populateAround(l, c);
+                boolean swims = false;
+                for (var f : com.yearofice.hunt.fishing.FishSpawner.in(l, spot)) {
+                    if (sp.equals(f.species())) {
+                        swims = true;
+                        h.assertTrue(l.getFluidState(f.blockPosition()).is(net.minecraft.tags.FluidTags.WATER), sp + " out of the water");
+                    }
+                }
+                h.assertTrue(swims, sp + " does not swim at the peak of its run");
+                h.assertTrue(com.yearofice.hunt.fishing.WaterLife.runStrength(l, spot) > 0.5, "run strength at the peak");
+                com.yearofice.hunt.fishing.FishSpawner.sweep(l);
+            }
+            clock.setDay(com.yearofice.sim.fishing.FishSeason.day(1, 10) - 1);
+            com.yearofice.hunt.fishing.FishSpawner.populateAround(l, c);
+            for (var f : com.yearofice.hunt.fishing.FishSpawner.in(l, spot)) h.assertTrue(!f.species().endsWith("_salmon"), "a salmon in January: " + f.species());
+            com.yearofice.hunt.fishing.FishSpawner.sweep(l);
+        } finally {
+            clock.setDay(day0);
+            FishSpotService.install(before);
+        }
         h.succeed();
     }
 
