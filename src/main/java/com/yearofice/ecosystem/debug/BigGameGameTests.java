@@ -138,6 +138,9 @@ public final class BigGameGameTests {
         BigGameEntity caribou = h.spawn(EcosystemRegistry.CARIBOU.get(), new BlockPos(1, Y, 1));
         caribou.setScentEnabled(false);
         caribou.pinDriveAct(Drives.Act.BED);
+        // Predators of a caribou in the null test group (wolves and bears of neighbouring tests) are threats to every other
+        // null-group caribou within sight; a group of its own keeps this test to the one walker it is about.
+        caribou.setTestGroup("sight_cone");
         Vec3 at = caribou.position();
         strip(h, -110, 110, 3, true);
         EcoGameTests.force(h, at, 2, true);
