@@ -30,6 +30,8 @@ public final class WoodConfig {
         t.dial("green_moisture_pct", "Moisture % of wood cut from a living tree.", 50, 0, 100);
         t.dial("placed_log_moisture_pct", "Moisture % of rounds cut out of a placed log (a wall log has dried).", 20, 0, 100);
         t.dial("chopping_block_set_min", "Game minutes to set a round on end as a chopping block (Sneak + hold use).", 2, 0, 60);
+        t.dial("barber_chair_chance", "Chance a lean over 15 degrees felled with the back cut first splits the trunk (barber chair).", 0.2, 0.3, 0.4, 0, 1);
+        t.dial("hang_up_chance", "Chance a fall line within a block of a taller-than-half living trunk hangs up.", 0.35, 0.5, 0.65, 0, 1);
         // B4 seasoning by the calendar (Proposed; the current numbers).
         double[] std = Seasoning.Rates.STANDARD.monthly();
         for (int i = 0; i < 12; i++) {

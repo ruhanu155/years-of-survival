@@ -2380,6 +2380,93 @@
       ]
     },
     {
+      "basis": "M8 decay.json data map",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "data_map",
+      "ids": [
+        "decay"
+      ]
+    },
+    {
+      "basis": "B9 fences tag",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "fences"
+      ]
+    },
+    {
+      "basis": "B8 leak seam stub tag",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "leak_seams"
+      ]
+    },
+    {
+      "basis": "Traversal raft",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "entity",
+      "ids": [
+        "raft"
+      ]
+    },
+    {
+      "basis": "M8 lane A: building pieces (Structures and buildables › Building pieces)",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "block",
+      "ids": [
+        "wall_log",
+        "wall_plank",
+        "wall_sod",
+        "wall_stone",
+        "roof_pole_sod",
+        "roof_plank",
+        "roof_shingle",
+        "door_frame",
+        "window_frame"
+      ]
+    },
+    {
+      "basis": "M8 lane A: building pieces (Structures and buildables › Building pieces)",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "wall_log",
+        "wall_plank",
+        "wall_sod",
+        "wall_stone",
+        "roof_pole_sod",
+        "roof_plank",
+        "roof_shingle",
+        "slab_floor",
+        "log_deck",
+        "awning",
+        "dressed_stone",
+        "path",
+        "door_frame",
+        "window_frame"
+      ]
+    },
+    {
+      "basis": "M8 lane A: block tags wall, roof, floor, door",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "tag",
+      "ids": [
+        "wall",
+        "roof",
+        "floor",
+        "door"
+      ]
+    },
+    {
       "basis": "M8 lane B: stoves (Blueprint › Fire; Crafting › Warm rooms)",
       "milestone": "m8",
       "owner": "body",
@@ -2448,57 +2535,6 @@
       "type": "data_map",
       "ids": [
         "store"
-      ]
-    },
-    {
-      "basis": "M8 lane A: building pieces (Structures and buildables › Building pieces)",
-      "milestone": "m8",
-      "owner": "building",
-      "type": "block",
-      "ids": [
-        "wall_log",
-        "wall_plank",
-        "wall_sod",
-        "wall_stone",
-        "roof_pole_sod",
-        "roof_plank",
-        "roof_shingle",
-        "door_frame",
-        "window_frame"
-      ]
-    },
-    {
-      "basis": "M8 lane A: building pieces (Structures and buildables › Building pieces)",
-      "milestone": "m8",
-      "owner": "building",
-      "type": "item",
-      "ids": [
-        "wall_log",
-        "wall_plank",
-        "wall_sod",
-        "wall_stone",
-        "roof_pole_sod",
-        "roof_plank",
-        "roof_shingle",
-        "slab_floor",
-        "log_deck",
-        "awning",
-        "dressed_stone",
-        "path",
-        "door_frame",
-        "window_frame"
-      ]
-    },
-    {
-      "basis": "M8 lane A: block tags wall, roof, floor, door",
-      "milestone": "m8",
-      "owner": "building",
-      "type": "tag",
-      "ids": [
-        "wall",
-        "roof",
-        "floor",
-        "door"
       ]
     }
   ],

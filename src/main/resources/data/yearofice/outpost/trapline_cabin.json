@@ -1,0 +1,156 @@
+{
+ "id": "yearofice:trapline_cabin",
+ "name": "Trapline cabin",
+ "spacing_m": 6400,
+ "fit": "dry",
+ "size_m": [
+  7,
+  5,
+  7
+ ],
+ "min_age_years": 5,
+ "max_age_years": 45,
+ "notes": "A day's walk apart; saddle-notched line cabin with a stone hearth and a store (Outposts \u203a Line cabin).",
+ "fills": [
+  {
+   "from": [
+    0,
+    1,
+    0
+   ],
+   "to": [
+    6,
+    4,
+    6
+   ],
+   "block": "minecraft:air",
+   "role": "clear"
+  },
+  {
+   "from": [
+    0,
+    0,
+    0
+   ],
+   "to": [
+    6,
+    0,
+    6
+   ],
+   "block": "minecraft:spruce_planks",
+   "role": "floor"
+  },
+  {
+   "from": [
+    0,
+    1,
+    0
+   ],
+   "to": [
+    6,
+    2,
+    0
+   ],
+   "block": "minecraft:stripped_spruce_log",
+   "role": "wall"
+  },
+  {
+   "from": [
+    0,
+    1,
+    6
+   ],
+   "to": [
+    6,
+    2,
+    6
+   ],
+   "block": "minecraft:stripped_spruce_log",
+   "role": "wall"
+  },
+  {
+   "from": [
+    0,
+    1,
+    0
+   ],
+   "to": [
+    0,
+    2,
+    6
+   ],
+   "block": "minecraft:stripped_spruce_log",
+   "role": "wall"
+  },
+  {
+   "from": [
+    6,
+    1,
+    0
+   ],
+   "to": [
+    6,
+    2,
+    6
+   ],
+   "block": "minecraft:stripped_spruce_log",
+   "role": "wall"
+  },
+  {
+   "from": [
+    3,
+    1,
+    0
+   ],
+   "to": [
+    3,
+    2,
+    0
+   ],
+   "block": "minecraft:air",
+   "role": "clear"
+  },
+  {
+   "from": [
+    0,
+    3,
+    0
+   ],
+   "to": [
+    6,
+    3,
+    6
+   ],
+   "block": "minecraft:spruce_slab",
+   "role": "roof"
+  },
+  {
+   "from": [
+    5,
+    1,
+    5
+   ],
+   "to": [
+    5,
+    1,
+    5
+   ],
+   "block": "minecraft:cobblestone",
+   "role": "hearth"
+  },
+  {
+   "from": [
+    1,
+    1,
+    5
+   ],
+   "to": [
+    1,
+    1,
+    5
+   ],
+   "block": "minecraft:barrel",
+   "role": "store"
+  }
+ ]
+}
