@@ -98,8 +98,13 @@ public final class Theft {
      * keys the store and the hour, so an unloaded rack replayed on chunk load loses what it would have lost live.
      */
     public static Optional<Hit> rollHour(Context c, double presetMult, Mulberry32 r, List<Stack> stacks) {
+        return rollHour(c, presetMult, r, stacks, java.util.Set.of());
+    }
+
+    /** As {@link #rollHour(Context, double, Mulberry32, List)}, with thieves in {@code live} skipped: they are in the air as birds and take what they take there. */
+    public static Optional<Hit> rollHour(Context c, double presetMult, Mulberry32 r, List<Stack> stacks, java.util.Set<Thief> live) {
         for (Thief t : Thief.values()) {
-            double p = chance(t, c, presetMult);
+            double p = live.contains(t) ? 0 : chance(t, c, presetMult);
             double u = r.nextDouble(); // always drawn, so the stream's position does not depend on protections
             if (p <= 0 || u >= p) continue;
             int[] can = new int[stacks.size()];

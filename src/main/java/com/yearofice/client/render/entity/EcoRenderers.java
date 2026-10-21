@@ -33,6 +33,17 @@ public final class EcoRenderers {
             e.registerEntityRenderer(t.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.25f));
         e.registerEntityRenderer(EcosystemRegistry.CARCASS_TINY.get(), CarcassRenderer::new);
         e.registerEntityRenderer(EcosystemRegistry.CARCASS_MEDIUM.get(), CarcassRenderer::new);
+        // M6 lane A
+        e.registerEntityRenderer(EcosystemRegistry.CARIBOU.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.6f));
+        e.registerEntityRenderer(EcosystemRegistry.MULE_DEER.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.5f));
+        e.registerEntityRenderer(EcosystemRegistry.BLACK_BEAR.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.6f));
+        e.registerEntityRenderer(EcosystemRegistry.GRIZZLY.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.8f));
+        for (var t : java.util.List.of(EcosystemRegistry.WOLF, EcosystemRegistry.COYOTE, EcosystemRegistry.LYNX))
+            e.registerEntityRenderer(t.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.4f));
+        e.registerEntityRenderer(EcosystemRegistry.RED_FOX.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.3f));
+        e.registerEntityRenderer(EcosystemRegistry.WOLVERINE.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.35f));
+        e.registerEntityRenderer(EcosystemRegistry.CARCASS_LARGE.get(), CarcassRenderer::new);
+        e.registerEntityRenderer(EcosystemRegistry.CARCASS_HUGE.get(), CarcassRenderer::new);
         // M7 lane C
         for (var t : java.util.List.of(SmallLifeRegistry.BROWN_LEMMING, SmallLifeRegistry.COLLARED_LEMMING, SmallLifeRegistry.BOG_LEMMING,
                 SmallLifeRegistry.SINGING_VOLE, SmallLifeRegistry.LITTLE_BROWN_BAT, SmallLifeRegistry.BOREAL_TOAD))

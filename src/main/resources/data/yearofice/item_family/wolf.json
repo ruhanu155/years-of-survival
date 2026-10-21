@@ -1,0 +1,15 @@
+{
+  "species": "yearofice:wolf",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    {
+      "item": "yearofice:wolf_meat",
+      "kind": "meat",
+      "unit_g": 100
+    },
+    {
+      "item": "yearofice:wolf_pelt",
+      "kind": "cover"
+    }
+  ]
+}

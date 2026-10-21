@@ -183,8 +183,9 @@ public final class FoodD2GameTests {
         RackWatch.toggle = () -> false;
         h.setBlock(AT.below(), Blocks.STONE);
         h.setBlock(AT, PreserveRegistry.DRYING_RACK.get());
+        BlockPos second = AT.east();
+        // both delays are scheduled here: a runAfterDelay inside a delay callback modifies the framework's map mid-iteration
         h.runAfterDelay(3, () -> {
-            BlockPos second = AT.east();
             try {
                 h.assertTrue(seen.isEmpty(), "toggle off: the rack is not watched, " + seen);
                 RackWatch.toggle = () -> true;
@@ -195,16 +196,16 @@ public final class FoodD2GameTests {
                 RackWatch.toggle = oldToggle;
                 throw e;
             }
-            h.runAfterDelay(3, () -> {
-                try {
-                    h.assertTrue(seen.contains(h.absolutePos(second)), "toggle on: the next rack is watched, " + seen);
-                    h.assertTrue(!seen.contains(h.absolutePos(AT)), "the first rack was not, " + seen);
-                    h.succeed();
-                } finally {
-                    RackWatch.watcher = oldWatcher;
-                    RackWatch.toggle = oldToggle;
-                }
-            });
+        });
+        h.runAfterDelay(6, () -> {
+            try {
+                h.assertTrue(seen.contains(h.absolutePos(second)), "toggle on: the next rack is watched, " + seen);
+                h.assertTrue(!seen.contains(h.absolutePos(AT)), "the first rack was not, " + seen);
+                h.succeed();
+            } finally {
+                RackWatch.watcher = oldWatcher;
+                RackWatch.toggle = oldToggle;
+            }
         });
     }
 
