@@ -46,7 +46,10 @@ public final class ThreatSources {
     public static List<LivingEntity> near(ServerLevel level, Vec3 at, double range, Entity animal) {
         List<LivingEntity> out = new ArrayList<>();
         double r2 = range * range;
-        for (Player p : level.players()) {
+        // an animal in a named test group answers only to its test's own threats (addForTest, same-group predators):
+        // other tests' mock players stand in the same level and must not reach it
+        boolean grouped = animal instanceof com.yearofice.ecosystem.YoiAnimal ya && ya.testGroup() != null;
+        for (Player p : grouped ? List.<Player>of() : level.players()) {
             if (!p.isSpectator() && p.isAlive() && p.position().distanceToSqr(at) <= r2) out.add(p);
         }
         if (animal instanceof com.yearofice.ecosystem.YoiAnimal prey && !(animal instanceof com.yearofice.ecosystem.species.rig.PredatorEntity)) {

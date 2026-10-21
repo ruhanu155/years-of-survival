@@ -88,7 +88,8 @@ public final class M6DGameTests {
     /** An open cabin door with dried fish inside, the player 50 m away: a fox in 5% +-0.5 of 10,000 night hours, none by day, none shut. */
     static void doorRates(GameTestHelper h) {
         com.yearofice.env.weather.WeatherSystem.calmOverride = true; // the 5% is a calm-night rate; storms keep foxes denned
-        try { doorRatesBody(h); } finally { com.yearofice.env.weather.WeatherSystem.calmOverride = false; }
+        com.yearofice.ecosystem.raid.ShelterEntry.streamOriginOverride = new BlockPos(0, 0, 0);
+        try { doorRatesBody(h); } finally { com.yearofice.env.weather.WeatherSystem.calmOverride = false; com.yearofice.ecosystem.raid.ShelterEntry.streamOriginOverride = null; }
     }
 
     static void doorRatesBody(GameTestHelper h) {
