@@ -86,6 +86,7 @@ class SaveFixturesTest {
         SAVED_DATA.put("yearofice_weather", saved(com.yearofice.env.weather.WeatherData.class));
         SAVED_DATA.put("yearofice_ice", saved(com.yearofice.world.season.SeasonState.class));
         SAVED_DATA.put("yearofice_terrain", saved(com.yearofice.world.terrain.TerrainChangeQueue.class));
+        SAVED_DATA.put("yearofice_weather", saved(com.yearofice.env.weather.WeatherData.class));
         SAVED_DATA.put("yearofice_run_ledger", saved(com.yearofice.hunt.fishing.RunLedger.class));
     }
 

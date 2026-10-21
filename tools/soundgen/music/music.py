@@ -1,5 +1,5 @@
 """soundgen music: seeded modal phrase grammar -> plucked string + bowed drone + wooden flute -> Ogg Vorbis.
-Usage: python3 -I music.py <out_dir>     (writes music/dawn_spring, music/day_spring, music/fire_spring .ogg)
+Usage: python3 -I music.py <out_dir>     [piece names...]  (writes the twelve music/<kind>_<season>.ogg; names limit the render)
 Art and audio production > Music tied to Spirits. These are the first three of the twelve planned pieces: short
 (35-60 s) placeholders at grade G0, deterministic from their seed."""
 import hashlib, os, subprocess, sys, wave
@@ -8,6 +8,8 @@ import numpy as np
 SR = 32000
 DORIAN = [0, 2, 3, 5, 7, 9, 10]
 AEOLIAN = [0, 2, 3, 5, 7, 8, 10]
+MIXOLYDIAN = [0, 2, 4, 5, 7, 9, 10]
+PHRYGIAN = [0, 1, 3, 5, 7, 8, 10]
 
 def seed(*p): return int(hashlib.sha256("|".join(map(str, p)).encode()).hexdigest()[:8], 16)
 def hz(root, deg, mode, octv=0):
@@ -64,11 +66,22 @@ PIECES = {
     "dawn_spring": dict(bpm=54, root=2, mode=DORIAN, bars=16, flute_on=True, pluck_on=True, drone_on=True),
     "day_spring": dict(bpm=62, root=7, mode=DORIAN, bars=18, flute_on=True, pluck_on=True, drone_on=False),
     "fire_spring": dict(bpm=50, root=9, mode=AEOLIAN, bars=14, flute_on=False, pluck_on=True, drone_on=True),
+    # M7: the other nine (summer bright and open, fall slower and darker, winter sparse and low)
+    "dawn_summer": dict(bpm=58, root=4, mode=MIXOLYDIAN, bars=16, flute_on=True, pluck_on=True, drone_on=True),
+    "day_summer": dict(bpm=70, root=9, mode=MIXOLYDIAN, bars=18, flute_on=True, pluck_on=True, drone_on=False),
+    "fire_summer": dict(bpm=52, root=2, mode=DORIAN, bars=14, flute_on=True, pluck_on=True, drone_on=True),
+    "dawn_fall": dict(bpm=48, root=7, mode=AEOLIAN, bars=16, flute_on=True, pluck_on=False, drone_on=True),
+    "day_fall": dict(bpm=56, root=0, mode=AEOLIAN, bars=18, flute_on=True, pluck_on=True, drone_on=False),
+    "fire_fall": dict(bpm=46, root=4, mode=PHRYGIAN, bars=14, flute_on=False, pluck_on=True, drone_on=True),
+    "dawn_winter": dict(bpm=42, root=9, mode=PHRYGIAN, bars=14, flute_on=False, pluck_on=False, drone_on=True),
+    "day_winter": dict(bpm=46, root=2, mode=AEOLIAN, bars=16, flute_on=True, pluck_on=False, drone_on=True),
+    "fire_winter": dict(bpm=40, root=7, mode=DORIAN, bars=14, flute_on=False, pluck_on=True, drone_on=True),
 }
 
-def main(out_dir):
+def main(out_dir, only=()):
     os.makedirs(out_dir, exist_ok=True)
     for name, kw in PIECES.items():
+        if only and name not in only: continue
         x = piece(name, **kw); wav = os.path.join(out_dir, name + ".wav")
         with wave.open(wav, "wb") as w:
             w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes((x * 32767).astype("<i2").tobytes())
@@ -76,4 +89,4 @@ def main(out_dir):
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", wav, "-c:a", "libvorbis", "-q:a", "3", ogg], check=True)
         os.remove(wav); print(name, f"{len(x) / SR:.0f}s", os.path.getsize(ogg), "B")
 
-if __name__ == "__main__": main(sys.argv[1])
+if __name__ == "__main__": main(sys.argv[1], sys.argv[2:])

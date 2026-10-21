@@ -39,6 +39,12 @@ public final class MusicDirector {
     private static long tick, lastEnd = -1_000_000, lastDanger = -1_000_000;
 
     /** Dawn window: the first 90 game minutes after 05:00 (the clock's dawn at 64N varies; the Look lane refines it). */
+    /** 0 spring (Mar-May), 1 summer (Jun-Aug), 2 fall (Sep-Nov), 3 winter (Dec-Feb) from the client clock. */
+    static int season() {
+        int m = com.yearofice.sim.time.Calendar.month(com.yearofice.sim.time.Calendar.dayOfYearOfMinute((long) ClientTime.minuteD()));
+        return m >= 3 && m <= 5 ? 0 : m >= 6 && m <= 8 ? 1 : m >= 9 && m <= 11 ? 2 : 3;
+    }
+
     static boolean dawnNow() {
         double m = ClientTime.minuteD() % 1440;
         return m >= 5 * 60 && m < 6.5 * 60;
@@ -62,11 +68,8 @@ public final class MusicDirector {
         MusicPlan.Piece p = MusicPlan.choose(spirits.get(), dawnNow(), fireDistanceM.getAsDouble(), tick - lastEnd,
                 tick - lastDanger, inDanger, RNG.nextDouble());
         if (p == MusicPlan.Piece.NONE) return;
-        SoundEvent ev = switch (p) {
-            case DAWN -> YoiSounds.MUSIC_DAWN.get();
-            case DAY -> YoiSounds.MUSIC_DAY.get();
-            default -> YoiSounds.MUSIC_FIRE.get();
-        };
+        int kind = p == MusicPlan.Piece.DAWN ? 0 : p == MusicPlan.Piece.DAY ? 1 : 2;
+        SoundEvent ev = YoiSounds.music(season(), kind);
         playing = new Piece(ev);
         mc.getSoundManager().play(playing);
     }
