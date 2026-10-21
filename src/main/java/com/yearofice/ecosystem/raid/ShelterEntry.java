@@ -89,9 +89,13 @@ public final class ShelterEntry {
     }
 
     /** One game hour at one door. Empty if the option is off, nobody came, or the door is shut. */
+    public static volatile BlockPos streamOriginOverride;
+
     public static Optional<Entry> hour(ServerLevel level, BlockPos door, Container store, long hourIndex, RaidOdds.Door ctx) {
         if (!WorldToggles.animalsEnterOpenDoors()) return Optional.empty();
-        var r = Thresholds.stream(level.getSeed(), "door_entry", door.getX(), door.getY(), door.getZ(), hourIndex);
+        // GameTest hook: a pinned origin keeps the statistical door test on one stream whatever the batch layout
+        BlockPos o = streamOriginOverride != null ? streamOriginOverride : door;
+        var r = Thresholds.stream(level.getSeed(), "door_entry", o.getX(), o.getY(), o.getZ(), hourIndex);
         Optional<RaidOdds.Raider> hit = RaidOdds.rollHour(ctx, EncounterConfig.doorScale(), r);
         if (hit.isEmpty()) return Optional.empty();
         RaidOdds.Raider who = hit.get();
