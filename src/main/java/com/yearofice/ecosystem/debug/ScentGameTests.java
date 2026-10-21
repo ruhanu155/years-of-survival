@@ -62,6 +62,8 @@ public final class ScentGameTests {
         h.setBlock(pile, EcosystemRegistry.GUT_PILE.get().defaultBlockState());
         BlockPos abs = h.absolutePos(pile);
         ScentPoints.add(h.getLevel(), abs);
+        boolean calm0 = WeatherSystem.calmOverride; // pool tests share these statics: put back what was there, not a default
+        double[] wind0 = ValleyPool.windOverride;
         WeatherSystem.calmOverride = true;
         int dx = bearCase ? 120 : 40;
         PredatorEntity eater = bearCase ? h.spawn(EcosystemRegistry.GRIZZLY.get(), new BlockPos(1 + dx, Y, 1 + zOff))
@@ -89,8 +91,8 @@ public final class ScentGameTests {
             ScentPoints.remove(h.getLevel(), abs);
             eater.discard();
             if (prey != null) prey.discard();
-            WeatherSystem.calmOverride = false;
-            ValleyPool.windOverride = null;
+            WeatherSystem.calmOverride = calm0;
+            ValleyPool.windOverride = wind0;
             BigGameGameTests.forceLine(h, start, len, false);
             h.setBlock(pile, Blocks.AIR);
             BigGameGameTests.strip(h, -5, len, 8, false, zOff);
