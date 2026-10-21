@@ -1,0 +1,12 @@
+{
+ "id": "yearofice:logbook_01",
+ "name": "Logbook page 1",
+ "description": "The old camp's logbook, page 1",
+ "weight_kg": 0.01,
+ "where": "Hunting blind camp",
+ "journal_clip": "Elin's hand: 'Day 3. Moved the blind to the willow edge. The herd came through at first light and did not look up.'",
+ "read": [
+  "Day 3. Moved the blind to the willow edge.",
+  "The herd came through at first light and did not look up."
+ ]
+}

@@ -1,0 +1,11 @@
+{
+ "id": "plant_reader",
+ "group": "first_summer",
+ "title": "Plant reader",
+ "condition": "Identify 20 plants",
+ "opens_on": "",
+ "closes_on": "plants.identified_20",
+ "journal_line": "Ambition done: Plant reader. Identify 20 plants.",
+ "hidden": false,
+ "reward": "none"
+}

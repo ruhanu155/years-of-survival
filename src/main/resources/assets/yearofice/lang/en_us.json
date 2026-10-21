@@ -1056,5 +1056,10 @@
   "subtitles.yearofice.work.sluice_wash": "Water running through a sluice",
   "work.yearofice.heat": "Heating",
   "work.yearofice.hammer": "Hammering",
-  "work.yearofice.quench": "Quenching"
+  "work.yearofice.quench": "Quenching",
+  "block.yearofice.radio_desk": "Radio Desk",
+  "item.yearofice.radio_desk": "Radio Desk",
+  "item.yearofice.radio_battery": "Radio Battery",
+  "item.yearofice.note": "Note",
+  "entity.yearofice.supply_parachute": "Supply Parachute"
 }

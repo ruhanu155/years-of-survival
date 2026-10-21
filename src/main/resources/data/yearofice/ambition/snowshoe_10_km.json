@@ -1,0 +1,11 @@
+{
+ "id": "snowshoe_10_km",
+ "group": "first_winter",
+ "title": "Snowshoe 10 km",
+ "condition": "Walk 10 km on snowshoes in total",
+ "opens_on": "",
+ "closes_on": "travel.snowshoe_10km",
+ "journal_line": "Ambition done: Snowshoe 10 km. Walk 10 km on snowshoes in total.",
+ "hidden": false,
+ "reward": "none"
+}

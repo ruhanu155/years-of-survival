@@ -1,0 +1,11 @@
+{
+ "id": "yearofice:tin_cup",
+ "name": "Elin's tin cup",
+ "description": "A dented tin cup with initials scratched in the base",
+ "weight_kg": 0.01,
+ "where": "Glacier Cirque",
+ "journal_clip": "A dented tin cup with E.R. scratched under the rim.",
+ "read": [
+  "Tea at the station on April 6 would taste of it."
+ ]
+}

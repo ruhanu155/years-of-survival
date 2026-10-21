@@ -1,0 +1,11 @@
+{
+ "id": "burbot_by_lamplight",
+ "group": "first_winter",
+ "title": "Burbot by lamplight",
+ "condition": "Catch a burbot at night through the ice",
+ "opens_on": "",
+ "closes_on": "fish.burbot_night",
+ "journal_line": "Ambition done: Burbot by lamplight. Catch a burbot at night through the ice.",
+ "hidden": false,
+ "reward": "none"
+}

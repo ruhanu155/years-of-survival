@@ -1,0 +1,11 @@
+{
+ "id": "clean_shots",
+ "group": "beyond_hunting",
+ "title": "Clean shots",
+ "condition": "10 big-game kills in a row with heart-and-lung hits",
+ "opens_on": "",
+ "closes_on": "hunt.clean_10",
+ "journal_line": "Ambition done: Clean shots. 10 big-game kills in a row with heart-and-lung hits.",
+ "hidden": false,
+ "reward": "none"
+}

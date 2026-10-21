@@ -1,0 +1,30 @@
+{
+ "id": "yearofice:salmon_bend",
+ "cell": "C3",
+ "name": "Salmon Bend",
+ "ring": 1,
+ "bounds_m": {
+  "x": [
+   0,
+   2047
+  ],
+  "z": [
+   0,
+   2047
+  ]
+ },
+ "biome_mix": {
+  "gravel_bar": 0.4,
+  "open_river": 0.3,
+  "riparian": 0.3
+ },
+ "outposts": [
+  "yearofice:fish_camp"
+ ],
+ "drop_zone_m": [
+  1024,
+  1024
+ ],
+ "spring_lag_days": 0,
+ "landmark": "The White Bluff"
+}

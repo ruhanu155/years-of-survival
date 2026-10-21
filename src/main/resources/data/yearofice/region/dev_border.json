@@ -1,0 +1,14 @@
+{
+ "id": "yearofice:dev_border",
+ "note": "The development border (World and worldgen > The dev border): test worlds keep ring 1 until M10 ships the Interior.",
+ "default_ring": 1,
+ "center_m": [
+  0,
+  0
+ ],
+ "size_m_by_ring": {
+  "1": 8192,
+  "2": 65536,
+  "3": 59999968
+ }
+}

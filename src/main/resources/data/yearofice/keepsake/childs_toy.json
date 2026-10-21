@@ -1,0 +1,12 @@
+{
+ "id": "yearofice:childs_toy",
+ "name": "A child's toy",
+ "description": "A small carved wolf, worn smooth",
+ "weight_kg": 0.01,
+ "where": "Fish camp",
+ "journal_clip": "A small carved wolf, worn smooth by a child's hands.",
+ "read": [
+  "A small carved wolf, worn smooth.",
+  "Someone's child was here, summers ago."
+ ]
+}

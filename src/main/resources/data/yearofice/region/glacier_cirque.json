@@ -1,0 +1,30 @@
+{
+ "id": "yearofice:glacier_cirque",
+ "cell": "B1",
+ "name": "Glacier Cirque",
+ "ring": 1,
+ "bounds_m": {
+  "x": [
+   -2048,
+   -1
+  ],
+  "z": [
+   -4096,
+   -2049
+  ]
+ },
+ "biome_mix": {
+  "icefield": 0.4,
+  "alpine_range": 0.4,
+  "rock_scree": 0.2
+ },
+ "outposts": [
+  "yearofice:rock_shelter"
+ ],
+ "drop_zone_m": [
+  -1024,
+  -3072
+ ],
+ "spring_lag_days": 12,
+ "landmark": "The white glacier tongue"
+}

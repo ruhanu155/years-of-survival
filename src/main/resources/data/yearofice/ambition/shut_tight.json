@@ -1,0 +1,11 @@
+{
+ "id": "shut_tight",
+ "group": "first_winter",
+ "title": "Shut tight",
+ "condition": "No animal enters any of your buildings from November 1 to March 31",
+ "opens_on": "",
+ "closes_on": "build.no_animal_entry",
+ "journal_line": "Ambition done: Shut tight. No animal enters any of your buildings from November 1 to March 31.",
+ "hidden": false,
+ "reward": "none"
+}

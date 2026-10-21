@@ -18,6 +18,8 @@ public final class StorySystem {
         StoryAttachments.register(modBus);
         com.yearofice.story.trophy.TrophyRegistry.register(modBus);
         modBus.addListener(StoryNet::register);
+        com.yearofice.story.radio.RadioRegistry.register(modBus);
+        com.yearofice.story.keepsake.KeepsakeRegistry.register(modBus);
         modBus.addListener((ModConfigEvent.Loading e) -> StoryConfig.invalidate());
         modBus.addListener((ModConfigEvent.Reloading e) -> StoryConfig.invalidate());
         NeoForge.EVENT_BUS.addListener(OnboardingCommands::register);

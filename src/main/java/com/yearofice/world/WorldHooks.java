@@ -97,7 +97,7 @@ public final class WorldHooks {
             over.getWorldBorder().setSize(c.size());
         } else if (!FMLEnvironment.production || Boolean.getBoolean("yearofice.dev")) {
             over.getWorldBorder().setCenter(0, 0);
-            over.getWorldBorder().setSize(w.p.grid().worldSizeM());
+            over.getWorldBorder().setSize(com.yearofice.worldgen.regions.Regions.borderSize(com.yearofice.worldgen.regions.Regions.defaultRing()));
         }
         YearOfIce.LOG.info("Year of Ice world: {} cut, spawn {}, border {} at {}, {}", g.settings().cut(), java.util.Arrays.toString(w.spawn()),
                 over.getWorldBorder().getSize(), over.getWorldBorder().getCenterX(), over.getWorldBorder().getCenterZ());

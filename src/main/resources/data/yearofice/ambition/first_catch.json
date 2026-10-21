@@ -1,0 +1,11 @@
+{
+ "id": "first_catch",
+ "group": "first_days",
+ "title": "First catch",
+ "condition": "Land any fish",
+ "opens_on": "",
+ "closes_on": "fish.first",
+ "journal_line": "Ambition done: First catch. Land any fish.",
+ "hidden": false,
+ "reward": "none"
+}

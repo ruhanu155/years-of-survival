@@ -1,0 +1,11 @@
+{
+ "id": "smudge",
+ "group": "first_summer",
+ "title": "Smudge",
+ "condition": "Sleep a July night with no mosquito wake-up",
+ "opens_on": "",
+ "closes_on": "sleep.july_no_mosquito",
+ "journal_line": "Ambition done: Smudge. Sleep a July night with no mosquito wake-up.",
+ "hidden": false,
+ "reward": "none"
+}

@@ -1,0 +1,11 @@
+{
+ "id": "barnyard_winter",
+ "group": "beyond_homestead",
+ "title": "Barnyard winter",
+ "condition": "Keep goats and hens alive from November 1 to April 30",
+ "opens_on": "",
+ "closes_on": "livestock.winter_survived",
+ "journal_line": "Ambition done: Barnyard winter. Keep goats and hens alive from November 1 to April 30.",
+ "hidden": false,
+ "reward": "none"
+}

@@ -1,0 +1,11 @@
+{
+ "id": "raised_walls",
+ "group": "first_summer",
+ "title": "Raised walls",
+ "condition": "Finish a chinked log cabin with a stove or fireplace",
+ "opens_on": "",
+ "closes_on": "build.cabin_with_stove",
+ "journal_line": "Ambition done: Raised walls. Finish a chinked log cabin with a stove or fireplace.",
+ "hidden": false,
+ "reward": "none"
+}

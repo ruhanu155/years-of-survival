@@ -1,0 +1,11 @@
+{
+ "id": "take_a_moose",
+ "group": "year_one",
+ "title": "Take a moose",
+ "condition": "Kill and butcher a moose",
+ "opens_on": "",
+ "closes_on": "hunt.moose_butchered",
+ "journal_line": "Ambition done: Take a moose. Kill and butcher a moose.",
+ "hidden": false,
+ "reward": "none"
+}

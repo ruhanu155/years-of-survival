@@ -1,0 +1,11 @@
+{
+ "id": "season_a_winters_firewood",
+ "group": "first_summer",
+ "title": "Season a winter's firewood",
+ "condition": "Have 300 armloads cut and under cover before October 1",
+ "opens_on": "",
+ "closes_on": "wood.seasoned_300",
+ "journal_line": "Ambition done: Season a winter's firewood. Have 300 armloads cut and under cover before October 1.",
+ "hidden": false,
+ "reward": "none"
+}

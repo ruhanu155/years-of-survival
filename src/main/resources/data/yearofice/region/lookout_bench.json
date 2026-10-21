@@ -1,0 +1,31 @@
+{
+ "id": "yearofice:lookout_bench",
+ "cell": "B2",
+ "name": "Lookout Bench",
+ "ring": 1,
+ "bounds_m": {
+  "x": [
+   -2048,
+   -1
+  ],
+  "z": [
+   -2048,
+   -1
+  ]
+ },
+ "biome_mix": {
+  "birch_aspen_slope": 0.6,
+  "foothill_benches": 0.3,
+  "spruce_taiga": 0.1
+ },
+ "outposts": [
+  "yearofice:hunting_blind_camp",
+  "yearofice:trapline_cabin"
+ ],
+ "drop_zone_m": [
+  -1024,
+  -1024
+ ],
+ "spring_lag_days": 5,
+ "landmark": "The lookout tower"
+}

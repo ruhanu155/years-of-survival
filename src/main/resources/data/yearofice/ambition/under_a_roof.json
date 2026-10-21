@@ -1,0 +1,11 @@
+{
+ "id": "under_a_roof",
+ "group": "first_days",
+ "title": "Under a roof",
+ "condition": "Sleep a night indoors with feels-like above 0 C",
+ "opens_on": "",
+ "closes_on": "sleep.indoors_warm",
+ "journal_line": "Ambition done: Under a roof. Sleep a night indoors with feels-like above 0 C.",
+ "hidden": false,
+ "reward": "none"
+}

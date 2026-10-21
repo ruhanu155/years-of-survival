@@ -1,0 +1,12 @@
+{
+ "id": "yearofice:logbook_02",
+ "name": "Logbook page 2",
+ "description": "The old camp's logbook, page 2",
+ "weight_kg": 0.01,
+ "where": "Rock shelter",
+ "journal_clip": "Elin's hand: 'Cold. Slept in the shelter with the fire at my feet. Wrote this by the last of it.'",
+ "read": [
+  "Cold. Slept in the shelter with the fire at my feet.",
+  "Wrote this by the last of it."
+ ]
+}

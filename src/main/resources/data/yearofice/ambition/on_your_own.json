@@ -1,0 +1,11 @@
+{
+ "id": "on_your_own",
+ "group": "year_one",
+ "title": "On your own",
+ "condition": "Reach May 1 of year 2 without an SOS",
+ "opens_on": "",
+ "closes_on": "calendar.year2_may1_no_sos",
+ "journal_line": "Ambition done: On your own. Reach May 1 of year 2 without an SOS.",
+ "hidden": false,
+ "reward": "none"
+}

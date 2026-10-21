@@ -1,0 +1,11 @@
+{
+ "id": "wolf_at_the_door",
+ "group": "first_summer",
+ "title": "Wolf at the door",
+ "condition": "Raise any wolf to Tolerant",
+ "opens_on": "",
+ "closes_on": "wolf.tolerant",
+ "journal_line": "Ambition done: Wolf at the door. Raise any wolf to Tolerant.",
+ "hidden": false,
+ "reward": "none"
+}

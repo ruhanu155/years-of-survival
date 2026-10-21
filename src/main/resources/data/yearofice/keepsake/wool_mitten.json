@@ -1,0 +1,11 @@
+{
+ "id": "yearofice:wool_mitten",
+ "name": "A woman's wool mitten",
+ "description": "A single grey wool mitten",
+ "weight_kg": 0.01,
+ "where": "The Windgap cache",
+ "journal_clip": "One grey wool mitten. The pair is never found.",
+ "read": [
+  "A single mitten, left on a cairn at the pass."
+ ]
+}

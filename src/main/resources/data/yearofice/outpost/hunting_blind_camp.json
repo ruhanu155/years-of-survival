@@ -124,5 +124,15 @@
    "block": "minecraft:barrel",
    "role": "store"
   }
+ ],
+ "keepsakes": [
+  {
+   "id": "yearofice:logbook_01",
+   "at": [
+    1,
+    1,
+    1
+   ]
+  }
  ]
 }

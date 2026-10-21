@@ -1,0 +1,35 @@
+{
+ "id": "yearofice:outpost_valley",
+ "cell": "B3",
+ "name": "Outpost Valley",
+ "ring": 1,
+ "bounds_m": {
+  "x": [
+   -2048,
+   -1
+  ],
+  "z": [
+   0,
+   2047
+  ]
+ },
+ "biome_mix": {
+  "spruce_taiga": 0.4,
+  "riparian": 0.2,
+  "birch_aspen_slope": 0.2,
+  "open_river": 0.1,
+  "lake": 0.1
+ },
+ "outposts": [
+  "yearofice:trapline_cabin",
+  "yearofice:fish_camp",
+  "yearofice:hunting_blind_camp",
+  "yearofice:rock_shelter"
+ ],
+ "drop_zone_m": [
+  -1024,
+  1024
+ ],
+ "spring_lag_days": 0,
+ "landmark": "Varies by seed"
+}

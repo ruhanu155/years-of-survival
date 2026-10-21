@@ -1,0 +1,11 @@
+{
+ "id": "yearofice:photograph_elin_tok",
+ "name": "Photograph of Elin and Tok",
+ "description": "A photograph: a woman's back and a young wolf's ears",
+ "weight_kg": 0.01,
+ "where": "Station Nine, above the bunk",
+ "journal_clip": "A photograph. Only her back, and Tok's ears.",
+ "read": [
+  "A woman's back at a river, a pup's ears pricked beside her."
+ ]
+}

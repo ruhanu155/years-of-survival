@@ -1,0 +1,11 @@
+{
+ "id": "light_the_forge",
+ "group": "beyond_homestead",
+ "title": "Light the forge",
+ "condition": "Forge any iron item",
+ "opens_on": "",
+ "closes_on": "craft.forged_iron",
+ "journal_line": "Ambition done: Light the forge. Forge any iron item.",
+ "hidden": false,
+ "reward": "none"
+}

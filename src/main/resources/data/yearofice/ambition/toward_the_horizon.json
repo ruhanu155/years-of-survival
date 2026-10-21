@@ -1,0 +1,11 @@
+{
+ "id": "toward_the_horizon",
+ "group": "first_days",
+ "title": "Toward the horizon",
+ "condition": "Reach the landmark seen from the cabin door",
+ "opens_on": "",
+ "closes_on": "travel.landmark_from_door",
+ "journal_line": "Ambition done: Toward the horizon. Reach the landmark seen from the cabin door.",
+ "hidden": false,
+ "reward": "none"
+}

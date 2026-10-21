@@ -1,0 +1,11 @@
+{
+ "id": "clean_water",
+ "group": "first_days",
+ "title": "Clean water",
+ "condition": "Boil 10 L of water in total",
+ "opens_on": "",
+ "closes_on": "water.boiled_10l",
+ "journal_line": "Ambition done: Clean water. Boil 10 L of water in total.",
+ "hidden": false,
+ "reward": "none"
+}

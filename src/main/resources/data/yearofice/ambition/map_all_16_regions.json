@@ -1,0 +1,11 @@
+{
+ "id": "map_all_16_regions",
+ "group": "beyond_travel",
+ "title": "Map all 16 regions",
+ "condition": "Every home-valley region at 40% revealed",
+ "opens_on": "",
+ "closes_on": "map.regions_40pct",
+ "journal_line": "Ambition done: Map all 16 regions. Every home-valley region at 40% revealed.",
+ "hidden": true,
+ "reward": "none"
+}

@@ -1,0 +1,30 @@
+{
+ "id": "yearofice:iron_range",
+ "cell": "C1",
+ "name": "Iron Range",
+ "ring": 1,
+ "bounds_m": {
+  "x": [
+   0,
+   2047
+  ],
+  "z": [
+   -4096,
+   -2049
+  ]
+ },
+ "biome_mix": {
+  "rock_scree": 0.5,
+  "alpine_range": 0.3,
+  "foothill_benches": 0.2
+ },
+ "outposts": [
+  "yearofice:rock_shelter"
+ ],
+ "drop_zone_m": [
+  1024,
+  -3072
+ ],
+ "spring_lag_days": 10,
+ "landmark": "Red Wall"
+}

@@ -1,0 +1,11 @@
+{
+ "id": "first_snare",
+ "group": "first_days",
+ "title": "First snare",
+ "condition": "Take an animal in a snare",
+ "opens_on": "",
+ "closes_on": "snare.first_take",
+ "journal_line": "Ambition done: First snare. Take an animal in a snare.",
+ "hidden": false,
+ "reward": "none"
+}
