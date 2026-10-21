@@ -29,6 +29,14 @@ public final class BodyServiceImpl implements BodyService {
 
     private static long now(ServerPlayer p) { return BodyTicker.clock.minute(p.server); }
 
+    @Override
+    public void effort(ServerPlayer p, String activity, double kcal, double gameMinutes) {
+        if (p.isCreative() || p.isSpectator() || kcal <= 0) return;
+        long minute = now(p);
+        com.yearofice.sim.body.BodyModel.charge(s(p), minute, kcal);
+        BodyTicker.sync(p, minute, false);
+    }
+
     @Override public double warmth(ServerPlayer p) { return s(p).warmth; }
 
     @Override public double condition(ServerPlayer p) { return s(p).condition(); }

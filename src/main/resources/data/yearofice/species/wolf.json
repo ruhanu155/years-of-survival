@@ -1,0 +1,133 @@
+{
+  "entity": "yearofice:wolf",
+  "rig": "canid",
+  "habitat": [
+    "forest",
+    "open_shrub"
+  ],
+  "population": [
+    1,
+    1
+  ],
+  "home_range_m": 15000,
+  "active": [
+    "dusk",
+    "night"
+  ],
+  "gaits": {
+    "walk": 1.8,
+    "trot": 3.5,
+    "run": 15,
+    "swim": 1.2,
+    "step_height_m": 1.0
+  },
+  "senses": {
+    "sight": 100,
+    "hearing": 80,
+    "smell": 400,
+    "fov": 200
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": false,
+    "flee_trigger_m": 0,
+    "flee_m": [
+      150,
+      300
+    ],
+    "flee_gait": "run",
+    "zigzag": false,
+    "hide_min": [
+      10,
+      30
+    ],
+    "charges": false
+  },
+  "huntable": false,
+  "huntable_from": "m6_hunt",
+  "respawn_days": 90,
+  "breath_s": 60,
+  "spawn": {
+    "cell_m": 2048,
+    "group": [
+      3,
+      6
+    ],
+    "density_per_km2": 0.05,
+    "density_group": "predator"
+  },
+  "drives": {
+    "hunger_up": 0.07,
+    "hunger_down": 0.35,
+    "thirst_up": 0.04,
+    "thirst_down": 1.0,
+    "rest_up": 0.05,
+    "rest_down": 0.2,
+    "weights": {
+      "dawn": [
+        0.3,
+        0.5,
+        2.0
+      ],
+      "midday": [
+        0.2,
+        0.3,
+        2.8
+      ],
+      "dusk": [
+        1.5,
+        0.7,
+        0.5
+      ],
+      "night": [
+        1.8,
+        0.2,
+        0.4
+      ]
+    }
+  },
+  "predator": {
+    "prey": [
+      "yearofice:moose",
+      "yearofice:caribou",
+      "yearofice:beaver",
+      "yearofice:snowshoe_hare",
+      "yearofice:mule_deer"
+    ],
+    "chase_cap_m": 150,
+    "detect_m": 120,
+    "chase_mps": 15,
+    "hunt_from_h": 17,
+    "hunt_to_h": 6,
+    "kill_radius_m": 1.5,
+    "cooldown_min": 240
+  },
+  "carcass": {
+    "whole_kg": 38,
+    "class": "large",
+    "body_plan": "canid",
+    "poses": [
+      "dead_side"
+    ],
+    "steps": {
+      "position": 2,
+      "gut": 12,
+      "organs": 5,
+      "prop": 2,
+      "skin": 20,
+      "quarter": 25,
+      "hang": 8
+    },
+    "parts": {
+      "meat": 16.5,
+      "cover": {
+        "item": "yearofice:wolf_pelt",
+        "kg": 1.5
+      },
+      "guts_kg": 5
+    }
+  },
+  "butcher_table": "yearofice:butchering/wolf"
+}

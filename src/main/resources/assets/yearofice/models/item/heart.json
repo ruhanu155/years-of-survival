@@ -1,0 +1,6 @@
+{
+  "parent": "yearofice:item/generated",
+  "textures": {
+    "layer0": "yearofice:item/raw_moose_meat"
+  }
+}

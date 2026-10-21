@@ -34,6 +34,9 @@ public class CarcassEntity extends Entity implements GeoEntity {
     static final EntityDataAccessor<Byte> COAT = SynchedEntityData.defineId(CarcassEntity.class, EntityDataSerializers.BYTE);
 
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
+    /** Heaviest body a player lifts whole: 60 kg. Above it the carcass is dressed in place. */
+    public static final int CARRY_MAX_G = 60_000;
+
     private boolean settled;
 
     public CarcassEntity(EntityType<? extends CarcassEntity> type, Level level) { super(type, level); }
@@ -79,8 +82,15 @@ public class CarcassEntity extends Entity implements GeoEntity {
         if (hand != InteractionHand.MAIN_HAND) return InteractionResult.PASS;
         if (!player.getMainHandItem().isEmpty() && !player.isShiftKeyDown()) return InteractionResult.PASS;
         if (level().isClientSide) return InteractionResult.SUCCESS;
+        if (record().weightG() > CARRY_MAX_G) {
+            // Too heavy to lift: large and huge game is dressed where it lies (Field care).
+            if (player instanceof net.minecraft.server.level.ServerPlayer sp) Butchering.dressInPlace(sp, this);
+            return InteractionResult.CONSUME;
+        }
         ItemStack whole = WholeGameItem.of(record());
         if (!player.getInventory().add(whole)) player.drop(whole, false);
+        // hauling: lifting it costs the body 4 kcal a kilo (a 14 kg hare is a snack; a 40 kg doe is a meal's worth)
+        if (player instanceof net.minecraft.server.level.ServerPlayer sp) com.yearofice.api.body.BodyService.get().effort(sp, "haul", record().weightG() / 1000.0 * 4, 0);
         discard();
         return InteractionResult.CONSUME;
     }

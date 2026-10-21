@@ -1,0 +1,131 @@
+{
+  "entity": "yearofice:black_bear",
+  "rig": "ursid",
+  "habitat": [
+    "forest",
+    "riparian_edge"
+  ],
+  "population": [
+    1,
+    1
+  ],
+  "home_range_m": 4000,
+  "active": [
+    "dawn",
+    "dusk"
+  ],
+  "gaits": {
+    "walk": 1.3,
+    "trot": 3.5,
+    "run": 13,
+    "swim": 1.4,
+    "step_height_m": 1.0
+  },
+  "senses": {
+    "sight": 50,
+    "hearing": 60,
+    "smell": 1000,
+    "fov": 200
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": false,
+    "flee_trigger_m": 25,
+    "flee_m": [
+      100,
+      250
+    ],
+    "flee_gait": "run",
+    "zigzag": false,
+    "hide_min": [
+      20,
+      40
+    ],
+    "charges": false
+  },
+  "huntable": false,
+  "huntable_from": "m6_hunt",
+  "respawn_days": 90,
+  "breath_s": 60,
+  "spawn": {
+    "cell_m": 1024,
+    "group": [
+      1,
+      1
+    ],
+    "density_per_km2": 0.25,
+    "density_group": "predator"
+  },
+  "drives": {
+    "hunger_up": 0.07,
+    "hunger_down": 0.3,
+    "thirst_up": 0.04,
+    "thirst_down": 1.0,
+    "rest_up": 0.06,
+    "rest_down": 0.2,
+    "weights": {
+      "dawn": [
+        1.4,
+        0.5,
+        0.4
+      ],
+      "midday": [
+        0.3,
+        0.3,
+        2.6
+      ],
+      "dusk": [
+        1.6,
+        0.7,
+        0.3
+      ],
+      "night": [
+        1.0,
+        0.1,
+        1.0
+      ]
+    }
+  },
+  "predator": {
+    "prey": [
+      "yearofice:snowshoe_hare",
+      "yearofice:beaver"
+    ],
+    "chase_cap_m": 60,
+    "detect_m": 60,
+    "chase_mps": 8,
+    "hunt_from_h": 17,
+    "hunt_to_h": 9,
+    "kill_radius_m": 1.5,
+    "cooldown_min": 120
+  },
+  "denning": true,
+  "carcass": {
+    "whole_kg": 115,
+    "class": "large",
+    "body_plan": "ursid",
+    "poses": [
+      "dead_side"
+    ],
+    "steps": {
+      "position": 3,
+      "gut": 35,
+      "organs": 10,
+      "prop": 5,
+      "skin": 45,
+      "quarter": 60,
+      "hang": 15
+    },
+    "parts": {
+      "meat": 30,
+      "cover": {
+        "item": "yearofice:black_bear_hide",
+        "kg": 6
+      },
+      "guts_kg": 15
+    }
+  },
+  "butcher_table": "yearofice:butchering/black_bear"
+}

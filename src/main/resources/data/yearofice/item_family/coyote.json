@@ -1,0 +1,15 @@
+{
+  "species": "yearofice:coyote",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    {
+      "item": "yearofice:coyote_meat",
+      "kind": "meat",
+      "unit_g": 100
+    },
+    {
+      "item": "yearofice:coyote_pelt",
+      "kind": "cover"
+    }
+  ]
+}

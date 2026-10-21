@@ -13,38 +13,6 @@
       "spit": "whole_fish",
       "family": "fish"
     },
-    "yearofice:dolly_varden": {
-      "spit": "whole_fish",
-      "family": "fish"
-    },
-    "yearofice:northern_pike": {
-      "spit": "whole_fish",
-      "family": "fish"
-    },
-    "yearofice:humpback_whitefish": {
-      "spit": "whole_fish",
-      "family": "fish"
-    },
-    "yearofice:burbot": {
-      "spit": "whole_fish",
-      "family": "fish"
-    },
-    "yearofice:lake_trout": {
-      "spit": "whole_fish",
-      "family": "fish"
-    },
-    "yearofice:chinook_salmon": {
-      "spit": "whole_fish",
-      "family": "fish"
-    },
-    "yearofice:chum_salmon": {
-      "spit": "whole_fish",
-      "family": "fish"
-    },
-    "yearofice:coho_salmon": {
-      "spit": "whole_fish",
-      "family": "fish"
-    },
     "yearofice:red_squirrel_meat": {
       "spit": "whole_hare",
       "family": "game_meat"
@@ -79,6 +47,78 @@
     },
     "yearofice:rock_ptarmigan_meat": {
       "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:dolly_varden": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:northern_pike": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:humpback_whitefish": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:burbot": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:lake_trout": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:chinook_salmon": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:chum_salmon": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:coho_salmon": {
+      "spit": "whole_fish",
+      "family": "fish"
+    },
+    "yearofice:moose_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:caribou_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:mule_deer_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:black_bear_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:grizzly_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:wolf_meat": {
+      "spit": "per_kg",
+      "family": "game_meat"
+    },
+    "yearofice:coyote_meat": {
+      "spit": "whole_hare",
+      "family": "game_meat"
+    },
+    "yearofice:red_fox_meat": {
+      "spit": "whole_hare",
+      "family": "game_meat"
+    },
+    "yearofice:lynx_meat": {
+      "spit": "whole_hare",
+      "family": "game_meat"
+    },
+    "yearofice:wolverine_meat": {
+      "spit": "whole_hare",
       "family": "game_meat"
     },
     "yearofice:bird_meat": {

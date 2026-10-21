@@ -1,0 +1,94 @@
+{
+  "species": "yearofice:wolverine",
+  "poses": {
+    "standing": [
+      {
+        "zone": "heart_lungs",
+        "center_m": [
+          0.0,
+          0.293,
+          0.12
+        ],
+        "radii_m": [
+          0.054,
+          0.049,
+          0.054
+        ],
+        "shoulder_front": 0.3
+      },
+      {
+        "zone": "liver",
+        "center_m": [
+          0.0,
+          0.293,
+          0.043
+        ],
+        "radii_m": [
+          0.033,
+          0.027,
+          0.033
+        ]
+      },
+      {
+        "zone": "spine",
+        "center_m": [
+          0.0,
+          0.435,
+          0.0
+        ],
+        "radii_m": [
+          0.009,
+          0.009,
+          0.239
+        ]
+      },
+      {
+        "zone": "brain",
+        "center_m": [
+          0.0,
+          0.457,
+          0.337
+        ],
+        "radii_m": [
+          0.011,
+          0.011,
+          0.011
+        ]
+      },
+      {
+        "zone": "gut",
+        "center_m": [
+          0.0,
+          0.304,
+          -0.054
+        ],
+        "radii_m": [
+          0.098,
+          0.098,
+          0.152
+        ]
+      },
+      {
+        "zone": "legs",
+        "below_y_m": 0.217
+      }
+    ],
+    "bedded": {
+      "from": "standing",
+      "lower_m": 0.196
+    }
+  },
+  "kill_threshold_j": 10,
+  "bloodshot": {
+    "heart_lungs": [
+      "ribs",
+      "front_left",
+      "front_right"
+    ],
+    "gut": [
+      "loin",
+      "hind_left",
+      "hind_right"
+    ]
+  }
+}
