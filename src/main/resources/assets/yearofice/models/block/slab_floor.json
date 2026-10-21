@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "yearofice:block/slab_floor",
+    "top": "yearofice:block/slab_floor",
+    "side": "yearofice:block/slab_floor"
+  }
+}

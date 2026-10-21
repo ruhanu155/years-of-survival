@@ -2220,6 +2220,45 @@
       "ids": [
         "weather.thunder"
       ]
+    },
+    {
+      "basis": "M8 lane A: building pieces (Structures and buildables \u203a Building pieces)",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "block",
+      "ids": [
+        "wall_log",
+        "wall_plank",
+        "wall_sod",
+        "wall_stone",
+        "roof_pole_sod",
+        "roof_plank",
+        "roof_shingle",
+        "door_frame",
+        "window_frame"
+      ]
+    },
+    {
+      "basis": "M8 lane A: building pieces (Structures and buildables \u203a Building pieces)",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "item",
+      "ids": [
+        "wall_log",
+        "wall_plank",
+        "wall_sod",
+        "wall_stone",
+        "roof_pole_sod",
+        "roof_plank",
+        "roof_shingle",
+        "slab_floor",
+        "log_deck",
+        "awning",
+        "dressed_stone",
+        "path",
+        "door_frame",
+        "window_frame"
+      ]
     }
   ],
   "expand": {

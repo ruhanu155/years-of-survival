@@ -37,6 +37,7 @@ public final class YoiConfig {
         com.yearofice.story.StoryConfig.define(b);
         com.yearofice.build.wood.WoodConfig.define(b);
         com.yearofice.build.BuildConfig.define(b);
+        com.yearofice.build.pieces.PiecesConfig.define(b); // M8 lane A: [pieces]
         com.yearofice.plant.ForageConfig.define(b);
         com.yearofice.crop.GardenConfig.define(b);
         com.yearofice.hunt.HuntConfig.define(b);
