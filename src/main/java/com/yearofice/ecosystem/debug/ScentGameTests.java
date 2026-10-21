@@ -102,7 +102,7 @@ public final class ScentGameTests {
                 long t = h.getTick() - 40;
                 if (bearCase) {
                     if (eater.scavenges() >= 1) {
-                        h.assertTrue(eater.distanceToSqr(Vec3.atCenterOf(abs)) < 9 * 9, "it fed from " + Math.sqrt(eater.distanceToSqr(Vec3.atCenterOf(abs))) + " m");
+                        h.assertTrue(eater.distanceToSqr(Vec3.atCenterOf(abs)) < 3.2 * 3.2, "it fed from " + Math.sqrt(eater.distanceToSqr(Vec3.atCenterOf(abs))) + " m");
                         h.assertTrue(t <= limit, "it took " + t + " ticks (limit " + limit + " = 30 game minutes)");
                         release.run();
                         h.succeed();
