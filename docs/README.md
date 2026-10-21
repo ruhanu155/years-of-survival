@@ -40,3 +40,4 @@ Files are in the doc's tab order. Where tabs disagree on build matters, Minecraf
 - [decisions/RECONCILE.md](decisions/RECONCILE.md): the numbered cross-tab fixes, Director rulings and Ruhan's decisions (items 1–155).
 - [reference/mods.md](reference/mods.md): the mods and libraries checked for reuse, with licences, and what was adopted (RECONCILE 153).
 - [studio/](studio/): the briefs the studio worked from (TAB, DEPT, DEV, REVIEW, BORROW) and RESUME. Their paths are relative to the studio's working folder `v2/`, which is not in this repository.
+- [CHANGELOG](CHANGELOG.md), [ROADMAP](ROADMAP.md), [DEVGUIDE](DEVGUIDE.md), [PLAYTEST](PLAYTEST.md), [BLUEPRINT-DEVIATIONS](BLUEPRINT-DEVIATIONS.md), [qa/start-sites-50](qa/start-sites-50.md): project status and QA, written 2026-10-21.
