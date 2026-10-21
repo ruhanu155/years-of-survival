@@ -306,10 +306,10 @@ public final class WeekDriver {
         if (ring != null && !ring.isRemoved() && tick % 20 == 0) {
             String st = ring.fire().state().name();
             if ((st.equals("OUT") || st.equals("BANKED")) && (h >= 16.5 || h < 6) && once("relight" + (m / 30), m)) lightFire(p, m);
-            else if ((st.equals("FIRE") || st.equals("SMALL") || st.equals("COALS")) && ring.fire().armloads() < (p.isSleeping() ? 0.25 : 0.8)) {
+            else if ((st.equals("FIRE") || st.equals("SMALL") || st.equals("COALS")) && ring.fire().armloads() < (p.isSleeping() ? 0.1 : (night || h >= 21.5) ? 4.0 : 0.8)) {
                 var ft = com.yearofice.fire.FireConfig.tuning();
                 int fed = 0;
-                for (int i = 0; i < 12; i++) if (ring.addPart(new ItemStack(net.minecraft.world.item.Items.SPRUCE_LOG), ft, p).ok()) fed++; else break;
+                for (int i = 0; i < 12; i++) if (ring.addPart(new ItemStack(night || h >= 21.5 ? net.minecraft.world.item.Items.BIRCH_LOG : net.minecraft.world.item.Items.SPRUCE_LOG), ft, p).ok()) fed++; else break;
                 if (fed > 0) { if (p.isSleeping()) body.wake(p, "tends the fire"); chore("fire", 1.5); }
             }
         }
@@ -394,10 +394,10 @@ public final class WeekDriver {
         pend.addAll(toAdd);
         if (Math.floorMod(m, 1440L) / 60 == 6 && day >= 2 && did.add("morning" + day)) {
             double metaCap = com.yearofice.sim.body.Metabolism.energyCap(s.balance24h(), s.bmi(), s.water, s.awakeMin, s.gutIll(m));
-            String why = s.bmi() < 18.5 ? "thin" : s.balance24h() < -1500 ? "hungry" : s.water < 30 ? "thirsty" : s.gutIll(m) ? "gut" : "tired";
+            String why = switch (s.lastCapCause) { case 0 -> "none"; case 1 -> "hungry"; case 2 -> "thin"; case 3 -> "thirsty"; case 4 -> "gut"; case 5 -> "awake"; default -> "ill"; };
             StringBuilder ill = new StringBuilder();
             for (var a : s.ill) ill.append(a).append(' ');
-            log(String.format(java.util.Locale.ROOT, "MORNING d%d energy %.1f cap %.1f | rest line messenger.yearofice.vitals.capped(%d, messenger.yearofice.vitals.cause.%s [client-inferred from synced vitals]) | engine: metabolic cap %.1f, illness active [%s], awakeMin %d, balance24h %.0f, water %.0f | macro 72h carb %.2f fat %.2f protein %.2f",
+            log(String.format(java.util.Locale.ROOT, "MORNING d%d energy %.1f cap %.1f | rest line messenger.yearofice.vitals.capped(%d, messenger.yearofice.vitals.cause.%s [synced capCause]) | engine: metabolic cap %.1f, illness active [%s], awakeMin %d, balance24h %.0f, water %.0f | macro 72h carb %.2f fat %.2f protein %.2f",
                     day, s.energy, s.lastEnergyCap, Math.round(s.lastEnergyCap), why, metaCap, ill.toString().trim(), s.awakeMin, s.balance24h(), s.water, s.macroMeter(0), s.macroMeter(1), s.macroMeter(2)));
             if (s.lastEnergyCap < 8) failures.add("morning energy cap " + fmt(s.lastEnergyCap) + " < 8 on day " + day);
         }
