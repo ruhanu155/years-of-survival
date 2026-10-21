@@ -1,0 +1,6 @@
+{
+  "names": ["Aspen", "Ash", "Birch", "Cinder", "Dusk", "Ember", "Fen", "Gale", "Hollow", "Juniper", "Kestrel", "Larch", "Moss", "Nettle", "Onyx", "Pike", "Quill", "Rime", "Sedge", "Tamarack", "Umber", "Vale", "Willow", "Yarrow"],
+  "legends": [
+    {"id": "black_wolf", "name": "Black Wolf", "chance_pct": 10, "note": "shares the lone-disperser slot (Bestiary: a black wolf)"}
+  ]
+}

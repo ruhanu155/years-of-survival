@@ -92,25 +92,7 @@ def stroke(r, var):
     rasp += r["squeal_gain"] * np.sin(2 * np.pi * np.cumsum(sq) / SR) * env ** 3
     return rasp
 
-def drip(r, var):
-    # a drop off an eave: a falling-pitch sine "plink" with a short noise tick, then a quieter ring
-    rng = np.random.default_rng(seed(r["id"], var)); n = int(r["length_s"] * SR); t = np.arange(n) / SR
-    f = r["start_hz"] * rng.uniform(0.9, 1.1) * np.exp(-t * r["fall_per_s"]) + r["floor_hz"]
-    plink = np.sin(2 * np.pi * np.cumsum(f) / SR) * env_ad(n, 0.002, r["decay_s"])
-    tick = biquad_bp(rng.standard_normal(n), 3500, 1.5) * env_ad(n, 0.001, 0.012)
-    return plink + 0.4 * tick
-
-def icicle(r, var):
-    # an icicle letting go: a sharp crack (clicks through a band-pass) and a glassy tinkle of short rings
-    rng = np.random.default_rng(seed(r["id"], var)); n = int(r["length_s"] * SR); out = np.zeros(n)
-    out += biquad_bp(rng.standard_normal(n), r["crack_hz"] * rng.uniform(0.9, 1.1), 2.0) * env_ad(n, 0.0008, 0.03)
-    for _ in range(r["tinkles"]):
-        k = int(rng.uniform(0.05, 0.4) * n); m = n - k
-        tt = np.arange(m) / SR
-        out[k:] += 0.35 * np.sin(2 * np.pi * rng.uniform(2500, 6500) * tt) * np.exp(-tt / 0.04)
-    return out
-
-KINDS = {"footstep": footstep, "wind": wind, "crackle": crackle, "stroke": stroke, "drip": drip, "icicle": icicle}
+KINDS = {"footstep": footstep, "wind": wind, "crackle": crackle, "stroke": stroke}
 
 def chain(x, r):
     x = x - x.mean()

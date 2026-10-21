@@ -51,6 +51,7 @@ public final class EcosystemSystem {
         NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.raid.ShelterEntry::onUse);
         NeoForge.EVENT_BUS.addListener(com.yearofice.ecosystem.raid.RaidCommands::register);
         NeoForge.EVENT_BUS.addListener((ServerStoppedEvent e) -> { com.yearofice.ecosystem.raid.ShelterEntry.clear(); com.yearofice.ecosystem.encounter.TalkWalk.clear(); });
+        com.yearofice.ecosystem.companion.CompanionSystem.init(modBus); // M9 lane A: wolf companion, sled, lead fence
         NoVanillaMobs.register();
     }
 

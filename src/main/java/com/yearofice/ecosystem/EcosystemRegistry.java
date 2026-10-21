@@ -113,8 +113,8 @@ public final class EcosystemRegistry {
             () -> EntityType.Builder.of(BearEntity::new, MobCategory.CREATURE).sized(1.0f, 1.1f).clientTrackingRange(10).build("yearofice:black_bear"));
     public static final DeferredHolder<EntityType<?>, EntityType<BearEntity>> GRIZZLY = ENTITIES.register("grizzly",
             () -> EntityType.Builder.of(BearEntity::new, MobCategory.CREATURE).sized(1.3f, 1.5f).clientTrackingRange(10).build("yearofice:grizzly"));
-    public static final DeferredHolder<EntityType<?>, EntityType<PredatorEntity>> WOLF = ENTITIES.register("wolf",
-            () -> EntityType.Builder.of(PredatorEntity::new, MobCategory.CREATURE).sized(0.8f, 0.9f).clientTrackingRange(10).build("yearofice:wolf"));
+    public static final DeferredHolder<EntityType<?>, EntityType<com.yearofice.ecosystem.companion.WolfEntity>> WOLF = ENTITIES.register("wolf",
+            () -> EntityType.Builder.of(com.yearofice.ecosystem.companion.WolfEntity::new, MobCategory.CREATURE).sized(0.8f, 0.9f).clientTrackingRange(10).build("yearofice:wolf"));
     public static final DeferredHolder<EntityType<?>, EntityType<PredatorEntity>> COYOTE = ENTITIES.register("coyote",
             () -> EntityType.Builder.of(PredatorEntity::new, MobCategory.CREATURE).sized(0.6f, 0.65f).clientTrackingRange(10).build("yearofice:coyote"));
     public static final DeferredHolder<EntityType<?>, EntityType<PredatorEntity>> RED_FOX = ENTITIES.register("red_fox",

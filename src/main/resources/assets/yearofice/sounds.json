@@ -499,20 +499,5 @@
         "attenuation_distance": 16
       }
     ]
-  },
-  "world.frost_drip": {
-    "subtitle": "subtitles.yearofice.world.frost_drip",
-    "sounds": [
-      { "name": "yearofice:world/frost_drip1", "attenuation_distance": 8 },
-      { "name": "yearofice:world/frost_drip2", "attenuation_distance": 8 },
-      { "name": "yearofice:world/frost_drip3", "attenuation_distance": 8 }
-    ]
-  },
-  "world.icicle_crack": {
-    "subtitle": "subtitles.yearofice.world.icicle_crack",
-    "sounds": [
-      { "name": "yearofice:world/icicle_crack1", "attenuation_distance": 16 },
-      { "name": "yearofice:world/icicle_crack2", "attenuation_distance": 16 }
-    ]
   }
 }

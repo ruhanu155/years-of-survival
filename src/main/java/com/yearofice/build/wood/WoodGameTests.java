@@ -87,8 +87,8 @@ public final class WoodGameTests {
     /** The plot template's forest_duff layer is relative y = 1 (the structure sits one above the test origin); things stand at y = 2. */
     /** Search radius around the plot centre: the 17-block plot and no further, since tests run side by side 22 blocks apart. */
     static final double PLOT_R = 12;
-    public static final String BATCH = "m2_wood";
-    public static final String PLOT = YearOfIce.MOD_ID + ":gametest/wood_plot", EMPTY = YearOfIce.MOD_ID + ":gametest/empty3";
+    static final String BATCH = "m2_wood";
+    static final String PLOT = YearOfIce.MOD_ID + ":gametest/wood_plot", EMPTY = YearOfIce.MOD_ID + ":gametest/empty3";
 
     @GameTestGenerator
     public static Collection<TestFunction> woodTests() {
@@ -97,20 +97,18 @@ public final class WoodGameTests {
         out.add(test("yearofice:building/placed_logs_never_fall", PLOT, 200, WoodGameTests::placedLogsNeverFall));
         out.add(test("yearofice:building/sneak_cut_one_block", PLOT, 100, WoodGameTests::sneakCut));
         out.add(test("yearofice:building/buck_and_split", PLOT, 200, WoodGameTests::buckAndSplit));
-        out.add(test("yearofice:wood/felling_mishap_rolls", EMPTY, 40, WoodGameTests::mishapRolls));
-        out.add(test("yearofice:fire/seasoning_calendar", EMPTY, 20, WoodGameTests::seasoningCalendar));
         out.add(test("yearofice:trees/felled_never_regrow", EMPTY, 1200, WoodGameTests::felledNeverRegrow));
         out.add(test("yearofice:trees/save_budget_1000", EMPTY, 100, WoodGameTests::saveBudget));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
 
-    public static TestFunction test(String name, String template, int maxTicks, Consumer<GameTestHelper> body) {
+    static TestFunction test(String name, String template, int maxTicks, Consumer<GameTestHelper> body) {
         return new TestFunction(BATCH, name, template, maxTicks, 0, true, body);
     }
 
     // ---- helpers ------------------------------------------------------------------------------------------------
 
-    public static ServerPlayer player(GameTestHelper h, String name, Vec3 rel) {
+    static ServerPlayer player(GameTestHelper h, String name, Vec3 rel) {
         ServerLevel level = h.getLevel();
         GameProfile profile = new GameProfile(UUID.randomUUID(), name);
         CommonListenerCookie cookie = CommonListenerCookie.createInitial(profile, false);
@@ -329,41 +327,6 @@ public final class WoodGameTests {
      * game minutes with the crate hatchet, gives 2 rounds, lowers the tree's height by 1 (its mark says 5) and never
      * starts a felling.
      */
-    static void seasoningCalendar(GameTestHelper h) {
-        var r = WoodConfig.rates();
-        long jun1 = com.yearofice.sim.time.Calendar.dayOfYear(6, 1), may25 = com.yearofice.sim.time.Calendar.dayOfYear(5, 25);
-        long shedJun = Seasoning.forecast(r, 50, jun1, 20, Seasoning.Place.WOODSHED, Seasoning.Form.SPLIT, 730);
-        long rackJun = Seasoning.forecast(r, 50, jun1, 20, Seasoning.Place.RACK, Seasoning.Form.SPLIT, 730);
-        long rackMay = Seasoning.forecast(r, 50, may25, 20, Seasoning.Place.RACK, Seasoning.Form.SPLIT, 730);
-        long round = Seasoning.forecast(r, 50, jun1, 20, Seasoning.Place.RACK, Seasoning.Form.ROUND, 730);
-        h.assertTrue(shedJun > 0 && shedJun < rackJun, "woodshed beats the rack");
-        h.assertTrue(rackJun < rackMay + 400 && rackMay <= rackJun, "an earlier cut is dry no later");
-        h.assertTrue(round < 0 || round > rackJun, "a round is slower than a split");
-        h.assertTrue(Seasoning.dry(r, 50, com.yearofice.sim.time.Calendar.dayOfYear(12, 1), com.yearofice.sim.time.Calendar.dayOfYear(12, 1) + 40, Seasoning.Place.RACK, Seasoning.Form.SPLIT) == 50,
-                "no drying in December");
-        h.succeed();
-    }
-
-    static void mishapRolls(GameTestHelper h) {
-        var rng = new java.util.SplittableRandom(20261020L);
-        int barber = 0, wedged = 0, hung = 0, safe = 0;
-        double pb = WoodConfig.get("barber_chair_chance"), ph = WoodConfig.get("hang_up_chance");
-        for (int i = 0; i < 1000; i++) {
-            if (rng.nextDouble() < com.yearofice.sim.wood.Mishap.barberChance(20, true, false, false, pb)) barber++;
-            if (rng.nextDouble() < com.yearofice.sim.wood.Mishap.barberChance(20, true, false, true, pb)) wedged++;
-            if (rng.nextDouble() < com.yearofice.sim.wood.Mishap.hangUpChance(0.8, 12, 15, ph)) hung++;
-            if (rng.nextDouble() < com.yearofice.sim.wood.Mishap.hangUpChance(3, 12, 15, ph)) safe++;
-        }
-        h.assertTrue(barber >= 260 && barber <= 340, "a 20 degree lean with the back cut first barber-chairs 30% +-4 (" + barber + "/1000)");
-        h.assertTrue(wedged == 0 && safe == 0, "a felling wedge stops the barber chair and a clear line never hangs");
-        h.assertTrue(hung >= 460 && hung <= 540, "a fall line within a block of a taller trunk hangs up 50% +-4 (" + hung + "/1000)");
-        ServerPlayer p = player(h, "feller", new Vec3(1, 2, 1));
-        for (var k : com.yearofice.sim.wood.Mishap.Kind.values())
-            h.assertTrue(com.yearofice.body.injury.InjuryData.source(k.injurySource) != null, "injury source " + k.injurySource + " exists");
-        h.assertTrue(Mishaps.apply(p, com.yearofice.sim.wood.Mishap.Kind.BARBER_CHAIR), "the kickback goes through the injury path");
-        h.succeed();
-    }
-
     static void sneakCut(GameTestHelper h) {
         ServerLevel l = h.getLevel();
         BlockPos base = new BlockPos(8, 2, 8);

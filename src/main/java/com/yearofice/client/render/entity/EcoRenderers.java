@@ -52,6 +52,7 @@ public final class EcoRenderers {
             e.registerEntityRenderer(t.get(), net.minecraft.client.renderer.entity.NoopRenderer::new);
         e.registerEntityRenderer(SmallLifeRegistry.SALMON_CARCASS.get(), CarcassRenderer::new);
         e.registerBlockEntityRenderer(TrapRegistry.SNARE_ENTITY.get(), ctx -> new SnareRenderer());
+        e.registerEntityRenderer(com.yearofice.ecosystem.companion.CompanionRegistry.SLED.get(), SledRenderer::new); // M9 lane A
     }
 
     @SubscribeEvent

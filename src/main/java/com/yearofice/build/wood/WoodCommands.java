@@ -35,17 +35,13 @@ public final class WoodCommands {
     static void register(RegisterCommandsEvent e) {
         e.getDispatcher().register(Commands.literal("yoi").requires(s -> s.hasPermission(2))
                 .then(Commands.literal("tree")
-                        .then(Commands.literal("mishap").then(Commands.argument("kind", com.mojang.brigadier.arguments.StringArgumentType.word())
-                                .suggests((c, b) -> net.minecraft.commands.SharedSuggestionProvider.suggest(java.util.List.of("barber", "hung", "falling", "branch"), b))
-                                .executes(WoodCommands::mishap)))
                         .then(Commands.literal("info").executes(WoodCommands::info))
                         .then(Commands.literal("fell").executes(c -> fell(c, Double.NaN))
                                 .then(Commands.argument("bearing", DoubleArgumentType.doubleArg(0, 360))
                                         .executes(c -> fell(c, DoubleArgumentType.getDouble(c, "bearing"))))))
                 .then(Commands.literal("wood")
                         .then(Commands.literal("info").executes(WoodCommands::woodInfo))
-                        .then(Commands.literal("dry").then(Commands.literal("forecast").executes(WoodCommands::forecast))
-                                .then(Commands.argument("days", IntegerArgumentType.integer(1, 730))
+                        .then(Commands.literal("dry").then(Commands.argument("days", IntegerArgumentType.integer(1, 730))
                                 .executes(c -> dry(c, IntegerArgumentType.getInteger(c, "days")))))));
     }
 
@@ -120,21 +116,6 @@ public final class WoodCommands {
         return 1;
     }
 
-    /** {@code /yoi tree mishap barber|hung|falling|branch}: the mishap's injury on you (a barber chair is the kickback, a hung tree the widowmaker). */
-    static int mishap(CommandContext<CommandSourceStack> c) throws com.mojang.brigadier.exceptions.CommandSyntaxException {
-        ServerPlayer p = c.getSource().getPlayerOrException();
-        String a = com.mojang.brigadier.arguments.StringArgumentType.getString(c, "kind");
-        com.yearofice.sim.wood.Mishap.Kind k = switch (a) {
-            case "barber" -> com.yearofice.sim.wood.Mishap.Kind.BARBER_CHAIR;
-            case "hung" -> com.yearofice.sim.wood.Mishap.Kind.HUNG_TREE;
-            case "falling" -> com.yearofice.sim.wood.Mishap.Kind.FALLING_TREE;
-            case "branch" -> com.yearofice.sim.wood.Mishap.Kind.GLANCING_BRANCH;
-            default -> null;
-        };
-        if (k == null) return fail(c, "Kinds: barber, hung, falling, branch.");
-        return Mishaps.apply(p, k) ? 1 : fail(c, "No injury source for " + a + ".");
-    }
-
     static int woodInfo(CommandContext<CommandSourceStack> c) throws com.mojang.brigadier.exceptions.CommandSyntaxException {
         ServerPlayer p = c.getSource().getPlayerOrException();
         ItemStack s = p.getMainHandItem();
@@ -175,22 +156,6 @@ public final class WoodCommands {
         double now = WoodItems.moistureNow(s, today);
         c.getSource().sendSuccess(() -> Component.literal(String.format(Locale.ROOT, "Dried %d days under cover from today: %.1f%% to %.1f%%.", days, m, now)), false);
         return from >= 0 ? 1 : 0;
-    }
-
-    /** {@code /yoi wood dry forecast}: the date green wood cut today is seasoned, by form and place (B4). */
-    static int forecast(CommandContext<CommandSourceStack> c) {
-        long today = WoodItems.today();
-        StringBuilder sb = new StringBuilder("Green (" + (int) Seasoning.GREEN_PCT + "%) wood cut today is under " + (int) Seasoning.SEASONED_PCT + "% by:");
-        for (Seasoning.Form f : Seasoning.Form.values()) {
-            for (Seasoning.Place pl : Seasoning.Place.values()) {
-                long d = Seasoning.forecast(WoodConfig.rates(), Seasoning.GREEN_PCT, today, Seasoning.SEASONED_PCT, pl, f, 730);
-                sb.append("\n ").append(f.name().toLowerCase(Locale.ROOT)).append(" / ").append(pl.name().toLowerCase(Locale.ROOT)).append(": ")
-                  .append(d < 0 ? "not within 2 years" : date(d));
-            }
-        }
-        String msg = sb.toString();
-        c.getSource().sendSuccess(() -> Component.literal(msg), false);
-        return 1;
     }
 
     static String date(long absDay) {

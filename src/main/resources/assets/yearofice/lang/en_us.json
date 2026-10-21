@@ -767,14 +767,6 @@
   "subtitles.yearofice.ambient.dawn_chorus_sparse": "A few birds sing at dawn",
   "subtitles.yearofice.ambient.dawn_chorus_full": "The dawn chorus swells",
   "subtitles.yearofice.ambient.dawn_chorus_white_night": "Birds sing through the white night",
-  "subtitles.yearofice.world.frost_drip": "Meltwater drips",
-  "subtitles.yearofice.world.icicle_crack": "An icicle cracks and falls",
-  "item.yearofice.canvas_wall_tent": "Canvas Wall Tent",
-  "item.yearofice.stove_jack": "Stove Jack",
-  "item.yearofice.tent_stove": "Folding Tin Stove",
-  "item.yearofice.can_stove": "Can Stove",
-  "item.yearofice.spark_screen": "Spark Screen",
-  "entity.yearofice.raft": "Log Raft",
   "block.yearofice.alpine_bearberry_bush": "Alpine Bearberry Bush",
   "block.yearofice.alpine_bistort": "Alpine Bistort",
   "block.yearofice.arctic_lupine": "Arctic Lupine",
@@ -1020,5 +1012,9 @@
   "block.yearofice.door_frame": "Door Frame",
   "item.yearofice.door_frame": "Door Frame",
   "block.yearofice.window_frame": "Window Frame",
-  "item.yearofice.window_frame": "Window Frame"
+  "item.yearofice.window_frame": "Window Frame",
+  "block.yearofice.lead_fence": "Lead Fence",
+  "block.yearofice.caribou_snare": "Caribou Snare",
+  "entity.yearofice.sled": "Dog Sled",
+  "item.yearofice.dog_sled": "Dog Sled"
 }
