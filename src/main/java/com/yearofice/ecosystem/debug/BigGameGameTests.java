@@ -60,6 +60,8 @@ public final class BigGameGameTests {
         out.add(test("yearofice:eco/daily_schedule_drives", 100, BigGameGameTests::dailyScheduleDrives));
         out.add(test("yearofice:eco/straggler_spawns", 100, BigGameGameTests::stragglerSpawns));
         out.add(test("yearofice:eco/bear_finds_fish_spot", 900, BigGameGameTests::bearFindsSpot));
+        out.add(test("yearofice:eco/bear_keeps_trail_below_half_hunger", 900, BigGameGameTests::bearKeepsTrail));
+        out.add(test("yearofice:eco/bear_walks_past_far_alert", 900, BigGameGameTests::bearWalksPastAlert));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
 
@@ -529,6 +531,113 @@ public final class BigGameGameTests {
                     h.succeed();
                 } else if (h.getTick() > 800) {
                     h.fail("the bear never reached the pile: " + bear.huntDebug() + " at " + bear.position().subtract(at));
+                }
+            } catch (RuntimeException e) {
+                release.run();
+                throw e;
+            }
+        };
+    }
+
+    private static final int FAR_ALERT = 5 * FAR_M;
+
+    /**
+     * eco/bear_walks_past_far_alert (m6bear v8): a hungry bear on a carrion trail with a threat 80 m behind it (awareness held at
+     * 50, Alert) keeps walking and eats; before the fix Alert idled it 60 m short of the pile. Own far region, forced chunks.
+     */
+    static void bearWalksPastAlert(GameTestHelper h) {
+        Vec3 start = h.absolutePos(new BlockPos(1, Y, 1 + FAR_ALERT)).getCenter();
+        forceLine(h, start, 160, true);
+        deferred(h, 40, () -> bearWalksPastAlertRun(h, start));
+    }
+
+    static Runnable bearWalksPastAlertRun(GameTestHelper h, Vec3 start) {
+        strip(h, -5, 160, 24, true, FAR_ALERT);
+        BlockPos pile = new BlockPos(1, Y, 1 + FAR_ALERT);
+        h.setBlock(pile, EcosystemRegistry.GUT_PILE.get().defaultBlockState());
+        BlockPos abs = h.absolutePos(pile);
+        ScentPoints.add(h.getLevel(), abs);
+        BearEntity bear = h.spawn(EcosystemRegistry.GRIZZLY.get(), new BlockPos(1 + 60, Y, 1 + FAR_ALERT));
+        BigGameEntity threat = h.spawn(EcosystemRegistry.CARIBOU.get(), new BlockPos(1 + 140, Y, 1 + FAR_ALERT));
+        bear.setScentEnabled(false);
+        threat.setScentEnabled(false);
+        bear.setTestGroup("alertwalk");
+        threat.setTestGroup("alertwalk");
+        bear.pinDriveAct(Drives.Act.FEED);
+        bear.driveState().hunger = 1.0;
+        Vec3 at = bear.position();
+        bear.setWindTowardOverride(Sensing.bearing(Vec3.atCenterOf(abs), at));
+        boolean[] done = {false}, alerted = {false};
+        Runnable release = () -> {
+            if (done[0]) return;
+            done[0] = true;
+            ScentPoints.remove(h.getLevel(), abs);
+            bear.discard();
+            threat.discard();
+            forceLine(h, start, 160, false);
+            h.setBlock(pile, Blocks.AIR);
+            strip(h, -5, 160, 24, false, FAR_ALERT);
+        };
+        return () -> {
+            if (done[0]) return;
+            try {
+                if (h.getTick() >= 60 && h.getTick() % 10 == 0) bear.awareness().spike(threat, 50, h.getLevel().getGameTime());
+                if (bear.awareness().of(threat) >= 30) alerted[0] = true;
+                if (bear.scavenges() >= 1) {
+                    h.assertTrue(alerted[0], "the bear was never alerted, so the test proved nothing");
+                    release.run();
+                    h.succeed();
+                } else if (h.getTick() > 840) {
+                    h.fail("the alerted bear never reached the pile: " + bear.huntDebug() + " state " + bear.state() + " at " + bear.position().subtract(at));
+                }
+            } catch (RuntimeException e) {
+                release.run();
+                throw e;
+            }
+        };
+    }
+
+    private static final int FAR_TRAIL = 6 * FAR_M;
+
+    /** eco/bear_keeps_trail_below_half_hunger (m6bear v8): hunger sinking to 0.45 on the walk, with the bed act pinned, no longer idles the bear short of the pile. */
+    static void bearKeepsTrail(GameTestHelper h) {
+        Vec3 start = h.absolutePos(new BlockPos(1, Y, 1 + FAR_TRAIL)).getCenter();
+        forceLine(h, start, 160, true);
+        deferred(h, 40, () -> bearKeepsTrailRun(h, start));
+    }
+
+    static Runnable bearKeepsTrailRun(GameTestHelper h, Vec3 start) {
+        strip(h, -5, 160, 24, true, FAR_TRAIL);
+        BlockPos pile = new BlockPos(1, Y, 1 + FAR_TRAIL);
+        h.setBlock(pile, EcosystemRegistry.GUT_PILE.get().defaultBlockState());
+        BlockPos abs = h.absolutePos(pile);
+        ScentPoints.add(h.getLevel(), abs);
+        BearEntity bear = h.spawn(EcosystemRegistry.GRIZZLY.get(), new BlockPos(1 + 60, Y, 1 + FAR_TRAIL));
+        bear.setScentEnabled(false);
+        bear.setTestGroup("trail");
+        bear.pinDriveAct(Drives.Act.BED);
+        bear.driveState().hunger = 1.0;
+        Vec3 at = bear.position();
+        bear.setWindTowardOverride(Sensing.bearing(Vec3.atCenterOf(abs), at));
+        boolean[] done = {false};
+        Runnable release = () -> {
+            if (done[0]) return;
+            done[0] = true;
+            ScentPoints.remove(h.getLevel(), abs);
+            bear.discard();
+            forceLine(h, start, 160, false);
+            h.setBlock(pile, Blocks.AIR);
+            strip(h, -5, 160, 24, false, FAR_TRAIL);
+        };
+        return () -> {
+            if (done[0]) return;
+            try {
+                if (h.getTick() == 70) bear.driveState().hunger = 0.45;
+                if (bear.scavenges() >= 1) {
+                    release.run();
+                    h.succeed();
+                } else if (h.getTick() > 840) {
+                    h.fail("the bear stopped short at hunger 0.45: " + bear.huntDebug() + " at " + bear.position().subtract(at));
                 }
             } catch (RuntimeException e) {
                 release.run();

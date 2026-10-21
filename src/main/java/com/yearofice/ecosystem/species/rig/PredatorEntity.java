@@ -65,6 +65,7 @@ public class PredatorEntity extends LandAnimal {
     @Override
     protected void startFlee() {
         endChase(false);
+        trace((ServerLevel) level(), "drop:flee");
         scentTarget = null;
         super.startFlee();
     }
@@ -100,10 +101,40 @@ public class PredatorEntity extends LandAnimal {
      */
     @Override
     protected boolean scentLocked(ServerLevel level) {
-        if (!hasDrives() || chase != null || driveState().hunger <= 0.5) return false;
+        trace(level, "tick");
+        // m6bear v8: hunger sinks below 0.5 on the walk (0.54 -> 0.47 in a minute) and the BED act then idled bears 20-63 m short with the target still set; once committed the lock holds down to the scavenge gate (0.3)
+        if (!hasDrives() || chase != null || driveState().hunger <= (scentTarget != null ? 0.3 : 0.5)) return false;
         long t = level.getGameTime();
         if (scentTarget == null && t >= nextSmellTick) scavenge(level, t);
         return scentTarget != null;
+    }
+
+    static final boolean TRACE = Boolean.getBoolean("yearofice.trace.scent");
+
+    /** -Dyearofice.trace.scent=true: once a second per predator within 60 m of a scent source, plus every scent target drop or re-pick with its reason. */
+    void trace(ServerLevel level, String why) {
+        if (!TRACE) return;
+        boolean tick = why.equals("tick");
+        if (tick && tickCount % 20 != 0) return;
+        double nearest = 1e9;
+        for (ValleyPool.Src s : ValleyPool.sources(level, SliceClock.minute(level))) nearest = Math.min(nearest, Math.hypot(position().x - s.pos().getX() - 0.5, position().z - s.pos().getZ() - 0.5));
+        if (nearest > (speciesId().endsWith("bear") ? 400 : 60)) return;
+        String tgt = scentTarget == null ? "none" : scentTarget instanceof BlockPos b ? "pile@" + b.toShortString() + " d=" + (int) Math.hypot(position().x - b.getX() - 0.5, position().z - b.getZ() - 0.5)
+                : scentTarget instanceof CarcassEntity c ? "carcass d=" + (int) c.position().distanceTo(position()) : "rack";
+        var nav = getNavigation();
+        System.out.printf(java.util.Locale.ROOT, "[scent-trace] t=%d id=%d %s act=%s drive=%s hunger=%.2f target=%s nearestSrc=%.0f nav(path=%s done=%s inProg=%s) stuck=%d vel=%.3f eatUntil=%d nextSmell=%d why=%s%n",
+                level.getGameTime(), getId(), speciesId(), driveAct(), state(), driveState().hunger, tgt, nearest,
+                nav.getPath() == null ? "null" : "set", nav.isDone(), nav.isInProgress(), stuckWalks, getDeltaMovement().horizontalDistance(), eatUntil, nextSmellTick, why);
+    }
+
+    /**
+     * m6bear v8 cause: a bear's nose (smell 1000 m) puts a player anywhere in the downwind cone at Alert (30) and then Flee (70);
+     * Alert idles the bear, Flee runs it off, and it is demoted. A bear hungry past 0.5 with a carrion target keeps walking while
+     * the threat is farther than the 40 m contact zone (the 25 m flee trigger and the contact sequence still apply inside it).
+     */
+    @Override
+    protected boolean holdsCourse(double threatDistM) {
+        return hasDrives() && chase == null && scentTarget instanceof BlockPos && driveState().hunger > 0.5 && threatDistM > 40;
     }
 
     boolean hasDrives() { return species().hasDrives(); }
@@ -230,7 +261,7 @@ public class PredatorEntity extends LandAnimal {
         double scale = speciesId().endsWith("bear") || speciesId().endsWith("grizzly") || speciesId().endsWith("wolverine") ? 3.0 : 1.5;
         smell = d.senses().smellM() * scale;
         Object best = pickScent(level, smell);
-        if (best != scentTarget) stuckWalks = 0;
+        if (best != scentTarget) { stuckWalks = 0; Object old = scentTarget; scentTarget = best; trace(level, old == null ? (best == null ? "pick:none" : "pick:new") : best == null ? "drop:scoring-none-in-reach" : "pick:rescored"); }
         scentTarget = best;
         eatUntil = 0;
         return best != null && walkTo(level);
@@ -289,14 +320,16 @@ public class PredatorEntity extends LandAnimal {
             return true;
         }
         Vec3 at = scentTarget instanceof CarcassEntity c ? c.position() : Vec3.atCenterOf((BlockPos) scentTarget);
-        if (scentTarget instanceof CarcassEntity c && (c.isRemoved())) { scentTarget = null; return false; }
+        if (scentTarget instanceof CarcassEntity c && (c.isRemoved())) { trace(level, "drop:carcass-removed"); scentTarget = null; return false; }
         if (scentTarget instanceof BlockPos bp && level.isLoaded(bp) && !level.getBlockState(bp).is(EcosystemRegistry.GUT_PILE.get())) {
+            trace(level, "drop:pile-block-gone");
             ScentPoints.remove(level, bp);
             scentTarget = null;
             return false;
         }
         double flat = Math.hypot(position().x - at.x, position().z - at.z);
         if (flat <= 2.5 && Math.abs(position().y - at.y) < 4) { // within feed reach: a pile on a bank or bar sits a block or two off our feet
+            trace(level, "reach:feed");
             eatUntil = level.getGameTime() + 20 * 40;
             getNavigation().stop();
             setMove(MOVE_FEED);
@@ -304,6 +337,7 @@ public class PredatorEntity extends LandAnimal {
             return true;
         }
         boolean far = position().distanceToSqr(at) > 40 * 40; // a scent trail far off is followed at a lope (the config's multiplier x trot), not a stroll
+        if (getNavigation().isDone() && flat < 30 && stuckWalks == 3) trace(level, "straight-line-close:engaged");
         if (getNavigation().isDone() && flat < 30 && ++stuckWalks > 3) { // the path ended short (a bank, a bar edge): close the last metres in a straight line
             getMoveControl().setWantedPosition(at.x, at.y, at.z, Gaits.input(species().trotMps()));
             setMove(MOVE_WALK);
@@ -327,6 +361,7 @@ public class PredatorEntity extends LandAnimal {
             else c.setRecord(new CarcassRecord(r.species(), r.sex(), r.cause(), r.deathMinute(), r.weightG() - eat, r.coat(), r.fresh()));
             driveState().hunger = Math.max(0, driveState().hunger - 0.6);
         }
+        trace(level, "drop:finished-eating");
         scentTarget = null;
         eatUntil = 0;
         nextSmellTick = level.getGameTime() + 200;
