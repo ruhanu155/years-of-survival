@@ -172,7 +172,11 @@ public final class WeatherSystem {
     // ---- the overlay on the valley hour ----------------------------------------------------------------
 
     /** Applies the storm of {@code minute} to the valley's hour: wind, gust, precipitation, visibility, cloud and pressure. */
+    /** GameTest hook: true makes every hour calm (no storm overlay); statistical tests pin it. */
+    public static volatile boolean calmOverride;
+
     public static WeatherModel.Hour overlay(ServerLevel level, long minute, WeatherModel.Hour h) {
+        if (calmOverride) return h;
         if (level.getServer() == null || !level.dimensionType().hasSkyLight()) return h;
         StormTable.Event e = eventAt(level, minute);
         if (e == null) return h;
