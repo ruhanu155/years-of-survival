@@ -3,10 +3,46 @@
   "weight_cap_kg": 25,
   "letter": "Every drop carries a letter from town.",
   "manifest": [
-    { "item": "yearofice:bandage", "count": 6 },
-    { "item": "yearofice:bear_spray", "count": 1 },
-    { "item": "yearofice:turnip_seed", "count": 40 },
-    { "item": "yearofice:cabbage_seed", "count": 20 },
-    { "item": "yearofice:barley_flour", "count": 5 }
+    {
+      "item": "yearofice:bandage",
+      "count": 6
+    },
+    {
+      "item": "yearofice:bear_spray",
+      "count": 1
+    },
+    {
+      "item": "yearofice:turnip_seed",
+      "count": 40
+    },
+    {
+      "item": "yearofice:cabbage_seed",
+      "count": 20
+    },
+    {
+      "item": "yearofice:barley_flour",
+      "count": 5
+    },
+    {
+      "item": "yearofice:radio_battery",
+      "count": 1
+    }
+  ],
+  "livestock": [
+    {
+      "entity": "yearofice:hen",
+      "count": 3,
+      "from_days": 365
+    },
+    {
+      "entity": "yearofice:goat",
+      "count": 2,
+      "from_days": 365
+    },
+    {
+      "entity": "yearofice:reindeer",
+      "count": 2,
+      "from_days": 1095
+    }
   ]
 }

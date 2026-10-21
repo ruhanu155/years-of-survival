@@ -69,6 +69,31 @@ public final class OutpostSystem {
         }
     }
 
+    /** The first time a player stands within 30 m of a worldgen outpost it posts one Messenger line (M9 J). Sites are deterministic, so no index is kept. */
+    @SubscribeEvent
+    public static void visit(net.neoforged.neoforge.event.tick.PlayerTickEvent.Post e) {
+        if (!(e.getEntity() instanceof net.minecraft.server.level.ServerPlayer p) || p.tickCount % 40 != 0 || WorldHooks.world(p.serverLevel()) == null) return;
+        ServerLevel level = p.serverLevel();
+        var seen = p.getPersistentData().getCompound(net.minecraft.world.entity.player.Player.PERSISTED_NBT_TAG);
+        var tag = seen.getCompound("yoi_outposts_seen");
+        for (String id : OutpostDef.IDS) {
+            OutpostDef def = OutpostDef.get(id);
+            int cells = Math.max(1, def.spacingM() / 16);
+            for (int dx = -1; dx <= 1; dx++) for (int dz = -1; dz <= 1; dz++) {
+                ChunkPos c = siteChunk(level.getSeed(), id, def, Math.floorDiv(p.chunkPosition().x, cells) + dx, Math.floorDiv(p.chunkPosition().z, cells) + dz);
+                double ddx = p.getX() - (c.getMinBlockX() + 3), ddz = p.getZ() - (c.getMinBlockZ() + 3);
+                String key = id + "@" + c.toLong();
+                if (ddx * ddx + ddz * ddz > 900 || tag.getBoolean(key) || !level.hasChunk(c.x, c.z)) continue;
+                if (!com.yearofice.worldgen.regions.Regions.allowsOutpost(c.getMinBlockX() + 3, c.getMinBlockZ() + 3, id)) continue;
+                tag.putBoolean(key, true);
+                seen.put("yoi_outposts_seen", tag);
+                p.getPersistentData().put(net.minecraft.world.entity.player.Player.PERSISTED_NBT_TAG, seen);
+                com.yearofice.api.hud.HudBus.get().post(p, com.yearofice.api.hud.HudLine.of(com.yearofice.api.hud.HudLineType.EVENT, "outpost_visit", "build.outpost",
+                        com.yearofice.api.hud.HudArg.text(def.name())));
+            }
+        }
+    }
+
     static void commands(RegisterCommandsEvent e) {
         var id = Commands.argument("id", StringArgumentType.word()).suggests((c, b) -> net.minecraft.commands.SharedSuggestionProvider.suggest(OutpostDef.IDS, b));
         e.getDispatcher().register(Commands.literal("yoi").requires(s -> s.hasPermission(2)).then(Commands.literal("raft").then(Commands.literal("spawn").executes(c -> {

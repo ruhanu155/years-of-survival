@@ -25,6 +25,7 @@ public final class OutpostGameTests {
         out.add(new TestFunction("m8_outposts", "yearofice:build/frost_marks_leaky_seam", WoodGameTests.PLOT, 100, 0, true, OutpostGameTests::frostMarks));
         out.add(new TestFunction("m8_outposts", "yearofice:build/hot_tent_warms", WoodGameTests.EMPTY, 20, 0, true, OutpostGameTests::hotTentWarms));
         out.add(new TestFunction("m8_outposts", "yearofice:build/raft_drifts_and_breaks", WoodGameTests.EMPTY, 60, 0, true, OutpostGameTests::raft));
+        out.add(new TestFunction("m8_outposts", "yearofice:build/fence_near_chunk_edge_reload", WoodGameTests.EMPTY, 1200, 0, true, OutpostGameTests::fenceChunkEdge));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
 
@@ -151,5 +152,38 @@ public final class OutpostGameTests {
         while (raft.step(new net.minecraft.world.phys.Vec3(1, 0, 0), 2.6, false, rng) && ticks < 1000) ticks++;
         h.assertTrue(ticks < 1000 && raft.isRemoved(), "rapids break it up (" + ticks + " ticks)");
         h.succeed();
+    }
+
+    /**
+     * build/fence_near_chunk_edge_reload (M9 J): a fence within 10 blocks of a chunk edge. Drifting it used to ask for the neighbour chunk from inside the
+     * chunk-load handler and hang the server when it was not in memory. Now build
+     * skips what is not loaded, the load handler only queues, and the queue drains on a later tick.
+     */
+    static void fenceChunkEdge(GameTestHelper h) {
+        var level = h.getLevel();
+        int cx = 9000, cz = 9000; // far from every other test and from the spawn
+        level.setChunkForced(cx, cz, true);
+        var chunk = level.getChunk(cx, cz);
+        BlockPos base = new BlockPos(cx * 16 + 13, 120, cz * 16 + 8); // 2 blocks from the east edge
+        for (int x = 0; x <= 2; x++) {
+            level.setBlock(base.east(x).below(), net.minecraft.world.level.block.Blocks.STONE.defaultBlockState(), 3);
+            for (int y = 0; y <= 4; y++) level.setBlock(base.east(x).above(y), net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), 3);
+        }
+        level.setBlock(base, net.minecraft.world.level.block.Blocks.OAK_FENCE.defaultBlockState(), 3);
+        level.setBlock(base.above(), net.minecraft.world.level.block.Blocks.OAK_FENCE.defaultBlockState(), 3);
+        var pack = new com.yearofice.sim.world.SnowPack.State();
+        pack.sweMm = 150; pack.densityKgM3 = 100;
+        long t0 = System.nanoTime();
+        int added;
+        try {
+            added = com.yearofice.world.snow.FenceDrift.build(level, base, net.minecraft.core.Direction.EAST, 150, pack, com.yearofice.world.season.SeasonConfig.snow());
+        } finally {
+            level.setChunkForced(cx, cz, false);
+        }
+        h.assertTrue((System.nanoTime() - t0) / 1e9 < 5, "building the drift never waits on a chunk load");
+        h.assertTrue(added > 0 && level.getBlockState(base.east()).is(com.yearofice.worldgen.block.WorldBlocks.SNOW_COVER.get()), "the loaded side still drifts");
+        com.yearofice.world.snow.FenceDrift.queue(level, (net.minecraft.world.level.chunk.LevelChunk) chunk);
+        h.assertTrue(com.yearofice.world.snow.FenceDrift.pending() > 0, "a chunk load only queues; the drift settles on a later tick");
+        h.succeedWhen(() -> h.assertTrue(com.yearofice.world.snow.FenceDrift.pending() == 0, "the queue drains"));
     }
 }

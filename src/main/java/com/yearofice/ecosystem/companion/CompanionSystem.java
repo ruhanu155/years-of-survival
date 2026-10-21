@@ -13,6 +13,7 @@ public final class CompanionSystem {
         CompanionRegistry.register(modBus);
         CompanionAttachments.register(modBus);
         NeoForge.EVENT_BUS.addListener(Companions::onPlayerTick);
+        NeoForge.EVENT_BUS.addListener(DenPups::onDay);
         NeoForge.EVENT_BUS.addListener(LeadFence::onTick);
         NeoForge.EVENT_BUS.addListener(LeadFence::onDeath);
         NeoForge.EVENT_BUS.addListener(CompanionCommands::register);

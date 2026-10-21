@@ -1,0 +1,28 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "homestead",
+  "station": "yearofice:workbench",
+  "ingredients": [
+    {
+      "item": "yearofice:plank",
+      "count": 4
+    },
+    {
+      "item": "yearofice:iron_bar",
+      "count": 2
+    },
+    {
+      "item": "yearofice:cord",
+      "count": 6
+    }
+  ],
+  "tool": "yearofice:hatchet",
+  "work_min": 180,
+  "effort": "medium",
+  "kcal": 750,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:radio_desk",
+    "count": 1
+  }
+}
