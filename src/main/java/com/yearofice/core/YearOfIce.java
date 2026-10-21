@@ -43,6 +43,7 @@ public final class YearOfIce {
         com.yearofice.build.BuildSystem.init(modBus);
         com.yearofice.plant.PlantSystem.init(modBus);
         com.yearofice.crop.CropSystem.init(modBus);
+        com.yearofice.world.season.SeasonSystem.init(modBus);
         com.yearofice.ecosystem.bird.BirdSystem.init(modBus);
         LOG.info("Year of Ice loading (preset {})", "from config");
     }

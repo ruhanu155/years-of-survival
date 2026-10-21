@@ -5591,8 +5591,8 @@
     {
       "asset_id": "tex_bone_grease",
       "files": [
-        "assets/yearofice/textures/item/bone_grease.png",
-        "assets/yearofice/models/item/bone_grease.json"
+        "assets/yearofice/models/item/bone_grease.json",
+        "assets/yearofice/textures/item/bone_grease.png"
       ],
       "source_type": "game_asset_collection",
       "title": "Ninja Adventure - Asset Pack (Items)",
@@ -5613,8 +5613,8 @@
     {
       "asset_id": "tex_crushed_bone",
       "files": [
-        "assets/yearofice/textures/item/crushed_bone.png",
-        "assets/yearofice/models/item/crushed_bone.json"
+        "assets/yearofice/models/item/crushed_bone.json",
+        "assets/yearofice/textures/item/crushed_bone.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/crushed_bone.json",
@@ -5625,8 +5625,8 @@
     {
       "asset_id": "tex_trophy_plaque",
       "files": [
-        "assets/yearofice/textures/item/trophy_plaque.png",
-        "assets/yearofice/models/item/trophy_plaque.json"
+        "assets/yearofice/models/item/trophy_plaque.json",
+        "assets/yearofice/textures/item/trophy_plaque.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/trophy_plaque.json",
@@ -5871,6 +5871,29 @@
       "recipe": "src/main/java/com/yearofice/env/weather/WeatherRegistry.java",
       "licence": "project",
       "generator_version": "hand 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_model_ice_blocks",
+      "files": [
+        "assets/yearofice/textures/block/skim_ice_all.png",
+        "assets/yearofice/models/block/skim_ice.json",
+        "assets/yearofice/textures/block/river_ice_thin_all.png",
+        "assets/yearofice/models/block/river_ice_thin.json",
+        "assets/yearofice/textures/block/river_ice_safe_all.png",
+        "assets/yearofice/models/block/river_ice_safe.json",
+        "assets/yearofice/textures/block/river_ice_rotten_all.png",
+        "assets/yearofice/models/block/river_ice_rotten.json",
+        "assets/yearofice/textures/block/ice_hole_all.png",
+        "assets/yearofice/models/block/ice_hole.json",
+        "assets/yearofice/blockstates/skim_ice.json",
+        "assets/yearofice/blockstates/ice_hole.json",
+        "assets/yearofice/blockstates/river_ice.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/ice_blocks.py",
+      "licence": "project",
+      "generator_version": "ice_blocks 1.0",
       "release_blocker": false
     }
   ]
