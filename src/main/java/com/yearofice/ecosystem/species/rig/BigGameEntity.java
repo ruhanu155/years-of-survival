@@ -31,7 +31,7 @@ public class BigGameEntity extends UngulateEntity {
     /** Herd-mates of the same kind within the spread distance, this animal excluded. */
     public List<BigGameEntity> herd() {
         return level().getEntitiesOfClass(BigGameEntity.class, new AABB(position(), position()).inflate(SPREAD_M),
-                b -> b != this && b.isAlive() && b.speciesId().equals(speciesId()) && b.distanceToSqr(this) <= SPREAD_M * SPREAD_M);
+                b -> b != this && b.isAlive() && java.util.Objects.equals(b.testGroup(), testGroup()) && b.speciesId().equals(speciesId()) && b.distanceToSqr(this) <= SPREAD_M * SPREAD_M);
     }
 
     @Override
