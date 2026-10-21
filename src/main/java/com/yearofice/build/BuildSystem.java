@@ -27,6 +27,10 @@ public final class BuildSystem {
         };
         modBus.addListener((RegisterDataMapTypesEvent e) -> e.register(BedData.MAP));
         modBus.addListener(BuildSystem::creativeTabs);
+        com.yearofice.build.pieces.PieceRegistry.register(modBus); // M8 A
+        modBus.addListener((RegisterDataMapTypesEvent e) -> { e.register(com.yearofice.api.build.HeatData.MAP); e.register(com.yearofice.api.build.PieceData.MAP); });
+        com.yearofice.build.pieces.PieceSystem.init();
+        modBus.addListener(com.yearofice.build.pieces.PieceSystem::creative);
         NeoForge.EVENT_BUS.addListener(BuildCommands::register);
     }
 
