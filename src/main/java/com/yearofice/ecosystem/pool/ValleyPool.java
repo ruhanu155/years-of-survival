@@ -369,6 +369,7 @@ public final class ValleyPool extends SavedData {
             if (SlotSpawner.spawnSpecies(level, a.species, g, "pool:" + a.id + "#" + m) != null) made++;
         }
         if (made == 0) return false;
+        if (Boolean.getBoolean("yearofice.trace.scent")) System.out.printf("[scent-trace] POOL instantiate %s at %.0f,%.0f target %.0f,%.0f dist-to-target %.0f t=%d%n", a.species, ex, ez, a.tx, a.tz, Math.hypot(a.tx - ex, a.tz - ez), level.getGameTime());
         a.live = made;
         a.x = ex;
         a.z = ez;
@@ -390,6 +391,7 @@ public final class ValleyPool extends SavedData {
         ValleyPool pool = of(level);
         Indiv a = byKey(pool, key);
         if (a == null || a.live <= 0) return;
+        if (Boolean.getBoolean("yearofice.trace.scent") && e != null) System.out.printf("[scent-trace] POOL onLeave %s at %.0f,%.0f target %.0f,%.0f dist-to-target %.0f t=%d%n", a.species, e.getX(), e.getZ(), a.tx, a.tz, Math.hypot(a.tx - e.getX(), a.tz - e.getZ()), level.getGameTime());
         a.live--;
         if (e != null) {
             a.x = e.getX();

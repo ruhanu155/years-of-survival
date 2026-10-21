@@ -47,7 +47,7 @@ public class SupplyParachute extends Entity {
     }
 
     /** Places the crate (a barrel, ponytail: no custom crate block) and fills it from {@code radio/supply_drop.json}. */
-    static void land(ServerLevel level, BlockPos at) {
+    public static void land(ServerLevel level, BlockPos at) {
         level.setBlock(at, Blocks.BARREL.defaultBlockState(), 3);
         if (level.getBlockEntity(at) instanceof Container c) {
             int slot = 0;
@@ -61,8 +61,18 @@ public class SupplyParachute extends Entity {
                 c.setItem(slot++, new ItemStack(item.get(), o.get("count").getAsInt()));
             }
         }
+        stock(level, at, com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().absDay() : 0);
         String line = RadioData.skeds().getAsJsonObject("drop").get("landed_line").getAsString();
         for (ServerPlayer p : level.players()) if (p.distanceToSqr(at.getX(), at.getY(), at.getZ()) < 600 * 600) p.sendSystemMessage(Component.literal(line));
+    }
+
+    /** Sets the manifest's livestock down beside the crate for the ones whose {@code from_days} has come on {@code day}. */
+    public static void stock(ServerLevel level, BlockPos at, long day) {
+        var stock = RadioData.manifest().getAsJsonArray("livestock");
+        if (stock != null) for (var e : stock) {
+            JsonObject o = e.getAsJsonObject();
+            if (day >= o.get("from_days").getAsLong()) com.yearofice.ecosystem.livestock.LivestockDrop.deliver(level, at, o.get("entity").getAsString(), o.get("count").getAsInt());
+        }
     }
 
     @Override

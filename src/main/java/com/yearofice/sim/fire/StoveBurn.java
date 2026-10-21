@@ -18,6 +18,11 @@ public final class StoveBurn {
     private double smokePct;
     private double burnedArmloads;
     private double hotMinutes;
+    /** Game minutes fired in the last day, as a decaying sum (a day of continuous firing reads 1440). */
+    private double firedMin24, observedMin24;
+
+    /** Fired minutes a day that read as a full load before any history exists: Warm rooms' "2 armloads a day" is 8 fired hours. */
+    public static final double ROOM_TAU_MIN = 480;
 
     public StoveBurn(Stove.Kind kind) { this.kind = kind; }
 
@@ -31,6 +36,35 @@ public final class StoveBurn {
     public double smokePct() { return smokePct; }
     public void smokePct(double s) { smokePct = Math.max(0, Math.min(100, s)); }
     public double burnedArmloads() { return burnedArmloads; }
+    public double firedMin24() { return firedMin24; }
+    public void firedMin24(double m) { firedMin24 = Math.max(0, Math.min(1440, m)); }
+
+    public double observedMin24() { return observedMin24; }
+    public void observedMin24(double m) { observedMin24 = Math.max(0, Math.min(1440, m)); }
+
+    /** Game minutes passed with the stove out: the day's history decays, the fired share falls. */
+    public void idle(double minutes) { age(minutes, 0); }
+
+    private void age(double minutes, double fired) {
+        double keep = Math.max(0, 1 - minutes / 1440.0);
+        firedMin24 = Math.min(1440, firedMin24 * keep + fired);
+        observedMin24 = Math.min(1440, observedMin24 * keep + minutes);
+    }
+
+    /**
+     * Duty cycle (Warm rooms: "2 armloads a day" is 8 fired hours of 24), from the fuel state: the share of the last day the
+     * stove was fired. A stove with less than a day of history leans on its queued fuel over 11 h for the rest, so a
+     * fresh light reads the load it carries and settles to its true share as the day fills in; a stove fed all day reads 1.0. The room takes
+     * the output times this (its 11 h time constant averages the swings).
+     */
+    public double duty(double draft) {
+        double w = Math.min(1.0, observedMin24 / 1440.0);
+        double share = observedMin24 <= 0 ? 1.0 : Math.min(1.0, firedMin24 / observedMin24);
+        // no history yet: the fuel in the box is the day it is about to fire, against a 480 min day
+        double queued = 0;
+        for (Armload a : queue) queued += a.amount() * Stove.minutesPerArmload(kind, setting, draft, a.wood);
+        return w * share + (1 - w) * Math.min(1.0, queued / ROOM_TAU_MIN);
+    }
 
     public double armloads() {
         double a = 0;
@@ -103,6 +137,7 @@ public final class StoveBurn {
         if (queue.isEmpty() && lit) lit = false;
         if (fire) { lit = false; creosote = 0; }
         burnedArmloads += burned;
+        age(minutes, used);
         boolean smoky = used > 0 && !flued;
         smokePct(smokePct + (smoky ? Stove.SMOKE_PCT_PER_MIN * used : 0) - (flued || used <= 0 ? 20 * minutes : 0));
         return new Result(used, burned, fire);

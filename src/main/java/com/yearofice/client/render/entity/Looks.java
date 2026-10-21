@@ -17,7 +17,7 @@ final class Looks {
 
     static String geo(String species) {
         if (SpeciesArt.fish(species)) return com.yearofice.hunt.fishing.FishEntity.isSchool(species) ? "rig_fish_school" : "rig_fish_resident";
-        if (SpeciesArt.GROUSE.contains(species)) return "rig_grouse";
+        if (SpeciesArt.GROUSE.contains(SpeciesArt.artOf(species))) return "rig_grouse"; // an aliased grouse (the M9 hen) draws on the grouse rig too
         return SpeciesArt.KNOWN.contains(species) ? species : SpeciesArt.artOf(species);
     }
 

@@ -273,6 +273,7 @@ public abstract class YoiAnimal extends PathfinderMob implements GeoEntity {
             flush = Awareness.flushDistance(b.flushM(), p, ThreatSources.approachCos(threat, position(), t), false);
         }
         AnimalState next = PreyRules.next(state, b, a, dist, flush, state == AnimalState.FLEE && fleeFinished(), t < hideUntilTick);
+        if (next != state && state != AnimalState.FLEE && (next == AnimalState.ALERT || next == AnimalState.FLEE) && holdsCourse(dist)) next = AnimalState.ROUTINE;
         if (next == state) return;
         if (state == AnimalState.FLEE) {
             int minutes = b.hideMinMin() + random.nextInt(b.hideMaxMin() - b.hideMinMin() + 1);
@@ -373,6 +374,9 @@ public abstract class YoiAnimal extends PathfinderMob implements GeoEntity {
     protected boolean denned(ServerLevel level) {
         return pinned == null && species().denning() && Dormancy.denned(speciesId(), seasonDayOverride != null ? seasonDayOverride : Calendar.dayOfYearOfMinute(SliceClock.minute(level)));
     }
+
+    /** True when a far threat (a player's scent carries 1000 m for a bear) must not stop or scare this animal off its trail: M6 bear gate. */
+    protected boolean holdsCourse(double threatDistM) { return false; }
 
     /** True while a hungry animal is following a scent: bed and water acts do not pull it off the trail (M6 lane G). */
     protected boolean scentLocked(ServerLevel level) { return false; }

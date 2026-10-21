@@ -218,6 +218,15 @@ public final class ValleyWorld {
     /** The start-site search that made this world: every attempt's per-check report ({@code /yoi seed}). Null for test builds. */
     public StartSite.Outcome startOutcome() { return startOutcome; }
 
+    private volatile Ranges.Layers life;
+
+    /** Home ranges, dens and trails: the generator is deterministic, so they are rebuilt once on first use (not saved). */
+    public Ranges.Layers life() {
+        Ranges.Layers l = life;
+        if (l == null) life = l = Ranges.standIn(this, StartSiteParams.load().life());
+        return l;
+    }
+
     /** The winning site, or null if this world was not built through the search. */
     public StartSite.Site start() { return startOutcome == null ? null : startOutcome.site(); }
 

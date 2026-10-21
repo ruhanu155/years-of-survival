@@ -2,7 +2,8 @@
   "replace": false,
   "values": {
     "yearofice:wall_log": {
-      "u_w_m2k": 0.9
+      "u_w_m2k": 0.5,
+      "seam_m": 3.3
     },
     "yearofice:wall_plank": {
       "u_w_m2k": 1.5
@@ -17,7 +18,7 @@
       "u_w_m2k": 2.2
     },
     "yearofice:roof_pole_sod": {
-      "u_w_m2k": 0.5
+      "u_w_m2k": 0.4
     },
     "yearofice:roof_plank": {
       "u_w_m2k": 1.6
@@ -26,7 +27,7 @@
       "u_w_m2k": 1.2
     },
     "yearofice:slab_floor": {
-      "u_w_m2k": 0.8
+      "u_w_m2k": 0.45
     },
     "yearofice:log_deck": {
       "u_w_m2k": 1.0

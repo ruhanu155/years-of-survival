@@ -36,6 +36,7 @@ public final class OutpostSystem {
         NeoForge.EVENT_BUS.register(OutpostSystem.class);
         NeoForge.EVENT_BUS.register(com.yearofice.world.snow.FenceDrift.class);
         NeoForge.EVENT_BUS.addListener(OutpostSystem::commands);
+        OutpostSites.init();
     }
 
     /** The chunk a cell's outpost of this kind stands in, as a hash of (seed, cell). */
@@ -63,9 +64,40 @@ public final class OutpostSystem {
             if (!level.getFluidState(origin.below()).isEmpty() && !def.fit().equals("shore")) continue;
             long seed = level.getSeed() ^ c.toLong();
             Outposts.stamp(level, origin, def);
+            OutpostSites.record(level, origin, id);
             double years = (def.minAge() + (def.maxAge() - def.minAge()) * com.yearofice.sim.build.OutpostDecay.roll(seed, 1, 2, 3)) * OutpostConfig.get("outpost_age_scale");
             Outposts.age(level, origin, def, years, seed);
             com.yearofice.story.keepsake.OutpostKeepsakes.place(level, origin, id);
+        }
+    }
+
+    /** The first time a player stands within 30 m of a worldgen outpost it posts one Messenger line (M9 J). Sites are deterministic, so no index is kept. */
+    @SubscribeEvent
+    public static void visit(net.neoforged.neoforge.event.tick.PlayerTickEvent.Post e) {
+        if (!(e.getEntity() instanceof net.minecraft.server.level.ServerPlayer p) || p.tickCount % 40 != 0 || WorldHooks.world(p.serverLevel()) == null) return;
+        scan(p);
+    }
+
+    /** One visit check for {@code p} (the tick handler's body; public for tests, which have no valley generator). */
+    public static void scan(net.minecraft.server.level.ServerPlayer p) {
+        ServerLevel level = p.serverLevel();
+        var seen = p.getPersistentData().getCompound(net.minecraft.world.entity.player.Player.PERSISTED_NBT_TAG);
+        var tag = seen.getCompound("yoi_outposts_seen");
+        for (String id : OutpostDef.IDS) {
+            OutpostDef def = OutpostDef.get(id);
+            int cells = Math.max(1, def.spacingM() / 16);
+            for (int dx = -1; dx <= 1; dx++) for (int dz = -1; dz <= 1; dz++) {
+                ChunkPos c = siteChunk(level.getSeed(), id, def, Math.floorDiv(p.chunkPosition().x, cells) + dx, Math.floorDiv(p.chunkPosition().z, cells) + dz);
+                double ddx = p.getX() - (c.getMinBlockX() + 3), ddz = p.getZ() - (c.getMinBlockZ() + 3);
+                String key = id + "@" + c.toLong();
+                if (ddx * ddx + ddz * ddz > 900 || tag.getBoolean(key) || !level.hasChunk(c.x, c.z)) continue;
+                if (!com.yearofice.worldgen.regions.Regions.allowsOutpost(c.getMinBlockX() + 3, c.getMinBlockZ() + 3, id)) continue;
+                tag.putBoolean(key, true);
+                seen.put("yoi_outposts_seen", tag);
+                p.getPersistentData().put(net.minecraft.world.entity.player.Player.PERSISTED_NBT_TAG, seen);
+                com.yearofice.api.hud.HudBus.get().post(p, com.yearofice.api.hud.HudLine.of(com.yearofice.api.hud.HudLineType.EVENT, "outpost_visit", "build.outpost",
+                        com.yearofice.api.hud.HudArg.text(def.name())));
+            }
         }
     }
 

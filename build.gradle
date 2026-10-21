@@ -80,6 +80,7 @@ test {
     maxHeapSize = '1024m'
     // Opt-in 50-seed start-site run: ./gradlew test -Pstartsite.full --tests '*StartSiteTest*'
     if (project.hasProperty('startsite.full')) systemProperty 'startsite.full', 'true'
+    if (project.hasProperty('startsite.report')) systemProperty 'startsite.report', 'true'
 }
 // unitTest() moves the test working directory under build/; tests read studio/, src/ and docs/ from the project root.
 afterEvaluate { tasks.named('test') { workingDir = projectDir } }

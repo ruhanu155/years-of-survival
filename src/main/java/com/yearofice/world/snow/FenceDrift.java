@@ -54,13 +54,14 @@ public final class FenceDrift {
      */
     public static int build(ServerLevel l, BlockPos fenceBase, Direction downwind, double leeDepthCm, SnowPack.State pack, SnowTuning t) {
         int h = 0;
-        while (l.getBlockState(fenceBase.above(h)).is(FENCES)) h++;
+        while (l.isLoaded(fenceBase.above(h)) && l.getBlockState(fenceBase.above(h)).is(FENCES)) h++;
         if (h == 0) return 0;
         double capLayers = Math.min(leeDepthCm * boost() / t.layerCm(), h * 8.0);
         int added = 0;
         for (int d = 1; d <= reach(); d++) {
             int want = layersAt(capLayers, d);
             BlockPos col = fenceBase.relative(downwind, d);
+            if (!l.isLoaded(col)) continue; // never ask for a chunk: a blocking load from a chunk-load handler hangs the server
             if (!l.getBlockState(col.below()).isFaceSturdy(l, col.below(), Direction.UP)) continue;
             for (int k = 0; k * 8 < want; k++) {
                 BlockPos p = col.above(k);
@@ -104,9 +105,38 @@ public final class FenceDrift {
         return added;
     }
 
+    /** Chunks that loaded and still wait to settle: chunk to the tick it queued. Drained on the server thread, never inside the load. */
+    private static final java.util.Map<Long, Object[]> PENDING = new java.util.LinkedHashMap<>();
+
+    /** Queues a loaded chunk for the next tick; settle runs once its neighbours are in memory (or after 100 ticks). */
+    public static void queue(ServerLevel l, LevelChunk c) {
+        PENDING.putIfAbsent(c.getPos().toLong(), new Object[] {(long) l.getServer().getTickCount(), l.dimension()});
+    }
+
+    public static int pending() { return PENDING.size(); }
+
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void onChunkLoad(ChunkEvent.Load e) {
-        if (e.getLevel() instanceof ServerLevel l && e.getChunk() instanceof LevelChunk c && WorldHooks.world(l) != null && !e.isNewChunk()) settle(l, c);
+        if (e.getLevel() instanceof ServerLevel l && e.getChunk() instanceof LevelChunk c && WorldHooks.world(l) != null && !e.isNewChunk()) queue(l, c);
+    }
+
+    @SubscribeEvent
+    public static void drain(ServerTickEvent.Post e) {
+        if (PENDING.isEmpty()) return;
+        var it = PENDING.entrySet().iterator();
+        int budget = 4;
+        while (it.hasNext() && budget > 0) {
+            var en = it.next();
+            ChunkPos cp = new ChunkPos(en.getKey());
+            ServerLevel l = e.getServer().getLevel((net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>) en.getValue()[1]);
+            if (l == null) { it.remove(); continue; }
+            if (!(l.getChunkSource().getChunkNow(cp.x, cp.z) instanceof LevelChunk c)) { it.remove(); continue; }
+            boolean ready = l.hasChunk(cp.x - 1, cp.z) && l.hasChunk(cp.x + 1, cp.z) && l.hasChunk(cp.x, cp.z - 1) && l.hasChunk(cp.x, cp.z + 1);
+            if (!ready && e.getServer().getTickCount() - (long) en.getValue()[0] < 100) continue;
+            it.remove();
+            budget--;
+            if (WorldHooks.world(l) != null) settle(l, c);
+        }
     }
 
     @SubscribeEvent

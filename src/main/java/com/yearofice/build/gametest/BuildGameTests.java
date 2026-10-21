@@ -81,7 +81,60 @@ public final class BuildGameTests {
     public static Collection<TestFunction> buildTests() {
         List<TestFunction> out = new ArrayList<>();
         out.add(new TestFunction("m2_5", "yearofice:building/bough_bed_sleep", TEMPLATE, 400, 0, true, BuildGameTests::boughBedSleep));
+        out.add(new TestFunction("m8_gates", "yearofice:build/bushcraft_gate_opens_on_first_fire", TEMPLATE, 100, 0, true, BuildGameTests::bushcraftGate));
+        out.add(new TestFunction("m8_gates", "yearofice:build/iron_gate_opens_at_forge", TEMPLATE, 100, 0, true, BuildGameTests::ironGate));
         return com.yearofice.gametest.TestFilter.apply(out);
+    }
+
+    /**
+     * Crafting and building in depth › Tiers: the first fire the player lights, by match, opens Bushcraft. The bot lays a
+     * ring (tinder, kindling, logs) through the use key and strikes a match; it stands outside the fire's reach and is not
+     * in the player list, so only the actor path of the fire event can open the gate. No /yoi command.
+     */
+    static void bushcraftGate(GameTestHelper h) {
+        ServerPlayer p = bot(h, "bushcraft-gate-bot");
+        com.yearofice.api.build.GateService g = com.yearofice.api.build.GateService.get();
+        h.assertTrue(!g.isOpen(p, com.yearofice.sim.build.Tier.BUSHCRAFT), "Bushcraft starts shut");
+        h.setBlock(RING, FireRegistry.FIRE_RING.get());
+        FireRingBlockEntity ring = h.getBlockEntity(RING);
+        ring.setWeatherOverride(FireWeather.CALM);
+        // a match on a bare ring lights nothing and opens nothing
+        p.getInventory().selected = 8;
+        p.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(item("match"), 3));
+        h.useBlock(RING, p);
+        h.assertTrue(!g.isOpen(p, com.yearofice.sim.build.Tier.BUSHCRAFT), "a bare ring does not open it");
+        for (ItemStack s : List.of(new ItemStack(item("tinder_bundle")), new ItemStack(item("kindling"), 2), new ItemStack(Items.SPRUCE_LOG, 2))) {
+            p.setItemInHand(InteractionHand.MAIN_HAND, s);
+            for (int i = 0; i < s.getCount(); i++) h.useBlock(RING, p);
+        }
+        h.assertTrue(ring.strikeMatch(p, new ItemStack(item("match"), 3), 0.0).ok(), "the match took");
+        ring.puff();
+        ring.puff();
+        h.assertTrue(ring.fire().state().flaming(), "the fire caught: " + ring.fire().state());
+        h.assertTrue(g.isOpen(p, com.yearofice.sim.build.Tier.BUSHCRAFT), "the first fire the player lit opens Bushcraft");
+        h.assertTrue(!g.isOpen(p, com.yearofice.sim.build.Tier.IRON), "and only Bushcraft");
+        h.setBlock(RING, Blocks.AIR);
+        h.succeed();
+    }
+
+    /** Iron opens at the first iron in hand (a bar counts) or the first forge or bloomery the player builds or works. */
+    static void ironGate(GameTestHelper h) {
+        com.yearofice.api.build.GateService g = com.yearofice.api.build.GateService.get();
+        com.yearofice.sim.build.Tier iron = com.yearofice.sim.build.Tier.IRON;
+        ServerPlayer smith = bot(h, "iron-gate-bot-forge");
+        h.assertTrue(!g.isOpen(smith, iron), "Iron starts shut");
+        h.setBlock(STAND, com.yearofice.build.metal.MetalRegistry.FORGE.get());
+        smith.getInventory().selected = 8;
+        smith.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+        BlockPos forge = h.absolutePos(STAND);
+        smith.gameMode.useItemOn(smith, h.getLevel(), smith.getMainHandItem(), InteractionHand.MAIN_HAND, new BlockHitResult(Vec3.atCenterOf(forge), Direction.UP, forge, false));
+        h.assertTrue(g.isOpen(smith, iron), "working a forge opens Iron");
+        h.setBlock(STAND, Blocks.AIR);
+        ServerPlayer bearer = bot(h, "iron-gate-bot-bar");
+        bearer.getInventory().add(new ItemStack(com.yearofice.build.metal.MetalRegistry.IRON_BAR.get()));
+        com.yearofice.build.craft.CraftSystem.scan(bearer);
+        h.assertTrue(g.isOpen(bearer, iron), "a bar of iron in the pack opens Iron");
+        h.succeed();
     }
 
     static ServerPlayer bot(GameTestHelper h, String name) {

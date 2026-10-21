@@ -87,6 +87,7 @@ public final class LivestockGameTests {
         out.add(test("yearofice:forage/coppice_shoots", 60, LivestockGameTests::coppiceShoots));
         out.add(test("yearofice:forage/browse_exclosure", 60, LivestockGameTests::browseExclosure));
         out.add(test("yearofice:crop/stovehouse", 100, LivestockGameTests::stovehouse));
+        out.add(test("yearofice:garden/stovehouse_germinates_in_winter", 100, LivestockGameTests::stovehouseGerminates));
         return TestFilter.apply(out);
     }
 
@@ -553,6 +554,38 @@ public final class LivestockGameTests {
             // Open ground is not a stovehouse.
             h.assertTrue(StovehouseAdapter.inside(l, h.absolutePos(new BlockPos(2, UP + 8, 2)), today, -30) == null, "the open air is no stovehouse");
             h.assertTrue(StovehouseAdapter.inside(l, crop, today - 5, -30) == null, "a day long past has no room to ask");
+            h.succeed();
+        } finally {
+            EnvService.get().setOverride(l, null);
+            Rooms.clearStubs(l);
+        }
+    }
+
+    /** garden/stovehouse_germinates_in_winter (M9 J): at -30 C outside, a bed in a heated room germinates; one in the open does not. */
+    static void stovehouseGerminates(GameTestHelper h) {
+        ServerLevel l = h.getLevel();
+        EnvService.get().setOverride(l, new EnvService.WeatherOverride(-30, 3, Precip.NONE, 0));
+        try {
+            var wall = PieceRegistry.WALL_LOG.get();
+            for (int x = 0; x <= 5; x++) for (int z = 0; z <= 5; z++) {
+                h.setBlock(new BlockPos(x, UP, z), PieceRegistry.SLAB_FLOOR.get());
+                h.setBlock(new BlockPos(x, UP + 3, z), PieceRegistry.ROOF_POLE_SOD.get());
+                boolean ring = x == 0 || x == 5 || z == 0 || z == 5;
+                for (int y = 1; y <= 2; y++) h.setBlock(new BlockPos(x, UP + y, z), ring ? wall : Blocks.AIR);
+            }
+            h.setBlock(new BlockPos(2, UP + 1, 0), PieceRegistry.DOOR_FRAME.get());
+            BlockPos inside = h.absolutePos(new BlockPos(2, UP, 2)), open = h.absolutePos(new BlockPos(2, UP + 8, 2));
+            var bed = com.yearofice.crop.CropRegistry.GARDEN_BED.get().defaultBlockState();
+            l.setBlock(inside, bed, 3);
+            l.setBlock(open, bed, 3);
+            Rooms.stubSource(l, inside.above(), 4000);
+            var spec = com.yearofice.crop.CropData.get("yearofice:barley");
+            h.assertTrue(spec != null, "barley is a crop");
+            double warm = com.yearofice.crop.Garden.soilC(l, inside), cold = com.yearofice.crop.Garden.soilC(l, open);
+            h.assertTrue(warm > 5, "the heated room's soil is warm: " + warm);
+            h.assertTrue(cold < -20, "the open bed follows the outdoor air: " + cold);
+            double in = com.yearofice.crop.Garden.dryRun(l, inside, spec, 4000, Double.NaN), out = com.yearofice.crop.Garden.dryRun(l, open, spec, 4000, Double.NaN);
+            h.assertTrue(in > 0.3 && in > out * 1.8, "seed germinates better in the stovehouse in winter: " + in + " vs " + out + " outside");
             h.succeed();
         } finally {
             EnvService.get().setOverride(l, null);

@@ -80,6 +80,8 @@ public final class DamageRouter {
      * goes by {@code body/damage_routes.json}: a source id, {@code #systemic} (collapse), or {@code #none}.
      */
     public static void route(ServerPlayer p, DamageSource src, float amount) {
+        // A teleport into a chunk that is not in memory yet drops the player through air that is not there: not a fall.
+        if ((src.is(DamageTypes.FALL) || src.is(DamageTypes.FELL_OUT_OF_WORLD)) && (p.isInvulnerable() || !p.level().hasChunkAt(p.blockPosition()))) return;
         String key = key(src);
         String target = InjuryData.route(key);
         if (src.is(DamageTypes.FALL)) {
@@ -133,6 +135,7 @@ public final class DamageRouter {
         if (!(e.getEntity() instanceof ServerPlayer p)) return;
         e.setCanceled(true);
         p.setHealth(p.getMaxHealth());
+        if (e.getSource().is(DamageTypes.FELL_OUT_OF_WORLD) && (p.isInvulnerable() || !p.level().hasChunkAt(p.blockPosition()))) return;
         SosFlow.trigger(p, e.getSource().is(DamageTypes.FELL_OUT_OF_WORLD) ? SosFlow.Cause.FELL : SosFlow.Cause.CONDITION);
     }
 }

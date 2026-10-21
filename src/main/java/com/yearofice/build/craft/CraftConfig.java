@@ -21,7 +21,8 @@ public final class CraftConfig {
             .dial("box_lift_s", "Real seconds Shift + use is held to lift a box (A7).", 1, 0.1, 10)
             .dial("box_chip_s", "Real seconds a frozen-down box takes to chip free with a hatchet or knife (A7).", 2, 0.1, 20)
             .dial("box_frozen_h", "Game hours a box stands on frozen ground in air below 0 C before it freezes down (A7).", 24, 0, 1000)
-            .dial("box_reach_m", "How far from a box you may stand to lift or set it down, in blocks.", 4.5, 1, 8);
+            .dial("box_reach_m", "How far from a box you may stand to lift or set it down, in blocks.", 4.5, 1, 8)
+            .dial("braided_flint_mult", "Flint on gravel in braided-flat valleys, times the base 1 % (Blueprint: twice the usual density).", 2.5, 2, 1.5, 1, 4);
 
     public static void define(ModConfigSpec.Builder b) {
         TABLE.define(b, "Crafting: stations, recipes, tool wear and lifting a box (Crafting and building in depth).");

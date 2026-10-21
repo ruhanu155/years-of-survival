@@ -80,7 +80,7 @@ public final class Rooms implements RoomService {
         boolean piece = s.is(PieceRegistry.WALL) || s.is(PieceRegistry.ROOF) || s.is(PieceRegistry.FLOOR) || s.is(PieceRegistry.DOOR);
         if (!piece && s.getCollisionShape(l, pos).isEmpty()) return RoomScan.Cell.AIR;
         HeatData h = b.builtInRegistryHolder().getData(HeatData.MAP);
-        return RoomScan.Cell.solid(h != null ? h.uWPerM2K() : HeatData.DEFAULT_SOLID_U);
+        return h != null ? RoomScan.Cell.solid(h.uWPerM2K(), h.seamM()) : RoomScan.Cell.solid(HeatData.DEFAULT_SOLID_U);
     }
 
     @Nullable RoomsData.Entry entry(ServerLevel l, BlockPos pos) {
@@ -134,8 +134,9 @@ public final class Rooms implements RoomService {
         return com.yearofice.api.fire.HeatSources.wattsIn(l, c -> e.byCellHas(c.getX(), c.getY(), c.getZ()) || sourceOnWall(e, c));
     }
 
-    private static double firedW(ServerLevel l, RoomsData.Entry e) {
-        return com.yearofice.api.fire.HeatSources.firedIn(l, c -> e.byCellHas(c.getX(), c.getY(), c.getZ()) || sourceOnWall(e, c));
+    /** Mean watts over a day: stoves at their duty cycle (Warm rooms: the room's 11 h time constant averages the firing). */
+    private static double meanW(ServerLevel l, RoomsData.Entry e) {
+        return com.yearofice.api.fire.HeatSources.averageIn(l, c -> e.byCellHas(c.getX(), c.getY(), c.getZ()) || sourceOnWall(e, c));
     }
 
     private static Room balance(ServerLevel l, RoomsData.Entry e) {
@@ -147,7 +148,7 @@ public final class Rooms implements RoomService {
         List<Heat.Face> faces = new ArrayList<>();
         for (Heat.Face f : e.scan.faces()) faces.add(f.part() == Heat.Part.ROOF ? new Heat.Face(f.part(), f.areaM2(), f.u(), snowM) : f);
         double w = sourceW(l, e);
-        Heat.Balance b = Heat.solve(faces, e.scan.leaks().size(), 0, w, firedW(l, e), PiecesConfig.chimneyDraw(), out, ground, wind);
+        Heat.Balance b = Heat.solve(faces, e.scan.leaks().size(), e.scan.seamM() * (1 - PiecesConfig.chinkedShare()), 0, meanW(l, e), out, ground, wind);
         List<BlockPos> leaks = new ArrayList<>();
         for (long c : e.scan.leaks()) leaks.add(new BlockPos(RoomScan.ux(c), RoomScan.uy(c), RoomScan.uz(c)));
         int walls = 0, snow = 0, flames = 0;

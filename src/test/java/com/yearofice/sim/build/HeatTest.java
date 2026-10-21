@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.yearofice.sim.fire.Stove;
+import com.yearofice.sim.fire.StoveBurn;
+import com.yearofice.sim.fire.Wood;
 import java.util.List;
 import java.util.function.LongFunction;
 import org.junit.jupiter.api.Test;
@@ -61,13 +64,42 @@ class HeatTest {
         assertTrue(Stamp.stampMin(pieces, 0.05, 5) < 0.1 * first);
     }
 
-    /** The proxy's 30 m3 cabin (about 72 W/C) on an 8 kW STEADY tin stove at -30 C reads +25..+35 C once the chimney draw counts; it read +86 C without. */
+    /**
+     * Warm rooms, "the first cabin, worked through": 30 m3 of chinked log walls (U 0.5, 33 m2), a sod roof (0.4, 15 m2) and a
+     * plank floor, on 2 armloads a day in a stove that keeps 85 % (the barrel stove) is 20 kWh a day, 836 W on average over
+     * the day (8 fired hours of 24), and settles +25..+35 C above a -30 C day. Chinked seams add nothing; unchinked, the same
+     * walls leak 3.3 m of seam a block at 0.4 W/C per metre and the 2 armloads reach about half that.
+     */
     @Test
-    void steadyTinStoveCabinReadsTwentyFiveToThirtyFive() {
-        var faces = List.of(new Heat.Face(Heat.Part.WALL, 66, 0.9, 0), new Heat.Face(Heat.Part.FLOOR, 10, 0.8, 0));
-        double without = Heat.solve(faces, 0, 0, 8091, -30, -5, 0).insideC();
-        double with = Heat.solve(faces, 0, 0, 8091, 8091, -30, -5, 0).insideC();
-        assertTrue(without > 60, "no draw: " + without);
-        assertTrue(with >= 25 && with <= 35, "with the draw: " + with);
+    void chinkedCabinOnTwoArmloadsADayReadsTwentyFiveToThirtyFive() {
+        var faces = List.of(new Heat.Face(Heat.Part.WALL, 33, 0.5, 0), new Heat.Face(Heat.Part.ROOF, 15, 0.4, 0), new Heat.Face(Heat.Part.FLOOR, 15, 0.45, 0));
+        double meanW = 2 * 11.8 * 1000 * 0.85 / 24;
+        double chinked = Heat.solve(faces, 0, 0, meanW, -30, -5, 0).insideC() + 30;
+        double drafty = Heat.solve(faces, 0, 33 * 3.3, meanW, -30, -5, 0).insideC() + 30;
+        assertTrue(chinked >= 25 && chinked <= 35, "chinked cabin is +" + chinked + " C above outside");
+        assertTrue(drafty < chinked * 0.6, "drafty cabin is +" + drafty + " C");
+    }
+
+    /** Hot is three times the burn and half of it goes up the chimney: 1.5 x Steady's heat, not 3 x. */
+    @Test
+    void hotStoveGivesOneAndAHalfTimesSteadyHeat() {
+        var kind = new Stove.Kind("barrel_stove", 150, 0.7, 3, 1.5, 3.5);
+        double steady = Stove.outputW(kind, com.yearofice.sim.env.FireSetting.STEADY, 1.0, Wood.BIRCH, 15);
+        double hot = Stove.outputW(kind, com.yearofice.sim.env.FireSetting.HOT, 1.0, Wood.BIRCH, 15);
+        assertEquals(1.5, hot / steady, 1e-9);
+    }
+
+    /** Duty from the fuel state: fresh light 1, 8 fired hours of 24 is a third, a day of firing 1. */
+    @Test
+    void dutyCycleFromTheFuelState() {
+        var kind = new Stove.Kind("barrel_stove", 240, 0.85, 3, 1.5, 3.5);
+        var b = new StoveBurn(kind);
+        b.load(Wood.BIRCH, 15, 2.0);
+        assertEquals(2 * 240 * Wood.BIRCH.burnFactor / 480.0 > 1 ? 1.0 : 2 * 240 * Wood.BIRCH.burnFactor / 480.0, b.duty(1.0), 1e-9); // fresh: queued fuel over 8 h
+        b.firedMin24(480);
+        b.observedMin24(1440);
+        assertEquals(1.0 / 3, b.duty(1.0), 1e-9); // 8 fired hours of the last 24
+        b.firedMin24(1440);
+        assertEquals(1.0, b.duty(1.0), 1e-9);
     }
 }

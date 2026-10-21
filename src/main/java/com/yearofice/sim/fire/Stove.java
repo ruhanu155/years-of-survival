@@ -18,6 +18,8 @@ public final class Stove {
     public static final double CHIMNEY_FIRE_PER_H = 0.03;
     /** Creosote per game hour burning on Low. */
     public static final double LOW_HOUR_CREOSOTE = 3;
+    /** Share of a Hot fire's heat that stays in the room (the rest goes up the chimney). */
+    public static final double HOT_ROOM_SHARE = 0.5;
     /** Draft of a stove with no chimney at all: it burns, but the smoke is in the room. */
     public static final double UNFLUED_DRAFT = 0.3;
     /** Smoke the room gains per game minute from an unflued fire, percent (Smoke indoors: 10% a game minute). */
@@ -46,7 +48,9 @@ public final class Stove {
     /** Heat to the room in watts while burning this wood at this moisture. */
     public static double outputW(Kind k, FireSetting s, double draft, Wood w, int moisturePct) {
         double perH = FireRules.KWH_PER_ARMLOAD * 1000.0 / (minutesPerArmload(k, s, draft, w) / 60.0);
-        return perH * k.efficiency() * w.heatFactor * FireRules.moistureHeat(moisturePct);
+        // Warm rooms › Heat sources: Hot burns three times as fast and loses half of it up the chimney
+        double hotLoss = s == FireSetting.HOT ? HOT_ROOM_SHARE : 1.0;
+        return perH * k.efficiency() * w.heatFactor * FireRules.moistureHeat(moisturePct) * hotLoss;
     }
 
     /**
