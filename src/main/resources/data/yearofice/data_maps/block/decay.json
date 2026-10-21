@@ -1,0 +1,50 @@
+{
+ "replace": false,
+ "values": {
+  "minecraft:spruce_planks": {
+   "rot_pct_per_year_sheltered": 2.0,
+   "rot_pct_per_year_exposed": 5.0,
+   "becomes": "minecraft:air"
+  },
+  "minecraft:spruce_slab": {
+   "rot_pct_per_year_sheltered": 3.0,
+   "rot_pct_per_year_exposed": 8.0,
+   "becomes": "minecraft:air"
+  },
+  "minecraft:stripped_spruce_log": {
+   "rot_pct_per_year_sheltered": 0.8,
+   "rot_pct_per_year_exposed": 2.5,
+   "becomes": "minecraft:air"
+  },
+  "minecraft:spruce_fence": {
+   "rot_pct_per_year_sheltered": 2.5,
+   "rot_pct_per_year_exposed": 6.0,
+   "becomes": "minecraft:air"
+  },
+  "minecraft:barrel": {
+   "rot_pct_per_year_sheltered": 1.5,
+   "rot_pct_per_year_exposed": 4.0,
+   "becomes": "minecraft:air"
+  },
+  "minecraft:gravel": {
+   "rot_pct_per_year_sheltered": 0,
+   "rot_pct_per_year_exposed": 0,
+   "becomes": "minecraft:gravel"
+  },
+  "minecraft:cobblestone": {
+   "rot_pct_per_year_sheltered": 0,
+   "rot_pct_per_year_exposed": 0,
+   "becomes": "minecraft:cobblestone"
+  },
+  "minecraft:stone": {
+   "rot_pct_per_year_sheltered": 0,
+   "rot_pct_per_year_exposed": 0,
+   "becomes": "minecraft:stone"
+  },
+  "minecraft:stone_slab": {
+   "rot_pct_per_year_sheltered": 0,
+   "rot_pct_per_year_exposed": 0,
+   "becomes": "minecraft:stone_slab"
+  }
+ }
+}
