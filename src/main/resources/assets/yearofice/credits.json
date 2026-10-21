@@ -5829,6 +5829,29 @@
       "licence": "project",
       "generator_version": "modelgen 0.4.0",
       "release_blocker": false
+    },
+    {
+      "asset_id": "tex_model_ice_blocks",
+      "files": [
+        "assets/yearofice/textures/block/skim_ice_all.png",
+        "assets/yearofice/models/block/skim_ice.json",
+        "assets/yearofice/textures/block/river_ice_thin_all.png",
+        "assets/yearofice/models/block/river_ice_thin.json",
+        "assets/yearofice/textures/block/river_ice_safe_all.png",
+        "assets/yearofice/models/block/river_ice_safe.json",
+        "assets/yearofice/textures/block/river_ice_rotten_all.png",
+        "assets/yearofice/models/block/river_ice_rotten.json",
+        "assets/yearofice/textures/block/ice_hole_all.png",
+        "assets/yearofice/models/block/ice_hole.json",
+        "assets/yearofice/blockstates/skim_ice.json",
+        "assets/yearofice/blockstates/ice_hole.json",
+        "assets/yearofice/blockstates/river_ice.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/ice_blocks.py",
+      "licence": "project",
+      "generator_version": "ice_blocks 1.0",
+      "release_blocker": false
     }
   ]
 }

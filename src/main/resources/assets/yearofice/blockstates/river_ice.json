@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "stage=thin": {
+      "model": "yearofice:block/river_ice_thin"
+    },
+    "stage=safe": {
+      "model": "yearofice:block/river_ice_safe"
+    },
+    "stage=rotten": {
+      "model": "yearofice:block/river_ice_rotten"
+    }
+  }
+}
