@@ -237,6 +237,8 @@ public final class BigGameGameTests {
         caribou.setScentEnabled(false);
         wolf.setTestGroup("chase");
         caribou.setTestGroup("chase");
+        wolf.getRandom().setSeed(1103L); // the flee zigzag and the hunt's rolls come from the entities' own streams: pin them
+        caribou.getRandom().setSeed(2207L);
         wolf.huntAnyHour();
         wolf.pinDriveAct(Drives.Act.FEED);
         wolf.driveState().hunger = 1.0;

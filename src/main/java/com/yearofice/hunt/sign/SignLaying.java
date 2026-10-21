@@ -23,8 +23,14 @@ public final class SignLaying {
 
     private static final Map<YoiAnimal, Mem> MEM = new WeakHashMap<>();
 
+    /** Test groups whose animals may lay sign; any other grouped animal (a chase, a sight line) lays none, so a runway keeps only its floor. */
+    private static final java.util.Set<String> OPT_IN = java.util.concurrent.ConcurrentHashMap.newKeySet();
+
+    public static void optIn(String group) { OPT_IN.add(group); }
+
     public static void tick(YoiAnimal a, ServerLevel level) {
         if (a.tickCount % 10 != 0) return;
+        if (a.testGroup() != null && !OPT_IN.contains(a.testGroup())) return;
         SignData d = SignData.of(a.speciesId());
         if (d == null) return;
         Mem m = MEM.computeIfAbsent(a, k -> new Mem());

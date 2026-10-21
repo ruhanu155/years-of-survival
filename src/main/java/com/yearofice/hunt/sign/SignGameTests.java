@@ -70,13 +70,24 @@ public final class SignGameTests {
 
     /** hunt/sign_laid_by_moose: a moose walked 14+ m east over snow leaves a line of tracks, each heading east. */
     static void laidByMoose(GameTestHelper h) {
-        floor(h, -4, 34, 4, 0, Blocks.SNOW_BLOCK);
-        var moose = h.spawn(EcosystemRegistry.MOOSE.get(), new BlockPos(1, Y, 1));
-        Vec3 target = moose.position().add(24, 0, 0);
-        moose.respondToCall(target, h.getLevel().getGameTime() + 1200);
-        moose.getNavigation().stop(); // a wander path begun before the call would otherwise run first
-        BlockPos start = moose.blockPosition();
+        // its own far region (EcoGameTests.FAR_SIGN_LAID): the 24 m walk must not cross a neighbour's pad, wall or animal
+        final int far = EcoGameTests.FAR_SIGN_LAID;
+        Vec3 c0 = h.absolutePos(new BlockPos(1, Y, 1 + far)).getCenter();
+        for (int x = -16; x <= 48; x += 16) EcoGameTests.force(h, c0.add(x, 0, 0), 1, true);
+        com.yearofice.ecosystem.species.MooseEntity[] m = {null};
+        BlockPos[] st = {null};
         h.onEachTick(() -> {
+            if (h.getTick() < 40) return;
+            if (m[0] == null) {
+                floor(h, -4, 34, 4, far, Blocks.SNOW_BLOCK);
+                m[0] = h.spawn(EcosystemRegistry.MOOSE.get(), new BlockPos(1, Y, 1 + far));
+                m[0].respondToCall(m[0].position().add(24, 0, 0), h.getLevel().getGameTime() + 1200);
+                m[0].getNavigation().stop(); // a wander path begun before the call would otherwise run first
+                st[0] = m[0].blockPosition();
+                return;
+            }
+            var moose = m[0];
+            BlockPos start = st[0];
             if (moose.answeringCall()) return;
             List<BlockPos> tracks = new ArrayList<>();
             for (BlockPos p : SignService.within(h.getLevel(), start, 40)) {
@@ -90,6 +101,7 @@ public final class SignGameTests {
                 h.assertTrue(r.age() != Sign.Age.OLD, "laid this walk, not old: " + r.ageMin());
             }
             moose.discard();
+            for (int x = -16; x <= 48; x += 16) EcoGameTests.force(h, c0.add(x, 0, 0), 1, false);
             h.succeed();
         });
     }
@@ -275,11 +287,23 @@ public final class SignGameTests {
         GateService.get().open(p, Tier.BUSHCRAFT, "test");
         p.getInventory().add(new ItemStack(CraftRegistry.KNIFE.get()));
         p.getInventory().add(new ItemStack(CraftRegistry.ROUGH_STONE.get()));
-        p.getInventory().add(new ItemStack(CraftRegistry.FLINT_NODULE.get(), 2));
+        p.getInventory().add(new ItemStack(CraftRegistry.FLINT_NODULE.get(), 4));
         PracticeService.get().set(p, Skill.KNAPPING, Skill.KNAPPING.n);
-        run(h, p, "arrowhead_knap");
-        h.assertTrue(count(p, HuntRegistry.ARROWHEAD.get()) == 4, "a nodule knaps to 4 heads: " + count(p, HuntRegistry.ARROWHEAD.get()));
-        p.getInventory().add(new ItemStack(HuntRegistry.ARROWHEAD.get(), 2));
+        // Knapping can shatter the core (5% when Practiced, rolled from a shared attempt counter), so the batch layout
+        // moves the roll: each job yields exactly 4 heads or none, and 4 nodules make a miss on all of them negligible.
+        int ok = 0;
+        for (int i = 0; i < 4; i++) {
+            int before = count(p, HuntRegistry.ARROWHEAD.get());
+            run(h, p, "arrowhead_knap");
+            int got = count(p, HuntRegistry.ARROWHEAD.get()) - before;
+            h.assertTrue(got == 4 || got == 0, "a nodule knaps to 4 heads or shatters: " + got);
+            if (got == 4) ok++;
+        }
+        h.assertTrue(ok >= 1 && count(p, CraftRegistry.FLINT_NODULE.get()) == 0, "knapping made heads from the nodules: " + ok);
+        int have = count(p, HuntRegistry.ARROWHEAD.get());
+        p.getInventory().clearContent();
+        p.getInventory().add(new ItemStack(CraftRegistry.KNIFE.get()));
+        p.getInventory().add(new ItemStack(HuntRegistry.ARROWHEAD.get(), 6));
         p.getInventory().add(new ItemStack(HuntRegistry.FEATHER.get(), 6));
         run(h, p, "fletching");
         run(h, p, "fletching");

@@ -96,6 +96,7 @@ class SaveFixturesTest {
         SAVED_DATA.put("yearofice_run_ledger", saved(com.yearofice.hunt.fishing.RunLedger.class));
         SAVED_DATA.put("yearofice_wheel_debris", saved(com.yearofice.build.craft.water.WheelWorks.Debris.class));
         SAVED_DATA.put("yearofice_rooms", saved(com.yearofice.build.rooms.RoomsData.class));
+        SAVED_DATA.put("yearofice_valley_pool", saved(com.yearofice.ecosystem.pool.ValleyPool.class));
     }
 
     static String latest() {
