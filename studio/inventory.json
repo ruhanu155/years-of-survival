@@ -7,12 +7,12 @@
     "Items: the doc's count says 226, its list names 225"
   ],
   "counts": {
-    "total": 1724,
-    "by_type": {"mob": 157, "entity": 25, "block_with_entity": 96, "block": 179, "plant_block": 128, "multiblock": 13, "item": 577, "sound_event": 137, "particle_type": 43, "attachment": 34, "data_component": 31, "payload": 28, "gui_layer": 18, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 16, "loot_function": 8, "loot_condition": 3, "recipe_type": 6, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 95, "biome": 29, "worldgen_hook": 17, "poi_type": 14},
-    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 127, "m4": 51, "m5": 476, "m6": 349, "m7": 162, "m8": 184, "m9": 79, "none": 3},
-    "by_owner": {"body": 331, "building": 279, "ecosystem": 266, "food": 329, "look": 213, "story": 70, "studio": 75, "worldgen": 161},
-    "by_milestone_source": {"doc": 920, "rule": 804},
-    "by_status": {"planned": 1581, "registered": 140, "retired": 3}
+    "total": 1725,
+    "by_type": {"mob": 157, "entity": 25, "block_with_entity": 96, "block": 179, "plant_block": 128, "multiblock": 13, "item": 577, "sound_event": 137, "particle_type": 43, "attachment": 34, "data_component": 31, "payload": 28, "gui_layer": 18, "memory_type": 26, "sensor_type": 7, "activity": 14, "data_map": 16, "loot_function": 8, "loot_condition": 3, "recipe_type": 6, "mob_effect": 3, "attribute_modifier": 7, "curios_slot": 13, "tag": 96, "biome": 29, "worldgen_hook": 17, "poi_type": 14},
+    "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 127, "m4": 51, "m5": 476, "m6": 349, "m7": 163, "m8": 184, "m9": 79, "none": 3},
+    "by_owner": {"body": 331, "building": 279, "ecosystem": 266, "food": 330, "look": 213, "story": 70, "studio": 75, "worldgen": 161},
+    "by_milestone_source": {"doc": 921, "rule": 804},
+    "by_status": {"planned": 1582, "registered": 140, "retired": 3}
   },
   "entries": [
     {"id": "yearofice:alaska_blackfish", "type": "mob", "milestone": "m5", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
@@ -1612,6 +1612,7 @@
     {"id": "yearofice:drab_outer", "type": "tag", "milestone": "m6", "owner": "food", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:drag_obstacles", "type": "tag", "milestone": "m2", "owner": "worldgen", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:dressing_floor", "type": "tag", "milestone": "m6", "owner": "food", "milestone_source": "rule", "status": "planned"},
+    {"id": "yearofice:dries_to_meat", "type": "tag", "milestone": "m7", "owner": "food", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:dyestuffs", "type": "tag", "milestone": "m5", "owner": "body", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:earth_faces", "type": "tag", "milestone": "m2", "owner": "worldgen", "milestone_source": "rule", "status": "planned"},
     {"id": "yearofice:egg_layers", "type": "tag", "milestone": "m6", "owner": "ecosystem", "milestone_source": "rule", "status": "planned"},
