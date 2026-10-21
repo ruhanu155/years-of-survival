@@ -54,6 +54,7 @@ public final class TravelSystem {
             if (e.getEntity() instanceof ServerPlayer p && !p.isSpectator() && p.tickCount % 5 == 0) tick(p);
         });
         NeoForge.EVENT_BUS.addListener(TravelSystem::onHour);
+        NeoForge.EVENT_BUS.addListener(TravelSystem::onMinute);
     }
 
     public static ItemStack slot(ServerPlayer p) {
@@ -131,6 +132,22 @@ public final class TravelSystem {
             BlockState s = level.getBlockState(q);
             if (s.is(WorldBlocks.SNOW_COVER.get()) && s.getValue(SnowCoverBlock.TRAIL_WEAR) == 1)
                 level.setBlock(q.immutable(), s.setValue(SnowCoverBlock.TRAIL_WEAR, 2), 2);
+        }
+    }
+
+    static final Map<UUID, Double> AIR = new ConcurrentHashMap<>();
+
+    /** Each game minute: players in a closed snow room breathe it down; warn once when it goes stale. */
+    static void onMinute(ClockEvent.Minute e) {
+        var server = net.neoforged.neoforge.server.ServerLifecycleHooks.getCurrentServer();
+        if (server == null) return;
+        for (ServerPlayer p : server.getPlayerList().getPlayers()) {
+            BlockPos head = BlockPos.containing(p.getEyePosition());
+            SnowRoom.Scan s = SnowRoom.scan(p.serverLevel(), head);
+            double air = s.snowRoom() ? Travel.air(AIR.getOrDefault(p.getUUID(), 1.0), e.count(), 1, s.flames(), s.vented(), s.volume()) : 1.0;
+            AIR.put(p.getUUID(), air);
+            WarnOnce w = WARN.computeIfAbsent(p.getUUID(), k -> new WarnOnce());
+            if (w.update("snow_vent", Travel.stale(air), e.first())) p.displayClientMessage(Component.translatable("warn.yearofice.snow_vent"), true);
         }
     }
 }

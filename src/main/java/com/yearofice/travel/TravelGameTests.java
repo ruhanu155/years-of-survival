@@ -37,6 +37,9 @@ public final class TravelGameTests {
         out.add(test("yearofice:travel/skate_black_ice", 200, TravelGameTests::skateBlackIce));
         out.add(test("yearofice:travel/ski_vs_snowshoe", 100, TravelGameTests::skiVsSnowshoe));
         out.add(test("yearofice:travel/trail_sets_overnight", 100, TravelGameTests::trailSets));
+        out.add(test("yearofice:body/stale_air_vent", 100, TravelGameTests::staleAirVent));
+        out.add(test("yearofice:build/quinzhee", 100, TravelGameTests::quinzhee));
+        out.add(test("yearofice:fishing/tipup_buried", 100, TravelGameTests::tipupBuried));
         return com.yearofice.gametest.TestFilter.apply(out);
     }
 
@@ -75,6 +78,7 @@ public final class TravelGameTests {
         lake.cm = 8; lake.peakCm = 8; lake.rotten = false;
         SeasonSystem.settle(l, ch, false, 5, st.core, new TerrainChangeQueue());
         BlockPos feet = pos(ch, 5, Y0 + 2, 5);
+        l.setBlock(feet, Blocks.AIR.defaultBlockState(), 2); // black ice: the settle may have laid snow on it, which is not glare ice
         boolean iced = IceBlocks.isIce(l.getBlockState(feet.below()));
         double skate = TravelSystem.multiplier(l, feet, Gear.SKATES, 0), boots = TravelSystem.multiplier(l, feet, Gear.NONE, 0);
         boolean thin = TravelSystem.thinIce(l, feet);
@@ -112,6 +116,61 @@ public final class TravelGameTests {
         int after = l.getBlockState(p).getValue(SnowCoverBlock.TRAIL_WEAR);
         TravelSystem.coldHours = saved;
         h.assertTrue(after == 2, "six cold hours: the trail has set, state " + after);
+        h.succeed();
+    }
+
+    /** A hollow snow-block box: shell x/z 3..(3+w+1), y Y0+1..Y0+h+2, interior air w x h x w from (4, Y0+2, 4). */
+    static void snowBox(LevelChunk ch, int w, int h) {
+        BlockState snow = Blocks.SNOW_BLOCK.defaultBlockState();
+        for (int x = 3; x <= 4 + w; x++) for (int z = 3; z <= 4 + w; z++) for (int y = Y0 + 1; y <= Y0 + h + 2; y++) at(ch, x, y, z, snow);
+        for (int x = 4; x < 4 + w; x++) for (int z = 4; z < 4 + w; z++) for (int y = Y0 + 2; y < Y0 + 2 + h; y++) at(ch, x, y, z, Blocks.AIR.defaultBlockState());
+    }
+
+    static void staleAirVent(GameTestHelper h) {
+        ServerLevel l = h.getLevel();
+        LevelChunk ch = platform(l, 3460);
+        snowBox(ch, 3, 2);
+        BlockPos head = pos(ch, 5, Y0 + 3, 5);
+        var scan = SnowRoom.scan(l, head);
+        h.assertTrue(scan.snowRoom() && !scan.vented() && scan.volume() == 18, "a sealed snow room of 18 cells: " + scan);
+        double air = 1;
+        for (int i = 0; i < 12; i++) air = SnowRoom.step(l, head, air, 60, 2);
+        h.assertTrue(com.yearofice.sim.travel.Travel.stale(air), "twelve hours sealed with two people: stale, air " + air);
+        l.setBlock(pos(ch, 5, Y0 + 4, 5), Blocks.AIR.defaultBlockState(), 2); // poke a vent through the ceiling
+        h.assertTrue(SnowRoom.scan(l, head).vented(), "the hole is a vent");
+        for (int i = 0; i < 2; i++) air = SnowRoom.step(l, head, air, 30, 2);
+        h.assertTrue(!com.yearofice.sim.travel.Travel.stale(air), "an hour vented: fresh again, air " + air);
+        h.succeed();
+    }
+
+    static void quinzhee(GameTestHelper h) {
+        ServerLevel l = h.getLevel();
+        LevelChunk ch = platform(l, 3470);
+        snowBox(ch, 2, 1);
+        BlockPos head = pos(ch, 4, Y0 + 2, 4);
+        h.assertTrue(SnowRoom.quinzhee(l, head) == SnowRoom.Quinzhee.STALE_UNTIL_VENTED, "a dug-out sealed mound: " + SnowRoom.quinzhee(l, head));
+        double air = 1;
+        for (int i = 0; i < 6; i++) air = SnowRoom.step(l, head, air, 60, 2);
+        h.assertTrue(com.yearofice.sim.travel.Travel.stale(air), "six hours sealed turns the air stale: " + air);
+        l.setBlock(pos(ch, 4, Y0 + 3, 4), Blocks.AIR.defaultBlockState(), 2);
+        h.assertTrue(SnowRoom.quinzhee(l, head) == SnowRoom.Quinzhee.SAFE, "one vent hole makes it safe");
+        l.setBlock(pos(ch, 3, Y0 + 2, 4), Blocks.AIR.defaultBlockState(), 2); // a doorway to the open world
+        h.assertTrue(SnowRoom.quinzhee(l, head) != SnowRoom.Quinzhee.STALE_UNTIL_VENTED, "an open door is not a sealed room");
+        h.succeed();
+    }
+
+    static void tipupBuried(GameTestHelper h) {
+        ServerLevel l = h.getLevel();
+        LevelChunk ch = platform(l, 3480);
+        BlockPos p = pos(ch, 5, Y0 + 1, 5);
+        l.setBlock(p, com.yearofice.hunt.fishing.FishingRegistry.TIP_UP.get().defaultBlockState(), 3);
+        var g = com.yearofice.hunt.fishing.PassiveGearService.at(l, p);
+        h.assertTrue(g != null, "the tip-up registered its hook");
+        g.held.add(new com.yearofice.hunt.fishing.PassiveGearService.Held(com.yearofice.hunt.fishing.FishingSpecies.GRAYLING, 600));
+        l.setBlock(p.above(), WorldBlocks.SNOW_COVER.get().defaultBlockState().setValue(SnowCoverBlock.LAYERS, 5), 2);
+        h.assertTrue(TipUpSignal.buried(l, p), "new snow lies over the tip-up");
+        h.assertTrue(TipUpSignal.signals(l, p), "it still signals the fish");
+        h.assertTrue(com.yearofice.hunt.fishing.PassiveGearService.at(l, p) == g, "the snow did not unregister the gear");
         h.succeed();
     }
 }
