@@ -543,6 +543,46 @@
       "floats": true,
       "material": "wood",
       "max_condition": 100
+    },
+    "yearofice:flint_knife": {
+      "category": "tool",
+      "stack_class": "single",
+      "material": "stone",
+      "max_condition": 300
+    },
+    "yearofice:flint_nodule": {
+      "category": "material",
+      "stack_class": "medium",
+      "material": "stone"
+    },
+    "yearofice:knife": {
+      "category": "tool",
+      "stack_class": "single",
+      "material": "steel",
+      "max_condition": 6000,
+      "theft": "porcupine"
+    },
+    "yearofice:rough_stone": {
+      "category": "material",
+      "stack_class": "medium",
+      "material": "stone"
+    },
+    "yearofice:stake": {
+      "category": "material",
+      "stack_class": "small",
+      "floats": true,
+      "material": "wood"
+    },
+    "yearofice:tool_handle": {
+      "category": "material",
+      "stack_class": "medium",
+      "floats": true,
+      "material": "wood"
+    },
+    "yearofice:workbench": {
+      "category": "piece",
+      "stack_class": "single",
+      "material": "wood"
     }
   }
 }
