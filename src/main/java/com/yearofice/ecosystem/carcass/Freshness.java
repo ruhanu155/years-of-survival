@@ -64,6 +64,12 @@ public final class Freshness {
         return new Fresh(FoodState.RAW, CLOCK_AIR_SLICE, Fresh.quantise(due, life, Fresh.DEFAULT_BANDS), life, 0, true);
     }
 
+    /** Meat that has gone Turning at the quartering deadline: progress 0.75 on the meat's own raw life. */
+    public static Fresh turning(Item meat, double dNow) {
+        double life = values(meat).refLifeDh(FoodState.RAW);
+        return new Fresh(FoodState.RAW, CLOCK_AIR_SLICE, Fresh.quantise(dNow + 0.25 * life, life, Fresh.DEFAULT_BANDS), life, 0, true);
+    }
+
     /** The meat's food row, or lean meat when the data map has none. */
     public static FoodValues values(Item item) {
         ResourceLocation id = item.builtInRegistryHolder().key().location();

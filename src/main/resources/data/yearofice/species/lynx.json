@@ -1,0 +1,128 @@
+{
+  "entity": "yearofice:lynx",
+  "rig": "felid",
+  "habitat": [
+    "spruce_edge",
+    "forest"
+  ],
+  "population": [
+    1,
+    1
+  ],
+  "home_range_m": 3000,
+  "active": [
+    "dusk",
+    "night"
+  ],
+  "gaits": {
+    "walk": 1.2,
+    "trot": 2.5,
+    "run": 13,
+    "swim": 1.0,
+    "step_height_m": 1.0
+  },
+  "senses": {
+    "sight": 80,
+    "hearing": 40,
+    "smell": 60,
+    "fov": 200
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": true,
+    "flush_m": 8,
+    "flee_trigger_m": 0,
+    "flee_m": [
+      80,
+      200
+    ],
+    "flee_gait": "run",
+    "zigzag": false,
+    "hide_min": [
+      15,
+      40
+    ],
+    "charges": false
+  },
+  "huntable": false,
+  "huntable_from": "m6_hunt",
+  "respawn_days": 30,
+  "breath_s": 60,
+  "spawn": {
+    "cell_m": 1024,
+    "group": [
+      1,
+      1
+    ],
+    "density_per_km2": 0.15,
+    "density_group": "predator"
+  },
+  "drives": {
+    "hunger_up": 0.07,
+    "hunger_down": 0.35,
+    "thirst_up": 0.04,
+    "thirst_down": 1.0,
+    "rest_up": 0.05,
+    "rest_down": 0.2,
+    "weights": {
+      "dawn": [
+        0.6,
+        0.4,
+        1.6
+      ],
+      "midday": [
+        0.2,
+        0.3,
+        2.8
+      ],
+      "dusk": [
+        1.6,
+        0.7,
+        0.4
+      ],
+      "night": [
+        1.8,
+        0.2,
+        0.4
+      ]
+    }
+  },
+  "predator": {
+    "prey": [
+      "yearofice:snowshoe_hare",
+      "yearofice:willow_ptarmigan",
+      "yearofice:spruce_grouse"
+    ],
+    "chase_cap_m": 60,
+    "detect_m": 50,
+    "chase_mps": 13,
+    "hunt_from_h": 17,
+    "hunt_to_h": 7,
+    "kill_radius_m": 1.0,
+    "cooldown_min": 120
+  },
+  "carcass": {
+    "whole_kg": 11,
+    "class": "medium",
+    "body_plan": "felid",
+    "poses": [
+      "dead_side"
+    ],
+    "steps": {
+      "gut": 5,
+      "skin": 12,
+      "joint": 8
+    },
+    "parts": {
+      "meat": 4,
+      "cover": {
+        "item": "yearofice:lynx_pelt",
+        "kg": 0.8
+      },
+      "guts_kg": 1.0
+    }
+  },
+  "butcher_table": "yearofice:butchering/lynx"
+}

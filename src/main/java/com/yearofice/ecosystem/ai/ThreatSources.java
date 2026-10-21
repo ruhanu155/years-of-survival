@@ -46,8 +46,20 @@ public final class ThreatSources {
     public static List<LivingEntity> near(ServerLevel level, Vec3 at, double range, Entity animal) {
         List<LivingEntity> out = new ArrayList<>();
         double r2 = range * range;
-        for (Player p : level.players()) {
+        // an animal in a named test group answers only to its test's own threats (addForTest, same-group predators):
+        // other tests' mock players stand in the same level and must not reach it
+        boolean grouped = animal instanceof com.yearofice.ecosystem.YoiAnimal ya && ya.testGroup() != null;
+        for (Player p : grouped ? List.<Player>of() : level.players()) {
             if (!p.isSpectator() && p.isAlive() && p.position().distanceToSqr(at) <= r2) out.add(p);
+        }
+        if (animal instanceof com.yearofice.ecosystem.YoiAnimal prey && !(animal instanceof com.yearofice.ecosystem.species.rig.PredatorEntity)) {
+            // M6: a predator that takes this species is a threat to it (Who hunts whom)
+            String id = prey.speciesId();
+            for (var pr : level.getEntitiesOfClass(com.yearofice.ecosystem.species.rig.PredatorEntity.class,
+                    new net.minecraft.world.phys.AABB(at, at).inflate(range, 16, range), x -> x.isAlive())) {
+                var rule = pr.species().predator();
+                if (rule != null && rule.takes(id) && pr.position().distanceToSqr(at) <= r2 && java.util.Objects.equals(pr.testGroup(), prey.testGroup())) out.add(pr);
+            }
         }
         synchronized (EXTRA) {
             for (Map.Entry<LivingEntity, Set<Entity>> en : EXTRA.entrySet()) {

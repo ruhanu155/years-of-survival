@@ -7,7 +7,10 @@ import com.yearofice.ecosystem.carcass.CarcassRecord;
 import com.yearofice.ecosystem.carcass.Freshness;
 import com.yearofice.food.YoiFoodItem;
 import com.yearofice.ecosystem.carcass.WholeGameItem;
+import com.yearofice.ecosystem.species.BearEntity;
 import com.yearofice.ecosystem.species.MooseEntity;
+import com.yearofice.ecosystem.species.rig.BigGameEntity;
+import com.yearofice.ecosystem.species.rig.PredatorEntity;
 import com.yearofice.ecosystem.species.SmallGameEntity;
 import com.yearofice.ecosystem.species.SnowshoeHareEntity;
 import com.yearofice.ecosystem.species.bird.GrouseEntity;
@@ -101,6 +104,31 @@ public final class EcosystemRegistry {
     public static final DeferredHolder<EntityType<?>, EntityType<CarcassEntity>> CARCASS_MEDIUM = ENTITIES.register("carcass_medium",
             () -> EntityType.Builder.<CarcassEntity>of(CarcassEntity::new, MobCategory.MISC).sized(0.9f, 0.45f).clientTrackingRange(8).build("yearofice:carcass_medium"));
 
+    // ---- M6 lane A: big game, predators and the large carcasses (Land animals in depth › Mob sheets: big game, predators) ----
+    public static final DeferredHolder<EntityType<?>, EntityType<BigGameEntity>> CARIBOU = ENTITIES.register("caribou",
+            () -> EntityType.Builder.of(BigGameEntity::new, MobCategory.CREATURE).sized(1.0f, 1.5f).clientTrackingRange(10).build("yearofice:caribou"));
+    public static final DeferredHolder<EntityType<?>, EntityType<BigGameEntity>> MULE_DEER = ENTITIES.register("mule_deer",
+            () -> EntityType.Builder.of(BigGameEntity::new, MobCategory.CREATURE).sized(0.8f, 1.35f).clientTrackingRange(10).build("yearofice:mule_deer"));
+    public static final DeferredHolder<EntityType<?>, EntityType<BearEntity>> BLACK_BEAR = ENTITIES.register("black_bear",
+            () -> EntityType.Builder.of(BearEntity::new, MobCategory.CREATURE).sized(1.0f, 1.1f).clientTrackingRange(10).build("yearofice:black_bear"));
+    public static final DeferredHolder<EntityType<?>, EntityType<BearEntity>> GRIZZLY = ENTITIES.register("grizzly",
+            () -> EntityType.Builder.of(BearEntity::new, MobCategory.CREATURE).sized(1.3f, 1.5f).clientTrackingRange(10).build("yearofice:grizzly"));
+    public static final DeferredHolder<EntityType<?>, EntityType<PredatorEntity>> WOLF = ENTITIES.register("wolf",
+            () -> EntityType.Builder.of(PredatorEntity::new, MobCategory.CREATURE).sized(0.8f, 0.9f).clientTrackingRange(10).build("yearofice:wolf"));
+    public static final DeferredHolder<EntityType<?>, EntityType<PredatorEntity>> COYOTE = ENTITIES.register("coyote",
+            () -> EntityType.Builder.of(PredatorEntity::new, MobCategory.CREATURE).sized(0.6f, 0.65f).clientTrackingRange(10).build("yearofice:coyote"));
+    public static final DeferredHolder<EntityType<?>, EntityType<PredatorEntity>> RED_FOX = ENTITIES.register("red_fox",
+            () -> EntityType.Builder.of(PredatorEntity::new, MobCategory.CREATURE).sized(0.5f, 0.5f).clientTrackingRange(10).build("yearofice:red_fox"));
+    public static final DeferredHolder<EntityType<?>, EntityType<PredatorEntity>> LYNX = ENTITIES.register("lynx",
+            () -> EntityType.Builder.of(PredatorEntity::new, MobCategory.CREATURE).sized(0.6f, 0.65f).clientTrackingRange(10).build("yearofice:lynx"));
+    public static final DeferredHolder<EntityType<?>, EntityType<PredatorEntity>> WOLVERINE = ENTITIES.register("wolverine",
+            () -> EntityType.Builder.of(PredatorEntity::new, MobCategory.CREATURE).sized(0.6f, 0.5f).clientTrackingRange(10).build("yearofice:wolverine"));
+    /** Bestiary › In Minecraft: carcasses: large 1.6 × 0.8, huge 2.6 × 1.2 blocks. */
+    public static final DeferredHolder<EntityType<?>, EntityType<CarcassEntity>> CARCASS_LARGE = ENTITIES.register("carcass_large",
+            () -> EntityType.Builder.<CarcassEntity>of(CarcassEntity::new, MobCategory.MISC).sized(1.6f, 0.8f).clientTrackingRange(8).build("yearofice:carcass_large"));
+    public static final DeferredHolder<EntityType<?>, EntityType<CarcassEntity>> CARCASS_HUGE = ENTITIES.register("carcass_huge",
+            () -> EntityType.Builder.<CarcassEntity>of(CarcassEntity::new, MobCategory.MISC).sized(2.6f, 1.2f).clientTrackingRange(8).build("yearofice:carcass_huge"));
+
     // ---- components and attachments ----
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<CarcassRecord>> CARCASS_COMPONENT =
@@ -151,6 +179,7 @@ public final class EcosystemRegistry {
             MEMORIES.register("rack_target", () -> new MemoryModuleType<>(Optional.empty()));
 
     static void register(IEventBus modBus) {
+        com.yearofice.ecosystem.carcass.BigGameItems.init();
         BLOCKS.register(modBus);
         ENTITIES.register(modBus);
         ITEMS.register(modBus);

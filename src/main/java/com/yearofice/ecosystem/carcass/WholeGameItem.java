@@ -32,6 +32,8 @@ public class WholeGameItem extends Item {
         ItemStack s = new ItemStack(EcosystemRegistry.WHOLE_GAME.get());
         s.set(EcosystemRegistry.CARCASS_COMPONENT.get(), r);
         s.set(YoiComponents.FRESH.get(), r.fresh());
+        // The carried body weighs what it weighs (M5 debt: carried-carcass real weight), not the item's default.
+        s.set(YoiComponents.WEIGHT_G.get(), r.weightG());
         return s;
     }
 

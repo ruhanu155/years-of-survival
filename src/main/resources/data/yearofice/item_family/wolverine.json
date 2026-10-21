@@ -1,0 +1,15 @@
+{
+  "species": "yearofice:wolverine",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    {
+      "item": "yearofice:wolverine_meat",
+      "kind": "meat",
+      "unit_g": 100
+    },
+    {
+      "item": "yearofice:wolverine_pelt",
+      "kind": "cover"
+    }
+  ]
+}

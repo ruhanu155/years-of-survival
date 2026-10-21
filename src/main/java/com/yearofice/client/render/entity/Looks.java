@@ -18,7 +18,7 @@ final class Looks {
     static String geo(String species) {
         if (SpeciesArt.fish(species)) return com.yearofice.hunt.fishing.FishEntity.isSchool(species) ? "rig_fish_school" : "rig_fish_resident";
         if (SpeciesArt.GROUSE.contains(species)) return "rig_grouse";
-        return SpeciesArt.KNOWN.contains(species) ? species : SpeciesArt.PLACEHOLDER;
+        return SpeciesArt.KNOWN.contains(species) ? species : SpeciesArt.artOf(species);
     }
 
     static ResourceLocation model(String species) { return rl("geo/entity/" + geo(species) + ".geo.json"); }
@@ -30,11 +30,18 @@ final class Looks {
     /** The texture for a coat byte; the moose has summer coats only so far, a bull or a cow. */
     static ResourceLocation texture(String species, int coat, boolean male) {
         if (SpeciesArt.fish(species)) return rl("textures/entity/fish/" + species + ".png");
+        String art = SpeciesArt.artOf(species);
+        if (!art.equals(species) && !art.equals(SpeciesArt.PLACEHOLDER)) species = art;
         SeasonalLooks.Coat c = SeasonalLooks.Coat.byId(coat);
         if (SpeciesArt.SINGLE_COAT.contains(species)) return rl("textures/entity/" + species + "/adult_all.png");
         if (species.equals("spruce_grouse") || species.equals("ruffed_grouse")) return rl("textures/entity/" + species + "/" + (male ? "male" : "female") + "_adult.png");
         if (!SpeciesArt.KNOWN.contains(species) && !SpeciesArt.GROUSE.contains(species)) return rl("textures/entity/wood_frog/adult_all.png");
         return switch (species) {
+            case "mule_deer" -> rl("textures/entity/mule_deer/" + (male ? "buck" : "doe") + "_" + (c == SeasonalLooks.Coat.WINTER ? "winter" : c == SeasonalLooks.Coat.MOULT || c == SeasonalLooks.Coat.MOTTLED ? "moult" : "summer") + ".png");
+            case "wolf" -> rl("textures/entity/wolf/adult_gray.png");
+            case "red_fox" -> rl("textures/entity/red_fox/adult_red.png");
+            case "black_bear" -> rl("textures/entity/black_bear/adult_black.png");
+            case "grizzly" -> rl("textures/entity/grizzly/adult_summer.png");
             case "rock_ptarmigan" -> rl("textures/entity/rock_ptarmigan/adult_" + (c == SeasonalLooks.Coat.MOTTLED ? "moult" : c.key) + ".png");
             case "moose" -> rl("textures/entity/moose/" + (male ? "bull" : "cow") + "_summer.png");
             case "willow_ptarmigan" -> rl("textures/entity/willow_ptarmigan/adult_" + (c == SeasonalLooks.Coat.MOTTLED ? "moult" : c.key) + ".png");

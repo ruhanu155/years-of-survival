@@ -2026,6 +2026,113 @@
       ]
     },
     {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "self_bow"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "kit_bow"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "spear"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "arrow"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "pole_blind"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "block",
+      "ids": [
+        "blood_trail"
+      ]
+    },
+    {
+      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "tree_stand"
+      ]
+    },
+    {
+      "basis": "M6 lane A: big game and predator parts",
+      "milestone": "m6",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "moose_meat",
+        "caribou_meat",
+        "black_bear_meat",
+        "grizzly_meat",
+        "wolf_meat",
+        "coyote_meat",
+        "red_fox_meat",
+        "lynx_meat",
+        "wolverine_meat",
+        "moose_hide",
+        "caribou_hide",
+        "black_bear_hide",
+        "grizzly_hide",
+        "wolf_pelt",
+        "coyote_pelt",
+        "red_fox_pelt",
+        "lynx_pelt",
+        "wolverine_pelt"
+      ]
+    },
+    {
+      "basis": "M5 lane B2: vegetation placement feature",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "worldgen_hook",
+      "ids": [
+        "layer_plants"
+      ]
+    },
+    {
+      "basis": "M5 lane TUNE bait from hare/fish guts (Blueprint: Guts 10% bait one per 0.1 kg)",
+      "milestone": "m5",
+      "owner": "food",
+      "type": "item",
+      "ids": [
+        "fish_guts"
+      ]
+    },
+    {
       "basis": "M5 lane C2 physical fishing gear (Waters and fish > Fishing ids)",
       "milestone": "m5",
       "owner": "food",
@@ -2113,87 +2220,6 @@
       "type": "block",
       "ids": [
         "weir_basket"
-      ]
-    },
-    {
-      "basis": "M5 lane B2: vegetation placement feature",
-      "milestone": "m5",
-      "owner": "food",
-      "type": "worldgen_hook",
-      "ids": [
-        "layer_plants"
-      ]
-    },
-    {
-      "basis": "M5 lane TUNE bait from hare/fish guts (Blueprint: Guts 10% bait one per 0.1 kg)",
-      "milestone": "m5",
-      "owner": "food",
-      "type": "item",
-      "ids": [
-        "fish_guts"
-      ]
-    },
-    {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
-      "owner": "food",
-      "type": "item",
-      "ids": [
-        "self_bow"
-      ]
-    },
-    {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
-      "owner": "food",
-      "type": "item",
-      "ids": [
-        "kit_bow"
-      ]
-    },
-    {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
-      "owner": "food",
-      "type": "item",
-      "ids": [
-        "spear"
-      ]
-    },
-    {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
-      "owner": "food",
-      "type": "item",
-      "ids": [
-        "arrow"
-      ]
-    },
-    {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
-      "owner": "food",
-      "type": "block",
-      "ids": [
-        "pole_blind"
-      ]
-    },
-    {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
-      "owner": "food",
-      "type": "block",
-      "ids": [
-        "blood_trail"
-      ]
-    },
-    {
-      "basis": "M6 lane B hunt: weapons, hit-zone shot, blood trails, calls and blinds (Blueprint > Weapons and arrowheads; Setting up the hunt; The hit-zone model)",
-      "milestone": "m6",
-      "owner": "food",
-      "type": "item",
-      "ids": [
-        "tree_stand"
       ]
     },
     {
