@@ -1,0 +1,6 @@
+{
+ "id": "big_berry_year",
+ "chance_per_year": 0.25,
+ "from_year": 2,
+ "window": ["06-15", "06-15"]
+}
