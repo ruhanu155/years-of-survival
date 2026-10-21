@@ -1,0 +1,8 @@
+{
+  "note": "B6 sourdough dishes. weight_g is the finished weight and is explicit on purpose: a dish without it weighs the 100 g default. A Hungry starter bakes at 0.75 of it; a Sleeping or Dead one will not raise anything.",
+  "dishes": {
+    "pancakes": { "flour_g": 120, "water_g": 150, "weight_g": 300, "method": "stone_fry" },
+    "bread": { "flour_g": 500, "water_g": 300, "weight_g": 750, "method": "coal_bake" },
+    "biscuits": { "flour_g": 200, "water_g": 90, "weight_g": 280, "method": "coal_bake" }
+  }
+}

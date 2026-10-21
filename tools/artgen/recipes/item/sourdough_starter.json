@@ -1,0 +1,33 @@
+{
+ "id": "yearofice:sourdough_starter",
+ "kind": "icon",
+ "shapes": [
+  {
+   "kind": "rect",
+   "ramp": "bark_birch",
+   "step": 2,
+   "box": [
+    3,
+    5,
+    12,
+    14
+   ]
+  },
+  {
+   "kind": "ellipse",
+   "ramp": "fat_cream",
+   "step": 3,
+   "box": [
+    4,
+    3,
+    11,
+    7
+   ],
+   "speckle": {
+    "ramp": "bone",
+    "step": 2,
+    "density": 0.25
+   }
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "note": "Rot of an abandoned camp, percent of the block lost a year, by block id path fragment (M9 lane C: the homestead pieces; the outposts' data_maps/block/decay.json is read first and wins). Scaled by the decay_rate_scale dial.",
+  "rows": [
+    { "match": "roof_pole_sod", "rot_pct_per_year": 6.7 },
+    { "match": "wall_log", "rot_pct_per_year": 3.5 },
+    { "match": "slab_floor", "rot_pct_per_year": 1.5 },
+    { "match": "bough_bed", "rot_pct_per_year": 25.0 },
+    { "match": "workbench", "rot_pct_per_year": 4.0 },
+    { "match": "drying_rack", "rot_pct_per_year": 8.0 },
+    { "match": "garden_bed", "rot_pct_per_year": 20.0 }
+  ]
+}

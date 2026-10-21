@@ -12,5 +12,6 @@
   {id:"yearofice:barley",count:1,components:{"yearofice:seed_lot":2,"yearofice:weight_g":800}},
   {id:"yearofice:trophy_plaque",count:1,components:{"yearofice:trophy_size":{measure:"spread_cm",value:152.0d,z:1.8d,class:"trophy"}}},
   {id:"yearofice:flint_knife",count:1,components:{"minecraft:damage":40,"yearofice:edge":62.5d}},
-  {id:"yearofice:note",count:1,components:{"yearofice:note_id":"fur_ledger"}}
+  {id:"yearofice:note",count:1,components:{"yearofice:note_id":"fur_ledger"}},
+  {id:"yearofice:sourdough_starter",count:1,components:{"yearofice:starter":{hydration_pct:100.0d,unfed_days:1.5d,revive_feeds:0,frozen:0b,deep_frozen:0b,last_fed_minute:1200L,cold:0b,dead:0b,last_tick_minute:3000L,born_minute:1200L}}}
 ]

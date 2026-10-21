@@ -91,7 +91,9 @@
   },
   "predator": {
     "prey": [
-      "yearofice:snowshoe_hare"
+      "yearofice:snowshoe_hare",
+      "yearofice:goat",
+      "yearofice:hen"
     ],
     "chase_cap_m": 100,
     "detect_m": 60,

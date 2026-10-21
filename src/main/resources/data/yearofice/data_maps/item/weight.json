@@ -447,6 +447,27 @@
     },
     "yearofice:moccasins": {
       "weight_g": 400
+    },
+    "yearofice:goat_meat": {
+      "weight_g": 100
+    },
+    "yearofice:reindeer_meat": {
+      "weight_g": 100
+    },
+    "yearofice:hen_meat": {
+      "weight_g": 100
+    },
+    "yearofice:goat_hide": {
+      "weight_g": 2000
+    },
+    "yearofice:reindeer_hide": {
+      "weight_g": 4000
+    },
+    "yearofice:goat_wool": {
+      "weight_g": 250
+    },
+    "yearofice:sourdough_starter": {
+      "weight_g": 400
     }
   }
 }

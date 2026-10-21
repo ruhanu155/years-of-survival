@@ -1,0 +1,15 @@
+{
+  "species": "yearofice:reindeer",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    {
+      "item": "yearofice:reindeer_meat",
+      "kind": "meat",
+      "unit_g": 100
+    },
+    {
+      "item": "yearofice:reindeer_hide",
+      "kind": "cover"
+    }
+  ]
+}

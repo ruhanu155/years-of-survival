@@ -1,0 +1,10 @@
+{
+  "note": "The block each regrowth stage places on a burned cell (M9 lane C). Stages come from sim.world.Regrowth; a cell takes a stage with the stage's density. Placeholders until the sapling blocks land.",
+  "stages": {
+    "fireweed": "yearofice:fireweed",
+    "saplings": "yearofice:shrub_stem",
+    "spruce_saplings": "yearofice:shrub_stem",
+    "birch_poles": "yearofice:willow_brush",
+    "birch_logs": "yearofice:birch_log"
+  }
+}

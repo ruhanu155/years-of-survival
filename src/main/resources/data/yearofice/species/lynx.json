@@ -93,7 +93,9 @@
     "prey": [
       "yearofice:snowshoe_hare",
       "yearofice:willow_ptarmigan",
-      "yearofice:spruce_grouse"
+      "yearofice:spruce_grouse",
+      "yearofice:goat",
+      "yearofice:hen"
     ],
     "chase_cap_m": 60,
     "detect_m": 50,

@@ -1,0 +1,34 @@
+{
+  "entity": "yearofice:hen",
+  "rig": "hen",
+  "lifespan_years": 6,
+  "growth": {
+    "adult_kg": 2.0,
+    "birth_kg": 0.04,
+    "mature_days": 150,
+    "wean_days": 21
+  },
+  "needs": {
+    "feed_kg_per_d": 0.1,
+    "water_l_per_d": 0.25,
+    "comfort_c": 0,
+    "cold_slope_per_c": 6,
+    "fed_decay_per_d": 90,
+    "water_decay_per_d": 100,
+    "trough_feed_days": 3,
+    "trough_water_days": 2
+  },
+  "calendar": {
+    "rut_from_month": 5,
+    "rut_to_month": 7,
+    "birth_month": 6
+  },
+  "produce": {
+    "eggs_per_d_max": 0.8,
+    "lactation_days": 0
+  },
+  "pen": {
+    "free_range_m": 16,
+    "browse_share": 0.7
+  }
+}

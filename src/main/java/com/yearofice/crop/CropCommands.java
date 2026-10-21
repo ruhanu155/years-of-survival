@@ -1,6 +1,7 @@
 package com.yearofice.crop;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.yearofice.api.env.EnvService;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -31,7 +32,8 @@ public final class CropCommands {
                         .then(Commands.argument("n", IntegerArgumentType.integer(1, 100000)).executes(CropCommands::germ))))
                 .then(Commands.literal("grow").then(Commands.argument("units", DoubleArgumentType.doubleArg(0, 5000)).executes(CropCommands::grow)))
                 .then(Commands.literal("frost").then(Commands.argument("low_c", DoubleArgumentType.doubleArg(-60, 20)).executes(CropCommands::frost)))
-                .then(Commands.literal("ripen").executes(CropCommands::ripen))));
+                .then(Commands.literal("ripen").executes(CropCommands::ripen))
+                .then(Commands.literal("stovehouse").executes(CropCommands::stovehouse))));
     }
 
     private static BlockPos target(CommandContext<CommandSourceStack> c) throws CommandSyntaxException {
@@ -115,5 +117,16 @@ public final class CropCommands {
         if (be.up() == 0) return say(c, "Nothing came up on this block.");
         be.addUnits(be.spec().ripeUnits - be.units());
         return say(c, "Ripe: stage " + be.stage() + ".");
+    }
+
+    /** M9 lane C: what the room around the looked-at bed gives a crop today. */
+    private static int stovehouse(CommandContext<CommandSourceStack> c) throws CommandSyntaxException {
+        ServerLevel level = c.getSource().getLevel();
+        BlockPos cp = cropOrAbove(level, target(c));
+        long today = com.yearofice.api.clock.ClockService.get().absDay();
+        var in = com.yearofice.crop.stovehouse.StovehouseAdapter.inside(level, cp, today, EnvService.get().airC(level, cp));
+        if (in == null) return say(c, "Open ground: no room around " + cp.toShortString());
+        return say(c, "room_c=" + f(in.roomC()) + " glazing=" + in.glazing() + " units_today=" + f(in.units()) + " night_low_c=" + f(in.lowC())
+                + " turnip_days=" + f(com.yearofice.sim.crop.Stovehouse.daysToRipe(700, in.roomC(), com.yearofice.api.clock.ClockService.get().daylightHours(today), in.glazing())));
     }
 }
