@@ -6016,6 +6016,105 @@
       "licence": "project",
       "generator_version": "hand 0.1.0",
       "release_blocker": false
+    },
+    {
+      "asset_id": "mus_dawn_summer",
+      "files": [
+        "assets/yearofice/sounds/music/dawn_summer.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_day_summer",
+      "files": [
+        "assets/yearofice/sounds/music/day_summer.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_fire_summer",
+      "files": [
+        "assets/yearofice/sounds/music/fire_summer.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_dawn_fall",
+      "files": [
+        "assets/yearofice/sounds/music/dawn_fall.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_day_fall",
+      "files": [
+        "assets/yearofice/sounds/music/day_fall.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_fire_fall",
+      "files": [
+        "assets/yearofice/sounds/music/fire_fall.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_dawn_winter",
+      "files": [
+        "assets/yearofice/sounds/music/dawn_winter.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_day_winter",
+      "files": [
+        "assets/yearofice/sounds/music/day_winter.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "mus_fire_winter",
+      "files": [
+        "assets/yearofice/sounds/music/fire_winter.ogg"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/soundgen/music/music.py",
+      "licence": "project",
+      "generator_version": "music 0.2.0 (G0 placeholder)",
+      "release_blocker": false
     }
   ]
 }
