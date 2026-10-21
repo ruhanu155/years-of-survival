@@ -1,0 +1,19 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "bushcraft",
+  "ingredients": [
+    {
+      "tag": "yearofice:split_wood",
+      "count": 2
+    }
+  ],
+  "tool": "yearofice:hatchet",
+  "work_min": 30,
+  "effort": "medium",
+  "kcal": 125,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:plank",
+    "count": 4
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "bushcraft",
+  "ingredients": [
+    {
+      "item": "yearofice:spruce_round",
+      "count": 4
+    }
+  ],
+  "tool": "yearofice:hatchet",
+  "work_min": 15,
+  "effort": "medium",
+  "kcal": 62,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:log_piece",
+    "count": 1
+  }
+}

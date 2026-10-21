@@ -208,4 +208,15 @@ class SaveFixturesTest {
 
     @SuppressWarnings("unused")
     private static List<Tag> asList(ListTag l) { return new ArrayList<>(l); }
+
+    @Test
+    void everyBlockEntityThatSavesAlsoLoads() throws IOException {
+        try (Stream<Path> s = Files.walk(Path.of("").toAbsolutePath().resolve("src/main/java"))) {
+            for (Path p : (Iterable<Path>) s.filter(x -> x.toString().endsWith(".java"))::iterator) {
+                String t = Files.readString(p);
+                if (t.contains("extends BlockEntity") && t.contains("void saveAdditional"))
+                    assertTrue(t.contains("void loadAdditional"), p.getFileName() + " saves block-entity state it never loads");
+            }
+        }
+    }
 }

@@ -1,0 +1,17 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "start",
+  "ingredients": [
+    {
+      "item": "minecraft:grass_block",
+      "count": 1
+    }
+  ],
+  "work_min": 10,
+  "effort": "medium",
+  "kcal": 42,
+  "result": {
+    "id": "yearofice:sod",
+    "count": 2
+  }
+}

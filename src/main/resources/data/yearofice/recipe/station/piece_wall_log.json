@@ -1,0 +1,18 @@
+{
+  "type": "yearofice:craft_station",
+  "tier": "bushcraft",
+  "ingredients": [
+    {
+      "item": "yearofice:log_piece",
+      "count": 1
+    }
+  ],
+  "work_min": 6,
+  "effort": "medium",
+  "kcal": 25,
+  "skill": "woodcraft",
+  "result": {
+    "id": "yearofice:wall_log",
+    "count": 1
+  }
+}
