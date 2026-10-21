@@ -1,0 +1,21 @@
+seed 3141592: pile -1092, 151, 789 (water -1092, 149, 790), player -1005, 162, 812, start minute 177846
+seed 3141592: bear seen true, reached false (min distance 150 m, first seen 176 m, reach at game minute -1), game minutes run 2886 (stopped at two days)
+seed 3141593: pile -1739, 132, 784 (water -1738, 131, 784), player -1649, 143, 784, start minute 177843
+seed 3141593: bear seen true, reached false (min distance 23 m, first seen 37 m, reach at game minute -1), game minutes run 2880 (stopped at two days)
+seed 3141594: pile -1848, 174, 1053 (water -1848, 173, 1054), player -1770, 175, 1098, start minute 177845
+seed 3141594: bear seen true, reached false (min distance 41 m, first seen 89 m, reach at game minute -1), game minutes run 2880 (stopped at two days)
+seed 3141595: pile -1893, 128, 1057 (water -1892, 127, 1058), player -1803, 128, 1057, start minute 177844
+seed 3141595: bear seen true, reached false (min distance 21 m, first seen 37 m, reach at game minute -1), game minutes run 2883 (stopped at two days)
+seed 3141596: pile -1302, 295, 1582 (water -1303, 294, 1582), player -1212, 302, 1582, start minute 177845
+seed 3141596: bear seen true, reached true (min distance 8 m, first seen 37 m, reach at game minute 906), no bear within 60 m of the player; bear act/drive within 60 m of the pile: state ROUTINE act FEED hunger 0.50 pts 1 scan 494/476 wind null denned false; nav true moveHint 1 vel 0.11 ground true pos -1307, 296, 1588; chase false, last 0 m, gave up 0, kills 0, carrion 0, target -1302, 295, 1582; game minutes run 906
+seed 3141597: pile -185, 173, 861 (water -184, 172, 862), player -95, 176, 861, start minute 177844
+seed 3141597: bear seen true, reached false (min distance 24 m, first seen 32 m, reach at game minute -1), game minutes run 2880 (stopped at two days)
+seed 3141598: pile -1707, 152, 676 (water -1706, 151, 677), player -1617, 163, 676, start minute 177845
+seed 3141598: bear seen true, reached false (min distance 86 m, first seen 175 m, reach at game minute -1), game minutes run 2883 (stopped at two days)
+seed 3141599: pile -839, 150, 695 (water -839, 149, 696), player -749, 150, 695, start minute 177842
+seed 3141599: bear seen true, reached false (min distance 22 m, first seen 59 m, reach at game minute -1), game minutes run 2895 (stopped at two days)
+seed 3141600: pile -1835, 151, 589 (water -1834, 150, 590), player -1745, 152, 589, start minute 177844
+seed 3141600: bear seen true, reached false (min distance 13 m, first seen 38 m, reach at game minute -1), no bear within 60 m of the player; bear act/drive within 60 m of the pile: state ROUTINE act FEED hunger 0.33 pts 1 scan 501/1090 wind null denned false; nav true moveHint 2 vel 0.16 ground true pos -1820, 158, 535; chase false, last 0 m, gave up 0, kills 0, carrion 0, target -1835, 151, 589; game minutes run 2883
+seed 3141601: pile -201, 151, 768 (water -200, 150, 768), player -111, 153, 768, start minute 177844
+seed 3141601: bear seen true, reached true (min distance 8 m, first seen 79 m, reach at game minute 1392), no bear within 60 m of the player; bear act/drive within 60 m of the pile: state ROUTINE act FEED hunger 0.41 pts 1 scan 581/616 wind null denned false; nav true moveHint 1 vel 0.09 ground true pos -201, 152, 776; chase false, last 0 m, gave up 0, kills 0, carrion 0, target -201, 151, 768; game minutes run 1392
+RESULT FAIL : bear reached the uncleared spot in 2 of 10 seeds (blueprint: 7 of 10 in 2 days)
