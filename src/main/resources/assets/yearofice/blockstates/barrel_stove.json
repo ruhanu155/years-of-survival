@@ -1,0 +1,10 @@
+{
+ "variants": {
+  "lit=false": {
+   "model": "yearofice:block/barrel_stove"
+  },
+  "lit=true": {
+   "model": "yearofice:block/barrel_stove_lit"
+  }
+ }
+}

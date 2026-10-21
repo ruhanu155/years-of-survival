@@ -1956,8 +1956,8 @@
     {
       "asset_id": "tex_flint_knife",
       "files": [
-        "assets/yearofice/textures/item/flint_knife.png",
-        "assets/yearofice/models/item/flint_knife.json"
+        "assets/yearofice/models/item/flint_knife.json",
+        "assets/yearofice/textures/item/flint_knife.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/flint_knife.json",
@@ -1968,8 +1968,8 @@
     {
       "asset_id": "tex_flint_nodule",
       "files": [
-        "assets/yearofice/textures/item/flint_nodule.png",
-        "assets/yearofice/models/item/flint_nodule.json"
+        "assets/yearofice/models/item/flint_nodule.json",
+        "assets/yearofice/textures/item/flint_nodule.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/flint_nodule.json",
@@ -1980,8 +1980,8 @@
     {
       "asset_id": "tex_knife",
       "files": [
-        "assets/yearofice/textures/item/knife.png",
-        "assets/yearofice/models/item/knife.json"
+        "assets/yearofice/models/item/knife.json",
+        "assets/yearofice/textures/item/knife.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/knife.json",
@@ -1992,8 +1992,8 @@
     {
       "asset_id": "tex_rough_stone",
       "files": [
-        "assets/yearofice/textures/item/rough_stone.png",
-        "assets/yearofice/models/item/rough_stone.json"
+        "assets/yearofice/models/item/rough_stone.json",
+        "assets/yearofice/textures/item/rough_stone.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/rough_stone.json",
@@ -2004,8 +2004,8 @@
     {
       "asset_id": "tex_stake",
       "files": [
-        "assets/yearofice/textures/item/stake.png",
-        "assets/yearofice/models/item/stake.json"
+        "assets/yearofice/models/item/stake.json",
+        "assets/yearofice/textures/item/stake.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/stake.json",
@@ -2016,8 +2016,8 @@
     {
       "asset_id": "tex_tool_handle",
       "files": [
-        "assets/yearofice/textures/item/tool_handle.png",
-        "assets/yearofice/models/item/tool_handle.json"
+        "assets/yearofice/models/item/tool_handle.json",
+        "assets/yearofice/textures/item/tool_handle.png"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/tool_handle.json",
@@ -5098,34 +5098,34 @@
     {
       "asset_id": "model_big_game_items",
       "files": [
-        "assets/yearofice/models/item/moose_meat.json",
-        "assets/yearofice/models/item/caribou_meat.json",
-        "assets/yearofice/models/item/mule_deer_meat.json",
-        "assets/yearofice/models/item/black_bear_meat.json",
-        "assets/yearofice/models/item/grizzly_meat.json",
-        "assets/yearofice/models/item/wolf_meat.json",
-        "assets/yearofice/models/item/coyote_meat.json",
-        "assets/yearofice/models/item/red_fox_meat.json",
-        "assets/yearofice/models/item/lynx_meat.json",
-        "assets/yearofice/models/item/wolverine_meat.json",
-        "assets/yearofice/models/item/moose_hide.json",
-        "assets/yearofice/models/item/caribou_hide.json",
-        "assets/yearofice/models/item/mule_deer_hide.json",
-        "assets/yearofice/models/item/black_bear_hide.json",
-        "assets/yearofice/models/item/grizzly_hide.json",
-        "assets/yearofice/models/item/wolf_pelt.json",
-        "assets/yearofice/models/item/coyote_pelt.json",
-        "assets/yearofice/models/item/red_fox_pelt.json",
-        "assets/yearofice/models/item/lynx_pelt.json",
-        "assets/yearofice/models/item/wolverine_pelt.json",
         "assets/yearofice/models/item/animal_fat.json",
-        "assets/yearofice/models/item/heart.json",
-        "assets/yearofice/models/item/liver.json",
-        "assets/yearofice/models/item/kidney.json",
-        "assets/yearofice/models/item/tongue.json",
-        "assets/yearofice/models/item/marrow_bone.json",
         "assets/yearofice/models/item/antler.json",
-        "assets/yearofice/models/item/claw.json"
+        "assets/yearofice/models/item/black_bear_hide.json",
+        "assets/yearofice/models/item/black_bear_meat.json",
+        "assets/yearofice/models/item/caribou_hide.json",
+        "assets/yearofice/models/item/caribou_meat.json",
+        "assets/yearofice/models/item/claw.json",
+        "assets/yearofice/models/item/coyote_meat.json",
+        "assets/yearofice/models/item/coyote_pelt.json",
+        "assets/yearofice/models/item/grizzly_hide.json",
+        "assets/yearofice/models/item/grizzly_meat.json",
+        "assets/yearofice/models/item/heart.json",
+        "assets/yearofice/models/item/kidney.json",
+        "assets/yearofice/models/item/liver.json",
+        "assets/yearofice/models/item/lynx_meat.json",
+        "assets/yearofice/models/item/lynx_pelt.json",
+        "assets/yearofice/models/item/marrow_bone.json",
+        "assets/yearofice/models/item/moose_hide.json",
+        "assets/yearofice/models/item/moose_meat.json",
+        "assets/yearofice/models/item/mule_deer_hide.json",
+        "assets/yearofice/models/item/mule_deer_meat.json",
+        "assets/yearofice/models/item/red_fox_meat.json",
+        "assets/yearofice/models/item/red_fox_pelt.json",
+        "assets/yearofice/models/item/tongue.json",
+        "assets/yearofice/models/item/wolf_meat.json",
+        "assets/yearofice/models/item/wolf_pelt.json",
+        "assets/yearofice/models/item/wolverine_meat.json",
+        "assets/yearofice/models/item/wolverine_pelt.json"
       ],
       "source_type": "generated",
       "licence": "project",
@@ -6313,8 +6313,8 @@
     {
       "asset_id": "snd_ambient_dawn_chorus",
       "files": [
-        "assets/yearofice/sounds/ambient/dawn_chorus_sparse.ogg",
         "assets/yearofice/sounds/ambient/dawn_chorus_full.ogg",
+        "assets/yearofice/sounds/ambient/dawn_chorus_sparse.ogg",
         "assets/yearofice/sounds/ambient/dawn_chorus_white_night.ogg"
       ],
       "source_type": "generated",
@@ -6768,6 +6768,67 @@
       "recipe": "tools/artgen/plants/gen.py",
       "licence": "project",
       "generator_version": "plants 1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "model_m8b_blocks",
+      "files": [
+        "assets/yearofice/blockstates/barrel.json",
+        "assets/yearofice/blockstates/barrel_stove.json",
+        "assets/yearofice/blockstates/cache_legs.json",
+        "assets/yearofice/blockstates/cache_pole.json",
+        "assets/yearofice/blockstates/chimney_pipe.json",
+        "assets/yearofice/blockstates/crate.json",
+        "assets/yearofice/blockstates/firewood_shed.json",
+        "assets/yearofice/blockstates/hanging_bar.json",
+        "assets/yearofice/blockstates/masonry_stove.json",
+        "assets/yearofice/blockstates/permafrost_cellar.json",
+        "assets/yearofice/blockstates/placed_lantern.json",
+        "assets/yearofice/blockstates/root_cellar.json",
+        "assets/yearofice/blockstates/shelf.json",
+        "assets/yearofice/blockstates/smokehouse.json",
+        "assets/yearofice/blockstates/tin_stove.json",
+        "assets/yearofice/models/block/barrel.json",
+        "assets/yearofice/models/block/barrel_stove.json",
+        "assets/yearofice/models/block/barrel_stove_lit.json",
+        "assets/yearofice/models/block/cache_legs.json",
+        "assets/yearofice/models/block/cache_pole.json",
+        "assets/yearofice/models/block/cache_pole_banded.json",
+        "assets/yearofice/models/block/cache_pole_barked.json",
+        "assets/yearofice/models/block/cache_pole_peeled.json",
+        "assets/yearofice/models/block/chimney_pipe.json",
+        "assets/yearofice/models/block/crate.json",
+        "assets/yearofice/models/block/firewood_shed.json",
+        "assets/yearofice/models/block/hanging_bar.json",
+        "assets/yearofice/models/block/masonry_stove.json",
+        "assets/yearofice/models/block/masonry_stove_lit.json",
+        "assets/yearofice/models/block/permafrost_cellar.json",
+        "assets/yearofice/models/block/placed_lantern.json",
+        "assets/yearofice/models/block/root_cellar.json",
+        "assets/yearofice/models/block/shelf.json",
+        "assets/yearofice/models/block/smokehouse.json",
+        "assets/yearofice/models/block/tin_stove.json",
+        "assets/yearofice/models/block/tin_stove_lit.json",
+        "assets/yearofice/models/item/barrel.json",
+        "assets/yearofice/models/item/barrel_stove.json",
+        "assets/yearofice/models/item/cache_legs.json",
+        "assets/yearofice/models/item/cache_pole.json",
+        "assets/yearofice/models/item/chimney_pipe.json",
+        "assets/yearofice/models/item/crate.json",
+        "assets/yearofice/models/item/firewood_shed.json",
+        "assets/yearofice/models/item/hanging_bar.json",
+        "assets/yearofice/models/item/masonry_stove.json",
+        "assets/yearofice/models/item/permafrost_cellar.json",
+        "assets/yearofice/models/item/placed_lantern.json",
+        "assets/yearofice/models/item/root_cellar.json",
+        "assets/yearofice/models/item/shelf.json",
+        "assets/yearofice/models/item/smokehouse.json",
+        "assets/yearofice/models/item/tin_stove.json"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/m8b_blocks.py",
+      "licence": "project",
+      "generator_version": "m8b_blocks 0.1.0",
       "release_blocker": false
     },
     {

@@ -20,7 +20,19 @@ public final class FireIndex implements FireHeatLookup {
 
     private final Map<ResourceKey<Level>, Map<BlockPos, FireHeat>> rings = new HashMap<>();
 
+    /** Heat that is not a ring (stoves, M8): in the heat lookups, never in {@link #rings}. */
+    private final Map<ResourceKey<Level>, Map<BlockPos, FireHeat>> extras = new HashMap<>();
+
     private FireIndex() {}
+
+    public void putExtra(Level level, BlockPos pos, FireHeat heat) {
+        extras.computeIfAbsent(level.dimension(), k -> new HashMap<>()).put(pos.immutable(), heat);
+    }
+
+    public void removeExtra(Level level, BlockPos pos) {
+        Map<BlockPos, FireHeat> m = extras.get(level.dimension());
+        if (m != null) m.remove(pos);
+    }
 
     void put(Level level, BlockPos pos, FireHeat heat) {
         rings.computeIfAbsent(level.dimension(), k -> new HashMap<>()).put(pos.immutable(), heat);
@@ -31,7 +43,7 @@ public final class FireIndex implements FireHeatLookup {
         if (m != null) m.remove(pos);
     }
 
-    void clear() { rings.clear(); }
+    void clear() { rings.clear(); extras.clear(); }
 
     /** Every loaded ring in the level, lit or not. */
     public List<BlockPos> rings(Level level) {
@@ -55,7 +67,7 @@ public final class FireIndex implements FireHeatLookup {
     @Override
     public List<HeatSource> sourcesNear(Level level, double x, double y, double z) {
         List<HeatSource> out = new ArrayList<>();
-        for (FireHeat h : rings.getOrDefault(level.dimension(), Map.of()).values()) {
+        for (var m : List.of(rings, extras)) for (FireHeat h : m.getOrDefault(level.dimension(), Map.of()).values()) {
             if (!h.warm()) continue;
             double d = h.distanceTo(x, y, z);
             if (d < FireHeat.ZERO_RADIUS_M) out.add(h.toHeatSource(d, 0));
@@ -66,7 +78,7 @@ public final class FireIndex implements FireHeatLookup {
     @Override
     public List<FireHeat> fires(Level level) {
         List<FireHeat> out = new ArrayList<>();
-        for (FireHeat h : rings.getOrDefault(level.dimension(), Map.of()).values()) if (h.warm()) out.add(h);
+        for (var m : List.of(rings, extras)) for (FireHeat h : m.getOrDefault(level.dimension(), Map.of()).values()) if (h.warm()) out.add(h);
         return out;
     }
 }

@@ -1,0 +1,16 @@
+{
+ "variants": {
+  "facing=north": {
+   "model": "yearofice:block/root_cellar"
+  },
+  "facing=south": {
+   "model": "yearofice:block/root_cellar"
+  },
+  "facing=east": {
+   "model": "yearofice:block/root_cellar"
+  },
+  "facing=west": {
+   "model": "yearofice:block/root_cellar"
+  }
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "variants": {
+  "facing=north": {
+   "model": "yearofice:block/permafrost_cellar"
+  },
+  "facing=south": {
+   "model": "yearofice:block/permafrost_cellar"
+  },
+  "facing=east": {
+   "model": "yearofice:block/permafrost_cellar"
+  },
+  "facing=west": {
+   "model": "yearofice:block/permafrost_cellar"
+  }
+ }
+}

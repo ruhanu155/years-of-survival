@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": {
+    "yearofice:crate": { "capacity_kg": 40, "mass_kg": 6, "buffer_pct": 30, "dryness_pct": 60 },
+    "yearofice:barrel": { "capacity_kg": 60, "mass_kg": 9, "buffer_pct": 50, "dryness_pct": 90 },
+    "yearofice:shelf": { "capacity_kg": 25, "mass_kg": 5, "buffer_pct": 0, "dryness_pct": 50 },
+    "yearofice:hanging_bar": { "capacity_kg": 10, "mass_kg": 2, "buffer_pct": 0, "dryness_pct": 20 },
+    "yearofice:cache_legs": { "capacity_kg": 120, "mass_kg": 15, "buffer_pct": 0, "dryness_pct": 40 }
+  }
+}
