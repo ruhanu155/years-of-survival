@@ -1,0 +1,10 @@
+{
+ "variants": {
+  "lit=false": {
+   "model": "yearofice:block/masonry_stove"
+  },
+  "lit=true": {
+   "model": "yearofice:block/masonry_stove_lit"
+  }
+ }
+}

@@ -19,6 +19,7 @@ public final class FireSystem {
 
     public static void init(IEventBus modBus) {
         FireRegistry.register(modBus);
+        com.yearofice.fire.stove.StoveSystem.init(modBus);
         com.yearofice.fire.water.WaterRegistry.register(modBus);
         com.yearofice.fire.light.LightItems.ITEMS.register(modBus);
         com.yearofice.env.light.LightSystem.init(modBus);

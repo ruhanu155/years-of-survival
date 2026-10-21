@@ -18,6 +18,7 @@ public final class BuildSystem {
 
     public static void init(IEventBus modBus) {
         BuildRegistry.register(modBus);
+        com.yearofice.build.store.StoreSystem.init(modBus);
         com.yearofice.build.craft.CraftSystem.init(modBus);
         com.yearofice.build.outpost.OutpostSystem.init(modBus);
         // A lifted box's hold (A7) is checked before the wood jobs'.
@@ -33,6 +34,7 @@ public final class BuildSystem {
         com.yearofice.build.pieces.PieceSystem.init();
         modBus.addListener(com.yearofice.build.pieces.PieceSystem::creative);
         NeoForge.EVENT_BUS.addListener(BuildCommands::register);
+        NeoForge.EVENT_BUS.addListener(com.yearofice.build.dugout.DugoutCommands::register);
     }
 
     private static void creativeTabs(BuildCreativeModeTabContentsEvent e) {

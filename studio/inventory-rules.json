@@ -2465,6 +2465,77 @@
         "floor",
         "door"
       ]
+    },
+    {
+      "basis": "M8 lane B: stoves (Blueprint › Fire; Crafting › Warm rooms)",
+      "milestone": "m8",
+      "owner": "body",
+      "type": "block_with_entity",
+      "ids": [
+        "tin_stove",
+        "barrel_stove",
+        "masonry_stove"
+      ]
+    },
+    {
+      "basis": "M8 lane B: storage block entities, shed, cellar",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "block_with_entity",
+      "ids": [
+        "crate",
+        "barrel",
+        "shelf",
+        "hanging_bar",
+        "cache_legs",
+        "firewood_shed",
+        "root_cellar"
+      ]
+    },
+    {
+      "basis": "M8 lane B: stovepipe / chimney blocks",
+      "milestone": "m8",
+      "owner": "body",
+      "type": "block",
+      "ids": [
+        "chimney_pipe"
+      ]
+    },
+    {
+      "basis": "M8 lane B: raised cache legs; placed lanterns",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "block",
+      "ids": [
+        "cache_pole",
+        "placed_lantern"
+      ]
+    },
+    {
+      "basis": "M8 lane B: multiblock/ data rows",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "multiblock",
+      "ids": [
+        "tin_stove",
+        "barrel_stove",
+        "masonry_stove",
+        "root_cellar",
+        "permafrost_cellar",
+        "smokehouse",
+        "dugout_hillside",
+        "dugout_cut_bank",
+        "dugout_rock_shelter"
+      ]
+    },
+    {
+      "basis": "M8 lane B: block data map store (capacity, mass, buffer, dryness)",
+      "milestone": "m8",
+      "owner": "building",
+      "type": "data_map",
+      "ids": [
+        "store"
+      ]
     }
   ],
   "expand": {
