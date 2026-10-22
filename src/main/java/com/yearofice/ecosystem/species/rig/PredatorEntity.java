@@ -103,7 +103,10 @@ public class PredatorEntity extends LandAnimal {
     protected boolean scentLocked(ServerLevel level) {
         trace(level, "tick");
         // m6bear v8: hunger sinks below 0.5 on the walk (0.54 -> 0.47 in a minute) and the BED act then idled bears 20-63 m short with the target still set; once committed the lock holds down to the scavenge gate (0.3)
-        if (!hasDrives() || chase != null || driveState().hunger <= (scentTarget != null ? 0.3 : 0.5)) return false;
+        // v11: bears foraged on the walk (FEED routine) and sank to 0.24-0.29 within 30-70 m of the pile, then let it go; a
+        // committed bear inside HOLD_M eats carrion whatever its berry fill
+        if (!hasDrives() || chase != null) return false;
+        if (driveState().hunger <= (scentTarget != null ? 0.3 : 0.5) && !(scentTarget != null && committedNear(level))) return false;
         long t = level.getGameTime();
         if (scentTarget == null && t >= nextSmellTick) scavenge(level, t);
         return scentTarget != null;
@@ -134,7 +137,9 @@ public class PredatorEntity extends LandAnimal {
      */
     @Override
     protected boolean holdsCourse(double threatDistM) {
-        return hasDrives() && chase == null && scentTarget instanceof BlockPos && driveState().hunger > 0.5 && threatDistM > 40;
+        // m6bear v10: committed bears at hunger 0.42-0.49 fled a threat 90 m off from 32-48 m short of the pile; the hold uses the
+        // same commit gate as the scent lock (0.3), so a far threat (> 40 m) does not push a committed bear off its carrion
+        return hasDrives() && chase == null && scentTarget instanceof BlockPos && (driveState().hunger > 0.3 || committedNear((ServerLevel) level())) && threatDistM > 40;
     }
 
     boolean hasDrives() { return species().hasDrives(); }
@@ -261,10 +266,26 @@ public class PredatorEntity extends LandAnimal {
         double scale = speciesId().endsWith("bear") || speciesId().endsWith("grizzly") || speciesId().endsWith("wolverine") ? 3.0 : 1.5;
         smell = d.senses().smellM() * scale;
         Object best = pickScent(level, smell);
+        // m6bear v10: the re-score only keeps sources the bear is in reach of (a 30 deg cone down the wind plus a bubble of 12 % of the
+        // reach, 18-30 m for a pile), so a bear closing from off the cone dropped its target at the bubble's edge and idled 12-41 m short
+        // (v6-v9, 2-3/10). A predator that has committed and closed to within HOLD_M keeps the target by memory and sight until it
+        // reaches it or the source is gone (the pile check in walkTo), whatever the wind does now.
+        if (best != scentTarget && scentTarget != null && committedNear(level)) { trace(level, best == null ? "hold:committed-out-of-cone" : "hold:committed-over-rescore"); best = scentTarget; }
         if (best != scentTarget) { stuckWalks = 0; Object old = scentTarget; scentTarget = best; trace(level, old == null ? (best == null ? "pick:none" : "pick:new") : best == null ? "drop:scoring-none-in-reach" : "pick:rescored"); }
         scentTarget = best;
         eatUntil = 0;
         return best != null && walkTo(level);
+    }
+
+    /** Within this flat distance a held carrion target is kept whatever the wind does (memory and sight close the last metres). */
+    static final double HOLD_M = 100;
+
+    private boolean committedNear(ServerLevel level) {
+        if (scentTarget instanceof RackPost) return false;
+        Vec3 at = scentTarget instanceof CarcassEntity c ? (c.isRemoved() ? null : c.position()) : scentTarget instanceof BlockPos b ? Vec3.atCenterOf(b) : null;
+        if (at == null) return false;
+        if (scentTarget instanceof BlockPos bp && level.isLoaded(bp) && !level.getBlockState(bp).is(EcosystemRegistry.GUT_PILE.get())) return false;
+        return Math.hypot(position().x - at.x, position().z - at.z) <= HOLD_M;
     }
 
     /** A rack or smokehouse post the predator walks to; the theft service takes over once it stands there. */
@@ -339,6 +360,14 @@ public class PredatorEntity extends LandAnimal {
         boolean far = position().distanceToSqr(at) > 40 * 40; // a scent trail far off is followed at a lope (the config's multiplier x trot), not a stroll
         if (getNavigation().isDone() && flat < 30 && stuckWalks == 3) trace(level, "straight-line-close:engaged");
         if (getNavigation().isDone() && flat < 30 && ++stuckWalks > 3) { // the path ended short (a bank, a bar edge): close the last metres in a straight line
+            // v12: a grizzly stood 10 m off for 200+ ticks at zero velocity: no path to the pile and a ledge over its step height
+            // in the straight line. Every 2 s ask for a path that ends within 4 blocks of the pile; when the push makes no
+            // progress, jump the ledge.
+            if (stuckWalks % 40 == 5) {
+                var path = getNavigation().createPath(BlockPos.containing(at), 4);
+                if (path != null && getNavigation().moveTo(path, Gaits.input(species().trotMps()))) { trace(level, "stuck:repath-near"); setMove(MOVE_WALK); return true; }
+            }
+            if (getDeltaMovement().horizontalDistanceSqr() < 1e-4 && onGround() && stuckWalks % 10 == 0) { getJumpControl().jump(); trace(level, "stuck:jump"); }
             getMoveControl().setWantedPosition(at.x, at.y, at.z, Gaits.input(species().trotMps()));
             setMove(MOVE_WALK);
             return true;
