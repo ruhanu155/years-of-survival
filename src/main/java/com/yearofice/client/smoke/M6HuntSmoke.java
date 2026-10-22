@@ -1094,6 +1094,7 @@ public final class M6HuntSmoke {
     // ---- 10. what the arrow did, and the blood trail ----------------------------------------------------------------------
 
     private static void after(ServerPlayer p) {
+        if (shotWait++ < 30) return; // let the shaft land (a 14 m flight is under a second; a miss flies on for a while)
         MooseEntity m = moose();
         lastOutcome = HuntDebug.last(p);
         log("  shot report: " + lastOutcome);
