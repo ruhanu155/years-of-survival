@@ -597,7 +597,7 @@ public final class M6HuntSmoke {
             long birch = splitPile.stream().filter(s -> s.is(item("birch_split"))).count();
             int carry = 0;
             splitPile.sort(java.util.Comparator.comparingInt(x -> x.is(item("birch_split")) ? 0 : 1));
-            for (ItemStack s : splitPile) if (carry < 6) { give(p, s); carry++; }
+            for (ItemStack s : splitPile) if (carry < 8) { give(p, s); carry++; }
             if (splitPile.size() > carry) log("  " + (splitPile.size() - carry) + " splits left in a pile at the stump (the pack carries about 30 kg)");
             splitPile.clear();
             step("wood: " + treesTried + " trees felled, limbed, bucked and split with the crate hatchet; " + have(p, "birch_split") + " birch splits in the pack (" + birch + " cut), " + count(p, WoodItems::isSplit) + " splits in all", "WoodJobs Fell/Limb/Buck/Split via WorkService");
@@ -996,8 +996,29 @@ public final class M6HuntSmoke {
             return;
         }
         if (dist <= SHOOT_M + 0.5 && Math.abs(dist - SHOOT_M) < 1.5) {
+            // a hunter looses only down a clear lane: willow leaves and shrub stems stop a shaft. Sidestep along the
+            // moose's flank (up to 4 m either way) until the eye-to-lungs line clips nothing.
+            Vec3 lungs = mp.add(0, m.getBbHeight() * 0.55, 0);
+            double sx = -fz, sz = fx;
+            boolean clear = false;
+            for (int k = 0; k < 9 && !clear; k++) {
+                double off = (k % 2 == 0 ? 1 : -1) * ((k + 1) / 2) * 1.0;
+                double cx = p.getX() + sx * off, cz = p.getZ() + sz * off;
+                double cy = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (int) Math.floor(cx), (int) Math.floor(cz));
+                Vec3 ce = new Vec3(cx, cy + p.getEyeHeight(), cz);
+                var hit = level.clip(new net.minecraft.world.level.ClipContext(ce, lungs, net.minecraft.world.level.ClipContext.Block.COLLIDER, net.minecraft.world.level.ClipContext.Fluid.NONE, p));
+                if (hit.getType() == net.minecraft.world.phys.HitResult.Type.MISS || hit.getLocation().distanceTo(lungs) < 1.2) {
+                    clear = true;
+                    if (k > 0) { p.teleportTo(level, cx, cy, cz, p.getYRot(), p.getXRot()); log("  sidestepped " + f(off) + " m for a clear lane"); }
+                }
+            }
+            if (!clear) {
+                if (laneWaits++ < 6) { log("  no clear lane to the lungs (cover in the line); waiting for the moose to step"); approachTicks += 100; return; }
+                finding("no clear shooting lane within 4 m of sidestep at " + f(dist) + " m: the moose stands in cover; a shaft would stop in the willow");
+            }
+            laneWaits = 0;
             p.setShiftKeyDown(false);
-            step("in bow range: " + f(dist) + " m from the moose (state " + m.state() + ")", "approach 1.2 m/s on the downwind line");
+            step("in bow range: " + f(dist) + " m from the moose (state " + m.state() + "), lane " + (clear ? "clear" : "obstructed"), "approach 1.2 m/s on the downwind line, level.clip eye→lungs");
             ph = Ph.DRAW;
             drawStart = -1;
         }
@@ -1014,6 +1035,8 @@ public final class M6HuntSmoke {
         Vec3 look = target.add(0, dd[0], 0).subtract(eye);
         p.teleportTo(level, p.getX(), p.getY(), p.getZ(), (float) Math.toDegrees(Math.atan2(-look.x, look.z)), (float) -Math.toDegrees(Math.atan2(look.y, Math.hypot(look.x, look.z))));
     }
+
+    private static int laneWaits = 0;
 
     private static void draw(ServerPlayer p) {
         MooseEntity m = moose();
@@ -1073,8 +1096,8 @@ public final class M6HuntSmoke {
             drawStart = -1;
             return;
         }
-        if (m == null && !wounded) {
-            finding("the moose left or the arrow missed: " + lastOutcome);
+        if (!wounded) {
+            finding(m == null ? "the moose left or the arrow missed: " + lastOutcome : "six arrows and no hit on the moose: " + lastOutcome);
             if (mooseAttempts < 3 && have(p, "arrow") > 0) { ph = Ph.FIND; followHop = 0; firstSignPos = impact == null ? null : BlockPos.containing(impact); mooseId = null; wait = 100; }
             else ph = Ph.END;
             return;
