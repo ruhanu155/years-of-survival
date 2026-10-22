@@ -2,5 +2,10 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "yearofice:item/wool_socks"
+  },
+  "display": {
+    "head": {
+      "scale": [0, 0, 0]
+    }
   }
 }

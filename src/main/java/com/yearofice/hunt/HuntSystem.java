@@ -42,7 +42,7 @@ public final class HuntSystem {
             e.accept(HuntRegistry.LONGBOW.get());
             e.accept(HuntRegistry.SINEW_BOW.get());
             e.accept(HuntRegistry.SPEAR.get());
-            for (String h : new String[] {"knapped_stone", "bone", "steel", "blunt"}) e.accept(HuntItems.arrow(h, 16));
+            for (String h : new String[] {"knapped_stone", "bone", "steel", "blunt"}) e.accept(HuntItems.arrow(h, 1));
             e.accept(HuntRegistry.ARROWHEAD.get());
         } else if (e.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             e.accept(HuntRegistry.MOOSE_CALL.get());

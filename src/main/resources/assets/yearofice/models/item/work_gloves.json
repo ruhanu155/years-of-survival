@@ -2,5 +2,10 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "yearofice:item/work_gloves"
+  },
+  "display": {
+    "head": {
+      "scale": [0, 0, 0]
+    }
   }
 }

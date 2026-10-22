@@ -93,7 +93,6 @@ public final class WearLookSmoke {
             mc.getSingleplayerServer().execute(() -> {
                 ServerPlayer p = sp(mc);
                 p.teleportTo(mc.getSingleplayerServer().overworld(), 0.5, -60, 0.5, 0, 0);
-                p.getInventory().clearContent();
                 for (String id : ALL) p.getInventory().add(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(YearOfIce.MOD_ID, id))));
             });
         }

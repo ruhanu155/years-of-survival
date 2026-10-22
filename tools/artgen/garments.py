@@ -287,7 +287,9 @@ def main(check=False):
             continue
         img.save(os.path.join(ASSETS, "textures", "item", name + ".png"))
         with open(os.path.join(ASSETS, "models", "item", name + ".json"), "w") as f:
-            f.write('{\n  "parent": "minecraft:item/generated",\n  "textures": {\n    "layer0": "yearofice:item/%s"\n  }\n}\n' % name)
+            # head: scale 0 so a garment in the vanilla head slot is not drawn as a floating prop (WornLayer paints it instead)
+            f.write('{\n  "parent": "minecraft:item/generated",\n  "textures": {\n    "layer0": "yearofice:item/%s"\n  },\n'
+                    '  "display": {\n    "head": {\n      "scale": [0, 0, 0]\n    }\n  }\n}\n' % name)
     print(f"{len(GARMENTS)} garments, {bad} off-spec")
     return bad
 
