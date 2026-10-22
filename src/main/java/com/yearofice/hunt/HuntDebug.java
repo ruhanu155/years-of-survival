@@ -21,6 +21,9 @@ public final class HuntDebug {
         LAST.put(p == null ? new UUID(0, 0) : p.getUUID(), s);
     }
 
+    /** A shaft that ended without touching an animal: where it stopped, for {@code /yoi hunt last} and the proxy drivers. */
+    static void note(@Nullable ServerPlayer p, String s) { LAST.put(p == null ? new UUID(0, 0) : p.getUUID(), s); }
+
     public static String last(@Nullable ServerPlayer p) { return LAST.getOrDefault(p == null ? new UUID(0, 0) : p.getUUID(), "No shot yet."); }
 
     public static Shot.Outcome lastOutcome() { return lastOutcome; }

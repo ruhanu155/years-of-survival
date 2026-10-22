@@ -346,8 +346,24 @@ public final class M6HuntSmoke {
         ph = Ph.GRAVEL_SCAN;
     }
 
+    /** The crate backpack goes on the back first: wearing it opens the pack rows (the kit lists it; a player puts it on). */
+    private static void wearPack(ServerPlayer p) {
+        for (int i = 0; i < p.getInventory().getContainerSize(); i++) {
+            ItemStack st = p.getInventory().getItem(i);
+            if (st.isEmpty() || !BuiltInRegistries.ITEM.getKey(st.getItem()).getPath().equals("crate_backpack")) continue;
+            if (com.yearofice.item.inventory.PackSlots.setBack(p, st.copy())) {
+                p.getInventory().setItem(i, ItemStack.EMPTY);
+                com.yearofice.item.inventory.PackSync.refresh(p);
+                log("  put on the crate backpack: pack rows open");
+            } else log("  could not put on the crate backpack (no back slot)");
+            return;
+        }
+        log("  no crate backpack in the kit");
+    }
+
     /** The kit's cooking and camp gear goes into a barrel at the start so the pack has slots for what the hunt makes (logged). */
     private static void stashKit(ServerPlayer p) {
+        wearPack(p);
         Set<String> keep = Set.of("hatchet", "fixed_blade_knife", "cord", "match", "bear_spray", "crate_backpack");
         BlockPos at = spawn.east(2);
         at = new BlockPos(at.getX(), ground(at.getX(), at.getZ()), at.getZ());
@@ -504,8 +520,15 @@ public final class M6HuntSmoke {
         for (int dx = -90; dx <= 90; dx++) for (int dz = -90; dz <= 90; dz++) {
             int x = c.getX() + dx, z = c.getZ() + dz;
             if (!level.hasChunkAt(new BlockPos(x, 64, z))) continue;
-            int y = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, x, z) - 1;
+            // our leaves are not LeavesBlock, so the no-leaves heightmap stops on the crown: walk down through it to the log
+            int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x, z) - 1;
             BlockPos q = new BlockPos(x, y, z);
+            int down = 0;
+            while (!(level.getBlockState(q).getBlock() instanceof YoiLogBlock) && down++ < 24) {
+                var st = level.getBlockState(q);
+                if (!(st.isAir() || st.getBlock() instanceof com.yearofice.worldgen.block.YoiLeavesBlock || st.is(net.minecraft.world.level.block.Blocks.SNOW))) break;
+                q = q.below();
+            }
             if (!(level.getBlockState(q).getBlock() instanceof YoiLogBlock)) continue;
             while (level.getBlockState(q.below()).getBlock() instanceof YoiLogBlock) q = q.below();
             TrunkSearch.Trunk t = FellingService.trunk(level, q);
@@ -521,10 +544,10 @@ public final class M6HuntSmoke {
         trees = bestTrees;
         long birch = found.stream().filter(b -> kinds.get(b) == TreeKind.BIRCH).count();
         step("looked for trees of 8-40 cm within 90 m: " + found.size() + " (" + birch + " birch)", "FellingService.trunk scan");
-        if (birch == 0 && treeHop < 2) {
+        if (birch == 0 && treeHop < 4) {
             double ang = Math.toRadians(treeHop * 120 + 40);
             treeHop++;
-            walkTo(p, spawn.getX() + 120 * Math.cos(ang), spawn.getZ() + 120 * Math.sin(ang), "no birch in sight; looking for a birch stand, hop " + treeHop);
+            walkTo(p, spawn.getX() + 150 * Math.cos(ang), spawn.getZ() + 150 * Math.sin(ang), "no birch in sight; looking for a birch stand, hop " + treeHop);
             wait = 100;
             return;
         }
@@ -590,7 +613,7 @@ public final class M6HuntSmoke {
             long birch = splitPile.stream().filter(s -> s.is(item("birch_split"))).count();
             int carry = 0;
             splitPile.sort(java.util.Comparator.comparingInt(x -> x.is(item("birch_split")) ? 0 : 1));
-            for (ItemStack s : splitPile) if (carry < 6) { give(p, s); carry++; }
+            for (ItemStack s : splitPile) if (carry < 8) { give(p, s); carry++; }
             if (splitPile.size() > carry) log("  " + (splitPile.size() - carry) + " splits left in a pile at the stump (the pack carries about 30 kg)");
             splitPile.clear();
             step("wood: " + treesTried + " trees felled, limbed, bucked and split with the crate hatchet; " + have(p, "birch_split") + " birch splits in the pack (" + birch + " cut), " + count(p, WoodItems::isSplit) + " splits in all", "WoodJobs Fell/Limb/Buck/Split via WorkService");
@@ -810,7 +833,22 @@ public final class M6HuntSmoke {
     private static final List<BlockPos> scouted = new ArrayList<>();
 
     /** A bank spot near water (the moose's willow flats are riparian) not within 70 m of a place already looked at. */
+    private static BlockPos goal;
+
+    /** The start site's nearest moose home-range centre (Blueprint › Start site: three ranges within 1,500 m): where a player who reads the land heads. */
+    private static void pickGoal(ServerPlayer p) {
+        if (goal != null) return;
+        if (!(level.getChunkSource().getGenerator() instanceof com.yearofice.worldgen.gen.YoiChunkGenerator g) || g.world() == null) return;
+        double bd = Double.MAX_VALUE;
+        for (var r : g.world().life().moose()) {
+            double dx = r.x() - p.getX(), dz = r.z() - p.getZ(), d = dx * dx + dz * dz;
+            if (d < bd) { bd = d; goal = new BlockPos((int) r.x(), 64, (int) r.z()); }
+        }
+        if (goal != null) log("NOTE heading for the nearest moose range centre " + goal.toShortString() + ", " + f(Math.sqrt(bd)) + " m away (start-site life layer; a player reads the same from the land)");
+    }
+
     private static BlockPos nextBank(ServerPlayer p) {
+        pickGoal(p);
         BlockPos c = p.blockPosition();
         BlockPos best = null;
         double bd = Double.MAX_VALUE;
@@ -828,8 +866,10 @@ public final class M6HuntSmoke {
                 if (!level.getFluidState(land.below()).isEmpty() || !level.getFluidState(land).isEmpty()) continue;
                 boolean fresh = true;
                 for (BlockPos q : scouted) if (q.distSqr(land) < 70 * 70) { fresh = false; break; }
+                // the nearest bank that also brings the moose country closer (the start site's nearest moose range)
                 double d = land.distSqr(c);
-                if (fresh && d > 20 * 20 && d < bd) { bd = d; best = land; }
+                if (goal != null) d = land.distSqr(goal) * 0.25 + d;
+                if (fresh && land.distSqr(c) > 20 * 20 && d < bd) { bd = d; best = land; }
             }
         }
         return best;
@@ -857,8 +897,8 @@ public final class M6HuntSmoke {
             return;
         }
         if (scoutLaid) { scoutLaid = false; ClockService.get().forceRate(null); }
-        if (scoutHop >= 22) {
-            finding("no moose sign and no moose within 150 m of 22 riparian scouting spots");
+        if (scoutHop >= 40) {
+            finding("no moose sign and no moose within 150 m of 40 riparian scouting spots");
             ph = Ph.END;
             return;
         }
@@ -971,13 +1011,34 @@ public final class M6HuntSmoke {
             p.setShiftKeyDown(false);
             return;
         }
-        if (dist <= SHOOT_M + 0.5 && Math.abs(dist - SHOOT_M) < 1.5) {
+        if (dist <= SHOOT_M + 0.5 && Math.abs(dist - SHOOT_M) < 1.5 || dist <= 20 && approachTicks > 2500) {
+            // a hunter looses only down a clear lane: willow leaves and shrub stems stop a shaft. Sidestep along the
+            // moose's flank (up to 4 m either way) until the eye-to-lungs line clips nothing.
+            Vec3 lungs = mp.add(0, m.getBbHeight() * 0.55, 0);
+            double sx = -fz, sz = fx;
+            boolean clear = false;
+            for (int k = 0; k < 9 && !clear; k++) {
+                double off = (k % 2 == 0 ? 1 : -1) * ((k + 1) / 2) * 1.0;
+                double cx = p.getX() + sx * off, cz = p.getZ() + sz * off;
+                double cy = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (int) Math.floor(cx), (int) Math.floor(cz));
+                Vec3 ce = new Vec3(cx, cy + p.getEyeHeight(), cz);
+                var hit = level.clip(new net.minecraft.world.level.ClipContext(ce, lungs, net.minecraft.world.level.ClipContext.Block.COLLIDER, net.minecraft.world.level.ClipContext.Fluid.NONE, p));
+                if (hit.getType() == net.minecraft.world.phys.HitResult.Type.MISS || hit.getLocation().distanceTo(lungs) < 1.2) {
+                    clear = true;
+                    if (k > 0) { p.teleportTo(level, cx, cy, cz, p.getYRot(), p.getXRot()); log("  sidestepped " + f(off) + " m for a clear lane"); }
+                }
+            }
+            if (!clear) {
+                if (laneWaits++ < 6) { log("  no clear lane to the lungs (cover in the line); waiting for the moose to step"); approachTicks += 100; return; }
+                finding("no clear shooting lane within 4 m of sidestep at " + f(dist) + " m: the moose stands in cover; a shaft would stop in the willow");
+            }
+            laneWaits = 0;
             p.setShiftKeyDown(false);
-            step("in bow range: " + f(dist) + " m from the moose (state " + m.state() + ")", "approach 1.2 m/s on the downwind line");
+            step("in bow range: " + f(dist) + " m from the moose (state " + m.state() + "), lane " + (clear ? "clear" : "obstructed"), "approach 1.2 m/s on the downwind line, level.clip eye→lungs");
             ph = Ph.DRAW;
             drawStart = -1;
         }
-        if (approachTicks > 5000) { finding("approach timed out"); ph = Ph.END; }
+        if (approachTicks > 6000) { finding("approach timed out at " + f(dist) + " m"); ph = Ph.END; }
     }
 
     // ---- 9. draw and loose -----------------------------------------------------------------------------------------------
@@ -990,6 +1051,8 @@ public final class M6HuntSmoke {
         Vec3 look = target.add(0, dd[0], 0).subtract(eye);
         p.teleportTo(level, p.getX(), p.getY(), p.getZ(), (float) Math.toDegrees(Math.atan2(-look.x, look.z)), (float) -Math.toDegrees(Math.atan2(look.y, Math.hypot(look.x, look.z))));
     }
+
+    private static int laneWaits = 0;
 
     private static void draw(ServerPlayer p) {
         MooseEntity m = moose();
@@ -1031,6 +1094,7 @@ public final class M6HuntSmoke {
     // ---- 10. what the arrow did, and the blood trail ----------------------------------------------------------------------
 
     private static void after(ServerPlayer p) {
+        if (shotWait++ < 30) return; // let the shaft land (a 14 m flight is under a second; a miss flies on for a while)
         MooseEntity m = moose();
         lastOutcome = HuntDebug.last(p);
         log("  shot report: " + lastOutcome);
@@ -1049,8 +1113,8 @@ public final class M6HuntSmoke {
             drawStart = -1;
             return;
         }
-        if (m == null && !wounded) {
-            finding("the moose left or the arrow missed: " + lastOutcome);
+        if (!wounded) {
+            finding(m == null ? "the moose left or the arrow missed: " + lastOutcome : shotsFired == 0 ? "the moose bolted before the loose (" + m.state() + ")" : shotsFired + " arrows and no hit on the moose: " + lastOutcome);
             if (mooseAttempts < 3 && have(p, "arrow") > 0) { ph = Ph.FIND; followHop = 0; firstSignPos = impact == null ? null : BlockPos.containing(impact); mooseId = null; wait = 100; }
             else ph = Ph.END;
             return;

@@ -118,7 +118,7 @@ public class ArrowEntity extends Projectile implements ItemSupplier {
             return;
         }
         if (vel.lengthSqr() == 0) return;
-        if (++age > MAX_AGE) { discard(); return; }
+        if (++age > MAX_AGE) { HuntDebug.note(getOwner() instanceof ServerPlayer sp ? sp : null, String.format(java.util.Locale.ROOT, "shaft flew out at %s, %.1f m out", blockPosition().toShortString(), origin.distanceTo(position()))); discard(); return; }
         double[] w = wind();
         var s = Ballistics.step(new Ballistics.State(getX(), getY(), getZ(), vel.x, vel.y, vel.z), w[0], w[1], DT, HuntConfig.tuning());
         Vec3 from = position(), to = new Vec3(s.x(), s.y(), s.z());
@@ -150,6 +150,8 @@ public class ArrowEntity extends Projectile implements ItemSupplier {
 
     private void stuck(ServerLevel sl, BlockPos hitBlock) {
         boolean snow = sl.getBlockState(hitBlock).is(net.minecraft.tags.BlockTags.SNOW);
+        HuntDebug.note(getOwner() instanceof ServerPlayer sp ? sp : null, String.format(java.util.Locale.ROOT, "shaft stuck in %s at %s, %.1f m out, %.2f m below the loose, after %d ticks",
+                BuiltInRegistries.BLOCK.getKey(sl.getBlockState(hitBlock).getBlock()).getPath(), hitBlock.toShortString(), origin.distanceTo(position()), origin.y - getY(), age));
         double keep = snow ? 0.5 : HuntData.head(head).reuse() > 0 ? 0.95 : 0.95;
         if (sl.random.nextDouble() < keep && !sl.getFluidState(blockPosition()).is(net.minecraft.tags.FluidTags.WATER)) {
             sl.addFreshEntity(new ItemEntity(sl, getX(), getY() + 0.1, getZ(), getItem()));
