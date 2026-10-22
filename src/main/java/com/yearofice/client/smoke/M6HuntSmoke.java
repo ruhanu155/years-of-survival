@@ -346,8 +346,24 @@ public final class M6HuntSmoke {
         ph = Ph.GRAVEL_SCAN;
     }
 
+    /** The crate backpack goes on the back first: wearing it opens the pack rows (the kit lists it; a player puts it on). */
+    private static void wearPack(ServerPlayer p) {
+        for (int i = 0; i < p.getInventory().getContainerSize(); i++) {
+            ItemStack st = p.getInventory().getItem(i);
+            if (st.isEmpty() || !BuiltInRegistries.ITEM.getKey(st.getItem()).getPath().equals("crate_backpack")) continue;
+            if (com.yearofice.item.inventory.PackSlots.setBack(p, st.copy())) {
+                p.getInventory().setItem(i, ItemStack.EMPTY);
+                com.yearofice.item.inventory.PackSync.refresh(p);
+                log("  put on the crate backpack: pack rows open");
+            } else log("  could not put on the crate backpack (no back slot)");
+            return;
+        }
+        log("  no crate backpack in the kit");
+    }
+
     /** The kit's cooking and camp gear goes into a barrel at the start so the pack has slots for what the hunt makes (logged). */
     private static void stashKit(ServerPlayer p) {
+        wearPack(p);
         Set<String> keep = Set.of("hatchet", "fixed_blade_knife", "cord", "match", "bear_spray", "crate_backpack");
         BlockPos at = spawn.east(2);
         at = new BlockPos(at.getX(), ground(at.getX(), at.getZ()), at.getZ());
