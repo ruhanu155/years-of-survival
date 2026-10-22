@@ -243,10 +243,40 @@ public final class SlotSpawner {
                 slots.add(new Slot(key + ":" + i + (members > 1 ? "." + m : ""), k.id(), pm));
             }
         }
+        anchorSlots(level, k, cx, cz, d, key, slots);
         double share = tested == 0 ? 0 : habitatN / (double) tested;
         c = new Cell(minute, share, List.copyOf(slots), tested == samples);
         CELLS.put(key, c);
         return c;
+    }
+
+    /**
+     * The start site promises moose home ranges near camp (start_site.json › life.moose: three ranges within 1,500 m,
+     * Blueprint › Start site), and the valley's {@link com.yearofice.worldgen.Ranges.Layers} hold them. Each range
+     * whose centre lies in this cell gets one guaranteed slot on the nearest loaded riparian column within 400 m of
+     * its centre (hashed columns, so the pick is stable), on top of the density roll. Only species with ranges
+     * (moose); flat test worlds have no valley and add nothing.
+     */
+    static void anchorSlots(ServerLevel level, Kind k, int cx, int cz, SpeciesDef d, String key, List<Slot> slots) {
+        if (!k.id().equals(MooseEntity.ID)) return;
+        if (!(level.getChunkSource().getGenerator() instanceof com.yearofice.worldgen.gen.YoiChunkGenerator g) || g.world() == null) return;
+        List<com.yearofice.worldgen.Ranges.Range> ranges = g.world().life().moose();
+        for (int i = 0; i < ranges.size(); i++) {
+            var rg = ranges.get(i);
+            if (Math.floorDiv((int) rg.x(), k.cellM()) != cx || Math.floorDiv((int) rg.z(), k.cellM()) != cz) continue;
+            var r = Thresholds.stream(level.getSeed(), "anchor", k.id().hashCode(), i, 0);
+            BlockPos best = null;
+            double bd = Double.MAX_VALUE;
+            for (int n = 0; n < 48; n++) {
+                int x = (int) rg.x() + r.nextInt(801) - 400, z = (int) rg.z() + r.nextInt(801) - 400;
+                if (!level.hasChunkAt(new BlockPos(x, 64, z))) continue;
+                BlockPos gpos = Habitats.surface(level, x, z);
+                if (!Habitats.any(level, gpos, d.habitat())) continue;
+                double dd = (x - rg.x()) * (x - rg.x()) + (z - rg.z()) * (z - rg.z());
+                if (dd < bd) { bd = dd; best = gpos; }
+            }
+            if (best != null) slots.add(new Slot(key + ":range" + i, k.id(), best));
+        }
     }
 
     /** The hare cycle's multiplier for this year, or the pinned year from {@code [ecosystem] hare_cycle_year}. */

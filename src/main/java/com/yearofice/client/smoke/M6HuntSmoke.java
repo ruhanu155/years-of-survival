@@ -504,8 +504,15 @@ public final class M6HuntSmoke {
         for (int dx = -90; dx <= 90; dx++) for (int dz = -90; dz <= 90; dz++) {
             int x = c.getX() + dx, z = c.getZ() + dz;
             if (!level.hasChunkAt(new BlockPos(x, 64, z))) continue;
-            int y = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, x, z) - 1;
+            // our leaves are not LeavesBlock, so the no-leaves heightmap stops on the crown: walk down through it to the log
+            int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, x, z) - 1;
             BlockPos q = new BlockPos(x, y, z);
+            int down = 0;
+            while (!(level.getBlockState(q).getBlock() instanceof YoiLogBlock) && down++ < 24) {
+                var st = level.getBlockState(q);
+                if (!(st.isAir() || st.getBlock() instanceof com.yearofice.worldgen.block.YoiLeavesBlock || st.is(net.minecraft.world.level.block.Blocks.SNOW))) break;
+                q = q.below();
+            }
             if (!(level.getBlockState(q).getBlock() instanceof YoiLogBlock)) continue;
             while (level.getBlockState(q.below()).getBlock() instanceof YoiLogBlock) q = q.below();
             TrunkSearch.Trunk t = FellingService.trunk(level, q);
@@ -810,7 +817,22 @@ public final class M6HuntSmoke {
     private static final List<BlockPos> scouted = new ArrayList<>();
 
     /** A bank spot near water (the moose's willow flats are riparian) not within 70 m of a place already looked at. */
+    private static BlockPos goal;
+
+    /** The start site's nearest moose home-range centre (Blueprint › Start site: three ranges within 1,500 m): where a player who reads the land heads. */
+    private static void pickGoal(ServerPlayer p) {
+        if (goal != null) return;
+        if (!(level.getChunkSource().getGenerator() instanceof com.yearofice.worldgen.gen.YoiChunkGenerator g) || g.world() == null) return;
+        double bd = Double.MAX_VALUE;
+        for (var r : g.world().life().moose()) {
+            double dx = r.x() - p.getX(), dz = r.z() - p.getZ(), d = dx * dx + dz * dz;
+            if (d < bd) { bd = d; goal = new BlockPos((int) r.x(), 64, (int) r.z()); }
+        }
+        if (goal != null) log("NOTE heading for the nearest moose range centre " + goal.toShortString() + ", " + f(Math.sqrt(bd)) + " m away (start-site life layer; a player reads the same from the land)");
+    }
+
     private static BlockPos nextBank(ServerPlayer p) {
+        pickGoal(p);
         BlockPos c = p.blockPosition();
         BlockPos best = null;
         double bd = Double.MAX_VALUE;
@@ -828,8 +850,10 @@ public final class M6HuntSmoke {
                 if (!level.getFluidState(land.below()).isEmpty() || !level.getFluidState(land).isEmpty()) continue;
                 boolean fresh = true;
                 for (BlockPos q : scouted) if (q.distSqr(land) < 70 * 70) { fresh = false; break; }
+                // the nearest bank that also brings the moose country closer (the start site's nearest moose range)
                 double d = land.distSqr(c);
-                if (fresh && d > 20 * 20 && d < bd) { bd = d; best = land; }
+                if (goal != null) d = land.distSqr(goal) * 0.25 + d;
+                if (fresh && land.distSqr(c) > 20 * 20 && d < bd) { bd = d; best = land; }
             }
         }
         return best;
