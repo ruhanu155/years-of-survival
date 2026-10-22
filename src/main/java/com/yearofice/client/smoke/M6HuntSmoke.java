@@ -1011,7 +1011,7 @@ public final class M6HuntSmoke {
             p.setShiftKeyDown(false);
             return;
         }
-        if (dist <= SHOOT_M + 0.5 && Math.abs(dist - SHOOT_M) < 1.5) {
+        if (dist <= SHOOT_M + 0.5 && Math.abs(dist - SHOOT_M) < 1.5 || dist <= 20 && approachTicks > 2500) {
             // a hunter looses only down a clear lane: willow leaves and shrub stems stop a shaft. Sidestep along the
             // moose's flank (up to 4 m either way) until the eye-to-lungs line clips nothing.
             Vec3 lungs = mp.add(0, m.getBbHeight() * 0.55, 0);
@@ -1038,7 +1038,7 @@ public final class M6HuntSmoke {
             ph = Ph.DRAW;
             drawStart = -1;
         }
-        if (approachTicks > 5000) { finding("approach timed out"); ph = Ph.END; }
+        if (approachTicks > 6000) { finding("approach timed out at " + f(dist) + " m"); ph = Ph.END; }
     }
 
     // ---- 9. draw and loose -----------------------------------------------------------------------------------------------
