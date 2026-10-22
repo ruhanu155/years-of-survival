@@ -521,10 +521,10 @@ public final class M6HuntSmoke {
         trees = bestTrees;
         long birch = found.stream().filter(b -> kinds.get(b) == TreeKind.BIRCH).count();
         step("looked for trees of 8-40 cm within 90 m: " + found.size() + " (" + birch + " birch)", "FellingService.trunk scan");
-        if (birch == 0 && treeHop < 2) {
+        if (birch == 0 && treeHop < 4) {
             double ang = Math.toRadians(treeHop * 120 + 40);
             treeHop++;
-            walkTo(p, spawn.getX() + 120 * Math.cos(ang), spawn.getZ() + 120 * Math.sin(ang), "no birch in sight; looking for a birch stand, hop " + treeHop);
+            walkTo(p, spawn.getX() + 150 * Math.cos(ang), spawn.getZ() + 150 * Math.sin(ang), "no birch in sight; looking for a birch stand, hop " + treeHop);
             wait = 100;
             return;
         }
@@ -857,8 +857,8 @@ public final class M6HuntSmoke {
             return;
         }
         if (scoutLaid) { scoutLaid = false; ClockService.get().forceRate(null); }
-        if (scoutHop >= 22) {
-            finding("no moose sign and no moose within 150 m of 22 riparian scouting spots");
+        if (scoutHop >= 40) {
+            finding("no moose sign and no moose within 150 m of 40 riparian scouting spots");
             ph = Ph.END;
             return;
         }

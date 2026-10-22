@@ -47,7 +47,7 @@ public final class SlotSpawner {
 
     public record Slot(String key, String species, BlockPos pos) {}
 
-    record Cell(long minute, double share, List<Slot> slots) {}
+    record Cell(long minute, double share, List<Slot> slots, boolean complete) {}
 
     record Kind(String id, int cellM, int groupMin, int groupMax, Supplier<? extends EntityType<? extends YoiAnimal>> type,
                 ToDoubleFunction<EcoTuning> density, boolean generic) {
@@ -109,6 +109,7 @@ public final class SlotSpawner {
     public static void clear() {
         CELLS.clear();
         BODIES.clear();
+        SIGNED.clear();
     }
 
     public static void onTick(ServerTickEvent.Post e) {
@@ -138,13 +139,45 @@ public final class SlotSpawner {
                         for (Slot s : c.slots()) {
                             if (alive >= t.activeCap()) return;
                             if (BODIES.containsKey(s.key()) || data.empty(s.key(), minute)) continue;
-                            if (p.blockPosition().distSqr(s.pos()) > t.activeRadiusM() * t.activeRadiusM()) continue;
+                            if (p.blockPosition().distSqr(s.pos()) > t.activeRadiusM() * t.activeRadiusM()) {
+                                scatterSign(level, k, s, minute);
+                                continue;
+                            }
                             if (!level.isPositionEntityTicking(s.pos())) continue;
                             if (spawnKind(level, k, s.pos(), s.key()) != null) alive++;
                         }
                     }
                 }
             }
+        }
+    }
+
+    private static final Map<String, Long> SIGNED = new ConcurrentHashMap<>();
+
+    /**
+     * A slot whose chunk is loaded but whose body has not appeared (the player is beyond the Active radius) still
+     * leaves sign: tracks, browse and scat within 30 m of the slot, once a game day. Big game only; hares and birds
+     * are met, not tracked. The sign points the player at the animal before its body exists, which is how a hunt by
+     * sign starts (Bestiary › Reading sign).
+     */
+    static void scatterSign(ServerLevel level, Kind k, Slot s, long minute) {
+        if (k.cellM() < 256) return;
+        Long last = SIGNED.get(s.key());
+        if (last != null && minute - last < Calendar.MINUTES_PER_DAY) return;
+        if (!level.hasChunkAt(s.pos())) return;
+        SIGNED.put(s.key(), minute);
+        var r = Thresholds.stream(level.getSeed(), "slotsign", s.key().hashCode(), (int) (minute / Calendar.MINUTES_PER_DAY), 0);
+        double ang = r.nextDouble() * Math.PI * 2;
+        double dx = Math.cos(ang), dz = Math.sin(ang);
+        com.yearofice.sim.hunt.Sign.Kind[] kinds = {com.yearofice.sim.hunt.Sign.Kind.TRACK, com.yearofice.sim.hunt.Sign.Kind.TRACK,
+                com.yearofice.sim.hunt.Sign.Kind.BROWSE, com.yearofice.sim.hunt.Sign.Kind.TRACK, com.yearofice.sim.hunt.Sign.Kind.SCAT,
+                com.yearofice.sim.hunt.Sign.Kind.TRACK, com.yearofice.sim.hunt.Sign.Kind.BED};
+        for (int i = 0; i < kinds.length; i++) {
+            double dist = 4 + i * 4 + r.nextInt(3);
+            int x = (int) Math.round(s.pos().getX() - dx * dist + r.nextInt(3) - 1), z = (int) Math.round(s.pos().getZ() - dz * dist + r.nextInt(3) - 1);
+            if (!level.hasChunkAt(new BlockPos(x, 64, z))) continue;
+            BlockPos foot = Habitats.surface(level, x, z);
+            com.yearofice.hunt.sign.SignService.lay(level, foot, kinds[i], s.species(), dx, dz, 0);
         }
     }
 
@@ -169,39 +202,49 @@ public final class SlotSpawner {
         }
     }
 
-    /** The cell's slots, computed when its centre chunk is loaded and kept for a game day. */
+    /** Minutes between refreshes of a cell whose sampled columns are not all loaded yet. */
+    static final int PARTIAL_REFRESH_MIN = 20;
+
+    /**
+     * The cell's slots. Each of the 24 hashed columns decides for itself (its own hash against the per-column
+     * probability that gives the species' density × cell area × habitat share), so the slots a player sees do not
+     * depend on which chunks were loaded when the cell was first looked at: a cell at the edge of the loaded area
+     * yields its riverbank slots as soon as those columns load, and the same columns stay slots as more of the cell
+     * loads (M6 hunt proxy: cells were computed only once their centre chunk was loaded, so a player walking a
+     * creek never met the moose whose cell centre lay 300 m inland). A fully sampled cell is kept for a game day; a
+     * partly loaded one is re-sampled every {@link #PARTIAL_REFRESH_MIN} minutes.
+     */
     static Cell cell(ServerLevel level, Kind k, int cx, int cz, long minute) {
         String key = k.id() + ":" + cx + ":" + cz;
         Cell c = CELLS.get(key);
-        if (c != null && minute - c.minute() < Calendar.MINUTES_PER_DAY) return c;
-        BlockPos center = new BlockPos(cx * k.cellM() + k.cellM() / 2, 64, cz * k.cellM() + k.cellM() / 2);
-        if (!level.hasChunkAt(center)) return c;
+        if (c != null && minute - c.minute() < (c.complete() ? Calendar.MINUTES_PER_DAY : PARTIAL_REFRESH_MIN)) return c;
         SpeciesDef d = SpeciesBook.get(k.id());
         var r = Thresholds.stream(level.getSeed(), "slots", k.id().hashCode(), cx, cz);
-        List<BlockPos> habitat = new ArrayList<>();
-        int samples = 24, tested = 0;
+        double mult = k.id().equals(SnowshoeHareEntity.ID) ? hareMultiplier(level, minute) : com.yearofice.ecosystem.small.LemmingIndex.multiplier(k.id(), level);
+        int samples = 24, tested = 0, habitatN = 0;
+        // expected slots over the whole cell = density × area × share × mult; per tested habitat column that is this probability
+        double q = Density.inCell(k.density().applyAsDouble(EcoConfig.tuning()), k.cellM(), 1.0, mult) / samples;
+        List<Slot> slots = new ArrayList<>();
         for (int i = 0; i < samples; i++) {
             int x = cx * k.cellM() + r.nextInt(k.cellM());
             int z = cz * k.cellM() + r.nextInt(k.cellM());
+            double u = r.nextDouble();
+            int members = k.groupMin() + r.nextInt(k.groupMax() - k.groupMin() + 1);
+            int[] jit = new int[members * 2];
+            for (int j = 0; j < jit.length; j++) jit[j] = r.nextInt(5) - 2;
             if (!level.hasChunkAt(new BlockPos(x, 64, z))) continue;
             tested++;
             BlockPos g = Habitats.surface(level, x, z);
-            if (Habitats.any(level, g, d.habitat())) habitat.add(g);
-        }
-        double share = tested == 0 ? 0 : habitat.size() / (double) tested;
-        double mult = k.id().equals(SnowshoeHareEntity.ID) ? hareMultiplier(level, minute) : com.yearofice.ecosystem.small.LemmingIndex.multiplier(k.id(), level);
-        double expected = Density.inCell(k.density().applyAsDouble(EcoConfig.tuning()), k.cellM(), share, mult);
-        int n = habitat.isEmpty() ? 0 : Density.count(expected, r.nextDouble());
-        List<Slot> slots = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            BlockPos at = habitat.get(r.nextInt(habitat.size()));
-            int members = k.groupMin() + r.nextInt(k.groupMax() - k.groupMin() + 1);
+            if (!Habitats.any(level, g, d.habitat())) continue;
+            habitatN++;
+            if (u >= q) continue;
             for (int m = 0; m < members; m++) {
-                BlockPos p = m == 0 ? at : Habitats.surface(level, at.getX() + r.nextInt(5) - 2, at.getZ() + r.nextInt(5) - 2);
-                slots.add(new Slot(key + ":" + i + (members > 1 ? "." + m : ""), k.id(), p));
+                BlockPos pm = m == 0 ? g : Habitats.surface(level, g.getX() + jit[m * 2], g.getZ() + jit[m * 2 + 1]);
+                slots.add(new Slot(key + ":" + i + (members > 1 ? "." + m : ""), k.id(), pm));
             }
         }
-        c = new Cell(minute, share, List.copyOf(slots));
+        double share = tested == 0 ? 0 : habitatN / (double) tested;
+        c = new Cell(minute, share, List.copyOf(slots), tested == samples);
         CELLS.put(key, c);
         return c;
     }

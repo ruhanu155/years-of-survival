@@ -315,6 +315,8 @@ public final class WoodJobs {
             log.setLimbed();
             TreeKind k = log.kind();
             WoodItems.give(p, new ItemStack(FireRegistry.KINDLING.get(), Bucking.sticks(k)));
+            // straight shoots off the limbs: arrow shafts and stakes (M6 hunt proxy: sticks came only from plant pulls)
+            WoodItems.give(p, new ItemStack(net.minecraft.world.item.Items.STICK, Math.max(2, Bucking.sticks(k) / 2)));
             Item bough = boughItem();
             if (bough != null && Bucking.boughs(k) > 0) {
                 int n = Bucking.boughs(k);

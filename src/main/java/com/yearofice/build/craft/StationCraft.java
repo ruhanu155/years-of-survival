@@ -377,9 +377,7 @@ public final class StationCraft {
         NeoForge.EVENT_BUS.post(new StationCraftEvent(p, h.id(), r.station(), made));
     }
 
-    static void give(ServerPlayer p, ItemStack s) {
-        if (!p.getInventory().add(s)) p.drop(s, false);
-    }
+    static void give(ServerPlayer p, ItemStack s) { com.yearofice.item.inventory.Pickup.giveOrDrop(p, s); }
 
     /** The recipe's name: its result's name. */
     public static String name(StationRecipe r) { return r.result().getHoverName().getString(); }

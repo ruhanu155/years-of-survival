@@ -82,6 +82,17 @@ public final class Pickup {
         return Result.PARTIAL;
     }
 
+    /** Puts a made or butchered stack in the pack, or drops it at the feet with the "Pack full" line (never silently). */
+    public static void giveOrDrop(ServerPlayer p, ItemStack s) {
+        int n = s.getCount();
+        if (p.getInventory().add(s)) return;
+        int left = s.getCount();
+        if (left <= 0) return;
+        ItemEntity ie = p.drop(s, false);
+        if (ie != null) ie.setGlowingTag(true);
+        line(p, "left", HudArg.of(left));
+    }
+
     static void line(ServerPlayer p, String id, HudArg... args) {
         HudBus.get().post(p, HudLine.of(HudLineType.PICKUP, id, "item.inventory", args));
     }
