@@ -530,18 +530,6 @@
       "generator_version": "artgen 0.4.0"
     },
     {
-      "asset_id": "tex_fixed_blade_knife",
-      "files": [
-        "assets/yearofice/models/item/fixed_blade_knife.json",
-        "assets/yearofice/textures/item/fixed_blade_knife.png"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/fixed_blade_knife.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": false
-    },
-    {
       "asset_id": "tex_hatchet",
       "files": [
         "assets/yearofice/models/item/hatchet.json",
@@ -1778,7 +1766,6 @@
         "assets/yearofice/blockstates/snare.json",
         "assets/yearofice/models/block/snare.json",
         "assets/yearofice/models/block/snare_sprung.json",
-        "assets/yearofice/models/item/hare_pelt.json",
         "assets/yearofice/models/item/whole_game.json"
       ],
       "source_type": "generated",
@@ -2134,97 +2121,9 @@
       "release_blocker": false
     },
     {
-      "asset_id": "model_pilot_bread",
-      "files": [
-        "assets/yearofice/models/item/pilot_bread.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_medkit",
-      "files": [
-        "assets/yearofice/models/item/medkit.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_bear_spray",
-      "files": [
-        "assets/yearofice/models/item/bear_spray.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
       "asset_id": "model_cord",
       "files": [
         "assets/yearofice/models/item/cord.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_seed_packet",
-      "files": [
-        "assets/yearofice/models/item/seed_packet.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_compass",
-      "files": [
-        "assets/yearofice/models/item/compass.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_plant_guide",
-      "files": [
-        "assets/yearofice/models/item/plant_guide.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_solar_panel_small",
-      "files": [
-        "assets/yearofice/models/item/solar_panel_small.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_mosquito_head_net",
-      "files": [
-        "assets/yearofice/models/item/mosquito_head_net.json"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/crate_backpack.json",
@@ -2255,17 +2154,6 @@
       "licence": "project",
       "generator_version": "artgen 0.4.0",
       "release_blocker": false
-    },
-    {
-      "asset_id": "model_bandage",
-      "files": [
-        "assets/yearofice/models/item/bandage.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
     },
     {
       "asset_id": "gui_hud_vitals_strip_injury",
@@ -2419,18 +2307,9 @@
         "assets/yearofice/models/block/gut_pile_1.json",
         "assets/yearofice/models/block/gut_pile_2.json",
         "assets/yearofice/models/block/gut_pile_3.json",
-        "assets/yearofice/models/item/beaver_meat.json",
-        "assets/yearofice/models/item/beaver_pelt.json",
-        "assets/yearofice/models/item/ermine_pelt.json",
         "assets/yearofice/models/item/marten_meat.json",
-        "assets/yearofice/models/item/marten_pelt.json",
         "assets/yearofice/models/item/mink_meat.json",
-        "assets/yearofice/models/item/mink_pelt.json",
-        "assets/yearofice/models/item/muskrat_meat.json",
-        "assets/yearofice/models/item/muskrat_pelt.json",
-        "assets/yearofice/models/item/porcupine_meat.json",
         "assets/yearofice/models/item/red_squirrel_meat.json",
-        "assets/yearofice/models/item/red_squirrel_pelt.json",
         "assets/yearofice/models/item/rock_ptarmigan_meat.json",
         "assets/yearofice/models/item/ruffed_grouse_meat.json",
         "assets/yearofice/models/item/spruce_grouse_meat.json",
@@ -4920,23 +4799,6 @@
       "release_blocker": false
     },
     {
-      "files": [
-        "assets/yearofice/models/item/burbot.json",
-        "assets/yearofice/models/item/chinook_salmon.json",
-        "assets/yearofice/models/item/chum_salmon.json",
-        "assets/yearofice/models/item/coho_salmon.json",
-        "assets/yearofice/models/item/dolly_varden.json",
-        "assets/yearofice/models/item/humpback_whitefish.json",
-        "assets/yearofice/models/item/lake_trout.json",
-        "assets/yearofice/models/item/northern_pike.json"
-      ],
-      "source_type": "generated",
-      "recipe": "hand-written original (placeholder models reusing the project's own grayling texture until the fish art pass)",
-      "licence": "project",
-      "generator_version": "hand",
-      "release_blocker": false
-    },
-    {
       "asset_id": "tex_self_bow",
       "files": [
         "assets/yearofice/models/item/self_bow.json",
@@ -5099,33 +4961,16 @@
       "asset_id": "model_big_game_items",
       "files": [
         "assets/yearofice/models/item/animal_fat.json",
-        "assets/yearofice/models/item/antler.json",
-        "assets/yearofice/models/item/black_bear_hide.json",
         "assets/yearofice/models/item/black_bear_meat.json",
-        "assets/yearofice/models/item/caribou_hide.json",
         "assets/yearofice/models/item/caribou_meat.json",
-        "assets/yearofice/models/item/claw.json",
         "assets/yearofice/models/item/coyote_meat.json",
-        "assets/yearofice/models/item/coyote_pelt.json",
-        "assets/yearofice/models/item/grizzly_hide.json",
         "assets/yearofice/models/item/grizzly_meat.json",
-        "assets/yearofice/models/item/heart.json",
-        "assets/yearofice/models/item/kidney.json",
-        "assets/yearofice/models/item/liver.json",
         "assets/yearofice/models/item/lynx_meat.json",
-        "assets/yearofice/models/item/lynx_pelt.json",
-        "assets/yearofice/models/item/marrow_bone.json",
-        "assets/yearofice/models/item/moose_hide.json",
         "assets/yearofice/models/item/moose_meat.json",
-        "assets/yearofice/models/item/mule_deer_hide.json",
         "assets/yearofice/models/item/mule_deer_meat.json",
         "assets/yearofice/models/item/red_fox_meat.json",
-        "assets/yearofice/models/item/red_fox_pelt.json",
-        "assets/yearofice/models/item/tongue.json",
         "assets/yearofice/models/item/wolf_meat.json",
-        "assets/yearofice/models/item/wolf_pelt.json",
-        "assets/yearofice/models/item/wolverine_meat.json",
-        "assets/yearofice/models/item/wolverine_pelt.json"
+        "assets/yearofice/models/item/wolverine_meat.json"
       ],
       "source_type": "generated",
       "licence": "project",
@@ -5781,22 +5626,9 @@
         "assets/yearofice/models/block/fish_wheel.json",
         "assets/yearofice/models/block/tip_up.json",
         "assets/yearofice/models/block/weir_stake.json",
-        "assets/yearofice/models/item/alaska_blackfish.json",
-        "assets/yearofice/models/item/arctic_char.json",
-        "assets/yearofice/models/item/arctic_lamprey.json",
-        "assets/yearofice/models/item/bering_cisco.json",
         "assets/yearofice/models/item/bird_meat.json",
-        "assets/yearofice/models/item/broad_whitefish.json",
         "assets/yearofice/models/item/fish_wheel.json",
         "assets/yearofice/models/item/kit_rod.json",
-        "assets/yearofice/models/item/lake_chub.json",
-        "assets/yearofice/models/item/least_cisco.json",
-        "assets/yearofice/models/item/longnose_sucker.json",
-        "assets/yearofice/models/item/ninespine_stickleback.json",
-        "assets/yearofice/models/item/round_whitefish.json",
-        "assets/yearofice/models/item/sheefish.json",
-        "assets/yearofice/models/item/slimy_sculpin.json",
-        "assets/yearofice/models/item/sockeye_salmon.json",
         "assets/yearofice/models/item/tip_up.json",
         "assets/yearofice/models/item/weir_stake.json",
         "assets/yearofice/textures/block/fish_wheel.png",
@@ -5966,61 +5798,6 @@
       "licence": "project",
       "generator_version": "ice_blocks 1.0",
       "release_blocker": false
-    },
-    {
-      "asset_id": "model_skates",
-      "files": [
-        "assets/yearofice/models/item/skates.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_skis",
-      "files": [
-        "assets/yearofice/models/item/skis.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_climbing_skins",
-      "files": [
-        "assets/yearofice/models/item/climbing_skins.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_hide_coat",
-      "files": [
-        "assets/yearofice/models/item/hide_coat.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_moccasins",
-      "files": [
-        "assets/yearofice/models/item/moccasins.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
     },
     {
       "asset_id": "snd_weather_strike",
@@ -6853,9 +6630,7 @@
       "files": [
         "assets/yearofice/models/item/goat_meat.json",
         "assets/yearofice/models/item/reindeer_meat.json",
-        "assets/yearofice/models/item/hen_meat.json",
-        "assets/yearofice/models/item/goat_hide.json",
-        "assets/yearofice/models/item/reindeer_hide.json"
+        "assets/yearofice/models/item/hen_meat.json"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/goat_wool.json",
@@ -6965,9 +6740,7 @@
       "files": [
         "assets/yearofice/blockstates/radio_desk.json",
         "assets/yearofice/models/block/radio_desk.json",
-        "assets/yearofice/models/item/radio_desk.json",
-        "assets/yearofice/models/item/radio_battery.json",
-        "assets/yearofice/models/item/note.json"
+        "assets/yearofice/models/item/radio_desk.json"
       ],
       "source_type": "generated",
       "recipe": "hand-written models reusing credited textures (placeholder art for the radio desk, battery and note)",
@@ -7659,6 +7432,810 @@
       "recipe": "tools/artgen/garments.py (flat white sheets tinted by client.body.WornLayer)",
       "licence": "project",
       "generator_version": "garments 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fixed_blade_knife",
+      "files": [
+        "assets/yearofice/models/item/fixed_blade_knife.json",
+        "assets/yearofice/textures/item/fixed_blade_knife.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bandage",
+      "files": [
+        "assets/yearofice/models/item/bandage.json",
+        "assets/yearofice/textures/item/bandage.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_medkit",
+      "files": [
+        "assets/yearofice/models/item/medkit.json",
+        "assets/yearofice/textures/item/medkit.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bear_spray",
+      "files": [
+        "assets/yearofice/models/item/bear_spray.json",
+        "assets/yearofice/textures/item/bear_spray.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_compass",
+      "files": [
+        "assets/yearofice/models/item/compass.json",
+        "assets/yearofice/textures/item/compass.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_hide_coat",
+      "files": [
+        "assets/yearofice/models/item/hide_coat.json",
+        "assets/yearofice/textures/item/hide_coat.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_moccasins",
+      "files": [
+        "assets/yearofice/models/item/moccasins.json",
+        "assets/yearofice/textures/item/moccasins.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_mosquito_head_net",
+      "files": [
+        "assets/yearofice/models/item/mosquito_head_net.json",
+        "assets/yearofice/textures/item/mosquito_head_net.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_note",
+      "files": [
+        "assets/yearofice/models/item/note.json",
+        "assets/yearofice/textures/item/note.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_pilot_bread",
+      "files": [
+        "assets/yearofice/models/item/pilot_bread.json",
+        "assets/yearofice/textures/item/pilot_bread.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_plant_guide",
+      "files": [
+        "assets/yearofice/models/item/plant_guide.json",
+        "assets/yearofice/textures/item/plant_guide.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_radio_battery",
+      "files": [
+        "assets/yearofice/models/item/radio_battery.json",
+        "assets/yearofice/textures/item/radio_battery.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_seed_packet",
+      "files": [
+        "assets/yearofice/models/item/seed_packet.json",
+        "assets/yearofice/textures/item/seed_packet.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_skates",
+      "files": [
+        "assets/yearofice/models/item/skates.json",
+        "assets/yearofice/textures/item/skates.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_skis",
+      "files": [
+        "assets/yearofice/models/item/skis.json",
+        "assets/yearofice/textures/item/skis.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_climbing_skins",
+      "files": [
+        "assets/yearofice/models/item/climbing_skins.json",
+        "assets/yearofice/textures/item/climbing_skins.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_solar_panel_small",
+      "files": [
+        "assets/yearofice/models/item/solar_panel_small.json",
+        "assets/yearofice/textures/item/solar_panel_small.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/kit_icons.py",
+      "licence": "project",
+      "generator_version": "kit_icons 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_black_bear_hide",
+      "files": [
+        "assets/yearofice/models/item/black_bear_hide.json",
+        "assets/yearofice/textures/item/black_bear_hide.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_grizzly_hide",
+      "files": [
+        "assets/yearofice/models/item/grizzly_hide.json",
+        "assets/yearofice/textures/item/grizzly_hide.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_moose_hide",
+      "files": [
+        "assets/yearofice/models/item/moose_hide.json",
+        "assets/yearofice/textures/item/moose_hide.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_caribou_hide",
+      "files": [
+        "assets/yearofice/models/item/caribou_hide.json",
+        "assets/yearofice/textures/item/caribou_hide.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_reindeer_hide",
+      "files": [
+        "assets/yearofice/models/item/reindeer_hide.json",
+        "assets/yearofice/textures/item/reindeer_hide.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_mule_deer_hide",
+      "files": [
+        "assets/yearofice/models/item/mule_deer_hide.json",
+        "assets/yearofice/textures/item/mule_deer_hide.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_goat_hide",
+      "files": [
+        "assets/yearofice/models/item/goat_hide.json",
+        "assets/yearofice/textures/item/goat_hide.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wolf_pelt",
+      "files": [
+        "assets/yearofice/models/item/wolf_pelt.json",
+        "assets/yearofice/textures/item/wolf_pelt.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_coyote_pelt",
+      "files": [
+        "assets/yearofice/models/item/coyote_pelt.json",
+        "assets/yearofice/textures/item/coyote_pelt.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_red_fox_pelt",
+      "files": [
+        "assets/yearofice/models/item/red_fox_pelt.json",
+        "assets/yearofice/textures/item/red_fox_pelt.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_lynx_pelt",
+      "files": [
+        "assets/yearofice/models/item/lynx_pelt.json",
+        "assets/yearofice/textures/item/lynx_pelt.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wolverine_pelt",
+      "files": [
+        "assets/yearofice/models/item/wolverine_pelt.json",
+        "assets/yearofice/textures/item/wolverine_pelt.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_beaver_pelt",
+      "files": [
+        "assets/yearofice/models/item/beaver_pelt.json",
+        "assets/yearofice/textures/item/beaver_pelt.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_marten_pelt",
+      "files": [
+        "assets/yearofice/models/item/marten_pelt.json",
+        "assets/yearofice/textures/item/marten_pelt.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_mink_pelt",
+      "files": [
+        "assets/yearofice/models/item/mink_pelt.json",
+        "assets/yearofice/textures/item/mink_pelt.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_muskrat_pelt",
+      "files": [
+        "assets/yearofice/models/item/muskrat_pelt.json",
+        "assets/yearofice/textures/item/muskrat_pelt.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_ermine_pelt",
+      "files": [
+        "assets/yearofice/models/item/ermine_pelt.json",
+        "assets/yearofice/textures/item/ermine_pelt.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_hare_pelt",
+      "files": [
+        "assets/yearofice/models/item/hare_pelt.json",
+        "assets/yearofice/textures/item/hare_pelt.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_red_squirrel_pelt",
+      "files": [
+        "assets/yearofice/models/item/red_squirrel_pelt.json",
+        "assets/yearofice/textures/item/red_squirrel_pelt.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_antler",
+      "files": [
+        "assets/yearofice/models/item/antler.json",
+        "assets/yearofice/textures/item/antler.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_claw",
+      "files": [
+        "assets/yearofice/models/item/claw.json",
+        "assets/yearofice/textures/item/claw.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_marrow_bone",
+      "files": [
+        "assets/yearofice/models/item/marrow_bone.json",
+        "assets/yearofice/textures/item/marrow_bone.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_heart",
+      "files": [
+        "assets/yearofice/models/item/heart.json",
+        "assets/yearofice/textures/item/heart.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_liver",
+      "files": [
+        "assets/yearofice/models/item/liver.json",
+        "assets/yearofice/textures/item/liver.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_kidney",
+      "files": [
+        "assets/yearofice/models/item/kidney.json",
+        "assets/yearofice/textures/item/kidney.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_tongue",
+      "files": [
+        "assets/yearofice/models/item/tongue.json",
+        "assets/yearofice/textures/item/tongue.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_sockeye_salmon",
+      "files": [
+        "assets/yearofice/models/item/sockeye_salmon.json",
+        "assets/yearofice/textures/item/sockeye_salmon.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_chinook_salmon",
+      "files": [
+        "assets/yearofice/models/item/chinook_salmon.json",
+        "assets/yearofice/textures/item/chinook_salmon.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_coho_salmon",
+      "files": [
+        "assets/yearofice/models/item/coho_salmon.json",
+        "assets/yearofice/textures/item/coho_salmon.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_chum_salmon",
+      "files": [
+        "assets/yearofice/models/item/chum_salmon.json",
+        "assets/yearofice/textures/item/chum_salmon.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_northern_pike",
+      "files": [
+        "assets/yearofice/models/item/northern_pike.json",
+        "assets/yearofice/textures/item/northern_pike.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_burbot",
+      "files": [
+        "assets/yearofice/models/item/burbot.json",
+        "assets/yearofice/textures/item/burbot.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_arctic_char",
+      "files": [
+        "assets/yearofice/models/item/arctic_char.json",
+        "assets/yearofice/textures/item/arctic_char.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_dolly_varden",
+      "files": [
+        "assets/yearofice/models/item/dolly_varden.json",
+        "assets/yearofice/textures/item/dolly_varden.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_lake_trout",
+      "files": [
+        "assets/yearofice/models/item/lake_trout.json",
+        "assets/yearofice/textures/item/lake_trout.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_sheefish",
+      "files": [
+        "assets/yearofice/models/item/sheefish.json",
+        "assets/yearofice/textures/item/sheefish.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_broad_whitefish",
+      "files": [
+        "assets/yearofice/models/item/broad_whitefish.json",
+        "assets/yearofice/textures/item/broad_whitefish.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_humpback_whitefish",
+      "files": [
+        "assets/yearofice/models/item/humpback_whitefish.json",
+        "assets/yearofice/textures/item/humpback_whitefish.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_round_whitefish",
+      "files": [
+        "assets/yearofice/models/item/round_whitefish.json",
+        "assets/yearofice/textures/item/round_whitefish.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_least_cisco",
+      "files": [
+        "assets/yearofice/models/item/least_cisco.json",
+        "assets/yearofice/textures/item/least_cisco.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_bering_cisco",
+      "files": [
+        "assets/yearofice/models/item/bering_cisco.json",
+        "assets/yearofice/textures/item/bering_cisco.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_lake_chub",
+      "files": [
+        "assets/yearofice/models/item/lake_chub.json",
+        "assets/yearofice/textures/item/lake_chub.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_longnose_sucker",
+      "files": [
+        "assets/yearofice/models/item/longnose_sucker.json",
+        "assets/yearofice/textures/item/longnose_sucker.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_slimy_sculpin",
+      "files": [
+        "assets/yearofice/models/item/slimy_sculpin.json",
+        "assets/yearofice/textures/item/slimy_sculpin.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_ninespine_stickleback",
+      "files": [
+        "assets/yearofice/models/item/ninespine_stickleback.json",
+        "assets/yearofice/textures/item/ninespine_stickleback.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_alaska_blackfish",
+      "files": [
+        "assets/yearofice/models/item/alaska_blackfish.json",
+        "assets/yearofice/textures/item/alaska_blackfish.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_arctic_lamprey",
+      "files": [
+        "assets/yearofice/models/item/arctic_lamprey.json",
+        "assets/yearofice/textures/item/arctic_lamprey.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_beaver_meat",
+      "files": [
+        "assets/yearofice/models/item/beaver_meat.json",
+        "assets/yearofice/textures/item/beaver_meat.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_muskrat_meat",
+      "files": [
+        "assets/yearofice/models/item/muskrat_meat.json",
+        "assets/yearofice/textures/item/muskrat_meat.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_porcupine_meat",
+      "files": [
+        "assets/yearofice/models/item/porcupine_meat.json",
+        "assets/yearofice/textures/item/porcupine_meat.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/species_tints.py",
+      "licence": "project",
+      "generator_version": "species_tints 0.1.0",
       "release_blocker": false
     }
   ]

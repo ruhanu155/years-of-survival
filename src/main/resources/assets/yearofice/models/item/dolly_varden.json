@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "yearofice:item/arctic_grayling"
+    "layer0": "yearofice:item/dolly_varden"
   }
 }

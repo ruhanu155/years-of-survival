@@ -311,7 +311,14 @@ public class FireRingBlockEntity extends BlockEntity {
         if (pot.isEmpty()) return;
         Vessel v = WaterContent.read(pot);
         if (v.isEmpty()) return;
-        WaterContent.write(pot, v.minute(potHeat()));
+        Vessel next = v.minute(potHeat());
+        WaterContent.write(pot, next);
+        // ambition "clean_water": 10 L boiled over the game, credited to the fire's builder when the pot comes to the boil
+        if (!v.boiled() && next.boiled() && builder != null && level instanceof net.minecraft.server.level.ServerLevel sl
+                && sl.getServer().getPlayerList().getPlayer(builder) instanceof net.minecraft.server.level.ServerPlayer sp) {
+            double l = com.yearofice.api.story.AmbitionTracker.tally(sp, "water.boiled_l", next.litres());
+            if (l >= 10) com.yearofice.story.ambition.Ambitions.fire(sp, "water.boiled_10l", com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().nowMinute() : 0);
+        }
     }
 
     /**

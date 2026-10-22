@@ -45,6 +45,37 @@ public final class AmbitionTracker {
         p.getPersistentData().put(Player.PERSISTED_NBT_TAG, r);
     }
 
+    static final String TALLY_KEY = "yearofice:ambition_tally";
+
+    /**
+     * A persisted running count for the counted ambitions (10 L boiled, 300 splits seasoned, 20 plants identified...):
+     * adds {@code amount} to {@code key} and returns the new total. Systems compare it with their threshold and fire.
+     */
+    public static double tally(ServerPlayer p, String key, double amount) {
+        CompoundTag r = root(p);
+        CompoundTag t = r.getCompound(TALLY_KEY);
+        double v = t.getDouble(key) + amount;
+        t.putDouble(key, v);
+        r.put(TALLY_KEY, t);
+        p.getPersistentData().put(Player.PERSISTED_NBT_TAG, r);
+        return v;
+    }
+
+    public static double tally(ServerPlayer p, String key) { return root(p).getCompound(TALLY_KEY).getDouble(key); }
+
+    /** A set-valued tally (species taken, regions seen): adds {@code member}, returns the set's size. */
+    public static int tallySet(ServerPlayer p, String key, String member) {
+        CompoundTag r = root(p);
+        CompoundTag t = r.getCompound(TALLY_KEY);
+        ListTag l = t.getList(key + "_set", Tag.TAG_STRING);
+        for (int i = 0; i < l.size(); i++) if (l.getString(i).equals(member)) return l.size();
+        l.add(StringTag.valueOf(member));
+        t.put(key + "_set", l);
+        r.put(TALLY_KEY, t);
+        p.getPersistentData().put(Player.PERSISTED_NBT_TAG, r);
+        return l.size();
+    }
+
     /** Opens {@code id}; true when it was not open or done already. */
     public static boolean open(ServerPlayer p, String id) {
         List<String> open = read(p, KEY);

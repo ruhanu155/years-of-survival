@@ -519,6 +519,11 @@ public final class FishingService {
         com.yearofice.story.ambition.Ambitions.fire(o, "fish.first", minute);
         if (sid.equals("northern_pike")) com.yearofice.story.ambition.Ambitions.fire(o, "fish.pike", minute);
         if (grams >= 10_000) com.yearofice.story.ambition.Ambitions.fire(o, "fish.over_10kg", minute);
+        if (sid.endsWith("salmon")) { // "run_day": five salmon landed in one day
+            long day = minute / 1440;
+            if (com.yearofice.api.story.AmbitionTracker.tally(o, "fish.salmon_day") != day) { com.yearofice.api.story.AmbitionTracker.tally(o, "fish.salmon_day", day - com.yearofice.api.story.AmbitionTracker.tally(o, "fish.salmon_day")); com.yearofice.api.story.AmbitionTracker.tally(o, "fish.salmon_n", -com.yearofice.api.story.AmbitionTracker.tally(o, "fish.salmon_n")); }
+            if (com.yearofice.api.story.AmbitionTracker.tally(o, "fish.salmon_n", 1) >= 5) com.yearofice.story.ambition.Ambitions.fire(o, "fish.salmon_5_in_a_day", minute);
+        }
         long hour = (minute / 60) % 24;
         boolean ice = com.yearofice.api.world.IceService.get().thicknessCm(level, water) > 0;
         if (sid.equals("burbot") && ice && (hour >= 21 || hour < 5)) com.yearofice.story.ambition.Ambitions.fire(o, "fish.burbot_night", minute);
