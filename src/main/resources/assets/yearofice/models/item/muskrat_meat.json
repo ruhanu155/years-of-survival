@@ -1,32 +1,32 @@
 {
- "parent": "minecraft:item/generated",
- "textures": {
-  "layer0": "yearofice:item/raw_hare"
- },
- "overrides": [
-  {
-   "predicate": {
-    "yearofice:look": 0.25
-   },
-   "model": "yearofice:item/snowshoe_hare_meat_aging"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "yearofice:item/muskrat_meat"
   },
-  {
-   "predicate": {
-    "yearofice:look": 0.5
-   },
-   "model": "yearofice:item/snowshoe_hare_meat_spoiled"
-  },
-  {
-   "predicate": {
-    "yearofice:look": 0.75
-   },
-   "model": "yearofice:item/snowshoe_hare_meat_cooked"
-  },
-  {
-   "predicate": {
-    "yearofice:look": 1.0
-   },
-   "model": "yearofice:item/snowshoe_hare_meat_burnt"
-  }
- ]
+  "overrides": [
+    {
+      "predicate": {
+        "yearofice:look": 0.25
+      },
+      "model": "yearofice:item/snowshoe_hare_meat_aging"
+    },
+    {
+      "predicate": {
+        "yearofice:look": 0.5
+      },
+      "model": "yearofice:item/snowshoe_hare_meat_spoiled"
+    },
+    {
+      "predicate": {
+        "yearofice:look": 0.75
+      },
+      "model": "yearofice:item/snowshoe_hare_meat_cooked"
+    },
+    {
+      "predicate": {
+        "yearofice:look": 1.0
+      },
+      "model": "yearofice:item/snowshoe_hare_meat_burnt"
+    }
+  ]
 }

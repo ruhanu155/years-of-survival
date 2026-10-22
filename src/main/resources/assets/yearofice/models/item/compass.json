@@ -1,6 +1,6 @@
 {
- "parent": "minecraft:item/generated",
- "textures": {
-  "layer0": "yearofice:item/fire_starter"
- }
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "yearofice:item/compass"
+  }
 }

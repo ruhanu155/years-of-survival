@@ -133,6 +133,10 @@ public class WolfEntity extends PredatorEntity {
     }
 
     public void setOwner(ServerPlayer p) {
+        // M9 proxy: the slot spawner's demote pass removed a tamed wolf when its owner walked 934 m to an outpost (a wild body beyond
+        // 160 m of every player is discarded); a companion is the player's, not the slot's, from the first trust action
+        if (!slotKey().isEmpty()) com.yearofice.ecosystem.spawn.SlotSpawner.untrack(slotKey());
+        setPersistenceRequired();
         ownerId = p.getUUID();
         ownerRef = p;
     }

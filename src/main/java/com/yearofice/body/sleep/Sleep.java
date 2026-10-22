@@ -178,6 +178,11 @@ public final class Sleep implements SleepService {
         SleepRules.Wake w = SleepRules.check(f, t);
         if (w == SleepRules.Wake.NONE) return null;
         BodyService.get().wake(p, String.format(Locale.ROOT, "%02d:%02d, %s", mod / 60, mod % 60, w.said));
+        // ambition "under_a_roof": a full night slept in a room above freezing
+        if (w == SleepRules.Wake.MORNING || w == SleepRules.Wake.RESTED) {
+            var room = com.yearofice.api.build.RoomService.get().roomAt(p.serverLevel(), p.blockPosition());
+            if (room != null && room.feelsLikeC() > 0) com.yearofice.story.ambition.Ambitions.fire(p, "sleep.indoors_warm", minute);
+        }
         LIES.remove(p.getUUID());
         DANGER.remove(p.getUUID());
         YearOfIce.LOG.debug("[sleep] {} woke at {}: {}", p.getGameProfile().getName(), mod, w.id());

@@ -192,6 +192,7 @@ public final class SlotSpawner {
                 it.remove();
                 continue;
             }
+            if (e instanceof com.yearofice.ecosystem.companion.WolfEntity w && w.owned()) { it.remove(); continue; } // a companion is never demoted
             boolean near = false;
             for (Player p : level.players()) if (!p.isSpectator() && p.distanceToSqr(e) <= r2) near = true;
             if (!near) {
