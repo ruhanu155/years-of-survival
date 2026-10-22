@@ -360,6 +360,14 @@ public class PredatorEntity extends LandAnimal {
         boolean far = position().distanceToSqr(at) > 40 * 40; // a scent trail far off is followed at a lope (the config's multiplier x trot), not a stroll
         if (getNavigation().isDone() && flat < 30 && stuckWalks == 3) trace(level, "straight-line-close:engaged");
         if (getNavigation().isDone() && flat < 30 && ++stuckWalks > 3) { // the path ended short (a bank, a bar edge): close the last metres in a straight line
+            // v12: a grizzly stood 10 m off for 200+ ticks at zero velocity: no path to the pile and a ledge over its step height
+            // in the straight line. Every 2 s ask for a path that ends within 4 blocks of the pile; when the push makes no
+            // progress, jump the ledge.
+            if (stuckWalks % 40 == 5) {
+                var path = getNavigation().createPath(BlockPos.containing(at), 4);
+                if (path != null && getNavigation().moveTo(path, Gaits.input(species().trotMps()))) { trace(level, "stuck:repath-near"); setMove(MOVE_WALK); return true; }
+            }
+            if (getDeltaMovement().horizontalDistanceSqr() < 1e-4 && onGround() && stuckWalks % 10 == 0) { getJumpControl().jump(); trace(level, "stuck:jump"); }
             getMoveControl().setWantedPosition(at.x, at.y, at.z, Gaits.input(species().trotMps()));
             setMove(MOVE_WALK);
             return true;
