@@ -103,7 +103,10 @@ public class PredatorEntity extends LandAnimal {
     protected boolean scentLocked(ServerLevel level) {
         trace(level, "tick");
         // m6bear v8: hunger sinks below 0.5 on the walk (0.54 -> 0.47 in a minute) and the BED act then idled bears 20-63 m short with the target still set; once committed the lock holds down to the scavenge gate (0.3)
-        if (!hasDrives() || chase != null || driveState().hunger <= (scentTarget != null ? 0.3 : 0.5)) return false;
+        // v11: bears foraged on the walk (FEED routine) and sank to 0.24-0.29 within 30-70 m of the pile, then let it go; a
+        // committed bear inside HOLD_M eats carrion whatever its berry fill
+        if (!hasDrives() || chase != null) return false;
+        if (driveState().hunger <= (scentTarget != null ? 0.3 : 0.5) && !(scentTarget != null && committedNear(level))) return false;
         long t = level.getGameTime();
         if (scentTarget == null && t >= nextSmellTick) scavenge(level, t);
         return scentTarget != null;
@@ -136,7 +139,7 @@ public class PredatorEntity extends LandAnimal {
     protected boolean holdsCourse(double threatDistM) {
         // m6bear v10: committed bears at hunger 0.42-0.49 fled a threat 90 m off from 32-48 m short of the pile; the hold uses the
         // same commit gate as the scent lock (0.3), so a far threat (> 40 m) does not push a committed bear off its carrion
-        return hasDrives() && chase == null && scentTarget instanceof BlockPos && driveState().hunger > 0.3 && threatDistM > 40;
+        return hasDrives() && chase == null && scentTarget instanceof BlockPos && (driveState().hunger > 0.3 || committedNear((ServerLevel) level())) && threatDistM > 40;
     }
 
     boolean hasDrives() { return species().hasDrives(); }
