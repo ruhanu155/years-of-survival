@@ -1114,7 +1114,7 @@ public final class M6HuntSmoke {
             return;
         }
         if (!wounded) {
-            finding(m == null ? "the moose left or the arrow missed: " + lastOutcome : "six arrows and no hit on the moose: " + lastOutcome);
+            finding(m == null ? "the moose left or the arrow missed: " + lastOutcome : shotsFired == 0 ? "the moose bolted before the loose (" + m.state() + ")" : shotsFired + " arrows and no hit on the moose: " + lastOutcome);
             if (mooseAttempts < 3 && have(p, "arrow") > 0) { ph = Ph.FIND; followHop = 0; firstSignPos = impact == null ? null : BlockPos.containing(impact); mooseId = null; wait = 100; }
             else ph = Ph.END;
             return;
