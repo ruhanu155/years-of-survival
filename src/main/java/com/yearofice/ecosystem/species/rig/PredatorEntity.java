@@ -134,7 +134,9 @@ public class PredatorEntity extends LandAnimal {
      */
     @Override
     protected boolean holdsCourse(double threatDistM) {
-        return hasDrives() && chase == null && scentTarget instanceof BlockPos && driveState().hunger > 0.5 && threatDistM > 40;
+        // m6bear v10: committed bears at hunger 0.42-0.49 fled a threat 90 m off from 32-48 m short of the pile; the hold uses the
+        // same commit gate as the scent lock (0.3), so a far threat (> 40 m) does not push a committed bear off its carrion
+        return hasDrives() && chase == null && scentTarget instanceof BlockPos && driveState().hunger > 0.3 && threatDistM > 40;
     }
 
     boolean hasDrives() { return species().hasDrives(); }
