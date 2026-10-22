@@ -261,10 +261,26 @@ public class PredatorEntity extends LandAnimal {
         double scale = speciesId().endsWith("bear") || speciesId().endsWith("grizzly") || speciesId().endsWith("wolverine") ? 3.0 : 1.5;
         smell = d.senses().smellM() * scale;
         Object best = pickScent(level, smell);
+        // m6bear v10: the re-score only keeps sources the bear is in reach of (a 30 deg cone down the wind plus a bubble of 12 % of the
+        // reach, 18-30 m for a pile), so a bear closing from off the cone dropped its target at the bubble's edge and idled 12-41 m short
+        // (v6-v9, 2-3/10). A predator that has committed and closed to within HOLD_M keeps the target by memory and sight until it
+        // reaches it or the source is gone (the pile check in walkTo), whatever the wind does now.
+        if (best != scentTarget && scentTarget != null && committedNear(level)) { trace(level, best == null ? "hold:committed-out-of-cone" : "hold:committed-over-rescore"); best = scentTarget; }
         if (best != scentTarget) { stuckWalks = 0; Object old = scentTarget; scentTarget = best; trace(level, old == null ? (best == null ? "pick:none" : "pick:new") : best == null ? "drop:scoring-none-in-reach" : "pick:rescored"); }
         scentTarget = best;
         eatUntil = 0;
         return best != null && walkTo(level);
+    }
+
+    /** Within this flat distance a held carrion target is kept whatever the wind does (memory and sight close the last metres). */
+    static final double HOLD_M = 100;
+
+    private boolean committedNear(ServerLevel level) {
+        if (scentTarget instanceof RackPost) return false;
+        Vec3 at = scentTarget instanceof CarcassEntity c ? (c.isRemoved() ? null : c.position()) : scentTarget instanceof BlockPos b ? Vec3.atCenterOf(b) : null;
+        if (at == null) return false;
+        if (scentTarget instanceof BlockPos bp && level.isLoaded(bp) && !level.getBlockState(bp).is(EcosystemRegistry.GUT_PILE.get())) return false;
+        return Math.hypot(position().x - at.x, position().z - at.z) <= HOLD_M;
     }
 
     /** A rack or smokehouse post the predator walks to; the theft service takes over once it stands there. */
