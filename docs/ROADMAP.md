@@ -25,7 +25,7 @@ State on 2026-10-21. Gates are proxy runs standing in for Ruhan's human playtest
 4. M8 crafting gate: bushcraft did not open with a lit fire ring in the driver. Real "first fire" path or gate bug.
 5. Design debt: room heat duty-cycle model (replaces the chimney-draw dial), Hot 3x with 50 % chimney loss, log-wall seam metres, outpost registry for repair-in-play, wolf den layer (pup spawns at a random spot), grain_sheaf balance, braided-flat flint rate, frozen-ground clay ban.
 6. Untested: fall guard, outpost-visit line, supply-drop livestock, DenPups.
-7. Polish: proxy screenshots (camera aim), placeholder textures on the 7 start-kit garments (release_blocker), dead EV_* lang keys, 42 unwired ambition triggers, pink salmon, door/window frames.
+7. Polish: proxy screenshots (camera aim), dead EV_* lang keys, 42 unwired ambition triggers, pink salmon, door/window frames.
 8. Mac build sync. Start-site run and this docs batch: done in this PR.
 
 Items 1-7 were handed to lanes K, M, N at 16:02 on the 21st; check main before starting any of them.

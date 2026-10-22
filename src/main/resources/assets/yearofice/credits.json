@@ -6001,75 +6001,9 @@
       "release_blocker": true
     },
     {
-      "asset_id": "model_fur_mittens",
-      "files": [
-        "assets/yearofice/models/item/fur_mittens.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_fur_hat",
-      "files": [
-        "assets/yearofice/models/item/fur_hat.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_parka",
-      "files": [
-        "assets/yearofice/models/item/parka.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
       "asset_id": "model_hide_coat",
       "files": [
         "assets/yearofice/models/item/hide_coat.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_hide_pants",
-      "files": [
-        "assets/yearofice/models/item/hide_pants.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_mukluks",
-      "files": [
-        "assets/yearofice/models/item/mukluks.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_hare_fur_liners",
-      "files": [
-        "assets/yearofice/models/item/hare_fur_liners.json"
       ],
       "source_type": "generated",
       "recipe": "tools/artgen/recipes/item/crate_backpack.json",
@@ -7525,8 +7459,8 @@
       "note": "M6 lane E placeholder models: sign blocks and bow-chain items reuse vanilla or existing project textures until art lands",
       "generator_version": "hand written",
       "release_blocker": false
-    }
-    ,{
+    },
+    {
       "asset_id": "m9int2_feed_boxes",
       "files": [
         "assets/yearofice/blockstates/feed_trough.json",
@@ -7549,83 +7483,6 @@
       "release_blocker": false
     },
     {
-      "asset_id": "model_fleece_jacket",
-      "files": [
-        "assets/yearofice/models/item/fleece_jacket.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_rain_shell",
-      "files": [
-        "assets/yearofice/models/item/rain_shell.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_work_pants",
-      "files": [
-        "assets/yearofice/models/item/work_pants.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_wool_socks",
-      "files": [
-        "assets/yearofice/models/item/wool_socks.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_hiking_boots",
-      "files": [
-        "assets/yearofice/models/item/hiking_boots.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_wool_beanie",
-      "files": [
-        "assets/yearofice/models/item/wool_beanie.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
-      "asset_id": "model_work_gloves",
-      "files": [
-        "assets/yearofice/models/item/work_gloves.json"
-      ],
-      "source_type": "generated",
-      "recipe": "tools/artgen/recipes/item/crate_backpack.json",
-      "licence": "project",
-      "generator_version": "artgen 0.4.0",
-      "release_blocker": true
-    },
-    {
       "asset_id": "model_dried_meat",
       "files": [
         "assets/yearofice/models/item/dried_meat.json"
@@ -7634,6 +7491,174 @@
       "recipe": "tools/artgen/recipes/item/crate_backpack.json",
       "licence": "project",
       "generator_version": "artgen 0.4.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fleece_jacket",
+      "files": [
+        "assets/yearofice/models/item/fleece_jacket.json",
+        "assets/yearofice/textures/item/fleece_jacket.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/garments.py",
+      "licence": "project",
+      "generator_version": "garments 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_rain_shell",
+      "files": [
+        "assets/yearofice/models/item/rain_shell.json",
+        "assets/yearofice/textures/item/rain_shell.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/garments.py",
+      "licence": "project",
+      "generator_version": "garments 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_work_pants",
+      "files": [
+        "assets/yearofice/models/item/work_pants.json",
+        "assets/yearofice/textures/item/work_pants.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/garments.py",
+      "licence": "project",
+      "generator_version": "garments 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wool_socks",
+      "files": [
+        "assets/yearofice/models/item/wool_socks.json",
+        "assets/yearofice/textures/item/wool_socks.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/garments.py",
+      "licence": "project",
+      "generator_version": "garments 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_hiking_boots",
+      "files": [
+        "assets/yearofice/models/item/hiking_boots.json",
+        "assets/yearofice/textures/item/hiking_boots.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/garments.py",
+      "licence": "project",
+      "generator_version": "garments 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_wool_beanie",
+      "files": [
+        "assets/yearofice/models/item/wool_beanie.json",
+        "assets/yearofice/textures/item/wool_beanie.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/garments.py",
+      "licence": "project",
+      "generator_version": "garments 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_work_gloves",
+      "files": [
+        "assets/yearofice/models/item/work_gloves.json",
+        "assets/yearofice/textures/item/work_gloves.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/garments.py",
+      "licence": "project",
+      "generator_version": "garments 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_parka",
+      "files": [
+        "assets/yearofice/models/item/parka.json",
+        "assets/yearofice/textures/item/parka.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/garments.py",
+      "licence": "project",
+      "generator_version": "garments 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fur_mittens",
+      "files": [
+        "assets/yearofice/models/item/fur_mittens.json",
+        "assets/yearofice/textures/item/fur_mittens.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/garments.py",
+      "licence": "project",
+      "generator_version": "garments 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_fur_hat",
+      "files": [
+        "assets/yearofice/models/item/fur_hat.json",
+        "assets/yearofice/textures/item/fur_hat.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/garments.py",
+      "licence": "project",
+      "generator_version": "garments 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_hide_pants",
+      "files": [
+        "assets/yearofice/models/item/hide_pants.json",
+        "assets/yearofice/textures/item/hide_pants.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/garments.py",
+      "licence": "project",
+      "generator_version": "garments 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_mukluks",
+      "files": [
+        "assets/yearofice/models/item/mukluks.json",
+        "assets/yearofice/textures/item/mukluks.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/garments.py",
+      "licence": "project",
+      "generator_version": "garments 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_hare_fur_liners",
+      "files": [
+        "assets/yearofice/models/item/hare_fur_liners.json",
+        "assets/yearofice/textures/item/hare_fur_liners.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/garments.py",
+      "licence": "project",
+      "generator_version": "garments 0.1.0",
+      "release_blocker": false
+    },
+    {
+      "asset_id": "tex_cloth_worn",
+      "files": [
+        "assets/yearofice/textures/models/cloth.png",
+        "assets/yearofice/textures/models/cloth_low.png"
+      ],
+      "source_type": "generated",
+      "recipe": "tools/artgen/garments.py (flat white sheets tinted by client.body.WornLayer)",
+      "licence": "project",
+      "generator_version": "garments 0.1.0",
       "release_blocker": false
     }
   ]
