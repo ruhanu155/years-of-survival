@@ -1,10 +1,10 @@
 # Year of Ice agent rules (read once; ~1 min)
-Repo ruhanu155/years-of-survival. Worktree: `cd /home/claude/years-of-survival && git fetch -q origin && git worktree add -b <branch> /home/claude/<wt> origin/main`. Read CLAUDE.md + the milestone section of docs/ready-for-development.md; grep docs/blueprint/ only for the sections your brief names.
+Repo ruhanu155/years-of-survival. Worktree: `git fetch -q origin && git worktree add -b <branch> ../wt-<topic> origin/main`. Read CLAUDE.md + the milestone section of docs/ready-for-development.md; grep docs/blueprint/ only for the sections your brief names.
 Code: pure logic in com.yearofice.sim (no Minecraft imports); server decides, client shows; systems talk via com.yearofice.api; every tuning number in config with Gentle/Standard/Brutal presets; ids yearofice:<snake_case>; /yoi debug commands per system.
 Tests: `./gradlew build` must pass. Locally run ONLY your area: `tools/gametest.sh -Pgametest.filter=<prefix>/` (slot-locked; never raw runGameTestServer while others run).
 Before push: `git status --porcelain --ignored | grep src/` must be empty; merge origin/main; new ids → studio/inventory-rules.json then `./gradlew docInventory` (never hand-edit inventory.json); keep edits to YearOfIce.java/YoiConfig/lang minimal (others merge in parallel).
-Ship: one squashed commit ending "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>" + "Claude-Session: https://claude.ai/code/session_01Xr2CVpzoZ636TDaUZHoGmj". PR: `gh api repos/ruhanu155/years-of-survival/pulls -f title=... -f head=<branch> -f base=main -f body=...`, body ending "🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01Xr2CVpzoZ636TDaUZHoGmj". Don't merge. If CI fails: `gh api repos/ruhanu155/years-of-survival/check-runs/<id>/annotations`. Prefer two small PRs over one big one when a lane splits cleanly.
-Finish: append one line to v2/BOARD.md; reply ≤10 lines (PR #, tests, decisions, skipped, any test >30 s).
+Ship: one squashed commit ending with your tool's attribution trailers. PR: `gh api repos/ruhanu155/years-of-survival/pulls -f title=... -f head=<branch> -f base=main -f body=...`, body ending with your tool's attribution footer. Don't merge. If CI fails: `gh api repos/ruhanu155/years-of-survival/check-runs/<id>/annotations`. Prefer two small PRs over one big one when a lane splits cleanly.
+Finish: append one line to docs/studio/BOARD.md; reply ≤10 lines (PR #, tests, decisions, skipped, any test >30 s).
 
 ## Speed rules (added 20:15)
 - Ownership: edit only the packages your brief names. Shared files (YearOfIce.java, YoiConfig, lang/en_us.json, inventory-rules.json, credits): APPEND at the end of the relevant block; never reorder or reformat.
@@ -13,10 +13,10 @@ Finish: append one line to v2/BOARD.md; reply ≤10 lines (PR #, tests, decision
 - Only data/JSON changed? `./gradlew contentLint` is enough locally.
 - New ids: `tools/newid.sh <type> <id> <owner> <milestone> "<basis>"` (adds the rule and regenerates). Read `src/main/java/com/yearofice/api/README.md` before touching any shared service.
 
-- Director rulings live in /tmp/claude-0/-home-claude/3dd9ded9-61c9-50f0-89ad-cfeae0edf5c6/scratchpad/v2/RECONCILE.md (not in the repo); read only the item numbers your brief names.
+- Director rulings live in docs/studio/RECONCILE.md (not in the repo); read only the item numbers your brief names.
 - Commit early and often; the box restarts sometimes.
 - RECONCILE numbering: the steward logs merges as "MERGED PR #N" lines; the Director renumbers sequentially. Do not reference item numbers above 199 as stable until the Director confirms them.
-- Notice board: read v2/HOOKS.md and v2/LESSONS.md at lane start (same folder as this file). Append to HOOKS.md the moment you add or need a cross-lane api; append to LESSONS.md any hard-won lesson instead of putting it in your report. Do not message other agents directly — the board is cheaper and the Director routes NEEDS.
+- Notice board: read docs/studio/HOOKS.md and docs/studio/LESSONS.md at lane start (same folder as this file). Append to HOOKS.md the moment you add or need a cross-lane api; append to LESSONS.md any hard-won lesson instead of putting it in your report. Do not message other agents directly — the board is cheaper and the Director routes NEEDS.
 
 ## Ponytail rules (from DietrichGebert/ponytail, MIT) — write less code
 Climb this ladder in order and stop at the first rung that works: (1) does it need to exist at all? (2) does the codebase already have a helper? (3) does the JDK/standard library cover it? (4) does Minecraft/NeoForge already do it natively? (5) does an installed dependency (GeckoLib, Curios) solve it? (6) can it be one line? (7) only then, the minimum code that works.
