@@ -1,5 +1,7 @@
 # Year of Ice: working rules for Claude
 
+**New here? Read `AGENTS.md` first** (the handoff: state, open work, where everything is).
+
 Read `docs/ready-for-development.md` first, then only the doc sections the current milestone lists. Don't read all of `docs/`.
 
 ## Build and test

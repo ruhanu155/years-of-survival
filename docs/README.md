@@ -2,6 +2,8 @@
 
 These are Markdown exports of the "Year of Ice — Generation Blueprint" doc, taken on 2026-10-19 after the final review pass. The live doc is https://claude.ai/code/artifact/0f31ea9e-882b-4bc8-8554-69123e777660. It wins wherever a copy here differs.
 
+**Agents: read [../AGENTS.md](../AGENTS.md) first.**
+
 **Start with [ready-for-development.md](ready-for-development.md).** It is a copy of the Ready for development tab. It lists the locked decisions and, for each milestone, what to read, build and test. Read only the sections your milestone lists.
 
 ## Blueprint tabs

@@ -3,7 +3,7 @@
 # Usage: tools/gametest.sh [extra gradle args]   e.g. tools/gametest.sh -Pgametest.filter=hud/
 set -e
 cd "$(git rev-parse --show-toplevel)"
-LOCKDIR=/tmp/claude-0/gametest-slots; mkdir -p "$LOCKDIR"
+LOCKDIR="${TMPDIR:-/tmp}/yoi-gametest-slots"; mkdir -p "$LOCKDIR"
 slot=""
 for i in 1 2; do
   exec {fd}>"$LOCKDIR/slot$i.lock"
