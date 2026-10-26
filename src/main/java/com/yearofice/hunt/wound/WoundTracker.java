@@ -11,6 +11,7 @@ import com.yearofice.sim.hunt.HuntData;
 import com.yearofice.sim.hunt.Shot.Channel;
 import com.yearofice.sim.hunt.WoundModel;
 import com.yearofice.sim.hunt.WoundModel.Wound;
+import com.yearofice.story.ambition.Ambitions;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -146,8 +147,12 @@ public final class WoundTracker {
                 level.addFreshEntity(ie);
             }
         }
-        if (e instanceof YoiAnimal a) DeathPipeline.kill(a, src, "arrow");
-        else e.kill();
+        if (e instanceof YoiAnimal a) {
+            if (sp != null && a.speciesPath().equals("grizzly")) {
+                Ambitions.fire(sp, "hunt.grizzly_bow", (long) SliceClock.minuteD(level));
+            }
+            DeathPipeline.kill(a, src, "arrow");
+        } else e.kill();
     }
 
     static void heal(LivingEntity e) {

@@ -219,6 +219,13 @@ public final class Butchering {
             }
         }
         leaveGuts(level, c.blockPosition(), d);
+        long nowMin = com.yearofice.hunt.fishing.FishingClock.minute(p.server);
+        if (r.species().endsWith(":moose")) com.yearofice.story.ambition.Ambitions.fire(p, "hunt.moose_butchered", nowMin);
+        if (com.yearofice.api.story.AmbitionTracker.tallySet(p, "hunt.species", r.species()) >= 10) com.yearofice.story.ambition.Ambitions.fire(p, "hunt.ten_species", nowMin);
+        if (r.species().endsWith("dall_sheep")) com.yearofice.story.ambition.Ambitions.fire(p, "hunt.dall_sheep", nowMin);
+        if (r.species().endsWith("caribou") && (c.isInWater() || level.getFluidState(c.blockPosition()).is(net.minecraft.tags.FluidTags.WATER))) {
+            com.yearofice.story.ambition.Ambitions.fire(p, "hunt.caribou_crossing", nowMin);
+        }
         p.displayClientMessage(Component.translatable("ecosystem.yearofice.dressed_big",
                 Component.translatable("entity." + r.species().replace(':', '.')), Math.round(care.usable() * 100)), true);
         c.discard();

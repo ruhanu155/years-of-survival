@@ -24,6 +24,12 @@ public final class CropEvents {
             if (level.getBlockEntity(pos) instanceof CropBlockEntity be) Garden.catchUp(level, pos, be);
             ItemStack got = Garden.harvest(level, pos, p);
             if (got.is(CropRegistry.POTATO.get())) com.yearofice.story.ambition.Ambitions.fire(p, "crop.potatoes_dug", level.getGameTime() / 1200);
+            if (got.is(CropRegistry.WHEAT.get()) || got.is(CropRegistry.BARLEY.get()) || got.is(CropRegistry.GRAIN_SHEAF.get())) {
+                com.yearofice.api.story.AmbitionTracker.tally(p, "crop.grew_grain", 1);
+            }
+            if (got.has(CropRegistry.SEED_LOT.get())) {
+                com.yearofice.story.ambition.Ambitions.fire(p, "crop.seed_saved", level.getGameTime() / 1200);
+            }
             Inspect.say(p, got.isEmpty() ? Garden.card(level, pos.below(), null) : "Harvested " + got.getHoverName().getString() + ".");
             e.setCanceled(true);
             e.setCancellationResult(InteractionResult.SUCCESS);

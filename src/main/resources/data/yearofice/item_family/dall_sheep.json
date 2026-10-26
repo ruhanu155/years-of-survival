@@ -1,0 +1,15 @@
+{
+  "species": "yearofice:dall_sheep",
+  "whole": "yearofice:whole_game",
+  "parts": [
+    {
+      "item": "yearofice:caribou_meat",
+      "kind": "meat",
+      "unit_g": 100
+    },
+    {
+      "item": "yearofice:caribou_hide",
+      "kind": "cover"
+    }
+  ]
+}

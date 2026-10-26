@@ -44,6 +44,12 @@ public final class RepairJob implements WorkJob {
             pay(p, pc, true);
             done++;
             level.setBlock(pc.pos(), pc.state(), 3);
+            if (done >= total) {
+                var site = OutpostSites.get(level).at(pc.pos());
+                if (site != null && com.yearofice.api.story.AmbitionTracker.tallySet(p, "build.outposts_linked", site.getKey().asLong() + "") >= 3) {
+                    com.yearofice.story.ambition.Ambitions.fire(p, "build.outposts_linked_3", com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().nowMinute() : 0);
+                }
+            }
         }
     }
 

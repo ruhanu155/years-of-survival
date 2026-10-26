@@ -43,6 +43,10 @@ public final class Encounters {
     public static boolean wolvesRush(ServerPlayer p, int wolves, double secondsSeen, boolean alone, boolean fire) {
         boolean rush = EncounterRules.packRushes(wolves, secondsSeen, alone, fire);
         if (rush) post(p, EncounterStateEvent.State.STRIKE);
+        else if (wolves > 0) {
+            com.yearofice.story.ambition.Ambitions.fire(p, "wolf.drove_off_no_loss",
+                    com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().nowMinute() : 0);
+        }
         return rush;
     }
 

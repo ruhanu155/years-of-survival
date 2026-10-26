@@ -111,6 +111,20 @@ public final class TravelSystem {
         }
         WarnOnce w = WARN.computeIfAbsent(p.getUUID(), k -> new WarnOnce());
         long minute = level.getGameTime() / 20;
+        long gameMin = com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().nowMinute() : minute;
+        var reg = com.yearofice.worldgen.regions.Regions.at(feet.getX(), feet.getZ());
+        if (reg != null) {
+            if (com.yearofice.api.story.AmbitionTracker.tallySet(p, "map.regions_seen", reg.cell()) >= 7) {
+                com.yearofice.story.ambition.Ambitions.fire(p, "map.regions_40pct", gameMin);
+            }
+            if (reg.path().equals("windgap_pass") && com.yearofice.api.clock.ClockService.installed()
+                    && com.yearofice.sim.time.Calendar.month(com.yearofice.api.clock.ClockService.get().dayOfYear()) == 1) {
+                com.yearofice.story.ambition.Ambitions.fire(p, "travel.windgap_in_january", gameMin);
+            }
+            if (Math.hypot(feet.getX() - reg.centreX(), feet.getZ() - reg.centreZ()) <= 64 && !reg.path().equals("outpost_valley")) {
+                com.yearofice.story.ambition.Ambitions.fire(p, "travel.landmark_from_door", gameMin);
+            }
+        }
         boolean skating = g == Travel.Gear.SKATES;
         boolean thin = false;
         if (skating) thin = thinIce(level, feet);

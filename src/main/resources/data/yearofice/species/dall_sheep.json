@@ -1,0 +1,117 @@
+{
+  "entity": "yearofice:dall_sheep",
+  "rig": "ungulate",
+  "habitat": [
+    "alpine"
+  ],
+  "population": [
+    1,
+    1
+  ],
+  "home_range_m": 1000,
+  "active": [
+    "dawn",
+    "midday",
+    "dusk"
+  ],
+  "gaits": {
+    "walk": 1.2,
+    "trot": 3.0,
+    "run": 13.0,
+    "swim": 0.8,
+    "step_height_m": 1.5
+  },
+  "senses": {
+    "sight": 300,
+    "hearing": 40,
+    "smell": 100,
+    "fov": 300
+  },
+  "behavior": {
+    "alert": 30,
+    "response": 70,
+    "calm": 20,
+    "freezes": false,
+    "flee_trigger_m": 60,
+    "flee_m": [
+      100,
+      150
+    ],
+    "flee_gait": "run",
+    "zigzag": false,
+    "hide_min": [
+      15,
+      30
+    ],
+    "charges": false
+  },
+  "huntable": false,
+  "huntable_from": "m6_hunt",
+  "respawn_days": 60,
+  "breath_s": 60,
+  "spawn": {
+    "cell_m": 1024,
+    "group": [
+      6,
+      12
+    ],
+    "density_per_km2": 0.1,
+    "density_group": "big_game"
+  },
+  "drives": {
+    "hunger_up": 0.09,
+    "hunger_down": 0.25,
+    "thirst_up": 0.04,
+    "thirst_down": 1.0,
+    "rest_up": 0.06,
+    "rest_down": 0.2,
+    "weights": {
+      "dawn": [
+        1.4,
+        0.8,
+        0.3
+      ],
+      "midday": [
+        1.0,
+        0.4,
+        0.8
+      ],
+      "dusk": [
+        1.4,
+        0.8,
+        0.3
+      ],
+      "night": [
+        0.2,
+        0.1,
+        1.8
+      ]
+    }
+  },
+  "carcass": {
+    "whole_kg": 70,
+    "class": "large",
+    "body_plan": "cervid",
+    "poses": [
+      "dead_side"
+    ],
+    "steps": {
+      "position": 3,
+      "gut": 20,
+      "organs": 8,
+      "prop": 4,
+      "skin": 25,
+      "quarter": 40,
+      "hang": 12
+    },
+    "parts": {
+      "meat": 23,
+      "cover": {
+        "item": "yearofice:caribou_hide",
+        "kg": 5
+      },
+      "guts_kg": 9
+    }
+  },
+  "butcher_table": "yearofice:butchering/dall_sheep"
+}

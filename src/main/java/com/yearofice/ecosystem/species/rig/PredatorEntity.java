@@ -24,6 +24,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
@@ -43,6 +44,8 @@ public class PredatorEntity extends LandAnimal {
     protected long cooldownUntil, nextScanTick, nextSmellTick, eatUntil;
     protected Object scentTarget;
     private int stuckWalks;
+    private Vec3 walkCheckPos;
+    private long walkCheckTick;
     private double lastChaseM;
     private int givenUp, kills, scavenged;
 
@@ -194,7 +197,14 @@ public class PredatorEntity extends LandAnimal {
         Vec3 p = position();
         double dx = target.x - p.x, dz = target.z - p.z, d = Math.hypot(dx, dz);
         if (d > 30) {
-            target = new Vec3(p.x + dx / d * 30, target.y, p.z + dz / d * 30);
+            double wx = p.x + dx / d * 30, wz = p.z + dz / d * 30;
+            double wy = target.y;
+            BlockPos wp = BlockPos.containing(wx, wy, wz);
+            if (level().isLoaded(wp)) {
+                int gy = level().getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, wp.getX(), wp.getZ());
+                if (gy > level().getMinBuildHeight()) wy = gy;
+            }
+            target = new Vec3(wx, wy, wz);
         }
         return getNavigation().moveTo(target.x, target.y, target.z, speed);
     }
@@ -358,21 +368,62 @@ public class PredatorEntity extends LandAnimal {
             return true;
         }
         boolean far = position().distanceToSqr(at) > 40 * 40; // a scent trail far off is followed at a lope (the config's multiplier x trot), not a stroll
-        if (getNavigation().isDone() && flat < 30 && stuckWalks == 3) trace(level, "straight-line-close:engaged");
-        if (getNavigation().isDone() && flat < 30 && ++stuckWalks > 3) { // the path ended short (a bank, a bar edge): close the last metres in a straight line
-            // v12: a grizzly stood 10 m off for 200+ ticks at zero velocity: no path to the pile and a ledge over its step height
-            // in the straight line. Every 2 s ask for a path that ends within 4 blocks of the pile; when the push makes no
-            // progress, jump the ledge.
-            if (stuckWalks % 40 == 5) {
-                var path = getNavigation().createPath(BlockPos.containing(at), 4);
-                if (path != null && getNavigation().moveTo(path, Gaits.input(species().trotMps()))) { trace(level, "stuck:repath-near"); setMove(MOVE_WALK); return true; }
+        double spd = Gaits.input(species().trotMps() * (far ? com.yearofice.ecosystem.pool.PoolConfig.tuning().predatorScentTrotMultiplier() : 1.0));
+        long now = level.getGameTime();
+        if (walkCheckPos == null || now - walkCheckTick >= 20) {
+            if (walkCheckPos != null && Math.hypot(position().x - walkCheckPos.x, position().z - walkCheckPos.z) < 0.35 && flat < 65) {
+                stuckWalks += 4;
+            } else if (walkCheckPos != null && Math.hypot(position().x - walkCheckPos.x, position().z - walkCheckPos.z) >= 1.2) {
+                stuckWalks = Math.max(0, stuckWalks - 2);
             }
-            if (getDeltaMovement().horizontalDistanceSqr() < 1e-4 && onGround() && stuckWalks % 10 == 0) { getJumpControl().jump(); trace(level, "stuck:jump"); }
-            getMoveControl().setWantedPosition(at.x, at.y, at.z, Gaits.input(species().trotMps()));
-            setMove(MOVE_WALK);
+            walkCheckPos = position();
+            walkCheckTick = now;
+        }
+        if (getNavigation().isDone() && flat < 65) stuckWalks++;
+        if (flat < 65 && stuckWalks == 3) trace(level, "straight-line-close:engaged");
+        if (flat < 65 && stuckWalks > 2) { // the path ended short (a bank, a bar edge): contour or close the last metres
+            if (stuckWalks % 20 == 3) {
+                var path = getNavigation().createPath(BlockPos.containing(at), 4);
+                if (path != null && path.canReach() && getNavigation().moveTo(path, spd)) {
+                    trace(level, "stuck:repath-near");
+                    setMove(far ? MOVE_RUN : MOVE_WALK);
+                    return true;
+                }
+                double baseAng = Math.atan2(at.z - position().z, at.x - position().x);
+                double[] degs = {35, -35, 65, -65, 95, -95, 125, -125};
+                double[] stepDists = {Math.min(12.0, Math.max(5.0, flat * 0.5)), 16.0};
+                for (double stepD : stepDists) {
+                    for (double deg : degs) {
+                        double a = baseAng + Math.toRadians(deg);
+                        int bx = Mth.floor(position().x + Math.cos(a) * stepD);
+                        int bz = Mth.floor(position().z + Math.sin(a) * stepD);
+                        BlockPos probe = new BlockPos(bx, blockPosition().getY(), bz);
+                        if (!level.isLoaded(probe)) continue;
+                        int by = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, bx, bz);
+                        if (Math.abs(by - position().y) > 6) continue;
+                        var detour = getNavigation().createPath(new BlockPos(bx, by, bz), 2);
+                        if (detour != null && detour.getNodeCount() > 1 && getNavigation().moveTo(detour, spd)) {
+                            trace(level, "stuck:contour-bank");
+                            setMove(far ? MOVE_RUN : MOVE_WALK);
+                            return true;
+                        }
+                    }
+                }
+            }
+            if ((getDeltaMovement().horizontalDistanceSqr() < 1e-3 || horizontalCollision) && onGround() && stuckWalks % 8 == 0) {
+                getJumpControl().jump();
+                Vec3 dir = new Vec3(at.x - position().x, 0, at.z - position().z);
+                if (dir.lengthSqr() > 1e-4) {
+                    Vec3 n = dir.normalize().scale(0.28);
+                    setDeltaMovement(getDeltaMovement().add(n.x, 0.42, n.z));
+                }
+                trace(level, "stuck:jump");
+            }
+            getMoveControl().setWantedPosition(at.x, at.y, at.z, spd);
+            setMove(far ? MOVE_RUN : MOVE_WALK);
             return true;
         }
-        if (getNavigation().isDone() || far && tickCount % 20 == 0) pathToward(at, Gaits.input(species().trotMps() * (far ? com.yearofice.ecosystem.pool.PoolConfig.tuning().predatorScentTrotMultiplier() : 1.0)));
+        if (getNavigation().isDone() || far && tickCount % 20 == 0) pathToward(at, spd);
         setMove(far ? MOVE_RUN : MOVE_WALK);
         return true;
     }

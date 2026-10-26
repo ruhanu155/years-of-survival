@@ -28,6 +28,9 @@ public final class PieceCommands {
                     CommandSourceStack s = c.getSource();
                     try {
                         double min = Structs.stamp(s.getLevel(), StringArgumentType.getString(c, "name"), BlockPos.containing(s.getPosition()));
+                        if (s.getEntity() instanceof net.minecraft.server.level.ServerPlayer sp) {
+                            com.yearofice.story.ambition.Ambitions.fire(sp, "build.blueprint_cabin", com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().nowMinute() : 0);
+                        }
                         s.sendSuccess(() -> Component.literal(String.format("stamp queued: %d pieces, %.0f player minutes", PieceJobs.pending(s.getLevel()), min)), false);
                         return 1;
                     } catch (Exception ex) { s.sendFailure(Component.literal("stamp failed: " + ex.getMessage())); return 0; }

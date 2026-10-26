@@ -1045,11 +1045,32 @@ public final class M6HuntSmoke {
 
     private static void aim(ServerPlayer p, MooseEntity m, double draw, BowItem bow) {
         Vec3 eye = p.getEyePosition();
-        Vec3 target = m.position().add(0, m.getBbHeight() * 0.55, 0);
-        double d = Math.hypot(target.x - eye.x, target.z - eye.z);
-        double[] dd = Ballistics.dropAndDrift(bow.weapon().speedAt(draw), d, 0, HuntConfig.tuning());
-        Vec3 look = target.add(0, dd[0], 0).subtract(eye);
-        p.teleportTo(level, p.getX(), p.getY(), p.getZ(), (float) Math.toDegrees(Math.atan2(-look.x, look.z)), (float) -Math.toDegrees(Math.atan2(look.y, Math.hypot(look.x, look.z))));
+        double yaw = Math.toRadians(m.yBodyRot);
+        Vec3 target = m.position().add(-Math.sin(yaw) * 0.45, 1.35, Math.cos(yaw) * 0.45);
+        double dx = target.x - eye.x, dz = target.z - eye.z;
+        double d = Math.hypot(dx, dz);
+        double dirX = d > 1e-4 ? dx / d : 0, dirZ = d > 1e-4 ? dz / d : 1;
+        double crossX = -dirZ, crossZ = dirX;
+        double crossWind = 0;
+        try {
+            var w = EnvService.get().wind(level, p.blockPosition());
+            double wr = Math.toRadians(w.fromDeg());
+            double wx = -Math.sin(wr) * w.ms(), wz = Math.cos(wr) * w.ms();
+            crossWind = wx * crossX + wz * crossZ;
+        } catch (IllegalStateException ignored) {}
+        double[] dd = Ballistics.dropAndDrift(bow.weapon().speedAt(draw), d, crossWind, HuntConfig.tuning());
+        Vec3 look = target.add(-crossX * dd[1], dd[0], -crossZ * dd[1]).subtract(eye);
+        float yRot = (float) Math.toDegrees(Math.atan2(-look.x, look.z));
+        float xRot = (float) -Math.toDegrees(Math.atan2(look.y, Math.hypot(look.x, look.z)));
+        p.teleportTo(level, p.getX(), p.getY(), p.getZ(), yRot, xRot);
+        p.setYRot(yRot);
+        p.setXRot(xRot);
+        p.setYHeadRot(yRot);
+        if (Minecraft.getInstance().player != null) {
+            Minecraft.getInstance().player.setYRot(yRot);
+            Minecraft.getInstance().player.setXRot(xRot);
+            Minecraft.getInstance().player.setYHeadRot(yRot);
+        }
     }
 
     private static int laneWaits = 0;
@@ -1060,7 +1081,7 @@ public final class M6HuntSmoke {
         ItemStack bowStack = p.getInventory().getItem(BOWSLOT);
         if (!(bowStack.getItem() instanceof BowItem bow)) { finding("no bow in slot 1; the shot cannot be taken"); ph = Ph.END; return; }
         p.getInventory().selected = BOWSLOT;
-        if (redraw) { redraw = false; p.stopUsingItem(); drawStart = -1; } // the frame was taken at full draw; draw again for the loose
+        if (redraw) { redraw = false; p.stopUsingItem(); drawStart = -1; return; } // the frame was taken at full draw; draw again for the loose
         if (drawStart < 0) {
             arrowsBefore = have(p, "arrow");
             if (arrowsBefore == 0) { finding("no arrows left"); ph = Ph.AFTER; return; }

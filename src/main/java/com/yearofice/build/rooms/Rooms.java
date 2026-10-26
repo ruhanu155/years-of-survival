@@ -9,9 +9,11 @@ import com.yearofice.api.fire.FireHeatLookup;
 import com.yearofice.build.pieces.DoorFrameBlock;
 import com.yearofice.build.pieces.PieceRegistry;
 import com.yearofice.build.pieces.PiecesConfig;
+import com.yearofice.build.pieces.WallLogBlock;
 import com.yearofice.sim.build.Heat;
 import com.yearofice.sim.build.RoomScan;
 import com.yearofice.sim.fire.FireHeat;
+import com.yearofice.story.ambition.Ambitions;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -80,7 +82,15 @@ public final class Rooms implements RoomService {
         boolean piece = s.is(PieceRegistry.WALL) || s.is(PieceRegistry.ROOF) || s.is(PieceRegistry.FLOOR) || s.is(PieceRegistry.DOOR);
         if (!piece && s.getCollisionShape(l, pos).isEmpty()) return RoomScan.Cell.AIR;
         HeatData h = b.builtInRegistryHolder().getData(HeatData.MAP);
-        return h != null ? RoomScan.Cell.solid(h.uWPerM2K(), h.seamM()) : RoomScan.Cell.solid(HeatData.DEFAULT_SOLID_U);
+        if (h == null) return RoomScan.Cell.solid(HeatData.DEFAULT_SOLID_U);
+        if (s.hasProperty(WallLogBlock.CHINK)) {
+            return switch (s.getValue(WallLogBlock.CHINK)) {
+                case CLAY -> RoomScan.Cell.solid(h.uWPerM2K(), 0, 0);
+                case MOSS -> RoomScan.Cell.solid(h.uWPerM2K(), 0, h.seamM());
+                case NONE -> RoomScan.Cell.solid(h.uWPerM2K(), h.seamM() * (1 - PiecesConfig.chinkedShare()), 0);
+            };
+        }
+        return RoomScan.Cell.solid(h.uWPerM2K(), h.seamM() * (1 - PiecesConfig.chinkedShare()), 0);
     }
 
     @Nullable RoomsData.Entry entry(ServerLevel l, BlockPos pos) {
@@ -148,7 +158,16 @@ public final class Rooms implements RoomService {
         List<Heat.Face> faces = new ArrayList<>();
         for (Heat.Face f : e.scan.faces()) faces.add(f.part() == Heat.Part.ROOF ? new Heat.Face(f.part(), f.areaM2(), f.u(), snowM) : f);
         double w = sourceW(l, e);
-        Heat.Balance b = Heat.solve(faces, e.scan.leaks().size(), e.scan.seamM() * (1 - PiecesConfig.chinkedShare()), 0, meanW(l, e), out, ground, wind);
+        double mw = meanW(l, e);
+        Heat.Balance b = Heat.solve(faces, e.scan.leaks().size(), e.scan.seamM(), e.scan.mossM(), mw, out, ground, wind);
+        if (mw > 0 && e.scan.seamM() <= 1e-6 && com.yearofice.api.clock.ClockService.installed()) {
+            long min = com.yearofice.api.clock.ClockService.get().nowMinute();
+            for (var sp : l.players()) {
+                if (!sp.isSpectator() && e.byCellHas(sp.blockPosition().getX(), sp.blockPosition().getY(), sp.blockPosition().getZ())) {
+                    Ambitions.fire(sp, "build.cabin_with_stove", min);
+                }
+            }
+        }
         List<BlockPos> leaks = new ArrayList<>();
         for (long c : e.scan.leaks()) leaks.add(new BlockPos(RoomScan.ux(c), RoomScan.uy(c), RoomScan.uz(c)));
         int walls = 0, snow = 0, flames = 0;

@@ -39,6 +39,7 @@ public final class EcoRenderers {
         e.registerEntityRenderer(com.yearofice.ecosystem.livestock.LivestockRegistry.HEN.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.2f));
         // M6 lane A
         e.registerEntityRenderer(EcosystemRegistry.CARIBOU.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.6f));
+        e.registerEntityRenderer(EcosystemRegistry.DALL_SHEEP.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.45f));
         e.registerEntityRenderer(EcosystemRegistry.MULE_DEER.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.5f));
         e.registerEntityRenderer(EcosystemRegistry.BLACK_BEAR.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.6f));
         e.registerEntityRenderer(EcosystemRegistry.GRIZZLY.get(), ctx -> new YoiAnimalRenderer<>(ctx, 0.8f));

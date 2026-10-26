@@ -171,6 +171,9 @@ public final class BodyTicker {
         java.util.List<String> lines = new java.util.ArrayList<>(new java.util.LinkedHashSet<>(s.events));
         s.events.clear();
         for (String id : lines) {
+            if (id.startsWith("frost_") && (id.endsWith("_superficial") || id.endsWith("_deep"))) {
+                com.yearofice.api.story.AmbitionTracker.tally(p, "body.frostbitten_winter", 1);
+            }
             VitalExplainer.deliver(com.yearofice.api.hud.HudBus.get(), p, com.yearofice.api.hud.HudLine.of(
                     com.yearofice.api.hud.HudLineType.BODY, id, "body"));
             if (id.equals("face_sunburn") || id.equals("face_windburn")) {

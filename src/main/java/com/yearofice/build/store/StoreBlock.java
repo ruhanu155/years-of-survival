@@ -44,7 +44,15 @@ public class StoreBlock extends BaseEntityBlock {
                                               InteractionHand hand, BlockHitResult hit) {
         if (level.isClientSide) return ItemInteractionResult.SUCCESS;
         if (tooHigh(level, pos, player)) return ItemInteractionResult.CONSUME;
-        if (level.getBlockEntity(pos) instanceof StoreContainerBlockEntity be && be.putOn(stack) > 0) return ItemInteractionResult.CONSUME;
+        if (level.getBlockEntity(pos) instanceof StoreContainerBlockEntity be) {
+            boolean isSeed = stack.getItem() instanceof com.yearofice.crop.SeedItem || stack.has(com.yearofice.crop.CropRegistry.SEED_LOT.get());
+            if (be.putOn(stack) > 0) {
+                if (isSeed && player instanceof net.minecraft.server.level.ServerPlayer sp) {
+                    com.yearofice.story.ambition.Ambitions.fire(sp, "crop.seed_saved", com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().nowMinute() : 0);
+                }
+                return ItemInteractionResult.CONSUME;
+            }
+        }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 

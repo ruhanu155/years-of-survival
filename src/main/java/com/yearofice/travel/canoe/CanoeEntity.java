@@ -90,6 +90,21 @@ public class CanoeEntity extends Boat {
         if (level().isClientSide) return;
         if (swamped > 0) swamped--;
         else if (tickCount % 20 == 0) capsizeRoll(random.nextDouble());
+        double d = Math.hypot(getX() - xo, getZ() - zo);
+        if (d > 0.01 && d < 8) {
+            long min = com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().nowMinute() : level().getGameTime() / 20;
+            for (Entity e : getPassengers()) {
+                if (e instanceof ServerPlayer sp) {
+                    if (com.yearofice.api.story.AmbitionTracker.tally(sp, "travel.canoe_m", d) >= 1000) {
+                        com.yearofice.story.ambition.Ambitions.fire(sp, "travel.canoe_1km", min);
+                    }
+                    var reg = com.yearofice.worldgen.regions.Regions.at(blockPosition().getX(), blockPosition().getZ());
+                    if (reg != null && reg.path().equals("upriver_canyon") && com.yearofice.api.story.AmbitionTracker.tally(sp, "travel.portaged_canoe") > 0) {
+                        com.yearofice.story.ambition.Ambitions.fire(sp, "travel.long_falls_portage", min);
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -98,6 +113,9 @@ public class CanoeEntity extends Boat {
             if (!level().isClientSide) {
                 ItemStack carried = new ItemStack(CanoeRegistry.CANOE.get());
                 if (!player.getInventory().add(carried)) player.drop(carried, false);
+                if (player instanceof ServerPlayer sp) {
+                    com.yearofice.api.story.AmbitionTracker.tally(sp, "travel.portaged_canoe", 1);
+                }
                 discard();
             }
             return net.minecraft.world.InteractionResult.sidedSuccess(level().isClientSide);

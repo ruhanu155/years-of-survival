@@ -12,7 +12,7 @@
     "by_milestone": {"m0": 13, "m1": 15, "m2": 200, "m2_5": 65, "m3": 127, "m4": 51, "m5": 476, "m6": 349, "m7": 163, "m8": 184, "m9": 79, "none": 3},
     "by_owner": {"body": 331, "building": 279, "ecosystem": 266, "food": 330, "look": 213, "story": 70, "studio": 75, "worldgen": 161},
     "by_milestone_source": {"doc": 921, "rule": 804},
-    "by_status": {"planned": 1582, "registered": 140, "retired": 3}
+    "by_status": {"planned": 1581, "registered": 141, "retired": 3}
   },
   "entries": [
     {"id": "yearofice:alaska_blackfish", "type": "mob", "milestone": "m5", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
@@ -56,7 +56,7 @@
     {"id": "yearofice:common_merganser", "type": "mob", "milestone": "m6", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:common_redpoll", "type": "mob", "milestone": "m6", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:coyote", "type": "mob", "milestone": "m6", "owner": "ecosystem", "milestone_source": "doc", "status": "registered"},
-    {"id": "yearofice:dall_sheep", "type": "mob", "milestone": "m6", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
+    {"id": "yearofice:dall_sheep", "type": "mob", "milestone": "m6", "owner": "ecosystem", "milestone_source": "doc", "status": "registered"},
     {"id": "yearofice:dark_eyed_junco", "type": "mob", "milestone": "m6", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:data_only_probe", "type": "mob", "milestone": "m5", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},
     {"id": "yearofice:diving_beetle", "type": "mob", "milestone": "m6", "owner": "ecosystem", "milestone_source": "doc", "status": "planned"},

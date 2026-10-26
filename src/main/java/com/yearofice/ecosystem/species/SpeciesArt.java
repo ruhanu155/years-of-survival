@@ -23,7 +23,7 @@ public final class SpeciesArt {
      * Species drawn with a related species' geometry and animations until the look lane ships their own (M6 lane A):
      * caribou as the mule deer, coyote as the wolf, lynx as the red fox, wolverine as the black bear.
      */
-    public static final java.util.Map<String, String> ALIAS = java.util.Map.of("caribou", "mule_deer", "coyote", "wolf",
+    public static final java.util.Map<String, String> ALIAS = java.util.Map.of("caribou", "mule_deer", "dall_sheep", "mule_deer", "coyote", "wolf",
             "lynx", "red_fox", "wolverine", "black_bear",
             // M9 lane C: kept animals borrow a wild cousin's art until their own models land.
             "goat", "mule_deer", "reindeer", "mule_deer", "hen", "spruce_grouse");

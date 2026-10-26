@@ -453,6 +453,10 @@ public final class WoodJobs {
                 long day = WoodItems.today();
                 WoodPieceItem piece = WoodItems.piece(round);
                 WoodItems.give(p, WoodItems.split(piece.wood, 1, WoodItems.moistureNow(round, day), day));
+                if (com.yearofice.api.story.AmbitionTracker.tally(p, "wood.seasoned_splits", 1) >= 300) {
+                    com.yearofice.story.ambition.Ambitions.fire(p, "wood.seasoned_300",
+                            com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().nowMinute() : 0);
+                }
                 l.playSound(null, pos, WoodRegistry.TREE_SPLIT.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
                 finished = true;
             }

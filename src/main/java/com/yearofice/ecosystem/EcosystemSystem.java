@@ -81,6 +81,7 @@ public final class EcosystemSystem {
         e.put(EcosystemRegistry.ROCK_PTARMIGAN.get(), YoiAnimal.attributes(2).build());
         // M6 lane A: health in half-hearts a hit zone's kill threshold overrides anyway.
         e.put(EcosystemRegistry.CARIBOU.get(), YoiAnimal.attributes(60).build());
+        e.put(EcosystemRegistry.DALL_SHEEP.get(), YoiAnimal.attributes(50).build());
         e.put(EcosystemRegistry.MULE_DEER.get(), YoiAnimal.attributes(40).build());
         e.put(EcosystemRegistry.BLACK_BEAR.get(), YoiAnimal.attributes(80).build());
         e.put(EcosystemRegistry.GRIZZLY.get(), YoiAnimal.attributes(120).build());

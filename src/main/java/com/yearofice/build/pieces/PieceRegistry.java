@@ -43,7 +43,7 @@ public final class PieceRegistry {
         return b;
     }
 
-    public static final DeferredBlock<Block> WALL_LOG = piece("wall_log", () -> new Block(props(MapColor.WOOD, 2f, SoundType.WOOD)));
+    public static final DeferredBlock<WallLogBlock> WALL_LOG = piece("wall_log", () -> new WallLogBlock(props(MapColor.WOOD, 2f, SoundType.WOOD)));
     public static final DeferredBlock<Block> WALL_PLANK = piece("wall_plank", () -> new Block(props(MapColor.WOOD, 1.5f, SoundType.WOOD)));
     public static final DeferredBlock<Block> WALL_SOD = piece("wall_sod", () -> new Block(props(MapColor.GRASS, 0.8f, SoundType.GRASS)));
     public static final DeferredBlock<Block> WALL_STONE = piece("wall_stone", () -> new Block(props(MapColor.STONE, 2.5f, SoundType.STONE)));

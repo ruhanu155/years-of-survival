@@ -191,6 +191,9 @@ public class FireRingBlockEntity extends BlockEntity {
             if (level.getGameTime() - lastPuffTick < 15) return InteractionResult.CONSUME;
             lastPuffTick = level.getGameTime();
             Fire.Result r = puff();
+            if (s == FireState.BANKED && r.ok() && player instanceof net.minecraft.server.level.ServerPlayer sp) {
+                com.yearofice.story.ambition.Ambitions.fire(sp, "fire.relight_from_coals", ClockService.installed() ? ClockService.get().nowMinute() : 0);
+            }
             tell(player, r.line());
             return r.ok() ? InteractionResult.SUCCESS : InteractionResult.CONSUME;
         }

@@ -66,6 +66,18 @@ public final class PlaceJob implements WorkJob {
         l.setBlock(at, s, 3);
         l.playSound(null, at, s.getSoundType().getPlaceSound(), SoundSource.BLOCKS, 1f, 0.9f);
         if (!p.getAbilities().instabuild) p.getMainHandItem().shrink(1);
+        if (block == PieceRegistry.LOG_DECK.get() && l.getFluidState(at.below()).is(net.minecraft.tags.FluidTags.WATER)) {
+            int span = 1;
+            for (Direction dir : Direction.Plane.HORIZONTAL) {
+                for (int i = 1; i <= 4; i++) {
+                    if (l.getBlockState(at.relative(dir, i)).is(PieceRegistry.LOG_DECK.get())) span++;
+                    else break;
+                }
+            }
+            if (span >= 3) {
+                com.yearofice.story.ambition.Ambitions.fire(p, "build.crib_bridge", com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().nowMinute() : 0);
+            }
+        }
     }
 
     @Override public boolean finished() { return done; }

@@ -107,6 +107,8 @@ public final class EcosystemRegistry {
     // ---- M6 lane A: big game, predators and the large carcasses (Land animals in depth › Mob sheets: big game, predators) ----
     public static final DeferredHolder<EntityType<?>, EntityType<BigGameEntity>> CARIBOU = ENTITIES.register("caribou",
             () -> EntityType.Builder.of(BigGameEntity::new, MobCategory.CREATURE).sized(1.0f, 1.5f).clientTrackingRange(10).build("yearofice:caribou"));
+    public static final DeferredHolder<EntityType<?>, EntityType<BigGameEntity>> DALL_SHEEP = ENTITIES.register("dall_sheep",
+            () -> EntityType.Builder.of(BigGameEntity::new, MobCategory.CREATURE).sized(0.7f, 1.0f).clientTrackingRange(10).build("yearofice:dall_sheep"));
     public static final DeferredHolder<EntityType<?>, EntityType<BigGameEntity>> MULE_DEER = ENTITIES.register("mule_deer",
             () -> EntityType.Builder.of(BigGameEntity::new, MobCategory.CREATURE).sized(0.8f, 1.35f).clientTrackingRange(10).build("yearofice:mule_deer"));
     public static final DeferredHolder<EntityType<?>, EntityType<BearEntity>> BLACK_BEAR = ENTITIES.register("black_bear",

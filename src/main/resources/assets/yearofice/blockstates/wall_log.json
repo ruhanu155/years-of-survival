@@ -1,6 +1,12 @@
 {
   "variants": {
-    "": {
+    "chink=none": {
+      "model": "yearofice:block/wall_log"
+    },
+    "chink=moss": {
+      "model": "yearofice:block/wall_log"
+    },
+    "chink=clay": {
       "model": "yearofice:block/wall_log"
     }
   }

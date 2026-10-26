@@ -260,6 +260,11 @@ public class SnareBlockEntity extends BlockEntity implements GeoBlockEntity {
         if (!(level instanceof ServerLevel sl) || state == null) return InteractionResult.PASS;
         settle(true);
         long now = now();
+        if (player instanceof ServerPlayer sp) {
+            if (com.yearofice.api.story.AmbitionTracker.tallySet(sp, "trap.line_" + Math.floorDiv(now, 1440L), worldPosition.asLong() + "") >= 20) {
+                com.yearofice.story.ambition.Ambitions.fire(sp, "trap.line_20", now);
+            }
+        }
         Snare.Catch v = state.visible(now);
         if (v != null) {
             CarcassRecord taken = record(v);

@@ -182,6 +182,9 @@ public final class Sleep implements SleepService {
         if (w == SleepRules.Wake.MORNING || w == SleepRules.Wake.RESTED) {
             var room = com.yearofice.api.build.RoomService.get().roomAt(p.serverLevel(), p.blockPosition());
             if (room != null && room.feelsLikeC() > 0) com.yearofice.story.ambition.Ambitions.fire(p, "sleep.indoors_warm", minute);
+            if (com.yearofice.sim.time.Calendar.month(com.yearofice.sim.time.Calendar.dayOfYearOfMinute(minute)) == 7) {
+                com.yearofice.story.ambition.Ambitions.fire(p, "sleep.july_no_mosquito", minute);
+            }
         }
         LIES.remove(p.getUUID());
         DANGER.remove(p.getUUID());

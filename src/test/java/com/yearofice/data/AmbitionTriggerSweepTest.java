@@ -16,41 +16,7 @@ import org.junit.jupiter.api.Test;
  * a key that gains a caller must be deleted from it.
  */
 class AmbitionTriggerSweepTest {
-    static final List<String> UNWIRED = List.of(
-        "bear.backed_away",
-        "body.bmi20_30_days",
-        "body.no_frostbite_to_april",
-        "build.blueprint_cabin",
-        "build.cabin_with_stove",
-        "build.cellar_100kg_roots",
-        "build.crib_bridge",
-        "build.fish_wheel_run",
-        "build.no_animal_entry",
-        "build.outposts_linked_3",
-        "crop.seed_saved",
-        "fire.relight_from_coals",
-        "fire.solstice_kept",
-        "food.bread_from_own_wheat",
-        "food.cache_30_days",
-        "food.dried_fish_10kg",
-        "food.last_cracker_and_catch",
-        "food.own_cabbage_in_march",
-        "hunt.caribou_crossing",
-        "hunt.clean_10",
-        "hunt.grizzly_bow",
-        "livestock.winter_survived",
-        "map.regions_40pct",
-        "ore.surface_iron",
-        "plants.identified_20",
-        "sleep.july_no_mosquito",
-        "spirits.steady_dec_jan",
-        "trap.line_20",
-        "travel.canoe_1km",
-        "travel.landmark_from_door",
-        "travel.long_falls_portage",
-        "travel.windgap_in_january",
-        "wolf.drove_off_no_loss",
-        "wood.seasoned_300");
+    static final List<String> UNWIRED = List.of();
 
     @Test
     void everyTriggerHasACaller() throws Exception {

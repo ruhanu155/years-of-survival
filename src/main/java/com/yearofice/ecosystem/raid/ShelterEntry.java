@@ -1,5 +1,6 @@
 package com.yearofice.ecosystem.raid;
 
+import com.yearofice.build.pieces.DoorFrameBlock;
 import com.yearofice.core.YearOfIce;
 import com.yearofice.ecosystem.clock.SliceClock;
 import com.yearofice.ecosystem.encounter.EncounterConfig;
@@ -9,6 +10,7 @@ import com.yearofice.sim.decay.Thresholds;
 import com.yearofice.sim.ecosystem.RaidOdds;
 import com.yearofice.sim.ecosystem.Theft;
 import com.yearofice.sim.time.Calendar;
+import com.yearofice.api.story.AmbitionTracker;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,7 +56,7 @@ public final class ShelterEntry {
     public static void clear() { synchronized (DOORS) { DOORS.clear(); } entries = 0; }
 
     public static boolean isOpen(BlockState s) {
-        return (s.getBlock() instanceof DoorBlock || s.getBlock() instanceof TrapDoorBlock) && s.getValue(BlockStateProperties.OPEN);
+        return (s.getBlock() instanceof DoorBlock || s.getBlock() instanceof TrapDoorBlock || s.getBlock() instanceof DoorFrameBlock) && s.getValue(BlockStateProperties.OPEN);
     }
 
     /** A container with food within 5 blocks of the door, or null. */
@@ -100,6 +102,7 @@ public final class ShelterEntry {
         if (hit.isEmpty()) return Optional.empty();
         RaidOdds.Raider who = hit.get();
         entries++;
+        for (var sp : level.players()) AmbitionTracker.tally(sp, "build.animal_entered_winter", 1);
         String text = switch (who) {
             case FOX -> {
                 String took = takeLight(store);
@@ -128,7 +131,8 @@ public final class ShelterEntry {
     public static void onUse(PlayerInteractEvent.RightClickBlock e) {
         if (e.getLevel() instanceof ServerLevel sl) {
             BlockPos p = e.getPos();
-            if (sl.getBlockState(p).getBlock() instanceof DoorBlock || sl.getBlockState(p).getBlock() instanceof TrapDoorBlock) watch(sl, p);
+            BlockState s = sl.getBlockState(p);
+            if (s.getBlock() instanceof DoorBlock || s.getBlock() instanceof TrapDoorBlock || s.getBlock() instanceof DoorFrameBlock) watch(sl, p);
         }
     }
 
@@ -142,7 +146,7 @@ public final class ShelterEntry {
             BlockPos pos = en.getKey();
             if (!level.isLoaded(pos)) continue;
             BlockState s = level.getBlockState(pos);
-            if (!(s.getBlock() instanceof DoorBlock) && !(s.getBlock() instanceof TrapDoorBlock)) { synchronized (DOORS) { DOORS.remove(pos); } continue; }
+            if (!(s.getBlock() instanceof DoorBlock) && !(s.getBlock() instanceof TrapDoorBlock) && !(s.getBlock() instanceof DoorFrameBlock)) { synchronized (DOORS) { DOORS.remove(pos); } continue; }
             long minute = SliceClock.minute(level);
             Container store = storeNear(level, pos);
             hour(level, pos, store, minute / 60, context(level, pos, store, minute))

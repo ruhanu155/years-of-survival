@@ -1,0 +1,8 @@
+{
+  "species": "dall_sheep",
+  "track_every_m": 1.0,
+  "print_cm": 8,
+  "scat": true,
+  "browse": false,
+  "bed": true
+}

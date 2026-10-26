@@ -59,10 +59,22 @@ public final class Knowledge {
     public static boolean seen(ServerPlayer p, PlantSpec spec, PlantPhase phase) {
         boolean was = identified(p, spec);
         set(p, notes(p).seen(spec.id, stageBit(phase)));
-        return !was && identified(p, spec);
+        boolean nowId = !was && identified(p, spec);
+        if (nowId) checkAmbition(p, spec.id);
+        return nowId;
     }
 
-    public static void identify(ServerPlayer p, String species) { set(p, notes(p).identify(species)); }
+    public static void identify(ServerPlayer p, String species) {
+        set(p, notes(p).identify(species));
+        checkAmbition(p, species);
+    }
+
+    private static void checkAmbition(ServerPlayer p, String species) {
+        if (com.yearofice.api.story.AmbitionTracker.tallySet(p, "plants.identified", species) >= 20) {
+            com.yearofice.story.ambition.Ambitions.fire(p, "plants.identified_20",
+                    com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().nowMinute() : 0);
+        }
+    }
 
     public static void forget(ServerPlayer p, String species) { set(p, notes(p).forget(species)); }
 

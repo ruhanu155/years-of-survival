@@ -109,6 +109,21 @@ public final class Meals {
         }
         if (stage >= EatingLadder.TURNING) HudBus.get().post(p, HudLine.of(HudLineType.BODY, "tasted_off", "food"));
         else if (ring == Doneness.Ring.BURNT) HudBus.get().post(p, HudLine.of(HudLineType.BODY, "burnt", "food"));
+        long min = com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().nowMinute() : 0;
+        long day = Math.floorDiv(min, 1440L) + 1;
+        if (stack.is(com.yearofice.crop.CropRegistry.CABBAGE.get()) || stack.is(FoodItems.SAUERKRAUT.get())) {
+            int doy = com.yearofice.sim.time.Calendar.dayOfYearOfMinute(min);
+            if (com.yearofice.sim.time.Calendar.month(doy) == 3) {
+                com.yearofice.story.ambition.Ambitions.fire(p, "food.own_cabbage_in_march", min);
+            }
+        }
+        EatingLadder.Family fam = family(stack);
+        if (fam == EatingLadder.Family.FISH || fam == EatingLadder.Family.GAME_MEAT) {
+            com.yearofice.api.story.AmbitionTracker.tally(p, "food.catch_day", day - com.yearofice.api.story.AmbitionTracker.tally(p, "food.catch_day"));
+            if (com.yearofice.api.story.AmbitionTracker.tally(p, "food.last_cracker_day") == day) {
+                com.yearofice.story.ambition.Ambitions.fire(p, "food.last_cracker_and_catch", min);
+            }
+        }
         if (!p.getAbilities().instabuild) stack.shrink(1);
         return new Bite(true, o, grams, booked, stage);
     }

@@ -148,6 +148,12 @@ public class DeadfallBlockEntity extends BlockEntity {
     public InteractionResult use(Player player) {
         if (!(level instanceof ServerLevel sl)) return InteractionResult.PASS;
         settle(true);
+        long now = now();
+        if (player instanceof ServerPlayer sp) {
+            if (com.yearofice.api.story.AmbitionTracker.tallySet(sp, "trap.line_" + Math.floorDiv(now, 1440L), worldPosition.asLong() + "") >= 20) {
+                com.yearofice.story.ambition.Ambitions.fire(sp, "trap.line_20", now);
+            }
+        }
         if (status == Status.CATCH) {
             takeCatch(player);
             return InteractionResult.CONSUME;

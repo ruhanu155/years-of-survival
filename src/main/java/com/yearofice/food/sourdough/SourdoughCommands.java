@@ -56,6 +56,10 @@ public final class SourdoughCommands {
         ItemStack out = Sourdough.bake(c.getSource().getLevel(), StarterItem.of(s, ClockService.get().nowMinute()), flour, StringArgumentType.getString(c, "dish"));
         if (out == null) return say(c, "The starter will not raise it (hungry, asleep or dead, or no such dish).");
         if (!p.addItem(out)) p.drop(out, false);
-        return say(c, "baked " + StringArgumentType.getString(c, "dish"));
+        String dish = StringArgumentType.getString(c, "dish");
+        if (dish.contains("bread") && com.yearofice.api.story.AmbitionTracker.tally(p, "crop.grew_grain") > 0) {
+            com.yearofice.story.ambition.Ambitions.fire(p, "food.bread_from_own_wheat", ClockService.get().nowMinute());
+        }
+        return say(c, "baked " + dish);
     }
 }

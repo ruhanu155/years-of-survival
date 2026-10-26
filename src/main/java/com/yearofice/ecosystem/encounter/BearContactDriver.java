@@ -1,5 +1,6 @@
 package com.yearofice.ecosystem.encounter;
 
+import com.yearofice.api.clock.ClockService;
 import com.yearofice.api.hud.HudArg;
 import com.yearofice.api.hud.HudBus;
 import com.yearofice.api.hud.HudLine;
@@ -12,6 +13,7 @@ import com.yearofice.sim.ecosystem.BearContact.Phase;
 import com.yearofice.sim.hunt.EncounterRules;
 import com.yearofice.sim.hunt.EncounterRules.Charge;
 import com.yearofice.sim.hunt.EncounterRules.Reaction;
+import com.yearofice.story.ambition.Ambitions;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.server.level.ServerLevel;
@@ -54,9 +56,15 @@ public final class BearContactDriver {
         switch (phase) {
             case NOTICE -> {
                 b.holdAndLook(target);
-                if (d > BearContact.ON_CARRION_M + 10) end(b, t);
-                else if (t >= phaseEnd) {
-                    if (d > BearContact.ON_CARRION_M) { end(b, t); return; }
+                if (d > BearContact.ON_CARRION_M + 10) {
+                    Ambitions.fire(target, "bear.backed_away", ClockService.installed() ? ClockService.get().nowMinute() : t / 20);
+                    end(b, t);
+                } else if (t >= phaseEnd) {
+                    if (d > BearContact.ON_CARRION_M) {
+                        Ambitions.fire(target, "bear.backed_away", ClockService.installed() ? ClockService.get().nowMinute() : t / 20);
+                        end(b, t);
+                        return;
+                    }
                     enter(Phase.HUFF, d, t, BearContact.HUFF_TICKS);
                     b.huff();
                 }
@@ -69,7 +77,11 @@ public final class BearContactDriver {
                 roll = chargeRoll != null ? chargeRoll : b.getRandom().nextDouble();
                 boolean grizzly = b.speciesId().endsWith("grizzly");
                 outcome = EncounterRules.bearCharge(d, false, grizzly, reaction, roll, HuntConfig.tuning());
-                if (outcome == Charge.NONE) { end(b, t); return; }
+                if (outcome == Charge.NONE) {
+                    Ambitions.fire(target, "bear.backed_away", ClockService.installed() ? ClockService.get().nowMinute() : t / 20);
+                    end(b, t);
+                    return;
+                }
                 stopM = outcome == Charge.BLUFF ? BearContact.bluffStopM(stopRoll != null ? stopRoll : b.getRandom().nextDouble()) : BearContact.CONTACT_M;
                 enter(Phase.CHARGE, d, t, BearContact.RUSH_TIMEOUT_TICKS);
             }

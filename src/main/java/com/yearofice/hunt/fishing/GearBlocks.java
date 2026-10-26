@@ -53,6 +53,9 @@ public final class GearBlocks {
         }
         PassiveGearService.Settled s = PassiveGearService.settle(sl, g, now(sl));
         List<ItemStack> out = PassiveGearService.check(sl, sp, g, now(sl));
+        if (g.kind == PassiveGearService.Kind.FISH_WHEEL && !out.isEmpty()) {
+            com.yearofice.story.ambition.Ambitions.fire(sp, "build.fish_wheel_run", now(sl));
+        }
         String what = switch (g.kind) {
             case SET_LINE -> "Set line";
             case GILL_NET -> "Net (" + g.segments + " segments)";

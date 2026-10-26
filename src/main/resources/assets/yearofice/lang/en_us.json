@@ -1141,5 +1141,6 @@
   "curios.identifier.feet_inner": "Feet (under)",
   "curios.identifier.hands_inner": "Hands (under)",
   "curios.identifier.hands_outer": "Hands (over)",
-  "yoi.wear.header": "Worn: %s"
+  "yoi.wear.header": "Worn: %s",
+  "entity.yearofice.dall_sheep": "Dall Sheep"
 }

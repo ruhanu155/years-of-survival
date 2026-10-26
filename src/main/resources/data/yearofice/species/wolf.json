@@ -97,7 +97,8 @@
       "yearofice:mule_deer",
       "yearofice:goat",
       "yearofice:reindeer",
-      "yearofice:hen"
+      "yearofice:hen",
+      "yearofice:dall_sheep"
     ],
     "chase_cap_m": 150,
     "detect_m": 120,

@@ -63,5 +63,13 @@ public final class Eating {
         FoodMap.Row row = FoodMap.row(eaten);
         if (row == null) return;
         BodyService.get().eat(p, eaten, row.weightG());
+        if (eaten.is(com.yearofice.item.inventory.KitItems.PILOT_BREAD.get()) && p.getInventory().countItem(com.yearofice.item.inventory.KitItems.PILOT_BREAD.get()) <= 1) {
+            long min = com.yearofice.api.clock.ClockService.installed() ? com.yearofice.api.clock.ClockService.get().nowMinute() : 0;
+            long day = Math.floorDiv(min, 1440L) + 1;
+            com.yearofice.api.story.AmbitionTracker.tally(p, "food.last_cracker_day", day - com.yearofice.api.story.AmbitionTracker.tally(p, "food.last_cracker_day"));
+            if (com.yearofice.api.story.AmbitionTracker.tally(p, "food.catch_day") == day) {
+                com.yearofice.story.ambition.Ambitions.fire(p, "food.last_cracker_and_catch", min);
+            }
+        }
     }
 }

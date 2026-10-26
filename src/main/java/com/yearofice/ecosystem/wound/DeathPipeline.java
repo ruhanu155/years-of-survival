@@ -55,6 +55,13 @@ public final class DeathPipeline {
             YearOfIce.LOG.info("{} died ({}): a {} carcass ({} arrive with big game in M6)", d.id(), cause, d.carcassClass(), "large and huge");
         }
         Entity killer = source.getEntity();
+        if (d.id().endsWith("caribou") && (animal.isInWater() || level.getFluidState(animal.blockPosition()).is(net.minecraft.tags.FluidTags.WATER))) {
+            if (killer instanceof net.minecraft.server.level.ServerPlayer sp) {
+                com.yearofice.story.ambition.Ambitions.fire(sp, "hunt.caribou_crossing", (long) minute);
+            } else if (level.getNearestPlayer(animal, 64) instanceof net.minecraft.server.level.ServerPlayer near) {
+                com.yearofice.story.ambition.Ambitions.fire(near, "hunt.caribou_crossing", (long) minute);
+            }
+        }
         SlotSpawner.reportDeath(level, animal, killer != null);
         animal.remove(Entity.RemovalReason.KILLED);
     }
